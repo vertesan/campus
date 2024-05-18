@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "/proto/mastertag";
+
+message MasterTagPack {
+  string type = 1;
+  string fileName = 2;
+  int32 fileSize = 3;
+  string cryptoKey = 4;
+  string downloadUrl = 5;
+}
+
+message MasterTag {
+  string version = 1;
+  repeated MasterTagPack masterTagPacks = 2;
+}
+
+message MasterGetResponse {
+  MasterTag masterTag = 1;
+  string protoHash = 2;
+}

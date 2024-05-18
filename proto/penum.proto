@@ -1,0 +1,1966 @@
+syntax = "proto3";
+package penum;
+option go_package = "vertesan/campus/proto/penum";
+
+enum AchievementCategory {
+  AchievementCategory_Unknown = 0;
+  AchievementCategory_Idol = 1;
+  AchievementCategory_Produce = 2;
+  AchievementCategory_Other = 99;
+}
+enum AntiCheatFeatureType {
+  AntiCheatFeatureType_Unknown = 0;
+  AntiCheatFeatureType_ExamProduceLesson = 1;
+  AntiCheatFeatureType_ExamProduceAudition = 2;
+  AntiCheatFeatureType_ExamPvpRate = 3;
+  AntiCheatFeatureType_ExamTower = 4;
+  AntiCheatFeatureType_AndroidPlayIntegrity = 101;
+}
+enum AppReviewType {
+  AppReviewType_Unknown = 0;
+  AppReviewType_Gasha = 1;
+  AppReviewType_MainTask = 2;
+  AppReviewType_Achievement = 3;
+  AppReviewType_ProduceClear = 4;
+}
+enum AssetCopyRuleGroup {
+  AssetCopyRuleGroup_Unknown = 0;
+  AssetCopyRuleGroup_Common = 1;
+  AssetCopyRuleGroup_Motion = 2;
+  AssetCopyRuleGroup_Voice = 3;
+  AssetCopyRuleGroup_Camera = 4;
+}
+enum AssetCopyRuleType {
+  AssetCopyRuleType_Unknown = 0;
+  AssetCopyRuleType_Require = 1;
+  AssetCopyRuleType_Ignore = 2;
+  AssetCopyRuleType_RequireServer = 3;
+  AssetCopyRuleType_RequireClient = 4;
+}
+enum AssetDownloadType {
+  AssetDownloadType_Unknown = 0;
+  AssetDownloadType_First = 1;
+  AssetDownloadType_Second = 2;
+}
+enum AssetKind {
+  AssetKind_Unknown = 0;
+  AssetKind_AssetBundle = 1;
+  AssetKind_Resource = 2;
+}
+enum AuthProviderType {
+  AuthProviderType_Unknown = 0;
+  AuthProviderType_BandaiNamcoId = 1;
+}
+enum CharacterDetailType {
+  CharacterDetailType_Unknown = 0;
+  CharacterDetailType_Grade = 1;
+  CharacterDetailType_Height = 2;
+  CharacterDetailType_Weight = 3;
+  CharacterDetailType_BloodType = 4;
+  CharacterDetailType_ThreeSize = 5;
+  CharacterDetailType_ZodiacSign = 6;
+  CharacterDetailType_Cv = 7;
+  CharacterDetailType_Age = 8;
+  CharacterDetailType_Birthday = 9;
+  CharacterDetailType_DominantHand = 10;
+  CharacterDetailType_Birthplace = 11;
+  CharacterDetailType_SpecialSkill = 12;
+  CharacterDetailType_Hobby = 13;
+  CharacterDetailType_Introduction = 14;
+}
+enum CharacterPersonalityType {
+  CharacterPersonalityType_Unknown = 0;
+  CharacterPersonalityType_A = 1;
+  CharacterPersonalityType_B = 2;
+  CharacterPersonalityType_C = 3;
+  CharacterPersonalityType_D = 4;
+}
+enum CoinGashaBoxResetTypeType {
+  CoinGashaBoxResetTypeType_Unknown = 0;
+  CoinGashaBoxResetTypeType_EmptyAll = 1;
+  CoinGashaBoxResetTypeType_EmptyFeature = 2;
+  CoinGashaBoxResetTypeType_Optional = 3;
+}
+enum CoinGashaType {
+  CoinGashaType_Unknown = 0;
+  CoinGashaType_Default = 1;
+  CoinGashaType_Feature = 2;
+  CoinGashaType_Box = 3;
+}
+enum ConditionMinMaxType {
+  ConditionMinMaxType_Unknown = 0;
+  ConditionMinMaxType_MinMax = 1;
+  ConditionMinMaxType_Min = 2;
+  ConditionMinMaxType_Max = 3;
+}
+enum ConditionOperatorType {
+  ConditionOperatorType_Unknown = 0;
+  ConditionOperatorType_And = 1;
+  ConditionOperatorType_Or = 2;
+}
+enum ConditionType {
+  ConditionType_Unknown = 0;
+  ConditionType_TimeTerm = 1;
+  ConditionType_TimeDuration = 2;
+  ConditionType_TimeWeekday = 3;
+  ConditionType_HomeTime = 4;
+  ConditionType_Birthday = 5;
+  ConditionType_Login = 6;
+  ConditionType_TutorialClear = 7;
+  ConditionType_GameStartTutorialClearHour = 8;
+  ConditionType_ProducerLevel = 10;
+  ConditionType_Character = 11;
+  ConditionType_FanCount = 12;
+  ConditionType_DearnessLevel = 13;
+  ConditionType_Costume = 14;
+  ConditionType_IdolCard = 15;
+  ConditionType_IdolCardPotentialRank = 17;
+  ConditionType_IdolCardLevelLimitRank = 18;
+  ConditionType_SupportCard = 19;
+  ConditionType_SupportCardLevel = 20;
+  ConditionType_SupportCardLevelLimitRank = 21;
+  ConditionType_MemoryCount = 22;
+  ConditionType_CharacterProducePlayCount = 26;
+  ConditionType_CharacterProduceClearCount = 27;
+  ConditionType_ProduceClearCount = 28;
+  ConditionType_ProducePlanClearCount = 29;
+  ConditionType_PvpRateOpen = 30;
+  ConditionType_PvpRateSeasonPlayCount = 31;
+  ConditionType_PvpRateSeasonWinCount = 32;
+  ConditionType_PvpRateSeasonRate = 33;
+  ConditionType_PvpRateUnitOverallPower = 34;
+  ConditionType_WorkCount = 35;
+  ConditionType_WorkCharacterCount = 36;
+  ConditionType_StoryRead = 37;
+  ConditionType_FollowCount = 38;
+  ConditionType_GuildJoin = 40;
+  ConditionType_MeishiUpdateCount = 41;
+  ConditionType_GashaOpen = 42;
+  ConditionType_GashaDraw = 43;
+  ConditionType_ExchangeItemCount = 44;
+  ConditionType_ShopItemPurchase = 45;
+  ConditionType_MissionPassProgress = 46;
+  ConditionType_MainTaskCompleted = 47;
+  ConditionType_MissionCompleted = 48;
+  ConditionType_AchievementCompleted = 49;
+  ConditionType_ItemObtained = 50;
+  ConditionType_ItemCount = 51;
+  ConditionType_SeminarExamClear = 53;
+  ConditionType_PvpRateSeasonGrade = 54;
+  ConditionType_PvpRateBestGrade = 55;
+  ConditionType_ProduceStoryRead = 56;
+  ConditionType_TowerLayerClear = 57;
+  ConditionType_StoryUnlockKeyUse = 58;
+  ConditionType_MissionDailyReleaseNotComplete = 59;
+  ConditionType_MissionPanelNotComplete = 60;
+  ConditionType_AchievementFirstThresholdClearHour = 61;
+  ConditionType_MainTaskFirstThresholdClearHour = 62;
+  ConditionType_MissionFirstThresholdClearHour = 63;
+  ConditionType_Set = 998;
+  ConditionType_NegativeSet = 999;
+}
+enum ConsentAgreementType {
+  ConsentAgreementType_Unknown = 0;
+  ConsentAgreementType_Unanswered = 1;
+  ConsentAgreementType_Disagreement = 2;
+  ConsentAgreementType_Agreement = 3;
+}
+enum ConsentType {
+  ConsentType_Unknown = 0;
+  ConsentType_Overview = 1;
+  ConsentType_Analysis = 2;
+  ConsentType_Advertisement = 3;
+  ConsentType_CustomizedAdvertisement = 4;
+  ConsentType_Sns = 5;
+}
+enum CostumeMotionType {
+  CostumeMotionType_Unknown = 0;
+  CostumeMotionType_Wait = 1;
+  CostumeMotionType_Start = 2;
+  CostumeMotionType_Finish = 3;
+  CostumeMotionType_TapReaction = 4;
+}
+enum CostumeSetType {
+  CostumeSetType_Unknown = 0;
+  CostumeSetType_Home = 1;
+  CostumeSetType_ProduceSchedule = 2;
+  CostumeSetType_ProduceLive = 3;
+  CostumeSetType_ProduceTraining = 4;
+}
+enum CountType {
+  CountType_Unknown = 0;
+  CountType_Login = 1;
+  CountType_ProduceRentalMemory = 2;
+  CountType_ProduceContinue = 3;
+  CountType_Achievement = 4;
+  CountType_ReceivedTotalLoginBonus = 5;
+  CountType_ConfirmedTotalLoginBonus = 6;
+  CountType_MeishiUpdate = 7;
+  CountType_MeishiFollow = 8;
+  CountType_GuildDonation = 9;
+  CountType_MainTask = 10;
+  CountType_AchievementIdol = 11;
+  CountType_AchievementProduce = 12;
+  CountType_AchievementOther = 13;
+  CountType_MainTaskMainStory = 14;
+  CountType_MainTaskProducer = 15;
+}
+enum DeckRecommendType {
+  DeckRecommendType_Unknown = 0;
+  DeckRecommendType_Manual = 1;
+  DeckRecommendType_Recommend = 2;
+  DeckRecommendType_RecommendAndManual = 3;
+  DeckRecommendType_Reset = 4;
+}
+enum ErrorCode {
+  ErrorCode_Unknown = 0;
+  ErrorCode_InvalidArgument = 1001;
+  ErrorCode_Internal = 1002;
+  ErrorCode_Unauthenticated = 1003;
+  ErrorCode_PermissionDenied = 1004;
+  ErrorCode_NotFound = 1005;
+  ErrorCode_OutdatedMasterData = 2001;
+  ErrorCode_LockFailed = 2002;
+  ErrorCode_PurchaseRecoverFailed = 2003;
+  ErrorCode_OutdatedApp = 2004;
+  ErrorCode_ExchangeNeedRefresh = 2005;
+  ErrorCode_DateChanged = 2006;
+  ErrorCode_FriendFollowCountLimitExceeded = 2007;
+  ErrorCode_FriendFollowersCountLimitExceeded = 2008;
+  ErrorCode_MeishiFollowCountLimitExceeded = 2009;
+  ErrorCode_MeishiDuplicatedFollow = 2010;
+  ErrorCode_UserNotFound = 2011;
+  ErrorCode_GuildNotFound = 2012;
+  ErrorCode_GuildAlreadyJoined = 2013;
+  ErrorCode_GuildDismiss = 2014;
+  ErrorCode_MeishiNotFound = 2015;
+  ErrorCode_InvalidPlayIntegrity = 2016;
+  ErrorCode_InMaintenance = 2017;
+  ErrorCode_AccountBan = 2018;
+  ErrorCode_TemporaryAccountBan = 2019;
+  ErrorCode_PurchaseBan = 2020;
+  ErrorCode_TemporaryPurchaseBan = 2021;
+  ErrorCode_RecoveryPurchaseTransactionNotFound = 2022;
+  ErrorCode_DataUpdated = 2023;
+  ErrorCode_InFeatureMaintenance = 2024;
+  ErrorCode_NgWordContains = 2025;
+  ErrorCode_MigrationBan = 2026;
+  ErrorCode_TemporaryMigrationBan = 2027;
+  ErrorCode_InvitationInvalidCode = 2028;
+  ErrorCode_AuthLinkAccountNotFound = 2029;
+  ErrorCode_ShopInvalidBirthday = 2030;
+  ErrorCode_RequestConflict = 2031;
+  ErrorCode_GameAuthTokenInvalid = 2032;
+  ErrorCode_OutOfTerm = 2033;
+  ErrorCode_ConditionInvalid = 2034;
+  ErrorCode_ShopExceedPurchaseThresholdOnRecover = 2035;
+  ErrorCode_ShopExceedMaxJewelQuantityOnRecover = 2036;
+  ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
+  ErrorCode_ProduceOutdatedRentalMemory = 2302;
+  ErrorCode_ProduceHistoryNotFound = 2303;
+  ErrorCode_ProduceUuidInvalid = 2304;
+  ErrorCode_ProduceNeedReset = 2305;
+  ErrorCode_BnidlinkUserNotFound = 5000;
+  ErrorCode_BnidlinkMasterDataInvalid = 5001;
+}
+enum EventType {
+  EventType_Unknown = 0;
+  EventType_MissionDailyRelease = 1;
+  EventType_MissionPanel = 2;
+  EventType_ProduceHighScore = 3;
+  EventType_StoryCampaign = 4;
+  EventType_StoryEvent = 5;
+  EventType_StoryEventMainStory = 6;
+  EventType_StoryEventBoxGasha = 7;
+  EventType_StoryEventGuildMission = 8;
+}
+enum ExamCommandType {
+  ExamCommandType_Unknown = 0;
+  ExamCommandType_TurnDraw = 1;
+  ExamCommandType_UseHand = 2;
+  ExamCommandType_UseDrink = 3;
+  ExamCommandType_UsePool = 4;
+  ExamCommandType_PlayEffect = 5;
+  ExamCommandType_MovePlayCard = 6;
+  ExamCommandType_TurnCheck = 7;
+  ExamCommandType_PhaseChange = 8;
+  ExamCommandType_SeparateActivity = 9;
+  ExamCommandType_SeparateTrigger = 10;
+  ExamCommandType_NoUsableCardActivity = 11;
+  ExamCommandType_TurnEnd = 12;
+  ExamCommandType_UserCardAfterCheck = 13;
+  ExamCommandType_CardEnchantTrigger = 14;
+  ExamCommandType_SupportCardUpgrade = 15;
+  ExamCommandType_Panic = 16;
+}
+enum ExamCostType {
+  ExamCostType_Unknown = 0;
+  ExamCostType_ExamLessonBuff = 1;
+  ExamCostType_ExamReview = 2;
+  ExamCostType_ExamCardPlayAggressive = 3;
+  ExamCostType_ExamParameterBuff = 4;
+}
+enum ExamGameType {
+  ExamGameType_Unknown = 0;
+  ExamGameType_ProduceLesson = 1;
+  ExamGameType_ProduceAudition = 2;
+  ExamGameType_PvpRate = 3;
+  ExamGameType_Tower = 4;
+}
+enum ExamMotionTargetType {
+  ExamMotionTargetType_Unknown = 0;
+  ExamMotionTargetType_VocalLesson = 2;
+  ExamMotionTargetType_DanceLesson = 3;
+  ExamMotionTargetType_VisualLesson = 4;
+  ExamMotionTargetType_VocalLessonHard = 5;
+  ExamMotionTargetType_DanceLessonHard = 6;
+  ExamMotionTargetType_VisualLessonHard = 7;
+  ExamMotionTargetType_Audition = 8;
+  ExamMotionTargetType_Contest = 9;
+}
+enum ExamMotionType {
+  ExamMotionType_Unknown = 0;
+  ExamMotionType_ParameterUp = 1;
+  ExamMotionType_ParameterUpLarge = 2;
+  ExamMotionType_BlockAdd = 3;
+  ExamMotionType_Buff = 4;
+  ExamMotionType_Debuff = 5;
+  ExamMotionType_Wait = 6;
+  ExamMotionType_NoMotionUseDrink = 7;
+  ExamMotionType_WaitOnce = 8;
+}
+enum ExamOutGameMotionType {
+  ExamOutGameMotionType_Unknown = 0;
+  ExamOutGameMotionType_Start1 = 1;
+  ExamOutGameMotionType_Start2 = 2;
+  ExamOutGameMotionType_ResultPerfect = 3;
+  ExamOutGameMotionType_ResultSuccess = 4;
+  ExamOutGameMotionType_ResultFailure = 5;
+  ExamOutGameMotionType_Clear = 6;
+}
+enum ExamPhaseType {
+  ExamPhaseType_Unknown = 0;
+  ExamPhaseType_ExamStandBy = 1;
+  ExamPhaseType_TurnStart = 2;
+  ExamPhaseType_TurnStartAfter = 3;
+  ExamPhaseType_TurnStartDraw = 4;
+  ExamPhaseType_Main = 5;
+  ExamPhaseType_TurnEnd = 6;
+  ExamPhaseType_ExamEnd = 7;
+}
+enum ExamPlayType {
+  ExamPlayType_Unknown = 0;
+  ExamPlayType_AutoPlay = 1;
+  ExamPlayType_ManualPlayLesson = 2;
+  ExamPlayType_ManualPlayLessonHard = 3;
+  ExamPlayType_ManualPlayAudition = 4;
+}
+enum ExchangeItemResetCheckStatus {
+  ExchangeItemResetCheckStatus_Unknown = 0;
+  ExchangeItemResetCheckStatus_Open = 1;
+  ExchangeItemResetCheckStatus_Locked = 2;
+}
+enum ExchangeType {
+  ExchangeType_Unknown = 0;
+  ExchangeType_Daily = 1;
+  ExchangeType_Item = 2;
+  ExchangeType_Event = 3;
+}
+enum FeatureMaintenanceType {
+  FeatureMaintenanceType_Unknown = 0;
+  FeatureMaintenanceType_Exchange = 1;
+  FeatureMaintenanceType_Shop = 2;
+  FeatureMaintenanceType_Work = 3;
+  FeatureMaintenanceType_Mission = 4;
+  FeatureMaintenanceType_CoinGasha = 5;
+  FeatureMaintenanceType_MissionPass = 6;
+  FeatureMaintenanceType_Gasha = 7;
+  FeatureMaintenanceType_Guild = 8;
+  FeatureMaintenanceType_Produce = 9;
+  FeatureMaintenanceType_PvpRate = 10;
+  FeatureMaintenanceType_Tower = 11;
+  FeatureMaintenanceType_TicketExchange = 12;
+  FeatureMaintenanceType_ShopTop = 13;
+  FeatureMaintenanceType_StoryEvent = 14;
+  FeatureMaintenanceType_ProduceHighScore = 15;
+}
+enum FriendStatusType {
+  FriendStatusType_Unknown = 0;
+  FriendStatusType_None = 1;
+  FriendStatusType_MutualFollow = 2;
+  FriendStatusType_Follow = 3;
+  FriendStatusType_Follower = 4;
+}
+enum GashaAnimationRarity {
+  GashaAnimationRarity_Unknown = 0;
+  GashaAnimationRarity_R = 1;
+  GashaAnimationRarity_Sr = 2;
+  GashaAnimationRarity_Ssr = 3;
+  GashaAnimationRarity_PickupSsridolCard = 4;
+}
+enum GashaButtonAppealType {
+  GashaButtonAppealType_Unknown = 0;
+  GashaButtonAppealType_AppealText = 1;
+  GashaButtonAppealType_DrawableCount = 2;
+  GashaButtonAppealType_CurrentStep = 3;
+  GashaButtonAppealType_FixSsr = 4;
+}
+enum GashaButtonType {
+  GashaButtonType_Unknown = 0;
+  GashaButtonType_Static = 1;
+  GashaButtonType_Dynamic = 2;
+}
+enum GashaCardBonusType {
+  GashaCardBonusType_Unknown = 0;
+  GashaCardBonusType_All = 1;
+  GashaCardBonusType_IdolCardAll = 2;
+  GashaCardBonusType_SupportCardAll = 3;
+  GashaCardBonusType_IdolCard = 4;
+  GashaCardBonusType_SupportCard = 5;
+}
+enum GashaLimitType {
+  GashaLimitType_Unknown = 0;
+  GashaLimitType_None = 1;
+  GashaLimitType_Total = 2;
+  GashaLimitType_Daily = 3;
+  GashaLimitType_DailyAccumulation = 4;
+}
+enum GashaStepUpAppealType {
+  GashaStepUpAppealType_Unknown = 0;
+  GashaStepUpAppealType_Sr = 1;
+  GashaStepUpAppealType_Ssr = 2;
+}
+enum GashaType {
+  GashaType_Unknown = 0;
+  GashaType_Default = 1;
+  GashaType_StepUp = 2;
+  GashaType_SelectPickup = 3;
+}
+enum GiftFilterType {
+  GiftFilterType_Unknown = 0;
+  GiftFilterType_Jewel = 1;
+  GiftFilterType_IdolCard = 2;
+  GiftFilterType_SupportCard = 3;
+  GiftFilterType_Memory = 4;
+  GiftFilterType_Item = 5;
+  GiftFilterType_Costume = 6;
+  GiftFilterType_Other = 99;
+}
+enum GuildActivityPolicyType {
+  GuildActivityPolicyType_Unknown = 0;
+  GuildActivityPolicyType__1 = 1;
+  GuildActivityPolicyType__2 = 2;
+  GuildActivityPolicyType__3 = 3;
+  GuildActivityPolicyType__4 = 4;
+  GuildActivityPolicyType__5 = 5;
+  GuildActivityPolicyType__6 = 6;
+}
+enum GuildJoinRequestRouteType {
+  GuildJoinRequestRouteType_Unknown = 0;
+  GuildJoinRequestRouteType_Search = 1;
+  GuildJoinRequestRouteType_Id = 2;
+  GuildJoinRequestRouteType_Suggestion = 3;
+}
+enum GuildJoinType {
+  GuildJoinType_Unknown = 0;
+  GuildJoinType_NotJoined = 1;
+  GuildJoinType_Joined = 2;
+}
+enum GuildNotificationType {
+  GuildNotificationType_Unknown = 0;
+  GuildNotificationType_Join = 1;
+  GuildNotificationType_Dismiss = 2;
+}
+enum GuildRoleType {
+  GuildRoleType_Unknown = 0;
+  GuildRoleType_Member = 1;
+  GuildRoleType_Leader = 2;
+  GuildRoleType_JoinRequester = 999;
+}
+enum GuildSearchMemberCountRangeType {
+  GuildSearchMemberCountRangeType_Unknown = 0;
+  GuildSearchMemberCountRangeType__1 = 1;
+  GuildSearchMemberCountRangeType__2 = 2;
+  GuildSearchMemberCountRangeType__3 = 3;
+}
+enum HomeLocationType {
+  HomeLocationType_Unknown = 0;
+  HomeLocationType_Home = 1;
+  HomeLocationType_Idol = 2;
+  HomeLocationType_Contest = 3;
+  HomeLocationType_Story1 = 4;
+  HomeLocationType_Story2 = 5;
+}
+enum HomeMotionType {
+  HomeMotionType_Unknown = 0;
+  HomeMotionType_Wait1 = 1;
+  HomeMotionType_Wait2 = 2;
+  HomeMotionType_Reaction = 3;
+  HomeMotionType_ReactionOnce = 4;
+  HomeMotionType_WaitLookAround = 5;
+  HomeMotionType_MultipleTaps = 6;
+  HomeMotionType_Transition = 7;
+  HomeMotionType_WaitOnce = 8;
+}
+enum HomeTimeType {
+  HomeTimeType_Unknown = 0;
+  HomeTimeType_Morning = 1;
+  HomeTimeType_Daytime = 2;
+  HomeTimeType_Evening = 3;
+  HomeTimeType_Night = 4;
+}
+enum HomeType {
+  HomeType_Unknown = 0;
+  HomeType_Home = 1;
+  HomeType_Idol = 2;
+  HomeType_Contest = 3;
+  HomeType_Story = 4;
+}
+enum IdolCardDifficultyType {
+  IdolCardDifficultyType_Unknown = 0;
+  IdolCardDifficultyType_Low = 1;
+  IdolCardDifficultyType_Middle = 2;
+  IdolCardDifficultyType_High = 3;
+}
+enum IdolCardLevelLimitEffectType {
+  IdolCardLevelLimitEffectType_Unknown = 0;
+  IdolCardLevelLimitEffectType_ProduceCardUpgrade = 1;
+  IdolCardLevelLimitEffectType_ProduceVoDaVi = 2;
+  IdolCardLevelLimitEffectType_ProduceStamina = 3;
+  IdolCardLevelLimitEffectType_ProduceSkill = 4;
+}
+enum IdolCardLevelLimitRank {
+  IdolCardLevelLimitRank_Unknown = 0;
+  IdolCardLevelLimitRank__1 = 1;
+  IdolCardLevelLimitRank__2 = 2;
+  IdolCardLevelLimitRank__3 = 3;
+  IdolCardLevelLimitRank__4 = 4;
+  IdolCardLevelLimitRank__5 = 5;
+  IdolCardLevelLimitRank__6 = 6;
+  IdolCardLevelLimitRank__7 = 7;
+  IdolCardLevelLimitRank__8 = 8;
+  IdolCardLevelLimitRank__9 = 9;
+}
+enum IdolCardPotentialEffectType {
+  IdolCardPotentialEffectType_Unknown = 0;
+  IdolCardPotentialEffectType_ProduceVoDaViGrowthRatePermil = 1;
+  IdolCardPotentialEffectType_ProduceStamina = 2;
+  IdolCardPotentialEffectType_InitialProduceItemChange = 3;
+  IdolCardPotentialEffectType_ProduceSkill = 4;
+}
+enum IdolCardPotentialRank {
+  IdolCardPotentialRank_Unknown = 0;
+  IdolCardPotentialRank__1 = 1;
+  IdolCardPotentialRank__2 = 2;
+  IdolCardPotentialRank__3 = 3;
+  IdolCardPotentialRank__4 = 4;
+}
+enum IdolCardRarity {
+  IdolCardRarity_Unknown = 0;
+  IdolCardRarity_R = 1;
+  IdolCardRarity_Sr = 2;
+  IdolCardRarity_Ssr = 3;
+}
+enum IdolSkillPossessionType {
+  IdolSkillPossessionType_Unknown = 0;
+  IdolSkillPossessionType_IdolSkill1 = 1;
+  IdolSkillPossessionType_IdolSkill2 = 2;
+  IdolSkillPossessionType_IdolSkill3 = 3;
+}
+enum ItemRarity {
+  ItemRarity_Unknown = 0;
+  ItemRarity_N = 1;
+  ItemRarity_R = 2;
+  ItemRarity_Sr = 3;
+  ItemRarity_Ssr = 4;
+}
+enum ItemType {
+  ItemType_Unknown = 0;
+  ItemType_Money = 1;
+  ItemType_ProduceContinue = 2;
+  ItemType_SupportCardEnhancePoint = 3;
+  ItemType_ActionPointRecovery = 4;
+  ItemType_IdolCardLevelLimitMaterial = 5;
+  ItemType_GashaTicket = 7;
+  ItemType_Coin = 8;
+  ItemType_ExchangeMaterial = 9;
+  ItemType_Medal = 10;
+  ItemType_IdolCardPiece = 11;
+  ItemType_FriendCoin = 12;
+  ItemType_PvpRateCoin = 13;
+  ItemType_StoryUnlockKey = 14;
+  ItemType_ExchangeTicket = 15;
+  ItemType_ProduceBoostRewardSupportCardEnhancePoint = 102;
+  ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial = 103;
+}
+enum LangType {
+  LangType_Unknown = 0;
+  LangType_Ja = 1;
+  LangType_Ko = 2;
+  LangType_ZhTw = 3;
+}
+enum LinkType {
+  LinkType_Unknown = 0;
+  LinkType_Story = 1;
+  LinkType_Notice = 2;
+  LinkType_Seminar = 3;
+  LinkType_Produce = 4;
+  LinkType_Memory = 5;
+  LinkType_CoinGasha = 7;
+  LinkType_TicketExchange = 9;
+  LinkType_MissionPass = 10;
+  LinkType_MissionGroup = 11;
+  LinkType_MissionDailyRelease = 12;
+  LinkType_MissionPanel = 13;
+  LinkType_Music = 14;
+  LinkType_Guild = 15;
+  LinkType_Friend = 16;
+  LinkType_MediaMovie = 17;
+  LinkType_MediaComic = 18;
+  LinkType_Invitation = 19;
+  LinkType_PvpRate = 20;
+  LinkType_Meishi = 21;
+  LinkType_StoryEvent = 22;
+  LinkType_ProduceHighScore = 23;
+  LinkType_Tower = 24;
+  LinkType_Gasha = 25;
+  LinkType_ShopJewel = 26;
+  LinkType_ShopPass = 27;
+  LinkType_ShopPack = 28;
+  LinkType_ExchangeDaily = 29;
+  LinkType_ExchangeItem = 30;
+  LinkType_ExchangeEvent = 31;
+}
+enum LoginBonusType {
+  LoginBonusType_Unknown = 0;
+  LoginBonusType_Normal = 1;
+  LoginBonusType_Event3D = 2;
+  LoginBonusType_Event2D = 3;
+}
+enum MainTaskType {
+  MainTaskType_Unknown = 0;
+  MainTaskType_MainStory = 1;
+  MainTaskType_Producer = 2;
+}
+enum MediaType {
+  MediaType_Unknown = 0;
+  MediaType_Movie = 1;
+  MediaType_Comic = 2;
+  MediaType_Other = 3;
+}
+enum MeishiIllustrationType {
+  MeishiIllustrationType_Unknown = 0;
+  MeishiIllustrationType_Idol = 1;
+  MeishiIllustrationType_Sdcharacter = 2;
+  MeishiIllustrationType_Other = 99;
+}
+enum MeishiObjectType {
+  MeishiObjectType_Unknown = 0;
+  MeishiObjectType_UserName = 1;
+  MeishiObjectType_Achievement = 2;
+  MeishiObjectType_Illustration = 3;
+  MeishiObjectType_PublicUserId = 4;
+  MeishiObjectType_ProducerLevel = 5;
+  MeishiObjectType_Comment = 6;
+  MeishiObjectType_TotalFanCount = 7;
+  MeishiObjectType_PvpRateGrade = 8;
+}
+enum MissionCategory {
+  MissionCategory_Unknown = 0;
+  MissionCategory_MainTask = 1;
+  MissionCategory_Daily = 2;
+  MissionCategory_Weekly = 3;
+  MissionCategory_Normal = 4;
+  MissionCategory_Special = 5;
+  MissionCategory_Event = 6;
+  MissionCategory_Achievement = 7;
+}
+enum MissionType {
+  MissionType_Unknown = 0;
+  MissionType_IncrementMissionClear = 101;
+  MissionType_IncrementLoginCount = 102;
+  MissionType_IncrementDailyHomeEnterCount = 103;
+  MissionType_IncrementGashaDrawCount = 104;
+  MissionType_IncrementWorkCount = 105;
+  MissionType_IncrementWorkExcellentCount = 106;
+  MissionType_IncrementWorkDurationHour = 107;
+  MissionType_IncrementConsumeActionPoint = 108;
+  MissionType_IncrementShopCoinGashaDrawCount = 109;
+  MissionType_IncrementEventCoinGashaDrawCount = 110;
+  MissionType_IncrementDailyExchangeCount = 111;
+  MissionType_IncrementItemExchangeCount = 112;
+  MissionType_IncrementEventExchangeCount = 113;
+  MissionType_IncrementProvideItemCount = 114;
+  MissionType_IncrementReceiveMoney = 115;
+  MissionType_IncrementIdolCardLevelLimitRankUpdateCount = 121;
+  MissionType_IncrementIdolCardPotentialRankUpdateCount = 122;
+  MissionType_IncrementSupportCardCount = 123;
+  MissionType_IncrementSupportCardLevelUpdateCount = 124;
+  MissionType_IncrementSupportCardLevelLimitRankUpdateCount = 125;
+  MissionType_IncrementFanCount = 134;
+  MissionType_IncrementMemoryGradeCount = 137;
+  MissionType_IncrementMemoryExchangeCount = 138;
+  MissionType_IncrementMeishiUpdateCount = 142;
+  MissionType_IncrementMeishiExchangeCount = 144;
+  MissionType_IncrementMeishiXpostCount = 145;
+  MissionType_IncrementGuildDonationRequestCount = 146;
+  MissionType_IncrementGuildDonationCount = 147;
+  MissionType_IncrementPvpRatePlayCount = 160;
+  MissionType_IncrementPvpRateCharacterPlayCount = 161;
+  MissionType_IncrementPvpRateWinCount = 162;
+  MissionType_IncrementPvpRateCharacterWinCount = 163;
+  MissionType_IncrementPvpRateExamBattleScoreCount = 164;
+  MissionType_IncrementUrlTransition = 165;
+  MissionType_IncrementProfileUpdateCount = 166;
+  MissionType_IncrementPvpRateCharacterExamBattleScoreCount = 167;
+  MissionType_IncrementProduceSupportCardDeckUpdateCount = 201;
+  MissionType_IncrementProduceMemoryDeckUpdateCount = 202;
+  MissionType_IncrementProduceTotalScore = 203;
+  MissionType_IncrementProduceTotalProducePoint = 206;
+  MissionType_IncrementProduceGetProduceCardCount = 207;
+  MissionType_IncrementProduceGetProduceDrinkCount = 208;
+  MissionType_IncrementProduceGetProduceItemCount = 209;
+  MissionType_IncrementProduceTotalAdditionExamBlock = 213;
+  MissionType_IncrementProduceConsumedStamina = 214;
+  MissionType_IncrementProduceExamUseProduceCardCount = 215;
+  MissionType_IncrementProduceUpgradeProduceCardCount = 217;
+  MissionType_IncrementProduceUseProduceDrinkCount = 218;
+  MissionType_IncrementProduceAdditionParameter = 219;
+  MissionType_IncrementProducePlayCount = 220;
+  MissionType_IncrementProducePlanPlayCount = 221;
+  MissionType_IncrementProduceCharacterPlayCount = 222;
+  MissionType_IncrementProduceIdolCardPlayCount = 223;
+  MissionType_IncrementProduceClearCount = 224;
+  MissionType_IncrementProducePlanClearCount = 225;
+  MissionType_IncrementProduceCharacterClearCount = 226;
+  MissionType_IncrementProduceIdolCardClearCount = 227;
+  MissionType_IncrementProduceSelectStepCount = 228;
+  MissionType_IncrementProduceShopBuyCount = 229;
+  MissionType_IncrementProduceLessonClearCount = 230;
+  MissionType_AbsoluteLinkBandaiNamco = 301;
+  MissionType_AbsoluteLoginCount = 302;
+  MissionType_AbsoluteAchievementCount = 303;
+  MissionType_AbsoluteCharacterIdolAchievementCount = 304;
+  MissionType_AbsoluteProducerLevel = 310;
+  MissionType_AbsoluteIdolCardCount = 311;
+  MissionType_AbsoluteIdolCardLevelLimitRank = 312;
+  MissionType_AbsoluteIdolCardLevelLimitRankCount = 313;
+  MissionType_AbsoluteIdolCardPotentialRankCount = 314;
+  MissionType_AbsoluteSupportCardCount = 315;
+  MissionType_AbsoluteSupportCardLevelCount = 316;
+  MissionType_AbsoluteSupportCardLevelLimitRankCount = 317;
+  MissionType_AbsoluteSupportCardLevel = 319;
+  MissionType_AbsoluteFanCount = 335;
+  MissionType_AbsoluteDearnessLevel = 337;
+  MissionType_AbsoluteMeishiUpdateCount = 343;
+  MissionType_AbsoluteMeishiExchangeCount = 346;
+  MissionType_AbsoluteFollowCount = 348;
+  MissionType_AbsoluteFollowerCount = 349;
+  MissionType_AbsoluteStoryRead = 364;
+  MissionType_AbsoluteGuildJoin = 365;
+  MissionType_AbsolutePvpRateGrade = 366;
+  MissionType_AbsolutePvpRateUnitOverallPower = 367;
+  MissionType_AbsolutePvpRateExamBattleMaxScore = 368;
+  MissionType_AbsolutePvpRateCharacterExamBattleMaxScore = 369;
+  MissionType_AbsolutePvpRateRank = 370;
+  MissionType_AbsoluteTowerTotalClearRank = 371;
+  MissionType_AbsoluteTowerCharacterTotalClearRank = 372;
+  MissionType_AbsoluteTowerClearRank = 373;
+  MissionType_AbsoluteProduceIdolCardHighScore = 401;
+  MissionType_AbsoluteProducePlanTotalHighScore = 402;
+  MissionType_AbsoluteProducePictureBookProduceCardCount = 410;
+  MissionType_AbsoluteProducePictureBookProduceDrinkCount = 411;
+  MissionType_AbsoluteProducePictureBookProduceItemCount = 412;
+  MissionType_AbsoluteProduceCharacterEnding = 420;
+  MissionType_AbsoluteSeminarExamClear = 421;
+  MissionType_AbsoluteProducePlayCharacterCount = 422;
+  MissionType_AbsoluteProduceStoryRead = 423;
+  MissionType_ConditionClear = 998;
+  MissionType_ProduceConditionClear = 999;
+  MissionType_ProduceConditionClearBeforeLiveEvaluation = 1000;
+}
+enum MusicWishListRequesterType {
+  MusicWishListRequesterType_Unknown = 0;
+  MusicWishListRequesterType_Self = 1;
+  MusicWishListRequesterType_OtherUser = 2;
+  MusicWishListRequesterType_Character = 3;
+}
+enum NoticeCategory {
+  NoticeCategory_Unknown = 0;
+  NoticeCategory_Info = 1;
+  NoticeCategory_Bug = 2;
+  NoticeCategory_Pr = 3;
+}
+enum NoticeType {
+  NoticeType_Unknown = 0;
+  NoticeType_Update = 1;
+  NoticeType_Gasha = 2;
+  NoticeType_Campaign = 3;
+  NoticeType_Event = 4;
+  NoticeType_Important = 5;
+  NoticeType_Information = 6;
+  NoticeType_Maintenance = 7;
+  NoticeType_Bug = 8;
+}
+enum PlatformType {
+  PlatformType_Unknown = 0;
+  PlatformType_Ios = 1;
+  PlatformType_Android = 2;
+  PlatformType_Other = 999;
+}
+enum ProduceAdvType {
+  ProduceAdvType_Unknown = 0;
+  ProduceAdvType_BeforeFinalLessonHard = 1;
+  ProduceAdvType_BeforeMid1LessonHard = 2;
+  ProduceAdvType_BeforeMid2LessonHard = 3;
+  ProduceAdvType_BeforeFinalAuditionRefresh = 10;
+  ProduceAdvType_BeforeMid1AuditionRefresh = 11;
+  ProduceAdvType_BeforeMid2AuditionRefresh = 12;
+  ProduceAdvType_Opening = 19;
+  ProduceAdvType_ProduceResultTrueEnd = 20;
+  ProduceAdvType_ProduceResultA = 21;
+  ProduceAdvType_ProduceResultB = 22;
+  ProduceAdvType_ProduceResultC = 23;
+  ProduceAdvType_ProduceResultFailedFinal = 24;
+  ProduceAdvType_ProduceResultFailedMid1 = 25;
+  ProduceAdvType_ProduceResultFailedMid2 = 26;
+}
+enum ProduceCampaignType {
+  ProduceCampaignType_Unknown = 0;
+  ProduceCampaignType_ActionPointDown = 1;
+  ProduceCampaignType_MemoryRentalCountUp = 2;
+  ProduceCampaignType_RewardQuantityUp = 3;
+  ProduceCampaignType_ProduceResultRewardAdd = 4;
+  ProduceCampaignType_ProduceResultRewardChange = 5;
+}
+enum ProduceCardCategory {
+  ProduceCardCategory_Unknown = 0;
+  ProduceCardCategory_ActiveSkill = 1;
+  ProduceCardCategory_MentalSkill = 2;
+  ProduceCardCategory_Trouble = 3;
+}
+enum ProduceCardGrowEffectType {
+  ProduceCardGrowEffectType_Unknown = 0;
+  ProduceCardGrowEffectType_LessonAdd = 1;
+  ProduceCardGrowEffectType_LessonReduce = 2;
+  ProduceCardGrowEffectType_LessonCountAdd = 3;
+  ProduceCardGrowEffectType_LessonCountReduce = 4;
+  ProduceCardGrowEffectType_BlockAdd = 5;
+  ProduceCardGrowEffectType_BlockReduce = 6;
+  ProduceCardGrowEffectType_FullPowerPointAdd = 7;
+  ProduceCardGrowEffectType_FullPowerPointRecue = 8;
+  ProduceCardGrowEffectType_CostBuffReduce = 10;
+  ProduceCardGrowEffectType_CostBuffAdd = 11;
+  ProduceCardGrowEffectType_CostReduce = 12;
+  ProduceCardGrowEffectType_CostAdd = 13;
+  ProduceCardGrowEffectType_CostPenetrateReduce = 14;
+  ProduceCardGrowEffectType_CostPenetrateAdd = 15;
+}
+enum ProduceCardMoveEffectTriggerType {
+  ProduceCardMoveEffectTriggerType_Unknown = 0;
+  ProduceCardMoveEffectTriggerType_Lost = 1;
+  ProduceCardMoveEffectTriggerType_Grave = 2;
+  ProduceCardMoveEffectTriggerType_Draw = 3;
+}
+enum ProduceCardMovePositionType {
+  ProduceCardMovePositionType_Unknown = 0;
+  ProduceCardMovePositionType_Hand = 1;
+  ProduceCardMovePositionType_DeckFirst = 2;
+  ProduceCardMovePositionType_DeckLast = 3;
+  ProduceCardMovePositionType_DeckRandom = 4;
+  ProduceCardMovePositionType_Grave = 5;
+  ProduceCardMovePositionType_Lost = 6;
+  ProduceCardMovePositionType_Hold = 7;
+}
+enum ProduceCardOrderType {
+  ProduceCardOrderType_Unknown = 0;
+  ProduceCardOrderType_First = 1;
+  ProduceCardOrderType_Last = 2;
+  ProduceCardOrderType_Random = 3;
+}
+enum ProduceCardPositionType {
+  ProduceCardPositionType_Unknown = 0;
+  ProduceCardPositionType_None = 1;
+  ProduceCardPositionType_Hand = 2;
+  ProduceCardPositionType_Deck = 3;
+  ProduceCardPositionType_Grave = 4;
+  ProduceCardPositionType_Lost = 5;
+  ProduceCardPositionType_DeckAll = 6;
+  ProduceCardPositionType_RandomPool = 7;
+  ProduceCardPositionType_Playing = 8;
+  ProduceCardPositionType_PlayHand = 9;
+  ProduceCardPositionType_Target = 11;
+  ProduceCardPositionType_Self = 12;
+  ProduceCardPositionType_Hold = 13;
+}
+enum ProduceCardRarity {
+  ProduceCardRarity_Unknown = 0;
+  ProduceCardRarity_N = 1;
+  ProduceCardRarity_R = 2;
+  ProduceCardRarity_Sr = 3;
+  ProduceCardRarity_Ssr = 4;
+}
+enum ProduceCardSearchStatusType {
+  ProduceCardSearchStatusType_Unknown = 0;
+  ProduceCardSearchStatusType_LostPlay = 1;
+  ProduceCardSearchStatusType_EndTurnLost = 2;
+  ProduceCardSearchStatusType_Initial = 4;
+  ProduceCardSearchStatusType_Restrict = 5;
+}
+enum ProduceCardStatusEnchantTriggerType {
+  ProduceCardStatusEnchantTriggerType_Unknown = 0;
+  ProduceCardStatusEnchantTriggerType_CardMoveEffectHandCardGrave = 1;
+  ProduceCardStatusEnchantTriggerType_CardStaminaReduce = 2;
+  ProduceCardStatusEnchantTriggerType_TurnInterval = 3;
+  ProduceCardStatusEnchantTriggerType_CardMoveHand = 4;
+}
+enum ProduceConditionType {
+  ProduceConditionType_Unknown = 0;
+  ProduceConditionType_EventOccurred = 1;
+  ProduceConditionType_EventNotOccurred = 2;
+  ProduceConditionType_SupportCard = 3;
+  ProduceConditionType_MemoryCharacter = 4;
+  ProduceConditionType_SelectStepCount = 6;
+  ProduceConditionType_ProduceCardUpgradeCount = 9;
+  ProduceConditionType_ProduceCardDeleteCount = 10;
+  ProduceConditionType_LessonClearCount = 13;
+  ProduceConditionType_CurrentStepCount = 14;
+  ProduceConditionType_Vocal = 15;
+  ProduceConditionType_Dance = 16;
+  ProduceConditionType_Visual = 17;
+  ProduceConditionType_Stamina = 18;
+  ProduceConditionType_ProducePoint = 20;
+  ProduceConditionType_HasProduceCard = 21;
+  ProduceConditionType_ProduceCardCount = 22;
+  ProduceConditionType_ProduceDrinkCount = 23;
+  ProduceConditionType_ProduceItemCount = 24;
+  ProduceConditionType_ShopPreviousConsumedProducePoint = 26;
+  ProduceConditionType_ShopProduceCardBuyCount = 27;
+  ProduceConditionType_ShopProduceItemBuyCount = 28;
+  ProduceConditionType_ShopProduceDrinkBuyCount = 29;
+  ProduceConditionType_LessonVocalScore = 30;
+  ProduceConditionType_LessonDanceScore = 31;
+  ProduceConditionType_LessonVisualScore = 32;
+  ProduceConditionType_ProduceEffectTypeCount = 33;
+  ProduceConditionType_AuditionMid1Score = 34;
+  ProduceConditionType_AuditionMid2Score = 35;
+  ProduceConditionType_AuditionFinalScore = 36;
+  ProduceConditionType_AuditionMid1Pass = 37;
+  ProduceConditionType_AuditionMid2Pass = 38;
+  ProduceConditionType_AuditionFinalPass = 39;
+  ProduceConditionType_SelectStepCountVocalLesson = 43;
+  ProduceConditionType_SelectStepCountDanceLesson = 44;
+  ProduceConditionType_SelectStepCountVisualLesson = 45;
+  ProduceConditionType_SelectableStep = 46;
+  ProduceConditionType_NextAuditionBaseVocalPermil = 47;
+  ProduceConditionType_NextAuditionBaseDancePermil = 48;
+  ProduceConditionType_NextAuditionBaseVisualPermil = 49;
+  ProduceConditionType_DearnessLevel = 50;
+  ProduceConditionType_ClearProduceAchievement = 51;
+  ProduceConditionType_ConditionSet = 52;
+  ProduceConditionType_CurrentProduce = 53;
+  ProduceConditionType_ProduceScoreGrade = 55;
+  ProduceConditionType_ProduceScore = 56;
+  ProduceConditionType_Character = 57;
+  ProduceConditionType_IdolCard = 58;
+  ProduceConditionType_IdolCardExamEffectType = 59;
+  ProduceConditionType_LatestAuditionRank = 60;
+  ProduceConditionType_LatestAuditionReachForceEndScore = 61;
+  ProduceConditionType_LatestAuditionBaseScorePermil = 62;
+  ProduceConditionType_LatestAuditionExamSkipCount = 63;
+  ProduceConditionType_Result = 64;
+  ProduceConditionType_NextAuditionEasyBaseVocalPermil = 65;
+  ProduceConditionType_NextAuditionEasyBaseDancePermil = 66;
+  ProduceConditionType_NextAuditionEasyBaseVisualPermil = 67;
+  ProduceConditionType_ProduceCardGet = 68;
+  ProduceConditionType_ProduceDrinkGet = 69;
+  ProduceConditionType_ProduceItemGet = 70;
+  ProduceConditionType_ProduceCardUseCount = 71;
+  ProduceConditionType_ProduceDrinkUseCount = 72;
+  ProduceConditionType_ProduceItemUseCount = 73;
+  ProduceConditionType_ExamTriggerCount = 74;
+  ProduceConditionType_LessonExamTriggerCount = 75;
+  ProduceConditionType_AuditionExamTriggerCount = 76;
+  ProduceConditionType_Set = 998;
+  ProduceConditionType_NegativeSet = 999;
+}
+enum ProduceDescriptionType {
+  ProduceDescriptionType_Unknown = 0;
+  ProduceDescriptionType_PlainText = 1;
+  ProduceDescriptionType_ProduceExamEffectType = 2;
+  ProduceDescriptionType_ProduceCardCategory = 3;
+  ProduceDescriptionType_DiffText = 5;
+  ProduceDescriptionType_ProduceDescription = 10;
+  ProduceDescriptionType_ProduceDescriptionName = 11;
+  ProduceDescriptionType_ProduceCard = 12;
+  ProduceDescriptionType_ProduceCardAnyUpgradeCount = 13;
+  ProduceDescriptionType_ProduceItem = 14;
+  ProduceDescriptionType_ProduceDrink = 15;
+  ProduceDescriptionType_ExamValue = 30;
+  ProduceDescriptionType_ExamValue2 = 31;
+  ProduceDescriptionType_ExamTurn = 32;
+  ProduceDescriptionType_ExamTurnTimer = 33;
+  ProduceDescriptionType_ExamCount = 34;
+  ProduceDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName = 35;
+  ProduceDescriptionType_ExamProduceExamEffect = 36;
+  ProduceDescriptionType_ExamProduceCardSearch = 37;
+}
+enum ProduceDisplayType {
+  ProduceDisplayType_Unknown = 0;
+  ProduceDisplayType_Itself = 1;
+  ProduceDisplayType_Choice = 2;
+}
+enum ProduceDrinkRarity {
+  ProduceDrinkRarity_Unknown = 0;
+  ProduceDrinkRarity_N = 1;
+  ProduceDrinkRarity_R = 2;
+  ProduceDrinkRarity_Sr = 3;
+  ProduceDrinkRarity_Ssr = 4;
+}
+enum ProduceEffectType {
+  ProduceEffectType_Unknown = 0;
+  ProduceEffectType_VocalAddition = 1;
+  ProduceEffectType_DanceAddition = 2;
+  ProduceEffectType_VisualAddition = 3;
+  ProduceEffectType_VocalDown = 4;
+  ProduceEffectType_DanceDown = 5;
+  ProduceEffectType_VisualDown = 6;
+  ProduceEffectType_VocalGrowthRateAddition = 7;
+  ProduceEffectType_DanceGrowthRateAddition = 8;
+  ProduceEffectType_VisualGrowthRateAddition = 9;
+  ProduceEffectType_VocalGrowthRateDown = 10;
+  ProduceEffectType_DanceGrowthRateDown = 11;
+  ProduceEffectType_VisualGrowthRateDown = 12;
+  ProduceEffectType_StaminaRecoverFix = 13;
+  ProduceEffectType_StaminaRecoverMultiple = 14;
+  ProduceEffectType_StaminaReduceFix = 15;
+  ProduceEffectType_StaminaReduceMultiple = 16;
+  ProduceEffectType_StaminaSpecify = 17;
+  ProduceEffectType_StaminaRecoverValueUp = 18;
+  ProduceEffectType_StaminaRecoverValueDown = 19;
+  ProduceEffectType_StaminaReduceValueUp = 20;
+  ProduceEffectType_StaminaReduceValueDown = 21;
+  ProduceEffectType_StaminaRecoverDisable = 22;
+  ProduceEffectType_MaxStaminaAddition = 23;
+  ProduceEffectType_MaxStaminaReduceFix = 24;
+  ProduceEffectType_MaxStaminaReduceMultiple = 25;
+  ProduceEffectType_ProducePointReduceFix = 26;
+  ProduceEffectType_ProducePointReduceMultiple = 27;
+  ProduceEffectType_ProducePointSpecify = 28;
+  ProduceEffectType_ProducePointAdditionValueUp = 29;
+  ProduceEffectType_ProducePointAdditionValueDown = 30;
+  ProduceEffectType_ProducePointReduceValueUp = 31;
+  ProduceEffectType_ProducePointReduceValueDown = 32;
+  ProduceEffectType_ProduceCardUpgrade = 33;
+  ProduceEffectType_ProduceCardDuplicate = 34;
+  ProduceEffectType_ProduceCardDuplicateUpgrade = 35;
+  ProduceEffectType_ProduceCardChange = 36;
+  ProduceEffectType_ProduceCardChangeUpgrade = 37;
+  ProduceEffectType_ProduceCardDelete = 38;
+  ProduceEffectType_ProducePointAddition = 39;
+  ProduceEffectType_ProducePointGetDisable = 40;
+  ProduceEffectType_ProduceItemGetDisable = 41;
+  ProduceEffectType_ProduceDrinkGetDisable = 42;
+  ProduceEffectType_ProduceReward = 43;
+  ProduceEffectType_ProduceRewardSet = 44;
+  ProduceEffectType_AuditionParameterBonusMultiple = 53;
+  ProduceEffectType_LessonSpChangeRatePermilAddition = 54;
+  ProduceEffectType_LessonVocalSpChangeRatePermilAddition = 55;
+  ProduceEffectType_LessonDanceSpChangeRatePermilAddition = 56;
+  ProduceEffectType_LessonVisualSpChangeRatePermilAddition = 57;
+  ProduceEffectType_LessonSpChangeRatePermilDown = 58;
+  ProduceEffectType_ExamStatusEnchant = 60;
+  ProduceEffectType_LessonPresentProduceCardRewardCountUp = 61;
+  ProduceEffectType_LessonPresentProduceCardRewardCountDown = 62;
+  ProduceEffectType_ShopPriceDiscountMultiple = 65;
+  ProduceEffectType_ShopProduceCardPriceDiscountMultiple = 66;
+  ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple = 68;
+  ProduceEffectType_ShopProduceCardUpgradePriceDiscountMultiple = 69;
+  ProduceEffectType_ShopProduceCardUpgradePriceSpecify = 70;
+  ProduceEffectType_ShopProduceCardDeletePriceDiscountMultiple = 71;
+  ProduceEffectType_ShopProduceCardDeletePriceSpecify = 72;
+  ProduceEffectType_ProduceResultRewardMoneyUp = 77;
+  ProduceEffectType_ProduceResultRewardSupportCardEnhancePointUp = 79;
+  ProduceEffectType_SupportCardEventStaminaRecoverUp = 80;
+  ProduceEffectType_SupportCardEventProducePointAdditionValueUp = 81;
+  ProduceEffectType_SupportCardEventParameterAdditionValueUp = 82;
+  ProduceEffectType_SupportCardEventProbabilityUp = 83;
+  ProduceEffectType_LessonPresentProducePointUp = 84;
+  ProduceEffectType_LessonPresentProducePointDown = 85;
+  ProduceEffectType_SupportCardProduceCardUpgradeProbabilityUp = 86;
+  ProduceEffectType_ProduceCardSelectRerollCountUp = 87;
+  ProduceEffectType_ProducePointAdditionDisableTrigger = 88;
+  ProduceEffectType_LessonLimitUp = 89;
+}
+enum ProduceEventCharacterType {
+  ProduceEventCharacterType_Unknown = 0;
+  ProduceEventCharacterType_Opening = 1;
+  ProduceEventCharacterType_AfterStep1 = 2;
+  ProduceEventCharacterType_BeforeAuditionMid1 = 3;
+  ProduceEventCharacterType_AfterAuditionMid1 = 4;
+  ProduceEventCharacterType_AfterStep2 = 5;
+  ProduceEventCharacterType_BeforeAuditionMid2 = 6;
+  ProduceEventCharacterType_AfterAuditionMid2 = 7;
+  ProduceEventCharacterType_BeforeAuditionFinal = 8;
+  ProduceEventCharacterType_AfterAuditionFinal = 9;
+  ProduceEventCharacterType_Failure = 10;
+  ProduceEventCharacterType_Ending = 11;
+}
+enum ProduceEventSuggestionType {
+  ProduceEventSuggestionType_Unknown = 0;
+  ProduceEventSuggestionType_Primary = 1;
+  ProduceEventSuggestionType_Secondary = 2;
+}
+enum ProduceEventType {
+  ProduceEventType_Unknown = 0;
+  ProduceEventType_Activity = 1;
+  ProduceEventType_School = 2;
+  ProduceEventType_Character = 3;
+  ProduceEventType_CharacterGrowth = 4;
+  ProduceEventType_IdolCard = 5;
+  ProduceEventType_SupportCard = 6;
+}
+enum ProduceExamAutoEvaluationType {
+  ProduceExamAutoEvaluationType_Unknown = 0;
+  ProduceExamAutoEvaluationType_Parameter = 1;
+  ProduceExamAutoEvaluationType_Block = 2;
+  ProduceExamAutoEvaluationType_Stamina = 3;
+  ProduceExamAutoEvaluationType_ExamLessonBuff = 4;
+  ProduceExamAutoEvaluationType_ExamReview = 5;
+  ProduceExamAutoEvaluationType_ExamCardPlayAggressive = 6;
+  ProduceExamAutoEvaluationType_ExamParameterBuff = 7;
+  ProduceExamAutoEvaluationType_ExamStaminaConsumptionDown = 8;
+  ProduceExamAutoEvaluationType_ExamStaminaConsumptionAdd = 9;
+  ProduceExamAutoEvaluationType_ExamBlockAddDown = 10;
+  ProduceExamAutoEvaluationType_ExamGimmickLessonDebuff = 11;
+  ProduceExamAutoEvaluationType_ExamGimmickParameterDebuff = 12;
+  ProduceExamAutoEvaluationType_ExamGimmickSleepy = 13;
+  ProduceExamAutoEvaluationType_ExamGimmickSlump = 14;
+  ProduceExamAutoEvaluationType_ExamStaminaConsumptionDownFix = 15;
+  ProduceExamAutoEvaluationType_PlayableValueAdd = 16;
+  ProduceExamAutoEvaluationType_ParameterBuffMultiplePerTurn = 17;
+  ProduceExamAutoEvaluationType_ParameterBuffOverTurn = 18;
+}
+enum ProduceExamEffectType {
+  ProduceExamEffectType_Unknown = 0;
+  ProduceExamEffectType_ExamLesson = 1;
+  ProduceExamEffectType_ExamParameterBuff = 2;
+  ProduceExamEffectType_ExamBlock = 3;
+  ProduceExamEffectType_ExamCardDraw = 4;
+  ProduceExamEffectType_ExamStaminaConsumptionDown = 5;
+  ProduceExamEffectType_ExamCardCreateId = 6;
+  ProduceExamEffectType_ExamStaminaReduceFix = 7;
+  ProduceExamEffectType_ExamCardMove = 9;
+  ProduceExamEffectType_ExamLessonBuff = 10;
+  ProduceExamEffectType_ExamCardUpgrade = 11;
+  ProduceExamEffectType_ExamBlockValueMultiple = 13;
+  ProduceExamEffectType_ExamPlayableValueAdd = 14;
+  ProduceExamEffectType_ExamLessonBuffMultiple = 15;
+  ProduceExamEffectType_ExamCardStaminaConsumptionChange = 17;
+  ProduceExamEffectType_ExamBlockRestriction = 18;
+  ProduceExamEffectType_ExamLessonDependBlock = 19;
+  ProduceExamEffectType_ExamCardCreateSearch = 21;
+  ProduceExamEffectType_ExamStatusEnchant = 22;
+  ProduceExamEffectType_ExamMultipleLessonBuffLesson = 23;
+  ProduceExamEffectType_ExamForcePlayCardSearch = 24;
+  ProduceExamEffectType_ExamCardStaminaConsumptionDownSpecify = 26;
+  ProduceExamEffectType_ExamStaminaDamage = 27;
+  ProduceExamEffectType_ExamStaminaRecoverFix = 28;
+  ProduceExamEffectType_ExamLessonFix = 29;
+  ProduceExamEffectType_ExamCardDuplicate = 30;
+  ProduceExamEffectType_ExamReview = 31;
+  ProduceExamEffectType_ExamLessonValueChangePerPlay = 32;
+  ProduceExamEffectType_ExamCardStaminaConsumptionReduce = 33;
+  ProduceExamEffectType_ExamReviewValueMultiple = 36;
+  ProduceExamEffectType_ExamCardSearchEffectPlayCountBuff = 38;
+  ProduceExamEffectType_ExamLessonValueMultiple = 39;
+  ProduceExamEffectType_ExamCardPlayAggressive = 42;
+  ProduceExamEffectType_ExamConcentration = 45;
+  ProduceExamEffectType_ExamPreservation = 46;
+  ProduceExamEffectType_ExamFullPower = 47;
+  ProduceExamEffectType_ExamStanceReset = 48;
+  ProduceExamEffectType_ExamFullPowerPoint = 49;
+  ProduceExamEffectType_ExamForecast = 50;
+  ProduceExamEffectType_ExamLessonAddBlock = 52;
+  ProduceExamEffectType_ExamLessonFullPowerPoint = 56;
+  ProduceExamEffectType_ExamSearchPlayCardStaminaConsumptionChange = 59;
+  ProduceExamEffectType_ExamStaminaReduce = 60;
+  ProduceExamEffectType_ExamUplifting = 62;
+  ProduceExamEffectType_ExamExtraTurn = 63;
+  ProduceExamEffectType_ExamAntiDebuff = 66;
+  ProduceExamEffectType_ExamStaminaConsumptionAdd = 69;
+  ProduceExamEffectType_ExamThresholdDown = 70;
+  ProduceExamEffectType_ExamBlockAddDown = 73;
+  ProduceExamEffectType_ExamBlockAddDownRestriction = 74;
+  ProduceExamEffectType_ExamStaminaRecoverAdd = 76;
+  ProduceExamEffectType_ExamStaminaReduceChange = 77;
+  ProduceExamEffectType_ExamPanic = 78;
+  ProduceExamEffectType_ExamLessonChangeSpecifyLessThan = 81;
+  ProduceExamEffectType_ExamHandHold = 82;
+  ProduceExamEffectType_ExamStaminaConsumptionAddFix = 84;
+  ProduceExamEffectType_ExamStaminaConsumptionAddDown = 85;
+  ProduceExamEffectType_ExamStaminaRecoverRestriction = 86;
+  ProduceExamEffectType_ExamStaminaConsumptionDownAdd = 89;
+  ProduceExamEffectType_ExamGetCardUpgrade = 90;
+  ProduceExamEffectType_ExamStaminaConsumptionDownFix = 93;
+  ProduceExamEffectType_ExamHandGraveCountCardDraw = 98;
+  ProduceExamEffectType_ExamHandGraveCountCardAdd = 99;
+  ProduceExamEffectType_ExamEffectTimer = 103;
+  ProduceExamEffectType_ExamGimmickLessonDebuff = 105;
+  ProduceExamEffectType_ExamGimmickParameterDebuff = 106;
+  ProduceExamEffectType_ExamGimmickSleepy = 107;
+  ProduceExamEffectType_ExamGimmickEnthusiastic = 109;
+  ProduceExamEffectType_ExamGimmickPlayCardLimit = 113;
+  ProduceExamEffectType_ExamGimmickSlump = 114;
+  ProduceExamEffectType_ExamGimmickStartTurnCardDrawDown = 115;
+  ProduceExamEffectType_ExamStaminaRecoverMultiple = 117;
+  ProduceExamEffectType_ExamLessonPerSearchCount = 118;
+  ProduceExamEffectType_ExamBlockFix = 119;
+  ProduceExamEffectType_ExamLessonAddMultipleLessonBuff = 120;
+  ProduceExamEffectType_ExamCardStatusEnchant = 121;
+  ProduceExamEffectType_ExamBlockDown = 122;
+  ProduceExamEffectType_ExamLessonChangeSpecifyMoreThan = 123;
+  ProduceExamEffectType_ExamLessonDependExamReview = 124;
+  ProduceExamEffectType_ExamLessonDependExamCardPlayAggressive = 125;
+  ProduceExamEffectType_ExamReviewDependExamBlock = 126;
+  ProduceExamEffectType_ExamBlockDependExamReview = 127;
+  ProduceExamEffectType_ExamReviewDependExamCardPlayAggressive = 128;
+  ProduceExamEffectType_ExamParameterBuffMultiplePerTurn = 129;
+  ProduceExamEffectType_ExamLessonBuffDependParameterBuff = 130;
+  ProduceExamEffectType_ExamLessonDependParameterBuff = 131;
+  ProduceExamEffectType_ExamLessonAddMultipleParameterBuff = 132;
+  ProduceExamEffectType_ExamBlockPerUseCardCount = 133;
+}
+enum ProduceExamFieldStatusType {
+  ProduceExamFieldStatusType_Unknown = 0;
+  ProduceExamFieldStatusType_ParameterBuff = 1;
+  ProduceExamFieldStatusType_StaminaUpMultiple = 4;
+  ProduceExamFieldStatusType_StaminaLessMultiple = 5;
+  ProduceExamFieldStatusType_StaminaConsumptionDown = 9;
+  ProduceExamFieldStatusType_ConcentrationUp = 11;
+  ProduceExamFieldStatusType_PreservationUp = 12;
+  ProduceExamFieldStatusType_FullPowerUp = 13;
+  ProduceExamFieldStatusType_PlayCardRestriction = 16;
+  ProduceExamFieldStatusType_NoBlock = 18;
+  ProduceExamFieldStatusType_PlayCardSkill = 19;
+  ProduceExamFieldStatusType_PlayCardLesson = 20;
+  ProduceExamFieldStatusType_PlayCardSupport = 21;
+  ProduceExamFieldStatusType_TurnProgressUp = 22;
+  ProduceExamFieldStatusType_ConditionThresholdMultiple = 27;
+  ProduceExamFieldStatusType_ConditionThresholdMultipleDown = 28;
+  ProduceExamFieldStatusType_LessonBuffUp = 33;
+  ProduceExamFieldStatusType_BlockUp = 34;
+  ProduceExamFieldStatusType_ReviewUp = 35;
+  ProduceExamFieldStatusType_GimmickLessonDebuffUp = 36;
+  ProduceExamFieldStatusType_GimmickSleepyUp = 37;
+  ProduceExamFieldStatusType_ParameterBuffUp = 38;
+  ProduceExamFieldStatusType_BlockAddDown = 39;
+  ProduceExamFieldStatusType_GimmickParameterDebuff = 40;
+  ProduceExamFieldStatusType_RemainingTurn = 41;
+  ProduceExamFieldStatusType_CardPlayAggressiveUp = 42;
+  ProduceExamFieldStatusType_ParameterLessThan = 43;
+  ProduceExamFieldStatusType_FullPowerPointUp = 44;
+  ProduceExamFieldStatusType_FullPowerPointGetSumUp = 45;
+  ProduceExamFieldStatusType_NoStance = 46;
+  ProduceExamFieldStatusType_StanceChangeCountUp = 47;
+  ProduceExamFieldStatusType_ConcentrationChangeCountUp = 48;
+  ProduceExamFieldStatusType_PreservationChangeCountUp = 49;
+  ProduceExamFieldStatusType_FullPowerChangeCountUp = 50;
+  ProduceExamFieldStatusType_CardSearchCountUp = 51;
+  ProduceExamFieldStatusType_PlayCardSearch = 52;
+}
+enum ProduceExamPhaseType {
+  ProduceExamPhaseType_Unknown = 0;
+  ProduceExamPhaseType_ExamCardDraw = 1;
+  ProduceExamPhaseType_ExamCardPlay = 2;
+  ProduceExamPhaseType_ExamCardPlayAfter = 3;
+  ProduceExamPhaseType_ExamStartTurn = 4;
+  ProduceExamPhaseType_ExamEndTurn = 5;
+  ProduceExamPhaseType_ExamStartExam = 6;
+  ProduceExamPhaseType_ExamCardMove = 7;
+  ProduceExamPhaseType_ExamCardAdd = 8;
+  ProduceExamPhaseType_ExamLesson = 9;
+  ProduceExamPhaseType_ExamForecast = 10;
+  ProduceExamPhaseType_ExamSearchCardPlay = 11;
+  ProduceExamPhaseType_ExamStanceChange = 12;
+  ProduceExamPhaseType_ExamStatusChange = 13;
+  ProduceExamPhaseType_ExamTurnCheck = 16;
+  ProduceExamPhaseType_ExamUseDrink = 17;
+  ProduceExamPhaseType_ExamGetPoint = 18;
+  ProduceExamPhaseType_ExamShuffle = 19;
+  ProduceExamPhaseType_ExamStaminaReduce = 20;
+  ProduceExamPhaseType_ExamTurnTimer = 21;
+  ProduceExamPhaseType_ExamTurnInterval = 22;
+  ProduceExamPhaseType_ExamPlayCountInterval = 23;
+  ProduceExamPhaseType_ExamStaminaReduceCard = 24;
+  ProduceExamPhaseType_ExamPlayTurnCountInterval = 25;
+  ProduceExamPhaseType_StartPlay = 27;
+  ProduceExamPhaseType_StartExamPlay = 28;
+  ProduceExamPhaseType_ExamCardMoveHand = 29;
+  ProduceExamPhaseType_ExamCardMoveGrave = 30;
+  ProduceExamPhaseType_ExamCardMoveLost = 31;
+  ProduceExamPhaseType_ExamLessonParameterUp = 33;
+  ProduceExamPhaseType_ExamBuffConsume = 34;
+  ProduceExamPhaseType_ExamStanceChangeCountInterval = 35;
+  ProduceExamPhaseType_ExamStanceChangeCount = 36;
+  ProduceExamPhaseType_ExamStanceChangeConcentration = 37;
+  ProduceExamPhaseType_ExamStanceChangePreservation = 38;
+  ProduceExamPhaseType_ExamStanceChangeFullPower = 39;
+  ProduceExamPhaseType_ExamStanceReset = 40;
+  ProduceExamPhaseType_ExamTurnSkip = 41;
+  ProduceExamPhaseType_None = 999;
+}
+enum ProduceExamResultType {
+  ProduceExamResultType_Unknown = 0;
+  ProduceExamResultType_Success = 1;
+  ProduceExamResultType_Normal = 2;
+  ProduceExamResultType_Failed = 3;
+}
+enum ProduceExamTriggerCheckType {
+  ProduceExamTriggerCheckType_Unknown = 0;
+  ProduceExamTriggerCheckType_Not = 1;
+}
+enum ProduceItemEffectType {
+  ProduceItemEffectType_Unknown = 0;
+  ProduceItemEffectType_ProduceEffect = 1;
+  ProduceItemEffectType_ExamStatusEnchant = 2;
+}
+enum ProduceItemRarity {
+  ProduceItemRarity_Unknown = 0;
+  ProduceItemRarity_N = 1;
+  ProduceItemRarity_R = 2;
+  ProduceItemRarity_Sr = 3;
+  ProduceItemRarity_Ssr = 4;
+}
+enum ProduceLiveType {
+  ProduceLiveType_Unknown = 0;
+  ProduceLiveType_TrueEnd = 1;
+  ProduceLiveType_A = 2;
+  ProduceLiveType_B = 3;
+  ProduceLiveType_C = 4;
+  ProduceLiveType_D = 5;
+  ProduceLiveType_E = 6;
+}
+enum ProduceMemoryProduceCardPhaseType {
+  ProduceMemoryProduceCardPhaseType_Unknown = 0;
+  ProduceMemoryProduceCardPhaseType_ProduceStart = 1;
+  ProduceMemoryProduceCardPhaseType_EndAuditionMid = 2;
+}
+enum ProduceParameterType {
+  ProduceParameterType_Unknown = 0;
+  ProduceParameterType_Vocal = 1;
+  ProduceParameterType_Dance = 2;
+  ProduceParameterType_Visual = 3;
+}
+enum ProducePhaseType {
+  ProducePhaseType_Unknown = 0;
+  ProducePhaseType_RecoveryStamina = 1;
+  ProducePhaseType_GetProducePoint = 4;
+  ProducePhaseType_GetProduceItem = 6;
+  ProducePhaseType_GetProduceDrink = 7;
+  ProducePhaseType_UseProduceDrink = 8;
+  ProducePhaseType_GetProduceCard = 9;
+  ProducePhaseType_UpgradeProduceCard = 10;
+  ProducePhaseType_DeleteProduceCard = 11;
+  ProducePhaseType_ProduceStart = 12;
+  ProducePhaseType_StartStep = 13;
+  ProducePhaseType_StartShop = 15;
+  ProducePhaseType_StartRefresh = 16;
+  ProducePhaseType_StartPresent = 17;
+  ProducePhaseType_StartLesson = 18;
+  ProducePhaseType_EndLessonBeforePresent = 19;
+  ProducePhaseType_EndLesson = 20;
+  ProducePhaseType_FailedLesson = 21;
+  ProducePhaseType_EndStepEventActivity = 22;
+  ProducePhaseType_EndStepEventSchool = 23;
+  ProducePhaseType_EndStepEventCharacterOpening = 24;
+  ProducePhaseType_ChangeProduceCard = 25;
+  ProducePhaseType_StartAuditionMid = 42;
+  ProducePhaseType_StartAuditionMid1 = 43;
+  ProducePhaseType_StartAuditionMid2 = 44;
+  ProducePhaseType_StartAuditionFinal = 45;
+  ProducePhaseType_StartAudition = 46;
+  ProducePhaseType_EndAuditionMid = 47;
+  ProducePhaseType_EndAuditionMid1 = 48;
+  ProducePhaseType_EndAuditionMid2 = 49;
+  ProducePhaseType_EndAuditionFinal = 50;
+  ProducePhaseType_EndAudition = 51;
+  ProducePhaseType_BuyShopItem = 52;
+  ProducePhaseType_BuyShopItemProduceCard = 53;
+  ProducePhaseType_BuyShopItemProduceDrink = 54;
+  ProducePhaseType_BuyShopItemProduceItem = 55;
+  ProducePhaseType_BuyShopItemUpgradeProduceCard = 56;
+  ProducePhaseType_BuyShopItemDeleteProduceCard = 57;
+}
+enum ProducePickRangeType {
+  ProducePickRangeType_Unknown = 0;
+  ProducePickRangeType_Select = 1;
+  ProducePickRangeType_Random = 2;
+  ProducePickRangeType_All = 3;
+}
+enum ProducePlanType {
+  ProducePlanType_Unknown = 0;
+  ProducePlanType_Common = 1;
+  ProducePlanType_Plan1 = 2;
+  ProducePlanType_Plan2 = 3;
+  ProducePlanType_Plan3 = 4;
+}
+enum ProduceProgressAuditionStatusType {
+  ProduceProgressAuditionStatusType_Unknown = 0;
+  ProduceProgressAuditionStatusType_ReadyForExamBattle = 1;
+  ProduceProgressAuditionStatusType_InProgressExamBattle = 2;
+  ProduceProgressAuditionStatusType_ExamBattleSuccess = 3;
+  ProduceProgressAuditionStatusType_ExamBattleFailure = 4;
+}
+enum ProduceProgressConditionType {
+  ProduceProgressConditionType_Unknown = 0;
+  ProduceProgressConditionType_StaminaRatio = 1;
+  ProduceProgressConditionType_StaminaFix = 2;
+  ProduceProgressConditionType_ProducePoint = 3;
+  ProduceProgressConditionType_ProduceItemCount = 4;
+  ProduceProgressConditionType_ProduceDrinkCount = 5;
+  ProduceProgressConditionType_ProduceCardCount = 6;
+  ProduceProgressConditionType_Vocal = 7;
+  ProduceProgressConditionType_Dance = 8;
+  ProduceProgressConditionType_Visual = 9;
+  ProduceProgressConditionType_StepNumber = 10;
+}
+enum ProduceProgressStatus {
+  ProduceProgressStatus_Unknown = 0;
+  ProduceProgressStatus_OpeningAdv = 1;
+  ProduceProgressStatus_OpeningCharacterDearnessStory = 2;
+  ProduceProgressStatus_CharacterEventOpening = 3;
+  ProduceProgressStatus_SelectNextStep = 4;
+  ProduceProgressStatus_BeforeAuditionRefresh = 5;
+  ProduceProgressStatus_BeforeStepCharacterEvent = 6;
+  ProduceProgressStatus_BeforeStepSupportCardEvent = 7;
+  ProduceProgressStatus_StepAction = 8;
+  ProduceProgressStatus_AfterStepAuditionCharacterEvent = 9;
+  ProduceProgressStatus_AfterStepCharacterGrowthEvent = 10;
+  ProduceProgressStatus_AfterStepCharacterDearnessStory = 11;
+  ProduceProgressStatus_AfterStepIdolCardEvent = 12;
+  ProduceProgressStatus_AfterStepSupportCardEvent = 13;
+  ProduceProgressStatus_AfterStepCharacterEvent = 14;
+  ProduceProgressStatus_StartBeforeLiveEvaluation = 15;
+  ProduceProgressStatus_EndBeforeLiveEvaluation = 16;
+  ProduceProgressStatus_IdolCardEvent = 17;
+  ProduceProgressStatus_CharacterEventFailure = 18;
+  ProduceProgressStatus_CharacterEventEnding = 19;
+  ProduceProgressStatus_End = 30;
+  ProduceProgressStatus_Result = 31;
+  ProduceProgressStatus_GuildMission = 32;
+  ProduceProgressStatus_EndingCharacterDearnessStory = 33;
+  ProduceProgressStatus_Finished = 99;
+}
+enum ProduceResourceOriginType {
+  ProduceResourceOriginType_Unknown = 0;
+  ProduceResourceOriginType_Produce = 1;
+  ProduceResourceOriginType_IdolCard = 2;
+  ProduceResourceOriginType_SupportCard = 3;
+  ProduceResourceOriginType_MemoryAbility = 4;
+  ProduceResourceOriginType_ProduceCard = 5;
+  ProduceResourceOriginType_ProduceItem = 6;
+  ProduceResourceOriginType_StepAudition = 10;
+  ProduceResourceOriginType_StepEvent = 11;
+  ProduceResourceOriginType_StepPresent = 12;
+  ProduceResourceOriginType_StepShop = 13;
+  ProduceResourceOriginType_ExamGimmick = 14;
+}
+enum ProduceResourceType {
+  ProduceResourceType_Unknown = 0;
+  ProduceResourceType_ProduceCard = 1;
+  ProduceResourceType_ProduceItem = 2;
+  ProduceResourceType_ProduceDrink = 3;
+  ProduceResourceType_ProducePoint = 4;
+  ProduceResourceType_Stamina = 5;
+  ProduceResourceType_ParameterVocal = 6;
+  ProduceResourceType_ParameterDance = 7;
+  ProduceResourceType_ParameterVisual = 8;
+  ProduceResourceType_CardUpgrade = 997;
+  ProduceResourceType_CardDelete = 998;
+  ProduceResourceType_Set = 999;
+}
+enum ProduceRewardType {
+  ProduceRewardType_Unknown = 0;
+  ProduceRewardType_Probability = 1;
+  ProduceRewardType_Ratio = 2;
+}
+enum ProduceScheduleLocationType {
+  ProduceScheduleLocationType_Unknown = 0;
+  ProduceScheduleLocationType_ProducerRoom1 = 1;
+  ProduceScheduleLocationType_ProducerRoom2 = 2;
+  ProduceScheduleLocationType_Classroom = 3;
+  ProduceScheduleLocationType_Rooftop = 4;
+  ProduceScheduleLocationType_Courtyard = 5;
+}
+enum ProduceScheduleMotionType {
+  ProduceScheduleMotionType_Unknown = 0;
+  ProduceScheduleMotionType_Wait1 = 1;
+  ProduceScheduleMotionType_Wait2 = 2;
+  ProduceScheduleMotionType_Reaction = 3;
+  ProduceScheduleMotionType_ReactionOnce = 4;
+}
+enum ProduceScheduleStaminaMotionType {
+  ProduceScheduleStaminaMotionType_Unknown = 0;
+  ProduceScheduleStaminaMotionType_Enough = 1;
+  ProduceScheduleStaminaMotionType_NotEnough = 2;
+}
+enum ProduceSkillEffectType {
+  ProduceSkillEffectType_Unknown = 0;
+  ProduceSkillEffectType_VocalAddition = 100;
+  ProduceSkillEffectType_VocalGrowthRateAddition = 101;
+  ProduceSkillEffectType_DanceAddition = 200;
+  ProduceSkillEffectType_DanceGrowthRateAddition = 201;
+  ProduceSkillEffectType_VisualAddition = 300;
+  ProduceSkillEffectType_VisualGrowthRateAddition = 301;
+  ProduceSkillEffectType_StaminaAddition = 500;
+  ProduceSkillEffectType_ProduceRewardSet = 1000;
+  ProduceSkillEffectType_ProduceEffect = 1001;
+}
+enum ProduceStartMotionType {
+  ProduceStartMotionType_Unknown = 0;
+  ProduceStartMotionType_Reaction = 1;
+  ProduceStartMotionType_Wait = 2;
+}
+enum ProduceStepAuditionMotionType {
+  ProduceStepAuditionMotionType_Unknown = 0;
+  ProduceStepAuditionMotionType_Start = 1;
+  ProduceStepAuditionMotionType_Result1 = 2;
+  ProduceStepAuditionMotionType_Result2 = 3;
+  ProduceStepAuditionMotionType_Result3 = 4;
+  ProduceStepAuditionMotionType_Failure = 5;
+}
+enum ProduceStepLessonType {
+  ProduceStepLessonType_Unknown = 0;
+  ProduceStepLessonType_Lesson = 1;
+  ProduceStepLessonType_LessonNormal = 2;
+  ProduceStepLessonType_LessonSp = 3;
+  ProduceStepLessonType_LessonHard = 4;
+  ProduceStepLessonType_LessonVocal = 5;
+  ProduceStepLessonType_LessonDance = 6;
+  ProduceStepLessonType_LessonVisual = 7;
+  ProduceStepLessonType_LessonVocalNormal = 8;
+  ProduceStepLessonType_LessonVocalSp = 9;
+  ProduceStepLessonType_LessonVocalHard = 10;
+  ProduceStepLessonType_LessonDanceNormal = 11;
+  ProduceStepLessonType_LessonDanceSp = 12;
+  ProduceStepLessonType_LessonDanceHard = 13;
+  ProduceStepLessonType_LessonVisualNormal = 14;
+  ProduceStepLessonType_LessonVisualSp = 15;
+  ProduceStepLessonType_LessonVisualHard = 16;
+}
+enum ProduceStepPhaseType {
+  ProduceStepPhaseType_Unknown = 0;
+  ProduceStepPhaseType_Before = 1;
+  ProduceStepPhaseType_After = 2;
+}
+enum ProduceStepType {
+  ProduceStepType_Unknown = 0;
+  ProduceStepType_LessonVocalNormal = 1;
+  ProduceStepType_LessonVocalSp = 2;
+  ProduceStepType_LessonVocalHard = 3;
+  ProduceStepType_LessonDanceNormal = 4;
+  ProduceStepType_LessonDanceSp = 5;
+  ProduceStepType_LessonDanceHard = 6;
+  ProduceStepType_LessonVisualNormal = 7;
+  ProduceStepType_LessonVisualSp = 8;
+  ProduceStepType_LessonVisualHard = 9;
+  ProduceStepType_Event = 10;
+  ProduceStepType_EventActivity = 11;
+  ProduceStepType_EventSchool = 12;
+  ProduceStepType_Shop = 13;
+  ProduceStepType_Refresh = 14;
+  ProduceStepType_Present = 15;
+  ProduceStepType_AuditionMid1 = 16;
+  ProduceStepType_AuditionMid2 = 17;
+  ProduceStepType_AuditionFinal = 18;
+}
+enum ProduceStoryType {
+  ProduceStoryType_Unknown = 0;
+  ProduceStoryType_Dearness = 1;
+  ProduceStoryType_Character = 2;
+  ProduceStoryType_CharacterGrowth = 3;
+  ProduceStoryType_IdolCard = 4;
+  ProduceStoryType_SupportCard = 5;
+  ProduceStoryType_StepActivityEvent = 6;
+  ProduceStoryType_StepSchoolEvent = 7;
+}
+enum ProduceTriggerOriginType {
+  ProduceTriggerOriginType_Unknown = 0;
+  ProduceTriggerOriginType_Character = 1;
+  ProduceTriggerOriginType_IdolCard = 2;
+  ProduceTriggerOriginType_SupportCard = 3;
+  ProduceTriggerOriginType_Memory = 4;
+  ProduceTriggerOriginType_Event = 5;
+  ProduceTriggerOriginType_Item = 6;
+  ProduceTriggerOriginType_Drink = 7;
+  ProduceTriggerOriginType_Produce = 8;
+}
+enum ProduceType {
+  ProduceType_Unknown = 0;
+  ProduceType_FirstStar = 1;
+}
+enum ProducerLevelUnlockType {
+  ProducerLevelUnlockType_Unknown = 0;
+  ProducerLevelUnlockType_ProduceCard = 1;
+  ProducerLevelUnlockType_ProduceDrink = 2;
+  ProducerLevelUnlockType_ShopProduceCardUpgrade = 10;
+  ProducerLevelUnlockType_ShopProduceCardDelete = 11;
+  ProducerLevelUnlockType_ProduceCardSelectRerollCount = 12;
+}
+enum PurchaseTransactionStatusType {
+  PurchaseTransactionStatusType_Unknown = 0;
+  PurchaseTransactionStatusType_None = 1;
+  PurchaseTransactionStatusType_Initialized = 2;
+  PurchaseTransactionStatusType_InvalidMasterData = 3;
+  PurchaseTransactionStatusType_ChargeFailed = 4;
+  PurchaseTransactionStatusType_ProvideBonusFailed = 5;
+  PurchaseTransactionStatusType_Completed = 999;
+}
+enum PushType {
+  PushType_Unknown = 0;
+  PushType_ApFull = 1;
+  PushType_MoneyFull = 2;
+  PushType_DailyMission = 3;
+  PushType_Login = 4;
+  PushType_WorkMiniLiveFinish = 101;
+  PushType_WorkLiveStreamingFinish = 102;
+}
+enum PvpRateGrade {
+  PvpRateGrade_Unknown = 0;
+  PvpRateGrade__1 = 1;
+  PvpRateGrade__2 = 2;
+  PvpRateGrade__3 = 3;
+  PvpRateGrade__4 = 4;
+  PvpRateGrade__5 = 5;
+  PvpRateGrade__6 = 6;
+  PvpRateGrade__7 = 7;
+  PvpRateGrade__8 = 8;
+}
+enum PvpRateMotionType {
+  PvpRateMotionType_Unknown = 0;
+  PvpRateMotionType_Win = 1;
+  PvpRateMotionType_Lose = 2;
+}
+enum PvpRatePhaseType {
+  PvpRatePhaseType_Unknown = 0;
+  PvpRatePhaseType_MatchedRivals = 1;
+  PvpRatePhaseType_BeforeFirstStage = 2;
+  PvpRatePhaseType_BeforeSecondStage = 3;
+  PvpRatePhaseType_BeforeThirdStage = 4;
+  PvpRatePhaseType_Result = 5;
+}
+enum PvpRateRivalType {
+  PvpRateRivalType_Unknown = 0;
+  PvpRateRivalType_High = 1;
+  PvpRateRivalType_Middle = 2;
+  PvpRateRivalType_Low = 3;
+}
+enum PvpRateSeasonStatusType {
+  PvpRateSeasonStatusType_Unknown = 0;
+  PvpRateSeasonStatusType_OutOfTerm = 1;
+  PvpRateSeasonStatusType_PrepareStartTerm = 2;
+  PvpRateSeasonStatusType_NotAttended = 3;
+  PvpRateSeasonStatusType_InTerm = 4;
+}
+enum PvpRateStageType {
+  PvpRateStageType_Unknown = 0;
+  PvpRateStageType__1 = 1;
+  PvpRateStageType__2 = 2;
+  PvpRateStageType__3 = 3;
+}
+enum ResetTimingType {
+  ResetTimingType_Unknown = 0;
+  ResetTimingType_Daily = 1;
+  ResetTimingType_Weekly = 2;
+  ResetTimingType_Monthly = 3;
+  ResetTimingType_Never = 999;
+}
+enum ResourceOriginType {
+  ResourceOriginType_Unknown = 0;
+  ResourceOriginType_IdolCard = 1;
+  ResourceOriginType_IdolCardSkin = 2;
+  ResourceOriginType_Shop = 3;
+}
+enum ResourceType {
+  ResourceType_Unknown = 0;
+  ResourceType_Item = 2;
+  ResourceType_Memory = 3;
+  ResourceType_SupportCard = 4;
+  ResourceType_IdolCardSkin = 5;
+  ResourceType_MissionPassPoint = 6;
+  ResourceType_MissionPassPremiumPass = 7;
+  ResourceType_ActionPoint = 8;
+  ResourceType_UserExp = 9;
+  ResourceType_FanCount = 10;
+  ResourceType_FriendFollowLimitCount = 11;
+  ResourceType_Music = 12;
+  ResourceType_CostumeHead = 13;
+  ResourceType_Costume = 14;
+  ResourceType_MeishiBaseAsset = 15;
+  ResourceType_MeishiIllustrationAsset = 16;
+  ResourceType_InvitationPoint = 17;
+  ResourceType_Story = 18;
+  ResourceType_StoryEventPoint = 19;
+  ResourceType_JewelTotal = 1100;
+  ResourceType_JewelPaidOnly = 1101;
+  ResourceType_Set = 9999;
+}
+enum ResultGrade {
+  ResultGrade_Unknown = 0;
+  ResultGrade_F = 1;
+  ResultGrade_E = 2;
+  ResultGrade_D = 3;
+  ResultGrade_C = 4;
+  ResultGrade_CPlus = 5;
+  ResultGrade_B = 6;
+  ResultGrade_BPlus = 7;
+  ResultGrade_A = 8;
+  ResultGrade_APlus = 9;
+  ResultGrade_S = 10;
+  ResultGrade_SPlus = 11;
+  ResultGrade_Ss = 12;
+  ResultGrade_SsPlus = 13;
+}
+enum ResultGradeType {
+  ResultGradeType_Unknown = 0;
+  ResultGradeType_ProduceScore = 1;
+  ResultGradeType_MemoryEvaluation = 2;
+  ResultGradeType_MemoryParameter = 3;
+  ResultGradeType_ProduceAuditionLiveBattleScore = 4;
+  ResultGradeType_ProduceIdolCardParameter = 5;
+}
+enum RewardProvideType {
+  RewardProvideType_Unknown = 0;
+  RewardProvideType_PatternA = 1;
+  RewardProvideType_PatternB = 2;
+  RewardProvideType_PatternC = 3;
+  RewardProvideType_PatternD = 4;
+  RewardProvideType_PatternE = 5;
+}
+enum RewardSetType {
+  RewardSetType_Unknown = 0;
+  RewardSetType_Probability = 1;
+  RewardSetType_Ratio = 2;
+}
+enum RuleType {
+  RuleType_Unknown = 0;
+  RuleType_FundSettlement = 1;
+  RuleType_CommercialTransaction = 2;
+  RuleType_Copyright = 3;
+  RuleType_PrereleaseMaintenance = 4;
+}
+enum ServingStatus {
+  ServingStatus_Unknown = 0;
+  ServingStatus_UnknownServing = 1;
+  ServingStatus_Serving = 2;
+  ServingStatus_NotServing = 3;
+  ServingStatus_ServiceUnknown = 4;
+}
+enum ShopItemLabelType {
+  ShopItemLabelType_Unknown = 0;
+  ShopItemLabelType_Sale = 1;
+  ShopItemLabelType_Recommend = 2;
+}
+enum ShopType {
+  ShopType_Unknown = 0;
+  ShopType_Jewel = 1;
+  ShopType_Pass = 2;
+  ShopType_Pack = 3;
+}
+enum SkillRarity {
+  SkillRarity_Unknown = 0;
+  SkillRarity_R = 1;
+  SkillRarity_Sr = 2;
+  SkillRarity_Ssr = 3;
+}
+enum StartupNotificationType {
+  StartupNotificationType_Unknown = 0;
+  StartupNotificationType_Movie = 1;
+  StartupNotificationType_Adv = 2;
+  StartupNotificationType_Image = 3;
+  StartupNotificationType_Notice = 4;
+  StartupNotificationType_Shop = 5;
+}
+enum StoryCampaignType {
+  StoryCampaignType_Unknown = 0;
+  StoryCampaignType_Event = 1;
+  StoryCampaignType_DearnessStory = 2;
+}
+enum StoryEventMotionType {
+  StoryEventMotionType_Unknown = 0;
+  StoryEventMotionType_Wait = 1;
+  StoryEventMotionType_Reaction = 2;
+  StoryEventMotionType_ReactionOnce = 3;
+}
+enum StoryEventType {
+  StoryEventType_Unknown = 0;
+  StoryEventType_Normal = 1;
+  StoryEventType_BoxGasha = 2;
+  StoryEventType_MainStory = 3;
+  StoryEventType_GuildMission = 4;
+}
+enum StoryType {
+  StoryType_Unknown = 0;
+  StoryType_Main = 1;
+  StoryType_CampaignDearnessStory = 2;
+  StoryType_Birthday = 3;
+  StoryType_StoryEvent = 9;
+  StoryType_ProduceHighScore = 11;
+  StoryType_Other = 99;
+}
+enum SupportCardLevelLimitRank {
+  SupportCardLevelLimitRank_Unknown = 0;
+  SupportCardLevelLimitRank__1 = 1;
+  SupportCardLevelLimitRank__2 = 2;
+  SupportCardLevelLimitRank__3 = 3;
+  SupportCardLevelLimitRank__4 = 4;
+}
+enum SupportCardRarity {
+  SupportCardRarity_Unknown = 0;
+  SupportCardRarity_R = 1;
+  SupportCardRarity_Sr = 2;
+  SupportCardRarity_Ssr = 3;
+}
+enum SupportCardType {
+  SupportCardType_Unknown = 0;
+  SupportCardType_Vocal = 1;
+  SupportCardType_Dance = 2;
+  SupportCardType_Visual = 3;
+  SupportCardType_Assist = 4;
+}
+enum TermsType {
+  TermsType_Unknown = 0;
+  TermsType_TermsOfService = 1;
+  TermsType_PrivacyPolicy = 2;
+  TermsType_GlobalConsent = 3;
+}
+enum TimeType {
+  TimeType_Unknown = 0;
+  TimeType_LastLoginTime = 1;
+  TimeType_WorkLastInitializedTime = 2;
+  TimeType_NoticeInfoViewedTime = 3;
+  TimeType_NoticeBugViewedTime = 4;
+  TimeType_NoticePrviewedTime = 5;
+  TimeType_LastFriendCoinReceiveTime = 6;
+  TimeType_GuildJoinableTime = 10;
+  TimeType_GuildEstablishableTime = 11;
+  TimeType_GuildDonationRequestableTime = 12;
+}
+enum TipsType {
+  TipsType_Unknown = 0;
+  TipsType_CharacterDetail = 1;
+  TipsType_CharacterGossip = 2;
+  TipsType_World = 3;
+  TipsType_Help = 4;
+  TipsType_Comic = 5;
+}
+enum TutorialCharacterVoiceType {
+  TutorialCharacterVoiceType_Unknown = 0;
+  TutorialCharacterVoiceType_Select = 1;
+  TutorialCharacterVoiceType_Random = 2;
+}
+enum TutorialNavigationPositionType {
+  TutorialNavigationPositionType_Unknown = 0;
+  TutorialNavigationPositionType_Top = 1;
+  TutorialNavigationPositionType_Upper = 2;
+  TutorialNavigationPositionType_Middle = 3;
+  TutorialNavigationPositionType_Lower = 4;
+  TutorialNavigationPositionType_Bottom = 5;
+}
+enum TutorialNavigationType {
+  TutorialNavigationType_Unknown = 0;
+  TutorialNavigationType_Tips = 1;
+  TutorialNavigationType_Arrow = 2;
+  TutorialNavigationType_Focus = 3;
+  TutorialNavigationType_Character = 4;
+  TutorialNavigationType_Adv = 5;
+}
+enum TutorialProduceCommandType {
+  TutorialProduceCommandType_Unknown = 0;
+  TutorialProduceCommandType_Start = 1;
+  TutorialProduceCommandType_Next = 2;
+  TutorialProduceCommandType_StepLessonEnd = 3;
+  TutorialProduceCommandType_StepPresentReceive = 4;
+  TutorialProduceCommandType_StepAuditionExamEnd = 5;
+  TutorialProduceCommandType_StepAuditionEnd = 6;
+  TutorialProduceCommandType_CheckBeforeLiveProduceEvaluation = 7;
+  TutorialProduceCommandType_Result = 8;
+}
+enum TutorialType {
+  TutorialType_Unknown = 0;
+  TutorialType_GameStart = 1;
+  TutorialType_MainTask = 2;
+  TutorialType_Work = 3;
+  TutorialType_IdolCard = 4;
+  TutorialType_PvpRate = 6;
+  TutorialType_CoinGasha = 7;
+  TutorialType_MoneyReceive = 8;
+  TutorialType_MissionPass = 9;
+  TutorialType_Profile = 10;
+  TutorialType_Meishi = 11;
+  TutorialType_Friend = 12;
+  TutorialType_Achievement = 14;
+  TutorialType_IdolCardLevelLimitRankUpdate = 15;
+  TutorialType_SupportCardLevelUpdate = 16;
+  TutorialType_ItemExchange = 17;
+  TutorialType_DailyExchange = 18;
+  TutorialType_Tower = 19;
+  TutorialType_Guild = 20;
+  TutorialType_TutorialReceiveIdolCard = 21;
+  TutorialType_ProduceIdolCardSelect = 100;
+  TutorialType_ProduceSupportCardSelect = 101;
+  TutorialType_ProduceMemorySelect = 102;
+  TutorialType_ProduceSchedule = 103;
+  TutorialType_ProduceEvent = 104;
+  TutorialType_ProducePresentStep = 105;
+  TutorialType_ProduceShopStep = 106;
+  TutorialType_ProduceExamGimmick = 107;
+  TutorialType_ProduceExamPerfect = 108;
+  TutorialType_ProduceBeforeLiveEvaluation = 109;
+  TutorialType_ProduceDifficultySelect = 110;
+  TutorialType_ProduceCardUpgrade = 111;
+  TutorialType_ProduceCardDelete = 112;
+  TutorialType_ProduceDrink = 113;
+  TutorialType_ProduceCardUpgradeBySupportCard = 114;
+  TutorialType_ProduceExamBattle = 115;
+  TutorialType_ProduceSupportCardEvent = 116;
+  TutorialType_ProduceStepLessonHardBonus = 117;
+  TutorialType_ProduceStepLessonPresent = 118;
+}
+enum ViewAreaType {
+  ViewAreaType_Unknown = 0;
+  ViewAreaType_Produce = 1;
+  ViewAreaType_OutGame = 2;
+}
+enum VoicePlayScreenType {
+  VoicePlayScreenType_Unknown = 0;
+  VoicePlayScreenType_Home = 1;
+  VoicePlayScreenType_Produce = 2;
+  VoicePlayScreenType_Other = 3;
+  VoicePlayScreenType_IdolCard = 4;
+}
+enum Weekday {
+  Weekday_Unknown = 0;
+  Weekday_Sunday = 1;
+  Weekday_Monday = 2;
+  Weekday_Tuesday = 3;
+  Weekday_Wednesday = 4;
+  Weekday_Thursday = 5;
+  Weekday_Friday = 6;
+  Weekday_Saturday = 7;
+}
+enum WorkMotionType {
+  WorkMotionType_Unknown = 0;
+  WorkMotionType_CharacterSelectWait = 1;
+  WorkMotionType_CharacterSelectReaction = 2;
+  WorkMotionType_StartNormal = 3;
+  WorkMotionType_StartFine = 4;
+  WorkMotionType_FinishNormal = 5;
+  WorkMotionType_FinishExcellent = 6;
+}
+enum WorkType {
+  WorkType_Unknown = 0;
+  WorkType_MiniLive = 1;
+  WorkType_LiveStreaming = 2;
+}

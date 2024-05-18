@@ -1,0 +1,660 @@
+syntax = "proto3";
+package pcommon;
+option go_package = "vertesan/campus/proto/pcommon";
+import "penum.proto";
+
+message StartupNotification {
+  string id = 1;
+  penum.StartupNotificationType type = 2;
+  string horizontalMovieAssetId = 3;
+  string verticalMovieAssetId = 4;
+  string linkTitle = 5;
+  penum.LinkType linkType = 6;
+  string linkId = 7;
+  string storyId = 8;
+  string imageAssetId = 9;
+  string noticeId = 10;
+  string shopItemId = 11;
+  int32 shopItemPurchasedCount = 12;
+  int64 shopItemNextResetTime = 13;
+  int32 priority = 99;
+}
+message ExamCommandLog {
+  penum.ExamCommandType commandType = 1;
+  penum.ExamPhaseType phaseType = 2;
+  repeated int32 selectIndexes = 3;
+  int32 useIndex = 4;
+  ProduceCard useProduceCard = 5;
+  string useProduceDrinkId = 6;
+}
+message ExamAiBaseModel {
+  string modelVersion = 1;
+  string env = 3;
+  string tag = 4;
+  string masterVersion = 5;
+  string name = 6;
+  penum.ProducePlanType planType = 50;
+  int32 staminaMin = 51;
+  int32 staminaMax = 52;
+  int32 maxStaminaMin = 53;
+  int32 maxStaminaMax = 54;
+  int32 limitTurnMin = 55;
+  int32 limitTurnMax = 56;
+  int32 limitBorderMin = 57;
+  int32 limitBorderMax = 58;
+  int32 clearBorderMin = 59;
+  int32 clearBorderMax = 60;
+  int32 produceCardCountMin = 61;
+  int32 produceCardCountMax = 62;
+  int32 produceItemCountMin = 63;
+  int32 produceItemCountMax = 64;
+}
+message ExamBattleAutoStageResult {
+  repeated ExamBattleAutoStageResult.Types.Player selfPlayers = 3;
+  repeated ExamBattleAutoStageResult.Types.Player rivalPlayers = 4;
+  message Types {
+    message Player {
+      int32 score = 1;
+      int32 vocalScore = 2;
+      int32 danceScore = 3;
+      int32 visualScore = 4;
+      repeated int32 list = 5;
+    }
+  }
+}
+message GashaStepUp {
+  int32 number = 1;
+  bool isLimited = 2;
+  repeated GashaStepUpStep steps = 3;
+}
+message HomeBanner {
+  string assetId = 1;
+  penum.LinkType linkType = 2;
+  string linkId = 3;
+  int64 startTime = 4;
+  int64 endTime = 5;
+  int32 priority = 6;
+}
+message ProduceTriggerOrigin {
+  penum.ProduceTriggerOriginType originType = 1;
+  string originOwnerId = 2;
+  string originId = 3;
+  int32 originLevel = 4;
+}
+message ProducerLevelUnlock {
+  int32 level = 1;
+  repeated ProducerLevelUnlockTarget targets = 2;
+  Reward reward = 3;
+  repeated Reward bonusRewards = 4;
+}
+message PvpRateExamBattleResult {
+  ExamBattleAutoRequest examBattleAutoRequest = 1;
+  repeated int32 selfStageResultScoreList = 2;
+  repeated int32 rivalStageResultScoreList = 3;
+}
+message StoryEventPointReward {
+  int32 point = 1;
+  Reward reward = 3;
+}
+message AntiCheatCacheResult {
+  repeated AntiCheatCacheResult.Types.CacheResult results = 1;
+  message Types {
+    message CacheResult {
+      string id = 1;
+      AntiCheatSummaryResult summary = 2;
+      AntiCheatCriticalResult critical = 3;
+    }
+  }
+}
+message GashaSelectPickup {
+  repeated string idolCardSkinIds = 2;
+  repeated string supportCardIds = 3;
+  repeated Reward pickupRewards = 4;
+  int32 pickupCount = 5;
+  int32 drawCount = 6;
+}
+message TowerLayerHistory {
+  string userId = 1;
+  string publicUserId = 2;
+  string userName = 3;
+  int32 producerLevel = 4;
+  int32 clearRank = 5;
+  int32 score = 6;
+  repeated Memory memories = 7;
+  int64 playTime = 8;
+}
+message ExamBattleAutoPlayer {
+  string characterId = 1;
+  string idolCardId = 2;
+  penum.ProducePlanType planType = 3;
+  penum.ProduceExamEffectType examEffectType = 4;
+  penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 5;
+  penum.IdolCardPotentialRank idolCardPotentialRank = 6;
+  int32 power = 7;
+  int64 seed = 50;
+  int32 vocal = 51;
+  int32 dance = 52;
+  int32 visual = 53;
+  int32 vocalBonusPermil = 54;
+  int32 danceBonusPermil = 55;
+  int32 visualBonusPermil = 56;
+  int32 maxStamina = 57;
+  repeated ProduceCard produceCards = 58;
+  repeated string produceItemIds = 59;
+  int32 rank = 100;
+  int32 score = 101;
+  int32 vocalScore = 102;
+  int32 danceScore = 103;
+  int32 visualScore = 104;
+  repeated int32 selectIndexList = 105;
+}
+message AntiCheatCriticalResult {
+  repeated AntiCheatCriticalResult.Types.Record records = 1;
+  message Types {
+    message Record {
+      string tag = 1;
+      string id = 2;
+      string expected = 3;
+      string actual = 4;
+    }
+  }
+}
+message AntiCheatAnalysisResult {
+  repeated string lines = 1;
+}
+message ConsumptionResult {
+  penum.ResourceType resourceType = 1;
+  string resourceId = 2;
+  int64 quantity = 3;
+  int64 beforeQuantity = 4;
+  int64 afterQuantity = 5;
+}
+message ProduceLessonGrowthResult {
+  int32 vocal = 1;
+  int32 dance = 2;
+  int32 visual = 3;
+  int32 hardBonusVocal = 4;
+  int32 hardBonusDance = 5;
+  int32 hardBonusVisual = 6;
+  int32 growthRateBonusVocal = 7;
+  int32 growthRateBonusDance = 8;
+  int32 growthRateBonusVisual = 9;
+}
+message ProducerLevelUnlockTarget {
+  penum.ProducerLevelUnlockType type = 1;
+  string id = 2;
+  int32 quantity = 3;
+}
+message ExamBattleAutoRequest {
+  string appVersion = 1;
+  string masterVersion = 2;
+  string masterHash = 3;
+  int32 vocal = 4;
+  int32 dance = 5;
+  int32 visual = 6;
+  string examSettingId = 7;
+  repeated ExamBattleAutoStage stages = 8;
+}
+message ProduceHistory {
+  string produceId = 1;
+  int32 score = 2;
+  penum.ResultGrade grade = 3;
+  string userName = 4;
+  int32 producerLevel = 5;
+  int64 clearedTime = 6;
+  string idolCardId = 7;
+  string idolCardSkinId = 8;
+  penum.IdolCardLevelLimitRank levelLimitRank = 9;
+  penum.IdolCardPotentialRank potentialRank = 10;
+  repeated penum.ProduceType trueEndProduceTypes = 11;
+  repeated ProduceHistory.Types.DeckSupportCard deckSupportCards = 20;
+  repeated ProduceHistory.Types.DeckMemory deckMemories = 21;
+  repeated ProduceHistory.Types.DeckProduceCard produceCards = 22;
+  repeated string produceItemIds = 23;
+  Memory memory = 24;
+  int32 vocal = 30;
+  int32 dance = 31;
+  int32 visual = 32;
+  int32 vocalGrowthRatePermil = 33;
+  int32 danceGrowthRatePermil = 34;
+  int32 visualGrowthRatePermil = 35;
+  int32 maxStamina = 36;
+  message Types {
+    message DeckSupportCard {
+      string id = 1;
+      int32 level = 2;
+      penum.SupportCardLevelLimitRank levelLimitRank = 3;
+      bool isRental = 4;
+    }
+    message DeckMemory {
+      Memory memory = 1;
+      bool isRental = 2;
+    }
+    message DeckProduceCard {
+      ProduceCard produceCard = 1;
+      bool fromMemory = 2;
+    }
+  }
+}
+message MeishiObject {
+  penum.MeishiObjectType type = 1;
+  string userName = 10;
+  bool vertical = 11;
+  bool displayPublicUserId = 20;
+  string publicUserId = 21;
+  bool displayPvpRateGrade = 22;
+  penum.PvpRateGrade grade = 23;
+  bool displayProducerLevel = 24;
+  int32 producerLevel = 25;
+  bool displayFanCount = 26;
+  int64 fanCount = 27;
+  bool displayComment = 28;
+  string comment = 29;
+  string achievementId = 40;
+  Achievement achievement = 41;
+  string meishiIllustrationAssetId = 50;
+  string meishiTextColorId = 100;
+  int32 positionX = 101;
+  int32 positionY = 102;
+  int32 size = 103;
+  bool lock = 104;
+  bool background = 105;
+  int32 layer = 106;
+}
+message ProduceEffectResult {
+  penum.ProduceEffectType effectType = 1;
+  string produceEffectId = 2;
+  ProduceTriggerOrigin origin = 3;
+  int32 effectValue = 4;
+  string effectTargetId = 5;
+  int32 beforeMaxStamina = 6;
+  int32 afterMaxStamina = 7;
+  int32 beforeStamina = 8;
+  int32 afterStamina = 9;
+  int32 beforeProducePoint = 10;
+  int32 afterProducePoint = 11;
+  int32 beforeVocal = 12;
+  int32 afterVocal = 13;
+  int32 beforeDance = 14;
+  int32 afterDance = 15;
+  int32 beforeVisual = 16;
+  int32 afterVisual = 17;
+  repeated ProduceCard beforeProduceCards = 18;
+  repeated ProduceCard afterProduceCards = 19;
+  repeated ProduceRewardResult providedRewards = 20;
+}
+message ProduceExamEndResult {
+  penum.ProduceStepType stepType = 1;
+  repeated string produceDrinkIds = 2;
+  repeated ProduceItem produceItems = 3;
+  int32 producePoint = 4;
+  int32 stamina = 5;
+  int32 maxStamina = 6;
+  int32 resultTargetValue = 7;
+  int32 successThreshold = 8;
+  int32 resultTargetValueLimit = 9;
+  repeated ExamTriggerCount examTriggerCounts = 10;
+}
+message AntiCheatSummaryResult {
+  repeated AntiCheatSummaryResult.Types.Score scores = 1;
+  message Types {
+    message Score {
+      string id = 1;
+      int32 calculatedScore = 2;
+      int32 loggedScore = 3;
+    }
+  }
+}
+message GashaPoint {
+  string gashaPointId = 1;
+  int32 point = 2;
+  bool exchangeable = 3;
+}
+message ProduceRewardResult {
+  penum.ProduceResourceType resourceType = 1;
+  string resourceId = 2;
+  int32 resourceLevel = 3;
+  int32 quantity = 4;
+}
+message StoryEventBonus {
+  repeated StoryEventBonus.Types.CharacterBonus characterBonuses = 1;
+  repeated StoryEventBonus.Types.IdolCardBonus idolCardBonuses = 2;
+  repeated StoryEventBonus.Types.SupportCardBonus supportCardBonuses = 3;
+  message Types {
+    message CharacterBonus {
+      repeated string characterIds = 1;
+      int32 permil = 2;
+    }
+    message IdolCardBonus {
+      repeated string idolCardIds = 1;
+      repeated StoryEventBonus.Types.IdolCardBonus.Types.PotentialRankBonusPermil potentialRankBonusPermils = 2;
+      message Types {
+        message PotentialRankBonusPermil {
+          penum.IdolCardPotentialRank potentialRank = 1;
+          int32 permil = 2;
+        }
+      }
+    }
+    message SupportCardBonus {
+      repeated string supportCardIds = 1;
+      repeated StoryEventBonus.Types.SupportCardBonus.Types.LevelLimitRankBonusPermil levelLimitRankBonusPermils = 2;
+      message Types {
+        message LevelLimitRankBonusPermil {
+          penum.SupportCardLevelLimitRank levelLimitRank = 1;
+          int32 permil = 2;
+        }
+      }
+    }
+  }
+}
+message CoinGasha {
+  string id = 1;
+  penum.CoinGashaType type = 2;
+  string name = 3;
+  string description = 4;
+  string assetId = 5;
+  string coinGashaButtonId = 6;
+  int32 featureRewardResetDay = 7;
+  repeated CoinGashaReward featureGashaRewards = 8;
+  repeated CoinGashaReward commonGashaRewards = 9;
+  repeated CoinGashaBox prevBoxList = 10;
+  repeated CoinGashaBox nextBoxList = 11;
+  penum.CoinGashaBoxResetTypeType boxResetType = 12;
+  int32 resetCount = 13;
+  bool isResettable = 14;
+  int32 totalDrawCount = 15;
+  repeated CoinGashaDrawCountReward drawCountRewards = 16;
+  bool unlock = 50;
+  string viewConditionSetId = 51;
+  string unlockConditionSetId = 52;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int32 order = 102;
+}
+message ProduceCard {
+  string id = 1;
+  int32 upgradeCount = 2;
+}
+message ExamAntiCheatTarget {
+  repeated penum.ExamGameType features = 1;
+  repeated string dates = 2;
+  repeated string userIds = 3;
+  repeated string logIds = 4;
+}
+message CoinGashaDrawCountReward {
+  int32 drawCount = 1;
+  Reward reward = 2;
+}
+message GashaStepUpStep {
+  int32 number = 1;
+  penum.GashaStepUpAppealType appealType = 2;
+  string appealText = 3;
+  bool isFeature = 4;
+  repeated Reward bonusRewards = 5;
+}
+message PvpRateSetupUnitStageFormation {
+  penum.PvpRateStageType stage = 1;
+  repeated PvpRateSetupUnitStageFormation.Types.Slot slots = 2;
+  message Types {
+    message Slot {
+      string mainUserMemoryId = 1;
+      string subUserMemoryId = 2;
+    }
+  }
+}
+message Reward {
+  penum.ResourceType resourceType = 1;
+  string resourceId = 2;
+  int32 quantity = 3;
+}
+message RewardResult {
+  penum.ResourceType resourceType = 1;
+  string resourceId = 2;
+  int32 quantity = 3;
+  int64 beforeQuantity = 4;
+  int64 afterQuantity = 5;
+  bool isNew = 6;
+  bool isTruncate = 7;
+  bool isGift = 8;
+  bool isCampaign = 9;
+  bool isItemEffect = 10;
+}
+message ExamTriggerCount {
+  string produceExamTriggerId = 1;
+  int32 count = 2;
+}
+message GashaButton {
+  string id = 1;
+  int32 remainingDrawCount = 2;
+  int32 remainingDiscountDrawCount = 3;
+}
+message Meishi {
+  string publicUserId = 1;
+  MeishiBase meishiBase = 2;
+  repeated MeishiObject objects = 3;
+}
+message IdolCard {
+  string idolCardId = 2;
+  penum.IdolCardLevelLimitRank levelLimitRank = 4;
+  penum.IdolCardPotentialRank potentialRank = 5;
+  bool isClearTrueEnd = 6;
+}
+message CoinGashaReward {
+  Reward reward = 1;
+  int32 remainingDrawCount = 2;
+  int32 maxEmissionCount = 3;
+  bool isPickup = 4;
+}
+message Achievement {
+  string achievementId = 1;
+  int32 threshold = 2;
+}
+message ProduceItem {
+  string produceItemId = 1;
+  int32 fireCount = 2;
+}
+message GashaBackgroundPickup {
+  string idolCardSkinId = 1;
+  string supportCardId = 2;
+  string movieAssetId = 3;
+  string screenAssetId = 4;
+  repeated Reward rewards = 5;
+}
+message CoinGashaBox {
+  repeated CoinGashaReward featureGashaRewards = 1;
+  repeated CoinGashaReward commonGashaRewards = 2;
+}
+message SimpleProfile {
+  string publicUserId = 1;
+  string name = 2;
+  int32 level = 3;
+  int64 lastLoginTime = 4;
+  string comment = 6;
+  Meishi meishi = 7;
+}
+message Gasha {
+  string id = 1;
+  penum.GashaType type = 2;
+  string name = 3;
+  string description = 4;
+  repeated GashaButton gashaButtons = 5;
+  GashaStepUp gashaStepUp = 6;
+  GashaSelectPickup gashaSelectPickup = 7;
+  string gashaCardBonusId = 20;
+  GashaPoint gashaPoint = 21;
+  repeated Reward bonusRewards = 22;
+  string bannerAssetId = 24;
+  string bannerLabelAssetId = 25;
+  string movieAssetId = 26;
+  string screenAssetId = 27;
+  string appealTextAssetId = 28;
+  string noticeId = 29;
+  string viewConditionSetId = 30;
+  string unlockConditionSetId = 31;
+  bool hasIdolCard = 32;
+  repeated string pickupIdolCardSkinIds = 40;
+  repeated string pickupSupportCardIds = 41;
+  repeated GashaBackgroundPickup backgroundPickupIdolCardSkins = 42;
+  repeated GashaBackgroundPickup backgroundPickupSupportCards = 43;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int32 order = 102;
+}
+message Event {
+  penum.EventType eventType = 1;
+  string eventId = 2;
+  string homeIconAssetId = 3;
+  string bannerAssetId = 4;
+  bool noti = 5;
+  string dailyMissionGroupId = 6;
+  string missionGroupId = 7;
+  string missionDailyReleaseGroupId = 8;
+  string missionPanelSheetGroupId = 9;
+  string storyGroupId = 10;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 closeTime = 102;
+  int32 priority = 103;
+}
+message ExamBattleAutoStage {
+  int32 limitTurn = 1;
+  string produceExamGimmickEffectGroupId = 2;
+  repeated ExamBattleAutoPlayer selfPlayers = 3;
+  repeated ExamBattleAutoPlayer rivalPlayers = 4;
+}
+message ExamBattleResult {
+  int32 rank = 1;
+  int32 score = 2;
+  int32 stamina = 3;
+  repeated string produceDrinkIds = 5;
+  repeated ProduceItem produceItems = 6;
+  repeated ExamTriggerCount examTriggerCounts = 7;
+}
+message HomeNavigation {
+  string description = 1;
+  string noticeId = 2;
+  int64 startTime = 3;
+  int64 endTime = 4;
+  int32 priority = 5;
+}
+message ProduceCampaign {
+  penum.ProduceCampaignType type = 1;
+  string name = 2;
+  string description = 3;
+  string assetId = 4;
+  string produceGroupId = 5;
+  string produceId = 6;
+  int32 dailyCount = 7;
+  int32 termCount = 8;
+  int32 remainingCount = 9;
+  bool isHalf = 20;
+  int32 memoryRentalCount = 30;
+  int64 startTime = 97;
+  int64 endTime = 98;
+  int32 order = 99;
+}
+message StoryEventProduceResult {
+  StoryEventProduceResult.Types.PointResult pointResult = 1;
+  StoryEventProduceResult.Types.CoinResult coinResult = 2;
+  repeated RewardResult rewardResults = 3;
+  penum.StoryEventType storyEventType = 10;
+  string titleAssetId = 11;
+  string storyGroupId = 12;
+  string gradationColor1 = 13;
+  string gradationColor2 = 14;
+  string backgroundAssetId = 15;
+  string bgmAssetId = 16;
+  string sceneLayoutId = 17;
+  string sceneLayoutCollectionId = 18;
+  string consumptionItemId = 19;
+  message Types {
+    message CoinResult {
+      string storyEventId = 1;
+      penum.ResourceType resourceType = 2;
+      string resourceId = 3;
+      int32 baseCoinQuantity = 4;
+      int32 bonusCoinQuantity = 5;
+      int32 bonusPermil = 6;
+    }
+    message PointResult {
+      string storyEventId = 1;
+      int32 bonusPermil = 2;
+      int32 beforePoint = 3;
+      int32 afterPoint = 4;
+      repeated StoryEventPointReward allRewards = 5;
+    }
+  }
+}
+message Memory {
+  string userMemoryId = 1;
+  string assetId = 2;
+  string imagePath = 3;
+  penum.ResultGrade grade = 4;
+  int32 power = 5;
+  string characterId = 6;
+  string idolCardId = 7;
+  string idolCardSkinId = 8;
+  penum.ProducePlanType planType = 9;
+  penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 10;
+  penum.IdolCardPotentialRank idolCardPotentialRank = 11;
+  bool noProduceHistory = 12;
+  ProduceCard produceCard = 20;
+  penum.ProduceMemoryProduceCardPhaseType produceCardPhaseType = 21;
+  repeated MemoryAbility abilities = 22;
+  int32 vocal = 30;
+  int32 dance = 31;
+  int32 visual = 32;
+  int32 stamina = 33;
+  repeated ProduceCard examBattleProduceCards = 34;
+  repeated string examBattleProduceItemIds = 35;
+}
+message ExamTurnEndLog {
+  int32 turn = 1;
+  int32 score = 2;
+  int32 stamina = 3;
+  int32 consumedStamina = 4;
+  int32 block = 5;
+  int32 additionBlock = 6;
+  penum.ProduceParameterType parameterType = 7;
+  repeated ProduceCard startPlayHandProduceCards = 50;
+  repeated string startPlayStatuses = 51;
+  repeated ExamCommandLog commands = 100;
+}
+message ProduceMemoryRewardResult {
+  repeated ProduceRewardResult providedRewards = 1;
+  ProduceTriggerOrigin origin = 100;
+}
+message ProduceDescriptionElement {
+  penum.ProduceDescriptionType type = 1;
+  string text = 2;
+  string targetId = 3;
+  int32 targetLevel = 4;
+  penum.ProduceExamEffectType examEffectType = 5;
+  penum.ProduceCardCategory produceCardCategory = 6;
+  bool isOnlyOutGame = 7;
+  bool changeColor = 8;
+}
+message MeishiBase {
+  int32 layoutNumber = 1;
+  bool vertical = 2;
+  string beforeIdolCardId = 10;
+  string afterIdolCardId = 11;
+  string supportCardId = 12;
+  string meishiBaseAssetId = 13;
+  string memoryAssetId = 14;
+  string imagePath = 15;
+  string moviePath = 16;
+  string userMemoryId = 17;
+  string userPhotoId = 18;
+  string userMovieId = 19;
+  string meishiBaseColorId = 20;
+}
+message MemoryAbility {
+  string id = 1;
+  int32 level = 2;
+}
+message SupportCard {
+  string id = 1;
+  int32 level = 2;
+  penum.SupportCardLevelLimitRank levelLimitRank = 3;
+}
