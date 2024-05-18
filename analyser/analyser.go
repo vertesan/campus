@@ -82,6 +82,12 @@ var (
   enumList   []string
   commonList []string
   masterList []string
+
+  mappingHeader = "// Generated code. DO NOT EDIT!\npackage mapping\n\nimport \"vertesan/campus/proto/pcommon\"\nimport \"vertesan/campus/proto/pmaster\"\nimport \"google.golang.org/protobuf/reflect/protoreflect\"\n\nvar (\n  ProtoMap = map[string]protoreflect.ProtoMessage{\n"
+  mappingTemplate = "    \"$category.$className\": &$package.$className{},\n"
+  mappingTail = "  }\n)\n"
+  mappingSb = new(strings.Builder)
+  mappingOutFile = "cache/GeneratedProto/mapping.go"
 )
 
 // intelligently combine tree.prefix[.]tree.name,
@@ -100,11 +106,17 @@ func getClassPath(tree *ProtoTree, needSuffixDot bool) string {
 
 func constructRoot(entireContent *string, category Category) *ProtoTree {
   var classPtn *regexp.Regexp
+  var packageName string
+  var categoryString string
   switch category {
   case Common:
     classPtn = commonClassPtn
+    packageName = "pcommon"
+    categoryString = "Common"
   case Master:
     classPtn = masterClassPtn
+    packageName = "pmaster"
+    categoryString = "Master"
   default:
     rich.ErrorThenThrow("Unkown class type: %v", category)
   }
@@ -116,8 +128,15 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
     children: make(map[string]*ProtoTree),
   }
   contents := classPtn.FindAllStringSubmatch(*entireContent, -1)
+
   for _, oneClass := range contents {
     className := oneClass[1]
+    mappingLine := mappingTemplate
+    mappingLine = strings.ReplaceAll(mappingLine, "$className", className)
+    mappingLine = strings.Replace(mappingLine, "$category", categoryString, 1)
+    mappingLine = strings.Replace(mappingLine, "$package", packageName, 1)
+    mappingSb.WriteString(mappingLine)
+
     attachChild(className, root, category)
     switch category {
     case Common:
@@ -301,7 +320,12 @@ func Analyze() {
     panic(err)
   }
   entireContent := sb.String()
+  mappingSb.WriteString(mappingHeader)
   analyzeFile(&entireContent, Enum, outEnumPath)
   analyzeFile(&entireContent, Common, outCommonPath)
   analyzeFile(&entireContent, Master, outMasterPath)
+  mappingSb.WriteString(mappingTail)
+  if err := os.WriteFile(mappingOutFile, []byte(mappingSb.String()), 0644); err != nil {
+    panic(err)
+  }
 }

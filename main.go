@@ -1,15 +1,15 @@
 package main
 
 import (
-	"crypto/md5"
-	"os"
-	"vertesan/campus/analyser"
-	"vertesan/campus/master"
-	"vertesan/campus/proto/mastertag"
-	"vertesan/campus/octo"
-	"vertesan/campus/rich"
+  "crypto/md5"
+  "os"
+  "vertesan/campus/analyser"
+  "vertesan/campus/master"
+  "vertesan/campus/octo"
+  "vertesan/campus/proto/mastertag"
+  "vertesan/campus/rich"
 
-	"google.golang.org/protobuf/encoding/protojson"
+  "google.golang.org/protobuf/encoding/protojson"
 )
 
 const OCTO_CACHE_FILE = "cache/octocacheevai"
@@ -68,11 +68,17 @@ func getMasterDb() *mastertag.MasterGetResponse {
   return masterGetResp
 }
 
+func doAnalysis() {
+  analyser.Analyze()
+}
+
 func main() {
   rich.Info("Start operation")
+  // doAnalysis()
   // decryptOctoManifest()
-  // masterGetResp := getMasterDb()
+
+  masterGetResp := getMasterDb()
   // master.DownloadAllMaster(masterGetResp)
-  // master.DecryptAll(masterGetResp)
-  analyser.Analyze()
+  master.DecryptAll(masterGetResp)
+
 }
