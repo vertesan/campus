@@ -32,7 +32,7 @@ var (
     AllowPartial:    false,
     UseProtoNames:   true,
     UseEnumNumbers:  false,
-    EmitUnpopulated: false,
+    EmitUnpopulated: true,
   }
 )
 
