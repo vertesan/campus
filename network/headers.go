@@ -3,11 +3,11 @@ package network
 import "net/http"
 
 var (
-  assetHeader = http.Header{
-    "User-Agent":      {"UnityPlayer/2021.3.16f1 (UnityWebRequest/1.0, libcurl/7.84.0-DEV)"},
+  masterHeader = http.Header{
+    "User-Agent":      {"UnityPlayer/2022.3.21f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)"},
     "Accept":          {"*/*"},
     "Accept-Encoding": {"deflate, gzip"},
-    "X-Unity-Version": {"2021.3.16f1"},
+    "X-Unity-Version": {"2022.3.21f1"},
   }
   loginHeader = &http.Header{
     "X-Idempotency-Key":       {"eb6afd7c69cd9a87ca1fb167b21ae95c"},

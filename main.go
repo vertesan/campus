@@ -13,7 +13,7 @@ import (
 )
 
 const OCTO_CACHE_FILE = "cache/octocacheevai"
-const MASTER_TAG_FILE = "cache/masterGetDec240516175118527.bin"
+const MASTER_TAG_FILE = "cache/masterGetDec240519144405285.bin"
 
 var (
   marshalOptions = &protojson.MarshalOptions{
@@ -78,7 +78,7 @@ func main() {
   // decryptOctoManifest()
 
   masterGetResp := getMasterDb()
-  // master.DownloadAllMaster(masterGetResp)
+  master.DownloadAllMaster(masterGetResp)
   master.DecryptAll(masterGetResp)
 
 }

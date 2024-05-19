@@ -1,17 +1,18 @@
 package master
 
 import (
-  "bytes"
-  "database/sql"
-  "fmt"
-  "io"
-  "os"
-  "vertesan/campus/proto/mapping"
-  "vertesan/campus/proto/mastertag"
+	"bytes"
+	"database/sql"
+	"fmt"
+	"io"
+	"os"
+	"vertesan/campus/network"
+	"vertesan/campus/proto/mapping"
+	"vertesan/campus/proto/mastertag"
 
-  "github.com/bufbuild/protoyaml-go"
-  _ "github.com/mutecomm/go-sqlcipher/v4"
-  "google.golang.org/protobuf/proto"
+	"github.com/bufbuild/protoyaml-go"
+	_ "github.com/mutecomm/go-sqlcipher/v4"
+	"google.golang.org/protobuf/proto"
 )
 
 var (
@@ -47,7 +48,9 @@ func UnmarshalPlain(reader io.Reader) (*mastertag.MasterGetResponse, error) {
 }
 
 func DownloadAllMaster(masterTagResp *mastertag.MasterGetResponse) {
-
+  for _, masterPack := range masterTagResp.MasterTag.MasterTagPacks {
+    network.DownloadOneMasterRaw(masterPack)
+  }
 }
 
 func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
