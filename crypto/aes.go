@@ -21,8 +21,35 @@ var (
   ErrInvalidPKCS7Padding = errors.New("invalid padding on input")
 )
 
-func Decrypt(key []byte, iv []byte, reader io.Reader, writer io.Writer) {
-  ciphertext, err := io.ReadAll(reader)
+func Encrypt(key []byte, iv []byte, src io.Reader, dst io.Writer) {
+  plainBytes, err := io.ReadAll(src)
+  if err != nil {
+    panic(err)
+  }
+  plainBytes, err = pkcs7Pad(plainBytes, 128)
+  if err != nil {
+    panic(err)
+  }
+
+  block, err := aes.NewCipher(key)
+  if err != nil {
+    panic(err)
+  }
+  mode := cipher.NewCBCEncrypter(block, iv)
+  encBytes := make([]byte, len(plainBytes))
+  mode.CryptBlocks(encBytes, plainBytes)
+
+  n, err := io.Copy(dst, bytes.NewBuffer(encBytes))
+  if err != nil {
+    panic(err)
+  }
+  if n <= 0 {
+    log.Panicf("%q bytes of data has been written.", n)
+  }
+}
+
+func Decrypt(key []byte, iv []byte, src io.Reader, dst io.Writer) {
+  ciphertext, err := io.ReadAll(src)
   if err != nil {
     panic(err)
   }
@@ -51,7 +78,7 @@ func Decrypt(key []byte, iv []byte, reader io.Reader, writer io.Writer) {
     panic(err)
   }
 
-  n, err := io.Copy(writer, bytes.NewBuffer(plainBytes))
+  n, err := io.Copy(dst, bytes.NewBuffer(plainBytes))
   if err != nil {
     panic(err)
   }

@@ -1,11 +1,11 @@
-package network
+package hyper
 
 import (
   "bufio"
   "fmt"
   "os"
   "vertesan/campus/proto/mastertag"
-  "vertesan/campus/rich"
+  "vertesan/campus/utils/rich"
 )
 
 const MASTER_RAW_DIR = "cache/masterRaw"

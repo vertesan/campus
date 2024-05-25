@@ -1,23 +1,24 @@
 package master
 
 import (
-  "bytes"
-  "database/sql"
-  "fmt"
-  "io"
-  "os"
-  "strings"
-  "vertesan/campus/network/hyper"
-  "vertesan/campus/proto/mapping"
-  "vertesan/campus/proto/mastertag"
+	"bytes"
+	"database/sql"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+	"vertesan/campus/network"
+	"vertesan/campus/proto/mapping"
+	"vertesan/campus/proto/mastertag"
 
-  _ "github.com/mutecomm/go-sqlcipher/v4"
-  "google.golang.org/protobuf/encoding/protojson"
-  "google.golang.org/protobuf/proto"
+	"github.com/bufbuild/protoyaml-go"
+	_ "github.com/mutecomm/go-sqlcipher/v4"
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 )
 
 var (
-  masterRawPath  = "cache/masterRaw/"
+  masterRawPath = "cache/masterRaw/"
   masterJsonPath = "cache/masterJson/"
   masterYamlPath = "cache/masterYaml/"
   marshalOptions = &protojson.MarshalOptions{
@@ -29,13 +30,13 @@ var (
     EmitUnpopulated:   false,
     EmitDefaultValues: false,
   }
-  // yamlMarshalOptions = &protoyaml.MarshalOptions{
-  //   Indent:          2,
-  //   AllowPartial:    false,
-  //   UseProtoNames:   true,
-  //   UseEnumNumbers:  false,
-  //   EmitUnpopulated: true,
-  // }
+  yamlMarshalOptions = &protoyaml.MarshalOptions{
+    Indent:          2,
+    AllowPartial:    false,
+    UseProtoNames:   true,
+    UseEnumNumbers:  false,
+    EmitUnpopulated: true,
+  }
 )
 
 func UnmarshalPlain(reader io.Reader) (*mastertag.MasterGetResponse, error) {
@@ -50,7 +51,7 @@ func UnmarshalPlain(reader io.Reader) (*mastertag.MasterGetResponse, error) {
 
 func DownloadAllMaster(masterTagResp *mastertag.MasterGetResponse) {
   for _, masterPack := range masterTagResp.MasterTag.MasterTagPacks {
-    hyper.DownloadOneMasterRaw(masterPack)
+    network.DownloadOneMasterRaw(masterPack)
   }
 }
 
@@ -80,7 +81,7 @@ func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
       if err := proto.Unmarshal(data, instance); err != nil {
         panic(err)
       }
-      yamlBytes, err := YamlMarshal(instance)
+      yamlBytes, err := yamlMarshalOptions.Marshal(instance)
       if err != nil {
         panic(err)
       }

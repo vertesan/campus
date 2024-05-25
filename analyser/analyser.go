@@ -7,8 +7,21 @@ import (
   "regexp"
   "slices"
   "strings"
-  "vertesan/campus/rich"
+  "vertesan/campus/utils/rich"
 )
+
+const (
+  Enum Category = 1 + iota
+  Common
+  Master
+  Transaction
+  ApiCommon
+  Api
+  Nested
+  Root
+)
+
+type Category int
 
 type ProtoTree struct {
   prefix   string
@@ -18,42 +31,21 @@ type ProtoTree struct {
   children map[string]*ProtoTree
 }
 
-type Category int
-
-const (
-  Enum Category = 1 + iota
-  Common
-  Master
-  Api
-  Transaction
-  Nested
-  Root
-)
-
 var (
   dumpFilePath = "cache/dump.cs"
 
-  rootClassPtnStr = `: Campus\.Common\.Proto\.Client\.$which\npublic sealed class (?<className>\w+)[\s\S]+?\n}\n\n// Namespace`
-  commonClassPtn  = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Common", 1))
-  masterClassPtn  = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Master", 1))
-  // apiClassPtn         = regexp.MustCompile(strings.Replace(generalClassString, "$which", "Api", 1))
-  // transactionClassPtn = regexp.MustCompile(strings.Replace(generalClassString, "$which", "Transaction", 1))
+  commonClassPtn      = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Common", 1))
+  masterClassPtn      = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Master", 1))
+  transactionClassPtn = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Transaction", 1))
+  apiCommonClassPtn         = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Api.Common", 1))
+  apiClassPtn         = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Api", 1))
 
-  nestedClassPtnPrefixStr = `: Campus\.Common\.Proto\.Client\.$which\n`
-  nestedClassPtnStr       = `public sealed class $nestedClassName : I[\s\S]+?\n}\n\n// Namespace`
-
-  generalColumnPtn = regexp.MustCompile(`public const int \w+ = (?<columnVal>\d+);[\s\S]*?private (readonly )?(?<type>[\w<>\.]+) (?<name>\w+);`)
-
-  generalClassTemplate = "message $className {\n"
-
-  generalColumnTemplate = "$type $columnName = $decimal;\n"
-
-  commonHeader = "syntax = \"proto3\";\npackage pcommon;\noption go_package = \"vertesan/campus/proto/pcommon\";\nimport \"penum.proto\";\n\n"
-  masterHeader = "syntax = \"proto3\";\npackage pmaster;\noption go_package = \"vertesan/campus/proto/pmaster\";\nimport \"penum.proto\";\nimport \"pcommon.proto\";\n\n"
-
-  outEnumPath   = "cache/GeneratedProto/penum.proto"
-  outCommonPath = "cache/GeneratedProto/pcommon.proto"
-  outMasterPath = "cache/GeneratedProto/pmaster.proto"
+  outEnumPath        = "cache/GeneratedProto/penum.proto"
+  outCommonPath      = "cache/GeneratedProto/pcommon.proto"
+  outMasterPath      = "cache/GeneratedProto/pmaster.proto"
+  outTransactionPath = "cache/GeneratedProto/ptransaction.proto"
+  outApiCommonPath         = "cache/GeneratedProto/papicommon.proto"
+  outApiPath         = "cache/GeneratedProto/papi.proto"
 
   typeMap = map[string]string{
     "int":        "int32",
@@ -79,14 +71,14 @@ var (
     8: "                ",
   }
 
-  enumList   []string
-  commonList []string
-  masterList []string
+  enumList        []string
+  commonList      []string
+  masterList      []string
+  transactionList []string
+  apiCommonList         []string
+  apiList         []string
 
-  mappingHeader = "// Generated code. DO NOT EDIT!\npackage mapping\n\nimport \"vertesan/campus/proto/pcommon\"\nimport \"vertesan/campus/proto/pmaster\"\nimport \"google.golang.org/protobuf/reflect/protoreflect\"\n\nvar (\n  ProtoMap = map[string]protoreflect.ProtoMessage{\n"
-  mappingTemplate = "    \"$category.$className\": &$package.$className{},\n"
-  mappingTail = "  }\n)\n"
-  mappingSb = new(strings.Builder)
+  mappingSb      = new(strings.Builder)
   mappingOutFile = "cache/GeneratedProto/mapping.go"
 )
 
@@ -117,6 +109,18 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
     classPtn = masterClassPtn
     packageName = "pmaster"
     categoryString = "Master"
+  case Transaction:
+    classPtn = transactionClassPtn
+    packageName = "ptransaction"
+    categoryString = "Transaction"
+  case ApiCommon:
+    classPtn = apiCommonClassPtn
+    packageName = "papicommon"
+    categoryString = "ApiCommon"
+  case Api:
+    classPtn = apiClassPtn
+    packageName = "papi"
+    categoryString = "Api"
   default:
     rich.ErrorThenThrow("Unkown class type: %v", category)
   }
@@ -143,6 +147,12 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
       commonList = append(commonList, className)
     case Master:
       masterList = append(masterList, className)
+    case Transaction:
+      transactionList = append(transactionList, className)
+    case ApiCommon:
+      apiCommonList = append(apiCommonList, className)
+    case Api:
+      apiList = append(apiList, className)
     default:
       rich.ErrorThenThrow("Unkown class type: %v", category)
     }
@@ -160,8 +170,7 @@ func attachChild(classPath string, parentTree *ProtoTree, category Category) {
       if currentTree.children == nil {
         currentTree.children = make(map[string]*ProtoTree)
       }
-      var level int
-      level = currentTree.level + 1
+      level := currentTree.level + 1
       currentTree.children[name] = &ProtoTree{
         prefix:   getClassPath(currentTree, false),
         name:     name,
@@ -185,7 +194,7 @@ func analyzeTree(
     if classPath == "" {
       rich.ErrorThenThrow("Empty classPath.")
     }
-    sb.WriteString(indentMap[tree.level - 1] + strings.Replace(generalClassTemplate, "$className", tree.name, 1))
+    sb.WriteString(indentMap[tree.level-1] + strings.Replace(generalClassTemplate, "$className", tree.name, 1))
 
     classSearchPtnStr := strings.Replace(nestedClassPtnStr, "$nestedClassName", classPath, 1)
     prefix := ""
@@ -194,6 +203,12 @@ func analyzeTree(
       prefix = strings.Replace(nestedClassPtnPrefixStr, "$which", "Common", 1)
     case Master:
       prefix = strings.Replace(nestedClassPtnPrefixStr, "$which", "Master", 1)
+    case Transaction:
+      prefix = strings.Replace(nestedClassPtnPrefixStr, "$which", "Transaction", 1)
+    case ApiCommon:
+      prefix = strings.Replace(nestedClassPtnPrefixStr, "$which", "Api.Common", 1)
+    case Api:
+      prefix = strings.Replace(nestedClassPtnPrefixStr, "$which", "Api", 1)
     }
     classSearchPtnStr = prefix + classSearchPtnStr
     classSearchPtn := regexp.MustCompile(classSearchPtnStr)
@@ -231,6 +246,12 @@ func analyzeTree(
               typeName = "pcommon." + typeName
             } else if slices.Contains(masterList, typeName) && rootCategory != Master {
               typeName = "pmaster." + typeName
+            } else if slices.Contains(transactionList, typeName) && rootCategory != Transaction {
+              typeName = "ptransaction." + typeName
+            } else if slices.Contains(apiCommonList, typeName) && rootCategory != ApiCommon {
+              typeName = "papicommon." + typeName
+            }else if slices.Contains(apiList, typeName) && rootCategory != Api {
+              typeName = "papi." + typeName
             }
           }
         }
@@ -248,7 +269,7 @@ func analyzeTree(
 
     nestedSb := analyzeTree(entireContent, rootCategory, tree)
     sb.WriteString(nestedSb.String())
-    sb.WriteString(indentMap[tree.level - 1] + "}\n")
+    sb.WriteString(indentMap[tree.level-1] + "}\n")
   }
   return sb
 }
@@ -274,6 +295,12 @@ func analyzeFile(
     header = commonHeader
   case Master:
     header = masterHeader
+  case Transaction:
+    header = transactionHeader
+  case ApiCommon:
+    header = apiCommonHeader
+  case Api:
+    header = apiHeader
   default:
     rich.ErrorThenThrow("Unkown type of proto file: %v.", category)
   }
@@ -287,7 +314,6 @@ func analyzeFile(
     sb = analyzeTree(entireContent, category, root)
   }
 
-
   buf.WriteString(sb.String())
   // flush
   if err := buf.Flush(); err != nil {
@@ -295,18 +321,8 @@ func analyzeFile(
   }
 }
 
-func getWrap(category Category) string {
-  switch category {
-  case Common:
-    return "message Common {\n"
-  case Master:
-    return "message Master {\n"
-  default:
-    return ""
-  }
-}
-
 func Analyze() {
+  rich.Info("Start analyzing.")
   f, err := os.Open(dumpFilePath)
   if err != nil {
     panic(err)
@@ -322,10 +338,20 @@ func Analyze() {
   entireContent := sb.String()
   mappingSb.WriteString(mappingHeader)
   analyzeFile(&entireContent, Enum, outEnumPath)
+  rich.Info("Analyze Enum completed.")
   analyzeFile(&entireContent, Common, outCommonPath)
+  rich.Info("Analyze Common completed.")
   analyzeFile(&entireContent, Master, outMasterPath)
+  rich.Info("Analyze Master completed.")
+  analyzeFile(&entireContent, Transaction, outTransactionPath)
+  rich.Info("Analyze Transaction completed.")
+  analyzeFile(&entireContent, ApiCommon, outApiCommonPath)
+  rich.Info("Analyze Api.Common completed.")
+  analyzeFile(&entireContent, Api, outApiPath)
+  rich.Info("Analyze Api completed.")
   mappingSb.WriteString(mappingTail)
   if err := os.WriteFile(mappingOutFile, []byte(mappingSb.String()), 0644); err != nil {
     panic(err)
   }
+  rich.Info("Analysis completed.")
 }

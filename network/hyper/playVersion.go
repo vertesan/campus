@@ -1,4 +1,4 @@
-package network
+package hyper
 
 import (
   "errors"
@@ -6,7 +6,7 @@ import (
   "net/http"
   "regexp"
   "strings"
-  "vertesan/campus/rich"
+  "vertesan/campus/utils/rich"
 
   "github.com/PuerkitoBio/goquery"
 )

@@ -1,4 +1,4 @@
-package network
+package hyper
 
 import (
   "net/http"

@@ -1,0 +1,2418 @@
+syntax = "proto3";
+package client.api;
+option go_package = "vertesan/campus/proto/papi";
+import "penum.proto";
+import "pcommon.proto";
+import "pmaster.proto";
+import "papicommon.proto";
+
+message StoryReadProduceStoryResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ExchangeGetResponse {
+  ExchangeInfo exchange = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GiftCountResponse {
+  int32 count = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepAuditionEndResponse {
+  repeated pcommon.ProduceMemoryRewardResult memoryRewardResults = 100;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceDiscardDrinkRequest {
+  string produceUuid = 1;
+  repeated int32 drinkIndexes = 2;
+}
+message ProfileUpdateBirthdayResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ItemSellRequest {
+  string itemId = 1;
+  int32 quantity = 2;
+}
+message MeishiUnfollowResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceHighScoreRankReward {
+  int32 upperRank = 1;
+  int32 lowerRank = 2;
+  repeated pcommon.Reward rewards = 3;
+}
+message ProfileUpdateSupportCardResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GuildMemberInfo {
+  pcommon.SimpleProfile profile = 1;
+  penum.GuildRoleType roleType = 2;
+  bool isFollowing = 3;
+  bool isFollower = 4;
+}
+message GuildApplyJoinRequestRequest {
+  string publicGuildId = 1;
+  penum.GuildJoinRequestRouteType routeType = 2;
+}
+message ShopCheckPurchaseJewelResponse {
+  bool birthdayNotRegistered = 1;
+  bool exceedMaxJewelQuantity = 2;
+  bool exceedPurchaseThreshold = 3;
+  bool exceedAlertThreshold = 4;
+  bool isUnderage = 5;
+  papicommon.Response commonResponse = 9999;
+}
+message StoryEventTopResponse {
+  string title = 1;
+  string titleAssetId = 2;
+  string gradationColor1 = 3;
+  string gradationColor2 = 4;
+  string backgroundAssetId = 5;
+  string sceneLayoutId = 6;
+  string sceneLayoutCollectionId = 7;
+  string bgmAssetId = 8;
+  repeated StoryEventTopResponse.Types.Motion motions = 9;
+  penum.StoryEventType storyEventType = 10;
+  pcommon.StoryEventBonus storyEventBonus = 11;
+  string storyGroupId = 12;
+  string missionGroupId = 13;
+  string dailyMissionGroupId = 14;
+  string missionDailyReleaseGroupId = 15;
+  string exchangeId = 16;
+  pcommon.CoinGasha boxGasha = 17;
+  string idolCardSkinBeforeAssetId = 18;
+  string idolCardSkinAfterAssetId = 19;
+  string consumptionItemId = 20;
+  repeated pcommon.StoryEventPointReward storyEventPointRewards = 21;
+  int64 currentPoint = 22;
+  repeated pcommon.StartupNotification startupNotifications = 50;
+  int64 startTime = 101;
+  int64 endTime = 102;
+  int64 closeTime = 103;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Motion {
+      string characterId = 1;
+      string conditionSetId = 2;
+      penum.StoryEventMotionType motionType = 3;
+      string costumeId = 4;
+      string costumeHeadId = 5;
+      string facialAssetId = 6;
+      string bodyAssetId = 7;
+      string voiceAssetId = 8;
+      string text = 9;
+    }
+  }
+}
+message ShopRecoverPurchaseJewelRequest {
+  string productId = 1;
+  string receipt = 2;
+  string signature = 3;
+  string currencyCode = 4;
+  int64 localizedPricePermyriad = 5;
+  string storeTransactionId = 6;
+}
+message GiftListHistoryRequest {
+  repeated penum.GiftFilterType filters = 1;
+  bool isDesc = 2;
+}
+message GuildGetRequest {
+  string publicGuildId = 1;
+}
+message GuildEditLeaderMessageRequest {
+  string leaderMessage = 1;
+}
+message InvitationReceiveInvitationPointResponse {
+  repeated InviteUser list = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  int32 beforeThreshold = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message GiftListResponse {
+  repeated GiftListResponse.Types.UserGift userGifts = 1;
+  int32 count = 2;
+  int32 offset = 3;
+  bool hasNext = 4;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message UserGift {
+      string userGiftId = 1;
+      penum.ResourceType resourceType = 2;
+      string resourceId = 3;
+      int32 quantity = 4;
+      string message = 5;
+      int64 limitTime = 6;
+      int64 createdAt = 7;
+    }
+  }
+}
+message GuildDonationInfo {
+  string publicUserId = 1;
+  int64 donatedTime = 2;
+  string userName = 3;
+}
+message TowerReceiveLayerCountRewardResponse {
+  repeated pcommon.RewardResult result = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialSetNameResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProduceStartResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardUpgradePotentialRankRequest {
+  string idolCardId = 1;
+  penum.IdolCardPotentialRank afterRank = 2;
+}
+message ExchangeGetRequest {
+  string exchangeId = 1;
+}
+message PvpRateUpdateUserPvpRateUnitRequest {
+  repeated pcommon.PvpRateSetupUnitStageFormation stageFormations = 1;
+  penum.DeckRecommendType recommendType = 2;
+}
+message ShopRegisterPurchaseTransactionRequest {
+  string shopItemId = 1;
+}
+message ShopPurchaseJewelResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message WorkTopResponse {
+  repeated WorkFinishResult finishResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message Consent {
+  penum.ConsentType consentType = 1;
+  penum.ConsentAgreementType agreementType = 2;
+  string url = 3;
+}
+message SupportCardRarityProbability {
+  penum.SupportCardRarity rarity = 1;
+  int32 tenPermyriadProbability = 2;
+  repeated SupportCardProbability probabilities = 3;
+}
+message ProduceStepAuditionStartRequest {
+  string produceUuid = 1;
+}
+message ProduceChangeCostumeRequest {
+  bool produce = 1;
+  bool live = 2;
+}
+message GuildChangeLeaderRequest {
+  string publicUserId = 1;
+}
+message MemoryUpdateTagSettingRequest {
+  string userMemoryId = 1;
+  string memoryTagId = 2;
+}
+message AuthMigrateRequest {
+  string onetimeToken = 1;
+  string publicUserId = 2;
+}
+message AuthUnlinkResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProfileUpdateCommentRequest {
+  string comment = 1;
+}
+message TowerTopResponse {
+  repeated TowerTopResponse.Types.Tower towers = 1;
+  int32 previousTotalClearRank = 2;
+  int32 nextTotalClearRank = 3;
+  pcommon.Reward nextReward = 4;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Tower {
+      string id = 1;
+      int32 clearLayerCount = 2;
+      int32 totalClearRank = 3;
+      repeated string userMemoryIds = 4;
+      int32 previousLayerCount = 10;
+      int32 nextLayerCount = 11;
+      pcommon.Reward nextLayerCountReward = 12;
+    }
+  }
+}
+message ProduceStepAuditionEndExamBattleRequest {
+  string produceUuid = 1;
+  pcommon.ExamBattleResult result = 2;
+  repeated pcommon.ExamTurnEndLog turnEndLogs = 3;
+}
+message ProduceHistoryRequest {
+  string publicUserId = 1;
+  string userMemoryId = 2;
+  bool isSelf = 3;
+}
+message ProduceStartBeforeLiveEvaluationResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProgressResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message AuthLinkBandaiNamcoIdRequest {
+  string code = 1;
+  bool force = 2;
+}
+message GashaListResponse {
+  repeated pcommon.Gasha gashas = 1;
+  bool hasExpireGashaPoint = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ShopPurchaseResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeFetchListRequest {
+  penum.NoticeCategory category = 1;
+  int32 offset = 2;
+}
+message ProduceStepShopStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepPresentReceiveResponse {
+  repeated pcommon.ProduceRewardResult providedRewards = 1;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message CostumeSetRequest {
+  string characterId = 1;
+  penum.CostumeSetType setType = 2;
+  string costumeHeadId = 3;
+  string costumeId = 4;
+}
+message GuildRequestDonationRequest {
+  string guildDonationItemId = 1;
+}
+message ProduceViewPictureBookLiveResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryUpdateTagSettingResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MissionReceivePassResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateRival {
+  pcommon.SimpleProfile profile = 1;
+  penum.PvpRateRivalType rivalType = 2;
+  int32 earnedRate = 3;
+  bool isNpc = 4;
+  repeated PvpRateUnitStageFormation formations = 5;
+}
+message MissionReceiveGroupAllRequest {
+  string missionGroupId = 1;
+}
+message ProfileUpdateMemoryResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TowerListLayerPlayerHistoriesRequest {
+  string towerId = 1;
+  int32 number = 2;
+}
+message MissionReceiveGroupRequest {
+  string missionGroupId = 1;
+}
+message ProduceStepAuditionEndExamBattleResponse {
+  bool shouldTransitionSeminar = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardReleaseRequest {
+  string idolCardId = 1;
+}
+message CoinGashaResetBoxRequest {
+  string coinGashaId = 1;
+}
+message GashaGetStepUpProbabilityResponse {
+  repeated StepUpGashaProbability probabilities = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUpdateMemoryDeckRequest {
+  repeated ProduceUpdateMemoryDeck decks = 1;
+}
+message ProduceRerollSelectProduceCardResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TicketExchangeListItemsResponse {
+  repeated TicketExchangeItem items = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message WorkStopResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceViewPictureBookLiveRequest {
+  string musicId = 1;
+}
+message StoryReadResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message TowerEndRequest {
+  int64 seed = 1;
+  pcommon.ExamBattleResult result = 2;
+  repeated pcommon.ExamTurnEndLog turnEndLogs = 3;
+}
+message ItemExchangeIdolCardPieceResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeInfo {
+  string id = 1;
+  string title = 2;
+  penum.NoticeCategory category = 3;
+  penum.NoticeType type = 4;
+  int64 startTime = 5;
+  int64 endTime = 6;
+  int64 lastUpdateTime = 7;
+  string bannerAssetId = 8;
+  string detailUrl = 97;
+  bool noti = 98;
+  bool isNew = 99;
+}
+message PvpRateInitializeResponse {
+  PvpRateSeasonResult previousSeasonResult = 1;
+  bool isChangedFormation = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ShopRegisterBirthdayResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CoinGashaListResponse {
+  repeated pcommon.CoinGasha coinGashas = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GashaDrawRequest {
+  string gashaId = 1;
+  string gashaButtonId = 2;
+  int32 drawCount = 3;
+}
+message GashaDrawResult {
+  pcommon.RewardResult result = 1;
+  pcommon.RewardResult providedResult = 2;
+  repeated pcommon.RewardResult cardBonusRewardResults = 3;
+  bool isPickup = 4;
+}
+message MeishiSetResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceRank {
+  pcommon.SimpleProfile profile = 1;
+  int32 rank = 2;
+  int32 score = 3;
+  penum.ResultGrade grade = 4;
+  string userMemoryId = 5;
+}
+message CharacterCheckRosterRequest {
+  string characterId = 1;
+}
+message TowerListLayersRequest {
+  string towerId = 1;
+}
+message FriendFollowRequest {
+  string publicUserId = 1;
+}
+message GuildRequestDonationResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProduceStepAuditionEndResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TowerStartResponse {
+  int64 seed = 1;
+  int32 maxStamina = 100;
+  int32 vocalPermil = 101;
+  int32 dancePermil = 102;
+  int32 visualPermil = 103;
+  repeated pcommon.ProduceCard produceCards = 104;
+  repeated string produceItemIds = 105;
+  papicommon.Response commonResponse = 9999;
+}
+message FriendInfo {
+  pcommon.SimpleProfile profile = 1;
+  bool isFriend = 2;
+  bool isFollower = 3;
+  FriendInfo.Types.SupportCard supportCard = 100;
+  pcommon.Memory memory = 101;
+  message Types {
+    message SupportCard {
+      string supportCardId = 1;
+      int32 level = 2;
+      penum.SupportCardLevelLimitRank levelLimitRank = 3;
+    }
+  }
+}
+message ItemSellResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ExchangeItem {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string assetId = 4;
+  bool isShowRecommendLabel = 5;
+  int32 exchangeLimit = 6;
+  int32 exchangedCount = 7;
+  int64 nextResetTime = 8;
+  string unlockConditionSetId = 9;
+  bool unlocked = 10;
+  bool noti = 11;
+  pcommon.Reward reward = 12;
+  repeated ExchangeItem.Types.ConsumptionResource consumptionResources = 13;
+  int32 order = 99;
+  message Types {
+    message ConsumptionResource {
+      int32 resourceQuantity = 1;
+      int32 count = 2;
+    }
+  }
+}
+message ProduceEndBeforeLiveEvaluationRequest {
+  string produceUuid = 1;
+}
+message TutorialProduceResultRequest {
+  string userMemoryId = 1;
+  bool isDefaultImageMemory = 2;
+}
+message GuildListDonationRequestResponse {
+  repeated DonationRequest requestList = 1;
+  repeated GuildMemberInfo memberList = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateSeasonResult {
+  int64 seasonStartTime = 1;
+  int64 seasonEndTime = 2;
+  penum.PvpRateGrade beforeGrade = 3;
+  penum.PvpRateGrade afterGrade = 4;
+  int32 rank = 5;
+  int32 rate = 6;
+  repeated pcommon.Reward rewards = 7;
+}
+message TutorialSkipResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceRankingResponse {
+  repeated ProduceRank ranks = 1;
+  int32 selfRank = 2;
+  int32 selfScore = 3;
+  penum.ResultGrade selfGrade = 4;
+  string selfUserMemoryId = 5;
+  papicommon.Response commonResponse = 9999;
+}
+message ShopListItemsRequest {
+  string shopId = 1;
+}
+message AuthLoginRequest {
+  string idToken = 1;
+  string integrityToken = 2;
+}
+message MasterGetResponse {
+  MasterGetResponse.Types.MasterTag masterTag = 1;
+  string protoHash = 2;
+  message Types {
+    message MasterTag {
+      string version = 1;
+      repeated MasterGetResponse.Types.MasterTagPack masterTagPacks = 2;
+      message MasterGetResponse {
+        message Types {
+          message MasterTagPack {
+          }
+        }
+      }
+    }
+  }
+}
+message ProduceStartBeforeLiveEvaluationRequest {
+  string produceUuid = 1;
+}
+message MeishiListResponse {
+  repeated MeishiListResponse.Types.MeishiInfo meishiList = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message MeishiInfo {
+      int32 number = 1;
+      int32 order = 3;
+      pcommon.Meishi meishi = 10;
+    }
+  }
+}
+message TutorialCheckBeforeLiveProduceEvaluationResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateGetHistoryResponse {
+  pcommon.PvpRateExamBattleResult examBattleResult = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message StoryEventTopRequest {
+  string storyEventId = 1;
+}
+message GuildDissolveResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiSetRequest {
+  int32 number = 1;
+}
+message PhotoCreateRequest {
+  string idolCardId = 1;
+  repeated string userPhotoIds = 2;
+}
+message ProfileUpdateBirthdayRequest {
+  int32 month = 1;
+  int32 day = 2;
+}
+message SupportCardEnhanceRequest {
+  string supportCardId = 1;
+  int32 level = 2;
+}
+message MovieCreateResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStartResponse {
+  string produceUuid = 1;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceHistoryResponse {
+  pcommon.ProduceHistory produceHistory = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReadAdvResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message SupportCardUpgradeLevelLimitRankResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardChangeSkinRequest {
+  string idolCardSkinId = 1;
+}
+message GashaExchangePointResponse {
+  pcommon.GashaPoint gashaPoint = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message MissionReceivePassRequest {
+  string missionPassId = 1;
+  repeated int32 normalThresholds = 2;
+  repeated int32 premiumThresholds = 3;
+}
+message PvpRateRankingUser {
+  pcommon.SimpleProfile profile = 1;
+  int32 rank = 2;
+  int32 rate = 3;
+  repeated PvpRateUnitStageFormation formations = 4;
+}
+message CostumeCheckRequest {
+  string costumeHeadId = 1;
+  string costumeId = 2;
+}
+message ProduceStepPresentStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message SystemCheckRequest {
+  string idToken = 1;
+}
+message WorkFinishResponse {
+  repeated WorkFinishResult finishResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardUpgradePotentialRankResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceNextRequest {
+  string produceUuid = 1;
+  penum.ProduceStepType stepType = 2;
+  int32 selectNumber = 3;
+}
+message ProduceRetireResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateRankReward {
+  int32 upperRank = 1;
+  int32 lowerRank = 2;
+  repeated pcommon.Reward rewards = 3;
+}
+message PvpRatePlayTestResponse {
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 1;
+  repeated PvpRateUnitStageFormation selfFormations = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message WorkStopRequest {
+  penum.WorkType type = 1;
+}
+message ProfileUpdateSupportCardRequest {
+  string supportCardId = 1;
+}
+message GuildEditLeaderMessageResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PhotoUpdateNameResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceDiscardDrinkResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceContinueRequest {
+  string produceUuid = 1;
+}
+message WorkSkipResponse {
+  WorkFinishResult finishResult = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CostumeCheckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message InvitationEnterInvitationCodeRequest {
+  string publicUserId = 1;
+}
+message MoneyReceiveResponse {
+  int32 quantity = 1;
+  int32 elapsedTimeSeconds = 2;
+  bool isOverflow = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeUpdateDetailTimeRequest {
+  string noticeId = 1;
+}
+message GuildEstablishRequest {
+  string name = 1;
+  string description = 2;
+  bool isAutoApproveJoinRequest = 3;
+  penum.GuildActivityPolicyType activityPolicyType = 4;
+  string achievementId = 5;
+}
+message InvitationListInviteUserResponse {
+  repeated InviteUser list = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ItemUseActionPointRecoveryResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProduceStepPresentReceiveResponse {
+  repeated pcommon.ProduceRewardResult providedRewards = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GashaExchangePointRequest {
+  string gashaPointId = 1;
+  int32 number = 2;
+}
+message GuildInfo {
+  string publicGuildId = 1;
+  string name = 2;
+  pcommon.Achievement achievement = 3;
+  int32 memberCount = 4;
+  int32 joinRequestCount = 5;
+  bool isAutoApproveJoinRequest = 6;
+  penum.GuildActivityPolicyType activityPolicyType = 7;
+  string description = 8;
+  penum.GuildSearchMemberCountRangeType memberCountRangeType = 9;
+}
+message MusicSendBuyActionLogRequest {
+  string musicId = 1;
+}
+message PhotoDeleteResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceCheckProgressResponse {
+  bool isCurrentProduce = 1;
+  bool needForceReset = 2;
+  string forceResetDescription = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepLessonStartRequest {
+  string produceUuid = 1;
+}
+message ProduceUseDrinkResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+}
+message GiftOpenRequest {
+  repeated string userGiftIds = 1;
+}
+message GuildCancelJoinRequestRequest {
+  string publicGuildId = 1;
+}
+message MeishiUnfollowRequest {
+  repeated string publicUserIds = 1;
+}
+message ProduceHighScoreGetResponse {
+  string titleAssetId = 1;
+  int32 rank = 2;
+  int32 highScore = 3;
+  repeated ProduceHighScoreReward highScoreRewards = 4;
+  repeated ProduceHighScoreRankReward rankRewards = 5;
+  repeated ProduceHighScoreCharacter characters = 6;
+  ProduceHighScoreResult result = 50;
+  repeated pcommon.StartupNotification startupNotifications = 70;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+  int64 closeTime = 103;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUpdateSupportCardDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaDrawSelectPickupRequest {
+  string gashaId = 1;
+  string gashaButtonId = 2;
+}
+message ShopCancelPurchaseTransactionRequest {
+  string transactionId = 1;
+}
+message TutorialReceiveIdolCardRequest {
+  string idolCardSkinId = 1;
+}
+message ProfileBirthday {
+  int32 month = 1;
+  int32 day = 2;
+}
+message AuthSendConsentRequest {
+  repeated AuthSendConsentRequest.Types.Consent consents = 1;
+  bool isOptout = 2;
+  message Types {
+    message Consent {
+      penum.ConsentType consentType = 1;
+      penum.ConsentAgreementType agreementType = 2;
+    }
+  }
+}
+message CoinGashaDrawResponse {
+  repeated CoinGashaDrawResult drawResults = 1;
+  pcommon.CoinGasha coinGasha = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUpdateMemoryDeck {
+  penum.ProduceType produceType = 1;
+  int32 number = 2;
+  repeated string userMemoryIds = 3;
+  penum.DeckRecommendType recommendType = 4;
+}
+message ProduceGrowthResult {
+  int32 vocal = 1;
+  int32 dance = 2;
+  int32 visual = 3;
+  int32 growthRateBonusVocal = 4;
+  int32 growthRateBonusDance = 5;
+  int32 growthRateBonusVisual = 6;
+}
+message ExchangeInfo {
+  string id = 1;
+  string name = 2;
+  penum.ExchangeType exchangeType = 3;
+  string headerAssetId = 4;
+  string thumbnailAssetId = 5;
+  string thumbnailIconAssetId = 6;
+  penum.ResourceType consumptionResourceType = 7;
+  string consumptionResourceId = 8;
+  string jewelConsumptionCountId = 9;
+  int32 resetJewelQuantity = 10;
+  bool manualResettable = 11;
+  int32 resetCount = 12;
+  string unlockConditionSetId = 13;
+  bool unlocked = 14;
+  bool noti = 15;
+  int64 startTime = 16;
+  int64 endTime = 17;
+  int64 nextResetTime = 18;
+  repeated ExchangeItem items = 50;
+  int32 order = 99;
+}
+message ExchangeExecuteRequest {
+  string exchangeItemId = 1;
+  int32 count = 2;
+}
+message ProduceRankingRequest {
+  string produceGroupId = 1;
+  string idolCardId = 2;
+}
+message PvpRateListHistoryResponse {
+  repeated PvpRateListHistoryResponse.Types.PvpRateHistory histories = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message PvpRateHistory {
+      int64 playTimeUnixMilli = 1;
+      string rivalPublicUserId = 2;
+      string rivalName = 3;
+      repeated PvpRateUnitStageFormation selfFormations = 4;
+      repeated PvpRateUnitStageFormation rivalFormations = 5;
+      bool isWin = 6;
+      repeated bool isWinStages = 7;
+    }
+  }
+}
+message TutorialSetNameRequest {
+  string name = 1;
+}
+message TutorialProduceStepLessonEndResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaSelectPickupResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReadAdvRequest {
+  string produceUuid = 1;
+  string assetId = 2;
+}
+message ProduceResultResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  pcommon.StoryEventProduceResult storyEventProduceResult = 2;
+  ProduceResultResponse.Types.HighScoreUpdateResult highScoreUpdateResult = 3;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message HighScoreUpdateResult {
+      string titleAssetId = 1;
+      string characterId = 2;
+      int32 rank = 3;
+      int32 highScore = 4;
+      int32 characterRank = 5;
+      int32 characterHighScore = 6;
+      repeated ProduceResultResponse.Types.HighScoreReward highScoreRewards = 7;
+      message ProduceResultResponse {
+        message Types {
+          message HighScoreReward {
+          }
+        }
+      }
+    }
+  }
+}
+message StoryReadRequest {
+  string storyId = 1;
+  bool isAuto = 2;
+  bool isSkip = 3;
+}
+message HealthCheckRequest {
+  string service = 1;
+}
+message MusicSendBuyActionLogResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ShopPurchaseRequest {
+  string shopItemId = 1;
+}
+message AuthCreateResponse {
+  string token = 1;
+}
+message GashaGetProbabilityResponse {
+  DefaultGashaProbability probability = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GuildApproveJoinRequestRequest {
+  string publicUserId = 1;
+}
+message InvitationEnterInvitationCodeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GuildSearchRequest {
+  bool searchByAutoApprove = 1;
+  bool searchByManualApprove = 2;
+  repeated penum.GuildActivityPolicyType activityPolicyTypes = 3;
+  repeated penum.GuildSearchMemberCountRangeType memberCountRangeTypes = 4;
+}
+message IdolCardChangeSkinResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUpdateSupportCardDeck {
+  penum.ProduceType produceType = 1;
+  int32 number = 2;
+  repeated string supportCardIds = 3;
+  penum.DeckRecommendType recommendType = 4;
+}
+message ProduceEndBeforeLiveEvaluationResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateEndRequest {
+  repeated pcommon.ExamBattleAutoStageResult stages = 1;
+}
+message GuildUpdateLeaderMessageReactionRequest {
+  repeated string guildReactionIds = 1;
+}
+message StoryReadProduceStoryRequest {
+  string produceStoryId = 1;
+  bool isAuto = 2;
+  bool isSkip = 3;
+}
+message NoticeGetResponse {
+  NoticeInfo info = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiListFollowResponse {
+  repeated MeishiListFollowResponse.Types.Follow follows = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Follow {
+      pcommon.Meishi meishi = 1;
+      int64 followTime = 2;
+      int64 lastLoginTime = 3;
+    }
+  }
+}
+message ProduceListRentalSupportCardResponse {
+  repeated ProduceListRentalSupportCardResponse.Types.RentalSupportCard supportCards = 1;
+  repeated ProduceListRentalSupportCardResponse.Types.RentalSupportCard suggestionSupportCards = 2;
+  repeated ProduceListRentalSupportCardResponse.Types.RentalSupportCard npcSupportCards = 3;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message RentalSupportCard {
+      pcommon.SimpleProfile profile = 1;
+      string supportCardId = 2;
+      int32 level = 3;
+      penum.SupportCardLevelLimitRank levelLimitRank = 4;
+      bool following = 5;
+      bool followedBy = 6;
+      bool isGuildMember = 7;
+    }
+  }
+}
+message ExchangeResetRequest {
+  string exchangeId = 1;
+}
+message GuildListMemberResponse {
+  repeated GuildMemberInfo list = 1;
+  repeated GuildMemberInfo joinRequestList = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ShopCancelPurchaseTransactionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceActivateEffectRequest {
+  string produceUuid = 1;
+  repeated int32 pickIndexes = 2;
+}
+message ShopCheckPurchaseJewelRequest {
+  string shopItemId = 1;
+}
+message NoticeGetRequest {
+  string id = 1;
+}
+message GuildReactionInfo {
+  string reactionId = 1;
+  repeated string publicUserIds = 2;
+  bool isReacted = 3;
+}
+message MeishiReportXPostMissionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MediaPlayRequest {
+  string mediaId = 1;
+  bool isFirst = 2;
+}
+message GashaSelectPickupRequest {
+  string gashaId = 1;
+  repeated pcommon.Reward pickupRewards = 2;
+}
+message MovieDeleteRequest {
+  repeated string userMovieIds = 1;
+}
+message TutorialReceiveIdolCardResponse {
+  repeated pcommon.RewardResult results = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message SupportCardExchangeRequest {
+  repeated SupportCardExchangeRequest.Types.Parameter parameters = 1;
+  message Types {
+    message Parameter {
+      string supportCardId = 1;
+      int32 quantity = 2;
+    }
+  }
+}
+message ProduceHighScoreRankingResponse {
+  ProduceHighScoreRankingResponse.Types.Rank selfRank = 1;
+  repeated ProduceHighScoreRankingResponse.Types.Rank ranks = 2;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Rank {
+      int32 rank = 1;
+      int32 score = 2;
+      penum.ResultGrade grade = 4;
+      string idolCardId = 5;
+      string idolCardSkinId = 6;
+      string userMemoryId = 7;
+      pcommon.SimpleProfile profile = 99;
+    }
+  }
+}
+message GashaGetPrecautionRequest {
+  string gashaId = 1;
+}
+message PvpRateListRankingResponse {
+  repeated PvpRateRankingUser users = 1;
+  PvpRateRankingUser self = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message SeminarEndExamRequest {
+  string groupId = 1;
+  string examId = 2;
+  bool clear = 3;
+  repeated SeminarEndExamRequest.Types.Turn turns = 4;
+  message Types {
+    message Turn {
+      int32 turn = 1;
+      repeated string produceCardIds = 2;
+      repeated string produceDrinkIds = 3;
+    }
+  }
+}
+message ProduceStepLessonEndRequest {
+  string produceUuid = 1;
+  pcommon.ProduceExamEndResult examEndResult = 1001;
+  repeated pcommon.ExamTurnEndLog turnEndLogs = 1002;
+}
+message MusicSendActionLogRequest {
+  repeated string playedMusicIds = 1;
+  bool isPlaylistPlayed = 2;
+  repeated string playlistMusicIds = 3;
+}
+message CoinGashaDrawResult {
+  pcommon.RewardResult result = 1;
+  pcommon.RewardResult providedResult = 2;
+  repeated pcommon.RewardResult cardBonusRewardResults = 3;
+  bool isFeature = 4;
+  bool isFeaturePickup = 5;
+}
+message SystemCheckResponse {
+  SystemCheckResponse.Types.MaintenanceInfo maintenanceInfo = 1;
+  SystemCheckResponse.Types.ReviewInfo reviewInfo = 2;
+  string octoHost = 3;
+  int32 octoVersion = 4;
+  string officialXUrl = 5;
+  string faqUrl = 6;
+  string inquiryUrl = 7;
+  string userDeleteInquiryUrl = 8;
+  bool playIntegrityEnabled = 9;
+  message Types {
+    message MaintenanceInfo {
+      bool inMaintenance = 1;
+      string topMessage = 2;
+      string timeMessage = 3;
+      string bottomMessage = 4;
+      int64 startTime = 5;
+      int64 endTime = 6;
+      bool isPrerelease = 7;
+      string prereleaseHtml = 8;
+    }
+    message ReviewInfo {
+      bool inReview = 1;
+      string apiHost = 2;
+      string octoHost = 3;
+      int32 octoVersion = 4;
+    }
+  }
+}
+message ExchangeListRequest {
+  string firstViewExchangeId = 1;
+  bool isDaily = 2;
+}
+message GuildUpdateLeaderMessageReactionResponse {
+  repeated GuildReactionInfo reactionList = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUpdateMemoryDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message StartupConfirmRequest {
+  repeated StartupConfirmRequest.Types.Notification notifications = 1;
+  message Types {
+    message Notification {
+      string startupNotificationId = 1;
+      bool isSkip = 2;
+    }
+  }
+}
+message FriendFollowResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GuildDismissRequest {
+  string publicUserId = 1;
+}
+message TicketExchangeExecuteRequest {
+  string ticketExchangeItemId = 1;
+}
+message AuthGetConsentResponse {
+  repeated Consent consents = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CostumeSetResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiGetResponse {
+  pcommon.Meishi meishi = 1;
+  bool followable = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeUpdateDetailTimeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message SeminarGetExamRequest {
+  string groupId = 1;
+  string examId = 2;
+}
+message SupportCardExchangeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CharacterCheckRosterResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepEventRequest {
+  string produceUuid = 1;
+  int32 suggestionIndex = 2;
+  bool isSkip = 3;
+  bool isFastForward = 4;
+}
+message HomeListEventResponse {
+  repeated pcommon.Event events = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateStartResponse {
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 1;
+  repeated PvpRateUnitStageFormation selfFormations = 2;
+  PvpRateRival rival = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message SeminarListExamResponse {
+  repeated SeminarListExamResponse.Types.ExamGroup groups = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message ExamGroup {
+      string id = 1;
+      string name = 2;
+      repeated SeminarListExamResponse.Types.Exam exams = 3;
+      bool unlock = 4;
+      string unlockDescription = 5;
+      int32 order = 99;
+      message SeminarListExamResponse {
+        message Types {
+          message Exam {
+          }
+        }
+      }
+    }
+  }
+}
+message GashaDrawSelectPickupResponse {
+  repeated GashaDrawResult drawResults = 1;
+  pcommon.GashaButton gashaButton = 2;
+  repeated pcommon.Reward bonusRewards = 3;
+  pcommon.GashaPoint gashaPoint = 4;
+  papicommon.Response commonResponse = 9999;
+}
+message GiftListHistoryResponse {
+  repeated GiftListHistoryResponse.Types.UserGiftHistory userGiftHistories = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message UserGiftHistory {
+      string userGiftId = 1;
+      penum.ResourceType resourceType = 2;
+      string resourceId = 3;
+      int32 quantity = 4;
+      string message = 5;
+      int64 sentTime = 7;
+      int64 receivedTime = 6;
+    }
+  }
+}
+message TutorialProduceStepPresentReceiveRequest {
+  int32 positionNumber = 1;
+  repeated int32 rewardIndexes = 2;
+}
+message TutorialSkipRequest {
+  string name = 1;
+  string idolCardId = 2;
+}
+message StoryUnlockRequest {
+  string storyId = 1;
+}
+message SupportCardProbability {
+  string supportCardId = 1;
+  int32 tenPermyriadProbability = 2;
+  repeated pcommon.Reward rewards = 3;
+  bool isPickup = 4;
+}
+message DonationRequest {
+  string publicUserId = 1;
+  string guildDonationItemId = 2;
+  int64 endTime = 3;
+  repeated GuildDonationInfo donationList = 4;
+  int32 receivableCount = 5;
+}
+message PhotoUpdateNameRequest {
+  string userPhotoId = 1;
+  string name = 2;
+}
+message ProduceTopResponse {
+  bool newSeminarExam = 1;
+  bool isClearAllSeminarExam = 2;
+  repeated pcommon.ProduceCampaign campaigns = 3;
+  penum.StoryEventType storyEventType = 4;
+  string storyEventConsumptionItemId = 5;
+  pcommon.StoryEventBonus storyEventBonus = 6;
+  repeated string produceHighScoreCharacterIds = 7;
+  papicommon.Response commonResponse = 9999;
+}
+message FriendUnFollowResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MissionExchangePassPointResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepEventResponse {
+  bool success = 1;
+  repeated pcommon.ProduceMemoryRewardResult memoryRewardResults = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateUnitStageFormation {
+  penum.PvpRateStageType stage = 1;
+  repeated PvpRateUnitStageFormation.Types.Slot slots = 2;
+  message Types {
+    message Slot {
+      pcommon.Memory mainMemory = 1;
+      pcommon.Memory subMemory = 2;
+      int32 supportBonusPermyriad = 3;
+      bool isDefault = 4;
+    }
+  }
+}
+message GuildEditDetailResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReportGuildMissionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateStartRequest {
+  penum.PvpRateRivalType rivalType = 1;
+}
+message TowerEndResponse {
+  repeated pcommon.RewardResult results = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialUnlockFeatureRequest {
+  penum.TutorialType type = 1;
+}
+message FriendDeleteFollowerResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GiftListRequest {
+  int32 offset = 1;
+}
+message LoginBonusConfirmResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MissionReceiveGroupResponse {
+  repeated pcommon.RewardResult results = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message SeminarEndExamResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProduceStepAuditionExamEndRequest {
+  int32 rank = 1;
+  int32 score = 2;
+  int32 stamina = 3;
+  repeated string produceCardIds = 4;
+}
+message HomeSetCharactersResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryExchangeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message StoryReadDearnessStoryRequest {
+  string characterId = 1;
+  int32 dearnessLevel = 2;
+  bool isAuto = 3;
+  bool isSkip = 4;
+}
+message GuildRejectJoinRequestRequest {
+  repeated string publicUserIds = 1;
+}
+message GuildChangeLeaderResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateUpdateUserPvpRateUnitResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaGetPrecautionResponse {
+  string precaution = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeUpdateCategoryTimeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepShopStartRequest {
+  string produceUuid = 1;
+}
+message GuildApplyJoinRequestResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiFollowRequest {
+  string publicUserId = 1;
+}
+message PhotoDeleteRequest {
+  repeated string userPhotoIds = 1;
+}
+message TowerGetLayerResponse {
+  int32 maxSubMemoryCount = 1;
+  repeated TowerGetLayerResponse.Types.Exam exams = 2;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Exam {
+      penum.ProduceExamEffectType examEffectType = 1;
+      int32 parameterBaseLine = 2;
+      int32 baseScore = 3;
+      string produceItemId = 4;
+      string produceExamGimmickEffectGroupId = 5;
+      string produceExamBattleConfigId = 6;
+      string produceExamBattleNpcGroupId = 7;
+    }
+  }
+}
+message GashaDrawStepUpResponse {
+  repeated GashaDrawResult drawResults = 1;
+  pcommon.GashaButton gashaButton = 2;
+  pcommon.GashaStepUp nextGashaStepUp = 3;
+  repeated pcommon.Reward bonusRewards = 4;
+  pcommon.GashaPoint gashaPoint = 5;
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardRarityProbability {
+  penum.IdolCardRarity rarity = 1;
+  int32 tenPermyriadProbability = 2;
+  repeated IdolCardProbability probabilities = 3;
+}
+message PvpRateEndResponse {
+  int32 addRate = 1;
+  int32 beforeRank = 2;
+  int32 afterRate = 3;
+  int32 afterRank = 4;
+  int32 fanCount = 5;
+  pcommon.RewardResult playReward = 6;
+  repeated PvpRateRateReward rateRewards = 7;
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialUnlockFeatureResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message LoginBonusCheckResponse {
+  repeated LoginBonusCheckResponse.Types.Info list = 1;
+  LoginBonusCheckResponse.Types.TotalInfo totalInfo = 2;
+  repeated pcommon.StartupNotification startupNotifications = 3;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Info {
+      penum.LoginBonusType type = 1;
+      string name = 2;
+      string description = 3;
+      string titleAssetId = 4;
+      string backgroundAssetId = 5;
+      string startLoginBonusMotionId = 6;
+      string endLoginBonusMotionId = 7;
+      string openConditionSetId = 8;
+      repeated pcommon.Reward rewards = 9;
+      int32 days = 10;
+    }
+    message TotalInfo {
+      int32 days = 1;
+      int32 nextDays = 2;
+      string startLoginBonusMotionId = 3;
+      string endLoginBonusMotionId = 4;
+      pcommon.Reward reward = 5;
+      pcommon.Reward nextReward = 6;
+    }
+  }
+}
+message GashaRarityProbability {
+  int32 rarity = 1;
+  int32 tenPermyriadProbability = 2;
+}
+message HomeLoginResponse {
+  HomeLoginResponse.Types.FriendResult friendResult = 1;
+  repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 2;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message FriendResult {
+      int32 receivedFriendCoinQuantity = 1;
+      int32 supportCardRentalCount = 2;
+      int32 memoryRentalCount = 3;
+    }
+  }
+}
+message ProduceStepShopEndResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepShopBuyRequest {
+  string produceUuid = 1;
+  int32 positionNumber = 2;
+  int32 deckProduceCardIndex = 3;
+}
+message FriendUnFollowRequest {
+  repeated string publicUserIds = 1;
+}
+message GuildSearchResponse {
+  repeated GuildInfo list = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepShopBuyResponse {
+  repeated pcommon.ProduceRewardResult providedRewards = 1;
+  int32 beforeProducePoint = 2;
+  int32 afterProducePoint = 3;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message TowerReceiveTotalClearRankRewardResponse {
+  repeated pcommon.RewardResult result = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message HomeSetCharactersRequest {
+  repeated HomeSetCharactersRequest.Types.HomeCharacter characters = 1;
+  message Types {
+    message HomeCharacter {
+      penum.HomeType homeType = 1;
+      string characterId = 2;
+    }
+  }
+}
+message ProduceHighScoreCharacter {
+  string characterId = 1;
+  int32 rank = 2;
+  int32 highScore = 3;
+  repeated ProduceHighScoreRankReward rankRewards = 4;
+}
+message GashaDrawStepUpRequest {
+  string gashaId = 1;
+  string gashaButtonId = 2;
+}
+message MovieCreateRequest {
+  string userMovieId = 2;
+}
+message ProduceStepShopEndRequest {
+  string produceUuid = 1;
+}
+message MissionReceiveRequest {
+  repeated MissionReceiveRequest.Types.Mission missions = 1;
+  repeated MissionReceiveRequest.Types.MissionPoint missionPoints = 2;
+  message Types {
+    message Mission {
+      string missionId = 1;
+      int32 threshold = 2;
+    }
+    message MissionPoint {
+      string missionPointId = 1;
+      repeated int32 points = 2;
+    }
+  }
+}
+message ShopTopResponse {
+  repeated ShopTopResponse.Types.Shop shopList = 1;
+  repeated pmaster.ShopItem shopItemList = 2;
+  bool itemExchangeNoti = 3;
+  bool dailyExchangeNoti = 4;
+  bool coinGashaNoti = 5;
+  repeated pcommon.StartupNotification startupNotifications = 6;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Shop {
+      string id = 1;
+      int64 endTime = 2;
+      int64 nextResetTime = 3;
+      repeated pmaster.ShopItem shopItems = 4;
+    }
+  }
+}
+message GuildRejectJoinRequestResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ItemExchangeIdolCardPieceRequest {
+}
+message MissionExchangePassPointRequest {
+  string missionPassId = 1;
+  int32 threshold = 2;
+}
+message MissionUrlTransitionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message FriendListSuggestionResponse {
+  repeated FriendInfo list = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GashaGetProbabilityRequest {
+  string gashaId = 1;
+}
+message GuildListJoinRequestResponse {
+  repeated GuildInfo list = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message MissionListEventResponse {
+  repeated pcommon.Event events = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceCheckProgressRequest {
+  string produceUuid = 1;
+}
+message ProfileGetRequest {
+  string publicUserId = 1;
+}
+message ProduceHighScoreRankingRequest {
+  string characterId = 1;
+}
+message GuildCancelJoinRequestResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message HealthCheckResponse {
+  penum.ServingStatus status = 1;
+}
+message ProfileGetResponse {
+  string publicUserId = 1;
+  int32 producerLevel = 2;
+  string name = 3;
+  string comment = 4;
+  ProfileBirthday birthday = 5;
+  penum.FriendStatusType friendStatus = 6;
+  bool followable = 7;
+  string joinedGuildName = 8;
+  int64 totalFanCount = 100;
+  int32 achievementCount = 101;
+  int32 mainTaskMainStoryClearCount = 102;
+  int32 mainTaskProducerClearCount = 103;
+  repeated ProfileGetResponse.Types.ProduceRecord produceRecords = 120;
+  int32 maxPvpRateUnitPower = 130;
+  penum.PvpRateGrade pvpRateGrade = 131;
+  pcommon.SupportCard supportCard = 201;
+  pcommon.Memory memory = 202;
+  pcommon.Meishi meishi = 204;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message ProduceRecord {
+      penum.ProduceType produceType = 1;
+      int32 trueEndCount = 2;
+      int32 highScore = 3;
+    }
+  }
+}
+message ProduceActivateEffectResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceHighScoreReward {
+  int32 score = 1;
+  pcommon.Reward reward = 2;
+}
+message TowerStartRequest {
+  string towerId = 1;
+  int32 number = 2;
+  repeated string memoryIds = 3;
+  penum.DeckRecommendType recommendType = 4;
+}
+message ExchangeListResponse {
+  repeated ExchangeInfo exchanges = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message FriendListResponse {
+  repeated FriendInfo friendList = 1;
+  repeated FriendInfo followerList = 2;
+  repeated FriendInfo suggestionList = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryUpdateProtectionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReportGuildMissionRequest {
+  string produceUuid = 1;
+}
+message ProfileUpdateNameRequest {
+  string name = 1;
+}
+message CoinGashaGetRequest {
+  string coinGashaId = 1;
+}
+message GuildTopResponse {
+  GuildTopResponse.Types.HomeInfo homeInfo = 1;
+  repeated GuildInfo list = 2;
+  repeated GuildInfo joinRequestList = 3;
+  penum.GuildNotificationType notificationType = 100;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message HomeInfo {
+      string publicGuildId = 1;
+      string name = 2;
+      pcommon.Achievement achievement = 3;
+      bool isAutoApproveJoinRequest = 4;
+      penum.GuildActivityPolicyType activityPolicyType = 5;
+      string description = 6;
+      string leaderMessage = 7;
+      int64 leaderMessageEditedTime = 8;
+      bool leaderMessageBySystem = 9;
+      bool isLeaderMessageUpdated = 10;
+      repeated GuildReactionInfo leaderMessageReactionList = 11;
+      repeated GuildMemberInfo memberList = 12;
+      repeated GuildMemberInfo joinRequestList = 13;
+      repeated DonationRequest donationRequestList = 14;
+      GuildTopResponse.Types.HomeInfo.Types.ReceivedDonationInfo receivedDonationInfo = 15;
+      message Types {
+        message ReceivedDonationInfo {
+          string guildDonationItemId = 1;
+          repeated GuildDonationInfo donationList = 2;
+          int32 totalDonationCount = 3;
+        }
+      }
+    }
+  }
+}
+message InvitationReceiveInvitationPointRequest {
+  repeated string publicUserIds = 1;
+}
+message SupportCardUpgradeLevelLimitRankRequest {
+  string supportCardId = 1;
+  penum.SupportCardLevelLimitRank afterRank = 2;
+}
+message PhotoCreateResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReadDearnessStoryResponse {
+  bool isFirst = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message SeminarGetExamResponse {
+  string groupId = 1;
+  string examId = 2;
+  string name = 3;
+  string idolCardId = 4;
+  penum.ProduceStepType stepType = 5;
+  repeated penum.ProduceParameterType examBattleParameterTypes = 6;
+  int32 limitTurn = 10;
+  int32 successThreshold = 11;
+  int32 examBattleParameterBaseLine = 12;
+  int32 examBattleBaseScore = 13;
+  string produceExamGimmickEffectGroupId = 14;
+  string produceExamBattleNpcGroupId = 15;
+  string produceExamBattleConfigId = 16;
+  int32 startStamina = 20;
+  int32 startMaxStamina = 21;
+  int32 startBlock = 22;
+  int32 startResultTargetValue = 23;
+  repeated string startProduceItemIds = 24;
+  repeated string startProduceDrinkIds = 25;
+  repeated pcommon.ProduceCard produceCards = 30;
+  repeated SeminarGetExamResponse.Types.TurnNavigation turnNavigations = 60;
+  repeated SeminarGetExamResponse.Types.FailureNavigation failureNavigations = 70;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message TurnNavigation {
+      int32 turn = 1;
+      penum.ProduceExamTriggerCheckType fieldStatusCheckType = 2;
+      penum.ProduceExamFieldStatusType fieldStatusType = 3;
+      int32 fieldStatusValue = 4;
+      repeated SeminarGetExamResponse.Types.TurnNavigationStep steps = 5;
+      message SeminarGetExamResponse {
+        message Types {
+          message TurnNavigationStep {
+          }
+        }
+      }
+    }
+    message FailureNavigation {
+      string produceExamTriggerId = 1;
+      string text1 = 2;
+      repeated pcommon.ProduceCard produceCards1 = 3;
+      string text2 = 4;
+      repeated pcommon.ProduceCard produceCards2 = 5;
+      int32 priority = 6;
+    }
+  }
+}
+message MediaPlayResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceRerollSelectProduceCardRequest {
+  string produceUuid = 1;
+}
+message PvpRateGetHistoryRequest {
+  int64 playTime = 1;
+}
+message StoryUnlockResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaProbability {
+  repeated GashaRarityProbability gashaRarityProbabilities = 1;
+  repeated IdolCardRarityProbability idolCardRarityProbabilities = 2;
+  repeated SupportCardRarityProbability supportCardRarityProbabilities = 3;
+}
+message MeishiFollowResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryUpdateProtectionRequest {
+  string userMemoryId = 1;
+  bool isProtected = 2;
+}
+message ProduceStepAuditionStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 100;
+  papicommon.Response commonResponse = 9999;
+}
+message ShopRegisterBirthdayRequest {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+message ProduceStepPresentEndRequest {
+  string produceUuid = 1;
+}
+message ProduceChangeCostumeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialReadDearnessStoryResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message WorkSkipRequest {
+  penum.WorkType type = 1;
+}
+message ProduceEndRequest {
+  string produceUuid = 1;
+  string userMemoryId = 2;
+  bool isDefaultImageMemory = 3;
+}
+message GashaGetPointExchangeResponse {
+  string gashaPointId = 1;
+  string name = 2;
+  string conditionSetId = 3;
+  pcommon.Reward expireReward = 4;
+  repeated GashaGetPointExchangeResponse.Types.ExchangeResource exchangeResources = 5;
+  int32 point = 6;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message ExchangeResource {
+      int32 number = 1;
+      int32 requiredQuantity = 2;
+      repeated pcommon.Reward rewards = 3;
+    }
+  }
+}
+message GashaGetPointExchangeRequest {
+  string gashaPointId = 1;
+}
+message ProduceStartRequest {
+  string produceGroupId = 1;
+  string produceId = 2;
+  string idolCardId = 3;
+  repeated ProduceStartRequest.Types.SupportCard supportCards = 4;
+  repeated ProduceStartRequest.Types.Memory memories = 5;
+  repeated string produceBoostItemIds = 6;
+  bool isChangeCostumeProduce = 7;
+  bool isChangeCostumeLive = 8;
+  message Types {
+    message SupportCard {
+      string supportCardId = 1;
+      string rentalPublicUserId = 2;
+    }
+    message Memory {
+      string userMemoryId = 1;
+      string rentalPublicUserId = 2;
+    }
+  }
+}
+message ProduceStepLessonStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReadDearnessStoryRequest {
+  string produceUuid = 1;
+  bool isAuto = 2;
+  bool isSkip = 3;
+}
+message ProduceHighScoreResult {
+  int32 rank = 1;
+  int32 highScore = 2;
+  repeated ProduceHighScoreRankReward rankRewards = 3;
+  repeated ProduceHighScoreCharacter characters = 4;
+}
+message ExchangeExecuteResponse {
+  ExchangeItem exchangeItem = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message DefaultGashaProbability {
+  GashaProbability probability = 1;
+  GashaProbability fixProbability = 2;
+}
+message GuildLeaveResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardReleaseResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ShopListItemsResponse {
+  repeated pmaster.ShopItem list = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message StartupConfirmResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaDrawResponse {
+  repeated GashaDrawResult drawResults = 1;
+  pcommon.GashaButton gashaButton = 2;
+  repeated pcommon.Reward bonusRewards = 3;
+  pcommon.GashaPoint gashaPoint = 4;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepAuditionEndRequest {
+  string produceUuid = 1;
+}
+message ProduceResultRequest {
+  string produceUuid = 1;
+  bool isSkipLive = 2;
+  int32 manualPhotoCount = 3;
+  bool isMemoryProtected = 4;
+  string memoryTagId = 5;
+}
+message TutorialProgressRequest {
+  penum.TutorialType type = 1;
+  int32 step = 2;
+}
+message HomeConfirmBanWarningResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryExchangeRequest {
+  repeated string userMemoryIds = 1;
+}
+message TutorialProduceStepLessonEndRequest {
+  int32 resultTargetValue = 1;
+  int32 stamina = 2;
+  repeated string produceCardIds = 3;
+}
+message PvpRateRateReward {
+  int32 rate = 1;
+  pcommon.Reward reward = 2;
+}
+message TowerGetLayerRequest {
+  string towerId = 1;
+  int32 number = 2;
+}
+message ExchangeResetResponse {
+  ExchangeInfo exchange = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceEndResponse {
+  pcommon.Memory memory = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProfileUpdateCommentResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TicketExchangeExecuteResponse {
+  TicketExchangeItem item = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message TicketExchangeListItemsRequest {
+  string ticketItemId = 1;
+}
+message StepUpGashaProbability {
+  int32 step = 1;
+  DefaultGashaProbability defaultGashaProbability = 2;
+}
+message GuildEstablishResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiGetRequest {
+  string publicUserId = 1;
+}
+message ProduceUpdateSupportCardDeckRequest {
+  repeated ProduceUpdateSupportCardDeck decks = 1;
+}
+message ProduceContinueResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PhotoUpdateProtectionRequest {
+  string userPhotoId = 1;
+  bool isProtected = 2;
+}
+message ProduceStepPresentEndResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardUpgradeLevelLimitRankResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TutorialProduceStartRequest {
+  string idolCardId = 1;
+}
+message TutorialReadDearnessStoryRequest {
+  string characterId = 1;
+  int32 dearnessLevel = 2;
+  bool isAuto = 3;
+  bool isSkip = 4;
+}
+message AuthLoginResponse {
+  string gameAuthToken = 1;
+  string retrySignInToken = 2;
+  repeated AuthLoginResponse.Types.Term terms = 3;
+  repeated Consent consents = 4;
+  message Types {
+    message Term {
+      penum.TermsType type = 1;
+      string name = 2;
+      string url = 3;
+    }
+  }
+}
+message AuthSendConsentResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GuildReceiveDonationResponse {
+  string guildDonationItemId = 1;
+  repeated GuildDonationInfo list = 2;
+  int32 totalDonationCount = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message TowerListLayerPlayerHistoriesResponse {
+  repeated pcommon.TowerLayerHistory histories = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceRankingTopRequest {
+  string produceGroupId = 1;
+  string characterId = 2;
+}
+message GuildApproveJoinRequestResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiDeleteResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MissionReceiveGroupAllResponse {
+  repeated pcommon.RewardResult groupResults = 1;
+  repeated pcommon.RewardResult results = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProfileUpdateNameResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message WorkFinishResult {
+  penum.WorkType type = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  bool isExcellent = 3;
+  bool isFined = 4;
+}
+message TowerReceiveLayerCountRewardRequest {
+  string targetTowerId = 1;
+  int32 targetNumber = 2;
+}
+message ProduceStepLessonEndResponse {
+  bool shouldTransitionSeminar = 1;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message UserGetResponse {
+  papicommon.UserData userData = 1;
+}
+message ProduceRankingTopResponse {
+  repeated ProduceRankingTopResponse.Types.Ranking rankings = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message Ranking {
+      string idolCardId = 1;
+      repeated ProduceRank topRanks = 2;
+      int32 selfHighestScore = 3;
+      int32 selfHighestRank = 4;
+      penum.ResultGrade selfHighestGrade = 5;
+      string selfHighestUserMemoryId = 6;
+    }
+  }
+}
+message PhotoUpdateProtectionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProfileUpdateMemoryRequest {
+  string userMemoryId = 1;
+}
+message TutorialProduceNextResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRateGetResponse {
+  int64 startTime = 1;
+  int64 endTime = 2;
+  string pvpRateConfigId = 3;
+  pcommon.Reward playReward = 4;
+  repeated PvpRateRateReward rateRewards = 5;
+  repeated PvpRateRankReward rankRewards = 6;
+  penum.PvpRateGrade grade = 100;
+  int32 rank = 101;
+  int32 rate = 102;
+  int32 gradeUpRate = 103;
+  int32 gradeKeepRate = 104;
+  int32 maxDailyPlayCount = 105;
+  int32 remainingDailyPlayCount = 106;
+  pcommon.Meishi meishi = 107;
+  repeated PvpRateRival rivals = 200;
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 300;
+  repeated PvpRateUnitStageFormation selfFormations = 301;
+  PvpRateRival currentRival = 302;
+  papicommon.Response commonResponse = 9999;
+}
+message CoinGashaDrawRequest {
+  string coinGashaId = 1;
+  int32 drawCount = 2;
+}
+message ShopItem {
+  string shopId = 1;
+  string id = 2;
+  int32 purchasedCount = 3;
+  bool unlocked = 4;
+  bool noti = 5;
+  repeated penum.ShopItemLabelType labelTypes = 6;
+  int64 endTime = 7;
+  int64 nextResetTime = 8;
+  int32 order = 9;
+}
+message HomeEnterResponse {
+  repeated pcommon.HomeBanner homeBanners = 1;
+  repeated pcommon.HomeNavigation homeNavigations = 2;
+  repeated HomeEnterResponse.Types.FeatureMaintenance featureMaintenances = 3;
+  repeated pcommon.Gasha gashas = 4;
+  papicommon.PvpRateSeasonTop pvpRateSeasonTop = 5;
+  repeated pcommon.Event events = 6;
+  int32 giftCount = 100;
+  penum.ShopItemLabelType shopItemLabelType = 101;
+  bool homeShopNoti = 102;
+  bool shopNoti = 103;
+  bool guildNoti = 104;
+  bool noticeNoti = 105;
+  bool invitationNoti = 106;
+  bool hasProduceCampaign = 107;
+  bool hasExpireGashaPoint = 108;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message FeatureMaintenance {
+      penum.FeatureMaintenanceType type = 1;
+      repeated string targetIds = 2;
+      int64 startTime = 3;
+      int64 endTime = 4;
+    }
+  }
+}
+message NoticeUpdateCategoryTimeRequest {
+  repeated penum.NoticeCategory categories = 1;
+}
+message AuthPrepareMigrationBandaiNamcoIdRequest {
+  string code = 1;
+}
+message ItemUseActionPointRecoveryRequest {
+  string itemId = 1;
+  int32 quantity = 2;
+}
+message MissionReceiveResponse {
+  repeated pcommon.RewardResult results = 1;
+  repeated pcommon.RewardResult missionPointResults = 2;
+  repeated MissionReceiveResponse.Types.MasterAchievementProgressResult masterAchievementProgressResults = 3;
+  repeated pmaster.Mission mainTaskResults = 4;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message MasterAchievementProgressResult {
+      string masterAchievementId = 1;
+      int32 beforeProgress = 2;
+      int32 afterProgress = 3;
+      repeated MissionReceiveResponse.Types.MasterAchievementProgress masterAchievementProgresses = 4;
+      message MissionReceiveResponse {
+        message Types {
+          message MasterAchievementProgress {
+          }
+        }
+      }
+    }
+  }
+}
+message GuildGetResponse {
+  GuildInfo info = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message MeishiDeleteRequest {
+  int32 number = 1;
+}
+message ProduceStepPresentReceiveRequest {
+  string produceUuid = 1;
+  int32 positionNumber = 2;
+  repeated int32 rewardIndexes = 3;
+}
+message ProduceStepAuditionRefreshRequest {
+  string produceUuid = 1;
+}
+message TutorialProduceStepAuditionExamEndResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GiftOpenResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  repeated string openedUserGiftIds = 2;
+  repeated string unopenedUserGiftIds = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message GuildDonateResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceNextResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message WorkStartRequest {
+  penum.WorkType type = 1;
+  int32 durationMinutes = 2;
+  string characterId = 3;
+}
+message TowerListLayersResponse {
+  repeated TowerListLayersResponse.Types.TowerLayer layers = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message TowerLayer {
+      int32 number = 1;
+      string unlockConditionSetId = 2;
+      int32 clearRank = 3;
+      int32 receivedClearRank = 4;
+      repeated TowerListLayersResponse.Types.TowerLayerRank ranks = 5;
+      message TowerListLayersResponse {
+        message Types {
+          message TowerLayerRank {
+          }
+        }
+      }
+    }
+  }
+}
+message AuthPrepareMigrationBandaiNamcoIdResponse {
+  string publicUserId = 1;
+  string userName = 2;
+  int32 producerLevel = 3;
+  string onetimeToken = 4;
+}
+message InviteUser {
+  pcommon.SimpleProfile profile = 1;
+  penum.FriendStatusType friendStatusType = 2;
+  int32 thresholdProducerLevel = 3;
+  bool isReceivedAll = 4;
+}
+message CoinGashaGetResponse {
+  pcommon.CoinGasha coinGasha = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CoinGashaResetBoxResponse {
+  pcommon.CoinGasha coinGasha = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GuildDonateRequest {
+  string publicUserId = 1;
+}
+message GuildDismissResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ShopRegisterPurchaseTransactionResponse {
+  string transactionId = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message SupportCardEnhanceResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message FriendDeleteFollowerRequest {
+  repeated string publicUserIds = 1;
+}
+message MeishiUpdateResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message WorkStartResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ShopPurchaseJewelRequest {
+  string productId = 1;
+  string transactionId = 2;
+  string receipt = 3;
+  string signature = 4;
+  string currencyCode = 5;
+  int64 localizedPricePermyriad = 6;
+  string storeTransactionId = 7;
+}
+message GashaGetStepUpProbabilityRequest {
+  string gashaId = 1;
+}
+message MeishiReportXPostMissionRequest {
+  int32 number = 1;
+}
+message MovieDeleteResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeFetchListResponse {
+  repeated NoticeInfo list = 1;
+  bool hasNext = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardProbability {
+  string idolCardSkinId = 1;
+  int32 tenPermyriadProbability = 2;
+  repeated pcommon.Reward rewards = 3;
+  bool isPickup = 4;
+}
+message ProduceStepRefreshRequest {
+  string produceUuid = 1;
+}
+message ShopRecoverPurchaseJewelResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GuildEditDetailRequest {
+  string name = 1;
+  string description = 2;
+  bool isAutoApproveJoinRequest = 3;
+  penum.GuildActivityPolicyType activityPolicyType = 4;
+  string achievementId = 5;
+}
+message AuthMigrateResponse {
+  string token = 1;
+  string publicUserId = 2;
+  string userName = 3;
+  int32 producerLevel = 4;
+}
+message GashaExpirePointResponse {
+  repeated GashaExpirePointResponse.Types.GashaPoint gashaPoints = 1;
+  repeated pcommon.RewardResult rewardResults = 2;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message GashaPoint {
+      string gashaPointId = 1;
+      string name = 2;
+      int32 expirePoint = 3;
+      pcommon.Reward reward = 4;
+      repeated GashaExpirePointResponse.Types.GashaBanner gashaBanners = 5;
+      message GashaExpirePointResponse {
+        message Types {
+          message GashaBanner {
+          }
+        }
+      }
+    }
+  }
+}
+message MissionUrlTransitionRequest {
+  string url = 1;
+}
+message ProduceStepRefreshResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message TicketExchangeItem {
+  string id = 1;
+  repeated pcommon.Reward rewards = 2;
+  int32 exchangedCount = 3;
+  int32 order = 99;
+}
+message MeishiUpdateRequest {
+  int32 number = 1;
+  MeishiUpdateRequest.Types.MeishiBase meishiBase = 2;
+  repeated MeishiUpdateRequest.Types.Object objects = 3;
+  int32 order = 4;
+  message Types {
+    message MeishiBase {
+      int32 layoutNumber = 1;
+      bool vertical = 2;
+      string beforeIdolCardId = 10;
+      string afterIdolCardId = 11;
+      string supportCardId = 12;
+      string meishiBaseAssetId = 13;
+      string userMemoryId = 14;
+      string userPhotoId = 15;
+      string userMovieId = 16;
+      string meishiBaseColorId = 17;
+    }
+    message Object {
+      penum.MeishiObjectType objectType = 1;
+      bool vertical = 11;
+      bool displayPublicUserId = 20;
+      bool displayPvpRateGrade = 22;
+      bool displayProducerLevels = 24;
+      bool displayFanCounts = 26;
+      bool displayComment = 28;
+      string achievementId = 40;
+      string meishiIllustrationAssetId = 51;
+      string meishiTextColorId = 100;
+      int32 positionX = 101;
+      int32 positionY = 102;
+      int32 size = 103;
+      bool lock = 104;
+      bool background = 105;
+      int32 layer = 106;
+    }
+  }
+}
+message StoryReadDearnessStoryResponse {
+  string characterId = 1;
+  int32 beforeDearnessLevel = 2;
+  int32 afterDearnessLevel = 3;
+  repeated pcommon.RewardResult rewardResults = 4;
+  papicommon.Response commonResponse = 9999;
+}
+message AuthLinkBandaiNamcoIdResponse {
+  bool success = 1;
+  bool isSameAccountLinked = 2;
+  string publicUserId = 100;
+  string userName = 101;
+  int32 producerLevel = 102;
+  papicommon.Response commonResponse = 9999;
+}
+message MusicSendActionLogResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message NoticeListAllResponse {
+  repeated NoticeInfo infoList = 1;
+  repeated NoticeInfo bugList = 2;
+  repeated NoticeInfo prList = 3;
+  bool infoHasNext = 4;
+  bool bugHasNext = 5;
+  bool prHasNext = 6;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepAuditionRefreshResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message PvpRatePlayExamBattleResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message IdolCardUpgradeLevelLimitRankRequest {
+  string idolCardId = 1;
+  penum.IdolCardLevelLimitRank afterRank = 2;
+}
+message AuthAgreeTermsResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TowerReceiveTotalClearRankRewardRequest {
+  int32 targetRank = 1;
+}
+message ProduceListRentalMemoryResponse {
+  repeated ProduceListRentalMemoryResponse.Types.RentalMemory memories = 1;
+  papicommon.Response commonResponse = 9999;
+  message Types {
+    message RentalMemory {
+      pcommon.SimpleProfile profile = 1;
+      string userMemoryId = 3;
+      bool following = 4;
+      bool followedBy = 5;
+      bool isGuildMember = 6;
+      int32 money = 7;
+      pcommon.Memory memory = 100;
+    }
+  }
+}
+message AuthAgreeTermsRequest {
+  repeated penum.TermsType types = 4;
+}
+message ProduceStepPresentStartRequest {
+  string produceUuid = 1;
+}
+message TutorialProduceResultResponse {
+  pcommon.Memory memory = 1;
+  papicommon.Response commonResponse = 9999;
+}

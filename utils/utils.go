@@ -3,7 +3,7 @@ package utils
 import (
   "bufio"
   "os"
-  "vertesan/campus/rich"
+  "vertesan/campus/utils/rich"
 
   "github.com/goccy/go-json"
   "github.com/goccy/go-yaml"

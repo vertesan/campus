@@ -7,13 +7,13 @@ import (
   "vertesan/campus/master"
   "vertesan/campus/octo"
   "vertesan/campus/proto/mastertag"
-  "vertesan/campus/rich"
+  "vertesan/campus/utils/rich"
 
   "google.golang.org/protobuf/encoding/protojson"
 )
 
 const OCTO_CACHE_FILE = "cache/octocacheevai"
-const MASTER_TAG_FILE = "cache/masterGetDec240519144405285.bin"
+const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
 var (
   marshalOptions = &protojson.MarshalOptions{
@@ -73,7 +73,7 @@ func doAnalysis() {
 }
 
 func main() {
-  rich.Info("Start operation")
+  rich.Info("Start main.")
   // doAnalysis()
   // decryptOctoManifest()
 

@@ -1,0 +1,98 @@
+syntax = "proto3";
+package papicommon;
+option go_package = "vertesan/campus/proto/papicommon";
+import "penum.proto";
+import "pcommon.proto";
+import "ptransaction.proto";
+import "pmaster.proto";
+
+message DearnessStoryUnlock {
+  string characterId = 1;
+  string storyId = 2;
+}
+message Mission {
+  string missionId = 1;
+  int32 threshold = 2;
+}
+message PvpRateSeasonTop {
+  penum.PvpRateSeasonStatusType statusType = 1;
+  int32 rate = 2;
+  int32 rank = 3;
+  int32 maxDailyPlayCount = 4;
+  int32 remainingDailyPlayCount = 5;
+  int64 currentSeasonStartTime = 6;
+  int64 currentSeasonEndTime = 7;
+}
+message Response {
+  UserData updatedData = 1;
+  UserData deletedData = 2;
+  repeated pmaster.Mission clearMissions = 3;
+  repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 4;
+  repeated DearnessStoryUnlock dearnessStoryUnlocks = 5;
+  repeated string anotherCostumeIds = 6;
+  repeated string anotherCostumeHeadIds = 7;
+}
+message UserData {
+  ptransaction.User user = 342861366;
+  ptransaction.UserActionPoint userActionPoint = 238317234;
+  repeated ptransaction.UserAuthProvider userAuthProviderList = 151341701;
+  ptransaction.UserBalance userBalance = 164091159;
+  ptransaction.UserBanWarning userBanWarning = 531719871;
+  repeated ptransaction.UserCharacter userCharacterList = 370704040;
+  repeated ptransaction.UserCharacterCostume userCharacterCostumeList = 314243425;
+  repeated ptransaction.UserCharacterRoster userCharacterRosterList = 449008014;
+  repeated ptransaction.UserCostume userCostumeList = 469968532;
+  repeated ptransaction.UserCostumeHead userCostumeHeadList = 374617052;
+  repeated ptransaction.UserCount userCountList = 431111247;
+  repeated ptransaction.UserDearnessStory userDearnessStoryList = 133642946;
+  repeated ptransaction.UserGashaButton userGashaButtonList = 319381230;
+  ptransaction.UserGuild userGuild = 33667889;
+  repeated ptransaction.UserHomeCharacter userHomeCharacterList = 88325184;
+  repeated ptransaction.UserIdolCard userIdolCardList = 119514127;
+  repeated ptransaction.UserIdolCardSkin userIdolCardSkinList = 77005383;
+  ptransaction.UserInvitation userInvitation = 11952121;
+  repeated ptransaction.UserItem userItemList = 208896283;
+  repeated ptransaction.UserMeishi userMeishiList = 392438043;
+  repeated ptransaction.UserMeishiBaseAsset userMeishiBaseAssetList = 10530785;
+  repeated ptransaction.UserMeishiIllustrationAsset userMeishiIllustrationAssetList = 100237367;
+  repeated ptransaction.UserMemory userMemoryList = 163783316;
+  repeated ptransaction.UserMission userMissionList = 176225192;
+  repeated ptransaction.UserMissionDailyReleaseGroup userMissionDailyReleaseGroupList = 104872908;
+  repeated ptransaction.UserMissionGroup userMissionGroupList = 350034430;
+  repeated ptransaction.UserMissionPass userMissionPassList = 143481512;
+  repeated ptransaction.UserMissionPassPoint userMissionPassPointList = 358937978;
+  repeated ptransaction.UserMissionPoint userMissionPointList = 124548488;
+  ptransaction.UserMoney userMoney = 170538259;
+  repeated ptransaction.UserMovie userMovieList = 389419008;
+  repeated ptransaction.UserMusic userMusicList = 430828780;
+  repeated ptransaction.UserPhoto userPhotoList = 288232532;
+  repeated ptransaction.UserProduce userProduceList = 170637697;
+  repeated ptransaction.UserProduceAdv userProduceAdvList = 280248182;
+  repeated ptransaction.UserProduceCard userProduceCardList = 230550472;
+  repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;
+  repeated ptransaction.UserProduceItem userProduceItemList = 99080460;
+  repeated ptransaction.UserProduceLive userProduceLiveList = 317020496;
+  repeated ptransaction.UserProduceMemoryDeck userProduceMemoryDeckList = 162217088;
+  ptransaction.UserProduceProgress userProduceProgress = 374217157;
+  ptransaction.UserProduceProgressAudition userProduceProgressAudition = 532050964;
+  repeated ptransaction.UserProduceProgressEffect userProduceProgressEffectList = 315942447;
+  repeated ptransaction.UserProduceProgressEvent userProduceProgressEventList = 40225152;
+  repeated ptransaction.UserProduceProgressMemory userProduceProgressMemoryList = 215423357;
+  repeated ptransaction.UserProduceProgressPresent userProduceProgressPresentList = 349962730;
+  repeated ptransaction.UserProduceProgressProduceCard userProduceProgressProduceCardList = 309641228;
+  repeated ptransaction.UserProduceProgressSchedule userProduceProgressScheduleList = 22482116;
+  repeated ptransaction.UserProduceProgressShop userProduceProgressShopList = 498183736;
+  repeated ptransaction.UserProduceProgressSupportCard userProduceProgressSupportCardList = 256246388;
+  repeated ptransaction.UserProduceStartAchievement userProduceStartAchievementList = 259880526;
+  repeated ptransaction.UserProduceStory userProduceStoryList = 117364693;
+  repeated ptransaction.UserProduceSupportCardDeck userProduceSupportCardDeckList = 286307933;
+  ptransaction.UserProfile userProfile = 49977942;
+  ptransaction.UserPvpRate userPvpRate = 226209413;
+  ptransaction.UserPvpRateUnit userPvpRateUnit = 286467793;
+  repeated ptransaction.UserStory userStoryList = 376356693;
+  repeated ptransaction.UserSupportCard userSupportCardList = 2234692;
+  repeated ptransaction.UserTime userTimeList = 68970636;
+  repeated ptransaction.UserTutorial userTutorialList = 201375606;
+  repeated ptransaction.UserWork userWorkList = 225189857;
+  repeated ptransaction.UserWorkCharacter userWorkCharacterList = 192688899;
+}
