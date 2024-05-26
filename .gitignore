@@ -22,4 +22,7 @@ go.work
 
 protoc
 cache/
+gakumasu-diff/
+config.yaml
+.env.local
 .vscode/

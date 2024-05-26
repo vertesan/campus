@@ -50,7 +50,7 @@ func Serialize(protoBytes []byte) []byte {
   }
 
   // compressing flag
-  isCompressed := []byte{0x00}
+  // isCompressed := []byte{0x00}
 
   // header
   headerBytes := make([]byte, 8)
@@ -67,12 +67,12 @@ func Serialize(protoBytes []byte) []byte {
   binary.BigEndian.PutUint32(messageLengthBytes, messageLength)
 
   // write
-  if _, err := buf.Write(isCompressed); err != nil {
-    panic(err)
-  }
-  if _, err := buf.Write(messageLengthBytes); err != nil {
-    panic(err)
-  }
+  // if _, err := buf.Write(isCompressed); err != nil {
+  //   panic(err)
+  // }
+  // if _, err := buf.Write(messageLengthBytes); err != nil {
+  //   panic(err)
+  // }
   if err := buf.WriteByte(0x0a); err != nil {
     panic(err)
   }

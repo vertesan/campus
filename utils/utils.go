@@ -9,6 +9,8 @@ import (
   "github.com/goccy/go-yaml"
 )
 
+func UNUSED(x ...interface{}) {}
+
 func WriteToJsonFile(instance any, dst string) {
   jsonBytes, err := json.MarshalIndent(instance, "", "  ")
   if err != nil {

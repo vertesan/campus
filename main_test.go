@@ -2,16 +2,19 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"testing"
 	"vertesan/campus/analyser"
+	"vertesan/campus/network"
 	"vertesan/campus/network/rpc"
 	"vertesan/campus/proto/papi"
 
 	"google.golang.org/protobuf/proto"
 )
 
-func TestGrpc(t *testing.T) {
-  rpc.RunScenarios()
+func TestLogin(t *testing.T) {
+  manager := &network.NetworkManager{}
+  manager.Login()
 }
 
 func TestAnalyze(t *testing.T) {
@@ -31,6 +34,18 @@ func TestSerialize(t *testing.T) {
   desIns := &papi.SystemCheckRequest{}
   proto.Unmarshal(desData, desIns)
   fmt.Printf("%s\n", desIns.IdToken)
+}
+
+func TestDeserializeFile(t *testing.T) {
+  raw, err := os.ReadFile("cache/LoginBonusCheckRespEmpty.bin")
+  if err != nil {
+    panic(err)
+  }
+  bodyBytes := rpc.Deserialize(raw[5:])
+  var pb papi.LoginBonusCheckResponse
+  if err := proto.Unmarshal(bodyBytes, &pb); err != nil {
+    t.Fatalf("Cannot unmarshal message. %s", err)
+  }
 }
 
 func TestDeserialize(t *testing.T) {

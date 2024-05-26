@@ -24,11 +24,12 @@ const (
 type Category int
 
 type ProtoTree struct {
-  prefix   string
-  name     string
-  level    int
-  category Category
-  children map[string]*ProtoTree
+  prefix    string
+  name      string
+  level     int
+  category  Category
+  children  map[string]*ProtoTree
+  traversed bool
 }
 
 var (
@@ -37,15 +38,16 @@ var (
   commonClassPtn      = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Common", 1))
   masterClassPtn      = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Master", 1))
   transactionClassPtn = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Transaction", 1))
-  apiCommonClassPtn         = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Api.Common", 1))
+  apiCommonClassPtn   = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Api.Common", 1))
   apiClassPtn         = regexp.MustCompile(strings.Replace(rootClassPtnStr, "$which", "Api", 1))
 
-  outEnumPath        = "cache/GeneratedProto/penum.proto"
-  outCommonPath      = "cache/GeneratedProto/pcommon.proto"
-  outMasterPath      = "cache/GeneratedProto/pmaster.proto"
-  outTransactionPath = "cache/GeneratedProto/ptransaction.proto"
-  outApiCommonPath         = "cache/GeneratedProto/papicommon.proto"
-  outApiPath         = "cache/GeneratedProto/papi.proto"
+  outDir             = "cache/GeneratedProto"
+  outEnumPath        = outDir + "/penum.proto"
+  outCommonPath      = outDir + "/pcommon.proto"
+  outMasterPath      = outDir + "/pmaster.proto"
+  outTransactionPath = outDir + "/ptransaction.proto"
+  outApiCommonPath   = outDir + "/papicommon.proto"
+  outApiPath         = outDir + "/papi.proto"
 
   typeMap = map[string]string{
     "int":        "int32",
@@ -71,12 +73,16 @@ var (
     8: "                ",
   }
 
+  // top level entry list
   enumList        []string
   commonList      []string
   masterList      []string
   transactionList []string
-  apiCommonList         []string
+  apiCommonList   []string
   apiList         []string
+
+  // cross reference list
+  xList []string
 
   mappingSb      = new(strings.Builder)
   mappingOutFile = "cache/GeneratedProto/mapping.go"
@@ -94,6 +100,17 @@ func getClassPath(tree *ProtoTree, needSuffixDot bool) string {
     path += "."
   }
   return path
+}
+
+// split classPath to prefix and name
+func getPrefixAndName(classPath string) (string, string) {
+  idx := strings.LastIndex(classPath, ".")
+  if idx == -1 {
+    return "", classPath
+  }
+  prefix := classPath[:idx]
+  name := classPath[idx+1:]
+  return prefix, name
 }
 
 func constructRoot(entireContent *string, category Category) *ProtoTree {
@@ -125,11 +142,12 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
     rich.ErrorThenThrow("Unkown class type: %v", category)
   }
   root := &ProtoTree{
-    prefix:   "",
-    name:     "",
-    level:    0,
-    category: Root,
-    children: make(map[string]*ProtoTree),
+    prefix:    "",
+    name:      "",
+    level:     0,
+    category:  Root,
+    children:  make(map[string]*ProtoTree),
+    traversed: false,
   }
   contents := classPtn.FindAllStringSubmatch(*entireContent, -1)
 
@@ -161,8 +179,8 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
 }
 
 func attachChild(classPath string, parentTree *ProtoTree, category Category) {
-  trimPath := getClassPath(parentTree, true)
-  remnantClassPath := strings.TrimPrefix(classPath, trimPath)
+  trimPrefix := getClassPath(parentTree, true)
+  remnantClassPath := strings.TrimPrefix(classPath, trimPrefix)
   nameSlice := strings.Split(remnantClassPath, ".")
   currentTree := parentTree
   for _, name := range nameSlice {
@@ -172,10 +190,11 @@ func attachChild(classPath string, parentTree *ProtoTree, category Category) {
       }
       level := currentTree.level + 1
       currentTree.children[name] = &ProtoTree{
-        prefix:   getClassPath(currentTree, false),
-        name:     name,
-        level:    level,
-        category: category,
+        prefix:    getClassPath(currentTree, false),
+        name:      name,
+        level:     level,
+        category:  category,
+        traversed: false,
       }
     }
     currentTree = currentTree.children[name]
@@ -186,10 +205,14 @@ func analyzeTree(
   entireContent *string,
   rootCategory Category,
   parentTree *ProtoTree,
+  rootTree *ProtoTree,
 ) *strings.Builder {
   sb := new(strings.Builder)
 
   for _, tree := range parentTree.children {
+    if tree.traversed {
+      continue
+    }
     classPath := getClassPath(tree, false)
     if classPath == "" {
       rich.ErrorThenThrow("Empty classPath.")
@@ -237,7 +260,11 @@ func analyzeTree(
           // in case of user defined types
           // first, check if it contains ".", if yes, it's highly likely a nested message
           if strings.Contains(typeName, ".") {
-            attachChild(typeName, tree, Nested)
+            if strings.HasPrefix(typeName, classPath+".") {
+              attachChild(typeName, tree, Nested)
+            } else {
+              xList = append(xList, typeName)
+            }
           } else {
             // if not, it can be an imported type
             if slices.Contains(enumList, typeName) {
@@ -250,7 +277,7 @@ func analyzeTree(
               typeName = "ptransaction." + typeName
             } else if slices.Contains(apiCommonList, typeName) && rootCategory != ApiCommon {
               typeName = "papicommon." + typeName
-            }else if slices.Contains(apiList, typeName) && rootCategory != Api {
+            } else if slices.Contains(apiList, typeName) && rootCategory != Api {
               typeName = "papi." + typeName
             }
           }
@@ -267,9 +294,20 @@ func analyzeTree(
       }
     }
 
-    nestedSb := analyzeTree(entireContent, rootCategory, tree)
+    nestedSb := analyzeTree(entireContent, rootCategory, tree, rootTree)
+    if len(xList) > 0 {
+      for _, fullname := range xList {
+        pfx, _ := getPrefixAndName(fullname)
+        if pfx == classPath {
+          attachChild(fullname, tree, Nested)
+          xSb := analyzeTree(entireContent, rootCategory, tree, rootTree)
+          sb.WriteString(xSb.String())
+        }
+      }
+    }
     sb.WriteString(nestedSb.String())
     sb.WriteString(indentMap[tree.level-1] + "}\n")
+    tree.traversed = true
   }
   return sb
 }
@@ -311,7 +349,7 @@ func analyzeFile(
     sb = AnalyzeEnum(entireContent)
   } else {
     root := constructRoot(entireContent, category)
-    sb = analyzeTree(entireContent, category, root)
+    sb = analyzeTree(entireContent, category, root, root)
   }
 
   buf.WriteString(sb.String())
@@ -335,6 +373,9 @@ func Analyze() {
   if err != nil {
     panic(err)
   }
+  // create directory if not exists
+  os.MkdirAll(outDir, 0755)
+  
   entireContent := sb.String()
   mappingSb.WriteString(mappingHeader)
   analyzeFile(&entireContent, Enum, outEnumPath)

@@ -50,6 +50,28 @@ import "pcommon.proto";
 import "pmaster.proto";
 import "papicommon.proto";
 
+service System {
+  rpc Check(SystemCheckRequest) returns (SystemCheckResponse);
+}
+service Auth {
+  rpc Login(AuthLoginRequest) returns (AuthLoginResponse);
+}
+service Master {
+  rpc Get(Empty) returns (MasterGetResponse);
+}
+service User {
+  rpc Get(Empty) returns (UserGetResponse);
+}
+service Home {
+  rpc Login(Empty) returns (HomeLoginResponse);
+  rpc Enter(Empty) returns (HomeEnterResponse);
+}
+service LoginBonus {
+  rpc Check(Empty) returns (LoginBonusCheckResponse);
+  rpc Confirm(Empty) returns (LoginBonusConfirmResponse);
+}
+message Empty {}
+
 `
 
   mappingHeader   = "// Generated code. DO NOT EDIT!\npackage mapping\n\nimport \"vertesan/campus/proto/pcommon\"\nimport \"vertesan/campus/proto/pmaster\"\nimport \"google.golang.org/protobuf/reflect/protoreflect\"\n\nvar (\n  ProtoMap = map[string]protoreflect.ProtoMessage{\n"

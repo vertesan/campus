@@ -4,123 +4,88 @@ option go_package = "vertesan/campus/proto/ptransaction";
 import "penum.proto";
 import "pcommon.proto";
 
-message UserPvpRate {
-  penum.PvpRateGrade grade = 3;
-  penum.PvpRateGrade bestGrade = 4;
-  bool isInitializedCurrentSeason = 5;
-  penum.PvpRatePhaseType phaseType = 100;
-  int64 rivalMatchTime = 101;
-  int32 supportBonusPermyriad = 104;
+message UserProduceDrink {
+  string produceDrinkId = 2;
 }
-message UserCostumeHead {
-  string costumeHeadId = 2;
-  bool checked = 3;
-}
-message UserActionPoint {
-  int32 quantity = 2;
-  int64 quantityUpdateTime = 3;
-}
-message UserMissionDailyReleaseGroup {
-  string missionDailyReleaseGroupId = 2;
-  int64 startTime = 3;
-}
-message UserPhoto {
-  string userPhotoId = 2;
-  string imagePath = 3;
-  string idolCardId = 4;
-  string name = 5;
-  int64 shotTime = 6;
-  bool isProtected = 7;
-}
-message UserWorkCharacter {
-  string characterId = 2;
-  bool isFine = 4;
-  int32 totalFinishCount = 9;
-}
-message UserDearnessStory {
-  string characterId = 2;
-  int32 dearnessLevel = 3;
-  bool satisfyDearnessProduceConditionSet = 4;
-  bool read = 6;
-}
-message UserProduceAdv {
-  string assetId = 2;
-}
-message UserProduceProgressMemory {
-  int32 number = 2;
-  string userMemoryId = 3;
-  bool isRental = 5;
-  repeated UserProduceProgressMemory.Types.MemoryAbility abilities = 28;
-  pcommon.Memory memory = 100;
-  message Types {
-    message MemoryAbility {
-      string id = 1;
-      int32 level = 2;
-      int32 triggerCount = 3;
-    }
-  }
-}
-message UserItem {
-  string itemId = 2;
-  int64 expiryTime = 3;
-  int64 quantity = 4;
-}
-message User {
-  string serverUserId = 3;
-  string publicUserId = 2;
-  int64 tutorialClearedTime = 7;
-  bool receivedTutorialRewardIdolCard = 8;
-}
-message UserProduceProgressSchedule {
-  int32 stepNumber = 2;
-  int32 addStepLevel = 3;
-  repeated penum.ProduceStepType stepTypes = 24;
-  penum.ProduceStepType selectedStepType = 25;
-  penum.ProduceExamResultType examResultType = 26;
-  int32 refreshStamina = 27;
-  int32 auditionRank = 28;
-}
-message UserIdolCard {
-  string idolCardId = 2;
-  penum.IdolCardLevelLimitRank levelLimitRank = 3;
-  penum.IdolCardPotentialRank potentialRank = 4;
-  string idolCardSkinId = 5;
-  int64 createdTime = 999;
-}
-message UserMeishiIllustrationAsset {
-  string meishiIllustrationAssetId = 2;
+message UserMissionPoint {
+  string missionPointId = 2;
+  int32 point = 3;
+  repeated int32 receivedPoints = 4;
 }
 message UserProduceItem {
   string produceItemId = 2;
 }
-message UserAuthProvider {
-  penum.AuthProviderType authProviderType = 2;
+message UserProduceAdv {
+  string assetId = 2;
 }
-message UserBanWarning {
-  bool isConfirmationRequired = 2;
+message UserProduceProgressPresent {
+  int32 positionNumber = 2;
+  bool received = 3;
+  penum.ProduceDisplayType displayType = 4;
+  int32 rewardCount = 5;
+  int32 pickCount = 6;
+  repeated UserProduceProgressPresent.Types.Reward rewards = 11;
+  repeated int32 rewardIndexes = 12;
+  message Types {
+    message Reward {
+      penum.ProduceResourceType resourceType = 1;
+      string resourceId = 2;
+      int32 resourceLevel = 3;
+      int32 quantity = 4;
+    }
+  }
 }
-message UserCharacterCostume {
+message UserHomeCharacter {
+  penum.HomeType homeType = 2;
+  string characterId = 3;
+}
+message UserCount {
+  penum.CountType type = 2;
+  int64 totalCount = 3;
+  int64 dailyCount = 4;
+  int64 updatedTime = 5;
+}
+message UserProduceProgressAudition {
+  penum.ProduceProgressAuditionStatusType status = 2;
+  int32 vocalPermil = 3;
+  int32 dancePermil = 4;
+  int32 visualPermil = 5;
+  int32 rank = 100;
+  int32 score = 101;
+  int32 stamina = 102;
+  repeated string produceDrinkIds = 104;
+  repeated string produceItemIds = 105;
+  repeated int32 produceItemFireCounts = 106;
+  int32 examSkipCount = 107;
+}
+message UserProduce {
+  string produceId = 2;
+  int32 playCount = 3;
+  int32 clearCount = 4;
+}
+message UserCharacterRoster {
   string characterId = 2;
-  penum.CostumeSetType setType = 3;
-  string costumeHeadId = 5;
-  string costumeId = 4;
+  bool viewedPlayable = 3;
 }
-message UserMissionPass {
-  string missionPassId = 2;
-  repeated int32 receivedNormalThresholds = 4;
-  repeated int32 receivedPremiumThresholds = 5;
-  bool hasPremiumPass = 6;
+message UserMeishiIllustrationAsset {
+  string meishiIllustrationAssetId = 2;
 }
-message UserCostume {
-  string costumeId = 2;
-  bool checked = 3;
+message UserMeishi {
+  int32 number = 2;
+  int32 baseLayoutNumber = 100;
+  string baseUserMemoryId = 117;
+  string baseUserPhotoId = 118;
+  string baseUserMovieId = 119;
 }
-message UserMeishiBaseAsset {
-  string meishiBaseAssetId = 2;
+message UserMoney {
+  int32 unreceivedTotalQuantity = 2;
+  int32 unreceivedTotalElapsedTimeSeconds = 3;
+  int64 lastReceivedTime = 4;
 }
-message UserTutorial {
-  penum.TutorialType type = 2;
-  int32 step = 3;
+message UserProduceMemoryDeck {
+  penum.ProduceType produceType = 2;
+  int32 number = 3;
+  repeated string userMemoryIds = 4;
 }
 message UserMemory {
   string userMemoryId = 2;
@@ -154,6 +119,81 @@ message UserMemory {
     }
   }
 }
+message UserCostume {
+  string costumeId = 2;
+  bool checked = 3;
+}
+message UserItem {
+  string itemId = 2;
+  int64 expiryTime = 3;
+  int64 quantity = 4;
+}
+message UserProduceLive {
+  string musicId = 2;
+  penum.ProduceLiveType liveType = 3;
+  bool viewed = 4;
+}
+message UserProduceStartAchievement {
+  string achievementId = 2;
+  int64 progress = 3;
+}
+message UserProduceStory {
+  string storyId = 2;
+  bool read = 4;
+}
+message UserProfile {
+  string name = 2;
+  int32 bornMonth = 4;
+  int32 bornDay = 5;
+  int64 lastBirthdayUpdatedTime = 6;
+  string supportCardId = 7;
+  string userMemoryId = 8;
+  string comment = 9;
+  int64 exp = 10;
+  int64 totalFanCount = 11;
+  int32 additionFollowLimitCount = 12;
+  int32 selectedMeishiNumber = 13;
+  int32 maxPvpRateUnitPower = 14;
+}
+message UserStory {
+  string storyId = 2;
+  bool isUnlocked = 4;
+  bool read = 6;
+}
+message UserCharacterCostume {
+  string characterId = 2;
+  penum.CostumeSetType setType = 3;
+  string costumeHeadId = 5;
+  string costumeId = 4;
+}
+message UserPvpRateUnit {
+  repeated pcommon.PvpRateSetupUnitStageFormation stageFormations = 3;
+}
+message UserWork {
+  penum.WorkType type = 2;
+  int32 durationMinutes = 3;
+  int32 level = 4;
+  string characterId = 5;
+  int32 characterDearnessLevel = 6;
+  int64 startedTime = 7;
+  int64 lastSkippedTime = 8;
+  int32 skipCount = 9;
+  int32 totalFinishCount = 10;
+}
+message UserIdolCard {
+  string idolCardId = 2;
+  penum.IdolCardLevelLimitRank levelLimitRank = 3;
+  penum.IdolCardPotentialRank potentialRank = 4;
+  string idolCardSkinId = 5;
+  int64 createdTime = 999;
+}
+message UserSupportCard {
+  string supportCardId = 2;
+  int32 stockQuantity = 3;
+  int32 level = 4;
+  penum.SupportCardLevelLimitRank levelLimitRank = 5;
+  int64 createdTime = 999;
+}
 message UserProduceProgressSupportCard {
   int32 number = 2;
   bool isRental = 4;
@@ -177,21 +217,70 @@ message UserProduceProgressSupportCard {
     }
   }
 }
-message UserIdolCardSkin {
-  string idolCardSkinId = 2;
+message UserMissionGroup {
+  string missionGroupId = 2;
+  bool received = 3;
 }
-message UserPvpRateUnit {
-  repeated pcommon.PvpRateSetupUnitStageFormation stageFormations = 3;
+message UserActionPoint {
+  int32 quantity = 2;
+  int64 quantityUpdateTime = 3;
 }
-message UserProduceCard {
-  string produceCardId = 2;
-  int32 produceCardUpgradeCount = 3;
+message UserTutorial {
+  penum.TutorialType type = 2;
+  int32 step = 3;
+}
+message UserProduceProgressMemory {
+  int32 number = 2;
+  string userMemoryId = 3;
+  bool isRental = 5;
+  repeated UserProduceProgressMemory.Types.MemoryAbility abilities = 28;
+  pcommon.Memory memory = 100;
+  message Types {
+    message MemoryAbility {
+      string id = 1;
+      int32 level = 2;
+      int32 triggerCount = 3;
+    }
+  }
+}
+message User {
+  string serverUserId = 3;
+  string publicUserId = 2;
+  int64 tutorialClearedTime = 7;
+  bool receivedTutorialRewardIdolCard = 8;
+}
+message UserMissionPassPoint {
+  string missionPassId = 2;
+  string missionPassPointId = 3;
+  int32 point = 4;
+}
+message UserWorkCharacter {
+  string characterId = 2;
+  bool isFine = 4;
+  int32 totalFinishCount = 9;
 }
 message UserInvitation {
   int64 totalInvitationPoint = 2;
   int64 receivedInvitationPointRewardThreshold = 3;
   bool isCodeEntered = 5;
   int64 codeEntryEndTime = 6;
+}
+message UserProduceSupportCardDeck {
+  penum.ProduceType produceType = 2;
+  int32 number = 3;
+  repeated string supportCardIds = 4;
+}
+message UserPhoto {
+  string userPhotoId = 2;
+  string imagePath = 3;
+  string idolCardId = 4;
+  string name = 5;
+  int64 shotTime = 6;
+  bool isProtected = 7;
+}
+message UserMissionDailyReleaseGroup {
+  string missionDailyReleaseGroupId = 2;
+  int64 startTime = 3;
 }
 message UserMission {
   string missionId = 2;
@@ -200,115 +289,18 @@ message UserMission {
   bool isUnlock = 5;
   int64 firstThresholdClearTime = 6;
 }
-message UserProduceStory {
-  string storyId = 2;
-  bool read = 4;
+message UserIdolCardSkin {
+  string idolCardSkinId = 2;
 }
-message UserSupportCard {
-  string supportCardId = 2;
-  int32 stockQuantity = 3;
-  int32 level = 4;
-  penum.SupportCardLevelLimitRank levelLimitRank = 5;
-  int64 createdTime = 999;
+message UserProduceCard {
+  string produceCardId = 2;
+  int32 produceCardUpgradeCount = 3;
 }
-message UserMeishi {
-  int32 number = 2;
-  int32 baseLayoutNumber = 100;
-  string baseUserMemoryId = 117;
-  string baseUserPhotoId = 118;
-  string baseUserMovieId = 119;
-}
-message UserProduceMemoryDeck {
-  penum.ProduceType produceType = 2;
-  int32 number = 3;
-  repeated string userMemoryIds = 4;
-}
-message UserTime {
-  penum.TimeType timeType = 2;
-  int64 dataOfTime = 3;
-}
-message UserProduce {
-  string produceId = 2;
-  int32 playCount = 3;
-  int32 clearCount = 4;
-}
-message UserProduceSupportCardDeck {
-  penum.ProduceType produceType = 2;
-  int32 number = 3;
-  repeated string supportCardIds = 4;
-}
-message UserProduceStartAchievement {
-  string achievementId = 2;
-  int64 progress = 3;
-}
-message UserProduceProgressEvent {
-  string produceStepEventDetailId = 2;
-  int32 number = 3;
-  int64 suggestionIndex = 4;
-  bool success = 5;
-}
-message UserCharacter {
+message UserDearnessStory {
   string characterId = 2;
-  int64 fanCount = 3;
-  repeated penum.ProduceType trueEndProduceTypes = 4;
-}
-message UserProduceLive {
-  string musicId = 2;
-  penum.ProduceLiveType liveType = 3;
-  bool viewed = 4;
-}
-message UserProduceDrink {
-  string produceDrinkId = 2;
-}
-message UserMissionGroup {
-  string missionGroupId = 2;
-  bool received = 3;
-}
-message UserMissionPassPoint {
-  string missionPassId = 2;
-  string missionPassPointId = 3;
-  int32 point = 4;
-}
-message UserWork {
-  penum.WorkType type = 2;
-  int32 durationMinutes = 3;
-  int32 level = 4;
-  string characterId = 5;
-  int32 characterDearnessLevel = 6;
-  int64 startedTime = 7;
-  int64 lastSkippedTime = 8;
-  int32 skipCount = 9;
-  int32 totalFinishCount = 10;
-}
-message UserBalance {
-  int32 freeBalance = 1;
-  int32 paidBalance = 2;
-}
-message UserCharacterRoster {
-  string characterId = 2;
-  bool viewedPlayable = 3;
-}
-message UserHomeCharacter {
-  penum.HomeType homeType = 2;
-  string characterId = 3;
-}
-message UserMoney {
-  int32 unreceivedTotalQuantity = 2;
-  int32 unreceivedTotalElapsedTimeSeconds = 3;
-  int64 lastReceivedTime = 4;
-}
-message UserProduceProgressAudition {
-  penum.ProduceProgressAuditionStatusType status = 2;
-  int32 vocalPermil = 3;
-  int32 dancePermil = 4;
-  int32 visualPermil = 5;
-  int32 rank = 100;
-  int32 score = 101;
-  int32 stamina = 102;
-  repeated string produceDrinkIds = 104;
-  repeated string produceItemIds = 105;
-  repeated int32 produceItemFireCounts = 106;
-  int32 examSkipCount = 107;
+  int32 dearnessLevel = 3;
+  bool satisfyDearnessProduceConditionSet = 4;
+  bool read = 6;
 }
 message UserProduceProgressShop {
   int32 positionNumber = 2;
@@ -323,52 +315,27 @@ message UserProduceProgressShop {
   int32 nextPrice = 11;
   bool lock = 12;
 }
-message UserStory {
-  string storyId = 2;
-  bool isUnlocked = 4;
-  bool read = 6;
+message UserCharacter {
+  string characterId = 2;
+  int64 fanCount = 3;
+  repeated penum.ProduceType trueEndProduceTypes = 4;
 }
-message UserCount {
-  penum.CountType type = 2;
-  int64 totalCount = 3;
-  int64 dailyCount = 4;
-  int64 updatedTime = 5;
+message UserCostumeHead {
+  string costumeHeadId = 2;
+  bool checked = 3;
 }
-message UserProfile {
-  string name = 2;
-  int32 bornMonth = 4;
-  int32 bornDay = 5;
-  int64 lastBirthdayUpdatedTime = 6;
-  string supportCardId = 7;
-  string userMemoryId = 8;
-  string comment = 9;
-  int64 exp = 10;
-  int64 totalFanCount = 11;
-  int32 additionFollowLimitCount = 12;
-  int32 selectedMeishiNumber = 13;
-  int32 maxPvpRateUnitPower = 14;
+message UserMissionPass {
+  string missionPassId = 2;
+  repeated int32 receivedNormalThresholds = 4;
+  repeated int32 receivedPremiumThresholds = 5;
+  bool hasPremiumPass = 6;
 }
-message UserGashaButton {
-  string gashaId = 2;
-  string gashaButtonId = 3;
-  int64 lastDrawnTime = 4;
-  int32 todayDrawCount = 5;
-  int32 totalDrawCount = 6;
-  int32 discountTodayDrawCount = 7;
-  int32 discountTotalDrawCount = 8;
-  int32 redrawCount = 9;
+message UserBalance {
+  int32 freeBalance = 1;
+  int32 paidBalance = 2;
 }
-message UserMissionPoint {
-  string missionPointId = 2;
-  int32 point = 3;
-  repeated int32 receivedPoints = 4;
-}
-message UserGuild {
-  penum.GuildJoinType joinType = 999;
-}
-message UserMovie {
-  string userMovieId = 2;
-  string moviePath = 3;
+message UserBanWarning {
+  bool isConfirmationRequired = 2;
 }
 message UserProduceProgress {
   string produceGroupId = 2;
@@ -449,15 +416,6 @@ message UserProduceProgress {
   repeated int32 shopProduceDrinkDiscountPermils = 808;
   repeated string satisfyProduceExamTriggerIds = 852;
   message Types {
-    message ProduceSkill {
-      string id = 1;
-      int32 level = 2;
-      int32 triggerCount = 3;
-    }
-    message ProduceItem {
-      string produceItemId = 1;
-      int32 fireCount = 2;
-    }
     message ExamStatusEnchant {
       penum.ProduceTriggerOriginType originType = 1;
       string originOwnerId = 2;
@@ -469,7 +427,19 @@ message UserProduceProgress {
       string produceCardSearchId = 1;
       repeated int32 permils = 2;
     }
+    message ProduceSkill {
+      string id = 1;
+      int32 level = 2;
+      int32 triggerCount = 3;
+    }
+    message ProduceItem {
+      string produceItemId = 1;
+      int32 fireCount = 2;
+    }
   }
+}
+message UserMusic {
+  string musicId = 2;
 }
 message UserProduceProgressProduceCard {
   int32 number = 2;
@@ -478,25 +448,41 @@ message UserProduceProgressProduceCard {
   bool deleted = 6;
   penum.ProduceResourceOriginType originType = 7;
 }
-message UserProduceProgressPresent {
-  int32 positionNumber = 2;
-  bool received = 3;
-  penum.ProduceDisplayType displayType = 4;
-  int32 rewardCount = 5;
-  int32 pickCount = 6;
-  repeated UserProduceProgressPresent.Types.Reward rewards = 11;
-  repeated int32 rewardIndexes = 12;
-  message Types {
-    message Reward {
-      penum.ProduceResourceType resourceType = 1;
-      string resourceId = 2;
-      int32 resourceLevel = 3;
-      int32 quantity = 4;
-    }
-  }
+message UserGuild {
+  penum.GuildJoinType joinType = 999;
 }
-message UserMusic {
-  string musicId = 2;
+message UserProduceProgressEvent {
+  string produceStepEventDetailId = 2;
+  int32 number = 3;
+  int64 suggestionIndex = 4;
+  bool success = 5;
+}
+message UserProduceProgressSchedule {
+  int32 stepNumber = 2;
+  int32 addStepLevel = 3;
+  repeated penum.ProduceStepType stepTypes = 24;
+  penum.ProduceStepType selectedStepType = 25;
+  penum.ProduceExamResultType examResultType = 26;
+  int32 refreshStamina = 27;
+  int32 auditionRank = 28;
+}
+message UserTime {
+  penum.TimeType timeType = 2;
+  int64 dataOfTime = 3;
+}
+message UserGashaButton {
+  string gashaId = 2;
+  string gashaButtonId = 3;
+  int64 lastDrawnTime = 4;
+  int32 todayDrawCount = 5;
+  int32 totalDrawCount = 6;
+  int32 discountTodayDrawCount = 7;
+  int32 discountTotalDrawCount = 8;
+  int32 redrawCount = 9;
+}
+message UserMovie {
+  string userMovieId = 2;
+  string moviePath = 3;
 }
 message UserProduceProgressEffect {
   int32 number = 2;
@@ -524,4 +510,18 @@ message UserProduceProgressEffect {
       int32 quantity = 4;
     }
   }
+}
+message UserMeishiBaseAsset {
+  string meishiBaseAssetId = 2;
+}
+message UserPvpRate {
+  penum.PvpRateGrade grade = 3;
+  penum.PvpRateGrade bestGrade = 4;
+  bool isInitializedCurrentSeason = 5;
+  penum.PvpRatePhaseType phaseType = 100;
+  int64 rivalMatchTime = 101;
+  int32 supportBonusPermyriad = 104;
+}
+message UserAuthProvider {
+  penum.AuthProviderType authProviderType = 2;
 }

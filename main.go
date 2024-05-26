@@ -2,11 +2,13 @@ package main
 
 import (
   "crypto/md5"
+  "flag"
   "os"
   "vertesan/campus/analyser"
+  "vertesan/campus/config"
   "vertesan/campus/master"
+  "vertesan/campus/network"
   "vertesan/campus/octo"
-  "vertesan/campus/proto/mastertag"
   "vertesan/campus/utils/rich"
 
   "google.golang.org/protobuf/encoding/protojson"
@@ -16,13 +18,10 @@ const OCTO_CACHE_FILE = "cache/octocacheevai"
 const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
 var (
-  marshalOptions = &protojson.MarshalOptions{
-    Multiline:      true,
-    Indent:         "  ",
-    AllowPartial:   true,
-    UseProtoNames:  true,
-    UseEnumNumbers: true,
-  }
+  flagDb      = flag.Bool("db", false, "Download and decrypt master database if true. Generated yaml files are saved in 'cache/masterYaml' directory.")
+  flagKeepRaw = flag.Bool("keep", false, "Do not delete encrypted master database files after decrypting. Take no effect if 'db' flag is not set.")
+  flagAnalyze = flag.Bool("analyze", false, "Analyze dump.cs to retrieve proto schemas. Generated codes are saved in 'cache/GeneratedProto' directory.")
+  refToken    = flag.String("token", "", "The refresh token used to retrieve login idToken from firebase.\nIf refreshToken field set in 'config/config.yaml' is not empty, the value in the config file will take precedence.")
 )
 
 func decryptOctoManifest() {
@@ -38,7 +37,13 @@ func decryptOctoManifest() {
     panic(err)
   }
   // convert protobuf object to json string
-
+  marshalOptions := &protojson.MarshalOptions{
+    Multiline:      true,
+    Indent:         "  ",
+    AllowPartial:   true,
+    UseProtoNames:  true,
+    UseEnumNumbers: true,
+  }
   octoJson, err := marshalOptions.Marshal(octoDb)
   if err != nil {
     panic(err)
@@ -49,36 +54,53 @@ func decryptOctoManifest() {
   }
 }
 
-func getMasterDb() *mastertag.MasterGetResponse {
-  fs, err := os.Open(MASTER_TAG_FILE)
-  if err != nil {
-    panic(err)
-  }
-  masterGetResp, err := master.UnmarshalPlain(fs)
-  if err != nil {
-    panic(err)
-  }
-  masterGetRespJson, err := marshalOptions.Marshal(masterGetResp)
-  if err != nil {
-    panic(err)
-  }
-  if err := os.WriteFile("cache/masterGetResp.json", masterGetRespJson, 0644); err != nil {
-    panic(err)
-  }
-  return masterGetResp
-}
-
-func doAnalysis() {
+func processAnalysis() {
   analyser.Analyze()
 }
 
+func processMasterDb() {
+  // simulate login to get master database manifest
+  manager := &network.NetworkManager{}
+  manager.Login()
+
+  // compare local db version with server
+  cfg := config.GetConfig()
+  rich.Info("Current local database version: %q.", cfg.MasterVersion)
+  serverVer := manager.Client.MasterResp.MasterTag.Version
+  rich.Info("Server database version: %q.", serverVer)
+  if cfg.MasterVersion != serverVer {
+    rich.Info("New database version detected: %q.", serverVer)
+    // download master database
+    master.DownloadAndDecrypt(manager.Client.MasterResp)
+    // update master_version
+    os.WriteFile("cache/master_version", []byte(serverVer), 0644)
+  } else {
+    rich.Info("Local database is already up to date, skip downloading database.")
+  }
+}
+
 func main() {
-  rich.Info("Start main.")
-  // doAnalysis()
-  // decryptOctoManifest()
+  rich.Info("Start process.")
+  flag.Parse()
+  cfg := config.GetConfig()
 
-  masterGetResp := getMasterDb()
-  master.DownloadAllMaster(masterGetResp)
-  master.DecryptAll(masterGetResp)
+  if *refToken != "" {
+    if cfg.RefreshToken == "" {
+      cfg.RefreshToken = *refToken
+      cfg.Save()
+    }
+  }
 
+  if *flagDb {
+    processMasterDb()
+    if !*flagKeepRaw {
+      os.RemoveAll(master.MASTER_RAW_PATH)
+    }
+  }
+
+  if *flagAnalyze {
+    processAnalysis()
+  }
+
+  rich.Info("All process completed.")
 }

@@ -7,7 +7,9 @@ require (
 	github.com/fatih/color v1.17.0
 	github.com/goccy/go-json v0.10.2
 	github.com/goccy/go-yaml v1.11.3
+	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/mutecomm/go-sqlcipher/v4 v4.4.2
+	golang.org/x/sync v0.6.0
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1
 )

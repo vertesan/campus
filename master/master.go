@@ -5,41 +5,30 @@ import (
   "database/sql"
   "fmt"
   "io"
+  "net/http"
   "os"
-  "strings"
-  "vertesan/campus/network/hyper"
+  "path"
+  "vertesan/campus/network/hyper/downloader"
   "vertesan/campus/proto/mapping"
-  "vertesan/campus/proto/mastertag"
+  "vertesan/campus/proto/papi"
+  "vertesan/campus/utils/rich"
 
   _ "github.com/mutecomm/go-sqlcipher/v4"
-  "google.golang.org/protobuf/encoding/protojson"
+  // "google.golang.org/protobuf/encoding/protojson"
   "google.golang.org/protobuf/proto"
 )
 
-var (
-  masterRawPath  = "cache/masterRaw/"
-  masterJsonPath = "cache/masterJson/"
-  masterYamlPath = "cache/masterYaml/"
-  marshalOptions = &protojson.MarshalOptions{
-    Multiline:         false,
-    Indent:            "",
-    AllowPartial:      false,
-    UseProtoNames:     true,
-    UseEnumNumbers:    true,
-    EmitUnpopulated:   false,
-    EmitDefaultValues: false,
-  }
-  // yamlMarshalOptions = &protoyaml.MarshalOptions{
-  //   Indent:          2,
-  //   AllowPartial:    false,
-  //   UseProtoNames:   true,
-  //   UseEnumNumbers:  false,
-  //   EmitUnpopulated: true,
-  // }
-)
+const MASTER_RAW_PATH = "cache/masterRaw"
+const MASTER_JSON_PATH = "cache/masterJson"
+const MASTER_YAML_PATH = "cache/masterJson"
 
-func UnmarshalPlain(reader io.Reader) (*mastertag.MasterGetResponse, error) {
-  masterGetResp := &mastertag.MasterGetResponse{}
+func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse) {
+  DownloadAllMaster(masterTagResp)
+  DecryptAll(masterTagResp)
+}
+
+func UnmarshalPlain(reader io.Reader) (*papi.MasterGetResponse, error) {
+  masterGetResp := &papi.MasterGetResponse{}
   buf := &bytes.Buffer{}
   if _, err := io.Copy(buf, reader); err != nil {
     panic(err)
@@ -48,15 +37,30 @@ func UnmarshalPlain(reader io.Reader) (*mastertag.MasterGetResponse, error) {
   return masterGetResp, nil
 }
 
-func DownloadAllMaster(masterTagResp *mastertag.MasterGetResponse) {
+func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
+  masterHeader := &http.Header{
+    "User-Agent":      {"UnityPlayer/2022.3.21f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)"},
+    "Accept":          {"*/*"},
+    "X-Unity-Version": {"2022.3.21f1"},
+  }
+  dler := downloader.NewDownloader(30, masterHeader, MASTER_RAW_PATH, 5)
+  entries := []*downloader.Entry{}
   for _, masterPack := range masterTagResp.MasterTag.MasterTagPacks {
-    hyper.DownloadOneMasterRaw(masterPack)
+    entries = append(entries, &downloader.Entry{
+      Url:          masterPack.DownloadUrl,
+      SaveFileName: masterPack.Type,
+    })
+  }
+  dler.SetEntries(entries)
+  if err := dler.DownloadAll(); err != nil {
+    panic(err)
   }
 }
 
-func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
+func DecryptAll(masterTagResp *papi.MasterGetResponse) {
+  rich.Info("Start to decrypt database.")
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
-    dbPath := masterRawPath + masterTagPack.Type
+    dbPath := path.Join(MASTER_RAW_PATH, masterTagPack.Type)
     key := masterTagPack.CryptoKey
     dbname := fmt.Sprintf("%s?_pragma_key=x'%s'", dbPath, key)
     db, err := sql.Open("sqlite3", dbname)
@@ -69,7 +73,7 @@ func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
       panic(err)
     }
     defer rows.Close()
-    jsonList := []string{}
+    // jsonList := []string{}
     yamlList := [][]byte{}
     for rows.Next() {
       var data []byte
@@ -85,11 +89,11 @@ func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
         panic(err)
       }
 
-      jsonBytes, err := marshalOptions.Marshal(instance)
-      if err != nil {
-        panic(err)
-      }
-      jsonList = append(jsonList, string(jsonBytes))
+      // jsonBytes, err := marshalOptions.Marshal(instance)
+      // if err != nil {
+      //   panic(err)
+      // }
+      // jsonList = append(jsonList, string(jsonBytes))
 
       yamlBytes = bytes.TrimSuffix(yamlBytes, []byte("\n"))
       yamlBytes = bytes.Replace(yamlBytes, []byte("\n"), []byte("\n  "), -1)
@@ -99,27 +103,29 @@ func DecryptAll(masterTagResp *mastertag.MasterGetResponse) {
     if len(yamlList) != 0 {
       yamlDb = append([]byte("- "), bytes.Join(yamlList, []byte("\n- "))...)
     }
-    jsonDb := "[\n" + strings.Join(jsonList, ",") + "]"
+    // jsonDb := "[\n" + strings.Join(jsonList, ",") + "]"
     writeYaml(masterTagPack.Type, yamlDb)
-    writeJson(masterTagPack.Type, &jsonDb)
+    // writeJson(masterTagPack.Type, &jsonDb)
+    rich.Info("Database %q is successfully decrypted.", masterTagPack.Type)
   }
+  rich.Info("Database decrypting completed.")
 }
 
 func writeYaml(name string, data []byte) {
-  if err := os.MkdirAll(masterYamlPath, 0755); err != nil {
+  if err := os.MkdirAll(MASTER_YAML_PATH, 0755); err != nil {
     panic(err)
   }
-  filePath := masterYamlPath + name + ".yaml"
+  filePath := path.Join(MASTER_YAML_PATH, name+".yaml")
   if err := os.WriteFile(filePath, data, 0644); err != nil {
     panic(err)
   }
 }
 
 func writeJson(name string, data *string) {
-  if err := os.MkdirAll(masterJsonPath, 0755); err != nil {
+  if err := os.MkdirAll(MASTER_JSON_PATH, 0755); err != nil {
     panic(err)
   }
-  filePath := masterJsonPath + name + ".json"
+  filePath := path.Join(MASTER_JSON_PATH, "name"+".json")
   if err := os.WriteFile(filePath, []byte(*data), 0644); err != nil {
     panic(err)
   }
