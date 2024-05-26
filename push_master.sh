@@ -32,7 +32,7 @@ fi
 
 new_version=$(cat "$VERSION_FILE")
 
-if [ $old_version == $new_version ]; then
+if [[ "$old_version" == "$new_version" ]]; then
   echo ">>> Nothing updated, will be exiting."
   exit 0
 fi
@@ -49,7 +49,7 @@ git -C "$REPO_NAME" config user.email 169537433+vts-server@users.noreply.github.
 git -C "$REPO_NAME" config core.sshCommand "ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -i $SSH_KEY_PATH -F /dev/null"
 
 # Copy database files to repository directory
-cp "$ARTIFACT_DIR_NAME/*.yaml" "$REPO_NAME/"
+cp $ARTIFACT_DIR_NAME/*.yaml $REPO_NAME
 
 git -C "$REPO_NAME" add .
 git -C "$REPO_NAME" commit -m "$new_version"

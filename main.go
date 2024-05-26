@@ -72,11 +72,12 @@ func processMasterDb() {
     rich.Info("New database version detected: %q.", serverVer)
     // download master database
     master.DownloadAndDecrypt(manager.Client.MasterResp)
-    // update master_version
-    os.WriteFile("cache/master_version", []byte(serverVer), 0644)
   } else {
     rich.Info("Local database is already up to date, skip downloading database.")
   }
+  cfg.MasterVersion = serverVer
+  cfg.Save()
+  os.WriteFile("cache/master_version", []byte(serverVer), 0644)
 }
 
 func main() {

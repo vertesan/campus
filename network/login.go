@@ -36,6 +36,6 @@ func (m *NetworkManager) Login() {
   }
 
   // simulate login
-  client := rpc.NewCampusClient(config.IdToken, gameVersion)
-  client.DoLogin()
+  m.Client = rpc.NewCampusClient(config.IdToken, gameVersion)
+  m.Client.DoLogin()
 }

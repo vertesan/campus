@@ -18,6 +18,6 @@ fi
 ./campus --db 2>&1 | tee -a "$logfile"
 
 echo "=== run git push ===" >> "$logfile"
-./push_master "$cur_version"
+./push_master.sh "$cur_version" 2>&1 | tee -a "$logfile"
 
 echo ">>> run_job.sh completed."

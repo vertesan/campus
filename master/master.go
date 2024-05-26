@@ -20,7 +20,7 @@ import (
 
 const MASTER_RAW_PATH = "cache/masterRaw"
 const MASTER_JSON_PATH = "cache/masterJson"
-const MASTER_YAML_PATH = "cache/masterJson"
+const MASTER_YAML_PATH = "cache/masterYaml"
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse) {
   DownloadAllMaster(masterTagResp)
