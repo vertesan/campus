@@ -89,7 +89,7 @@ def main():
     Path(ESRGAN_DIR).mkdir(exist_ok=True)
     with open(DOWNLOADED_FILE_PATH) as fp:
         octo_diff: dict[str, str] = json.load(fp)
-    # unpack_action(octo_diff)
+    unpack_action(octo_diff)
     scale_with_esrgan(octo_diff)
 
 
