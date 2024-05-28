@@ -7,10 +7,24 @@ import (
 	"vertesan/campus/analyser"
 	"vertesan/campus/network"
 	"vertesan/campus/network/rpc"
+	"vertesan/campus/octo"
 	"vertesan/campus/proto/papi"
+	"vertesan/campus/utils"
 
 	"google.golang.org/protobuf/proto"
 )
+
+func TestDecryptOctoList(t *testing.T) {
+  fs, err := os.Open("cache/octorespon.bin")
+  if err != nil {
+    panic(err)
+  }
+  db, err := octo.DecryptOctoList(fs, 0)
+  if err != nil {
+    panic(err)
+  }
+  utils.UNUSED(db)
+}
 
 func TestLogin(t *testing.T) {
   manager := &network.NetworkManager{}

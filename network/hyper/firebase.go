@@ -17,7 +17,7 @@ func GetFirebaseToken(refreshToken string) (string, string) {
     panic(errors.New("refreshToken must be given"))
   }
 
-  headers := http.Header{
+  headers := &http.Header{
     "Content-Type":        {"application/json"},
     "X-Android-Package":   {"com.bandainamcoent.idolmaster_gakuen"},
     "X-Android-Cert":      {"D05C4DC398804FEB2ADF30E8854500D2834EAFED"},
@@ -37,11 +37,12 @@ func GetFirebaseToken(refreshToken string) (string, string) {
     panic(err)
   }
   reqBodyReader := bytes.NewReader(reqBody)
-  res, err := SendRequest(FIREBASE_ENDPOINT, "POST", headers, reqBodyReader, 10, 1)
+  res, cancel, err := SendRequest(FIREBASE_ENDPOINT, "POST", headers, reqBodyReader, 10, 1)
   if err != nil {
     panic(err)
   }
   defer res.Body.Close()
+  defer cancel()
 
   buf := &bytes.Buffer{}
   if _, err := io.Copy(buf, res.Body); err != nil {

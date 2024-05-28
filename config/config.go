@@ -12,7 +12,6 @@ type Config struct {
   AppVersion           string `yaml:"appVersion"`
   MasterVersion        string `yaml:"masterVersion"`
   OctoCacheRevision    int    `yaml:"octoCacheRevision"`
-  OctoManifestRevision int    `yaml:"octoManifestRevision"`
   RefreshToken         string `yaml:"refreshToken"`
   IdToken              string `yaml:"idToken"`
 }

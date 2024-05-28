@@ -1,7 +1,6 @@
 package main
 
 import (
-  "crypto/md5"
   "flag"
   "os"
   "vertesan/campus/analyser"
@@ -18,10 +17,12 @@ const OCTO_CACHE_FILE = "cache/octocacheevai"
 const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
 var (
-  flagDb      = flag.Bool("db", false, "Download and decrypt master database if true. Generated yaml files are saved in 'cache/masterYaml' directory.")
-  flagKeepRaw = flag.Bool("keep", false, "Do not delete encrypted master database files after decrypting. Take no effect if 'db' flag is not set.")
-  flagAnalyze = flag.Bool("analyze", false, "Analyze dump.cs to retrieve proto schemas. Generated codes are saved in 'cache/GeneratedProto' directory.")
-  refToken    = flag.String("token", "", "The refresh token used to retrieve login idToken from firebase.\nIf refreshToken field set in 'config/config.yaml' is not empty, the value in the config file will take precedence.")
+  flagDb        = flag.Bool("db", false, "Download and decrypt master database if true.\nGenerated yaml files are saved in 'cache/masterYaml' directory.")
+  flagKeepRaw   = flag.Bool("keepdb", false, "Do not delete encrypted master database files after decrypting.\nTake no effect if 'db' flag is absent.")
+  flagAb        = flag.Bool("ab", false, "Download and deobfuscate assetbundles if true.\nDeobfuscated files are saved in 'cache/assets' directory.")
+  flagKeepAbRaw = flag.Bool("keepab", false, "Do not delete obfuscated assetbundle files after deobfuscating.\nTake no effect if 'ab' flag is absent.")
+  flagAnalyze   = flag.Bool("analyze", false, "Analyze dump.cs to retrieve proto schema.\nGenerated codes are saved in 'cache/GeneratedProto' directory.")
+  refToken      = flag.String("token", "", "The refresh token used to retrieve login idToken from firebase.\nIf refreshToken field set in 'config.yaml' is not empty, the value in the config file will take precedence.")
 )
 
 func decryptOctoManifest() {
@@ -30,9 +31,9 @@ func decryptOctoManifest() {
   if err != nil {
     panic(err)
   }
-  keyMd5 := md5.Sum([]byte("1nuv9td1bw1udefk"))
-  ivMd5 := md5.Sum([]byte("LvAUtf+tnz"))
-  octoDb, err := octo.DecryptManifest(octoFs, keyMd5[:], ivMd5[:], 1)
+  // keyMd5 := md5.Sum([]byte("1nuv9td1bw1udefk"))
+  // ivMd5 := md5.Sum([]byte("LvAUtf+tnz"))
+  octoDb, err := octo.DecryptOctoList(octoFs, 1)
   if err != nil {
     panic(err)
   }
@@ -97,6 +98,13 @@ func main() {
     if !*flagKeepRaw {
       os.RemoveAll(master.MASTER_RAW_PATH)
     }
+  }
+
+  if *flagAb {
+    manager := &octo.OctoManager{}
+    manager.Work(*flagKeepAbRaw)
+    cfg.OctoCacheRevision = int(manager.OctoDb.Revision)
+    cfg.Save()
   }
 
   if *flagAnalyze {
