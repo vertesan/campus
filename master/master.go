@@ -8,6 +8,7 @@ import (
   "net/http"
   "os"
   "path"
+  "regexp"
   "vertesan/campus/network/hyper/downloader"
   "vertesan/campus/proto/mapping"
   "vertesan/campus/proto/papi"
@@ -96,7 +97,9 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse) {
       // jsonList = append(jsonList, string(jsonBytes))
 
       yamlBytes = bytes.TrimSuffix(yamlBytes, []byte("\n"))
-      yamlBytes = bytes.Replace(yamlBytes, []byte("\n"), []byte("\n  "), -1)
+      // yamlBytes = bytes.Replace(yamlBytes, []byte("\n"), []byte("\n  "), -1)
+      reg := regexp.MustCompile(`\n(?P<ctt>.+)`)
+      yamlBytes = reg.ReplaceAll(yamlBytes, []byte("\n  $ctt"))
       yamlList = append(yamlList, yamlBytes)
     }
     var yamlDb []byte
