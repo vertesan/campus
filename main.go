@@ -13,6 +13,7 @@ import (
   "google.golang.org/protobuf/encoding/protojson"
 )
 
+const NEW_AB_FLAG_FILE = "cache/newab_flag"
 const OCTO_CACHE_FILE = "cache/octocacheevai"
 const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
@@ -83,6 +84,13 @@ func processMasterDb() {
 
 func main() {
   rich.Info("Start process.")
+
+  if err := os.Remove(NEW_AB_FLAG_FILE); err != nil {
+    if !os.IsNotExist(err) {
+      panic(err)
+    }
+  }
+
   flag.Parse()
   cfg := config.GetConfig()
 
@@ -102,9 +110,14 @@ func main() {
 
   if *flagAb {
     manager := &octo.OctoManager{}
-    manager.Work(*flagKeepAbRaw)
+    hasUpdates := manager.Work(*flagKeepAbRaw)
     cfg.OctoCacheRevision = int(manager.OctoDb.Revision)
     cfg.Save()
+    if hasUpdates {
+      if _, err := os.Create(NEW_AB_FLAG_FILE); err != nil {
+        panic(err)
+      }
+    }
   }
 
   if *flagAnalyze {

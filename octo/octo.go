@@ -51,7 +51,7 @@ func (m *OctoManager) saveLocalJson(record map[string]string, path string) {
   }
 }
 
-func (m *OctoManager) Work(keepRaw bool) {
+func (m *OctoManager) Work(keepRaw bool) bool {
   cfg := config.GetConfig()
   curRevision := cfg.OctoCacheRevision
   rich.Info("Current octo revision: %d.", curRevision)
@@ -59,7 +59,7 @@ func (m *OctoManager) Work(keepRaw bool) {
   rich.Info("Server octo revision: %d.", m.OctoDb.Revision)
   if int(m.OctoDb.Revision) == curRevision {
     rich.Info("Octo revision is already up to date, skip downloading assets.")
-    return
+    return false
   }
   if err := os.MkdirAll(OCTO_RAW_DIR, 0755); err != nil {
     panic(err)
@@ -132,7 +132,7 @@ func (m *OctoManager) Work(keepRaw bool) {
   }
   if len(entries) == 0 {
     rich.Warning("Entry list is empty, nothing to download.")
-    return
+    return false
   }
   dler.Entries = entries
   // download!
@@ -197,4 +197,5 @@ func (m *OctoManager) Work(keepRaw bool) {
   m.saveLocalJson(downloaded, OCTO_DL_RECORD_PATH)
   // save local record
   m.saveLocalJson(localRecord, OCTO_LOCAL_RECORD_PATH)
+  return true
 }
