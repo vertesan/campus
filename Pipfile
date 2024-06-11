@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pillow = '>=10.3.0'
+cloudinary = '>=1.40.0'
+UnityPy = '>=1.10.13'
+rich = '>=13.7.1'
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
