@@ -24,6 +24,6 @@ echo "=== run asset upload ===" >> "$logfile"
 pipenv shell
 . .env.local
 python3 unpack_upload.py 2>&1 | tee -a "$logfile"
-deactivate
+exit
 
 echo ">>> run_job.sh completed."
