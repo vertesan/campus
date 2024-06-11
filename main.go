@@ -22,6 +22,7 @@ var (
   flagKeepRaw   = flag.Bool("keepdb", false, "Do not delete encrypted master database files after decrypting.\nTake no effect if 'db' flag is absent.")
   flagAb        = flag.Bool("ab", false, "Download and deobfuscate assetbundles if true.\nDeobfuscated files are saved in 'cache/assets' directory.")
   flagKeepAbRaw = flag.Bool("keepab", false, "Do not delete obfuscated assetbundle files after deobfuscating.\nTake no effect if 'ab' flag is absent.")
+  flagWebAb     = flag.Bool("webab", false, "Only download images those are needed for web use. Takes no effect if '--ab' is absent.")
   flagAnalyze   = flag.Bool("analyze", false, "Analyze dump.cs to retrieve proto schema.\nGenerated codes are saved in 'cache/GeneratedProto' directory.")
   refToken      = flag.String("token", "", "The refresh token used to retrieve login idToken from firebase.\nIf refreshToken field set in 'config.yaml' is not empty, the value in the config file will take precedence.")
 )
@@ -110,7 +111,7 @@ func main() {
 
   if *flagAb {
     manager := &octo.OctoManager{}
-    hasUpdates := manager.Work(*flagKeepAbRaw)
+    hasUpdates := manager.Work(*flagKeepAbRaw, *flagWebAb)
     cfg.OctoCacheRevision = int(manager.OctoDb.Revision)
     cfg.Save()
     if hasUpdates {

@@ -5,6 +5,7 @@ import (
   "net/http"
   "os"
   "path"
+  "regexp"
   "slices"
   "strings"
   "vertesan/campus/config"
@@ -21,6 +22,24 @@ const OCTO_LOCAL_RECORD_PATH = "cache/octo_record.json"
 const OCTO_DL_RECORD_PATH = "cache/octo_downloaded.json"
 const OCTO_RAW_DIR = "cache/raw"
 const OCTO_ASSET_DIR = "cache/assets"
+
+var upload_reg_list = []string{
+  `^img_general_csprt-\d-\d{4}_full$`,
+  `^img_general_cidol-\w+-\d-\d{3}_\d-full$`,
+  `^img_general_icon_exam-\w+$`,
+  `^img_general_icon_produce-.+$`,
+  `^img_general_pitem_\d-\d{3}$`,
+  `^img_general_skillcard_sup-\d_\d{3}$`,
+}
+
+func checkNeedDownload(name string, regList []*regexp.Regexp) bool {
+  for _, reg := range regList {
+    if reg.Match([]byte(name)) {
+      return true
+    }
+  }
+  return false
+}
 
 type OctoManager struct {
   OctoDb *octo.Database
@@ -51,7 +70,7 @@ func (m *OctoManager) saveLocalJson(record map[string]string, path string) {
   }
 }
 
-func (m *OctoManager) Work(keepRaw bool) bool {
+func (m *OctoManager) Work(keepRaw bool, webab bool) bool {
   cfg := config.GetConfig()
   curRevision := cfg.OctoCacheRevision
   rich.Info("Current octo revision: %d.", curRevision)
@@ -92,9 +111,19 @@ func (m *OctoManager) Work(keepRaw bool) bool {
   dler := downloader.NewDownloader(600, assetDownloadHeader, OCTO_RAW_DIR, 20)
   entries := []*downloader.Entry{}
 
+  // prepare webp reg list
+  var regs []*regexp.Regexp
+  for _, regLiteral := range upload_reg_list {
+    regs = append(regs, regexp.MustCompile(regLiteral))
+  }
+
   // add assetbundles to entry list
   for _, asset := range m.OctoDb.AssetBundleList {
-    // check file MD5 first. if already exists, skip downloading
+    // check if this assetbundle need to be download first
+    if webab && !checkNeedDownload(asset.Name, regs) {
+      continue
+    }
+    // check file MD5. if already exists, skip downloading
     md5, ok := localRecord[asset.Name]
     if ok && asset.Md5 == md5 {
       rich.Warning("The MD5 of AssetBundle %q matches one of the local files, skip downloading.", asset.Name)
@@ -111,25 +140,28 @@ func (m *OctoManager) Work(keepRaw bool) bool {
       Type:         "ab",
     })
   }
-  // add resources to entry list
-  for _, resource := range m.OctoDb.ResourceList {
-    // check file MD5 first. if already exists, skip downloading
-    md5, ok := localRecord[resource.Name]
-    if ok && resource.Md5 == md5 {
-      rich.Warning("The MD5 of Resource %q matches one of the local files, skip downloading.", resource.Name)
-      continue
-    } else {
-      // else, write it into map
-      localRecord[resource.Name] = resource.Md5
-      downloaded[resource.Name] = resource.ObjectName
+  if !webab {
+    // add resources to entry list
+    for _, resource := range m.OctoDb.ResourceList {
+      // check file MD5 first. if already exists, skip downloading
+      md5, ok := localRecord[resource.Name]
+      if ok && resource.Md5 == md5 {
+        rich.Warning("The MD5 of Resource %q matches one of the local files, skip downloading.", resource.Name)
+        continue
+      } else {
+        // else, write it into map
+        localRecord[resource.Name] = resource.Md5
+        downloaded[resource.Name] = resource.ObjectName
+      }
+      url := strings.Replace(urlFormat, "{o}", resource.ObjectName, 1)
+      entries = append(entries, &downloader.Entry{
+        Url:          url,
+        SaveFileName: resource.Name,
+        Type:         "rs",
+      })
     }
-    url := strings.Replace(urlFormat, "{o}", resource.ObjectName, 1)
-    entries = append(entries, &downloader.Entry{
-      Url:          url,
-      SaveFileName: resource.Name,
-      Type:         "rs",
-    })
   }
+
   if len(entries) == 0 {
     rich.Warning("Entry list is empty, nothing to download.")
     return false
