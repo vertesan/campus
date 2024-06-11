@@ -3,7 +3,6 @@ from rich.console import Console
 import UnityPy
 import UnityPy.config
 import json
-from esrgan import convert_one
 
 ASSETBUNDLE_DIR = "cache/assets"
 IMG_DIR = "cache/img"
@@ -57,6 +56,7 @@ def unpack_action(octo_diff: dict[str, str]):
 
 
 def scale_with_esrgan(octo_diff: dict[str, str]):
+    from esrgan import convert_one
     for name, _ in octo_diff.items():
         if name.startswith("img_general_cidol-") and name.endswith("-full"):
             convert_one(

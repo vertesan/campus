@@ -15,9 +15,15 @@ else
   cur_version=""
 fi
 
-./campus --db 2>&1 | tee -a "$logfile"
+./campus --db --ab --webab 2>&1 | tee -a "$logfile"
 
 echo "=== run git push ===" >> "$logfile"
 ./push_master.sh "$cur_version" 2>&1 | tee -a "$logfile"
+
+echo "=== run asset upload ===" >> "$logfile"
+pipenv shell
+. .env.local
+python3 unpack_upload.py 2>&1 | tee -a "$logfile"
+deactivate
 
 echo ">>> run_job.sh completed."
