@@ -64,6 +64,7 @@ def get_csize(name: str) -> tuple:
 
 
 def main():
+    print("Start to run unpack_upload.py")
     upload_rcd: dict[str, str] = {}
     if Path(UPLOAD_RECORD_PATH).exists():
         with open(UPLOAD_RECORD_PATH) as fp:
@@ -84,6 +85,8 @@ def main():
         upload(name, str(webp_pth))
         upload_rcd[name] = md5
         Path(UPLOAD_RECORD_PATH).write_text(json.dumps(upload_rcd, indent=2))
+
+    print("Process of unpack_upload.py completed.")
 
 
 if __name__ == "__main__":
