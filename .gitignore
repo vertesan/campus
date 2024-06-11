@@ -27,3 +27,4 @@ config.yaml
 .env.local
 .vscode/
 campus
+venv/
