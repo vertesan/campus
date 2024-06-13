@@ -1,11 +1,10 @@
 #!/bin/bash
 set -euo pipefail
-. .env.local
-
-VERSION_FILE="cache/master_version"
-
-echo ">>> Begin run_job.sh"
 cd "$(dirname "$0")"
+echo ">>> Begin run_job.sh"
+
+. .env.local
+VERSION_FILE="cache/master_version"
 logfile="cache/`date '+%Y-%m-%d'`.log"
 
 echo "======================== job run at $(date '+%Y-%m-%d %H:%M:%S') ===========================" >> $logfile
