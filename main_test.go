@@ -1,18 +1,29 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"testing"
-	"vertesan/campus/analyser"
-	"vertesan/campus/network"
-	"vertesan/campus/network/rpc"
-	"vertesan/campus/octo"
-	"vertesan/campus/proto/papi"
-	"vertesan/campus/utils"
+  "fmt"
+  "os"
+  "testing"
+  "vertesan/campus/analyser"
+  "vertesan/campus/master"
+  "vertesan/campus/network"
+  "vertesan/campus/network/rpc"
+  "vertesan/campus/octo"
+  "vertesan/campus/proto/papi"
+  "vertesan/campus/utils"
 
-	"google.golang.org/protobuf/proto"
+  "google.golang.org/protobuf/proto"
 )
+
+func TestPutDb(t *testing.T) {
+  remoteUrl := ""
+  secret := ""
+  jsonDb, err := os.ReadFile("cache/masterJson/ProduceSkill.json")
+  if err != nil {
+    panic(err)
+  }
+  master.PutDb(remoteUrl, secret, "ProduceSkill", string(jsonDb))
+}
 
 func TestDecryptOctoList(t *testing.T) {
   fs, err := os.Open("cache/octorespon.bin")

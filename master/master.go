@@ -6,26 +6,42 @@ import (
   "fmt"
   "io"
   "net/http"
+  "net/url"
   "os"
   "path"
   "regexp"
+  "slices"
+  "strings"
+  "vertesan/campus/network/hyper"
   "vertesan/campus/network/hyper/downloader"
   "vertesan/campus/proto/mapping"
   "vertesan/campus/proto/papi"
   "vertesan/campus/utils/rich"
 
   _ "github.com/mutecomm/go-sqlcipher/v4"
-  // "google.golang.org/protobuf/encoding/protojson"
+  "google.golang.org/protobuf/encoding/protojson"
   "google.golang.org/protobuf/proto"
 )
 
 const MASTER_RAW_PATH = "cache/masterRaw"
 const MASTER_JSON_PATH = "cache/masterJson"
 const MASTER_YAML_PATH = "cache/masterYaml"
+const ENV_CAMPUS_DB_PUT_URL = "CAMPUS_DB_PUT_URL"
+const ENV_CAMPUS_DB_PUT_SECRET = "CAMPUS_DB_PUT_SECRET"
 
-func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse) {
+var requiredPutTypes = []string{
+  "SupportCard",
+  "SupportCardProduceSkillLevelAssist",
+  "SupportCardProduceSkillLevelDance",
+  "SupportCardProduceSkillLevelVisual",
+  "SupportCardProduceSkillLevelVocal",
+  "ProduceSkill",
+  "ProduceItem",
+}
+
+func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
   DownloadAllMaster(masterTagResp)
-  DecryptAll(masterTagResp)
+  DecryptAll(masterTagResp, putDb)
 }
 
 func UnmarshalPlain(reader io.Reader) (*papi.MasterGetResponse, error) {
@@ -36,6 +52,22 @@ func UnmarshalPlain(reader io.Reader) (*papi.MasterGetResponse, error) {
   }
   proto.Unmarshal(buf.Bytes(), masterGetResp)
   return masterGetResp, nil
+}
+
+func PutDb(remoteUrl string, secret string, name string, jsonDb string) {
+  if remoteUrl == "" || secret == "" {
+    rich.ErrorThenThrow("Environment variable CAMPUS_DB_PUT_URL or ENV_CAMPUS_DB_PUT_SECRET does not exist.")
+  }
+  url, err := url.JoinPath(remoteUrl, name)
+  if err != nil {
+    panic(err)
+  }
+  headers := &http.Header{
+    "Content-Type":  {"multipart/form-data; boundary=---011000010111000001101001"},
+    "Authorization": {fmt.Sprintf("Bearer %s", secret)},
+  }
+  payload := strings.NewReader(fmt.Sprintf("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"metadata\"\r\n\r\n{}\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"value\"\r\n\r\n%s\r\n-----011000010111000001101001--\r\n\r\n", jsonDb))
+  hyper.SendRequest(url, "PUT", headers, payload, 10, 3)
 }
 
 func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
@@ -58,9 +90,18 @@ func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
   }
 }
 
-func DecryptAll(masterTagResp *papi.MasterGetResponse) {
+func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
   rich.Info("Start to decrypt database.")
+  jsonMarshalOptions := protojson.MarshalOptions{
+    Multiline:         false,
+    AllowPartial:      false,
+    UseProtoNames:     true,
+    UseEnumNumbers:    false,
+    EmitUnpopulated:   true,
+    EmitDefaultValues: false,
+  }
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
+    // read db
     dbPath := path.Join(MASTER_RAW_PATH, masterTagPack.Type)
     key := masterTagPack.CryptoKey
     dbname := fmt.Sprintf("%s?_pragma_key=x'%s'", dbPath, key)
@@ -74,7 +115,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse) {
       panic(err)
     }
     defer rows.Close()
-    // jsonList := []string{}
+    jsonList := []string{}
     yamlList := [][]byte{}
     for rows.Next() {
       var data []byte
@@ -90,14 +131,13 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse) {
         panic(err)
       }
 
-      // jsonBytes, err := marshalOptions.Marshal(instance)
-      // if err != nil {
-      //   panic(err)
-      // }
-      // jsonList = append(jsonList, string(jsonBytes))
+      jsonBytes, err := jsonMarshalOptions.Marshal(instance)
+      if err != nil {
+        panic(err)
+      }
+      jsonList = append(jsonList, string(jsonBytes))
 
       yamlBytes = bytes.TrimSuffix(yamlBytes, []byte("\n"))
-      // yamlBytes = bytes.Replace(yamlBytes, []byte("\n"), []byte("\n  "), -1)
       reg := regexp.MustCompile(`\n(?P<ctt>.+)`)
       yamlBytes = reg.ReplaceAll(yamlBytes, []byte("\n  $ctt"))
       yamlList = append(yamlList, yamlBytes)
@@ -106,8 +146,16 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse) {
     if len(yamlList) != 0 {
       yamlDb = append([]byte("- "), bytes.Join(yamlList, []byte("\n- "))...)
     }
-    // jsonDb := "[\n" + strings.Join(jsonList, ",") + "]"
+    jsonDb := "[" + strings.Join(jsonList, ",") + "]"
     writeYaml(masterTagPack.Type, yamlDb)
+
+    // determine whether this Type needs to be put
+    if putDb && slices.Contains(requiredPutTypes, masterTagPack.Type) {
+      remoteUrl := os.Getenv(ENV_CAMPUS_DB_PUT_URL)
+      secret := os.Getenv(ENV_CAMPUS_DB_PUT_SECRET)
+      PutDb(remoteUrl, secret, masterTagPack.Type, jsonDb)
+    }
+
     // writeJson(masterTagPack.Type, &jsonDb)
     rich.Info("Database %q is successfully decrypted.", masterTagPack.Type)
   }
@@ -128,7 +176,7 @@ func writeJson(name string, data *string) {
   if err := os.MkdirAll(MASTER_JSON_PATH, 0755); err != nil {
     panic(err)
   }
-  filePath := path.Join(MASTER_JSON_PATH, "name"+".json")
+  filePath := path.Join(MASTER_JSON_PATH, name+".json")
   if err := os.WriteFile(filePath, []byte(*data), 0644); err != nil {
     panic(err)
   }

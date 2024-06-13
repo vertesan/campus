@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+. .env.local
 
 VERSION_FILE="cache/master_version"
 
@@ -15,13 +16,12 @@ else
   cur_version=""
 fi
 
-./campus --db --ab --webab 2>&1 | tee -a "$logfile"
+./campus --db --ab --webab --putdb 2>&1 | tee -a "$logfile"
 
 echo "=== run git push ===" >> "$logfile"
 ./push_master.sh "$cur_version" 2>&1 | tee -a "$logfile"
 
 echo "=== run asset upload ===" >> "$logfile"
-. .env.local
 pipenv run python3 unpack_upload.py 2>&1 | tee -a "$logfile"
 exit
 

@@ -19,7 +19,9 @@ const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
 var (
   flagDb        = flag.Bool("db", false, "Download and decrypt master database if true.\nGenerated yaml files are saved in 'cache/masterYaml' directory.")
+  flagForceDb   = flag.Bool("forcedb", false, "Download and decrypt master database without checking local version.\nTake no effect if 'db' flag is absent.")
   flagKeepRaw   = flag.Bool("keepdb", false, "Do not delete encrypted master database files after decrypting.\nTake no effect if 'db' flag is absent.")
+  flagPutDb     = flag.Bool("putdb", false, "Put required DBs to CAMPUS_DB_PUT_URL.")
   flagAb        = flag.Bool("ab", false, "Download and deobfuscate assetbundles if true.\nDeobfuscated files are saved in 'cache/assets' directory.")
   flagKeepAbRaw = flag.Bool("keepab", false, "Do not delete obfuscated assetbundle files after deobfuscating.\nTake no effect if 'ab' flag is absent.")
   flagWebAb     = flag.Bool("webab", false, "Only download images those are needed for web use. Takes no effect if '--ab' is absent.")
@@ -61,7 +63,7 @@ func processAnalysis() {
   analyser.Analyze()
 }
 
-func processMasterDb() {
+func processMasterDb(flagForceDb bool) {
   // simulate login to get master database manifest
   manager := &network.NetworkManager{}
   manager.Login()
@@ -71,10 +73,10 @@ func processMasterDb() {
   rich.Info("Current local database version: %q.", cfg.MasterVersion)
   serverVer := manager.Client.MasterResp.MasterTag.Version
   rich.Info("Server database version: %q.", serverVer)
-  if cfg.MasterVersion != serverVer {
+  if flagForceDb || cfg.MasterVersion != serverVer {
     rich.Info("New database version detected: %q.", serverVer)
     // download master database
-    master.DownloadAndDecrypt(manager.Client.MasterResp)
+    master.DownloadAndDecrypt(manager.Client.MasterResp, *flagPutDb)
   } else {
     rich.Info("Local database is already up to date, skip downloading database.")
   }
@@ -103,7 +105,7 @@ func main() {
   }
 
   if *flagDb {
-    processMasterDb()
+    processMasterDb(*flagForceDb)
     if !*flagKeepRaw {
       os.RemoveAll(master.MASTER_RAW_PATH)
     }
