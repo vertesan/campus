@@ -153,11 +153,13 @@ func constructRoot(entireContent *string, category Category) *ProtoTree {
 
   for _, oneClass := range contents {
     className := oneClass[1]
-    mappingLine := mappingTemplate
-    mappingLine = strings.ReplaceAll(mappingLine, "$className", className)
-    mappingLine = strings.Replace(mappingLine, "$category", categoryString, 1)
-    mappingLine = strings.Replace(mappingLine, "$package", packageName, 1)
-    mappingSb.WriteString(mappingLine)
+    if category == Common || category == Master {
+      mappingLine := mappingTemplate
+      mappingLine = strings.ReplaceAll(mappingLine, "$className", className)
+      mappingLine = strings.Replace(mappingLine, "$category", categoryString, 1)
+      mappingLine = strings.Replace(mappingLine, "$package", packageName, 1)
+      mappingSb.WriteString(mappingLine)
+    }
 
     attachChild(className, root, category)
     switch category {
@@ -375,7 +377,7 @@ func Analyze() {
   }
   // create directory if not exists
   os.MkdirAll(outDir, 0755)
-  
+
   entireContent := sb.String()
   mappingSb.WriteString(mappingHeader)
   analyzeFile(&entireContent, Enum, outEnumPath)

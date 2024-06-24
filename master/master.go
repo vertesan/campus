@@ -122,7 +122,10 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
       if err = rows.Scan(&data); err != nil {
         panic(err)
       }
-      instance := mapping.ProtoMap["Master."+masterTagPack.Type]
+      instance, ok := mapping.ProtoMap["Master."+masterTagPack.Type]
+      if !ok {
+        rich.ErrorThenThrow("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
+      }
       if err := proto.Unmarshal(data, instance); err != nil {
         panic(err)
       }

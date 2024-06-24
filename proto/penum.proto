@@ -204,6 +204,7 @@ enum CountType {
   CountType_AchievementOther = 13;
   CountType_MainTaskMainStory = 14;
   CountType_MainTaskProducer = 15;
+  CountType_ProduceClearTimeBanWarning = 16;
 }
 enum DeckRecommendType {
   DeckRecommendType_Unknown = 0;
@@ -260,6 +261,7 @@ enum ErrorCode {
   ErrorCode_ProduceHistoryNotFound = 2303;
   ErrorCode_ProduceUuidInvalid = 2304;
   ErrorCode_ProduceNeedReset = 2305;
+  ErrorCode_ProduceClearTimeBanWarning = 2306;
   ErrorCode_BnidlinkUserNotFound = 5000;
   ErrorCode_BnidlinkMasterDataInvalid = 5001;
 }
@@ -424,11 +426,6 @@ enum GashaLimitType {
   GashaLimitType_Total = 2;
   GashaLimitType_Daily = 3;
   GashaLimitType_DailyAccumulation = 4;
-}
-enum GashaStepUpAppealType {
-  GashaStepUpAppealType_Unknown = 0;
-  GashaStepUpAppealType_Sr = 1;
-  GashaStepUpAppealType_Ssr = 2;
 }
 enum GashaType {
   GashaType_Unknown = 0;
@@ -630,6 +627,7 @@ enum LinkType {
   LinkType_ExchangeDaily = 29;
   LinkType_ExchangeItem = 30;
   LinkType_ExchangeEvent = 31;
+  LinkType_MediaFourPanelComic = 32;
 }
 enum LoginBonusType {
   LoginBonusType_Unknown = 0;
@@ -647,6 +645,7 @@ enum MediaType {
   MediaType_Movie = 1;
   MediaType_Comic = 2;
   MediaType_Other = 3;
+  MediaType_FourPanelComic = 4;
 }
 enum MeishiIllustrationType {
   MeishiIllustrationType_Unknown = 0;
@@ -1072,6 +1071,7 @@ enum ProduceEffectType {
   ProduceEffectType_ExamStatusEnchant = 60;
   ProduceEffectType_LessonPresentProduceCardRewardCountUp = 61;
   ProduceEffectType_LessonPresentProduceCardRewardCountDown = 62;
+  ProduceEffectType_LessonPresentSearchProduceCardRewardCountUp = 63;
   ProduceEffectType_ShopPriceDiscountMultiple = 65;
   ProduceEffectType_ShopProduceCardPriceDiscountMultiple = 66;
   ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple = 68;
@@ -1140,6 +1140,7 @@ enum ProduceExamAutoEvaluationType {
   ProduceExamAutoEvaluationType_PlayableValueAdd = 16;
   ProduceExamAutoEvaluationType_ParameterBuffMultiplePerTurn = 17;
   ProduceExamAutoEvaluationType_ParameterBuffOverTurn = 18;
+  ProduceExamAutoEvaluationType_ExamExtraTurn = 19;
 }
 enum ProduceExamEffectType {
   ProduceExamEffectType_Unknown = 0;
@@ -1702,6 +1703,7 @@ enum ResourceType {
   ResourceType_InvitationPoint = 17;
   ResourceType_Story = 18;
   ResourceType_StoryEventPoint = 19;
+  ResourceType_PvpRatePlayCount = 20;
   ResourceType_JewelTotal = 1100;
   ResourceType_JewelPaidOnly = 1101;
   ResourceType_Set = 9999;
@@ -1773,6 +1775,12 @@ enum SkillRarity {
   SkillRarity_R = 1;
   SkillRarity_Sr = 2;
   SkillRarity_Ssr = 3;
+}
+enum StartupNotificationEffectType {
+  StartupNotificationEffectType_Unknown = 0;
+  StartupNotificationEffectType_Confetti1 = 1;
+  StartupNotificationEffectType_Confetti2 = 2;
+  StartupNotificationEffectType_Twinkling1 = 3;
 }
 enum StartupNotificationType {
   StartupNotificationType_Unknown = 0;
@@ -1893,6 +1901,7 @@ enum TutorialType {
   TutorialType_MainTask = 2;
   TutorialType_Work = 3;
   TutorialType_IdolCard = 4;
+  TutorialType_IdolCardSkin = 5;
   TutorialType_PvpRate = 6;
   TutorialType_CoinGasha = 7;
   TutorialType_MoneyReceive = 8;
@@ -1927,6 +1936,13 @@ enum TutorialType {
   TutorialType_ProduceSupportCardEvent = 116;
   TutorialType_ProduceStepLessonHardBonus = 117;
   TutorialType_ProduceStepLessonPresent = 118;
+  TutorialType_ProduceBeforeAuditionRefresh = 119;
+  TutorialType_ProduceBeforeLessonHard = 120;
+  TutorialType_MissionPanel = 200;
+  TutorialType_ProduceHighScore = 201;
+  TutorialType_StoryEvent = 202;
+  TutorialType_StoryEventMainStroy = 203;
+  TutorialType_StoryEventBoxGasha = 204;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;

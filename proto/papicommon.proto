@@ -6,6 +6,14 @@ import "pcommon.proto";
 import "ptransaction.proto";
 import "pmaster.proto";
 
+message DearnessStoryUnlock {
+  string characterId = 1;
+  string storyId = 2;
+}
+message Mission {
+  string missionId = 1;
+  int32 threshold = 2;
+}
 message PvpRateSeasonTop {
   penum.PvpRateSeasonStatusType statusType = 1;
   int32 rate = 2;
@@ -81,18 +89,12 @@ message UserData {
   ptransaction.UserProfile userProfile = 49977942;
   ptransaction.UserPvpRate userPvpRate = 226209413;
   ptransaction.UserPvpRateUnit userPvpRateUnit = 286467793;
+  repeated ptransaction.UserShopItem userShopItemList = 455613547;
   repeated ptransaction.UserStory userStoryList = 376356693;
   repeated ptransaction.UserSupportCard userSupportCardList = 2234692;
   repeated ptransaction.UserTime userTimeList = 68970636;
+  repeated ptransaction.UserTower userTowerList = 268691409;
   repeated ptransaction.UserTutorial userTutorialList = 201375606;
   repeated ptransaction.UserWork userWorkList = 225189857;
   repeated ptransaction.UserWorkCharacter userWorkCharacterList = 192688899;
-}
-message DearnessStoryUnlock {
-  string characterId = 1;
-  string storyId = 2;
-}
-message Mission {
-  string missionId = 1;
-  int32 threshold = 2;
 }
