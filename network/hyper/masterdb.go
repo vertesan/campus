@@ -4,13 +4,13 @@ import (
   // "bufio"
   // "fmt"
   // "os"
-  "vertesan/campus/proto/papi"
+  // "vertesan/campus/proto/papi"
   // "vertesan/campus/utils/rich"
 )
 
 const MASTER_RAW_DIR = "cache/masterRaw"
 
-func DownloadOneMasterRaw(masterPack *papi.MasterGetResponse_Types_MasterTagPack) {
+// func DownloadOneMasterRaw(masterPack *papi.MasterGetResponse_Types_MasterTagPack) {
   // url := masterPack.DownloadUrl
   // cancel, request := prepareGetRequest(url, masterHeader, 10)
   // defer (*cancel)()
@@ -42,4 +42,4 @@ func DownloadOneMasterRaw(masterPack *papi.MasterGetResponse_Types_MasterTagPack
   // if err := bufw.Flush(); err != nil {
   //   panic(err)
   // }
-}
+// }

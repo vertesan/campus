@@ -208,6 +208,8 @@ func analyzeTree(
   rootCategory Category,
   parentTree *ProtoTree,
   rootTree *ProtoTree,
+  ignoreTypes bool,
+  reducedLevel int,
 ) *strings.Builder {
   sb := new(strings.Builder)
 
@@ -219,7 +221,13 @@ func analyzeTree(
     if classPath == "" {
       rich.ErrorThenThrow("Empty classPath.")
     }
-    sb.WriteString(indentMap[tree.level-1] + strings.Replace(generalClassTemplate, "$className", tree.name, 1))
+
+    // if current tree name equals "Types" exactly, ignore it and reduce the tree level
+    if ignoreTypes && tree.name == "Types" {
+      reducedLevel++
+    } else {
+      sb.WriteString(indentMap[tree.level-1-reducedLevel] + strings.Replace(generalClassTemplate, "$className", tree.name, 1))
+    }
 
     classSearchPtnStr := strings.Replace(nestedClassPtnStr, "$nestedClassName", classPath, 1)
     prefix := ""
@@ -288,27 +296,38 @@ func analyzeTree(
           typeName = "repeated " + typeName
         }
         columnName = strings.TrimSuffix(columnName, "_")
-        line = strings.Replace(line, "$type", typeName, 1)
+        // ignore types if needed
+        if ignoreTypes {
+          noTypesName := typeName
+          if strings.Contains(typeName, ".Types.") {
+            noTypesName = strings.ReplaceAll(noTypesName, ".Types.", ".")
+          }
+          line = strings.Replace(line, "$type", noTypesName, 1)
+        } else {
+          line = strings.Replace(line, "$type", typeName, 1)
+        }
         line = strings.Replace(line, "$columnName", columnName, 1)
         line = strings.Replace(line, "$decimal", columnVal, 1)
 
-        sb.WriteString(indentMap[tree.level] + line)
+        sb.WriteString(indentMap[tree.level-reducedLevel] + line)
       }
     }
 
-    nestedSb := analyzeTree(entireContent, rootCategory, tree, rootTree)
+    nestedSb := analyzeTree(entireContent, rootCategory, tree, rootTree, ignoreTypes, reducedLevel)
     if len(xList) > 0 {
       for _, fullname := range xList {
         pfx, _ := getPrefixAndName(fullname)
         if pfx == classPath {
           attachChild(fullname, tree, Nested)
-          xSb := analyzeTree(entireContent, rootCategory, tree, rootTree)
+          xSb := analyzeTree(entireContent, rootCategory, tree, rootTree, ignoreTypes, reducedLevel)
           sb.WriteString(xSb.String())
         }
       }
     }
     sb.WriteString(nestedSb.String())
-    sb.WriteString(indentMap[tree.level-1] + "}\n")
+    if !ignoreTypes || tree.name != "Types" {
+      sb.WriteString(indentMap[tree.level-1-reducedLevel] + "}\n")
+    }
     tree.traversed = true
   }
   return sb
@@ -351,7 +370,7 @@ func analyzeFile(
     sb = AnalyzeEnum(entireContent)
   } else {
     root := constructRoot(entireContent, category)
-    sb = analyzeTree(entireContent, category, root, root)
+    sb = analyzeTree(entireContent, category, root, root, true, 0)
   }
 
   buf.WriteString(sb.String())
