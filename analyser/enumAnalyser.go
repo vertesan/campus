@@ -11,10 +11,15 @@ var (
   enumClassTemplate  = "enum $className {\n"
   enumColumnTemplate = "$className_$columnName = $decimal;\n"
   enumHeader         = "syntax = \"proto3\";\npackage penum;\noption go_package = \"vertesan/campus/proto/penum\";\n\n"
+
+  tsEnumClassTemplate  = "export enum $className {\n"
+  tsEnumColumnTemplate = "$columnName = $decimal,\n"
+  tsEnumHeader         = "// Generated code. DO NOT EDIT!\n\n"
 )
 
-func AnalyzeEnum(entireContent *string) *strings.Builder {
+func AnalyzeEnum(entireContent *string) (*strings.Builder, *strings.Builder) {
   sb := new(strings.Builder)
+  tsSb := new(strings.Builder)
   // match all classes
   contents := enumClassPtn.FindAllStringSubmatch(*entireContent, -1)
 
@@ -29,6 +34,8 @@ func AnalyzeEnum(entireContent *string) *strings.Builder {
     // write class prefix
     line := strings.Replace(enumClassTemplate, "$className", className, 1)
     sb.WriteString(line)
+    tsLine := strings.Replace(tsEnumClassTemplate, "$className", className, 1)
+    tsSb.WriteString(tsLine)
 
     // each loop is a message
     for _, subMatches := range enumColumnPtn.FindAllStringSubmatch(content, -1) {
@@ -39,8 +46,14 @@ func AnalyzeEnum(entireContent *string) *strings.Builder {
       line = strings.Replace(line, "$columnName", columnName, 1)
       line = strings.Replace(line, "$decimal", columnVal, 1)
       sb.WriteString("  " + line)
+
+      tsLine := tsEnumColumnTemplate
+      tsLine = strings.Replace(tsLine, "$columnName", columnName, 1)
+      tsLine = strings.Replace(tsLine, "$decimal", columnVal, 1)
+      tsSb.WriteString("  " + tsLine)
     }
     sb.WriteString("}\n")
+    tsSb.WriteString("}\n")
   }
-  return sb
+  return sb, tsSb
 }

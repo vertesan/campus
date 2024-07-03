@@ -74,6 +74,44 @@ message Empty {}
 
 `
 
+  tsGeneralClassTemplate  = "export type $className = {\n"
+  tsInnerClassTemplate    = "type $className = {\n"
+  tsGeneralColumnTemplate = "$columnName: $type\n"
+
+  tsCommonHeader = `// Generated code. DO NOT EDIT!
+
+import * as penum from './penum.d.ts';
+
+`
+  tsMasterHeader = `// Generated code. DO NOT EDIT!
+
+import * as penum from './penum.d.ts';
+import * as pcommon from './pcommon.d.ts';
+
+`
+  tsTransactionHeader = `// Generated code. DO NOT EDIT!
+
+import * as penum from './penum.d.ts';
+import * as pcommon from './pcommon.d.ts';
+
+`
+  tsApiCommonHeader = `// Generated code. DO NOT EDIT!
+
+import * as penum from './penum.d.ts';
+import * as pcommon from './pcommon.d.ts';
+import * as ptransaction from './ptransaction.d.ts';
+import * as pmaster from './pmaster.d.ts';
+
+`
+  tsApiHeader = `// Generated code. DO NOT EDIT!
+
+import * as penum from './penum.d.ts';
+import * as pcommon from './pcommon.d.ts';
+import * as pmaster from './pmaster.d.ts';
+import * as papicommon from './papicommon.d.ts';
+
+`
+
   mappingHeader   = "// Generated code. DO NOT EDIT!\npackage mapping\n\nimport \"vertesan/campus/proto/pcommon\"\nimport \"vertesan/campus/proto/pmaster\"\nimport \"google.golang.org/protobuf/reflect/protoreflect\"\n\nvar (\n  ProtoMap = map[string]protoreflect.ProtoMessage{\n"
   mappingTemplate = "    \"$category.$className\": &$package.$className{},\n"
   mappingTail     = "  }\n)\n"

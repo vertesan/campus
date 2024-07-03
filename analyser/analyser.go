@@ -49,6 +49,14 @@ var (
   outApiCommonPath   = outDir + "/papicommon.proto"
   outApiPath         = outDir + "/papi.proto"
 
+  tsOutDir             = "cache/GeneratedTypeScript"
+  tsOutEnumPath        = tsOutDir + "/penum.d.ts"
+  tsOutCommonPath      = tsOutDir + "/pcommon.d.ts"
+  tsOutMasterPath      = tsOutDir + "/pmaster.d.ts"
+  tsOutTransactionPath = tsOutDir + "/ptransaction.d.ts"
+  tsOutApiCommonPath   = tsOutDir + "/papicommon.d.ts"
+  tsOutApiPath         = tsOutDir + "/papi.d.ts"
+
   typeMap = map[string]string{
     "int":        "int32",
     "long":       "int64",
@@ -59,6 +67,18 @@ var (
     "ulong":      "uint64",
     "bool":       "bool",
     "ByteString": "bytes",
+  }
+
+  tsTypeMap = map[string]string{
+    "int":        "number",
+    "long":       "string",
+    "string":     "string",
+    "double":     "number",
+    "float":      "number",
+    "uint":       "number",
+    "ulong":      "string",
+    "bool":       "boolean",
+    "ByteString": "string",
   }
 
   indentMap = map[int]string{
@@ -208,10 +228,10 @@ func analyzeTree(
   rootCategory Category,
   parentTree *ProtoTree,
   rootTree *ProtoTree,
-  ignoreTypes bool,
   reducedLevel int,
-) *strings.Builder {
+) (*strings.Builder, *strings.Builder) {
   sb := new(strings.Builder)
+  tsSb := new(strings.Builder)
 
   for _, tree := range parentTree.children {
     if tree.traversed {
@@ -221,12 +241,21 @@ func analyzeTree(
     if classPath == "" {
       rich.ErrorThenThrow("Empty classPath.")
     }
+    tsClassPath := strings.ReplaceAll(classPath, ".Types.", ".")
+    tsClassPath = strings.ReplaceAll(tsClassPath, ".", "_")
 
     // if current tree name equals "Types" exactly, ignore it and reduce the tree level
-    if ignoreTypes && tree.name == "Types" {
+    if tree.name == "Types" {
       reducedLevel++
     } else {
       sb.WriteString(indentMap[tree.level-1-reducedLevel] + strings.Replace(generalClassTemplate, "$className", tree.name, 1))
+      if tree.level <= 1 {
+        // exported class
+        tsSb.WriteString(strings.Replace(tsGeneralClassTemplate, "$className", tree.name, 1))
+      } else {
+        // non-exported class
+        tsSb.WriteString(strings.Replace(tsInnerClassTemplate, "$className", tsClassPath, 1))
+      }
     }
 
     classSearchPtnStr := strings.Replace(nestedClassPtnStr, "$nestedClassName", classPath, 1)
@@ -253,6 +282,7 @@ func analyzeTree(
       // search for every single message
       for _, subMatches := range generalColumnPtn.FindAllStringSubmatch(content, -1) {
         line := generalColumnTemplate
+        tsLine := tsGeneralColumnTemplate
         columnVal := subMatches[1]
         typeName := subMatches[3]
         columnName := subMatches[4]
@@ -263,8 +293,10 @@ func analyzeTree(
           typeName = strings.TrimSuffix(typeName, ">")
           isRepeated = true
         }
+        tsTypeName := ""
         if mappedType, ok := typeMap[typeName]; ok {
           // in case of primitive types
+          tsTypeName = tsTypeMap[typeName]
           typeName = mappedType
         } else {
           // in case of user defined types
@@ -292,90 +324,136 @@ func analyzeTree(
             }
           }
         }
+        if tsTypeName == "" {
+          tsTypeName = typeName
+        }
         if isRepeated {
           typeName = "repeated " + typeName
+          tsTypeName = tsTypeName + "[]"
         }
         columnName = strings.TrimSuffix(columnName, "_")
-        // ignore types if needed
-        if ignoreTypes {
-          noTypesName := typeName
-          if strings.Contains(typeName, ".Types.") {
-            noTypesName = strings.ReplaceAll(noTypesName, ".Types.", ".")
-          }
-          line = strings.Replace(line, "$type", noTypesName, 1)
-        } else {
-          line = strings.Replace(line, "$type", typeName, 1)
+
+        // proto typeName
+        if strings.Contains(typeName, ".Types.") {
+          typeName = strings.ReplaceAll(typeName, ".Types.", ".")
         }
+        line = strings.Replace(line, "$type", typeName, 1)
         line = strings.Replace(line, "$columnName", columnName, 1)
         line = strings.Replace(line, "$decimal", columnVal, 1)
-
         sb.WriteString(indentMap[tree.level-reducedLevel] + line)
+
+        // typescript typeName
+        if strings.Contains(tsTypeName, ".Types.") {
+          tsTypeName = strings.ReplaceAll(tsTypeName, ".Types.", ".")
+        }
+        sections := strings.Split(tsTypeName, ".")
+        if len(sections) > 1 {
+          if slices.Contains([]string{
+            "penum", "pcommon", "pmaster", "ptransaction", "papicommon", "papi",
+          }, sections[0]) {
+            tsTypeName = sections[0] + "." + strings.Join(sections[1:], "_")
+          } else {
+            tsTypeName = strings.Join(sections, "_")
+          }
+        } else {
+          tsTypeName = strings.ReplaceAll(tsTypeName, ".", "_")
+        }
+        tsLine = strings.ReplaceAll(tsLine, "$type", tsTypeName)
+        tsLine = strings.Replace(tsLine, "$columnName", columnName, 1)
+        tsSb.WriteString("  " + tsLine)
       }
     }
-
-    nestedSb := analyzeTree(entireContent, rootCategory, tree, rootTree, ignoreTypes, reducedLevel)
+    var tsXSbs []*strings.Builder
+    nestedSb, tsNestedSb := analyzeTree(entireContent, rootCategory, tree, rootTree, reducedLevel)
     if len(xList) > 0 {
       for _, fullname := range xList {
         pfx, _ := getPrefixAndName(fullname)
         if pfx == classPath {
           attachChild(fullname, tree, Nested)
-          xSb := analyzeTree(entireContent, rootCategory, tree, rootTree, ignoreTypes, reducedLevel)
+          xSb, tsXSb := analyzeTree(entireContent, rootCategory, tree, rootTree, reducedLevel)
           sb.WriteString(xSb.String())
+          tsXSbs = append(tsXSbs, tsXSb)
         }
       }
     }
     sb.WriteString(nestedSb.String())
-    if !ignoreTypes || tree.name != "Types" {
+    if tree.name != "Types" {
       sb.WriteString(indentMap[tree.level-1-reducedLevel] + "}\n")
+      tsSb.WriteString("}\n")
+    }
+    // write after parent class enclosed
+    tsSb.WriteString(tsNestedSb.String())
+    for _, xsb := range tsXSbs {
+      tsSb.WriteString(xsb.String())
     }
     tree.traversed = true
   }
-  return sb
+  return sb, tsSb
 }
 
 func analyzeFile(
   entireContent *string,
   category Category,
   outPath string,
+  tsOutPath string,
 ) {
   // create a to be generated file
   protoFile, err := os.Create(outPath)
   if err != nil {
     panic(err)
   }
+  tsFile, err := os.Create(tsOutPath)
+  if err != nil {
+    panic(err)
+  }
   defer protoFile.Close()
+  defer tsFile.Close()
   buf := bufio.NewWriter(protoFile)
+  tsBuf := bufio.NewWriter(tsFile)
   // write prefixes
   var header string
+  var tsHeader string
   switch category {
   case Enum:
     header = enumHeader
+    tsHeader = tsEnumHeader
   case Common:
     header = commonHeader
+    tsHeader = tsCommonHeader
   case Master:
     header = masterHeader
+    tsHeader = tsMasterHeader
   case Transaction:
     header = transactionHeader
+    tsHeader = tsTransactionHeader
   case ApiCommon:
     header = apiCommonHeader
+    tsHeader = tsApiCommonHeader
   case Api:
     header = apiHeader
+    tsHeader = tsApiHeader
   default:
     rich.ErrorThenThrow("Unkown type of proto file: %v.", category)
   }
   buf.WriteString(header)
+  tsBuf.WriteString(tsHeader)
 
   var sb *strings.Builder
+  var tsSb *strings.Builder
   if category == Enum {
-    sb = AnalyzeEnum(entireContent)
+    sb, tsSb = AnalyzeEnum(entireContent)
   } else {
     root := constructRoot(entireContent, category)
-    sb = analyzeTree(entireContent, category, root, root, true, 0)
+    sb, tsSb = analyzeTree(entireContent, category, root, root, 0)
   }
 
   buf.WriteString(sb.String())
+  tsBuf.WriteString(tsSb.String())
   // flush
   if err := buf.Flush(); err != nil {
+    panic(err)
+  }
+  if err := tsBuf.Flush(); err != nil {
     panic(err)
   }
 }
@@ -396,20 +474,21 @@ func Analyze() {
   }
   // create directory if not exists
   os.MkdirAll(outDir, 0755)
+  os.MkdirAll(tsOutDir, 0755)
 
   entireContent := sb.String()
   mappingSb.WriteString(mappingHeader)
-  analyzeFile(&entireContent, Enum, outEnumPath)
+  analyzeFile(&entireContent, Enum, outEnumPath, tsOutEnumPath)
   rich.Info("Analyze Enum completed.")
-  analyzeFile(&entireContent, Common, outCommonPath)
+  analyzeFile(&entireContent, Common, outCommonPath, tsOutCommonPath)
   rich.Info("Analyze Common completed.")
-  analyzeFile(&entireContent, Master, outMasterPath)
+  analyzeFile(&entireContent, Master, outMasterPath, tsOutMasterPath)
   rich.Info("Analyze Master completed.")
-  analyzeFile(&entireContent, Transaction, outTransactionPath)
+  analyzeFile(&entireContent, Transaction, outTransactionPath, tsOutTransactionPath)
   rich.Info("Analyze Transaction completed.")
-  analyzeFile(&entireContent, ApiCommon, outApiCommonPath)
+  analyzeFile(&entireContent, ApiCommon, outApiCommonPath, tsOutApiCommonPath)
   rich.Info("Analyze Api.Common completed.")
-  analyzeFile(&entireContent, Api, outApiPath)
+  analyzeFile(&entireContent, Api, outApiPath, tsOutApiPath)
   rich.Info("Analyze Api completed.")
   mappingSb.WriteString(mappingTail)
   if err := os.WriteFile(mappingOutFile, []byte(mappingSb.String()), 0644); err != nil {

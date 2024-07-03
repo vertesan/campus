@@ -96,7 +96,8 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     Multiline:         false,
     AllowPartial:      false,
     UseProtoNames:     true,
-    UseEnumNumbers:    false,
+    // use enum numbers in json, this option is different with yaml
+    UseEnumNumbers:    true,
     EmitUnpopulated:   true,
     EmitDefaultValues: false,
   }
@@ -157,6 +158,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
       remoteUrl := os.Getenv(ENV_CAMPUS_DB_PUT_URL)
       secret := os.Getenv(ENV_CAMPUS_DB_PUT_SECRET)
       PutDb(remoteUrl, secret, masterTagPack.Type, jsonDb)
+      rich.Info("Database %q is successfully put to remote db.", masterTagPack.Type)
     }
 
     // writeJson(masterTagPack.Type, &jsonDb)
