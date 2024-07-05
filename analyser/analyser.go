@@ -50,7 +50,7 @@ var (
   outApiPath         = outDir + "/papi.proto"
 
   tsOutDir             = "cache/GeneratedTypeScript"
-  tsOutEnumPath        = tsOutDir + "/penum.d.ts"
+  tsOutEnumPath        = tsOutDir + "/penum.ts"
   tsOutCommonPath      = tsOutDir + "/pcommon.d.ts"
   tsOutMasterPath      = tsOutDir + "/pmaster.d.ts"
   tsOutTransactionPath = tsOutDir + "/ptransaction.d.ts"

@@ -80,24 +80,24 @@ message Empty {}
 
   tsCommonHeader = `// Generated code. DO NOT EDIT!
 
-import * as penum from './penum.d.ts';
+import * as penum from './penum';
 
 `
   tsMasterHeader = `// Generated code. DO NOT EDIT!
 
-import * as penum from './penum.d.ts';
+import * as penum from './penum';
 import * as pcommon from './pcommon.d.ts';
 
 `
   tsTransactionHeader = `// Generated code. DO NOT EDIT!
 
-import * as penum from './penum.d.ts';
+import * as penum from './penum';
 import * as pcommon from './pcommon.d.ts';
 
 `
   tsApiCommonHeader = `// Generated code. DO NOT EDIT!
 
-import * as penum from './penum.d.ts';
+import * as penum from './penum';
 import * as pcommon from './pcommon.d.ts';
 import * as ptransaction from './ptransaction.d.ts';
 import * as pmaster from './pmaster.d.ts';
@@ -105,7 +105,7 @@ import * as pmaster from './pmaster.d.ts';
 `
   tsApiHeader = `// Generated code. DO NOT EDIT!
 
-import * as penum from './penum.d.ts';
+import * as penum from './penum';
 import * as pcommon from './pcommon.d.ts';
 import * as pmaster from './pmaster.d.ts';
 import * as papicommon from './papicommon.d.ts';
