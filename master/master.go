@@ -31,12 +31,16 @@ const ENV_CAMPUS_DB_PUT_SECRET = "CAMPUS_DB_PUT_SECRET"
 
 var requiredPutTypes = []string{
   "SupportCard",
-  "SupportCardProduceSkillLevelAssist",
-  "SupportCardProduceSkillLevelDance",
-  "SupportCardProduceSkillLevelVisual",
-  "SupportCardProduceSkillLevelVocal",
-  "ProduceSkill",
+  "ProduceCard",
   "ProduceItem",
+  "ProduceEventSupportCard",
+  "ProduceStepEventDetail",
+  "ProduceEffect",
+  "SupportCardProduceSkillLevelDance",
+  "SupportCardProduceSkillLevelVocal",
+  "SupportCardProduceSkillLevelVisual",
+  "SupportCardProduceSkillLevelAssist",
+  "ProduceSkill",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
@@ -93,9 +97,9 @@ func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
 func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
   rich.Info("Start to decrypt database.")
   jsonMarshalOptions := protojson.MarshalOptions{
-    Multiline:         false,
-    AllowPartial:      false,
-    UseProtoNames:     true,
+    Multiline:     false,
+    AllowPartial:  false,
+    UseProtoNames: true,
     // use enum numbers in json, this option is different with yaml
     UseEnumNumbers:    true,
     EmitUnpopulated:   true,
@@ -161,7 +165,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
       rich.Info("Database %q is successfully put to remote db.", masterTagPack.Type)
     }
 
-    // writeJson(masterTagPack.Type, &jsonDb)
+    writeJson(masterTagPack.Type, &jsonDb)
     rich.Info("Database %q is successfully decrypted.", masterTagPack.Type)
   }
   rich.Info("Database decrypting completed.")
