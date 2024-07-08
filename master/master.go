@@ -41,6 +41,9 @@ var requiredPutTypes = []string{
   "SupportCardProduceSkillLevelVisual",
   "SupportCardProduceSkillLevelAssist",
   "ProduceSkill",
+  "ProduceDescription",
+  "Character",
+  "ProduceEffectIcon",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
