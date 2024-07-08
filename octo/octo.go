@@ -30,6 +30,12 @@ var upload_reg_list = []string{
   `^img_general_icon_produce-.+$`,
   `^img_general_pitem_\d-\d{3}$`,
   `^img_general_skillcard_sup-\d_\d{3}$`,
+
+  `^img_sd_[a-z]{4}_face-00`,
+  `^img_general_icon_produce-effect_pict-\w+$`,
+  `^img_general_icon_exam-\w+$`,
+  `^img_general_icon_produce-effect_bg-[a-z]+$`,
+  `^img_general_pitem_\d-\d+$`,
 }
 
 func checkNeedDownload(name string, regList []*regexp.Regexp) bool {
@@ -70,13 +76,13 @@ func (m *OctoManager) saveLocalJson(record map[string]string, path string) {
   }
 }
 
-func (m *OctoManager) Work(keepRaw bool, webab bool) bool {
+func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool) bool {
   cfg := config.GetConfig()
   curRevision := cfg.OctoCacheRevision
   rich.Info("Current octo revision: %d.", curRevision)
   m.OctoDb = DownloadOctoList(curRevision)
   rich.Info("Server octo revision: %d.", m.OctoDb.Revision)
-  if int(m.OctoDb.Revision) == curRevision {
+  if !forceAb && int(m.OctoDb.Revision) == curRevision {
     rich.Info("Octo revision is already up to date, skip downloading assets.")
     return false
   }

@@ -18,6 +18,11 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_general_icon_produce-.+$": (128, 128),
     r"^img_general_pitem_\d-\d{3}$": (256, 256),
     r"^img_general_skillcard_sup-\d_\d{3}$": (256, 256),
+    r"^img_sd_[a-z]{4}_face-00": (256, 256),
+    r"^img_general_icon_produce-effect_pict-\w+$": (128, 128),
+    r"^img_general_icon_exam-\w+$": (128, 128),
+    r"^img_general_icon_produce-effect_bg-[a-z]+$": (128, 128),
+    r"^img_general_pitem_\d-\d+$": (256, 256),
 }
 
 # Configuration
@@ -73,7 +78,9 @@ def main():
         octo_rcd: dict[str, str] = json.load(fp)
 
     diff_rcd = octo_rcd
+    # filter MD5
     diff_rcd = dict(filter(lambda it: upload_rcd.get(it[0]) != it[1], diff_rcd.items()))
+    # filter regex
     diff_rcd = dict(filter(lambda it: filter_assets(it[0]), diff_rcd.items()))
 
     for name, md5 in diff_rcd.items():
