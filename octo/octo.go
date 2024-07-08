@@ -79,10 +79,13 @@ func (m *OctoManager) saveLocalJson(record map[string]string, path string) {
 func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool) bool {
   cfg := config.GetConfig()
   curRevision := cfg.OctoCacheRevision
+  if forceAb {
+    curRevision = 0
+  }
   rich.Info("Current octo revision: %d.", curRevision)
   m.OctoDb = DownloadOctoList(curRevision)
   rich.Info("Server octo revision: %d.", m.OctoDb.Revision)
-  if !forceAb && int(m.OctoDb.Revision) == curRevision {
+  if int(m.OctoDb.Revision) == curRevision {
     rich.Info("Octo revision is already up to date, skip downloading assets.")
     return false
   }

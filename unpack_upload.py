@@ -15,14 +15,10 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_general_csprt-\d-\d{4}_full$": (1820, 1024),
     r"^img_general_cidol-\w+-\d-\d{3}_\d-full$": (1024, 1820),
     r"^img_general_icon_exam-\w+$": (128, 128),
-    r"^img_general_icon_produce-.+$": (128, 128),
-    r"^img_general_pitem_\d-\d{3}$": (256, 256),
+    r"^img_general_icon_produce-.+$": (128, 128), # include effect icons
+    r"^img_general_pitem_\d-\d+$": (256, 256),
     r"^img_general_skillcard_sup-\d_\d{3}$": (256, 256),
     r"^img_sd_[a-z]{4}_face-00": (256, 256),
-    r"^img_general_icon_produce-effect_pict-\w+$": (128, 128),
-    r"^img_general_icon_exam-\w+$": (128, 128),
-    r"^img_general_icon_produce-effect_bg-[a-z]+$": (128, 128),
-    r"^img_general_pitem_\d-\d+$": (256, 256),
 }
 
 # Configuration
