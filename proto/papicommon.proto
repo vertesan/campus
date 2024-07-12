@@ -6,32 +6,6 @@ import "pcommon.proto";
 import "ptransaction.proto";
 import "pmaster.proto";
 
-message DearnessStoryUnlock {
-  string characterId = 1;
-  string storyId = 2;
-}
-message Mission {
-  string missionId = 1;
-  int32 threshold = 2;
-}
-message PvpRateSeasonTop {
-  penum.PvpRateSeasonStatusType statusType = 1;
-  int32 rate = 2;
-  int32 rank = 3;
-  int32 maxDailyPlayCount = 4;
-  int32 remainingDailyPlayCount = 5;
-  int64 currentSeasonStartTime = 6;
-  int64 currentSeasonEndTime = 7;
-}
-message Response {
-  UserData updatedData = 1;
-  UserData deletedData = 2;
-  repeated pmaster.Mission clearMissions = 3;
-  repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 4;
-  repeated DearnessStoryUnlock dearnessStoryUnlocks = 5;
-  repeated string anotherCostumeIds = 6;
-  repeated string anotherCostumeHeadIds = 7;
-}
 message UserData {
   ptransaction.User user = 342861366;
   ptransaction.UserActionPoint userActionPoint = 238317234;
@@ -97,4 +71,30 @@ message UserData {
   repeated ptransaction.UserTutorial userTutorialList = 201375606;
   repeated ptransaction.UserWork userWorkList = 225189857;
   repeated ptransaction.UserWorkCharacter userWorkCharacterList = 192688899;
+}
+message DearnessStoryUnlock {
+  string characterId = 1;
+  string storyId = 2;
+}
+message Mission {
+  string missionId = 1;
+  int32 threshold = 2;
+}
+message PvpRateSeasonTop {
+  penum.PvpRateSeasonStatusType statusType = 1;
+  int32 rate = 2;
+  int32 rank = 3;
+  int32 maxDailyPlayCount = 4;
+  int32 remainingDailyPlayCount = 5;
+  int64 currentSeasonStartTime = 6;
+  int64 currentSeasonEndTime = 7;
+}
+message Response {
+  UserData updatedData = 1;
+  UserData deletedData = 2;
+  repeated pmaster.Mission clearMissions = 3;
+  repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 4;
+  repeated DearnessStoryUnlock dearnessStoryUnlocks = 5;
+  repeated string anotherCostumeIds = 6;
+  repeated string anotherCostumeHeadIds = 7;
 }

@@ -30,6 +30,13 @@ const ENV_CAMPUS_DB_PUT_URL = "CAMPUS_DB_PUT_URL"
 const ENV_CAMPUS_DB_PUT_SECRET = "CAMPUS_DB_PUT_SECRET"
 
 var requiredPutTypes = []string{
+  "Character",
+  "ProduceDescription",
+  "ProduceEffectIcon",
+  "Produce",
+  "ExamInitialDeck",
+  "ProduceDescriptionProduceEffectType",
+  "ProduceDescriptionProduceExamEffectType",
   "SupportCard",
   "ProduceCard",
   "ProduceItem",
@@ -41,9 +48,20 @@ var requiredPutTypes = []string{
   "SupportCardProduceSkillLevelVisual",
   "SupportCardProduceSkillLevelAssist",
   "ProduceSkill",
-  "ProduceDescription",
-  "Character",
-  "ProduceEffectIcon",
+  "ProduceTrigger",
+  "IdolCard",
+  "IdolCardSkin",
+  "IdolCardPotential",
+  "IdolCardPotentialProduceSkill",
+  "IdolCardLevelLimit",
+  "IdolCardLevelLimitProduceSkill",
+  "IdolCardLevelLimitStatusUp",
+  "ProduceStepAuditionDifficulty",
+  "ProduceExamBattleNpcGroup",
+  "ProduceExamBattleConfig",
+  "ProduceExamBattleScoreConfig",
+  "ProduceExamGimmickEffectGroup",
+  "CharacterTrueEndBonus",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {

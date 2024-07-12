@@ -17,7 +17,7 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_general_icon_exam-\w+$": (128, 128),
     r"^img_general_icon_produce-.+$": (128, 128), # include effect icons
     r"^img_general_pitem_\d-\d+$": (256, 256),
-    r"^img_general_skillcard_sup-\d_\d{3}$": (256, 256),
+    r"^img_general_skillcard_.+": (256, 256),
     r"^img_sd_[a-z]{4}_face-00": (256, 256),
 }
 

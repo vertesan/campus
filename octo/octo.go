@@ -29,7 +29,7 @@ var upload_reg_list = []string{
   `^img_general_icon_exam-\w+$`,
   `^img_general_icon_produce-.+$`,
   `^img_general_pitem_\d-\d{3}$`,
-  `^img_general_skillcard_sup-\d_\d{3}$`,
+  `^img_general_skillcard_.+`,
   `^img_sd_[a-z]{4}_face-00`,
 }
 
