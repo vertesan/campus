@@ -98,11 +98,19 @@ func processApiResponse(manager *network.NetworkManager) {
     EmitUnpopulated:   true,
     EmitDefaultValues: false,
   }
+  // Home.Enter
+  homeBytes, err := jsonMarshalOptions.Marshal(manager.Client.HomeEnterResp)
+  if err != nil {
+    panic(err)
+  }
+  master.PutDb("HomeEnter", string(homeBytes))
+  // Hotice.ListAll
   noticeBytes, err := jsonMarshalOptions.Marshal(manager.Client.NoticeListAllResp)
   if err != nil {
     panic(err)
   }
   master.PutDb("NoticeListAll", string(noticeBytes))
+  // PvpRate.Get
   if manager.Client.PvpRateGetResp != nil {
     pvpBytes, err := jsonMarshalOptions.Marshal(manager.Client.PvpRateGetResp)
     if err != nil {
