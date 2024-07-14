@@ -70,6 +70,12 @@ service LoginBonus {
   rpc Check(Empty) returns (LoginBonusCheckResponse);
   rpc Confirm(Empty) returns (LoginBonusConfirmResponse);
 }
+service Notice {
+  rpc ListAll(Empty) returns (NoticeListAllResponse);
+}
+service PvpRate {
+  rpc Get(Empty) returns (PvpRateGetResponse);
+}
 message Empty {}
 
 `

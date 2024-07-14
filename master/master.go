@@ -79,7 +79,9 @@ func UnmarshalPlain(reader io.Reader) (*papi.MasterGetResponse, error) {
   return masterGetResp, nil
 }
 
-func PutDb(remoteUrl string, secret string, name string, jsonDb string) {
+func PutDb(name string, jsonDb string) {
+  remoteUrl := os.Getenv(ENV_CAMPUS_DB_PUT_URL)
+  secret := os.Getenv(ENV_CAMPUS_DB_PUT_SECRET)
   if remoteUrl == "" || secret == "" {
     rich.ErrorThenThrow("Environment variable CAMPUS_DB_PUT_URL or ENV_CAMPUS_DB_PUT_SECRET does not exist.")
   }
@@ -93,6 +95,7 @@ func PutDb(remoteUrl string, secret string, name string, jsonDb string) {
   }
   payload := strings.NewReader(fmt.Sprintf("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"metadata\"\r\n\r\n{}\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"value\"\r\n\r\n%s\r\n-----011000010111000001101001--\r\n\r\n", jsonDb))
   hyper.SendRequest(url, "PUT", headers, payload, 10, 3)
+  rich.Info("Database %q is successfully put to remote db.", name)
 }
 
 func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
@@ -180,10 +183,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
 
     // determine whether this Type needs to be put
     if putDb && slices.Contains(requiredPutTypes, masterTagPack.Type) {
-      remoteUrl := os.Getenv(ENV_CAMPUS_DB_PUT_URL)
-      secret := os.Getenv(ENV_CAMPUS_DB_PUT_SECRET)
-      PutDb(remoteUrl, secret, masterTagPack.Type, jsonDb)
-      rich.Info("Database %q is successfully put to remote db.", masterTagPack.Type)
+      PutDb(masterTagPack.Type, jsonDb)
     }
 
     writeJson(masterTagPack.Type, &jsonDb)

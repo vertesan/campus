@@ -64,10 +64,12 @@ func processAnalysis() {
   analyser.Analyze()
 }
 
-func processMasterDb(flagForceDb bool) {
+func processMasterDbAndApiResp(flagForceDb bool) {
   // simulate login to get master database manifest
   manager := &network.NetworkManager{}
   manager.Login()
+  //
+  processApiResponse(manager)
 
   // compare local db version with server
   cfg := config.GetConfig()
@@ -84,6 +86,30 @@ func processMasterDb(flagForceDb bool) {
   cfg.MasterVersion = serverVer
   cfg.Save()
   os.WriteFile("cache/master_version", []byte(serverVer), 0644)
+}
+
+func processApiResponse(manager *network.NetworkManager) {
+  jsonMarshalOptions := protojson.MarshalOptions{
+    Multiline:     false,
+    AllowPartial:  false,
+    UseProtoNames: true,
+    // use enum numbers in json, this option is different with yaml
+    UseEnumNumbers:    true,
+    EmitUnpopulated:   true,
+    EmitDefaultValues: false,
+  }
+  noticeBytes, err := jsonMarshalOptions.Marshal(manager.Client.NoticeListAllResp)
+  if err != nil {
+    panic(err)
+  }
+  master.PutDb("NoticeListAll", string(noticeBytes))
+  if manager.Client.PvpRateGetResp != nil {
+    pvpBytes, err := jsonMarshalOptions.Marshal(manager.Client.PvpRateGetResp)
+    if err != nil {
+      panic(err)
+    }
+    master.PutDb("PvpRateGet", string(pvpBytes))
+  }
 }
 
 func main() {
@@ -106,7 +132,7 @@ func main() {
   }
 
   if *flagDb {
-    processMasterDb(*flagForceDb)
+    processMasterDbAndApiResp(*flagForceDb)
     if !*flagKeepRaw {
       os.RemoveAll(master.MASTER_RAW_PATH)
     }

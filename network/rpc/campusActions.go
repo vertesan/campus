@@ -1,10 +1,10 @@
 package rpc
 
 import (
-	"fmt"
-	papi "vertesan/campus/proto/papi"
-	"vertesan/campus/utils"
-	"vertesan/campus/utils/rich"
+  "fmt"
+  papi "vertesan/campus/proto/papi"
+  "vertesan/campus/utils"
+  "vertesan/campus/utils/rich"
 )
 
 func (c *CampusClient) systemFirstCheck() {
@@ -143,5 +143,36 @@ func (c *CampusClient) homeEnter() {
   if err != nil {
     panic(err)
   }
+  c.HomeEnterResp = resp
+  utils.UNUSED(resp)
+}
+
+func (c *CampusClient) noticeListAll() {
+  client := papi.NewNoticeClient(c.conn)
+  c.headers["x-app-request-id"] = fmt.Sprint(getTicks())
+  ctx, cancel := c.prepareContext()
+  defer (*cancel)()
+  req := &papi.Empty{}
+  rich.Info("Calling NoticeListAll...")
+  resp, err := client.ListAll(*ctx, req)
+  if err != nil {
+    panic(err)
+  }
+  c.NoticeListAllResp = resp
+  utils.UNUSED(resp)
+}
+
+func (c *CampusClient) pvpRateGet() {
+  client := papi.NewPvpRateClient(c.conn)
+  c.headers["x-app-request-id"] = fmt.Sprint(getTicks())
+  ctx, cancel := c.prepareContext()
+  defer (*cancel)()
+  req := &papi.Empty{}
+  rich.Info("Calling PvpRateGet...")
+  resp, err := client.Get(*ctx, req)
+  if err != nil {
+    panic(err)
+  }
+  c.PvpRateGetResp = resp
   utils.UNUSED(resp)
 }

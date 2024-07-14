@@ -5,6 +5,7 @@ import (
   "time"
   "vertesan/campus/config"
   "vertesan/campus/proto/papi"
+  "vertesan/campus/proto/penum"
 
   "google.golang.org/grpc"
   "google.golang.org/grpc/credentials"
@@ -21,15 +22,18 @@ func init() {
 }
 
 type CampusClient struct {
-  idToken       string // issued by firebase
-  authToken     string // issued by QA
-  masterVersion string
-  appVersion    string
-  serverUrl     string
-  timeout       int
-  headers       map[string]string
-  conn          *grpc.ClientConn
-  MasterResp    *papi.MasterGetResponse
+  idToken           string // issued by firebase
+  authToken         string // issued by QA
+  masterVersion     string
+  appVersion        string
+  serverUrl         string
+  timeout           int
+  headers           map[string]string
+  conn              *grpc.ClientConn
+  MasterResp        *papi.MasterGetResponse
+  HomeEnterResp     *papi.HomeEnterResponse
+  NoticeListAllResp *papi.NoticeListAllResponse
+  PvpRateGetResp    *papi.PvpRateGetResponse
 }
 
 func NewCampusClient(idToken string, appVersion string) *CampusClient {
@@ -80,6 +84,10 @@ func (c *CampusClient) DoLogin() {
     c.loginBonusConfirm()
   }
   c.homeEnter()
+  c.noticeListAll()
+  if c.HomeEnterResp.PvpRateSeasonTop.StatusType != penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_OutOfTerm {
+    c.pvpRateGet()
+  }
 }
 
 func (c *CampusClient) prepareContext() (*context.Context, *context.CancelFunc) {
