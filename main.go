@@ -68,9 +68,10 @@ func processMasterDbAndApiResp(flagForceDb bool) {
   // simulate login to get master database manifest
   manager := &network.NetworkManager{}
   manager.Login()
-  //
-  processApiResponse(manager)
-
+  // put response db
+  if *flagPutDb {
+    processApiResponse(manager)
+  }
   // compare local db version with server
   cfg := config.GetConfig()
   rich.Info("Current local database version: %q.", cfg.MasterVersion)
