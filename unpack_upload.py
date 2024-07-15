@@ -19,6 +19,7 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_general_pitem_\d-\d+$": (256, 256),
     r"^img_general_skillcard_.+": (256, 256),
     r"^img_sd_[a-z]{4}_face-00": (256, 256),
+    r"^img_general_event_.+banner$": (633, 256),
 }
 
 # Configuration

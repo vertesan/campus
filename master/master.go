@@ -62,6 +62,10 @@ var requiredPutTypes = []string{
   "ProduceExamBattleScoreConfig",
   "ProduceExamGimmickEffectGroup",
   "CharacterTrueEndBonus",
+  "PvpRateConfig",
+  "PvpRateCommonProduceCard",
+  "ExamSetting",
+  "StoryEvent",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
