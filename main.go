@@ -81,6 +81,9 @@ func processMasterDbAndApiResp(flagForceDb bool) {
     rich.Info("New database version detected: %q.", serverVer)
     // download master database
     master.DownloadAndDecrypt(manager.Client.MasterResp, *flagPutDb)
+    if *flagPutDb {
+      master.PutDb("Version", serverVer)
+    }
   } else {
     rich.Info("Local database is already up to date, skip downloading database.")
   }
