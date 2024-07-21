@@ -1,16 +1,17 @@
 package main
 
 import (
-  "flag"
-  "os"
-  "vertesan/campus/analyser"
-  "vertesan/campus/config"
-  "vertesan/campus/master"
-  "vertesan/campus/network"
-  "vertesan/campus/octo"
-  "vertesan/campus/utils/rich"
+	"flag"
+	"fmt"
+	"os"
+	"vertesan/campus/analyser"
+	"vertesan/campus/config"
+	"vertesan/campus/master"
+	"vertesan/campus/network"
+	"vertesan/campus/octo"
+	"vertesan/campus/utils/rich"
 
-  "google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 const NEW_AB_FLAG_FILE = "cache/newab_flag"
@@ -82,7 +83,7 @@ func processMasterDbAndApiResp(flagForceDb bool) {
     // download master database
     master.DownloadAndDecrypt(manager.Client.MasterResp, *flagPutDb)
     if *flagPutDb {
-      master.PutDb("Version", serverVer)
+      master.PutDb("Version", fmt.Sprintf(`{"version":"%s"}`, serverVer))
     }
   } else {
     rich.Info("Local database is already up to date, skip downloading database.")
