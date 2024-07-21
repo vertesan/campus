@@ -631,3 +631,183 @@ var LoginBonus_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "papi.proto",
 }
+
+const (
+	Notice_ListAll_FullMethodName = "/client.api.Notice/ListAll"
+)
+
+// NoticeClient is the client API for Notice service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type NoticeClient interface {
+	ListAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*NoticeListAllResponse, error)
+}
+
+type noticeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewNoticeClient(cc grpc.ClientConnInterface) NoticeClient {
+	return &noticeClient{cc}
+}
+
+func (c *noticeClient) ListAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*NoticeListAllResponse, error) {
+	out := new(NoticeListAllResponse)
+	err := c.cc.Invoke(ctx, Notice_ListAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// NoticeServer is the server API for Notice service.
+// All implementations must embed UnimplementedNoticeServer
+// for forward compatibility
+type NoticeServer interface {
+	ListAll(context.Context, *Empty) (*NoticeListAllResponse, error)
+	mustEmbedUnimplementedNoticeServer()
+}
+
+// UnimplementedNoticeServer must be embedded to have forward compatible implementations.
+type UnimplementedNoticeServer struct {
+}
+
+func (UnimplementedNoticeServer) ListAll(context.Context, *Empty) (*NoticeListAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAll not implemented")
+}
+func (UnimplementedNoticeServer) mustEmbedUnimplementedNoticeServer() {}
+
+// UnsafeNoticeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to NoticeServer will
+// result in compilation errors.
+type UnsafeNoticeServer interface {
+	mustEmbedUnimplementedNoticeServer()
+}
+
+func RegisterNoticeServer(s grpc.ServiceRegistrar, srv NoticeServer) {
+	s.RegisterService(&Notice_ServiceDesc, srv)
+}
+
+func _Notice_ListAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NoticeServer).ListAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Notice_ListAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NoticeServer).ListAll(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Notice_ServiceDesc is the grpc.ServiceDesc for Notice service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Notice_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Notice",
+	HandlerType: (*NoticeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListAll",
+			Handler:    _Notice_ListAll_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	PvpRate_Get_FullMethodName = "/client.api.PvpRate/Get"
+)
+
+// PvpRateClient is the client API for PvpRate service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PvpRateClient interface {
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error)
+}
+
+type pvpRateClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPvpRateClient(cc grpc.ClientConnInterface) PvpRateClient {
+	return &pvpRateClient{cc}
+}
+
+func (c *pvpRateClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error) {
+	out := new(PvpRateGetResponse)
+	err := c.cc.Invoke(ctx, PvpRate_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PvpRateServer is the server API for PvpRate service.
+// All implementations must embed UnimplementedPvpRateServer
+// for forward compatibility
+type PvpRateServer interface {
+	Get(context.Context, *Empty) (*PvpRateGetResponse, error)
+	mustEmbedUnimplementedPvpRateServer()
+}
+
+// UnimplementedPvpRateServer must be embedded to have forward compatible implementations.
+type UnimplementedPvpRateServer struct {
+}
+
+func (UnimplementedPvpRateServer) Get(context.Context, *Empty) (*PvpRateGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPvpRateServer) mustEmbedUnimplementedPvpRateServer() {}
+
+// UnsafePvpRateServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PvpRateServer will
+// result in compilation errors.
+type UnsafePvpRateServer interface {
+	mustEmbedUnimplementedPvpRateServer()
+}
+
+func RegisterPvpRateServer(s grpc.ServiceRegistrar, srv PvpRateServer) {
+	s.RegisterService(&PvpRate_ServiceDesc, srv)
+}
+
+func _PvpRate_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PvpRate_ServiceDesc is the grpc.ServiceDesc for PvpRate service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PvpRate_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.PvpRate",
+	HandlerType: (*PvpRateServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _PvpRate_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
