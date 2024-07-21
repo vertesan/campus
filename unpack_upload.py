@@ -23,7 +23,7 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_general_achievement_.+$": (512, 512),
     r"^img_chr_.+full$": (2048, 2048),
     r"^img_chr_.+thumb-circle$": (256, 256),
-    r"^img_general_sign_\w+_\d{2}$`": (1024, 1024),
+    r"^img_general_sign_\w+_\d{2}$": (1024, 1024),
 }
 
 # Configuration
