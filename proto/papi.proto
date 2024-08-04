@@ -713,6 +713,7 @@ message HomeSetCharactersRequest {
   message HomeCharacter {
     penum.HomeType homeType = 1;
     string characterId = 2;
+    bool isRandom = 3;
   }
 }
 message HomeSetCharactersResponse {
@@ -1215,6 +1216,7 @@ message ProduceHighScoreCharacter {
   int32 rank = 2;
   int32 highScore = 3;
   repeated ProduceHighScoreRankReward rankRewards = 4;
+  repeated ProduceHighScoreReward highScoreRewards = 5;
 }
 message ProduceHighScoreGetResponse {
   string titleAssetId = 1;
@@ -1223,6 +1225,9 @@ message ProduceHighScoreGetResponse {
   repeated ProduceHighScoreReward highScoreRewards = 4;
   repeated ProduceHighScoreRankReward rankRewards = 5;
   repeated ProduceHighScoreCharacter characters = 6;
+  string missionGroupId = 7;
+  string dailyMissionGroupId = 8;
+  string missionDailyReleaseGroupId = 9;
   ProduceHighScoreResult result = 50;
   repeated pcommon.StartupNotification startupNotifications = 70;
   int64 startTime = 100;
@@ -1231,10 +1236,16 @@ message ProduceHighScoreGetResponse {
   int64 closeTime = 103;
   papicommon.Response commonResponse = 9999;
 }
+message ProduceHighScoreListRankRewardResponse {
+  repeated ProduceHighScoreRankReward rankRewards = 1;
+  repeated ProduceHighScoreCharacter characters = 2;
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceHighScoreRankReward {
   int32 upperRank = 1;
   int32 lowerRank = 2;
-  repeated pcommon.Reward rewards = 3;
+  int32 borderScore = 3;
+  repeated pcommon.Reward rewards = 4;
 }
 message ProduceHighScoreRankingRequest {
   string characterId = 1;
@@ -1258,6 +1269,7 @@ message ProduceHighScoreResult {
   int32 highScore = 2;
   repeated ProduceHighScoreRankReward rankRewards = 3;
   repeated ProduceHighScoreCharacter characters = 4;
+  repeated pcommon.RewardResult rewardResults = 5;
 }
 message ProduceHighScoreReward {
   int32 score = 1;
@@ -1367,6 +1379,12 @@ message ProduceReportGuildMissionRequest {
 message ProduceReportGuildMissionResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ProduceRerollMemoryRequest {
+  string produceUuid = 1;
+}
+message ProduceRerollMemoryResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceRerollSelectProduceCardRequest {
   string produceUuid = 1;
 }
@@ -1379,6 +1397,7 @@ message ProduceResultRequest {
   int32 manualPhotoCount = 3;
   bool isMemoryProtected = 4;
   string memoryTagId = 5;
+  int32 memoryNumber = 6;
 }
 message ProduceResultResponse {
   repeated pcommon.RewardResult rewardResults = 1;
@@ -1397,6 +1416,9 @@ message ProduceResultResponse {
     int32 characterRank = 5;
     int32 characterHighScore = 6;
     repeated ProduceResultResponse.HighScoreReward highScoreRewards = 7;
+    repeated ProduceResultResponse.HighScoreReward characterHighScoreRewards = 8;
+    repeated pcommon.RewardResult highScoreRewardResults = 9;
+    repeated pcommon.RewardResult characterHighScoreRewardResults = 10;
   }
 }
 message ProduceRetireResponse {
@@ -1762,6 +1784,8 @@ message PvpRateSeasonResult {
   int32 rank = 5;
   int32 rate = 6;
   repeated pcommon.Reward rewards = 7;
+  penum.PvpRateGrade prevSeasonGrade = 8;
+  bool isNotPlayPrevSeason = 9;
 }
 message PvpRateStartRequest {
   penum.PvpRateRivalType rivalType = 1;
@@ -1950,6 +1974,13 @@ message ShopRegisterBirthdayRequest {
 message ShopRegisterBirthdayResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ShopRegisterDelayPurchaseTransactionRequest {
+  string transactionId = 1;
+  string storeTransactionId = 2;
+}
+message ShopRegisterDelayPurchaseTransactionResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message ShopRegisterPurchaseTransactionRequest {
   string shopItemId = 1;
 }
@@ -1980,6 +2011,7 @@ message StartupConfirmRequest {
   }
 }
 message StartupConfirmResponse {
+  repeated pcommon.RewardResult rewardResults = 1;
   papicommon.Response commonResponse = 9999;
 }
 message StepUpGashaProbability {

@@ -83,6 +83,7 @@ message UserData {
   repeated ptransaction.UserProduceProgressSchedule userProduceProgressScheduleList = 22482116;
   repeated ptransaction.UserProduceProgressShop userProduceProgressShopList = 498183736;
   repeated ptransaction.UserProduceProgressSupportCard userProduceProgressSupportCardList = 256246388;
+  repeated ptransaction.UserProduceRerollMemory userProduceRerollMemoryList = 440818481;
   repeated ptransaction.UserProduceStartAchievement userProduceStartAchievementList = 259880526;
   repeated ptransaction.UserProduceStory userProduceStoryList = 117364693;
   repeated ptransaction.UserProduceSupportCardDeck userProduceSupportCardDeckList = 286307933;

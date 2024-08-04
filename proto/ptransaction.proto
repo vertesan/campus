@@ -75,6 +75,7 @@ message UserGuild {
 message UserHomeCharacter {
   penum.HomeType homeType = 2;
   string characterId = 3;
+  bool isRandom = 4;
 }
 message UserIdolCard {
   string idolCardId = 2;
@@ -160,6 +161,7 @@ message UserMissionPass {
   repeated int32 receivedNormalThresholds = 4;
   repeated int32 receivedPremiumThresholds = 5;
   bool hasPremiumPass = 6;
+  bool providedReceivedWeeklyMissionPassPoint = 7;
 }
 message UserMissionPassPoint {
   string missionPassId = 2;
@@ -259,6 +261,9 @@ message UserProduceProgress {
   int32 vocalGrowthRatePermil = 203;
   int32 danceGrowthRatePermil = 204;
   int32 visualGrowthRatePermil = 205;
+  int32 vocalAdditionalLimit = 206;
+  int32 danceAdditionalLimit = 207;
+  int32 visualAdditionalLimit = 208;
   int32 stamina = 220;
   int32 maxStamina = 221;
   int32 staminaRecoverValueRatePermil = 222;
@@ -434,11 +439,16 @@ message UserProduceProgressSupportCard {
   int32 eventParameterAdditionValueUpPermil = 14;
   int32 eventProbabilityUpPermyriad = 15;
   int32 produceCardUpgradePermil = 16;
+  bool eventProduceCardUpgrade = 18;
   message ProduceSkill {
     string id = 1;
     int32 level = 2;
     int32 triggerCount = 3;
   }
+}
+message UserProduceRerollMemory {
+  int32 number = 2;
+  pcommon.Memory resultMemory = 4;
 }
 message UserProduceStartAchievement {
   string achievementId = 2;

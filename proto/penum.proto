@@ -108,6 +108,7 @@ enum ConditionType {
   ConditionType_Login = 6;
   ConditionType_TutorialClear = 7;
   ConditionType_GameStartTutorialClearHour = 8;
+  ConditionType_HomeCharacter = 9;
   ConditionType_ProducerLevel = 10;
   ConditionType_Character = 11;
   ConditionType_FanCount = 12;
@@ -578,6 +579,7 @@ enum ItemType {
   ItemType_SupportCardEnhancePoint = 3;
   ItemType_ActionPointRecovery = 4;
   ItemType_IdolCardLevelLimitMaterial = 5;
+  ItemType_ProduceRerollMemory = 6;
   ItemType_GashaTicket = 7;
   ItemType_Coin = 8;
   ItemType_ExchangeMaterial = 9;
@@ -831,6 +833,8 @@ enum ProduceCampaignType {
   ProduceCampaignType_RewardQuantityUp = 3;
   ProduceCampaignType_ProduceResultRewardAdd = 4;
   ProduceCampaignType_ProduceResultRewardChange = 5;
+  ProduceCampaignType_MemoryRerollCountUp = 6;
+  ProduceCampaignType_MemoryRerollFree = 7;
 }
 enum ProduceCardCategory {
   ProduceCardCategory_Unknown = 0;
@@ -1091,6 +1095,11 @@ enum ProduceEffectType {
   ProduceEffectType_ProduceCardSelectRerollCountUp = 87;
   ProduceEffectType_ProducePointAdditionDisableTrigger = 88;
   ProduceEffectType_LessonLimitUp = 89;
+  ProduceEffectType_ParameterLimitUp = 90;
+  ProduceEffectType_VocalLimitUp = 91;
+  ProduceEffectType_DanceLimitUp = 92;
+  ProduceEffectType_VisualLimitUp = 93;
+  ProduceEffectType_SupportCardEventProduceCardUpgrade = 94;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1119,6 +1128,11 @@ enum ProduceEventType {
   ProduceEventType_CharacterGrowth = 4;
   ProduceEventType_IdolCard = 5;
   ProduceEventType_SupportCard = 6;
+}
+enum ProduceExamAutoCardSelectEvaluationType {
+  ProduceExamAutoCardSelectEvaluationType_Unknown = 0;
+  ProduceExamAutoCardSelectEvaluationType_LessonCoefficient = 1;
+  ProduceExamAutoCardSelectEvaluationType_FullPowerPointCoefficient = 2;
 }
 enum ProduceExamAutoEvaluationType {
   ProduceExamAutoEvaluationType_Unknown = 0;
@@ -1231,6 +1245,17 @@ enum ProduceExamEffectType {
   ProduceExamEffectType_ExamLessonDependParameterBuff = 131;
   ProduceExamEffectType_ExamLessonAddMultipleParameterBuff = 132;
   ProduceExamEffectType_ExamBlockPerUseCardCount = 133;
+  ProduceExamEffectType_ExamChainEffect = 140;
+  ProduceExamEffectType_StanceLock = 141;
+  ProduceExamEffectType_ExamLessonDependStamina = 142;
+  ProduceExamEffectType_ExamBlockAddMultipleAggressive = 143;
+  ProduceExamEffectType_ExamLessonDependStaminaConsumptionSum = 144;
+  ProduceExamEffectType_ExamChainEffectPerPassedTurn = 145;
+  ProduceExamEffectType_ExamChainEffectPerRemainTurn = 146;
+  ProduceExamEffectType_ExamLessonDependPlayCardCountSum = 147;
+  ProduceExamEffectType_ExamDebuffRecover = 148;
+  ProduceExamEffectType_ExamAggressiveValueMultiple = 149;
+  ProduceExamEffectType_ExamItemFireLimitAdd = 150;
 }
 enum ProduceExamFieldStatusType {
   ProduceExamFieldStatusType_Unknown = 0;

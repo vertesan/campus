@@ -376,6 +376,7 @@ message ExamSetting {
   int32 examConcentrationLessonValueMultiplePermil = 9;
   int32 fullPowerPlayableValueAdd = 10;
   int32 examFullPowerLessonValueMultiplePermil = 11;
+  bool examShuffleFixed = 12;
   int32 holdLimit = 13;
   int32 handLimit = 14;
   int32 turnStartDistribute = 15;
@@ -893,6 +894,7 @@ message MeishiIllustrationAsset {
   float leftTopPositionY = 5;
   float rightBottomPositionX = 6;
   float rightBottomPositionY = 7;
+  string name = 8;
   int32 order = 99;
 }
 message MeishiIllustrationAssetList {
@@ -1430,6 +1432,16 @@ message ProduceEventSupportCard {
 message ProduceEventSupportCardList {
   repeated ProduceEventSupportCard list = 1;
 }
+message ProduceExamAutoCardSelectEvaluation {
+  penum.ExamPlayType type = 1;
+  penum.ProduceExamEffectType examEffectType = 2;
+  int32 remainingTerm = 3;
+  penum.ProduceExamAutoCardSelectEvaluationType evaluationType = 4;
+  int32 evaluation = 5;
+}
+message ProduceExamAutoCardSelectEvaluationList {
+  repeated ProduceExamAutoCardSelectEvaluation list = 1;
+}
 message ProduceExamAutoEvaluation {
   penum.ExamPlayType type = 1;
   penum.ProduceExamEffectType examEffectType = 2;
@@ -1601,7 +1613,6 @@ message ProduceGroupList {
 message ProduceHighScore {
   string id = 1;
   string name = 2;
-  string storyGroupId = 6;
   int32 order = 104;
 }
 message ProduceHighScoreList {
@@ -2084,10 +2095,10 @@ message Setting {
   int32 photoNameLengthLimit = 99;
   int32 homeEventEndTimeDisplayHour = 100;
   string idolCardPieceExchangeItemID = 101;
-  string towerAdvAssetID = 102;
   repeated string storyEventMainStoryTipsAssetIDs = 103;
   string officialDiscordURL = 105;
-  string officialYouTubeURL = 106;
+  string officialYouTubeIdolMasterURL = 106;
+  string officialYouTubeHatsuBoshiURL = 107;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2111,6 +2122,7 @@ message Setting {
   int32 produceLessonParameterUpLarge = 1027;
   int32 produceExamProduceCardSuggestMinutes = 1028;
   int32 produceScheduleSelectPlaceStaminaThreshold = 1029;
+  int32 produceMemoryRerollCount = 1033;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;

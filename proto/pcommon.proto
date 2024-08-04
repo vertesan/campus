@@ -380,6 +380,7 @@ message ProduceCampaign {
   int32 remainingCount = 9;
   bool isHalf = 20;
   int32 memoryRentalCount = 30;
+  int32 memoryRerollCount = 60;
   int64 startTime = 97;
   int64 endTime = 98;
   int32 order = 99;
