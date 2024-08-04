@@ -6,6 +6,7 @@ import (
   "os"
   "regexp"
   "slices"
+  "sort"
   "strings"
   "vertesan/campus/utils/rich"
 )
@@ -233,7 +234,15 @@ func analyzeTree(
   sb := new(strings.Builder)
   tsSb := new(strings.Builder)
 
-  for _, tree := range parentTree.children {
+  // to iterate map alphabetically
+  keys := make([]string, 0, len(parentTree.children))
+  for key := range parentTree.children {
+    keys = append(keys, key)
+  }
+  sort.Strings(keys)
+
+  for _, key := range keys {
+    tree := parentTree.children[key]
     if tree.traversed {
       continue
     }
