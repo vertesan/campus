@@ -86,6 +86,9 @@ func (c *CampusClient) DoLogin() {
   c.homeEnter()
   c.noticeListAll()
   if c.HomeEnterResp.PvpRateSeasonTop.StatusType != penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_OutOfTerm {
+    if c.HomeEnterResp.PvpRateSeasonTop.StatusType == penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_NotAttended {
+      c.pvpRateInitialize()
+    }
     c.pvpRateGet()
   }
 }

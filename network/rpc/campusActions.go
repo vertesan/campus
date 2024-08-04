@@ -176,3 +176,17 @@ func (c *CampusClient) pvpRateGet() {
   c.PvpRateGetResp = resp
   utils.UNUSED(resp)
 }
+
+func (c *CampusClient) pvpRateInitialize() {
+  client := papi.NewPvpRateClient(c.conn)
+  c.headers["x-app-request-id"] = fmt.Sprint(getTicks())
+  ctx, cancel := c.prepareContext()
+  defer (*cancel)()
+  req := &papi.Empty{}
+  rich.Info("Calling PvpRateInitialize...")
+  resp, err := client.Initialize(*ctx, req)
+  if err != nil {
+    panic(err)
+  }
+  utils.UNUSED(resp)
+}

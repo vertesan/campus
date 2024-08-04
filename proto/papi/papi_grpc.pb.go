@@ -723,7 +723,8 @@ var Notice_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	PvpRate_Get_FullMethodName = "/client.api.PvpRate/Get"
+	PvpRate_Get_FullMethodName        = "/client.api.PvpRate/Get"
+	PvpRate_Initialize_FullMethodName = "/client.api.PvpRate/Initialize"
 )
 
 // PvpRateClient is the client API for PvpRate service.
@@ -731,6 +732,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PvpRateClient interface {
 	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error)
+	Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateInitializeResponse, error)
 }
 
 type pvpRateClient struct {
@@ -750,11 +752,21 @@ func (c *pvpRateClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOpt
 	return out, nil
 }
 
+func (c *pvpRateClient) Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateInitializeResponse, error) {
+	out := new(PvpRateInitializeResponse)
+	err := c.cc.Invoke(ctx, PvpRate_Initialize_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PvpRateServer is the server API for PvpRate service.
 // All implementations must embed UnimplementedPvpRateServer
 // for forward compatibility
 type PvpRateServer interface {
 	Get(context.Context, *Empty) (*PvpRateGetResponse, error)
+	Initialize(context.Context, *Empty) (*PvpRateInitializeResponse, error)
 	mustEmbedUnimplementedPvpRateServer()
 }
 
@@ -764,6 +776,9 @@ type UnimplementedPvpRateServer struct {
 
 func (UnimplementedPvpRateServer) Get(context.Context, *Empty) (*PvpRateGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedPvpRateServer) Initialize(context.Context, *Empty) (*PvpRateInitializeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Initialize not implemented")
 }
 func (UnimplementedPvpRateServer) mustEmbedUnimplementedPvpRateServer() {}
 
@@ -796,6 +811,24 @@ func _PvpRate_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PvpRate_Initialize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).Initialize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_Initialize_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).Initialize(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PvpRate_ServiceDesc is the grpc.ServiceDesc for PvpRate service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -806,6 +839,10 @@ var PvpRate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _PvpRate_Get_Handler,
+		},
+		{
+			MethodName: "Initialize",
+			Handler:    _PvpRate_Initialize_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

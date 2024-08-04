@@ -75,6 +75,7 @@ service Notice {
 }
 service PvpRate {
   rpc Get(Empty) returns (PvpRateGetResponse);
+  rpc Initialize(Empty) returns (PvpRateInitializeResponse);
 }
 message Empty {}
 
