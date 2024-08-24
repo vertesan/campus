@@ -5,25 +5,15 @@ import (
   "os"
   "testing"
   "vertesan/campus/analyser"
-  "vertesan/campus/master"
   "vertesan/campus/network"
   "vertesan/campus/network/rpc"
   "vertesan/campus/octo"
   "vertesan/campus/proto/papi"
   "vertesan/campus/utils"
 
+  "google.golang.org/protobuf/encoding/protojson"
   "google.golang.org/protobuf/proto"
 )
-
-func TestPutDb(t *testing.T) {
-  remoteUrl := ""
-  secret := ""
-  jsonDb, err := os.ReadFile("cache/masterJson/ProduceSkill.json")
-  if err != nil {
-    panic(err)
-  }
-  master.PutDb(remoteUrl, secret, "ProduceSkill", string(jsonDb))
-}
 
 func TestDecryptOctoList(t *testing.T) {
   fs, err := os.Open("cache/octorespon.bin")
@@ -62,14 +52,30 @@ func TestSerialize(t *testing.T) {
 }
 
 func TestDeserializeFile(t *testing.T) {
-  raw, err := os.ReadFile("cache/LoginBonusCheckRespEmpty.bin")
+  fileName := "End"
+  raw, err := os.ReadFile("cache/" + fileName)
   if err != nil {
     panic(err)
   }
   bodyBytes := rpc.Deserialize(raw[5:])
-  var pb papi.LoginBonusCheckResponse
+  var pb papi.ProduceEndResponse
   if err := proto.Unmarshal(bodyBytes, &pb); err != nil {
     t.Fatalf("Cannot unmarshal message. %s", err)
+  }
+  marshalOptions := protojson.MarshalOptions{
+    Multiline:         true,
+    AllowPartial:      false,
+    UseProtoNames:     true,
+    UseEnumNumbers:    false,
+    EmitUnpopulated:   true,
+    EmitDefaultValues: false,
+  }
+  jsonBytes, err := marshalOptions.Marshal(&pb)
+  if err != nil {
+    panic(err)
+  }
+  if err := os.WriteFile("cache/"+fileName+".json", jsonBytes, 0644); err != nil {
+    panic(err)
   }
 }
 
