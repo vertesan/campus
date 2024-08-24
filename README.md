@@ -16,8 +16,8 @@ go mod download
 env GOOS=linux GOARCH=amd64 CGO_ENABLED=1 CC=gcc go build -ldflags '-s -w' .
 ```
 
-Some dependencies requires [CGO](https://pkg.go.dev/cmd/cgo) enabled. According to your developing environment, you may need to change `GOOS=windows CC=x86_64-w64-mingw32-gcc` or other related environment variables, please refer to the [documentation](https://pkg.go.dev/cmd/go#hdr-Environment_variables) for detailed information.
-Required dependencies are listed in [go.mod](./go.mod).
+Some dependencies require [CGO](https://pkg.go.dev/cmd/cgo) enabled. According to your developing environment, you may need to change `GOOS=windows CC=x86_64-w64-mingw32-gcc` or other related environment variables, please refer to the [documentation](https://pkg.go.dev/cmd/go#hdr-Environment_variables) for detailed information.
+Required dependencies are listed in [`go.mod`](./go.mod).
 
 ### Docker
 
