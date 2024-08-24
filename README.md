@@ -23,7 +23,7 @@ Required dependencies are listed in [go.mod](./go.mod).
 
 Get our pre-built docker image from https://github.com/vertesan/campus/pkgs/container/campus.
 
-You must create a empty file named `config.yaml` and a empty directory named `cache` in advance if they don't exist.
+You must create an empty file named `config.yaml` and an empty directory named `cache` in advance if they don't exist.
 
 ```bash
 touch config.yaml
