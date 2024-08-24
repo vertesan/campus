@@ -3,7 +3,7 @@
 Background cronjob for a certain repository.
 
 > [!IMPORTANT]  
-> This program is not designated for any evil purpose however according to the way it works, it can be, just like any other technologies, altered for malicious intention. We choose to make it open source because we believe the innovation and creativity of the whole great open source community can create something amazing based on it. The developers of the project hereby declare that we strongly oppose any malicious uses against the original purpose. Please always remember it's not the technology do the harm, it's the people wielding it.
+> This program is not designated for any evil purpose however according to the way it works, it can be, just like any other technologies, altered for malicious intention. We choose to make it open source because we believe the innovation and creativity of the whole great open source community can create something amazing based on it. The developers of the project hereby declare that we strongly oppose any malicious uses against the original purpose. Please always remember it's not the technology itself does the harm, it's the people wielding it.
 
 ## Usage
 
@@ -16,7 +16,7 @@ go mod download
 env GOOS=linux GOARCH=amd64 CGO_ENABLED=1 CC=gcc go build -ldflags '-s -w' .
 ```
 
-Some dependencies require [CGO](https://pkg.go.dev/cmd/cgo) enabled. According to your developing environment, you may need to change `GOOS=windows CC=x86_64-w64-mingw32-gcc` or other related environment variables, please refer to the [documentation](https://pkg.go.dev/cmd/go#hdr-Environment_variables) for detailed information.
+Some dependencies require [CGO](https://pkg.go.dev/cmd/cgo) enabled. According to your developing environment, you may need to change `GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc` or other related environment variables, please refer to the [documentation](https://pkg.go.dev/cmd/go#hdr-Environment_variables) for detailed information.
 Required dependencies are listed in [`go.mod`](./go.mod).
 
 ### Docker
@@ -73,7 +73,7 @@ P.S. To get the firebase refresh token you will need to find a way to intercept 
 
 ## Configurations
 
-After the first successful running, a `config.yaml` will be automatically created in the root directory. You can safely edit it if you want to tweak something manually.
+After the first successful run, a `config.yaml` will be automatically created in the root directory. You can safely edit it if you want to tweak something manually.
 
 ## Scripts
 
