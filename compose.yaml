@@ -4,7 +4,7 @@ name: campus
 services:
   campus:
     container_name: campus
-    image: vertesan/campus:latest
+    image: ghcr.io/vertesan/campus:latest
     command: ['-h'] # edit command to fit your needs
     restart: no
     volumes:
