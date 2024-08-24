@@ -1,0 +1,20 @@
+version: "3.9"
+name: campus
+
+services:
+  campus:
+    container_name: campus
+    image: vertesan/campus:latest
+    command: ['-h'] # edit command to fit your needs
+    restart: no
+    volumes:
+      - type: bind
+        source: ./config.yaml
+        target: /app/config.yaml
+        read_only: false
+      - ./cache:/app/cache:rw
+    networks:
+      - campus
+
+networks:
+  campus:
