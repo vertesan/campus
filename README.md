@@ -2,7 +2,7 @@
 
 Background cronjob for a certain repository.
 
-> [!WARNING]  
+> [!IMPORTANT]  
 > This program is not designated for any evil purpose however according to the way it works, it can be, just like any other technologies, altered for malicious intention. We choose to make it open source because we believe the innovation and creativity of the whole great open source community can create something amazing based on it. The developers of the project hereby declare that we strongly oppose any malicious uses against the original purpose. Please always remember it's not the technology do the harm, it's the people wielding it.
 
 ## Usage
@@ -21,7 +21,16 @@ Required dependencies are listed in [go.mod](./go.mod).
 
 ### Docker
 
-WIP.
+Get our pre-built docker image from https://github.com/vertesan/campus/pkgs/container/campus.
+
+You must create a empty file named `config.yaml` and a empty directory named `cache` in advance if they don't exist.
+
+```bash
+touch config.yaml
+mkdir cache
+```
+
+After that run `docker compose up` to see the results. By default the container run with an option `-h` to print the CLI instructions and returns, you can change this behaviour to fit your needs by editing [`compose.yaml`](./compose.yaml).
 
 ## CLI
 
