@@ -28,4 +28,3 @@ config.yaml
 .vscode/
 campus
 venv/
-webdata/
