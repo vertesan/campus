@@ -71,6 +71,9 @@ To make campus work properly, you must hand over your firebase refresh token as 
 
 P.S. To get the firebase refresh token you will need to find a way to intercept the HTTPS traffic and that is not the content of this README.
 
+> [!WARNING]  
+> Never use your main account token if it is precious to you. There is no guarantee that our behaviors cannot be detected by the official team.
+
 ## Configurations
 
 After the first successful run, a `config.yaml` will be automatically created in the root directory. You can safely edit it if you want to tweak something manually.
@@ -85,3 +88,7 @@ After the first successful run, a `config.yaml` will be automatically created in
 ## License
 
 AGPL-3.0 license
+
+## Special Thanks
+
+Thanks [this article](https://blog.vibbit.me/2024/05/gkms-reverse/) for offering lots of clues so that we can make everything possible.
