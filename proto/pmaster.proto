@@ -244,22 +244,24 @@ message Costume {
   string name = 3;
   string motifId = 4;
   string description = 5;
-  string costumeGroupId = 6;
+  string costumeColorGroupId = 12;
   string costumeHeadId = 7;
   string voiceGroupId = 8;
   penum.ResourceOriginType resourceOriginType = 9;
   string targetId = 10;
   bool isTraining = 11;
+  repeated penum.CostumeFeatureType invalidCostumeFeatureTypes = 13;
   string viewConditionSetId = 97;
   int64 viewStartTime = 98;
   int32 order = 99;
 }
-message CostumeGroup {
+message CostumeColorGroup {
   string id = 1;
-  string costumeHeadId = 2;
+  repeated string costumeHeadIds = 2;
+  string idolCardSkinId = 3;
 }
-message CostumeGroupList {
-  repeated CostumeGroup list = 1;
+message CostumeColorGroupList {
+  repeated CostumeColorGroup list = 1;
 }
 message CostumeHead {
   string id = 1;
@@ -292,6 +294,15 @@ message CostumeMotion {
 message CostumeMotionList {
   repeated CostumeMotion list = 1;
 }
+message CostumePhotoGroup {
+  string id = 1;
+  string characterId = 2;
+  int32 number = 3;
+  repeated string costumeIds = 4;
+}
+message CostumePhotoGroupList {
+  repeated CostumePhotoGroup list = 1;
+}
 message DearnessStoryCampaign {
   string id = 1;
   string characterId = 2;
@@ -302,9 +313,17 @@ message DearnessStoryCampaign {
 message DearnessStoryCampaignList {
   repeated DearnessStoryCampaign list = 1;
 }
+message DeepLinkTransition {
+  string type = 2;
+}
+message DeepLinkTransitionList {
+  repeated DeepLinkTransition list = 1;
+}
 message EffectGroup {
   string id = 1;
   string name = 2;
+  penum.ProduceExamEffectType examEffectType = 3;
+  penum.ProduceEffectType produceEffectType = 4;
   bool hiddenFilter = 8;
   int32 order = 99;
 }
@@ -576,6 +595,7 @@ message IdolCard {
   string beforeProduceItemId = 44;
   string afterProduceItemId = 45;
   penum.ProduceExamEffectType examEffectType = 48;
+  string produceChallengeSlotId = 49;
   string potentialRankVoiceAssetId = 72;
   string produceSelectVoiceAssetId = 75;
   string produceScheduleFrontVoiceGroupId = 76;
@@ -874,6 +894,7 @@ message MeishiBaseAsset {
   string id = 1;
   string name = 2;
   bool isDefault = 3;
+  penum.MeishiBaseAssetType meishiBaseAssetType = 4;
   int32 order = 99;
 }
 message MeishiBaseAssetList {
@@ -1130,6 +1151,7 @@ message Music {
   int32 shortVersionEndMilliseconds = 12;
   string viewConditionSetId = 13;
   string unlockConditionSetId = 14;
+  string produceLiveUnlockItemConditionSetId = 15;
   string externalUrl = 18;
   int64 viewStartTime = 98;
   int32 order = 99;
@@ -1151,14 +1173,91 @@ message MusicSinger {
   int32 number = 2;
   string characterId = 3;
   string idolCardId = 5;
+  string idolCardSkinId = 6;
 }
 message MusicSingerList {
   repeated MusicSinger list = 1;
+}
+message PhotoBackground {
+  string id = 1;
+  string name = 2;
+  string bgmAssetId = 3;
+  penum.PhotoBackgroundCategory category = 4;
+  int32 maxCharacterCount = 5;
+  repeated int32 enableLookTargetPositionNumbers = 6;
+  string backgroundAssetId = 7;
+  repeated penum.PhotoBackgroundTimeType timeTypes = 8;
+  string photoBackgroundPrefab = 9;
+  string sceneLayoutId = 10;
+  string costumePhotoGroup = 11;
+  string viewConditionSetId = 12;
+  string unlockConditionSetId = 13;
+  int32 order = 99;
+}
+message PhotoBackgroundList {
+  repeated PhotoBackground list = 1;
+}
+message PhotoLookTargetVoiceCharacter {
+  string characterId = 1;
+  int32 number = 2;
+  string voiceAssetId = 3;
+}
+message PhotoLookTargetVoiceCharacterList {
+  repeated PhotoLookTargetVoiceCharacter list = 1;
+}
+message PhotoPose {
+  string id = 1;
+  string photoBackgroundId = 2;
+  repeated int32 cameraNumbers = 3;
+  repeated int32 positionNumbers = 4;
+  string characterId = 5;
+  penum.PhotoPoseMotionType motionType = 6;
+  string name = 7;
+  penum.PhotoLookTargetType lookTargetType = 8;
+  repeated string motionAssetIds = 9;
+  repeated string facialAssetIds = 10;
+  repeated string propAssetIds = 11;
+  string photoReactionVoiceGroupId = 12;
+  string photoWaitVoiceGroupId = 13;
+  string viewConditionSetId = 14;
+  string unlockConditionSetId = 15;
+  int32 order = 99;
+}
+message PhotoPoseList {
+  repeated PhotoPose list = 1;
+}
+message PhotoReactionVoiceGroup {
+  string id = 1;
+  int32 number = 2;
+  string poseVoiceAssetId = 3;
+  int32 poseVoiceDelayMilliseconds = 4;
+  string reactionVoiceAssetId = 5;
+  int32 reactionVoiceDelayMilliseconds = 6;
+}
+message PhotoReactionVoiceGroupList {
+  repeated PhotoReactionVoiceGroup list = 1;
+}
+message PhotoWaitVoiceCharacter {
+  string characterId = 1;
+  int32 number = 2;
+  string voiceAssetId = 3;
+}
+message PhotoWaitVoiceCharacterList {
+  repeated PhotoWaitVoiceCharacter list = 1;
+}
+message PhotoWaitVoiceGroup {
+  string id = 1;
+  int32 number = 2;
+  string voiceAssetId = 3;
+}
+message PhotoWaitVoiceGroupList {
+  repeated PhotoWaitVoiceGroup list = 1;
 }
 message Produce {
   string id = 1;
   string name = 2;
   int32 baseStepLevel = 3;
+  string challengeViewConditionSetId = 11;
   string viewConditionSetId = 12;
   string unlockConditionSetId = 13;
   string examSettingId = 19;
@@ -1265,6 +1364,7 @@ message ProduceCardSearch {
   int32 staminaMax = 16;
   penum.ProduceExamEffectType examEffectType = 17;
   repeated string effectGroupIds = 18;
+  bool isSelf = 19;
 }
 message ProduceCardSearchList {
   repeated ProduceCardSearch list = 1;
@@ -1317,6 +1417,24 @@ message ProduceCardTag {
 message ProduceCardTagList {
   repeated ProduceCardTag list = 1;
 }
+message ProduceChallengeCharacter {
+  string produceId = 1;
+  string characterId = 2;
+  string unlockConditionSetId = 3;
+}
+message ProduceChallengeCharacterList {
+  repeated ProduceChallengeCharacter list = 1;
+}
+message ProduceChallengeSlot {
+  string id = 1;
+  string produceId = 2;
+  int32 number = 3;
+  string produceItemChallengeGroupId = 4;
+  string unlockDescription = 6;
+}
+message ProduceChallengeSlotList {
+  repeated ProduceChallengeSlot list = 1;
+}
 message ProduceDescription {
   string id = 1;
   string name = 3;
@@ -1325,6 +1443,14 @@ message ProduceDescription {
 }
 message ProduceDescriptionList {
   repeated ProduceDescription list = 1;
+}
+message ProduceDescriptionProduceCardGrowEffectType {
+  penum.ProduceCardGrowEffectType type = 1;
+  string name = 2;
+  string produceDescriptionId = 3;
+}
+message ProduceDescriptionProduceCardGrowEffectTypeList {
+  repeated ProduceDescriptionProduceCardGrowEffectType list = 1;
 }
 message ProduceDescriptionProduceEffectType {
   penum.ProduceEffectType type = 1;
@@ -1544,6 +1670,7 @@ message ProduceExamEffect {
   string chainProduceExamEffectId = 17;
   string produceExamStatusEnchantId = 18;
   string produceCardStatusEnchantId = 19;
+  string produceCardGrowEffectId = 20;
 }
 message ProduceExamEffectList {
   repeated ProduceExamEffect list = 1;
@@ -1637,6 +1764,7 @@ message ProduceItem {
   string originSupportCardId = 19;
   bool isUpgraded = 20;
   repeated string effectGroupIds = 21;
+  bool isChallenge = 22;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -1644,6 +1772,14 @@ message ProduceItem {
     string produceTriggerId = 1;
     string produceItemEffectId = 2;
   }
+}
+message ProduceItemChallengeGroup {
+  string id = 1;
+  string produceItemId = 2;
+  int32 lessonLimitUpScore = 3;
+}
+message ProduceItemChallengeGroupList {
+  repeated ProduceItemChallengeGroup list = 1;
 }
 message ProduceItemEffect {
   string id = 1;
@@ -2055,7 +2191,6 @@ message Setting {
   int32 memoryPowerStaminaCoefficientPermil = 46;
   int32 memoryPowerProduceResourceEvaluationCoefficientPermil = 47;
   string seminarExamSettingID = 50;
-  int32 movieLimitCount = 51;
   string initialUserName = 53;
   string towerExamSettingID = 54;
   int32 coinGashaNoticeDrawCount = 55;
@@ -2099,6 +2234,13 @@ message Setting {
   string officialDiscordURL = 105;
   string officialYouTubeIdolMasterURL = 106;
   string officialYouTubeHatsuBoshiURL = 107;
+  repeated string storyEventGuildMissionTipAssetIDs = 108;
+  int32 photoPoseWaitVoicePlayIntervalSeconds = 109;
+  string photoBackgroundDefaultBGMAssetID = 110;
+  int32 photoMaxShootingCount = 111;
+  int32 photoAutoShootingCount = 112;
+  string meishiEditCustomUnlockConditionSetID = 113;
+  string photoIdolViewConditionSetID = 114;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2252,6 +2394,7 @@ message StoryGroup {
   string viewConditionSetId = 5;
   string characterId = 6;
   repeated string storyIds = 7;
+  string storyEventId = 9;
   int32 order = 8;
 }
 message StoryGroupList {

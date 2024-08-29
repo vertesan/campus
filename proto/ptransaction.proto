@@ -100,6 +100,10 @@ message UserItem {
 }
 message UserMeishi {
   int32 number = 2;
+  string imagePath = 3;
+  repeated string useUserMemoryIds = 4;
+  repeated string useUserPhotoIds = 5;
+  repeated string useUserMovieIds = 6;
   int32 baseLayoutNumber = 100;
   string baseUserMemoryId = 117;
   string baseUserPhotoId = 118;
@@ -136,6 +140,9 @@ message UserMemory {
   int32 stamina = 33;
   repeated pcommon.ProduceCard examBattleProduceCards = 36;
   repeated string examBattleProduceItemIds = 37;
+  penum.ProduceLiveType produceLiveType = 100;
+  string liveCostumeId = 101;
+  string liveCostumeHeadId = 102;
   message MemoryAbility {
     string id = 1;
     int32 level = 2;
@@ -181,6 +188,8 @@ message UserMoney {
 message UserMovie {
   string userMovieId = 2;
   string moviePath = 3;
+  int32 retakeCount = 4;
+  int32 meishiNumber = 5;
 }
 message UserMusic {
   string musicId = 2;
@@ -192,6 +201,17 @@ message UserPhoto {
   string name = 5;
   int64 shotTime = 6;
   bool isProtected = 7;
+  repeated string characterIds = 8;
+  string photoBackgroundId = 9;
+}
+message UserPhotoBackground {
+  string photoBackgroundId = 2;
+}
+message UserPhotoPose {
+  string photoPoseId = 2;
+}
+message UserPreference {
+  penum.PhotoButtonExecuteType photoButtonExecuteType = 2;
 }
 message UserProduce {
   string produceId = 2;
@@ -205,8 +225,18 @@ message UserProduceCard {
   string produceCardId = 2;
   int32 produceCardUpgradeCount = 3;
 }
+message UserProduceCharacter {
+  string characterId = 2;
+  string produceId = 3;
+  int32 unlockChallengeSlotNumber = 7;
+}
 message UserProduceDrink {
   string produceDrinkId = 2;
+}
+message UserProduceIdolCard {
+  string produceId = 2;
+  string idolCardId = 3;
+  repeated string challengeProduceItemIds = 10;
 }
 message UserProduceItem {
   string produceItemId = 2;
@@ -283,6 +313,9 @@ message UserProduceProgress {
   repeated string produceDrinkIds = 400;
   int32 produceDrinkGetDisableTurn = 401;
   int32 auditionEffectParameterBonusPermil = 504;
+  int32 auditionNpcEnhancePermil = 505;
+  int32 eventSchoolStaminaPermil = 550;
+  int32 eventActivityProducePointPermil = 551;
   int32 examSeedValue = 600;
   string produceExamGimmickEffectGroupId = 601;
   repeated UserProduceProgress.ExamStatusEnchant examStatusEnchants = 607;
@@ -293,6 +326,7 @@ message UserProduceProgress {
   pcommon.ProduceLessonGrowthResult lessonGrowthResult = 618;
   pcommon.ProduceExamEndResult examEndResult = 620;
   int32 lessonLimitUpScore = 622;
+  int32 examExtraTurn = 625;
   penum.ProduceLiveType liveType = 650;
   int32 lessonPresentAdditionalProduceCardRewardCount = 700;
   int32 shopProduceCardUpgradePrice = 800;
@@ -531,6 +565,7 @@ message UserWork {
   int64 lastSkippedTime = 8;
   int32 skipCount = 9;
   int32 totalFinishCount = 10;
+  bool fixedIsExcellent = 11;
 }
 message UserWorkCharacter {
   string characterId = 2;

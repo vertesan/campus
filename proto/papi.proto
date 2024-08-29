@@ -229,6 +229,7 @@ message ExchangeItem {
   int32 exchangeLimit = 6;
   int32 exchangedCount = 7;
   int64 nextResetTime = 8;
+  string viewConditionSetId = 14;
   string unlockConditionSetId = 9;
   bool unlocked = 10;
   bool noti = 11;
@@ -647,6 +648,7 @@ message GuildTopResponse {
     repeated GuildMemberInfo joinRequestList = 13;
     repeated DonationRequest donationRequestList = 14;
     GuildTopResponse.HomeInfo.ReceivedDonationInfo receivedDonationInfo = 15;
+    bool isInEvent = 16;
     message ReceivedDonationInfo {
       string guildDonationItemId = 1;
       repeated GuildDonationInfo donationList = 2;
@@ -865,6 +867,14 @@ message MeishiFollowRequest {
 message MeishiFollowResponse {
   papicommon.Response commonResponse = 9999;
 }
+message MeishiGetDetailRequest {
+  string publicUserId = 1;
+  int32 number = 2;
+}
+message MeishiGetDetailResponse {
+  pcommon.Meishi meishi = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message MeishiGetRequest {
   string publicUserId = 1;
 }
@@ -880,6 +890,7 @@ message MeishiListFollowResponse {
     pcommon.Meishi meishi = 1;
     int64 followTime = 2;
     int64 lastLoginTime = 3;
+    string userName = 4;
   }
 }
 message MeishiListResponse {
@@ -914,6 +925,7 @@ message MeishiUpdateRequest {
   MeishiUpdateRequest.MeishiBase meishiBase = 2;
   repeated MeishiUpdateRequest.Object objects = 3;
   int32 order = 4;
+  string meishiImageId = 5;
   message MeishiBase {
     int32 layoutNumber = 1;
     bool vertical = 2;
@@ -936,6 +948,15 @@ message MeishiUpdateRequest {
     bool displayComment = 28;
     string achievementId = 40;
     string meishiIllustrationAssetId = 51;
+    string idolCardSkinId = 60;
+    string supportCardId = 61;
+    string produceCardId = 62;
+    string produceItemId = 63;
+    string produceDrinkId = 64;
+    string userPhotoId = 65;
+    string userMemoryId = 66;
+    string userMovieId = 67;
+    string meishiBaseAssetId = 68;
     string meishiTextColorId = 100;
     int32 positionX = 101;
     int32 positionY = 102;
@@ -943,6 +964,7 @@ message MeishiUpdateRequest {
     bool lock = 104;
     bool background = 105;
     int32 layer = 106;
+    string metadata = 999;
   }
 }
 message MeishiUpdateResponse {
@@ -1047,6 +1069,7 @@ message MoneyReceiveResponse {
 }
 message MovieCreateRequest {
   string userMovieId = 2;
+  int32 meishiNumber = 3;
 }
 message MovieCreateResponse {
   papicommon.Response commonResponse = 9999;
@@ -1055,6 +1078,13 @@ message MovieDeleteRequest {
   repeated string userMovieIds = 1;
 }
 message MovieDeleteResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MovieRetakeRequest {
+  string userMovieId = 1;
+  string meishiImageId = 2;
+}
+message MovieRetakeResponse {
   papicommon.Response commonResponse = 9999;
 }
 message MusicSendActionLogRequest {
@@ -1121,9 +1151,31 @@ message NoticeUpdateDetailTimeRequest {
 message NoticeUpdateDetailTimeResponse {
   papicommon.Response commonResponse = 9999;
 }
+message PhotoCreateByMemoryRequest {
+  string userMemoryId = 1;
+}
+message PhotoCreateByMemoryResponse {
+  string userPhotoId = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message PhotoCreateIdolRequest {
+  repeated PhotoCreateIdolRequest.CharacterSetting characterSettings = 1;
+  repeated string userPhotoIds = 2;
+  string photoBackgroundId = 3;
+  message CharacterSetting {
+    string characterId = 1;
+    string costumeId = 2;
+    string costumeHeadId = 3;
+  }
+}
+message PhotoCreateIdolResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message PhotoCreateRequest {
   string idolCardId = 1;
   repeated string userPhotoIds = 2;
+  string costumeId = 3;
+  string costumeHeadId = 4;
 }
 message PhotoCreateResponse {
   papicommon.Response commonResponse = 9999;
@@ -1146,6 +1198,13 @@ message PhotoUpdateProtectionRequest {
   bool isProtected = 2;
 }
 message PhotoUpdateProtectionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message PreferenceUpdateRequest {
+  penum.PhotoButtonExecuteType photoButtonExecuteType = 1;
+  repeated penum.PreferenceType preferenceTypes = 999;
+}
+message PreferenceUpdateResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceActivateEffectRequest {
@@ -1378,6 +1437,9 @@ message ProduceReportGuildMissionRequest {
   string produceUuid = 1;
 }
 message ProduceReportGuildMissionResponse {
+  repeated pcommon.GuildMission guildMissions = 1;
+  repeated pcommon.GuildMissionHistory guildMissionHistories = 2;
+  pcommon.StoryEventProduceResult storyEventProduceResult = 3;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceRerollMemoryRequest {
@@ -1404,6 +1466,7 @@ message ProduceResultResponse {
   repeated pcommon.RewardResult rewardResults = 1;
   pcommon.StoryEventProduceResult storyEventProduceResult = 2;
   ProduceResultResponse.HighScoreUpdateResult highScoreUpdateResult = 3;
+  repeated int32 unlockChallengeSlotNumbers = 4;
   papicommon.Response commonResponse = 9999;
   message HighScoreReward {
     int32 score = 1;
@@ -1441,6 +1504,7 @@ message ProduceStartRequest {
   bool isChangeCostumeProduce = 7;
   bool isChangeCostumeLive = 8;
   bool isChangeCostumeTraining = 9;
+  repeated string challengeProduceItemIds = 10;
   string clientProduceUuid = 99;
   message Memory {
     string userMemoryId = 1;
@@ -1584,6 +1648,12 @@ message ProduceTopResponse {
   string storyEventConsumptionItemId = 5;
   pcommon.StoryEventBonus storyEventBonus = 6;
   repeated string produceHighScoreCharacterIds = 7;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceUnlockPictureBookLiveRequest {
+  string musicId = 1;
+}
+message ProduceUnlockPictureBookLiveResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceUpdateMemoryDeck {
@@ -1995,6 +2065,7 @@ message ShopTopResponse {
   bool itemExchangeNoti = 3;
   bool dailyExchangeNoti = 4;
   bool coinGashaNoti = 5;
+  bool ticketExchangeNoti = 7;
   repeated pcommon.StartupNotification startupNotifications = 6;
   papicommon.Response commonResponse = 9999;
   message Shop {
@@ -2015,9 +2086,38 @@ message StartupConfirmResponse {
   repeated pcommon.RewardResult rewardResults = 1;
   papicommon.Response commonResponse = 9999;
 }
+message StartupListNotificationsRequest {
+  penum.StartupNotificationDisplayType displayType = 1;
+  string targetId = 2;
+}
+message StartupListNotificationsResponse {
+  repeated pcommon.StartupNotification notifications = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message StepUpGashaProbability {
   int32 step = 1;
   DefaultGashaProbability defaultGashaProbability = 2;
+}
+message StoryEventListGuildMissionRequest {
+  string storyEventId = 1;
+}
+message StoryEventListGuildMissionResponse {
+  repeated pcommon.GuildMission guildMissions = 1;
+  repeated pcommon.GuildMissionHistory guildMissionHistories = 2;
+  bool canReceive = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message StoryEventReceiveGuildMissionRequest {
+  string storyEventId = 1;
+  repeated string storyEventGuildMissionIds = 2;
+}
+message StoryEventReceiveGuildMissionResponse {
+  repeated StoryEventReceiveGuildMissionResponse.ReceiveResult receiveResults = 2;
+  papicommon.Response commonResponse = 9999;
+  message ReceiveResult {
+    pcommon.GuildMissionHistory guildMissionHistory = 1;
+    pcommon.RewardResult rewardResult = 2;
+  }
 }
 message StoryEventTopRequest {
   string storyEventId = 1;
@@ -2049,6 +2149,8 @@ message StoryEventTopResponse {
   repeated pcommon.StoryEventPointReward storyEventPointRewards = 21;
   int64 currentPoint = 22;
   repeated pcommon.StartupNotification startupNotifications = 50;
+  bool isJoinedGuild = 51;
+  bool guildMissionNoti = 52;
   int64 startTime = 101;
   int64 endTime = 102;
   int64 closeTime = 103;
@@ -2178,6 +2280,8 @@ message TicketExchangeItem {
   string id = 1;
   repeated pcommon.Reward rewards = 2;
   int32 exchangedCount = 3;
+  bool unlocked = 4;
+  string unlockConditionSetId = 5;
   int32 order = 99;
 }
 message TicketExchangeListItemsRequest {
@@ -2288,6 +2392,7 @@ message TowerTopResponse {
   int32 previousTotalClearRank = 2;
   int32 nextTotalClearRank = 3;
   pcommon.Reward nextReward = 4;
+  repeated pcommon.StartupNotification startupNotifications = 5;
   papicommon.Response commonResponse = 9999;
   message Tower {
     string id = 1;

@@ -91,8 +91,10 @@ message Event {
   string missionDailyReleaseGroupId = 8;
   string missionPanelSheetGroupId = 9;
   string storyGroupId = 10;
+  string itemId = 11;
   int64 startTime = 100;
   int64 endTime = 101;
+  int64 fixRankTime = 99;
   int64 closeTime = 102;
   int32 priority = 103;
 }
@@ -274,6 +276,33 @@ message GashaStepUpStep {
   repeated Reward bonusRewards = 5;
   string gashaButtonId = 6;
 }
+message GuildMission {
+  int32 number = 1;
+  string storyEventGuildMissionId = 2;
+  string produceConditionSetDescription1 = 3;
+  string produceConditionSetDescription2 = 4;
+  string produceConditionSetDescription3 = 5;
+  int32 produceConditionSetCount = 6;
+  int32 threshold = 7;
+  int32 progress = 8;
+  Reward reward = 9;
+  bool received = 10;
+  SimpleProfile mvpProfile = 11;
+  GuildMission.Icon icon = 12;
+  message Icon {
+    penum.ProduceConditionType type = 1;
+    string resourceId1 = 2;
+    string resourceId2 = 3;
+    penum.ResultGrade grade = 4;
+  }
+}
+message GuildMissionHistory {
+  int32 number = 1;
+  string storyEventGuildMissionId = 2;
+  SimpleProfile profile = 3;
+  penum.GuildMissionPhaseType phaseType = 4;
+  int64 progressedTime = 5;
+}
 message HomeBanner {
   string assetId = 1;
   penum.LinkType linkType = 2;
@@ -300,6 +329,7 @@ message Meishi {
   string publicUserId = 1;
   MeishiBase meishiBase = 2;
   repeated MeishiObject objects = 3;
+  string imagePath = 4;
 }
 message MeishiBase {
   int32 layoutNumber = 1;
@@ -333,6 +363,17 @@ message MeishiObject {
   string achievementId = 40;
   Achievement achievement = 41;
   string meishiIllustrationAssetId = 50;
+  string idolCardSkinId = 60;
+  string supportCardId = 61;
+  string produceCardId = 62;
+  string produceItemId = 63;
+  string produceDrinkId = 64;
+  string imagePath = 65;
+  string moviePath = 66;
+  string userPhotoId = 67;
+  string userMemoryId = 68;
+  string userMovieId = 69;
+  string meishiBaseAssetId = 70;
   string meishiTextColorId = 100;
   int32 positionX = 101;
   int32 positionY = 102;
@@ -340,6 +381,7 @@ message MeishiObject {
   bool lock = 104;
   bool background = 105;
   int32 layer = 106;
+  string metadata = 999;
 }
 message Memory {
   string userMemoryId = 1;
@@ -420,6 +462,7 @@ message ProduceEffectResult {
   repeated ProduceCard beforeProduceCards = 18;
   repeated ProduceCard afterProduceCards = 19;
   repeated ProduceRewardResult providedRewards = 20;
+  repeated int32 effectNumbers = 99;
 }
 message ProduceExamEndResult {
   penum.ProduceStepType stepType = 1;
@@ -597,6 +640,9 @@ message StoryEventBonus {
 message StoryEventPointReward {
   int32 point = 1;
   Reward reward = 3;
+  bool feature = 4;
+  bool repeat = 5;
+  int32 repeatPoint = 6;
 }
 message StoryEventProduceResult {
   StoryEventProduceResult.PointResult pointResult = 1;
@@ -626,6 +672,7 @@ message StoryEventProduceResult {
     int32 beforePoint = 3;
     int32 afterPoint = 4;
     repeated StoryEventPointReward allRewards = 5;
+    repeated StoryEventPointReward provideRewards = 6;
   }
 }
 message SupportCard {

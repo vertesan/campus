@@ -1,6 +1,6 @@
 # campus
 
-Background cronjob for a certain repository.
+Background cronjob for [gakumasu-diff](https://github.com/vertesan/gakumasu-diff) and [gkms-webdata](https://github.com/vertesan/gkms-webdata).
 
 > [!IMPORTANT]  
 > This program is not designated for any evil purpose however according to the way it works, it can be, just like any other technologies, altered for malicious intention. We choose to make it open source because we believe the innovation and creativity of the whole great open source community can create something amazing based on it. The developers of the project hereby declare that we strongly oppose any malicious uses against the original purpose. Please always remember it's not the technology itself does the harm, it's the people wielding it.
