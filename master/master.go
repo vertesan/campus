@@ -139,6 +139,11 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     EmitDefaultValues: false,
   }
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
+    if _, ok := mapping.ProtoMap["Master."+masterTagPack.Type]; !ok {
+      rich.Warning("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
+      rich.Warning("Skip processing 'Master.%s'", masterTagPack.Type)
+      continue
+    }
     // read db
     dbPath := path.Join(MASTER_RAW_PATH, masterTagPack.Type)
     key := masterTagPack.CryptoKey
@@ -160,10 +165,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
       if err = rows.Scan(&data); err != nil {
         panic(err)
       }
-      instance, ok := mapping.ProtoMap["Master."+masterTagPack.Type]
-      if !ok {
-        rich.ErrorThenThrow("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
-      }
+      instance := mapping.ProtoMap["Master."+masterTagPack.Type]
       if err := proto.Unmarshal(data, instance); err != nil {
         panic(err)
       }
