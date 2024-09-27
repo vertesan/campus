@@ -85,12 +85,39 @@ func (c *CampusClient) DoLogin() {
   }
   c.homeEnter()
   c.noticeListAll()
+  c.fetchAdditionalNotice(penum.NoticeCategory_NoticeCategory_Info, 2, 0)
   if c.HomeEnterResp.PvpRateSeasonTop.StatusType != penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_OutOfTerm {
     if c.HomeEnterResp.PvpRateSeasonTop.StatusType == penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_NotAttended {
       c.pvpRateInitialize()
     }
     c.pvpRateGet()
   }
+}
+
+func (c *CampusClient) fetchAdditionalNotice(category penum.NoticeCategory, maxIteration int32, currentIteration int32) {
+  currentIteration++
+  if currentIteration > maxIteration {
+    return
+  }
+  hasNext := false
+  var noticeList *[]*papi.NoticeInfo
+  switch category {
+  case penum.NoticeCategory_NoticeCategory_Bug:
+    hasNext = c.NoticeListAllResp.BugHasNext
+    noticeList = &c.NoticeListAllResp.BugList
+  case penum.NoticeCategory_NoticeCategory_Pr:
+    hasNext = c.NoticeListAllResp.PrHasNext
+    noticeList = &c.NoticeListAllResp.PrList
+  default:
+    hasNext = c.NoticeListAllResp.InfoHasNext
+    noticeList = &c.NoticeListAllResp.InfoList
+  }
+  if !hasNext {
+    return
+  }
+  additionalNoticeList := c.noticeFetchList(category, currentIteration*10)
+  *noticeList = append(*noticeList, additionalNoticeList.List...)
+  c.fetchAdditionalNotice(category, maxIteration, currentIteration)
 }
 
 func (c *CampusClient) prepareContext() (*context.Context, *context.CancelFunc) {

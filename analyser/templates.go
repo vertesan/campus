@@ -72,6 +72,7 @@ service LoginBonus {
 }
 service Notice {
   rpc ListAll(Empty) returns (NoticeListAllResponse);
+  rpc FetchList(NoticeFetchListRequest) returns (NoticeFetchListResponse);
 }
 service PvpRate {
   rpc Get(Empty) returns (PvpRateGetResponse);

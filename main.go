@@ -93,6 +93,7 @@ func processMasterDbAndApiResp(flagForceDb bool) {
   os.WriteFile("cache/master_version", []byte(serverVer), 0644)
 }
 
+// APIs must be invoked every time
 func processApiResponse(manager *network.NetworkManager) {
   jsonMarshalOptions := protojson.MarshalOptions{
     Multiline:     false,

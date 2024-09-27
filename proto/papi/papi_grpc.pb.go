@@ -633,7 +633,8 @@ var LoginBonus_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Notice_ListAll_FullMethodName = "/client.api.Notice/ListAll"
+	Notice_ListAll_FullMethodName   = "/client.api.Notice/ListAll"
+	Notice_FetchList_FullMethodName = "/client.api.Notice/FetchList"
 )
 
 // NoticeClient is the client API for Notice service.
@@ -641,6 +642,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NoticeClient interface {
 	ListAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*NoticeListAllResponse, error)
+	FetchList(ctx context.Context, in *NoticeFetchListRequest, opts ...grpc.CallOption) (*NoticeFetchListResponse, error)
 }
 
 type noticeClient struct {
@@ -660,11 +662,21 @@ func (c *noticeClient) ListAll(ctx context.Context, in *Empty, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *noticeClient) FetchList(ctx context.Context, in *NoticeFetchListRequest, opts ...grpc.CallOption) (*NoticeFetchListResponse, error) {
+	out := new(NoticeFetchListResponse)
+	err := c.cc.Invoke(ctx, Notice_FetchList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NoticeServer is the server API for Notice service.
 // All implementations must embed UnimplementedNoticeServer
 // for forward compatibility
 type NoticeServer interface {
 	ListAll(context.Context, *Empty) (*NoticeListAllResponse, error)
+	FetchList(context.Context, *NoticeFetchListRequest) (*NoticeFetchListResponse, error)
 	mustEmbedUnimplementedNoticeServer()
 }
 
@@ -674,6 +686,9 @@ type UnimplementedNoticeServer struct {
 
 func (UnimplementedNoticeServer) ListAll(context.Context, *Empty) (*NoticeListAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAll not implemented")
+}
+func (UnimplementedNoticeServer) FetchList(context.Context, *NoticeFetchListRequest) (*NoticeFetchListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchList not implemented")
 }
 func (UnimplementedNoticeServer) mustEmbedUnimplementedNoticeServer() {}
 
@@ -706,6 +721,24 @@ func _Notice_ListAll_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Notice_FetchList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoticeFetchListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NoticeServer).FetchList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Notice_FetchList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NoticeServer).FetchList(ctx, req.(*NoticeFetchListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Notice_ServiceDesc is the grpc.ServiceDesc for Notice service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -716,6 +749,10 @@ var Notice_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAll",
 			Handler:    _Notice_ListAll_Handler,
+		},
+		{
+			MethodName: "FetchList",
+			Handler:    _Notice_FetchList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

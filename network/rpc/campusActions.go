@@ -3,6 +3,7 @@ package rpc
 import (
   "fmt"
   papi "vertesan/campus/proto/papi"
+  "vertesan/campus/proto/penum"
   "vertesan/campus/utils"
   "vertesan/campus/utils/rich"
 )
@@ -160,6 +161,26 @@ func (c *CampusClient) noticeListAll() {
   }
   c.NoticeListAllResp = resp
   utils.UNUSED(resp)
+}
+
+func (c *CampusClient) noticeFetchList(
+  category penum.NoticeCategory,
+  offset int32,
+) *papi.NoticeFetchListResponse {
+  client := papi.NewNoticeClient(c.conn)
+  c.headers["x-app-request-id"] = fmt.Sprint(getTicks())
+  ctx, cancel := c.prepareContext()
+  defer (*cancel)()
+  req := &papi.NoticeFetchListRequest{
+    Category: category,
+    Offset:   offset,
+  }
+  rich.Info("Calling NoticeFetchList...")
+  resp, err := client.FetchList(*ctx, req)
+  if err != nil {
+    panic(err)
+  }
+  return resp
 }
 
 func (c *CampusClient) pvpRateGet() {
