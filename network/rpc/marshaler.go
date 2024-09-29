@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"bytes"
+	"compress/gzip"
 	"crypto/md5"
 	"encoding/binary"
 	"io"
@@ -103,9 +104,14 @@ func Deserialize(raw []byte) []byte {
     panic(err)
   }
 
-  // 00 00
-  nothing := make([]byte, 2)
-  if _, err := buf.Read(nothing); err != nil {
+  // 00
+  if _, err := buf.ReadByte(); err != nil {
+    panic(err)
+  }
+
+  // compression flag
+  isCompressed, err := buf.ReadByte()
+  if err != nil {
     panic(err)
   }
 
@@ -132,5 +138,19 @@ func Deserialize(raw []byte) []byte {
   iv := append([]byte(KEY), headerBytes...)
   ivHash := md5.Sum(iv)
   bodyBytes := decrypt(encBytes, ivHash[:])
+
+  // in case of compressed body
+  if isCompressed == 0x01 {
+    internalReader := bytes.NewReader(bodyBytes)
+    gReader, err := gzip.NewReader(internalReader)
+    if err != nil {
+      panic(err)
+    }
+    bodyBytes, err = io.ReadAll(gReader)
+    if err != nil {
+      panic(err)
+    }
+  }
+
   return bodyBytes
 }

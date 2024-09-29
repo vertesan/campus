@@ -52,13 +52,13 @@ func TestSerialize(t *testing.T) {
 }
 
 func TestDeserializeFile(t *testing.T) {
-  fileName := "End"
+  fileName := "UserGetResp.bin"
   raw, err := os.ReadFile("cache/" + fileName)
   if err != nil {
     panic(err)
   }
   bodyBytes := rpc.Deserialize(raw[5:])
-  var pb papi.ProduceEndResponse
+  var pb papi.UserGetResponse
   if err := proto.Unmarshal(bodyBytes, &pb); err != nil {
     t.Fatalf("Cannot unmarshal message. %s", err)
   }
