@@ -146,6 +146,7 @@ func Deserialize(raw []byte) []byte {
     if err != nil {
       panic(err)
     }
+    defer gReader.Close()
     bodyBytes, err = io.ReadAll(gReader)
     if err != nil {
       panic(err)
