@@ -24,7 +24,6 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_chr_.+full$": (2048, 2048),
     r"^img_chr_.+thumb-circle$": (256, 256),
     r"^img_general_sign_\w+_\d{2}$": (1024, 1024),
-    r"^img_general_icon_produce-rank-small_[a-z]+$": (128, 128),
 }
 
 # Configuration
