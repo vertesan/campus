@@ -92,6 +92,7 @@ message Character {
   repeated string eventActivityProduceStoryIds = 32;
   repeated string eventSchoolProduceStoryIds = 33;
   repeated string otherStoryIds = 34;
+  repeated string eventCampaignProduceStoryIds = 35;
   string potentialRank1VoiceAssetId = 40;
   string potentialRank3VoiceAssetId = 41;
   string potentialRank4VoiceAssetId = 42;
@@ -246,10 +247,12 @@ message Costume {
   string description = 5;
   string costumeColorGroupId = 12;
   string costumeHeadId = 7;
+  string defaultCostumeHeadId = 14;
   string voiceGroupId = 8;
   penum.ResourceOriginType resourceOriginType = 9;
   string targetId = 10;
   bool isTraining = 11;
+  bool isBarefoot = 15;
   repeated penum.CostumeFeatureType invalidCostumeFeatureTypes = 13;
   string viewConditionSetId = 97;
   int64 viewStartTime = 98;
@@ -273,6 +276,7 @@ message CostumeHead {
   penum.ResourceOriginType resourceOriginType = 7;
   string targetId = 8;
   bool isTraining = 9;
+  bool noGashaAppeal = 10;
   string viewConditionSetId = 97;
   int64 viewStartTime = 98;
   int32 order = 99;
@@ -453,6 +457,8 @@ message GashaAnimation {
   int32 ratio3 = 5;
   int32 ratio4 = 6;
   int32 freezeRatio = 7;
+  int32 freezeRatio1 = 8;
+  int32 freezeRatio2 = 9;
 }
 message GashaAnimationList {
   repeated GashaAnimation list = 1;
@@ -770,11 +776,21 @@ message Item {
   string coinGashaId = 16;
   string shopCoinGashaId = 17;
   string storyEventId = 20;
+  repeated Item.Gasha gashas = 25;
   string viewConditionSetId = 30;
   string unlockConditionSetId = 31;
   int64 startTime = 32;
   int64 endTime = 33;
   int32 order = 99;
+  message Gasha {
+    string id = 1;
+    string bannerAssetId = 2;
+    bool hasFixReward = 3;
+    string viewConditionSetId = 4;
+    string unlockConditionSetId = 5;
+    int64 startTime = 6;
+    int64 endTime = 7;
+  }
 }
 message ItemList {
   repeated Item list = 1;
@@ -1190,6 +1206,7 @@ message PhotoBackground {
   string photoBackgroundPrefab = 9;
   string sceneLayoutId = 10;
   string costumePhotoGroup = 11;
+  string ngCostumePhotoGroupId = 14;
   string viewConditionSetId = 12;
   string unlockConditionSetId = 13;
   int32 order = 99;
@@ -1986,6 +2003,7 @@ message ProduceStepEventSuggestion {
   string failStepId = 15;
   bool alwaysSuccessful = 17;
   int32 produceEffectFireStep = 18;
+  bool isCampaign = 19;
   repeated pcommon.ProduceDescriptionElement descriptions = 20;
 }
 message ProduceStepEventSuggestionList {
@@ -2028,6 +2046,8 @@ message ProduceStory {
   string title = 3;
   string advAssetId = 4;
   repeated string produceEventHintProduceConditionDescriptions = 5;
+  string viewConditionSetId = 6;
+  string unlockConditionSetId = 7;
   int32 order = 99;
 }
 message ProduceStoryList {

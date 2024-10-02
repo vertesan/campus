@@ -41,6 +41,7 @@ message UserData {
   repeated ptransaction.UserCharacter userCharacterList = 370704040;
   repeated ptransaction.UserCharacterCostume userCharacterCostumeList = 314243425;
   repeated ptransaction.UserCharacterRoster userCharacterRosterList = 449008014;
+  repeated ptransaction.UserComeback userComebackList = 440873335;
   repeated ptransaction.UserCostume userCostumeList = 469968532;
   repeated ptransaction.UserCostumeHead userCostumeHeadList = 374617052;
   repeated ptransaction.UserCount userCountList = 431111247;

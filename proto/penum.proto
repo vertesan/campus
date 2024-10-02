@@ -159,6 +159,7 @@ enum ConditionType {
   ConditionType_MissionFirstThresholdClearHour = 63;
   ConditionType_PhotoBackground = 64;
   ConditionType_PhotoPose = 65;
+  ConditionType_Comeback = 66;
   ConditionType_Set = 998;
   ConditionType_NegativeSet = 999;
 }
@@ -215,6 +216,9 @@ enum CountType {
   CountType_MainTaskMainStory = 14;
   CountType_MainTaskProducer = 15;
   CountType_ProduceClearTimeBanWarning = 16;
+  CountType_MainTaskProducer2 = 100;
+  CountType_MainTaskProducer3 = 101;
+  CountType_MainTaskProducer4 = 102;
 }
 enum DeckRecommendType {
   DeckRecommendType_Unknown = 0;
@@ -395,6 +399,9 @@ enum FeatureMaintenanceType {
   FeatureMaintenanceType_ShopTop = 13;
   FeatureMaintenanceType_StoryEvent = 14;
   FeatureMaintenanceType_ProduceHighScore = 15;
+  FeatureMaintenanceType_MissionPanel = 16;
+  FeatureMaintenanceType_MissionDailyRelease = 17;
+  FeatureMaintenanceType_StoryCampaign = 18;
 }
 enum FriendStatusType {
   FriendStatusType_Unknown = 0;
@@ -660,6 +667,9 @@ enum MainTaskType {
   MainTaskType_Unknown = 0;
   MainTaskType_MainStory = 1;
   MainTaskType_Producer = 2;
+  MainTaskType_Producer2 = 3;
+  MainTaskType_Producer3 = 4;
+  MainTaskType_Producer4 = 5;
 }
 enum MediaType {
   MediaType_Unknown = 0;
@@ -910,6 +920,7 @@ enum ProduceCampaignType {
   ProduceCampaignType_ProduceResultRewardChange = 5;
   ProduceCampaignType_MemoryRerollCountUp = 6;
   ProduceCampaignType_MemoryRerollFree = 7;
+  ProduceCampaignType_Event = 8;
 }
 enum ProduceCardCategory {
   ProduceCardCategory_Unknown = 0;
@@ -1190,6 +1201,7 @@ enum ProduceEffectType {
   ProduceEffectType_EventActivityProducePointDown = 106;
   ProduceEffectType_BeforeAuditionRefreshStaminaUp = 107;
   ProduceEffectType_BeforeAuditionRefreshStaminaDown = 108;
+  ProduceEffectType_ShopRerollCountUp = 109;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1569,6 +1581,8 @@ enum ProduceProgressStatus {
   ProduceProgressStatus_IdolCardEvent = 17;
   ProduceProgressStatus_CharacterEventFailure = 18;
   ProduceProgressStatus_CharacterEventEnding = 19;
+  ProduceProgressStatus_BeforeStepCampaignEvent = 20;
+  ProduceProgressStatus_AfterStepCampaignEvent = 21;
   ProduceProgressStatus_End = 30;
   ProduceProgressStatus_Result = 31;
   ProduceProgressStatus_GuildMission = 32;
@@ -1707,6 +1721,7 @@ enum ProduceStoryType {
   ProduceStoryType_SupportCard = 5;
   ProduceStoryType_StepActivityEvent = 6;
   ProduceStoryType_StepSchoolEvent = 7;
+  ProduceStoryType_Campaign = 8;
 }
 enum ProduceTriggerOriginType {
   ProduceTriggerOriginType_Unknown = 0;

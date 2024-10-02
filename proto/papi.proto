@@ -977,6 +977,12 @@ message MemoryExchangeRequest {
 message MemoryExchangeResponse {
   papicommon.Response commonResponse = 9999;
 }
+message MemoryReshootingRequest {
+  string userMemoryId = 1;
+}
+message MemoryReshootingResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message MemoryUpdateProtectionRequest {
   string userMemoryId = 1;
   bool isProtected = 2;
@@ -1163,10 +1169,20 @@ message PhotoCreateIdolRequest {
   repeated PhotoCreateIdolRequest.CharacterSetting characterSettings = 1;
   repeated string userPhotoIds = 2;
   string photoBackgroundId = 3;
+  repeated PhotoCreateIdolRequest.Photo photos = 4;
   message CharacterSetting {
     string characterId = 1;
     string costumeId = 2;
     string costumeHeadId = 3;
+  }
+  message Photo {
+    repeated PhotoCreateIdolRequest.Photo.CharacterSetting characterSettings = 1;
+    repeated string userPhotoIds = 2;
+    message CharacterSetting {
+      string characterId = 1;
+      string costumeId = 2;
+      string costumeHeadId = 3;
+    }
   }
 }
 message PhotoCreateIdolResponse {
@@ -1634,6 +1650,12 @@ message ProduceStepShopEndResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
+message ProduceStepShopRerollRequest {
+  string produceUuid = 1;
+}
+message ProduceStepShopRerollResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceStepShopStartRequest {
   string produceUuid = 1;
 }
@@ -1710,6 +1732,9 @@ message ProfileGetResponse {
   int32 achievementCount = 101;
   int32 mainTaskMainStoryClearCount = 102;
   int32 mainTaskProducerClearCount = 103;
+  int32 mainTaskProducer2ClearCount = 104;
+  int32 mainTaskProducer3ClearCount = 105;
+  int32 mainTaskProducer4ClearCount = 106;
   repeated ProfileGetResponse.ProduceRecord produceRecords = 120;
   int32 maxPvpRateUnitPower = 130;
   penum.PvpRateGrade pvpRateGrade = 131;
@@ -2196,6 +2221,12 @@ message StoryReadRequest {
 }
 message StoryReadResponse {
   repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message StoryUnlockProduceStoryRequest {
+  string produceStoryId = 1;
+}
+message StoryUnlockProduceStoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message StoryUnlockRequest {
