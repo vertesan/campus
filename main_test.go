@@ -66,7 +66,7 @@ func TestDeserializeFile(t *testing.T) {
     Multiline:         true,
     AllowPartial:      false,
     UseProtoNames:     true,
-    UseEnumNumbers:    false,
+    UseEnumNumbers:    true, // change this value
     EmitUnpopulated:   true,
     EmitDefaultValues: false,
   }

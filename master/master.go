@@ -72,6 +72,7 @@ var requiredPutTypes = []string{
   "ProduceExamEffect",
   "EventLabel",
   "MemoryAbility",
+  "ResultGradePattern",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
