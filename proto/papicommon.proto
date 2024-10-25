@@ -57,6 +57,7 @@ message UserData {
   repeated ptransaction.UserMeishiBaseAsset userMeishiBaseAssetList = 10530785;
   repeated ptransaction.UserMeishiIllustrationAsset userMeishiIllustrationAssetList = 100237367;
   repeated ptransaction.UserMemory userMemoryList = 163783316;
+  ptransaction.UserMemoryInherit userMemoryInherit = 312197620;
   repeated ptransaction.UserMission userMissionList = 176225192;
   repeated ptransaction.UserMissionDailyReleaseGroup userMissionDailyReleaseGroupList = 104872908;
   repeated ptransaction.UserMissionGroup userMissionGroupList = 350034430;
@@ -73,6 +74,7 @@ message UserData {
   repeated ptransaction.UserProduce userProduceList = 170637697;
   repeated ptransaction.UserProduceAdv userProduceAdvList = 280248182;
   repeated ptransaction.UserProduceCard userProduceCardList = 230550472;
+  repeated ptransaction.UserProduceCardReward userProduceCardRewardList = 364806182;
   repeated ptransaction.UserProduceCharacter userProduceCharacterList = 494627662;
   repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;
   repeated ptransaction.UserProduceIdolCard userProduceIdolCardList = 110043881;

@@ -422,6 +422,8 @@ message ExamSetting {
   int32 examConcentrationStaminaMultiplePermil2 = 32;
   int32 examPreservationStaminaMultiplePermil1 = 33;
   int32 examPreservationStaminaMultiplePermil2 = 34;
+  int32 examConcentrationStaminaPenetrateReduce1 = 35;
+  int32 examConcentrationStaminaPenetrateReduce2 = 36;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -502,6 +504,46 @@ message GuildReaction {
 }
 message GuildReactionList {
   repeated GuildReaction list = 1;
+}
+message GvgRaid {
+  string id = 1;
+  string name = 2;
+  string titleAssetId = 3;
+  string bannerAssetId = 5;
+  string storyGroupId = 9;
+  string examSettingId = 21;
+  int32 order = 104;
+}
+message GvgRaidList {
+  repeated GvgRaid list = 1;
+}
+message GvgRaidStageLoop {
+  string gvgRaidId = 1;
+  int32 stageNumber = 2;
+  int32 loopCount = 3;
+  int32 clearScore = 4;
+  int32 turn = 5;
+  int32 vocal = 6;
+  int32 dance = 7;
+  int32 visual = 8;
+  penum.ProducePlanType stagePlanType = 9;
+  int32 characterCount = 10;
+  repeated string characterIds = 11;
+  string produceExamBattleScoreConfigId = 12;
+  repeated string produceItemIds = 13;
+  string produceExamGimmickEffectGroupId = 14;
+  repeated int32 maxSubMemoryCounts = 15;
+  string challengeRewardSetId = 16;
+  string startTimelineAssetId = 21;
+  string examTimelineAssetId = 22;
+  string resultTimelineAssetId = 23;
+  string examBgmAssetId = 24;
+  string timelineBackgroundAssetId = 25;
+  string mapVignetteIconAssetId = 26;
+  int32 changePointPermil = 27;
+}
+message GvgRaidStageLoopList {
+  repeated GvgRaidStageLoop list = 1;
 }
 message HelpCategory {
   string id = 1;
@@ -716,6 +758,7 @@ message IdolCardSkin {
   string produceScheduleVoiceGroupId = 57;
   bool hasProduceIdolAnimation = 70;
   bool hasGashaAnimation = 71;
+  bool isProduceIdolAnimationStillCard = 72;
   float beforeListPositionX = 100;
   float beforeListPositionY = 101;
   float beforeListScale = 102;
@@ -776,6 +819,8 @@ message Item {
   string coinGashaId = 16;
   string shopCoinGashaId = 17;
   string storyEventId = 20;
+  penum.IdolCardRarity idolCardRarity = 22;
+  penum.SupportCardRarity supportCardRarity = 23;
   repeated Item.Gasha gashas = 25;
   string viewConditionSetId = 30;
   string unlockConditionSetId = 31;
@@ -1214,6 +1259,23 @@ message PhotoBackground {
 message PhotoBackgroundList {
   repeated PhotoBackground list = 1;
 }
+message PhotoFacialLookTarget {
+  string facialAssetId = 1;
+  penum.PhotoLookTargetType lookTargetType = 2;
+}
+message PhotoFacialLookTargetList {
+  repeated PhotoFacialLookTarget list = 1;
+}
+message PhotoFacialMotionGroup {
+  string id = 1;
+  int32 number = 2;
+  string facialAssetId = 3;
+  string name = 4;
+  bool disableAutoBlink = 5;
+}
+message PhotoFacialMotionGroupList {
+  repeated PhotoFacialMotionGroup list = 1;
+}
 message PhotoLookTargetVoiceCharacter {
   string characterId = 1;
   int32 number = 2;
@@ -1231,11 +1293,13 @@ message PhotoPose {
   penum.PhotoPoseMotionType motionType = 6;
   string name = 7;
   penum.PhotoLookTargetType lookTargetType = 8;
+  bool disableLookTargetIdol = 16;
   repeated string motionAssetIds = 9;
   repeated string facialAssetIds = 10;
   repeated string propAssetIds = 11;
   string photoReactionVoiceGroupId = 12;
   string photoWaitVoiceGroupId = 13;
+  string photoFacialMotionGroupId = 17;
   string viewConditionSetId = 14;
   string unlockConditionSetId = 15;
   int32 order = 99;
@@ -1325,6 +1389,7 @@ message ProduceCard {
   string searchTag = 29;
   bool libraryHidden = 30;
   bool noDeckDuplication = 31;
+  bool isReward = 32;
   repeated pcommon.ProduceDescriptionElement descriptions = 34;
   int32 unlockProducerLevel = 35;
   int32 rentalUnlockProducerLevel = 36;
@@ -1344,9 +1409,16 @@ message ProduceCard {
 }
 message ProduceCardGrowEffect {
   string id = 1;
-  repeated penum.ProduceCardGrowEffectType effectTypes = 2;
-  repeated penum.ExamCostType costTypes = 3;
-  repeated int32 values = 4;
+  penum.ProduceCardGrowEffectType effectType = 6;
+  penum.ExamCostType costType = 7;
+  int32 value = 8;
+  string playProduceExamTriggerId = 9;
+  string playEffectProduceExamTriggerId = 10;
+  repeated string targetPlayEffectProduceExamTriggerIds = 11;
+  string playProduceExamEffectId = 12;
+  repeated string targetPlayProduceExamEffectIds = 13;
+  string produceCardStatusEnchantId = 14;
+  penum.ProduceCardMovePositionType playMovePositionType = 15;
 }
 message ProduceCardGrowEffectList {
   repeated ProduceCardGrowEffect list = 1;
@@ -1412,17 +1484,9 @@ message ProduceCardStatusEffectList {
 }
 message ProduceCardStatusEnchant {
   string id = 1;
-  penum.ProduceCardStatusEnchantTriggerType triggerType = 2;
-  int32 cost = 3;
-  int32 effectValue1 = 4;
-  int32 effectValue2 = 5;
-  int32 effectTurn = 6;
-  int32 triggerValue = 7;
-  penum.ProduceExamFieldStatusType fieldStatusType = 8;
-  int32 fieldStatusValue = 9;
   string produceExamTriggerId = 10;
-  string produceCardGrowEffectId = 11;
-  int32 triggerCount = 12;
+  repeated string produceCardGrowEffectIds = 12;
+  int32 triggerCount = 13;
 }
 message ProduceCardStatusEnchantList {
   repeated ProduceCardStatusEnchant list = 1;
@@ -1546,6 +1610,7 @@ message ProduceEffectIcon {
   penum.ProduceResourceType resourceType = 2;
   string iconAssetId = 3;
   string backgroundAssetId = 4;
+  int64 order = 99;
 }
 message ProduceEffectIconList {
   repeated ProduceEffectIcon list = 1;
@@ -1595,6 +1660,17 @@ message ProduceExamAutoEvaluation {
 }
 message ProduceExamAutoEvaluationList {
   repeated ProduceExamAutoEvaluation list = 1;
+}
+message ProduceExamAutoGrowEffectEvaluation {
+  penum.ExamPlayType type = 1;
+  penum.ProduceExamEffectType examEffectType = 2;
+  int32 remainingTerm = 3;
+  penum.ProduceCardGrowEffectType growEffectType = 4;
+  int32 evaluation = 5;
+  int32 examStatusEnchantCoefficientPermil = 6;
+}
+message ProduceExamAutoGrowEffectEvaluationList {
+  repeated ProduceExamAutoGrowEffectEvaluation list = 1;
 }
 message ProduceExamAutoResourceEvaluation {
   penum.ExamPlayType type = 1;
@@ -1687,7 +1763,7 @@ message ProduceExamEffect {
   string chainProduceExamEffectId = 17;
   string produceExamStatusEnchantId = 18;
   string produceCardStatusEnchantId = 19;
-  string produceCardGrowEffectId = 20;
+  repeated string produceCardGrowEffectIds = 21;
 }
 message ProduceExamEffectList {
   repeated ProduceExamEffect list = 1;
@@ -2114,6 +2190,7 @@ message PvpRateConfig {
     penum.ProducePlanType planType = 2;
     int32 turn = 3;
     string produceItemId = 4;
+    repeated string produceItemIds = 9;
     string produceExamGimmickEffectGroupId = 5;
     string bgmAssetId = 6;
     string startTimelineAssetId = 7;
@@ -2261,6 +2338,11 @@ message Setting {
   int32 photoAutoShootingCount = 112;
   string meishiEditCustomUnlockConditionSetID = 113;
   string photoIdolViewConditionSetID = 114;
+  int32 gvgRaidScoreEffectMiddleThreshold = 116;
+  int32 gvgRaidScoreEffectLargeThreshold = 117;
+  int32 gvgRaidAuditionScoreUpMiddle = 118;
+  int32 gvgRaidAuditionScoreUpLarge = 119;
+  string photoFacialViewConditionSetID = 120;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2285,6 +2367,7 @@ message Setting {
   int32 produceExamProduceCardSuggestMinutes = 1028;
   int32 produceScheduleSelectPlaceStaminaThreshold = 1029;
   int32 produceMemoryRerollCount = 1033;
+  int32 produceDeckNameLengthLimit = 1034;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -2310,6 +2393,7 @@ message Setting {
   int32 guildLeaderMessageLengthLimit = 1415;
   int32 profileNameLengthLimit = 1601;
   int32 profileCommentLengthLimit = 1602;
+  string pvpRateSameCharacterDeckConditionSetID = 1708;
   int32 pvpRateMemoryRecommendParameterCoefficientPermil = 1741;
   int32 pvpRateMemoryRecommendStaminaCoefficientPermil = 1742;
   int32 pvpRateMemoryRecommendProduceCardCoefficientPermil = 1743;
@@ -2359,6 +2443,9 @@ message ShopItem {
   penum.Weekday resetWeekday = 21;
   int32 resetDay = 22;
   int32 purchaseLimit = 23;
+  penum.ResourceType consumptionResourceType = 30;
+  string consumptionResourceId = 31;
+  int32 consumptionResourceQuantity = 32;
   int64 startTime = 97;
   int64 endTime = 98;
   int32 order = 99;

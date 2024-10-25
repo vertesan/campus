@@ -135,6 +135,7 @@ message UserMemory {
   penum.IdolCardPotentialRank idolCardPotentialRank = 16;
   int64 shotTime = 17;
   bool noProduceHistory = 18;
+  int32 inheritCount = 19;
   pcommon.ProduceCard produceCard = 22;
   penum.ProduceMemoryProduceCardPhaseType produceCardPhaseType = 23;
   repeated UserMemory.MemoryAbility abilities = 26;
@@ -152,6 +153,10 @@ message UserMemory {
     string id = 1;
     int32 level = 2;
   }
+}
+message UserMemoryInherit {
+  string userMemoryId = 2;
+  repeated pcommon.ProduceCard examBattleProduceCards = 4;
 }
 message UserMission {
   string missionId = 2;
@@ -230,6 +235,9 @@ message UserProduceCard {
   string produceCardId = 2;
   int32 produceCardUpgradeCount = 3;
 }
+message UserProduceCardReward {
+  string produceCardId = 2;
+}
 message UserProduceCharacter {
   string characterId = 2;
   string produceId = 3;
@@ -255,6 +263,7 @@ message UserProduceMemoryDeck {
   penum.ProduceType produceType = 2;
   int32 number = 3;
   repeated string userMemoryIds = 4;
+  string name = 5;
 }
 message UserProduceProgress {
   string produceGroupId = 2;
@@ -313,6 +322,9 @@ message UserProduceProgress {
   repeated UserProduceProgress.ProduceSkill idolCardProduceSkills = 273;
   int32 produceCardRemainSelectRerollCount = 311;
   bool hiddenProduceCardReroll = 312;
+  repeated string excludeProduceCardIds = 313;
+  int32 produceCardRemainExcludeCount = 314;
+  bool hiddenProduceCardExclude = 315;
   repeated UserProduceProgress.ProduceItem produceItems = 353;
   int32 produceItemGetDisableTurn = 354;
   repeated string produceDrinkIds = 400;
@@ -503,6 +515,7 @@ message UserProduceSupportCardDeck {
   penum.ProduceType produceType = 2;
   int32 number = 3;
   repeated string supportCardIds = 4;
+  string name = 5;
 }
 message UserProfile {
   string name = 2;

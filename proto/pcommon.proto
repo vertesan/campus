@@ -303,6 +303,19 @@ message GuildMissionHistory {
   penum.GuildMissionPhaseType phaseType = 4;
   int64 progressedTime = 5;
 }
+message GvgRaidGuild {
+  string name = 1;
+  Achievement achievement = 2;
+  int32 point = 3;
+  int32 rank = 4;
+}
+message GvgRaidSetUpDeck {
+  repeated GvgRaidSlot slots = 1;
+}
+message GvgRaidSlot {
+  string mainUserMemoryId = 1;
+  repeated string subUserMemoryIds = 2;
+}
 message HomeBanner {
   string assetId = 1;
   penum.LinkType linkType = 2;
@@ -374,6 +387,7 @@ message MeishiObject {
   string userMemoryId = 68;
   string userMovieId = 69;
   string meishiBaseAssetId = 70;
+  string memoryAssetId = 71;
   string meishiTextColorId = 100;
   int32 positionX = 101;
   int32 positionY = 102;

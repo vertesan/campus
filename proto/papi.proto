@@ -218,6 +218,7 @@ message ExchangeInfo {
   int64 startTime = 16;
   int64 endTime = 17;
   int64 nextResetTime = 18;
+  penum.ResetTimingType resetTimingType = 19;
   repeated ExchangeItem items = 50;
   int32 order = 99;
 }
@@ -230,6 +231,7 @@ message ExchangeItem {
   int32 exchangeLimit = 6;
   int32 exchangedCount = 7;
   int64 nextResetTime = 8;
+  penum.ResetTimingType resetTimingType = 15;
   string viewConditionSetId = 14;
   string unlockConditionSetId = 9;
   bool unlocked = 10;
@@ -664,6 +666,208 @@ message GuildUpdateLeaderMessageReactionResponse {
   repeated GuildReactionInfo reactionList = 1;
   papicommon.Response commonResponse = 9999;
 }
+message GvgRaidDeck {
+  repeated pcommon.GvgRaidSlot slots = 1;
+}
+message GvgRaidEndRequest {
+  pcommon.ExamBattleAutoStageResult stage = 1;
+}
+message GvgRaidEndResponse {
+  int32 beforeTotalScore = 1;
+  int32 score = 2;
+  int32 point = 3;
+  int32 beforeUserTotalPoint = 4;
+  repeated GvgRaidPointReward totalPointRewards = 5;
+  repeated pcommon.Reward challengeResults = 6;
+  repeated pcommon.Reward clearResults = 7;
+  repeated pcommon.RewardResult totalPointResults = 8;
+  repeated GvgRaidUser mvpUsers = 9;
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidGetProgressResponse {
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 1;
+  GvgRaidDeck deck = 2;
+  int32 stageNumber = 20;
+  string name = 21;
+  penum.ProducePlanType planType = 22;
+  repeated string produceItemIds = 23;
+  repeated int32 maxSubMemoryCounts = 24;
+  int32 totalScore = 25;
+  int32 clearScore = 26;
+  string produceExamBattleScoreConfigId = 27;
+  string startTimelineAssetId = 28;
+  string examTimelineAssetId = 29;
+  string resultTimelineAssetId = 30;
+  string examBgmAssetId = 31;
+  string timelineBackgroundAssetId = 32;
+  string iconAssetId = 33;
+  penum.GvgRaidStageIconSizeType iconSizeType = 34;
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidGuildRankReward {
+  int32 upperRank = 1;
+  int32 lowerRank = 2;
+  repeated pcommon.Reward rewards = 3;
+}
+message GvgRaidGuildRankingResponse {
+  repeated pcommon.GvgRaidGuild guildRanking = 1;
+  pcommon.GvgRaidGuild selfGuildRank = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidPlayTestRequest {
+  int32 stageNumber = 1;
+  int32 loopCount = 2;
+}
+message GvgRaidPlayTestResponse {
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 1;
+  GvgRaidDeck deck = 2;
+  string examTimelineAssetId = 20;
+  string examBgmAssetId = 21;
+  string timelineBackgroundAssetId = 22;
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidPointReward {
+  int32 point = 1;
+  repeated pcommon.Reward rewards = 2;
+}
+message GvgRaidSlot {
+  pcommon.Memory mainMemory = 1;
+  repeated pcommon.Memory subMemories = 2;
+  int32 supportBonusPermyriad = 3;
+  bool isDefault = 4;
+}
+message GvgRaidStageChallengeReward {
+  int32 lowerScore = 1;
+  repeated pcommon.Reward rewards = 2;
+}
+message GvgRaidStartRequest {
+  int32 stageNumber = 1;
+  int32 loopCount = 2;
+}
+message GvgRaidStartResponse {
+  pcommon.ExamBattleAutoRequest examBattleAutoRequest = 1;
+  GvgRaidDeck deck = 2;
+  string startTimelineAssetId = 20;
+  string examTimelineAssetId = 21;
+  string resultTimelineAssetId = 22;
+  string examBgmAssetId = 23;
+  string timelineBackgroundAssetId = 24;
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidTopResponse {
+  string name = 1;
+  int32 loopCount = 2;
+  repeated GvgRaidTopResponse.Stage stages = 3;
+  pcommon.GvgRaidGuild guild = 4;
+  repeated GvgRaidPointReward userTotalPointRewards = 5;
+  repeated GvgRaidTopResponse.StageClearReward stageClearRewards = 6;
+  repeated GvgRaidGuildRankReward rankRewards = 7;
+  int32 currentUserTotalPoint = 8;
+  int32 nextUserTotalPoint = 9;
+  repeated pcommon.Reward nextUserRewards = 10;
+  repeated GvgRaidTopResponse.StageClearResult stageResults = 11;
+  GvgRaidGuildRankReward rankResult = 12;
+  bool hasProgress = 13;
+  bool isChangedLoopCount = 14;
+  string titleAssetId = 15;
+  string colorCode = 16;
+  string bgmAssetId = 17;
+  string rewardAssetId = 18;
+  string backgroundAssetId = 19;
+  string storyGroupId = 20;
+  string missionGroupId = 21;
+  string exchangeId = 22;
+  string consumptionItemId = 23;
+  int32 minClearScore = 24;
+  int32 maxClearScore = 25;
+  repeated pcommon.StartupNotification startupNotifications = 50;
+  int32 maxDailyPlayCount = 100;
+  int32 remainingDailyPlayCount = 101;
+  int64 startTime = 102;
+  int64 endTime = 103;
+  int64 fixRankTime = 104;
+  int64 closeTime = 105;
+  papicommon.Response commonResponse = 9999;
+  message Stage {
+    int32 number = 1;
+    string name = 2;
+    int32 vocal = 3;
+    int32 dance = 4;
+    int32 visual = 5;
+    int32 turn = 6;
+    int32 characterCount = 7;
+    repeated string characterIds = 8;
+    penum.ProducePlanType planType = 9;
+    repeated string produceItemIds = 10;
+    string produceExamGimmickEffectGroupId = 11;
+    repeated int32 maxSubMemoryCounts = 12;
+    int32 totalScore = 13;
+    int32 clearScore = 14;
+    bool isLimitLoop = 15;
+    pcommon.SimpleProfile mvpProfile = 16;
+    GvgRaidDeck mvpDeck = 17;
+    pcommon.GvgRaidSetUpDeck deck = 18;
+    string produceExamBattleScoreConfigId = 19;
+    repeated GvgRaidStageChallengeReward challengeRewards = 20;
+    repeated pcommon.Reward clearRewards = 21;
+    string iconAssetId = 22;
+    int64 iconX = 23;
+    int64 iconY = 24;
+    string mapVignetteIconAssetId = 25;
+    penum.GvgRaidStageIconSizeType iconSizeType = 26;
+    string bannerAssetId = 27;
+    string backgroundAssetId = 28;
+  }
+  message StageClearResult {
+    int32 stageNumber = 1;
+    int32 loopCount = 2;
+    repeated pcommon.Reward rewards = 3;
+  }
+  message StageClearReward {
+    int32 stageNumber = 1;
+    repeated GvgRaidTopResponse.StageClearReward.ClearReward clearRewards = 2;
+    message ClearReward {
+      int32 leftLoopCount = 1;
+      int32 rightLoopCount = 2;
+      repeated pcommon.Reward rewards = 3;
+    }
+  }
+}
+message GvgRaidUpdateDeckRequest {
+  int32 stageNumber = 1;
+  int32 loopCount = 2;
+  pcommon.GvgRaidSetUpDeck deck = 3;
+  penum.DeckRecommendType recommendType = 4;
+}
+message GvgRaidUpdateDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GvgRaidUser {
+  pcommon.SimpleProfile profile = 1;
+  int32 point = 2;
+  GvgRaidDeck deck = 3;
+}
+message GvgRaidUserRankingResponse {
+  repeated GvgRaidUserRankingResponse.StageRanking userRankings = 1;
+  repeated GvgRaidUserRankingResponse.StageMvp stageMvps = 2;
+  papicommon.Response commonResponse = 9999;
+  message StageMvp {
+    int32 number = 1;
+    repeated GvgRaidUserRankingResponse.StageMvp.MvpUser mvpUsers = 2;
+    message MvpUser {
+      int32 loopCount = 1;
+      GvgRaidUser user = 2;
+    }
+  }
+  message StageRanking {
+    int32 number = 1;
+    repeated GvgRaidUserRankingResponse.StageRanking.Rank ranks = 2;
+    message Rank {
+      int32 rank = 1;
+      GvgRaidUser user = 2;
+    }
+  }
+}
 message HealthCheckRequest {
   string service = 1;
 }
@@ -977,6 +1181,22 @@ message MemoryExchangeRequest {
 message MemoryExchangeResponse {
   papicommon.Response commonResponse = 9999;
 }
+message MemoryFixInheritRequest {
+  bool selectAfter = 1;
+}
+message MemoryFixInheritResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message MemoryInheritRequest {
+  string baseUserMemoryId = 1;
+  string materialUserMemoryId = 2;
+  string changeProduceCardId = 3;
+}
+message MemoryInheritResponse {
+  pcommon.Memory beforeMemory = 1;
+  pcommon.Memory afterMemory = 2;
+  papicommon.Response commonResponse = 9999;
+}
 message MemoryReshootingRequest {
   string userMemoryId = 1;
 }
@@ -1278,6 +1498,13 @@ message ProduceEndRequest {
 }
 message ProduceEndResponse {
   pcommon.Memory memory = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceExcludeProduceCardRequest {
+  string produceUuid = 1;
+  int32 pickIndex = 2;
+}
+message ProduceExcludeProduceCardResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceGrowthResult {
@@ -1684,6 +1911,7 @@ message ProduceUpdateMemoryDeck {
   int32 number = 2;
   repeated string userMemoryIds = 3;
   penum.DeckRecommendType recommendType = 4;
+  string name = 5;
 }
 message ProduceUpdateMemoryDeckRequest {
   repeated ProduceUpdateMemoryDeck decks = 1;
@@ -1696,6 +1924,7 @@ message ProduceUpdateSupportCardDeck {
   int32 number = 2;
   repeated string supportCardIds = 3;
   penum.DeckRecommendType recommendType = 4;
+  string name = 5;
 }
 message ProduceUpdateSupportCardDeckRequest {
   repeated ProduceUpdateSupportCardDeck decks = 1;
@@ -2191,6 +2420,7 @@ message StoryEventTopResponse {
     string bodyAssetId = 7;
     string voiceAssetId = 8;
     string text = 9;
+    repeated string modelAssetIds = 10;
   }
 }
 message StoryReadDearnessStoryRequest {
