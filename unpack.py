@@ -34,13 +34,19 @@ def unpack_to_image(asset_bytes: bytes, dest: str):
         if obj.type.name == "Texture2D":
             try:
                 data = obj.read()
-                dest_path = Path(dest, data.name).with_suffix(".png")
+                # one of the QA employees messed up upper and lower case of assetname,
+                # traditionally they are all written in lowercase
+                if data.name == "img_general_icon_exam-effect_examItemfirelimitadd":
+                    filename = data.name.lower()
+                else:
+                    filename = data.name
+                dest_path = Path(dest, filename).with_suffix(".png")
                 dest_path.parent.mkdir(exist_ok=True)
                 img = data.image
                 img.save(dest_path)
-                info(f"Converted '{data.name}' to png.")
+                info(f"Converted '{filename}' to png.")
             except:
-                error(f"Failed to convert '{data.name}' to image.")
+                error(f"Failed to convert '{filename}' to image.")
 
 
 def unpack_action(octo_diff: dict[str, str]):
