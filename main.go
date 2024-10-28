@@ -1,17 +1,17 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"os"
-	"vertesan/campus/analyser"
-	"vertesan/campus/config"
-	"vertesan/campus/master"
-	"vertesan/campus/network"
-	"vertesan/campus/octo"
-	"vertesan/campus/utils/rich"
+  "flag"
+  "fmt"
+  "os"
+  "vertesan/campus/analyser"
+  "vertesan/campus/config"
+  "vertesan/campus/master"
+  "vertesan/campus/network"
+  "vertesan/campus/octo"
+  "vertesan/campus/utils/rich"
 
-	"google.golang.org/protobuf/encoding/protojson"
+  "google.golang.org/protobuf/encoding/protojson"
 )
 
 const NEW_AB_FLAG_FILE = "cache/newab_flag"
@@ -80,6 +80,22 @@ func processMasterDbAndApiResp(flagForceDb bool) {
   rich.Info("Server database version: %q.", serverVer)
   if flagForceDb || cfg.MasterVersion != serverVer {
     rich.Info("New database version detected: %q.", serverVer)
+    // save MasterResponse to JSON
+    jsonMarshalOptions := protojson.MarshalOptions{
+      Multiline:         true,
+      AllowPartial:      false,
+      UseProtoNames:     true,
+      UseEnumNumbers:    true,
+      EmitUnpopulated:   true,
+      EmitDefaultValues: false,
+    }
+    jsonBytes, err := jsonMarshalOptions.Marshal(manager.Client.MasterResp)
+    if err != nil {
+      panic(err)
+    }
+    if err := os.WriteFile("cache/MasterResponse.json", jsonBytes, 0644); err != nil {
+      panic(err)
+    }
     // download master database
     master.DownloadAndDecrypt(manager.Client.MasterResp, *flagPutDb)
     if *flagPutDb {
