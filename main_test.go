@@ -15,6 +15,40 @@ import (
   "google.golang.org/protobuf/proto"
 )
 
+func TestDeserializeFile(t *testing.T) {
+  fileName := "UserGet241209223231332.bin"
+  raw, err := os.ReadFile("cache/" + fileName)
+  if err != nil {
+    panic(err)
+  }
+
+  // captured binary
+  // bodyBytes := rpc.Deserialize(raw[5:])
+
+  // hooked binary
+  bodyBytes := rpc.Deserialize(raw)
+  
+  var pb papi.UserGetResponse
+  if err := proto.Unmarshal(bodyBytes, &pb); err != nil {
+    t.Fatalf("Cannot unmarshal message. %s", err)
+  }
+  marshalOptions := protojson.MarshalOptions{
+    Multiline:         true,
+    AllowPartial:      false,
+    UseProtoNames:     true,
+    UseEnumNumbers:    true, // change this value
+    EmitUnpopulated:   true,
+    EmitDefaultValues: false,
+  }
+  jsonBytes, err := marshalOptions.Marshal(&pb)
+  if err != nil {
+    panic(err)
+  }
+  if err := os.WriteFile("cache/"+fileName+".json", jsonBytes, 0644); err != nil {
+    panic(err)
+  }
+}
+
 func TestDecryptOctoList(t *testing.T) {
   fs, err := os.Open("cache/octorespon.bin")
   if err != nil {
@@ -49,34 +83,6 @@ func TestSerialize(t *testing.T) {
   desIns := &papi.SystemCheckRequest{}
   proto.Unmarshal(desData, desIns)
   fmt.Printf("%s\n", desIns.IdToken)
-}
-
-func TestDeserializeFile(t *testing.T) {
-  fileName := "UserGetResp.bin"
-  raw, err := os.ReadFile("cache/" + fileName)
-  if err != nil {
-    panic(err)
-  }
-  bodyBytes := rpc.Deserialize(raw[5:])
-  var pb papi.UserGetResponse
-  if err := proto.Unmarshal(bodyBytes, &pb); err != nil {
-    t.Fatalf("Cannot unmarshal message. %s", err)
-  }
-  marshalOptions := protojson.MarshalOptions{
-    Multiline:         true,
-    AllowPartial:      false,
-    UseProtoNames:     true,
-    UseEnumNumbers:    true, // change this value
-    EmitUnpopulated:   true,
-    EmitDefaultValues: false,
-  }
-  jsonBytes, err := marshalOptions.Marshal(&pb)
-  if err != nil {
-    panic(err)
-  }
-  if err := os.WriteFile("cache/"+fileName+".json", jsonBytes, 0644); err != nil {
-    panic(err)
-  }
 }
 
 func TestDeserialize(t *testing.T) {
