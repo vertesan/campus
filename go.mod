@@ -1,17 +1,17 @@
 module vertesan/campus
 
-go 1.22.3
+go 1.23.4
 
 require (
-	github.com/PuerkitoBio/goquery v1.9.2
-	github.com/fatih/color v1.17.0
-	github.com/goccy/go-json v0.10.2
-	github.com/goccy/go-yaml v1.11.3
+	github.com/PuerkitoBio/goquery v1.10.0
+	github.com/fatih/color v1.18.0
+	github.com/goccy/go-json v0.10.4
+	github.com/goccy/go-yaml v1.15.11
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/mutecomm/go-sqlcipher/v4 v4.4.2
-	golang.org/x/sync v0.7.0
-	google.golang.org/grpc v1.64.1
-	google.golang.org/protobuf v1.34.1
+	golang.org/x/sync v0.10.0
+	google.golang.org/grpc v1.69.2
+	google.golang.org/protobuf v1.36.0
 )
 
 require (
@@ -19,9 +19,8 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
-	golang.org/x/net v0.26.0 // indirect
-	golang.org/x/sys v0.21.0 // indirect
-	golang.org/x/text v0.16.0 // indirect
-	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240318140521-94a12d6c2237 // indirect
+	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20241216192217-9240e9c98484 // indirect
 )
