@@ -185,6 +185,9 @@ message ExamBattleResult {
   repeated string produceDrinkIds = 5;
   repeated ProduceItem produceItems = 6;
   repeated ExamTriggerCount examTriggerCounts = 7;
+  int32 vocalScore = 8;
+  int32 danceScore = 9;
+  int32 visualScore = 10;
 }
 message ExamCommandLog {
   penum.ExamCommandType commandType = 1;
@@ -206,8 +209,11 @@ message ExamTurnEndLog {
   int32 block = 5;
   int32 additionBlock = 6;
   penum.ProduceParameterType parameterType = 7;
+  penum.ExamIdolStatusType idolStatusType = 8;
+  int32 idolStatusStepCount = 9;
   repeated ProduceCard startPlayHandProduceCards = 50;
   repeated string startPlayStatuses = 51;
+  repeated ProduceCard startPlayHoldProduceCards = 52;
   repeated ExamCommandLog commands = 100;
 }
 message Gasha {
@@ -234,6 +240,7 @@ message Gasha {
   repeated string pickupSupportCardIds = 41;
   repeated GashaBackgroundPickup backgroundPickupIdolCardSkins = 42;
   repeated GashaBackgroundPickup backgroundPickupSupportCards = 43;
+  string animationBackgroundAssetId = 44;
   int64 startTime = 100;
   int64 endTime = 101;
   int32 order = 102;
@@ -343,6 +350,7 @@ message Meishi {
   MeishiBase meishiBase = 2;
   repeated MeishiObject objects = 3;
   string imagePath = 4;
+  string timeline = 5;
 }
 message MeishiBase {
   int32 layoutNumber = 1;
@@ -444,6 +452,18 @@ message ProduceCampaign {
 message ProduceCard {
   string id = 1;
   int32 upgradeCount = 2;
+  repeated ProduceCardCustomize customizes = 3;
+}
+message ProduceCardCustomize {
+  string id = 1;
+  int32 customizeCount = 2;
+}
+message ProduceConsumptionResult {
+  penum.ProduceResourceType resourceType = 1;
+  string resourceId = 2;
+  int32 quantity = 3;
+  int32 beforeQuantity = 4;
+  int32 afterQuantity = 5;
 }
 message ProduceDescriptionElement {
   penum.ProduceDescriptionType type = 1;
@@ -454,6 +474,30 @@ message ProduceDescriptionElement {
   penum.ProduceCardCategory produceCardCategory = 6;
   bool isOnlyOutGame = 7;
   bool changeColor = 8;
+}
+message ProduceDescriptionSegment {
+  penum.ProduceDescriptionType produceDescriptionType = 1;
+  penum.ExamDescriptionType examDescriptionType = 2;
+  penum.ProduceExamEffectType examEffectType = 3;
+  penum.ProduceCardGrowEffectType produceCardGrowEffectType = 4;
+  penum.ProduceCardCategory produceCardCategory = 5;
+  penum.ProduceCardMovePositionType produceCardMovePositionType = 6;
+  penum.ProduceStepType produceStepType = 7;
+  string text = 100;
+  string targetId = 101;
+  int32 targetLevel = 102;
+  int32 effectValue1 = 103;
+  int32 effectValue2 = 104;
+  int32 effectCount = 105;
+  int32 turn = 106;
+  int32 costValue = 107;
+  string produceDescriptionSwapId = 200;
+  string originProduceExamTriggerId = 201;
+  string originProduceExamEffectId = 202;
+  string originProduceCardStatusEnchantId = 203;
+  bool isCost = 210;
+  bool isOnlyOutGame = 1000;
+  bool changeColor = 1001;
 }
 message ProduceEffectResult {
   penum.ProduceEffectType effectType = 1;
@@ -467,6 +511,8 @@ message ProduceEffectResult {
   int32 afterStamina = 9;
   int32 beforeProducePoint = 10;
   int32 afterProducePoint = 11;
+  int32 beforeVoteCount = 21;
+  int32 afterVoteCount = 22;
   int32 beforeVocal = 12;
   int32 afterVocal = 13;
   int32 beforeDance = 14;
@@ -502,6 +548,7 @@ message ProduceHistory {
   penum.IdolCardLevelLimitRank levelLimitRank = 9;
   penum.IdolCardPotentialRank potentialRank = 10;
   repeated penum.ProduceType trueEndProduceTypes = 11;
+  repeated ProduceHistory.Audition auditions = 12;
   repeated ProduceHistory.DeckSupportCard deckSupportCards = 20;
   repeated ProduceHistory.DeckMemory deckMemories = 21;
   repeated ProduceHistory.DeckProduceCard produceCards = 22;
@@ -514,6 +561,12 @@ message ProduceHistory {
   int32 danceGrowthRatePermil = 34;
   int32 visualGrowthRatePermil = 35;
   int32 maxStamina = 36;
+  int32 voteCount = 37;
+  message Audition {
+    penum.ProduceStepType stepType = 1;
+    int32 stepSelectNumber = 2;
+    int32 rank = 3;
+  }
   message DeckMemory {
     Memory memory = 1;
     bool isRental = 2;
@@ -553,6 +606,7 @@ message ProduceRewardResult {
   string resourceId = 2;
   int32 resourceLevel = 3;
   int32 quantity = 4;
+  repeated ProduceCardCustomize customizes = 5;
 }
 message ProduceTriggerOrigin {
   penum.ProduceTriggerOriginType originType = 1;

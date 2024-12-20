@@ -31,6 +31,11 @@ message Response {
   repeated DearnessStoryUnlock dearnessStoryUnlocks = 5;
   repeated string anotherCostumeIds = 6;
   repeated string anotherCostumeHeadIds = 7;
+  repeated StoryEventReward storyEventRewards = 8;
+}
+message StoryEventReward {
+  string storyEventId = 1;
+  repeated pcommon.StoryEventPointReward pointRewards = 2;
 }
 message UserData {
   ptransaction.User user = 342861366;
@@ -77,12 +82,14 @@ message UserData {
   repeated ptransaction.UserProduceCardReward userProduceCardRewardList = 364806182;
   repeated ptransaction.UserProduceCharacter userProduceCharacterList = 494627662;
   repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;
+  repeated ptransaction.UserProduceGroupCharacter userProduceGroupCharacterList = 149373425;
   repeated ptransaction.UserProduceIdolCard userProduceIdolCardList = 110043881;
   repeated ptransaction.UserProduceItem userProduceItemList = 99080460;
   repeated ptransaction.UserProduceLive userProduceLiveList = 317020496;
   repeated ptransaction.UserProduceMemoryDeck userProduceMemoryDeckList = 162217088;
   ptransaction.UserProduceProgress userProduceProgress = 374217157;
   ptransaction.UserProduceProgressAudition userProduceProgressAudition = 532050964;
+  repeated ptransaction.UserProduceProgressBusiness userProduceProgressBusinessList = 84290276;
   repeated ptransaction.UserProduceProgressEffect userProduceProgressEffectList = 315942447;
   repeated ptransaction.UserProduceProgressEvent userProduceProgressEventList = 40225152;
   repeated ptransaction.UserProduceProgressMemory userProduceProgressMemoryList = 215423357;

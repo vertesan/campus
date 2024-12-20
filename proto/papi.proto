@@ -1131,6 +1131,7 @@ message MeishiUpdateRequest {
   repeated MeishiUpdateRequest.Object objects = 3;
   int32 order = 4;
   string meishiImageId = 5;
+  string timeline = 6;
   message MeishiBase {
     int32 layoutNumber = 1;
     bool vertical = 2;
@@ -1460,6 +1461,14 @@ message ProduceChangeCostumeRequest {
 message ProduceChangeCostumeResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ProduceChangeForceLiveCommonRequest {
+  string produceGroupId = 1;
+  string characterId = 2;
+  bool disableForceLiveCommon = 3;
+}
+message ProduceChangeForceLiveCommonResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceCheckProgressRequest {
   string produceUuid = 1;
   string clientProduceUuid = 2;
@@ -1473,6 +1482,7 @@ message ProduceCheckProgressResponse {
 }
 message ProduceContinueRequest {
   string produceUuid = 1;
+  int32 auditionStepSelectNumber = 2;
 }
 message ProduceContinueResponse {
   papicommon.Response commonResponse = 9999;
@@ -1675,6 +1685,7 @@ message ProduceReadDearnessStoryRequest {
 message ProduceReadDearnessStoryResponse {
   bool isFirst = 1;
   repeated pcommon.RewardResult rewardResults = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceReportGuildMissionRequest {
@@ -1777,6 +1788,7 @@ message ProduceStepAuditionEndRequest {
   string produceUuid = 1;
 }
 message ProduceStepAuditionEndResponse {
+  repeated pcommon.ProduceRewardResult rewardResults = 1;
   repeated pcommon.ProduceMemoryRewardResult memoryRewardResults = 100;
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
@@ -1787,6 +1799,7 @@ message ProduceStepAuditionRefreshRequest {
 message ProduceStepAuditionRefreshResponse {
   int32 beforeStamina = 1;
   int32 afterStamina = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 100;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepAuditionStartRequest {
@@ -1794,6 +1807,47 @@ message ProduceStepAuditionStartRequest {
 }
 message ProduceStepAuditionStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 100;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepBusinessSelectRequest {
+  string produceUuid = 1;
+  penum.ProduceStepBusinessType businessType = 2;
+}
+message ProduceStepBusinessSelectResponse {
+  repeated pcommon.ProduceConsumptionResult consumptionResults = 100;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepBusinessStartRequest {
+  string produceUuid = 1;
+}
+message ProduceStepBusinessStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepCustomizeEndRequest {
+  string produceUuid = 1;
+}
+message ProduceStepCustomizeEndResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepCustomizeSelectRequest {
+  string produceUuid = 1;
+  int32 deckProduceCardIndex = 2;
+  string produceCardCustomizeId = 3;
+}
+message ProduceStepCustomizeSelectResponse {
+  int32 beforeProducePoint = 1;
+  int32 afterProducePoint = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepCustomizeStartRequest {
+  string produceUuid = 1;
+}
+message ProduceStepCustomizeStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepEventRequest {
@@ -1858,6 +1912,23 @@ message ProduceStepRefreshResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
+message ProduceStepSelfLessonEndRequest {
+  string produceUuid = 1;
+}
+message ProduceStepSelfLessonEndResponse {
+  repeated pcommon.ProduceRewardResult rewardResults = 100;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepSelfLessonStartRequest {
+  string produceUuid = 1;
+}
+message ProduceStepSelfLessonStartResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceStepShopBuyRequest {
   string produceUuid = 1;
   int32 positionNumber = 2;
@@ -1888,6 +1959,14 @@ message ProduceStepShopStartRequest {
 }
 message ProduceStepShopStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepSkipRequest {
+  string produceUuid = 1;
+}
+message ProduceStepSkipResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceTopResponse {

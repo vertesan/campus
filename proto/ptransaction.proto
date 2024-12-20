@@ -108,6 +108,7 @@ message UserMeishi {
   repeated string useUserMemoryIds = 4;
   repeated string useUserPhotoIds = 5;
   repeated string useUserMovieIds = 6;
+  string timeline = 7;
   int32 baseLayoutNumber = 100;
   string baseUserMemoryId = 117;
   string baseUserPhotoId = 118;
@@ -127,6 +128,7 @@ message UserMemory {
   string imagePath = 7;
   penum.ResultGrade grade = 8;
   int32 power = 9;
+  string produceId = 10;
   string characterId = 11;
   string idolCardId = 12;
   string idolCardSkinId = 13;
@@ -145,10 +147,12 @@ message UserMemory {
   int32 stamina = 33;
   repeated pcommon.ProduceCard examBattleProduceCards = 36;
   repeated string examBattleProduceItemIds = 37;
+  penum.ProduceLiveType endingLiveType = 99;
   penum.ProduceLiveType produceLiveType = 100;
   string liveCostumeId = 101;
   string liveCostumeHeadId = 102;
   int32 reshootingCount = 103;
+  string musicId = 104;
   message MemoryAbility {
     string id = 1;
     int32 level = 2;
@@ -213,6 +217,7 @@ message UserPhoto {
   bool isProtected = 7;
   repeated string characterIds = 8;
   string photoBackgroundId = 9;
+  int64 reshootingCount = 10;
 }
 message UserPhotoBackground {
   string photoBackgroundId = 2;
@@ -246,10 +251,18 @@ message UserProduceCharacter {
 message UserProduceDrink {
   string produceDrinkId = 2;
 }
+message UserProduceGroupCharacter {
+  string characterId = 2;
+  string produceGroupId = 3;
+  repeated penum.ProduceStepAuditionType viewUnlockAnimationAuditionTypes = 4;
+  penum.ProduceLiveType endingLiveType = 5;
+  bool disableForceLiveCommon = 6;
+}
 message UserProduceIdolCard {
   string produceId = 2;
   string idolCardId = 3;
   repeated string challengeProduceItemIds = 10;
+  penum.ProduceLiveType liveType = 11;
 }
 message UserProduceItem {
   string produceItemId = 2;
@@ -277,6 +290,8 @@ message UserProduceProgress {
   repeated string satisfiedConditionSetIds = 11;
   repeated string produceBoostItemIds = 12;
   repeated penum.ProduceType trueEndProduceTypes = 13;
+  bool hasForceLiveCommonIdolCard = 15;
+  bool disableForceLiveCommon = 16;
   repeated pcommon.ProduceCampaign produceCampaigns = 91;
   penum.ProduceProgressStatus status = 100;
   int32 produceScore = 101;
@@ -317,6 +332,7 @@ message UserProduceProgress {
   int32 producePointAdditionValueRatePermil = 231;
   int32 producePointReduceValueRatePermil = 232;
   int32 producePointGetDisableTurn = 233;
+  int32 voteCount = 235;
   repeated UserProduceProgress.ProduceSkill characterProduceSkills = 253;
   int32 dearnessStoryDearnessLevel = 254;
   repeated UserProduceProgress.ProduceSkill idolCardProduceSkills = 273;
@@ -333,6 +349,7 @@ message UserProduceProgress {
   int32 auditionNpcEnhancePermil = 505;
   int32 eventSchoolStaminaPermil = 550;
   int32 eventActivityProducePointPermil = 551;
+  int32 eventBusinessVoteCountPermil = 552;
   int32 examSeedValue = 600;
   string produceExamGimmickEffectGroupId = 601;
   repeated UserProduceProgress.ExamStatusEnchant examStatusEnchants = 607;
@@ -344,8 +361,11 @@ message UserProduceProgress {
   pcommon.ProduceExamEndResult examEndResult = 620;
   int32 lessonLimitUpScore = 622;
   int32 examExtraTurn = 625;
+  repeated UserProduceProgress.SelfLessonTypeStaminaPermil selfLessonTypeStaminaPermils = 627;
   penum.ProduceLiveType liveType = 650;
   int32 lessonPresentAdditionalProduceCardRewardCount = 700;
+  int32 customizeAdditionalProduceCardCount = 760;
+  repeated int32 customizeDiscountPermils = 761;
   int32 shopProduceCardUpgradePrice = 800;
   int32 shopProduceCardDeletePrice = 801;
   repeated int32 shopDiscountPermils = 802;
@@ -372,6 +392,10 @@ message UserProduceProgress {
     int32 level = 2;
     int32 triggerCount = 3;
   }
+  message SelfLessonTypeStaminaPermil {
+    penum.ProduceStepLessonType lessonType = 1;
+    int32 permil = 2;
+  }
   message ShopProduceCardDiscount {
     string produceCardSearchId = 1;
     repeated int32 permils = 2;
@@ -382,6 +406,8 @@ message UserProduceProgressAudition {
   int32 vocalPermil = 3;
   int32 dancePermil = 4;
   int32 visualPermil = 5;
+  int32 voteBonusPermil = 6;
+  int32 stepSelectNumber = 99;
   int32 rank = 100;
   int32 score = 101;
   int32 stamina = 102;
@@ -389,6 +415,17 @@ message UserProduceProgressAudition {
   repeated string produceItemIds = 105;
   repeated int32 produceItemFireCounts = 106;
   int32 examSkipCount = 107;
+}
+message UserProduceProgressBusiness {
+  penum.ProduceStepBusinessType businessType = 2;
+  int32 number = 3;
+  string name = 4;
+  int32 destinationNumber = 5;
+  int32 producePoint = 6;
+  int32 stamina = 7;
+  int32 excellentPermil = 8;
+  string produceStepEventDetailId = 9;
+  string excellentProduceStepEventDetailId = 10;
 }
 message UserProduceProgressEffect {
   int32 number = 2;
@@ -441,6 +478,7 @@ message UserProduceProgressPresent {
   int32 pickCount = 6;
   repeated UserProduceProgressPresent.Reward rewards = 11;
   repeated int32 rewardIndexes = 12;
+  bool isVoteBonus = 14;
   message Reward {
     penum.ProduceResourceType resourceType = 1;
     string resourceId = 2;
@@ -454,15 +492,24 @@ message UserProduceProgressProduceCard {
   int32 upgradeCount = 4;
   bool deleted = 6;
   penum.ProduceResourceOriginType originType = 7;
+  repeated pcommon.ProduceCardCustomize customizes = 10;
+  bool customizing = 11;
 }
 message UserProduceProgressSchedule {
   int32 stepNumber = 2;
   int32 addStepLevel = 3;
+  string vocalProduceStepSelfLessonId = 30;
+  string vocalSpProduceStepSelfLessonId = 31;
+  string danceProduceStepSelfLessonId = 33;
+  string danceSpProduceStepSelfLessonId = 34;
+  string visualProduceStepSelfLessonId = 36;
+  string visualSpProduceStepSelfLessonId = 37;
   repeated penum.ProduceStepType stepTypes = 24;
   penum.ProduceStepType selectedStepType = 25;
   penum.ProduceExamResultType examResultType = 26;
   int32 refreshStamina = 27;
   int32 auditionRank = 28;
+  int32 stepSelectNumber = 41;
 }
 message UserProduceProgressShop {
   int32 positionNumber = 2;

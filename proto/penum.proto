@@ -14,6 +14,7 @@ enum AntiCheatFeatureType {
   AntiCheatFeatureType_ExamProduceAudition = 2;
   AntiCheatFeatureType_ExamPvpRate = 3;
   AntiCheatFeatureType_ExamTower = 4;
+  AntiCheatFeatureType_ExamGvgRaid = 5;
   AntiCheatFeatureType_AndroidPlayIntegrity = 101;
 }
 enum AppReviewType {
@@ -275,6 +276,8 @@ enum ErrorCode {
   ErrorCode_ConditionInvalid = 2034;
   ErrorCode_ShopExceedPurchaseThresholdOnRecover = 2035;
   ErrorCode_ShopExceedMaxJewelQuantityOnRecover = 2036;
+  ErrorCode_ShopExceedPurchaseLimit = 2037;
+  ErrorCode_UserDataUpdated = 2038;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -324,12 +327,41 @@ enum ExamCostType {
   ExamCostType_ExamParameterBuff = 4;
   ExamCostType_ExamFullPowerPoint = 5;
 }
+enum ExamDescriptionType {
+  ExamDescriptionType_Unknown = 0;
+  ExamDescriptionType_CustomizeEffectValue1 = 1;
+  ExamDescriptionType_CustomizeEffectValue2 = 2;
+  ExamDescriptionType_CustomizeEffectCount = 3;
+  ExamDescriptionType_CustomizeTurn = 4;
+  ExamDescriptionType_CustomizeInitialAdd = 5;
+  ExamDescriptionType_CustomizePlayMovePositionLost = 6;
+  ExamDescriptionType_CustomizeEffectAdd = 7;
+  ExamDescriptionType_CustomizeLessonCountAdd = 8;
+  ExamDescriptionType_CustomizeCostValue = 9;
+  ExamDescriptionType_ExamValue = 10;
+  ExamDescriptionType_ExamValue2 = 11;
+  ExamDescriptionType_ExamTurn = 12;
+  ExamDescriptionType_ExamTurnTimer = 13;
+  ExamDescriptionType_ExamCount = 14;
+  ExamDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName = 15;
+  ExamDescriptionType_ExamProduceExamEffect = 16;
+  ExamDescriptionType_ExamProduceCardSearch = 17;
+  ExamDescriptionType_CustomizeEffectValuePercent1 = 20;
+  ExamDescriptionType_CustomizeEffectValuePercent2 = 21;
+}
 enum ExamGameType {
   ExamGameType_Unknown = 0;
   ExamGameType_ProduceLesson = 1;
   ExamGameType_ProduceAudition = 2;
   ExamGameType_PvpRate = 3;
   ExamGameType_Tower = 4;
+  ExamGameType_GvgRaid = 5;
+}
+enum ExamIdolStatusType {
+  ExamIdolStatusType_Unknown = 0;
+  ExamIdolStatusType_Concentration = 1;
+  ExamIdolStatusType_Preservation = 2;
+  ExamIdolStatusType_FullPower = 3;
 }
 enum ExamMotionTargetType {
   ExamMotionTargetType_Unknown = 0;
@@ -425,6 +457,20 @@ enum GashaAnimationRarity {
   GashaAnimationRarity_Sr = 2;
   GashaAnimationRarity_Ssr = 3;
   GashaAnimationRarity_PickupSsridolCard = 4;
+}
+enum GashaAnimationStepType {
+  GashaAnimationStepType_Unknown = 0;
+  GashaAnimationStepType_Start = 1;
+  GashaAnimationStepType_Tap = 2;
+  GashaAnimationStepType_Monitor = 3;
+  GashaAnimationStepType_Step1 = 4;
+  GashaAnimationStepType_Step2 = 5;
+  GashaAnimationStepType_Step3 = 6;
+  GashaAnimationStepType_Step4 = 7;
+  GashaAnimationStepType_Freeze = 8;
+  GashaAnimationStepType_FreezeAfter = 9;
+  GashaAnimationStepType_LightList = 10;
+  GashaAnimationStepType_End = 11;
 }
 enum GashaButtonAppealType {
   GashaButtonAppealType_Unknown = 0;
@@ -789,6 +835,7 @@ enum MissionType {
   MissionType_IncrementProduceSupportCardDeckUpdateCount = 201;
   MissionType_IncrementProduceMemoryDeckUpdateCount = 202;
   MissionType_IncrementProduceTotalScore = 203;
+  MissionType_IncrementProduceVoteCount = 205;
   MissionType_IncrementProduceTotalProducePoint = 206;
   MissionType_IncrementProduceGetProduceCardCount = 207;
   MissionType_IncrementProduceGetProduceDrinkCount = 208;
@@ -796,6 +843,7 @@ enum MissionType {
   MissionType_IncrementProduceTotalAdditionExamBlock = 213;
   MissionType_IncrementProduceConsumedStamina = 214;
   MissionType_IncrementProduceExamUseProduceCardCount = 215;
+  MissionType_IncrementProduceCustomizeProduceCardCount = 216;
   MissionType_IncrementProduceUpgradeProduceCardCount = 217;
   MissionType_IncrementProduceUseProduceDrinkCount = 218;
   MissionType_IncrementProduceAdditionParameter = 219;
@@ -810,6 +858,7 @@ enum MissionType {
   MissionType_IncrementProduceSelectStepCount = 228;
   MissionType_IncrementProduceShopBuyCount = 229;
   MissionType_IncrementProduceLessonClearCount = 230;
+  MissionType_IncrementProduceGroupSelectStepCount = 231;
   MissionType_AbsoluteLinkBandaiNamco = 301;
   MissionType_AbsoluteLoginCount = 302;
   MissionType_AbsoluteAchievementCount = 303;
@@ -924,6 +973,11 @@ enum ProduceAdvType {
   ProduceAdvType_BeforeFinalAuditionRefresh = 10;
   ProduceAdvType_BeforeMid1AuditionRefresh = 11;
   ProduceAdvType_BeforeMid2AuditionRefresh = 12;
+  ProduceAdvType_BeforeFinalAuditionSelect = 13;
+  ProduceAdvType_BeforeMid1AuditionSelect = 14;
+  ProduceAdvType_BeforeMid2AuditionSelect = 15;
+  ProduceAdvType_Introduction = 17;
+  ProduceAdvType_StepSkip = 18;
   ProduceAdvType_Opening = 19;
   ProduceAdvType_ProduceResultTrueEnd = 20;
   ProduceAdvType_ProduceResultA = 21;
@@ -990,6 +1044,19 @@ enum ProduceCardGrowEffectType {
   ProduceCardGrowEffectType_PlayEffectTriggerChange = 37;
   ProduceCardGrowEffectType_PlayMovePositionTypeChange = 38;
   ProduceCardGrowEffectType_InitialAdd = 39;
+  ProduceCardGrowEffectType_CostLessonBuffReduce = 40;
+  ProduceCardGrowEffectType_CostLessonBuffAdd = 41;
+  ProduceCardGrowEffectType_CostReviewReduce = 42;
+  ProduceCardGrowEffectType_CostReviewAdd = 43;
+  ProduceCardGrowEffectType_CostAggressiveReduce = 44;
+  ProduceCardGrowEffectType_CostAggressiveAdd = 45;
+  ProduceCardGrowEffectType_CostParameterBuffReduce = 46;
+  ProduceCardGrowEffectType_CostParameterBuffAdd = 47;
+  ProduceCardGrowEffectType_CostFullPowerPointReduce = 48;
+  ProduceCardGrowEffectType_CostFullPowerPointAdd = 49;
+  ProduceCardGrowEffectType_LessonDependBlockAdd = 50;
+  ProduceCardGrowEffectType_LessonDependExamCardPlayAggressiveAdd = 51;
+  ProduceCardGrowEffectType_LessonDependExamReviewAdd = 52;
 }
 enum ProduceCardMoveEffectTriggerType {
   ProduceCardMoveEffectTriggerType_Unknown = 0;
@@ -1053,6 +1120,7 @@ enum ProduceConditionType {
   ProduceConditionType_SelectStepCount = 6;
   ProduceConditionType_ProduceCardUpgradeCount = 9;
   ProduceConditionType_ProduceCardDeleteCount = 10;
+  ProduceConditionType_CurrentStepCountPermil = 12;
   ProduceConditionType_LessonClearCount = 13;
   ProduceConditionType_CurrentStepCount = 14;
   ProduceConditionType_Vocal = 15;
@@ -1112,8 +1180,18 @@ enum ProduceConditionType {
   ProduceConditionType_LessonExamTriggerCount = 75;
   ProduceConditionType_AuditionExamTriggerCount = 76;
   ProduceConditionType_IdolCardProducePlanType = 77;
+  ProduceConditionType_VoteCount = 78;
+  ProduceConditionType_LatestAuditionStepSelectNumber = 79;
+  ProduceConditionType_CurrentAuditionStepType = 80;
+  ProduceConditionType_CurrentAuditionStepSelectNumber = 81;
   ProduceConditionType_Set = 998;
   ProduceConditionType_NegativeSet = 999;
+}
+enum ProduceDescriptionSwapType {
+  ProduceDescriptionSwapType_Unknown = 0;
+  ProduceDescriptionSwapType_Lesson = 1;
+  ProduceDescriptionSwapType_Audition = 2;
+  ProduceDescriptionSwapType_Contest = 3;
 }
 enum ProduceDescriptionType {
   ProduceDescriptionType_Unknown = 0;
@@ -1121,6 +1199,9 @@ enum ProduceDescriptionType {
   ProduceDescriptionType_ProduceExamEffectType = 2;
   ProduceDescriptionType_ProduceCardCategory = 3;
   ProduceDescriptionType_DiffText = 5;
+  ProduceDescriptionType_Exam = 6;
+  ProduceDescriptionType_ProduceCardGrowEffectType = 7;
+  ProduceDescriptionType_ProduceStepType = 8;
   ProduceDescriptionType_ProduceDescription = 10;
   ProduceDescriptionType_ProduceDescriptionName = 11;
   ProduceDescriptionType_ProduceCard = 12;
@@ -1244,6 +1325,18 @@ enum ProduceEffectType {
   ProduceEffectType_BeforeAuditionRefreshStaminaDown = 108;
   ProduceEffectType_ShopRerollCountUp = 109;
   ProduceEffectType_ProduceCardExcludeCountUp = 110;
+  ProduceEffectType_CustomizeProduceCardCountUp = 111;
+  ProduceEffectType_CustomizeProduceCardProducePointUpMultiple = 112;
+  ProduceEffectType_CustomizeProduceCardProducePointDownMultiple = 113;
+  ProduceEffectType_VoteCountAddition = 114;
+  ProduceEffectType_EventBusinessVoteCountUp = 115;
+  ProduceEffectType_EventBusinessVoteCountDown = 116;
+  ProduceEffectType_EventBusinessExcellentPermilUp = 117;
+  ProduceEffectType_EventBusinessExcellentPermilDown = 118;
+  ProduceEffectType_AuditionVoteCountUp = 119;
+  ProduceEffectType_AuditionVoteCountDown = 120;
+  ProduceEffectType_SelfLessonStaminaUp = 121;
+  ProduceEffectType_SelfLessonStaminaDown = 122;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1258,6 +1351,9 @@ enum ProduceEventCharacterType {
   ProduceEventCharacterType_AfterAuditionFinal = 9;
   ProduceEventCharacterType_Failure = 10;
   ProduceEventCharacterType_Ending = 11;
+  ProduceEventCharacterType_AfterStepBeforeAuditionMid1 = 12;
+  ProduceEventCharacterType_AfterStepBeforeAuditionMid2 = 13;
+  ProduceEventCharacterType_AfterStepBeforeAuditionFinal = 14;
 }
 enum ProduceEventSuggestionType {
   ProduceEventSuggestionType_Unknown = 0;
@@ -1272,6 +1368,7 @@ enum ProduceEventType {
   ProduceEventType_CharacterGrowth = 4;
   ProduceEventType_IdolCard = 5;
   ProduceEventType_SupportCard = 6;
+  ProduceEventType_Business = 7;
 }
 enum ProduceExamAutoCardSelectEvaluationType {
   ProduceExamAutoCardSelectEvaluationType_Unknown = 0;
@@ -1308,6 +1405,9 @@ enum ProduceExamAutoEvaluationType {
   ProduceExamAutoEvaluationType_ExamPreservationCount = 25;
   ProduceExamAutoEvaluationType_ExamFullPowerCount = 26;
   ProduceExamAutoEvaluationType_HoldCount = 27;
+  ProduceExamAutoEvaluationType_DrawCardCount = 28;
+  ProduceExamAutoEvaluationType_RemainTurn = 29;
+  ProduceExamAutoEvaluationType_ExamAntiDebuff = 30;
 }
 enum ProduceExamEffectType {
   ProduceExamEffectType_Unknown = 0;
@@ -1541,6 +1641,7 @@ enum ProduceParameterType {
 enum ProducePhaseType {
   ProducePhaseType_Unknown = 0;
   ProducePhaseType_RecoveryStamina = 1;
+  ProducePhaseType_CustomizeProduceCard = 3;
   ProducePhaseType_GetProducePoint = 4;
   ProducePhaseType_GetProduceItem = 6;
   ProducePhaseType_GetProduceDrink = 7;
@@ -1550,6 +1651,7 @@ enum ProducePhaseType {
   ProducePhaseType_DeleteProduceCard = 11;
   ProducePhaseType_ProduceStart = 12;
   ProducePhaseType_StartStep = 13;
+  ProducePhaseType_StartCustomize = 14;
   ProducePhaseType_StartShop = 15;
   ProducePhaseType_StartRefresh = 16;
   ProducePhaseType_StartPresent = 17;
@@ -1561,6 +1663,8 @@ enum ProducePhaseType {
   ProducePhaseType_EndStepEventSchool = 23;
   ProducePhaseType_EndStepEventCharacterOpening = 24;
   ProducePhaseType_ChangeProduceCard = 25;
+  ProducePhaseType_EndStepEventBusiness = 26;
+  ProducePhaseType_EndBeforeAuditionRefresh = 27;
   ProducePhaseType_StartAuditionMid = 42;
   ProducePhaseType_StartAuditionMid1 = 43;
   ProducePhaseType_StartAuditionMid2 = 44;
@@ -1664,6 +1768,7 @@ enum ProduceResourceType {
   ProduceResourceType_ParameterVocal = 6;
   ProduceResourceType_ParameterDance = 7;
   ProduceResourceType_ParameterVisual = 8;
+  ProduceResourceType_Vote = 9;
   ProduceResourceType_CardUpgrade = 997;
   ProduceResourceType_CardDelete = 998;
   ProduceResourceType_Set = 999;
@@ -1680,6 +1785,11 @@ enum ProduceScheduleLocationType {
   ProduceScheduleLocationType_Classroom = 3;
   ProduceScheduleLocationType_Rooftop = 4;
   ProduceScheduleLocationType_Courtyard = 5;
+  ProduceScheduleLocationType_ProducerRoom3 = 6;
+  ProduceScheduleLocationType_ProducerRoom4 = 7;
+  ProduceScheduleLocationType_Classroom2 = 8;
+  ProduceScheduleLocationType_Rooftop2 = 9;
+  ProduceScheduleLocationType_Courtyard2 = 10;
 }
 enum ProduceScheduleMotionType {
   ProduceScheduleMotionType_Unknown = 0;
@@ -1717,6 +1827,31 @@ enum ProduceStepAuditionMotionType {
   ProduceStepAuditionMotionType_Result2 = 3;
   ProduceStepAuditionMotionType_Result3 = 4;
   ProduceStepAuditionMotionType_Failure = 5;
+}
+enum ProduceStepAuditionType {
+  ProduceStepAuditionType_Unknown = 0;
+  ProduceStepAuditionType_Mid1Easy = 1;
+  ProduceStepAuditionType_Mid1Normal = 2;
+  ProduceStepAuditionType_Mid1Hard = 3;
+  ProduceStepAuditionType_Mid2Easy = 4;
+  ProduceStepAuditionType_Mid2Normal = 5;
+  ProduceStepAuditionType_Mid2Hard = 6;
+  ProduceStepAuditionType_FinalEasy = 7;
+  ProduceStepAuditionType_FinalNormal = 8;
+  ProduceStepAuditionType_FinalHard = 9;
+  ProduceStepAuditionType_FinalVeryHard = 10;
+}
+enum ProduceStepBusinessType {
+  ProduceStepBusinessType_Unknown = 0;
+  ProduceStepBusinessType_ProduceCard = 1;
+  ProduceStepBusinessType_ProduceDrink = 2;
+  ProduceStepBusinessType_ProducePoint = 3;
+  ProduceStepBusinessType_Stamina = 4;
+}
+enum ProduceStepFanPresentMotionType {
+  ProduceStepFanPresentMotionType_Unknown = 0;
+  ProduceStepFanPresentMotionType_Reaction = 1;
+  ProduceStepFanPresentMotionType_Wait = 2;
 }
 enum ProduceStepLessonType {
   ProduceStepLessonType_Unknown = 0;
@@ -1762,6 +1897,16 @@ enum ProduceStepType {
   ProduceStepType_AuditionMid1 = 16;
   ProduceStepType_AuditionMid2 = 17;
   ProduceStepType_AuditionFinal = 18;
+  ProduceStepType_SelfLessonVocalNormal = 19;
+  ProduceStepType_SelfLessonVocalSp = 20;
+  ProduceStepType_SelfLessonDanceNormal = 21;
+  ProduceStepType_SelfLessonDanceSp = 22;
+  ProduceStepType_SelfLessonVisualNormal = 23;
+  ProduceStepType_SelfLessonVisualSp = 24;
+  ProduceStepType_Business = 25;
+  ProduceStepType_EventBusiness = 26;
+  ProduceStepType_FanPresent = 27;
+  ProduceStepType_Customize = 28;
 }
 enum ProduceStoryType {
   ProduceStoryType_Unknown = 0;
@@ -1773,6 +1918,7 @@ enum ProduceStoryType {
   ProduceStoryType_StepActivityEvent = 6;
   ProduceStoryType_StepSchoolEvent = 7;
   ProduceStoryType_Campaign = 8;
+  ProduceStoryType_StepBusinessEvent = 9;
 }
 enum ProduceTriggerOriginType {
   ProduceTriggerOriginType_Unknown = 0;
@@ -1784,10 +1930,12 @@ enum ProduceTriggerOriginType {
   ProduceTriggerOriginType_Item = 6;
   ProduceTriggerOriginType_Drink = 7;
   ProduceTriggerOriginType_Produce = 8;
+  ProduceTriggerOriginType_DearnessStory = 9;
 }
 enum ProduceType {
   ProduceType_Unknown = 0;
   ProduceType_FirstStar = 1;
+  ProduceType_NextIdolAudition = 2;
 }
 enum ProducerLevelUnlockType {
   ProducerLevelUnlockType_Unknown = 0;
@@ -1923,6 +2071,7 @@ enum ResultGradeType {
   ResultGradeType_MemoryParameter = 3;
   ResultGradeType_ProduceAuditionLiveBattleScore = 4;
   ResultGradeType_ProduceIdolCardParameter = 5;
+  ResultGradeType_ProduceVoteCount = 6;
 }
 enum RewardProvideType {
   RewardProvideType_Unknown = 0;
@@ -2020,6 +2169,7 @@ enum StoryType {
   StoryType_CampaignDearnessStory = 2;
   StoryType_Birthday = 3;
   StoryType_ExtraDearnessStory = 4;
+  StoryType_DearnessStory = 5;
   StoryType_StoryEvent = 9;
   StoryType_GvgRaid = 10;
   StoryType_ProduceHighScore = 11;
@@ -2153,6 +2303,14 @@ enum TutorialType {
   TutorialType_ProduceBeforeAuditionRefresh = 119;
   TutorialType_ProduceBeforeLessonHard = 120;
   TutorialType_ProduceChallenge = 121;
+  TutorialType_ProduceNextIdolAuditionTop = 122;
+  TutorialType_ProduceNextIdolAuditionSchedule = 123;
+  TutorialType_ProduceNextIdolAuditionStepAuditionSelect = 124;
+  TutorialType_ProduceNextIdolAuditionStepAuditionStart = 125;
+  TutorialType_ProduceNextIdolAuditionResult = 126;
+  TutorialType_ProduceStepBusiness = 127;
+  TutorialType_ProduceStepCustomize = 128;
+  TutorialType_ProduceStepFanPresent = 129;
   TutorialType_MissionPanel = 200;
   TutorialType_ProduceHighScore = 201;
   TutorialType_StoryEvent = 202;
