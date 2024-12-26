@@ -34,6 +34,7 @@ var requiredPutTypes = []string{
   "ProduceDescription",
   "ProduceEffectIcon",
   "Produce",
+  "ProduceGroup",
   "ExamInitialDeck",
   "ProduceDescriptionProduceEffectType",
   "ProduceDescriptionProduceExamEffectType",
