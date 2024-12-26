@@ -37,6 +37,7 @@ var upload_reg_list = []string{
   `^img_chr_.+thumb-circle$`,
   `^img_general_sign_\w+_\d{2}$`,
   `^img_general_stamp_.+$`,
+  `^img_general_ui_produce-group-2_audition_select-list-cell-bg_.+$`,
 }
 
 func checkNeedDownload(name string, regList []*regexp.Regexp) bool {

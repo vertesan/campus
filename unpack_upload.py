@@ -25,6 +25,7 @@ upload_reg_list: dict[str, tuple] = {
     r"^img_chr_.+thumb-circle$": (256, 256),
     r"^img_general_sign_\w+_\d{2}$": (1024, 1024),
     r"^img_general_stamp_.+$": (128, 128),
+    r"^img_general_ui_produce-group-2_audition_select-list-cell-bg_.+$": (774, 128),
 }
 
 # Configuration
