@@ -49,6 +49,36 @@ func TestDeserializeFile(t *testing.T) {
   }
 }
 
+func TestDecryptOctoManifest(t *testing.T) {
+  // open encrypted octo cache file
+  octoFs, err := os.Open(OCTO_CACHE_FILE)
+  if err != nil {
+    panic(err)
+  }
+  // keyMd5 := md5.Sum([]byte("1nuv9td1bw1udefk"))
+  // ivMd5 := md5.Sum([]byte("LvAUtf+tnz"))
+  octoDb, err := octo.DecryptOctoList(octoFs, 1)
+  if err != nil {
+    panic(err)
+  }
+  // convert protobuf object to json string
+  marshalOptions := &protojson.MarshalOptions{
+    Multiline:      true,
+    Indent:         "  ",
+    AllowPartial:   true,
+    UseProtoNames:  true,
+    UseEnumNumbers: true,
+  }
+  octoJson, err := marshalOptions.Marshal(octoDb)
+  if err != nil {
+    panic(err)
+  }
+  // write manifest json file
+  if err := os.WriteFile("cache/octo.json", octoJson, 0644); err != nil {
+    panic(err)
+  }
+}
+
 func TestDecryptOctoList(t *testing.T) {
   fs, err := os.Open("cache/octorespon.bin")
   if err != nil {
