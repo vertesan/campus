@@ -16,14 +16,14 @@ else
   cur_version=""
 fi
 
-if [ "$1" == "-f" ] | [ "$1" == "-fn" ]; then
+if [ $# -gt 0 ] && [ "$1" == "-f" ] || [ "$1" == "-fn" ]; then
   # force update
   ./campus --db --ab --webab --putdb --forcedb --forceab
 else 
   ./campus --db --ab --webab --putdb
 fi
 
-if [ ! "$1" == "-fn" ]; then
+if [ $# -gt 0 ] && [ ! "$1" == "-fn" ]; then
   echo "=== run git push ==="
   ./push_master.sh "$cur_version"
 fi
