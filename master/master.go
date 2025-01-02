@@ -75,6 +75,10 @@ var requiredPutTypes = []string{
   "MemoryAbility",
   "ResultGradePattern",
   "GuildReaction",
+  "ProduceCardCustomizeRarityEvaluation",
+  "ProduceCardCustomize",
+  "ProduceCardGrowEffect",
+  "ProduceDescriptionProduceCardGrowEffectType",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
@@ -142,6 +146,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     EmitUnpopulated:   true,
     EmitDefaultValues: false,
   }
+  dbList := []string{}
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
     if _, ok := mapping.ProtoMap["Master."+masterTagPack.Type]; !ok {
       rich.Warning("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
@@ -202,7 +207,26 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     }
 
     writeJson(masterTagPack.Type, &jsonDb)
+    dbList = append(dbList, masterTagPack.Type)
     rich.Info("Database %q is successfully decrypted.", masterTagPack.Type)
+  }
+
+  // delete databases that no longer exist
+  files, err := os.ReadDir(MASTER_YAML_PATH)
+  if err != nil {
+    panic(err)
+  }
+  for _, file := range files {
+    if file.IsDir() {
+      continue
+    }
+    if !slices.Contains(dbList, strings.TrimSuffix(file.Name(), ".yaml")) {
+      err := os.Remove(fmt.Sprintf("%s/%s", MASTER_YAML_PATH, file.Name()))
+      rich.Warning("Database '%s' has been removed since it no longer exists.", file.Name())
+      if err != nil {
+        panic(err)
+      }
+    }
   }
   rich.Info("Database decrypting completed.")
 }
