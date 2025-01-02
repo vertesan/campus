@@ -51,6 +51,15 @@ git -C "$REPO_NAME" config core.sshCommand "ssh -o IdentitiesOnly=yes -o StrictH
 # Copy database files to repository directory
 cp $ARTIFACT_DIR_NAME/*.yaml $REPO_NAME
 
+# Remove database files which no longer in use
+for pPath in $REPO_NAME/*.yaml
+do
+  pFile=$(basename "$pPath")
+  if [ ! -f $ARTIFACT_DIR_NAME/$pFile ]; then
+    rm -f "$REPO_NAME/$pFile"
+  fi
+done
+
 git -C "$REPO_NAME" add .
 git -C "$REPO_NAME" commit -m "$new_version"
 echo ">>> Pushing to remote repository..."

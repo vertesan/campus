@@ -16,10 +16,17 @@ else
   cur_version=""
 fi
 
-./campus --db --ab --webab --putdb
+if [ "$1" == "-f" ] | [ "$1" == "-fn" ]; then
+  # force update
+  ./campus --db --ab --webab --putdb --forcedb --forceab
+else 
+  ./campus --db --ab --webab --putdb
+fi
 
-echo "=== run git push ==="
-./push_master.sh "$cur_version"
+if [ ! "$1" == "-fn" ]; then
+  echo "=== run git push ==="
+  ./push_master.sh "$cur_version"
+fi
 
 echo "=== run asset upload ==="
 pipenv run python3 unpack_upload.py
