@@ -23,7 +23,7 @@ else
   ./campus --db --ab --webab --putdb
 fi
 
-if [ $# -gt 0 ] && [ ! "$1" == "-fn" ]; then
+if [ $# -gt 0 ] && [ ! "$1" == "-fn" ] || [ $# -eq 0 ]; then
   echo "=== run git push ==="
   ./push_master.sh "$cur_version"
 fi
