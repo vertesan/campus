@@ -9,6 +9,7 @@ message User {
   string publicUserId = 2;
   int64 tutorialClearedTime = 7;
   bool receivedTutorialRewardIdolCard = 8;
+  string dmmGamesId = 101;
 }
 message UserActionPoint {
   int32 quantity = 2;

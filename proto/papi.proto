@@ -2347,6 +2347,8 @@ message ShopPurchaseJewelRequest {
   string currencyCode = 5;
   int64 localizedPricePermyriad = 6;
   string storeTransactionId = 7;
+  string accountId = 8;
+  string accountSignature = 9;
 }
 message ShopPurchaseJewelResponse {
   repeated pcommon.RewardResult rewardResults = 1;
@@ -2366,6 +2368,8 @@ message ShopRecoverPurchaseJewelRequest {
   string currencyCode = 4;
   int64 localizedPricePermyriad = 5;
   string storeTransactionId = 6;
+  string accountId = 7;
+  string accountSignature = 8;
 }
 message ShopRecoverPurchaseJewelResponse {
   repeated pcommon.RewardResult rewardResults = 1;
@@ -2592,6 +2596,8 @@ message SystemCheckResponse {
   string inquiryUrl = 7;
   string userDeleteInquiryUrl = 8;
   bool playIntegrityEnabled = 9;
+  repeated string shopProductIds = 10;
+  string dmmGamesReceiptApiToken = 11;
   message MaintenanceInfo {
     bool inMaintenance = 1;
     string topMessage = 2;

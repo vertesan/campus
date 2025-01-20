@@ -278,6 +278,7 @@ enum ErrorCode {
   ErrorCode_ShopExceedMaxJewelQuantityOnRecover = 2036;
   ErrorCode_ShopExceedPurchaseLimit = 2037;
   ErrorCode_UserDataUpdated = 2038;
+  ErrorCode_DmmgamesIdduplicated = 2039;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -863,6 +864,7 @@ enum MissionType {
   MissionType_AbsoluteLoginCount = 302;
   MissionType_AbsoluteAchievementCount = 303;
   MissionType_AbsoluteCharacterIdolAchievementCount = 304;
+  MissionType_AbsoluteMainTaskCount = 305;
   MissionType_AbsoluteProducerLevel = 310;
   MissionType_AbsoluteIdolCardCount = 311;
   MissionType_AbsoluteIdolCardLevelLimitRank = 312;
@@ -888,6 +890,11 @@ enum MissionType {
   MissionType_AbsoluteTowerTotalClearRank = 371;
   MissionType_AbsoluteTowerCharacterTotalClearRank = 372;
   MissionType_AbsoluteTowerClearRank = 373;
+  MissionType_AbsoluteIdolCardSkin = 374;
+  MissionType_AbsoluteSupportCard = 375;
+  MissionType_AbsoluteTowerLayerClear = 376;
+  MissionType_AbsolutePvpRateCurrentGrade = 377;
+  MissionType_AbsoluteLinkSmartphoneWithDmm = 378;
   MissionType_AbsoluteProduceIdolCardHighScore = 401;
   MissionType_AbsoluteProducePlanTotalHighScore = 402;
   MissionType_AbsoluteProducePictureBookProduceCardCount = 410;
@@ -959,6 +966,7 @@ enum PlatformType {
   PlatformType_Unknown = 0;
   PlatformType_Ios = 1;
   PlatformType_Android = 2;
+  PlatformType_Dmm = 3;
   PlatformType_Other = 999;
 }
 enum PreferenceType {
@@ -1961,6 +1969,7 @@ enum PushType {
   PushType_MoneyFull = 2;
   PushType_DailyMission = 3;
   PushType_Login = 4;
+  PushType_PvpRateRemainingPlayCount = 5;
   PushType_WorkMiniLiveFinish = 101;
   PushType_WorkLiveStreamingFinish = 102;
 }
@@ -2067,9 +2076,7 @@ enum ResultGrade {
 enum ResultGradeType {
   ResultGradeType_Unknown = 0;
   ResultGradeType_ProduceScore = 1;
-  ResultGradeType_MemoryEvaluation = 2;
   ResultGradeType_MemoryParameter = 3;
-  ResultGradeType_ProduceAuditionLiveBattleScore = 4;
   ResultGradeType_ProduceIdolCardParameter = 5;
   ResultGradeType_ProduceVoteCount = 6;
 }

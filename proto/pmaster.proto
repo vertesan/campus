@@ -87,12 +87,7 @@ message Character {
   string normalCostumeId = 23;
   string trainingCostumeId = 24;
   string liveCostumeId = 25;
-  repeated string eventCharacterProduceStoryIds = 30;
-  repeated string eventCharacterGrowthProduceStoryIds = 31;
-  repeated string eventActivityProduceStoryIds = 32;
-  repeated string eventSchoolProduceStoryIds = 33;
   repeated string otherStoryIds = 34;
-  repeated string eventCampaignProduceStoryIds = 35;
   string potentialRank1VoiceAssetId = 40;
   string potentialRank3VoiceAssetId = 41;
   string potentialRank4VoiceAssetId = 42;
@@ -441,8 +436,9 @@ message ExamSetting {
   int32 examConcentrationStaminaPenetrateReduce1 = 35;
   int32 examConcentrationStaminaPenetrateReduce2 = 36;
   bool examCardSelectEvaluationTriggerCoefficientEnable = 37;
-  bool examAutoPlayV2Enable = 38;
   bool examDrawCountLimitFixed = 39;
+  int32 examAutoPlayEnableVersion = 40;
+  int32 examAutoPlaySearchCommandLimit = 41;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -1080,6 +1076,7 @@ message MemoryTag {
   string id = 1;
   string defaultName = 2;
   string assetId = 3;
+  int32 order = 4;
 }
 message MemoryTagList {
   repeated MemoryTag list = 1;
@@ -1436,7 +1433,6 @@ message ProduceCard {
   bool noDeckDuplication = 31;
   bool isReward = 32;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 33;
-  repeated pcommon.ProduceDescriptionElement descriptions = 34;
   int32 unlockProducerLevel = 35;
   int32 rentalUnlockProducerLevel = 36;
   int32 evaluation = 37;
@@ -1504,7 +1500,6 @@ message ProduceCardRandomPoolList {
 }
 message ProduceCardSearch {
   string id = 1;
-  repeated pcommon.ProduceDescriptionElement descriptions = 3;
   repeated string produceCardIds = 4;
   repeated int32 upgradeCounts = 5;
   penum.ProducePlanType planType = 6;
@@ -1605,14 +1600,6 @@ message ProduceCharacterAdvList {
 message ProduceCharacterList {
   repeated ProduceCharacter list = 1;
 }
-message ProduceDescription {
-  string id = 1;
-  string name = 3;
-  string swapName = 4;
-  string produceDescriptionSwapId = 13;
-  repeated pcommon.ProduceDescriptionElement descriptions = 99;
-  repeated pcommon.ProduceDescriptionSegment produceDescriptions = 100;
-}
 message ProduceDescriptionExamEffect {
   penum.ProduceExamEffectType type = 1;
   string name = 2;
@@ -1635,9 +1622,6 @@ message ProduceDescriptionLabel {
 message ProduceDescriptionLabelList {
   repeated ProduceDescriptionLabel list = 1;
 }
-message ProduceDescriptionList {
-  repeated ProduceDescription list = 1;
-}
 message ProduceDescriptionProduceCardGrowEffect {
   penum.ProduceCardGrowEffectType type = 1;
   string name = 2;
@@ -1648,15 +1632,6 @@ message ProduceDescriptionProduceCardGrowEffect {
 }
 message ProduceDescriptionProduceCardGrowEffectList {
   repeated ProduceDescriptionProduceCardGrowEffect list = 1;
-}
-message ProduceDescriptionProduceCardGrowEffectType {
-  penum.ProduceCardGrowEffectType type = 1;
-  string name = 2;
-  string produceDescriptionId = 3;
-  string produceCardCustomizeTemplate = 4;
-}
-message ProduceDescriptionProduceCardGrowEffectTypeList {
-  repeated ProduceDescriptionProduceCardGrowEffectType list = 1;
 }
 message ProduceDescriptionProduceCardMovePosition {
   penum.ProduceCardMovePositionType type = 1;
@@ -1674,27 +1649,6 @@ message ProduceDescriptionProduceEffect {
 message ProduceDescriptionProduceEffectList {
   repeated ProduceDescriptionProduceEffect list = 1;
 }
-message ProduceDescriptionProduceEffectType {
-  penum.ProduceEffectType type = 1;
-  string name = 2;
-  string produceDescriptionId = 3;
-}
-message ProduceDescriptionProduceEffectTypeList {
-  repeated ProduceDescriptionProduceEffectType list = 1;
-}
-message ProduceDescriptionProduceExamEffectType {
-  penum.ProduceExamEffectType type = 1;
-  string name = 2;
-  string swapName = 3;
-  string produceDescriptionId = 4;
-  string examProduceDescriptionId = 5;
-  repeated int32 mainBuffMinThresholds = 6;
-  bool noIcon = 7;
-  bool noReference = 8;
-}
-message ProduceDescriptionProduceExamEffectTypeList {
-  repeated ProduceDescriptionProduceExamEffectType list = 1;
-}
 message ProduceDescriptionProducePlan {
   penum.ProducePlanType type = 1;
   string name = 2;
@@ -1703,15 +1657,6 @@ message ProduceDescriptionProducePlan {
 }
 message ProduceDescriptionProducePlanList {
   repeated ProduceDescriptionProducePlan list = 1;
-}
-message ProduceDescriptionProducePlanType {
-  penum.ProducePlanType type = 1;
-  string name = 2;
-  string produceDescriptionId = 3;
-  string planDetailProduceDescriptionId = 4;
-}
-message ProduceDescriptionProducePlanTypeList {
-  repeated ProduceDescriptionProducePlanType list = 1;
 }
 message ProduceDescriptionProduceStep {
   penum.ProduceStepType type = 1;
@@ -1737,7 +1682,6 @@ message ProduceDrink {
   repeated string produceDrinkEffectIds = 6;
   penum.ProduceDrinkRarity rarity = 7;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 9;
-  repeated pcommon.ProduceDescriptionElement descriptions = 10;
   int32 unlockProducerLevel = 11;
   repeated string effectGroupIds = 12;
   int64 order = 99;
@@ -1922,7 +1866,6 @@ message ProduceExamBattleScoreConfigList {
 message ProduceExamEffect {
   string id = 1;
   penum.ProduceExamEffectType effectType = 2;
-  repeated pcommon.ProduceDescriptionElement descriptions = 4;
   int32 effectValue1 = 5;
   int32 effectValue2 = 6;
   int32 effectCount = 7;
@@ -1956,10 +1899,7 @@ message ProduceExamGimmickEffectGroup {
   int32 fieldStatusValue = 9;
   penum.ProduceExamTriggerCheckType fieldStatusCheckType = 10;
   string produceExamEffectId = 11;
-  repeated pcommon.ProduceDescriptionElement descriptions = 13;
   bool isPositive = 14;
-  repeated pcommon.ProduceDescriptionElement fieldStatusDescriptions = 15;
-  repeated pcommon.ProduceDescriptionElement effectDescriptions = 16;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 17;
 }
 message ProduceExamGimmickEffectGroupList {
@@ -1969,7 +1909,6 @@ message ProduceExamStatusEnchant {
   string id = 1;
   string assetId = 3;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 4;
-  repeated pcommon.ProduceDescriptionElement descriptions = 5;
   string produceExamTriggerId = 7;
   repeated string produceExamEffectIds = 8;
 }
@@ -1990,8 +1929,9 @@ message ProduceExamTrigger {
   penum.ProduceCardMovePositionType cardMovePositionType = 12;
   repeated penum.ProduceExamEffectType effectTypes = 13;
   penum.ProduceStepLessonType lessonType = 14;
-  repeated pcommon.ProduceDescriptionElement descriptions = 15;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 16;
+  repeated pcommon.ProduceDescriptionSegment playProduceDescriptions = 17;
+  repeated pcommon.ProduceDescriptionSegment playEffectProduceDescriptions = 18;
 }
 message ProduceExamTriggerList {
   repeated ProduceExamTrigger list = 1;
@@ -2052,7 +1992,6 @@ message ProduceItem {
   repeated ProduceItem.Skill skills = 11;
   bool libraryHidden = 12;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 14;
-  repeated pcommon.ProduceDescriptionElement descriptions = 15;
   int32 evaluation = 16;
   bool isExamEffect = 17;
   string originIdolCardId = 18;
@@ -2118,21 +2057,6 @@ message ProduceLive {
   string afterAdvAssetId = 10;
   string liveMusicAssetId = 11;
   repeated string motionAssetIds = 12;
-}
-message ProduceLiveCommon {
-  string characterId = 1;
-  penum.ProduceLiveType type = 2;
-  string musicId = 3;
-  string thumbnailAssetId = 6;
-  string environmentAssetId = 7;
-  string timelineAssetId = 8;
-  repeated string motionAssetIds = 9;
-  string liveMusicAssetId = 10;
-  string beforeAdvAssetId = 11;
-  string afterAdvAssetId = 12;
-}
-message ProduceLiveCommonList {
-  repeated ProduceLiveCommon list = 1;
 }
 message ProduceLiveList {
   repeated ProduceLive list = 1;
@@ -2213,7 +2137,6 @@ message ProduceSkill {
   string produceTriggerId3 = 16;
   int32 activationRatePermil3 = 17;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 19;
-  repeated pcommon.ProduceDescriptionElement descriptions = 20;
 }
 message ProduceSkillList {
   repeated ProduceSkill list = 1;
@@ -2285,7 +2208,6 @@ message ProduceStepEventDetail {
   repeated string produceEffectIds = 4;
   repeated string produceStepEventSuggestionIds = 5;
   string supportCardId = 9;
-  repeated pcommon.ProduceDescriptionElement descriptions = 11;
   penum.ProduceEventType eventType = 12;
   bool isBusinessExcellent = 14;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 15;
@@ -2312,7 +2234,6 @@ message ProduceStepEventSuggestion {
   bool alwaysSuccessful = 17;
   int32 produceEffectFireStep = 18;
   bool isCampaign = 19;
-  repeated pcommon.ProduceDescriptionElement descriptions = 20;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 21;
 }
 message ProduceStepEventSuggestionList {
@@ -2624,6 +2545,8 @@ message Setting {
   string memoryReshootingValidateIdolCardTrueEndConditionSetID = 121;
   string gashaAnimationLogicSwitchConditionSetID = 122;
   string meishiEditCustomUpdateUnlockConditionSetID = 123;
+  string dmmGamesFaqURL = 124;
+  string dmmGamesInquiryURL = 125;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2650,6 +2573,7 @@ message Setting {
   int32 produceMemoryRerollCount = 1033;
   int32 produceDeckNameLengthLimit = 1034;
   bool produceDescriptionProduceStepCategoryEnable = 1038;
+  bool produceCardEffectCancelEnable = 1039;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -2690,6 +2614,9 @@ message Setting {
   int32 pushDailyMissionNotifyMinutes = 1902;
   int32 pushDailyMissionDoNotNotifyNoLoginDay = 1903;
   int32 pushNoLoginNotifyLatestIntervalHour = 1904;
+  int32 pushPvpRateRemainingPlayCountNotifyHour = 1905;
+  int32 pushPvpRateRemainingPlayCountNotifyMinutes = 1906;
+  int32 pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay = 1907;
 }
 message SettingList {
   repeated Setting list = 1;
@@ -2742,6 +2669,7 @@ message ShopProduct {
   string id = 1;
   string appStoreProductId = 2;
   string googlePlayStoreProductId = 3;
+  string dmmGamesProductId = 4;
   int32 jewel = 10;
   int32 priceJpy = 11;
 }
@@ -2816,7 +2744,6 @@ message SupportCard {
   int32 produceCardUpgradePermil = 21;
   string upgradeProduceCardSearchId = 22;
   penum.ProduceParameterType produceCardUpgradeLessonParameterType = 23;
-  repeated pcommon.ProduceDescriptionElement upgradeProduceCardDescriptions = 25;
   int32 gashaSupportAnimationNumber = 26;
   repeated pcommon.ProduceDescriptionSegment upgradeProduceCardProduceDescriptions = 27;
   int64 viewStartTime = 98;

@@ -31,13 +31,13 @@ const ENV_CAMPUS_DB_PUT_SECRET = "CAMPUS_DB_PUT_SECRET"
 
 var requiredPutTypes = []string{
   "Character",
-  "ProduceDescription",
+  "ProduceDescriptionLabel",
   "ProduceEffectIcon",
   "Produce",
   "ProduceGroup",
   "ExamInitialDeck",
-  "ProduceDescriptionProduceEffectType",
-  "ProduceDescriptionProduceExamEffectType",
+  "ProduceDescriptionProduceEffect",
+  "ProduceDescriptionExamEffect",
   "SupportCard",
   "ProduceCard",
   "ProduceItem",

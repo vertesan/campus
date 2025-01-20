@@ -465,16 +465,6 @@ message ProduceConsumptionResult {
   int32 beforeQuantity = 4;
   int32 afterQuantity = 5;
 }
-message ProduceDescriptionElement {
-  penum.ProduceDescriptionType type = 1;
-  string text = 2;
-  string targetId = 3;
-  int32 targetLevel = 4;
-  penum.ProduceExamEffectType examEffectType = 5;
-  penum.ProduceCardCategory produceCardCategory = 6;
-  bool isOnlyOutGame = 7;
-  bool changeColor = 8;
-}
 message ProduceDescriptionSegment {
   penum.ProduceDescriptionType produceDescriptionType = 1;
   penum.ExamDescriptionType examDescriptionType = 2;
@@ -523,6 +513,7 @@ message ProduceEffectResult {
   repeated ProduceCard afterProduceCards = 19;
   repeated ProduceRewardResult providedRewards = 20;
   repeated int32 effectNumbers = 99;
+  bool ineffective = 100;
 }
 message ProduceExamEndResult {
   penum.ProduceStepType stepType = 1;
