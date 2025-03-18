@@ -154,6 +154,7 @@ message UserMemory {
   string liveCostumeHeadId = 102;
   int32 reshootingCount = 103;
   string musicId = 104;
+  bool isHighScoreRush = 105;
   message MemoryAbility {
     string id = 1;
     int32 level = 2;
@@ -293,6 +294,7 @@ message UserProduceProgress {
   repeated penum.ProduceType trueEndProduceTypes = 13;
   bool hasForceLiveCommonIdolCard = 15;
   bool disableForceLiveCommon = 16;
+  string produceHighScoreId = 80;
   repeated pcommon.ProduceCampaign produceCampaigns = 91;
   penum.ProduceProgressStatus status = 100;
   int32 produceScore = 101;
@@ -334,6 +336,7 @@ message UserProduceProgress {
   int32 producePointReduceValueRatePermil = 232;
   int32 producePointGetDisableTurn = 233;
   int32 voteCount = 235;
+  int32 highScoreGold = 236;
   repeated UserProduceProgress.ProduceSkill characterProduceSkills = 253;
   int32 dearnessStoryDearnessLevel = 254;
   repeated UserProduceProgress.ProduceSkill idolCardProduceSkills = 273;
@@ -511,6 +514,7 @@ message UserProduceProgressSchedule {
   int32 refreshStamina = 27;
   int32 auditionRank = 28;
   int32 stepSelectNumber = 41;
+  int32 maxAuditionStepSelectNumber = 42;
 }
 message UserProduceProgressShop {
   int32 positionNumber = 2;
@@ -524,6 +528,7 @@ message UserProduceProgressShop {
   repeated int32 effectResourceDiscountPermils = 10;
   int32 nextPrice = 11;
   bool lock = 12;
+  bool highScoreReward = 13;
 }
 message UserProduceProgressSupportCard {
   int32 number = 2;

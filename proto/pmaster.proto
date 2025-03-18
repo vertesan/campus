@@ -80,6 +80,7 @@ message Character {
   string masterAchievementId = 15;
   repeated string idolCardIds = 16;
   repeated string supportCardIds = 17;
+  string changeCostumeConditionSetId = 18;
   string viewConditionSetId = 19;
   string normalCostumeHeadId = 20;
   string trainingCostumeHeadId = 21;
@@ -99,6 +100,8 @@ message Character {
   float storyPositionY = 57;
   float produceHighScorePositionX = 58;
   float produceHighScorePositionY = 59;
+  float produceHighScoreRushPositionX = 60;
+  float produceHighScoreRushPositionY = 61;
   int32 order = 99;
 }
 message CharacterAdv {
@@ -117,6 +120,8 @@ message CharacterColor {
   string gradientColor2 = 4;
   string textColor = 5;
   string labelTextColor = 6;
+  string transitionGradientColor1 = 7;
+  string transitionGradientColor2 = 8;
 }
 message CharacterColorList {
   repeated CharacterColor list = 1;
@@ -338,7 +343,10 @@ message EffectGroup {
   string name = 2;
   penum.ProduceExamEffectType examEffectType = 3;
   penum.ProduceEffectType produceEffectType = 4;
+  repeated penum.ProduceExamEffectType examEffectTypes = 5;
+  repeated penum.ProduceEffectType produceEffectTypes = 6;
   bool hiddenFilter = 8;
+  repeated penum.ProduceCardGrowEffectType produceCardGrowEffectTypes = 9;
   int32 order = 99;
 }
 message EffectGroupList {
@@ -439,6 +447,13 @@ message ExamSetting {
   bool examDrawCountLimitFixed = 39;
   int32 examAutoPlayEnableVersion = 40;
   int32 examAutoPlaySearchCommandLimit = 41;
+  int32 overPreservationReleasePlayableValueAdd = 42;
+  int32 overPreservationReleaseBlockAdd = 43;
+  int32 overPreservationReleaseEnthusiastic = 44;
+  int32 examOverPreservationLessonValueMultiplePermil = 45;
+  int32 examOverPreservationStaminaMultiplePermil = 46;
+  int32 overPreservationReleaseToFullPowerGrowEffectLessonAdd = 47;
+  repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -474,20 +489,6 @@ message ForceAppVersion {
 }
 message ForceAppVersionList {
   repeated ForceAppVersion list = 1;
-}
-message GashaAnimation {
-  penum.GashaAnimationRarity rarity = 1;
-  int32 keepRatio = 2;
-  int32 ratio1 = 3;
-  int32 ratio2 = 4;
-  int32 ratio3 = 5;
-  int32 ratio4 = 6;
-  int32 freezeRatio = 7;
-  int32 freezeRatio1 = 8;
-  int32 freezeRatio2 = 9;
-}
-message GashaAnimationList {
-  repeated GashaAnimation list = 1;
 }
 message GashaAnimationStep {
   penum.GashaAnimationRarity rarity = 1;
@@ -854,6 +855,7 @@ message Item {
   string coinGashaId = 16;
   string shopCoinGashaId = 17;
   string storyEventId = 20;
+  string produceHighScoreEventId = 21;
   penum.IdolCardRarity idolCardRarity = 22;
   penum.SupportCardRarity supportCardRarity = 23;
   repeated Item.Gasha gashas = 25;
@@ -1500,6 +1502,7 @@ message ProduceCardRandomPoolList {
 }
 message ProduceCardSearch {
   string id = 1;
+  repeated penum.ProduceCardRarity cardRarities = 3;
   repeated string produceCardIds = 4;
   repeated int32 upgradeCounts = 5;
   penum.ProducePlanType planType = 6;
@@ -1684,6 +1687,9 @@ message ProduceDrink {
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 9;
   int32 unlockProducerLevel = 11;
   repeated string effectGroupIds = 12;
+  string originSupportCardId = 13;
+  bool libraryHidden = 20;
+  int64 viewStartTime = 97;
   int64 order = 99;
 }
 message ProduceDrinkEffect {
@@ -1807,6 +1813,7 @@ message ProduceExamAutoTriggerEvaluation {
   penum.ExamPlayType type = 1;
   string examStatusEnchantProduceExamTriggerId = 2;
   int32 coefficientPermil = 3;
+  int32 count = 4;
 }
 message ProduceExamAutoTriggerEvaluationList {
   repeated ProduceExamAutoTriggerEvaluation list = 1;
@@ -1974,6 +1981,7 @@ message ProduceGroupLiveCommonList {
 message ProduceHighScore {
   string id = 1;
   string name = 2;
+  penum.ProduceHighScoreEventType produceHighScoreEventType = 16;
   int32 order = 104;
 }
 message ProduceHighScoreList {
@@ -1999,6 +2007,7 @@ message ProduceItem {
   bool isUpgraded = 20;
   repeated string effectGroupIds = 21;
   bool isChallenge = 22;
+  bool isHighScoreRush = 23;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -2049,6 +2058,7 @@ message ProduceList {
 message ProduceLive {
   string musicId = 1;
   penum.ProduceLiveType type = 2;
+  string forceUnlockConditionSetId = 4;
   string unlockConditionSetId = 5;
   string thumbnailAssetId = 6;
   string environmentAssetId = 7;
@@ -2209,6 +2219,7 @@ message ProduceStepEventDetail {
   repeated string produceStepEventSuggestionIds = 5;
   string supportCardId = 9;
   penum.ProduceEventType eventType = 12;
+  penum.ProduceEventCharacterType eventCharacterType = 13;
   bool isBusinessExcellent = 14;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 15;
 }
@@ -2547,6 +2558,8 @@ message Setting {
   string meishiEditCustomUpdateUnlockConditionSetID = 123;
   string dmmGamesFaqURL = 124;
   string dmmGamesInquiryURL = 125;
+  int32 towerRankingDisplayCount = 127;
+  int32 towerRankingDeckDisplayCount = 128;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2574,6 +2587,7 @@ message Setting {
   int32 produceDeckNameLengthLimit = 1034;
   bool produceDescriptionProduceStepCategoryEnable = 1038;
   bool produceCardEffectCancelEnable = 1039;
+  bool produceMemoryProduceCardProducerLevelLimitDisable = 1040;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -2586,6 +2600,7 @@ message Setting {
   int32 jewelMaxQuantityForFree = 1305;
   int32 shopPurchasableLimitAgeThreshold1 = 1306;
   int32 shopPurchasableLimitAgeThreshold2 = 1307;
+  int32 shopExpireEmphasisHour = 1308;
   int32 guildMemberLimitCount = 1401;
   int32 guildJoinRequestLimitCount = 1402;
   int32 guildJoinRequestReceiveLimitCount = 1403;
@@ -2617,6 +2632,8 @@ message Setting {
   int32 pushPvpRateRemainingPlayCountNotifyHour = 1905;
   int32 pushPvpRateRemainingPlayCountNotifyMinutes = 1906;
   int32 pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay = 1907;
+  string aprilFool2025TransitionStoryID = 2001;
+  string aprilFool2025ProduceLiveMusicID = 2002;
 }
 message SettingList {
   repeated Setting list = 1;
@@ -2708,6 +2725,7 @@ message StoryGroup {
   penum.StoryType storyType = 2;
   penum.StoryEventType storyEventType = 13;
   bool isCampaign = 14;
+  penum.EventStoryFilterType eventStoryFilterType = 15;
   string title = 12;
   string headerAssetId = 3;
   string storyThumbnailAssetId = 4;

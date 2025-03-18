@@ -51,6 +51,7 @@ enum AssetKind {
 enum AuthProviderType {
   AuthProviderType_Unknown = 0;
   AuthProviderType_BandaiNamcoId = 1;
+  AuthProviderType_DmmgamesId = 2;
 }
 enum CharacterDetailType {
   CharacterDetailType_Unknown = 0;
@@ -124,6 +125,7 @@ enum ConditionType {
   ConditionType_SupportCardLevelLimitRank = 21;
   ConditionType_MemoryCount = 22;
   ConditionType_ProduceCard = 23;
+  ConditionType_Music = 24;
   ConditionType_CharacterProducePlayCount = 26;
   ConditionType_CharacterProduceClearCount = 27;
   ConditionType_ProduceClearCount = 28;
@@ -278,7 +280,9 @@ enum ErrorCode {
   ErrorCode_ShopExceedMaxJewelQuantityOnRecover = 2036;
   ErrorCode_ShopExceedPurchaseLimit = 2037;
   ErrorCode_UserDataUpdated = 2038;
-  ErrorCode_DmmgamesIdduplicated = 2039;
+  ErrorCode_DmmGamesIdDuplicated = 2039;
+  ErrorCode_DmmGamesIdLinkAccountAlreadyExists = 2040;
+  ErrorCode_DmmGamesIdLocalUserDataNotLinked = 2041;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -288,6 +292,12 @@ enum ErrorCode {
   ErrorCode_GvgRaidStageAlreadyCleared = 3000;
   ErrorCode_BnidlinkUserNotFound = 5000;
   ErrorCode_BnidlinkMasterDataInvalid = 5001;
+}
+enum EventStoryFilterType {
+  EventStoryFilterType_Unknown = 0;
+  EventStoryFilterType_StoryEvent = 1;
+  EventStoryFilterType_SeasonEvent = 2;
+  EventStoryFilterType_GvgRaid = 3;
 }
 enum EventType {
   EventType_Unknown = 0;
@@ -327,6 +337,7 @@ enum ExamCostType {
   ExamCostType_ExamCardPlayAggressive = 3;
   ExamCostType_ExamParameterBuff = 4;
   ExamCostType_ExamFullPowerPoint = 5;
+  ExamCostType_ExamParameterBuffMultiplePerTurn = 6;
 }
 enum ExamDescriptionType {
   ExamDescriptionType_Unknown = 0;
@@ -363,6 +374,7 @@ enum ExamIdolStatusType {
   ExamIdolStatusType_Concentration = 1;
   ExamIdolStatusType_Preservation = 2;
   ExamIdolStatusType_FullPower = 3;
+  ExamIdolStatusType_OverPreservation = 4;
 }
 enum ExamMotionTargetType {
   ExamMotionTargetType_Unknown = 0;
@@ -723,6 +735,7 @@ enum LinkType {
   LinkType_PhotoIdol = 34;
   LinkType_GvgRaid = 35;
   LinkType_ShopCostume = 36;
+  LinkType_PhotoLiveSelect = 37;
 }
 enum LoginBonusType {
   LoginBonusType_Unknown = 0;
@@ -1065,6 +1078,8 @@ enum ProduceCardGrowEffectType {
   ProduceCardGrowEffectType_LessonDependBlockAdd = 50;
   ProduceCardGrowEffectType_LessonDependExamCardPlayAggressiveAdd = 51;
   ProduceCardGrowEffectType_LessonDependExamReviewAdd = 52;
+  ProduceCardGrowEffectType_CostParameterBuffMultiplePerTurnAdd = 53;
+  ProduceCardGrowEffectType_CostParameterBuffMultiplePerTurnReduce = 54;
 }
 enum ProduceCardMoveEffectTriggerType {
   ProduceCardMoveEffectTriggerType_Unknown = 0;
@@ -1345,6 +1360,7 @@ enum ProduceEffectType {
   ProduceEffectType_AuditionVoteCountDown = 120;
   ProduceEffectType_SelfLessonStaminaUp = 121;
   ProduceEffectType_SelfLessonStaminaDown = 122;
+  ProduceEffectType_HighScoreGoldAddition = 123;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1416,6 +1432,21 @@ enum ProduceExamAutoEvaluationType {
   ProduceExamAutoEvaluationType_DrawCardCount = 28;
   ProduceExamAutoEvaluationType_RemainTurn = 29;
   ProduceExamAutoEvaluationType_ExamAntiDebuff = 30;
+  ProduceExamAutoEvaluationType_StanceLock = 31;
+  ProduceExamAutoEvaluationType_ExamBlockRestriction = 32;
+  ProduceExamAutoEvaluationType_ExamLessonValueMultiple = 33;
+  ProduceExamAutoEvaluationType_ExamReviewMultiple = 34;
+  ProduceExamAutoEvaluationType_ExamEnthusiasticAdditive = 35;
+  ProduceExamAutoEvaluationType_ExamEnthusiasticMultiple = 36;
+  ProduceExamAutoEvaluationType_ExamFullPowerLessonMultipleAdditive = 37;
+  ProduceExamAutoEvaluationType_ExamConcentrationLessonMultipleAdditive = 38;
+  ProduceExamAutoEvaluationType_ExamLessonBuffAdditive = 39;
+  ProduceExamAutoEvaluationType_ExamParameterBuffAdditive = 40;
+  ProduceExamAutoEvaluationType_ExamAggressiveAdditive = 41;
+  ProduceExamAutoEvaluationType_ExamReviewAdditive = 42;
+  ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive = 43;
+  ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive = 44;
+  ProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive = 45;
 }
 enum ProduceExamEffectType {
   ProduceExamEffectType_Unknown = 0;
@@ -1524,6 +1555,35 @@ enum ProduceExamEffectType {
   ProduceExamEffectType_ExamParameterBuffReduce = 154;
   ProduceExamEffectType_ExamLessonValueMultipleDown = 155;
   ProduceExamEffectType_ExamAddGrowEffect = 156;
+  ProduceExamEffectType_ExamParameterBuffPerSearchCount = 157;
+  ProduceExamEffectType_ExamLessonBuffPerSearchCount = 158;
+  ProduceExamEffectType_ExamReviewPerSearchCount = 159;
+  ProduceExamEffectType_ExamAggressivePerSearchCount = 160;
+  ProduceExamEffectType_ExamBlockPerSearchCount = 161;
+  ProduceExamEffectType_ExamFullPowerPointPerSearchCount = 162;
+  ProduceExamEffectType_ExamLessonDependBlockAndSearchCount = 163;
+  ProduceExamEffectType_ExamLessonDependAggressiveAndSearchCount = 164;
+  ProduceExamEffectType_ExamLessonDependReviewAndSearchCount = 165;
+  ProduceExamEffectType_ExamEffectPerSearchCount = 166;
+  ProduceExamEffectType_ExamOverPreservation = 167;
+  ProduceExamEffectType_ExamParameterBuffDependLessonBuff = 168;
+  ProduceExamEffectType_ExamAggressiveDependReview = 169;
+  ProduceExamEffectType_ExamEnthusiasticAdditive = 170;
+  ProduceExamEffectType_ExamEnthusiasticMultiple = 171;
+  ProduceExamEffectType_ExamFullPowerLessonMultipleAdditive = 172;
+  ProduceExamEffectType_ExamConcentrationLessonMultipleAdditive = 173;
+  ProduceExamEffectType_ExamLessonBuffAdditive = 174;
+  ProduceExamEffectType_ExamParameterBuffAdditive = 175;
+  ProduceExamEffectType_ExamAggressiveAdditive = 176;
+  ProduceExamEffectType_ExamReviewAdditive = 177;
+  ProduceExamEffectType_ExamFullPowerPointAdditive = 178;
+  ProduceExamEffectType_ExamGrowEffectLessonAddAdditive = 179;
+  ProduceExamEffectType_ExamParameterBuffMultiplePerTurnReduce = 180;
+  ProduceExamEffectType_ExamLessonValueMultipleDependReviewOrAggressive = 181;
+  ProduceExamEffectType_ExamReviewMultiple = 182;
+  ProduceExamEffectType_ExamMultipleEnthusiasticLesson = 183;
+  ProduceExamEffectType_ExamMultipleConcentrationLesson = 184;
+  ProduceExamEffectType_ExamMultipleFullPowerLesson = 185;
 }
 enum ProduceExamFieldStatusType {
   ProduceExamFieldStatusType_Unknown = 0;
@@ -1562,6 +1622,8 @@ enum ProduceExamFieldStatusType {
   ProduceExamFieldStatusType_FullPowerChangeCountUp = 50;
   ProduceExamFieldStatusType_CardSearchCountUp = 51;
   ProduceExamFieldStatusType_PlayCardSearch = 52;
+  ProduceExamFieldStatusType_ParameterBuffMultiplePerTurnUp = 53;
+  ProduceExamFieldStatusType_EnthusiasticUp = 54;
 }
 enum ProduceExamPhaseType {
   ProduceExamPhaseType_Unknown = 0;
@@ -1602,6 +1664,12 @@ enum ProduceExamPhaseType {
   ProduceExamPhaseType_ExamStanceChangeFullPower = 39;
   ProduceExamPhaseType_ExamStanceReset = 40;
   ProduceExamPhaseType_ExamTurnSkip = 41;
+  ProduceExamPhaseType_ExamEndTurnTimer = 42;
+  ProduceExamPhaseType_ExamEndTurnInterval = 43;
+  ProduceExamPhaseType_ExamPlayCountIntervalAfter = 44;
+  ProduceExamPhaseType_ExamStanceChangeFromConcentration = 45;
+  ProduceExamPhaseType_ExamStanceChangeFromPreservation = 46;
+  ProduceExamPhaseType_ExamStanceChangeFromFullPower = 47;
   ProduceExamPhaseType_None = 999;
 }
 enum ProduceExamResultType {
@@ -1613,6 +1681,11 @@ enum ProduceExamResultType {
 enum ProduceExamTriggerCheckType {
   ProduceExamTriggerCheckType_Unknown = 0;
   ProduceExamTriggerCheckType_Not = 1;
+}
+enum ProduceHighScoreEventType {
+  ProduceHighScoreEventType_Unknown = 0;
+  ProduceHighScoreEventType_Normal = 1;
+  ProduceHighScoreEventType_Rush = 2;
 }
 enum ProduceItemEffectType {
   ProduceItemEffectType_Unknown = 0;
@@ -1777,6 +1850,7 @@ enum ProduceResourceType {
   ProduceResourceType_ParameterDance = 7;
   ProduceResourceType_ParameterVisual = 8;
   ProduceResourceType_Vote = 9;
+  ProduceResourceType_HighScoreGold = 100;
   ProduceResourceType_CardUpgrade = 997;
   ProduceResourceType_CardDelete = 998;
   ProduceResourceType_Set = 999;
@@ -2177,6 +2251,7 @@ enum StoryType {
   StoryType_Birthday = 3;
   StoryType_ExtraDearnessStory = 4;
   StoryType_DearnessStory = 5;
+  StoryType_AprilFool = 6;
   StoryType_StoryEvent = 9;
   StoryType_GvgRaid = 10;
   StoryType_ProduceHighScore = 11;

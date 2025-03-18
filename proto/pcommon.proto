@@ -7,19 +7,13 @@ message Achievement {
   string achievementId = 1;
   int32 threshold = 2;
 }
-message AntiCheatAnalysisResult {
-  repeated string lines = 1;
-}
-message AntiCheatCacheResult {
-  repeated AntiCheatCacheResult.CacheResult results = 1;
-  message CacheResult {
-    string id = 1;
-    AntiCheatSummaryResult summary = 2;
-    AntiCheatCriticalResult critical = 3;
-  }
-}
 message AntiCheatCriticalResult {
   repeated AntiCheatCriticalResult.Record records = 1;
+  repeated AntiCheatCriticalResult.Log logs = 2;
+  message Log {
+    string id = 1;
+    repeated string lines = 10;
+  }
   message Record {
     string tag = 1;
     string id = 2;
@@ -418,6 +412,7 @@ message Memory {
   penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 10;
   penum.IdolCardPotentialRank idolCardPotentialRank = 11;
   bool noProduceHistory = 12;
+  bool isHighScoreRush = 14;
   ProduceCard produceCard = 20;
   penum.ProduceMemoryProduceCardPhaseType produceCardPhaseType = 21;
   repeated MemoryAbility abilities = 22;
@@ -512,6 +507,8 @@ message ProduceEffectResult {
   repeated ProduceCard beforeProduceCards = 18;
   repeated ProduceCard afterProduceCards = 19;
   repeated ProduceRewardResult providedRewards = 20;
+  int32 beforeHighScoreGold = 80;
+  int32 afterHighScoreGold = 81;
   repeated int32 effectNumbers = 99;
   bool ineffective = 100;
 }
@@ -553,6 +550,8 @@ message ProduceHistory {
   int32 visualGrowthRatePermil = 35;
   int32 maxStamina = 36;
   int32 voteCount = 37;
+  bool isHighScoreRush = 100;
+  int32 highScoreGold = 101;
   message Audition {
     penum.ProduceStepType stepType = 1;
     int32 stepSelectNumber = 2;
@@ -678,6 +677,12 @@ message StoryEventBonus {
   message CharacterBonus {
     repeated string characterIds = 1;
     int32 permil = 2;
+    repeated penum.IdolCardRarity idolCardRarities = 3;
+    repeated StoryEventBonus.CharacterBonus.PotentialRankBonusPermil potentialRankBonusPermils = 4;
+    message PotentialRankBonusPermil {
+      penum.IdolCardPotentialRank potentialRank = 1;
+      int32 permil = 2;
+    }
   }
   message IdolCardBonus {
     repeated string idolCardIds = 1;
