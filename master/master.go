@@ -81,6 +81,7 @@ var requiredPutTypes = []string{
   "ProduceDescriptionProduceCardGrowEffect",
   "ProduceDescriptionLabel",
   "ProduceCardStatusEnchant",
+  "ProduceExamTrigger",
 }
 
 func DownloadAndDecrypt(masterTagResp *papi.MasterGetResponse, putDb bool) {
