@@ -114,8 +114,12 @@ func PutDb(name string, jsonDb string) {
     "Authorization": {fmt.Sprintf("Bearer %s", secret)},
   }
   payload := strings.NewReader(fmt.Sprintf("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"metadata\"\r\n\r\n{}\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"value\"\r\n\r\n%s\r\n-----011000010111000001101001--\r\n\r\n", jsonDb))
-  hyper.SendRequest(url, "PUT", headers, payload, 10, 3)
-  rich.Info("Database %q is successfully put to remote db.", name)
+  _, _, err = hyper.SendRequest(url, "PUT", headers, payload, 10, 3)
+  if err != nil {
+    rich.Warning("Put database %q failed, continue to the next step.", name)
+  } else {
+    rich.Info("Database %q is successfully put to remote db.", name)
+  }
 }
 
 func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
