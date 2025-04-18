@@ -2,6 +2,7 @@ package analyser
 
 import (
   "bufio"
+  "fmt"
   "io"
   "os"
   "regexp"
@@ -400,6 +401,40 @@ func analyzeTree(
   return sb, tsSb
 }
 
+func getServices(entireContent *string) *string {
+  sb := &strings.Builder{}
+  srvClassPtn := regexp.MustCompile(srvClassPtnStr)
+  srvMatches := srvClassPtn.FindAllStringSubmatch(*entireContent, -1)
+  if srvMatches == nil {
+    return nil
+  }
+  for _, srvMatch := range srvMatches {
+    srvContent := srvMatch[0]
+    srvName := srvMatch[1]
+    sb.WriteString(fmt.Sprintf("service %s {\n", srvName))
+
+    clmPtn := regexp.MustCompile(srvColumnPtnStr)
+    clmMatches := clmPtn.FindAllStringSubmatch(srvContent, -1)
+    if clmMatches != nil {
+      for _, clmMatch := range clmMatches {
+        respName := clmMatch[1]
+        metdName := clmMatch[2]
+        reqName := clmMatch[3]
+        clm := srvColumnTemplate
+        clm = strings.Replace(clm, "$method", metdName, 1)
+        clm = strings.Replace(clm, "$request", reqName, 1)
+        clm = strings.Replace(clm, "$response", respName, 1)
+        sb.WriteString("  ")
+        sb.WriteString(clm)
+        sb.WriteString("\n")
+      }
+    }
+    sb.WriteString("}\n")
+  }
+  result := sb.String()
+  return &result
+}
+
 func analyzeFile(
   entireContent *string,
   category Category,
@@ -446,6 +481,13 @@ func analyzeFile(
   }
   buf.WriteString(header)
   tsBuf.WriteString(tsHeader)
+
+  if category == Api {
+    srvStr := getServices(entireContent)
+    if srvStr != nil {
+      buf.WriteString(*srvStr)
+    }
+  }
 
   var sb *strings.Builder
   var tsSb *strings.Builder

@@ -13,6 +13,10 @@ var (
 
   generalColumnTemplate = "$type $columnName = $decimal;\n"
 
+  srvClassPtnStr      = `// Namespace: \npublic class (?<serviceName>\w+)\.\w+Client : ClientBase\<[\s\S]+?\n}\n\n// Namespace`
+  srvColumnPtnStr = `public virtual (?<responseName>\w+) (?<methodName>\w+)\((?<requestName>\w+) request,.+Metadata`
+  srvColumnTemplate = "rpc $method($request) returns ($response);"
+
   commonHeader = `syntax = "proto3";
 package pcommon;
 option go_package = "vertesan/campus/proto/pcommon";
@@ -50,34 +54,6 @@ import "pcommon.proto";
 import "pmaster.proto";
 import "papicommon.proto";
 
-service System {
-  rpc Check(SystemCheckRequest) returns (SystemCheckResponse);
-}
-service Auth {
-  rpc Login(AuthLoginRequest) returns (AuthLoginResponse);
-}
-service Master {
-  rpc Get(Empty) returns (MasterGetResponse);
-}
-service User {
-  rpc Get(Empty) returns (UserGetResponse);
-}
-service Home {
-  rpc Login(Empty) returns (HomeLoginResponse);
-  rpc Enter(Empty) returns (HomeEnterResponse);
-}
-service LoginBonus {
-  rpc Check(Empty) returns (LoginBonusCheckResponse);
-  rpc Confirm(Empty) returns (LoginBonusConfirmResponse);
-}
-service Notice {
-  rpc ListAll(Empty) returns (NoticeListAllResponse);
-  rpc FetchList(NoticeFetchListRequest) returns (NoticeFetchListResponse);
-}
-service PvpRate {
-  rpc Get(Empty) returns (PvpRateGetResponse);
-  rpc Initialize(Empty) returns (PvpRateInitializeResponse);
-}
 message Empty {}
 
 `
