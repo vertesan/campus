@@ -19,116 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	System_Check_FullMethodName = "/client.api.System/Check"
-)
-
-// SystemClient is the client API for System service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SystemClient interface {
-	Check(ctx context.Context, in *SystemCheckRequest, opts ...grpc.CallOption) (*SystemCheckResponse, error)
-}
-
-type systemClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewSystemClient(cc grpc.ClientConnInterface) SystemClient {
-	return &systemClient{cc}
-}
-
-func (c *systemClient) Check(ctx context.Context, in *SystemCheckRequest, opts ...grpc.CallOption) (*SystemCheckResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SystemCheckResponse)
-	err := c.cc.Invoke(ctx, System_Check_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// SystemServer is the server API for System service.
-// All implementations must embed UnimplementedSystemServer
-// for forward compatibility.
-type SystemServer interface {
-	Check(context.Context, *SystemCheckRequest) (*SystemCheckResponse, error)
-	mustEmbedUnimplementedSystemServer()
-}
-
-// UnimplementedSystemServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedSystemServer struct{}
-
-func (UnimplementedSystemServer) Check(context.Context, *SystemCheckRequest) (*SystemCheckResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
-}
-func (UnimplementedSystemServer) mustEmbedUnimplementedSystemServer() {}
-func (UnimplementedSystemServer) testEmbeddedByValue()                {}
-
-// UnsafeSystemServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SystemServer will
-// result in compilation errors.
-type UnsafeSystemServer interface {
-	mustEmbedUnimplementedSystemServer()
-}
-
-func RegisterSystemServer(s grpc.ServiceRegistrar, srv SystemServer) {
-	// If the following call pancis, it indicates UnimplementedSystemServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&System_ServiceDesc, srv)
-}
-
-func _System_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SystemCheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SystemServer).Check(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: System_Check_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SystemServer).Check(ctx, req.(*SystemCheckRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// System_ServiceDesc is the grpc.ServiceDesc for System service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var System_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "client.api.System",
-	HandlerType: (*SystemServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Check",
-			Handler:    _System_Check_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "papi.proto",
-}
-
-const (
-	Auth_Login_FullMethodName = "/client.api.Auth/Login"
+	Auth_Create_FullMethodName                        = "/client.api.Auth/Create"
+	Auth_Login_FullMethodName                         = "/client.api.Auth/Login"
+	Auth_LinkBandaiNamcoId_FullMethodName             = "/client.api.Auth/LinkBandaiNamcoId"
+	Auth_Unlink_FullMethodName                        = "/client.api.Auth/Unlink"
+	Auth_PrepareMigrationBandaiNamcoId_FullMethodName = "/client.api.Auth/PrepareMigrationBandaiNamcoId"
+	Auth_Migrate_FullMethodName                       = "/client.api.Auth/Migrate"
+	Auth_MigrateDmmGamesId_FullMethodName             = "/client.api.Auth/MigrateDmmGamesId"
+	Auth_AgreeTerms_FullMethodName                    = "/client.api.Auth/AgreeTerms"
+	Auth_GetConsent_FullMethodName                    = "/client.api.Auth/GetConsent"
+	Auth_SendConsent_FullMethodName                   = "/client.api.Auth/SendConsent"
 )
 
 // AuthClient is the client API for Auth service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
+	Create(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthCreateResponse, error)
 	Login(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error)
+	LinkBandaiNamcoId(ctx context.Context, in *AuthLinkBandaiNamcoIdRequest, opts ...grpc.CallOption) (*AuthLinkBandaiNamcoIdResponse, error)
+	Unlink(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthUnlinkResponse, error)
+	PrepareMigrationBandaiNamcoId(ctx context.Context, in *AuthPrepareMigrationBandaiNamcoIdRequest, opts ...grpc.CallOption) (*AuthPrepareMigrationBandaiNamcoIdResponse, error)
+	Migrate(ctx context.Context, in *AuthMigrateRequest, opts ...grpc.CallOption) (*AuthMigrateResponse, error)
+	MigrateDmmGamesId(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthMigrateDmmGamesIdResponse, error)
+	AgreeTerms(ctx context.Context, in *AuthAgreeTermsRequest, opts ...grpc.CallOption) (*AuthAgreeTermsResponse, error)
+	GetConsent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthGetConsentResponse, error)
+	SendConsent(ctx context.Context, in *AuthSendConsentRequest, opts ...grpc.CallOption) (*AuthSendConsentResponse, error)
 }
 
 type authClient struct {
@@ -137,6 +53,16 @@ type authClient struct {
 
 func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
+}
+
+func (c *authClient) Create(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthCreateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthCreateResponse)
+	err := c.cc.Invoke(ctx, Auth_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *authClient) Login(ctx context.Context, in *AuthLoginRequest, opts ...grpc.CallOption) (*AuthLoginResponse, error) {
@@ -149,11 +75,100 @@ func (c *authClient) Login(ctx context.Context, in *AuthLoginRequest, opts ...gr
 	return out, nil
 }
 
+func (c *authClient) LinkBandaiNamcoId(ctx context.Context, in *AuthLinkBandaiNamcoIdRequest, opts ...grpc.CallOption) (*AuthLinkBandaiNamcoIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthLinkBandaiNamcoIdResponse)
+	err := c.cc.Invoke(ctx, Auth_LinkBandaiNamcoId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) Unlink(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthUnlinkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthUnlinkResponse)
+	err := c.cc.Invoke(ctx, Auth_Unlink_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) PrepareMigrationBandaiNamcoId(ctx context.Context, in *AuthPrepareMigrationBandaiNamcoIdRequest, opts ...grpc.CallOption) (*AuthPrepareMigrationBandaiNamcoIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthPrepareMigrationBandaiNamcoIdResponse)
+	err := c.cc.Invoke(ctx, Auth_PrepareMigrationBandaiNamcoId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) Migrate(ctx context.Context, in *AuthMigrateRequest, opts ...grpc.CallOption) (*AuthMigrateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthMigrateResponse)
+	err := c.cc.Invoke(ctx, Auth_Migrate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) MigrateDmmGamesId(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthMigrateDmmGamesIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthMigrateDmmGamesIdResponse)
+	err := c.cc.Invoke(ctx, Auth_MigrateDmmGamesId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) AgreeTerms(ctx context.Context, in *AuthAgreeTermsRequest, opts ...grpc.CallOption) (*AuthAgreeTermsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthAgreeTermsResponse)
+	err := c.cc.Invoke(ctx, Auth_AgreeTerms_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) GetConsent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*AuthGetConsentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthGetConsentResponse)
+	err := c.cc.Invoke(ctx, Auth_GetConsent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) SendConsent(ctx context.Context, in *AuthSendConsentRequest, opts ...grpc.CallOption) (*AuthSendConsentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AuthSendConsentResponse)
+	err := c.cc.Invoke(ctx, Auth_SendConsent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
 type AuthServer interface {
+	Create(context.Context, *Empty) (*AuthCreateResponse, error)
 	Login(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error)
+	LinkBandaiNamcoId(context.Context, *AuthLinkBandaiNamcoIdRequest) (*AuthLinkBandaiNamcoIdResponse, error)
+	Unlink(context.Context, *Empty) (*AuthUnlinkResponse, error)
+	PrepareMigrationBandaiNamcoId(context.Context, *AuthPrepareMigrationBandaiNamcoIdRequest) (*AuthPrepareMigrationBandaiNamcoIdResponse, error)
+	Migrate(context.Context, *AuthMigrateRequest) (*AuthMigrateResponse, error)
+	MigrateDmmGamesId(context.Context, *Empty) (*AuthMigrateDmmGamesIdResponse, error)
+	AgreeTerms(context.Context, *AuthAgreeTermsRequest) (*AuthAgreeTermsResponse, error)
+	GetConsent(context.Context, *Empty) (*AuthGetConsentResponse, error)
+	SendConsent(context.Context, *AuthSendConsentRequest) (*AuthSendConsentResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -164,8 +179,35 @@ type AuthServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAuthServer struct{}
 
+func (UnimplementedAuthServer) Create(context.Context, *Empty) (*AuthCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
 func (UnimplementedAuthServer) Login(context.Context, *AuthLoginRequest) (*AuthLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedAuthServer) LinkBandaiNamcoId(context.Context, *AuthLinkBandaiNamcoIdRequest) (*AuthLinkBandaiNamcoIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LinkBandaiNamcoId not implemented")
+}
+func (UnimplementedAuthServer) Unlink(context.Context, *Empty) (*AuthUnlinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unlink not implemented")
+}
+func (UnimplementedAuthServer) PrepareMigrationBandaiNamcoId(context.Context, *AuthPrepareMigrationBandaiNamcoIdRequest) (*AuthPrepareMigrationBandaiNamcoIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareMigrationBandaiNamcoId not implemented")
+}
+func (UnimplementedAuthServer) Migrate(context.Context, *AuthMigrateRequest) (*AuthMigrateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Migrate not implemented")
+}
+func (UnimplementedAuthServer) MigrateDmmGamesId(context.Context, *Empty) (*AuthMigrateDmmGamesIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MigrateDmmGamesId not implemented")
+}
+func (UnimplementedAuthServer) AgreeTerms(context.Context, *AuthAgreeTermsRequest) (*AuthAgreeTermsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgreeTerms not implemented")
+}
+func (UnimplementedAuthServer) GetConsent(context.Context, *Empty) (*AuthGetConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsent not implemented")
+}
+func (UnimplementedAuthServer) SendConsent(context.Context, *AuthSendConsentRequest) (*AuthSendConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendConsent not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -188,6 +230,24 @@ func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
 	s.RegisterService(&Auth_ServiceDesc, srv)
 }
 
+func _Auth_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Create(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthLoginRequest)
 	if err := dec(in); err != nil {
@@ -206,6 +266,150 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_LinkBandaiNamcoId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthLinkBandaiNamcoIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).LinkBandaiNamcoId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_LinkBandaiNamcoId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).LinkBandaiNamcoId(ctx, req.(*AuthLinkBandaiNamcoIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_Unlink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Unlink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Unlink_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Unlink(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_PrepareMigrationBandaiNamcoId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthPrepareMigrationBandaiNamcoIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).PrepareMigrationBandaiNamcoId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_PrepareMigrationBandaiNamcoId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).PrepareMigrationBandaiNamcoId(ctx, req.(*AuthPrepareMigrationBandaiNamcoIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_Migrate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthMigrateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Migrate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Migrate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Migrate(ctx, req.(*AuthMigrateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_MigrateDmmGamesId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).MigrateDmmGamesId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_MigrateDmmGamesId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).MigrateDmmGamesId(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_AgreeTerms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthAgreeTermsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).AgreeTerms(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_AgreeTerms_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).AgreeTerms(ctx, req.(*AuthAgreeTermsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_GetConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetConsent(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_SendConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthSendConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).SendConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_SendConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).SendConsent(ctx, req.(*AuthSendConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -214,110 +418,44 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Create",
+			Handler:    _Auth_Create_Handler,
+		},
+		{
 			MethodName: "Login",
 			Handler:    _Auth_Login_Handler,
 		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "papi.proto",
-}
-
-const (
-	Master_Get_FullMethodName = "/client.api.Master/Get"
-)
-
-// MasterClient is the client API for Master service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MasterClient interface {
-	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MasterGetResponse, error)
-}
-
-type masterClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewMasterClient(cc grpc.ClientConnInterface) MasterClient {
-	return &masterClient{cc}
-}
-
-func (c *masterClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MasterGetResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MasterGetResponse)
-	err := c.cc.Invoke(ctx, Master_Get_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// MasterServer is the server API for Master service.
-// All implementations must embed UnimplementedMasterServer
-// for forward compatibility.
-type MasterServer interface {
-	Get(context.Context, *Empty) (*MasterGetResponse, error)
-	mustEmbedUnimplementedMasterServer()
-}
-
-// UnimplementedMasterServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedMasterServer struct{}
-
-func (UnimplementedMasterServer) Get(context.Context, *Empty) (*MasterGetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedMasterServer) mustEmbedUnimplementedMasterServer() {}
-func (UnimplementedMasterServer) testEmbeddedByValue()                {}
-
-// UnsafeMasterServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MasterServer will
-// result in compilation errors.
-type UnsafeMasterServer interface {
-	mustEmbedUnimplementedMasterServer()
-}
-
-func RegisterMasterServer(s grpc.ServiceRegistrar, srv MasterServer) {
-	// If the following call pancis, it indicates UnimplementedMasterServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&Master_ServiceDesc, srv)
-}
-
-func _Master_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MasterServer).Get(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Master_Get_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MasterServer).Get(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Master_ServiceDesc is the grpc.ServiceDesc for Master service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Master_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "client.api.Master",
-	HandlerType: (*MasterServer)(nil),
-	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _Master_Get_Handler,
+			MethodName: "LinkBandaiNamcoId",
+			Handler:    _Auth_LinkBandaiNamcoId_Handler,
+		},
+		{
+			MethodName: "Unlink",
+			Handler:    _Auth_Unlink_Handler,
+		},
+		{
+			MethodName: "PrepareMigrationBandaiNamcoId",
+			Handler:    _Auth_PrepareMigrationBandaiNamcoId_Handler,
+		},
+		{
+			MethodName: "Migrate",
+			Handler:    _Auth_Migrate_Handler,
+		},
+		{
+			MethodName: "MigrateDmmGamesId",
+			Handler:    _Auth_MigrateDmmGamesId_Handler,
+		},
+		{
+			MethodName: "AgreeTerms",
+			Handler:    _Auth_AgreeTerms_Handler,
+		},
+		{
+			MethodName: "GetConsent",
+			Handler:    _Auth_GetConsent_Handler,
+		},
+		{
+			MethodName: "SendConsent",
+			Handler:    _Auth_SendConsent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -325,101 +463,101 @@ var Master_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	User_Get_FullMethodName = "/client.api.User/Get"
+	Character_CheckRoster_FullMethodName = "/client.api.Character/CheckRoster"
 )
 
-// UserClient is the client API for User service.
+// CharacterClient is the client API for Character service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserClient interface {
-	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserGetResponse, error)
+type CharacterClient interface {
+	CheckRoster(ctx context.Context, in *CharacterCheckRosterRequest, opts ...grpc.CallOption) (*CharacterCheckRosterResponse, error)
 }
 
-type userClient struct {
+type characterClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserClient(cc grpc.ClientConnInterface) UserClient {
-	return &userClient{cc}
+func NewCharacterClient(cc grpc.ClientConnInterface) CharacterClient {
+	return &characterClient{cc}
 }
 
-func (c *userClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserGetResponse, error) {
+func (c *characterClient) CheckRoster(ctx context.Context, in *CharacterCheckRosterRequest, opts ...grpc.CallOption) (*CharacterCheckRosterResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserGetResponse)
-	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, cOpts...)
+	out := new(CharacterCheckRosterResponse)
+	err := c.cc.Invoke(ctx, Character_CheckRoster_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// CharacterServer is the server API for Character service.
+// All implementations must embed UnimplementedCharacterServer
 // for forward compatibility.
-type UserServer interface {
-	Get(context.Context, *Empty) (*UserGetResponse, error)
-	mustEmbedUnimplementedUserServer()
+type CharacterServer interface {
+	CheckRoster(context.Context, *CharacterCheckRosterRequest) (*CharacterCheckRosterResponse, error)
+	mustEmbedUnimplementedCharacterServer()
 }
 
-// UnimplementedUserServer must be embedded to have
+// UnimplementedCharacterServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUserServer struct{}
+type UnimplementedCharacterServer struct{}
 
-func (UnimplementedUserServer) Get(context.Context, *Empty) (*UserGetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+func (UnimplementedCharacterServer) CheckRoster(context.Context, *CharacterCheckRosterRequest) (*CharacterCheckRosterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckRoster not implemented")
 }
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
-func (UnimplementedUserServer) testEmbeddedByValue()              {}
+func (UnimplementedCharacterServer) mustEmbedUnimplementedCharacterServer() {}
+func (UnimplementedCharacterServer) testEmbeddedByValue()                   {}
 
-// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServer will
+// UnsafeCharacterServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CharacterServer will
 // result in compilation errors.
-type UnsafeUserServer interface {
-	mustEmbedUnimplementedUserServer()
+type UnsafeCharacterServer interface {
+	mustEmbedUnimplementedCharacterServer()
 }
 
-func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
-	// If the following call pancis, it indicates UnimplementedUserServer was
+func RegisterCharacterServer(s grpc.ServiceRegistrar, srv CharacterServer) {
+	// If the following call pancis, it indicates UnimplementedCharacterServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&User_ServiceDesc, srv)
+	s.RegisterService(&Character_ServiceDesc, srv)
 }
 
-func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+func _Character_CheckRoster_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CharacterCheckRosterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).Get(ctx, in)
+		return srv.(CharacterServer).CheckRoster(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_Get_FullMethodName,
+		FullMethod: Character_CheckRoster_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Get(ctx, req.(*Empty))
+		return srv.(CharacterServer).CheckRoster(ctx, req.(*CharacterCheckRosterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// Character_ServiceDesc is the grpc.ServiceDesc for Character service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "client.api.User",
-	HandlerType: (*UserServer)(nil),
+var Character_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Character",
+	HandlerType: (*CharacterServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _User_Get_Handler,
+			MethodName: "CheckRoster",
+			Handler:    _Character_CheckRoster_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -427,8 +565,2905 @@ var User_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Home_Login_FullMethodName = "/client.api.Home/Login"
-	Home_Enter_FullMethodName = "/client.api.Home/Enter"
+	CoinGasha_Get_FullMethodName      = "/client.api.CoinGasha/Get"
+	CoinGasha_List_FullMethodName     = "/client.api.CoinGasha/List"
+	CoinGasha_Draw_FullMethodName     = "/client.api.CoinGasha/Draw"
+	CoinGasha_ResetBox_FullMethodName = "/client.api.CoinGasha/ResetBox"
+)
+
+// CoinGashaClient is the client API for CoinGasha service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CoinGashaClient interface {
+	Get(ctx context.Context, in *CoinGashaGetRequest, opts ...grpc.CallOption) (*CoinGashaGetResponse, error)
+	List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CoinGashaListResponse, error)
+	Draw(ctx context.Context, in *CoinGashaDrawRequest, opts ...grpc.CallOption) (*CoinGashaDrawResponse, error)
+	ResetBox(ctx context.Context, in *CoinGashaResetBoxRequest, opts ...grpc.CallOption) (*CoinGashaResetBoxResponse, error)
+}
+
+type coinGashaClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCoinGashaClient(cc grpc.ClientConnInterface) CoinGashaClient {
+	return &coinGashaClient{cc}
+}
+
+func (c *coinGashaClient) Get(ctx context.Context, in *CoinGashaGetRequest, opts ...grpc.CallOption) (*CoinGashaGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CoinGashaGetResponse)
+	err := c.cc.Invoke(ctx, CoinGasha_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coinGashaClient) List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CoinGashaListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CoinGashaListResponse)
+	err := c.cc.Invoke(ctx, CoinGasha_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coinGashaClient) Draw(ctx context.Context, in *CoinGashaDrawRequest, opts ...grpc.CallOption) (*CoinGashaDrawResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CoinGashaDrawResponse)
+	err := c.cc.Invoke(ctx, CoinGasha_Draw_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coinGashaClient) ResetBox(ctx context.Context, in *CoinGashaResetBoxRequest, opts ...grpc.CallOption) (*CoinGashaResetBoxResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CoinGashaResetBoxResponse)
+	err := c.cc.Invoke(ctx, CoinGasha_ResetBox_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CoinGashaServer is the server API for CoinGasha service.
+// All implementations must embed UnimplementedCoinGashaServer
+// for forward compatibility.
+type CoinGashaServer interface {
+	Get(context.Context, *CoinGashaGetRequest) (*CoinGashaGetResponse, error)
+	List(context.Context, *Empty) (*CoinGashaListResponse, error)
+	Draw(context.Context, *CoinGashaDrawRequest) (*CoinGashaDrawResponse, error)
+	ResetBox(context.Context, *CoinGashaResetBoxRequest) (*CoinGashaResetBoxResponse, error)
+	mustEmbedUnimplementedCoinGashaServer()
+}
+
+// UnimplementedCoinGashaServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedCoinGashaServer struct{}
+
+func (UnimplementedCoinGashaServer) Get(context.Context, *CoinGashaGetRequest) (*CoinGashaGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCoinGashaServer) List(context.Context, *Empty) (*CoinGashaListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedCoinGashaServer) Draw(context.Context, *CoinGashaDrawRequest) (*CoinGashaDrawResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Draw not implemented")
+}
+func (UnimplementedCoinGashaServer) ResetBox(context.Context, *CoinGashaResetBoxRequest) (*CoinGashaResetBoxResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetBox not implemented")
+}
+func (UnimplementedCoinGashaServer) mustEmbedUnimplementedCoinGashaServer() {}
+func (UnimplementedCoinGashaServer) testEmbeddedByValue()                   {}
+
+// UnsafeCoinGashaServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CoinGashaServer will
+// result in compilation errors.
+type UnsafeCoinGashaServer interface {
+	mustEmbedUnimplementedCoinGashaServer()
+}
+
+func RegisterCoinGashaServer(s grpc.ServiceRegistrar, srv CoinGashaServer) {
+	// If the following call pancis, it indicates UnimplementedCoinGashaServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&CoinGasha_ServiceDesc, srv)
+}
+
+func _CoinGasha_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoinGashaGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoinGashaServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoinGasha_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoinGashaServer).Get(ctx, req.(*CoinGashaGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoinGasha_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoinGashaServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoinGasha_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoinGashaServer).List(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoinGasha_Draw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoinGashaDrawRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoinGashaServer).Draw(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoinGasha_Draw_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoinGashaServer).Draw(ctx, req.(*CoinGashaDrawRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoinGasha_ResetBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CoinGashaResetBoxRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoinGashaServer).ResetBox(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoinGasha_ResetBox_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoinGashaServer).ResetBox(ctx, req.(*CoinGashaResetBoxRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// CoinGasha_ServiceDesc is the grpc.ServiceDesc for CoinGasha service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CoinGasha_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.CoinGasha",
+	HandlerType: (*CoinGashaServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _CoinGasha_Get_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _CoinGasha_List_Handler,
+		},
+		{
+			MethodName: "Draw",
+			Handler:    _CoinGasha_Draw_Handler,
+		},
+		{
+			MethodName: "ResetBox",
+			Handler:    _CoinGasha_ResetBox_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Costume_Set_FullMethodName   = "/client.api.Costume/Set"
+	Costume_Check_FullMethodName = "/client.api.Costume/Check"
+)
+
+// CostumeClient is the client API for Costume service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CostumeClient interface {
+	Set(ctx context.Context, in *CostumeSetRequest, opts ...grpc.CallOption) (*CostumeSetResponse, error)
+	Check(ctx context.Context, in *CostumeCheckRequest, opts ...grpc.CallOption) (*CostumeCheckResponse, error)
+}
+
+type costumeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCostumeClient(cc grpc.ClientConnInterface) CostumeClient {
+	return &costumeClient{cc}
+}
+
+func (c *costumeClient) Set(ctx context.Context, in *CostumeSetRequest, opts ...grpc.CallOption) (*CostumeSetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CostumeSetResponse)
+	err := c.cc.Invoke(ctx, Costume_Set_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *costumeClient) Check(ctx context.Context, in *CostumeCheckRequest, opts ...grpc.CallOption) (*CostumeCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CostumeCheckResponse)
+	err := c.cc.Invoke(ctx, Costume_Check_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CostumeServer is the server API for Costume service.
+// All implementations must embed UnimplementedCostumeServer
+// for forward compatibility.
+type CostumeServer interface {
+	Set(context.Context, *CostumeSetRequest) (*CostumeSetResponse, error)
+	Check(context.Context, *CostumeCheckRequest) (*CostumeCheckResponse, error)
+	mustEmbedUnimplementedCostumeServer()
+}
+
+// UnimplementedCostumeServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedCostumeServer struct{}
+
+func (UnimplementedCostumeServer) Set(context.Context, *CostumeSetRequest) (*CostumeSetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedCostumeServer) Check(context.Context, *CostumeCheckRequest) (*CostumeCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedCostumeServer) mustEmbedUnimplementedCostumeServer() {}
+func (UnimplementedCostumeServer) testEmbeddedByValue()                 {}
+
+// UnsafeCostumeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CostumeServer will
+// result in compilation errors.
+type UnsafeCostumeServer interface {
+	mustEmbedUnimplementedCostumeServer()
+}
+
+func RegisterCostumeServer(s grpc.ServiceRegistrar, srv CostumeServer) {
+	// If the following call pancis, it indicates UnimplementedCostumeServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Costume_ServiceDesc, srv)
+}
+
+func _Costume_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CostumeSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CostumeServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Costume_Set_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CostumeServer).Set(ctx, req.(*CostumeSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Costume_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CostumeCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CostumeServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Costume_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CostumeServer).Check(ctx, req.(*CostumeCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Costume_ServiceDesc is the grpc.ServiceDesc for Costume service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Costume_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Costume",
+	HandlerType: (*CostumeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Set",
+			Handler:    _Costume_Set_Handler,
+		},
+		{
+			MethodName: "Check",
+			Handler:    _Costume_Check_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Exchange_Get_FullMethodName     = "/client.api.Exchange/Get"
+	Exchange_List_FullMethodName    = "/client.api.Exchange/List"
+	Exchange_Execute_FullMethodName = "/client.api.Exchange/Execute"
+	Exchange_Reset_FullMethodName   = "/client.api.Exchange/Reset"
+)
+
+// ExchangeClient is the client API for Exchange service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ExchangeClient interface {
+	Get(ctx context.Context, in *ExchangeGetRequest, opts ...grpc.CallOption) (*ExchangeGetResponse, error)
+	List(ctx context.Context, in *ExchangeListRequest, opts ...grpc.CallOption) (*ExchangeListResponse, error)
+	Execute(ctx context.Context, in *ExchangeExecuteRequest, opts ...grpc.CallOption) (*ExchangeExecuteResponse, error)
+	Reset(ctx context.Context, in *ExchangeResetRequest, opts ...grpc.CallOption) (*ExchangeResetResponse, error)
+}
+
+type exchangeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewExchangeClient(cc grpc.ClientConnInterface) ExchangeClient {
+	return &exchangeClient{cc}
+}
+
+func (c *exchangeClient) Get(ctx context.Context, in *ExchangeGetRequest, opts ...grpc.CallOption) (*ExchangeGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExchangeGetResponse)
+	err := c.cc.Invoke(ctx, Exchange_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *exchangeClient) List(ctx context.Context, in *ExchangeListRequest, opts ...grpc.CallOption) (*ExchangeListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExchangeListResponse)
+	err := c.cc.Invoke(ctx, Exchange_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *exchangeClient) Execute(ctx context.Context, in *ExchangeExecuteRequest, opts ...grpc.CallOption) (*ExchangeExecuteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExchangeExecuteResponse)
+	err := c.cc.Invoke(ctx, Exchange_Execute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *exchangeClient) Reset(ctx context.Context, in *ExchangeResetRequest, opts ...grpc.CallOption) (*ExchangeResetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExchangeResetResponse)
+	err := c.cc.Invoke(ctx, Exchange_Reset_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ExchangeServer is the server API for Exchange service.
+// All implementations must embed UnimplementedExchangeServer
+// for forward compatibility.
+type ExchangeServer interface {
+	Get(context.Context, *ExchangeGetRequest) (*ExchangeGetResponse, error)
+	List(context.Context, *ExchangeListRequest) (*ExchangeListResponse, error)
+	Execute(context.Context, *ExchangeExecuteRequest) (*ExchangeExecuteResponse, error)
+	Reset(context.Context, *ExchangeResetRequest) (*ExchangeResetResponse, error)
+	mustEmbedUnimplementedExchangeServer()
+}
+
+// UnimplementedExchangeServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedExchangeServer struct{}
+
+func (UnimplementedExchangeServer) Get(context.Context, *ExchangeGetRequest) (*ExchangeGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedExchangeServer) List(context.Context, *ExchangeListRequest) (*ExchangeListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedExchangeServer) Execute(context.Context, *ExchangeExecuteRequest) (*ExchangeExecuteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Execute not implemented")
+}
+func (UnimplementedExchangeServer) Reset(context.Context, *ExchangeResetRequest) (*ExchangeResetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Reset not implemented")
+}
+func (UnimplementedExchangeServer) mustEmbedUnimplementedExchangeServer() {}
+func (UnimplementedExchangeServer) testEmbeddedByValue()                  {}
+
+// UnsafeExchangeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ExchangeServer will
+// result in compilation errors.
+type UnsafeExchangeServer interface {
+	mustEmbedUnimplementedExchangeServer()
+}
+
+func RegisterExchangeServer(s grpc.ServiceRegistrar, srv ExchangeServer) {
+	// If the following call pancis, it indicates UnimplementedExchangeServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Exchange_ServiceDesc, srv)
+}
+
+func _Exchange_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExchangeGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExchangeServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Exchange_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExchangeServer).Get(ctx, req.(*ExchangeGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Exchange_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExchangeListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExchangeServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Exchange_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExchangeServer).List(ctx, req.(*ExchangeListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Exchange_Execute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExchangeExecuteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExchangeServer).Execute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Exchange_Execute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExchangeServer).Execute(ctx, req.(*ExchangeExecuteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Exchange_Reset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExchangeResetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ExchangeServer).Reset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Exchange_Reset_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ExchangeServer).Reset(ctx, req.(*ExchangeResetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Exchange_ServiceDesc is the grpc.ServiceDesc for Exchange service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Exchange_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Exchange",
+	HandlerType: (*ExchangeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _Exchange_Get_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Exchange_List_Handler,
+		},
+		{
+			MethodName: "Execute",
+			Handler:    _Exchange_Execute_Handler,
+		},
+		{
+			MethodName: "Reset",
+			Handler:    _Exchange_Reset_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Friend_List_FullMethodName           = "/client.api.Friend/List"
+	Friend_ListSuggestion_FullMethodName = "/client.api.Friend/ListSuggestion"
+	Friend_Follow_FullMethodName         = "/client.api.Friend/Follow"
+	Friend_UnFollow_FullMethodName       = "/client.api.Friend/UnFollow"
+	Friend_DeleteFollower_FullMethodName = "/client.api.Friend/DeleteFollower"
+)
+
+// FriendClient is the client API for Friend service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FriendClient interface {
+	List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendListResponse, error)
+	ListSuggestion(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendListSuggestionResponse, error)
+	Follow(ctx context.Context, in *FriendFollowRequest, opts ...grpc.CallOption) (*FriendFollowResponse, error)
+	UnFollow(ctx context.Context, in *FriendUnFollowRequest, opts ...grpc.CallOption) (*FriendUnFollowResponse, error)
+	DeleteFollower(ctx context.Context, in *FriendDeleteFollowerRequest, opts ...grpc.CallOption) (*FriendDeleteFollowerResponse, error)
+}
+
+type friendClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFriendClient(cc grpc.ClientConnInterface) FriendClient {
+	return &friendClient{cc}
+}
+
+func (c *friendClient) List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FriendListResponse)
+	err := c.cc.Invoke(ctx, Friend_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) ListSuggestion(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendListSuggestionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FriendListSuggestionResponse)
+	err := c.cc.Invoke(ctx, Friend_ListSuggestion_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) Follow(ctx context.Context, in *FriendFollowRequest, opts ...grpc.CallOption) (*FriendFollowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FriendFollowResponse)
+	err := c.cc.Invoke(ctx, Friend_Follow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) UnFollow(ctx context.Context, in *FriendUnFollowRequest, opts ...grpc.CallOption) (*FriendUnFollowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FriendUnFollowResponse)
+	err := c.cc.Invoke(ctx, Friend_UnFollow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *friendClient) DeleteFollower(ctx context.Context, in *FriendDeleteFollowerRequest, opts ...grpc.CallOption) (*FriendDeleteFollowerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FriendDeleteFollowerResponse)
+	err := c.cc.Invoke(ctx, Friend_DeleteFollower_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FriendServer is the server API for Friend service.
+// All implementations must embed UnimplementedFriendServer
+// for forward compatibility.
+type FriendServer interface {
+	List(context.Context, *Empty) (*FriendListResponse, error)
+	ListSuggestion(context.Context, *Empty) (*FriendListSuggestionResponse, error)
+	Follow(context.Context, *FriendFollowRequest) (*FriendFollowResponse, error)
+	UnFollow(context.Context, *FriendUnFollowRequest) (*FriendUnFollowResponse, error)
+	DeleteFollower(context.Context, *FriendDeleteFollowerRequest) (*FriendDeleteFollowerResponse, error)
+	mustEmbedUnimplementedFriendServer()
+}
+
+// UnimplementedFriendServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedFriendServer struct{}
+
+func (UnimplementedFriendServer) List(context.Context, *Empty) (*FriendListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedFriendServer) ListSuggestion(context.Context, *Empty) (*FriendListSuggestionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSuggestion not implemented")
+}
+func (UnimplementedFriendServer) Follow(context.Context, *FriendFollowRequest) (*FriendFollowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Follow not implemented")
+}
+func (UnimplementedFriendServer) UnFollow(context.Context, *FriendUnFollowRequest) (*FriendUnFollowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnFollow not implemented")
+}
+func (UnimplementedFriendServer) DeleteFollower(context.Context, *FriendDeleteFollowerRequest) (*FriendDeleteFollowerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFollower not implemented")
+}
+func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
+func (UnimplementedFriendServer) testEmbeddedByValue()                {}
+
+// UnsafeFriendServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FriendServer will
+// result in compilation errors.
+type UnsafeFriendServer interface {
+	mustEmbedUnimplementedFriendServer()
+}
+
+func RegisterFriendServer(s grpc.ServiceRegistrar, srv FriendServer) {
+	// If the following call pancis, it indicates UnimplementedFriendServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Friend_ServiceDesc, srv)
+}
+
+func _Friend_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).List(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_ListSuggestion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).ListSuggestion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_ListSuggestion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).ListSuggestion(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_Follow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FriendFollowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).Follow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_Follow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).Follow(ctx, req.(*FriendFollowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_UnFollow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FriendUnFollowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).UnFollow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_UnFollow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).UnFollow(ctx, req.(*FriendUnFollowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Friend_DeleteFollower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FriendDeleteFollowerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).DeleteFollower(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_DeleteFollower_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).DeleteFollower(ctx, req.(*FriendDeleteFollowerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Friend_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Friend",
+	HandlerType: (*FriendServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _Friend_List_Handler,
+		},
+		{
+			MethodName: "ListSuggestion",
+			Handler:    _Friend_ListSuggestion_Handler,
+		},
+		{
+			MethodName: "Follow",
+			Handler:    _Friend_Follow_Handler,
+		},
+		{
+			MethodName: "UnFollow",
+			Handler:    _Friend_UnFollow_Handler,
+		},
+		{
+			MethodName: "DeleteFollower",
+			Handler:    _Friend_DeleteFollower_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Gasha_List_FullMethodName                       = "/client.api.Gasha/List"
+	Gasha_Draw_FullMethodName                       = "/client.api.Gasha/Draw"
+	Gasha_GetProbability_FullMethodName             = "/client.api.Gasha/GetProbability"
+	Gasha_SelectPickup_FullMethodName               = "/client.api.Gasha/SelectPickup"
+	Gasha_DrawSelectPickup_FullMethodName           = "/client.api.Gasha/DrawSelectPickup"
+	Gasha_GetSelectPickupProbability_FullMethodName = "/client.api.Gasha/GetSelectPickupProbability"
+	Gasha_DrawStepUp_FullMethodName                 = "/client.api.Gasha/DrawStepUp"
+	Gasha_GetStepUpProbability_FullMethodName       = "/client.api.Gasha/GetStepUpProbability"
+	Gasha_GetPointExchange_FullMethodName           = "/client.api.Gasha/GetPointExchange"
+	Gasha_ExchangePoint_FullMethodName              = "/client.api.Gasha/ExchangePoint"
+	Gasha_ExpirePoint_FullMethodName                = "/client.api.Gasha/ExpirePoint"
+	Gasha_GetPrecaution_FullMethodName              = "/client.api.Gasha/GetPrecaution"
+)
+
+// GashaClient is the client API for Gasha service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GashaClient interface {
+	List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GashaListResponse, error)
+	Draw(ctx context.Context, in *GashaDrawRequest, opts ...grpc.CallOption) (*GashaDrawResponse, error)
+	GetProbability(ctx context.Context, in *GashaGetProbabilityRequest, opts ...grpc.CallOption) (*GashaGetProbabilityResponse, error)
+	SelectPickup(ctx context.Context, in *GashaSelectPickupRequest, opts ...grpc.CallOption) (*GashaSelectPickupResponse, error)
+	DrawSelectPickup(ctx context.Context, in *GashaDrawSelectPickupRequest, opts ...grpc.CallOption) (*GashaDrawSelectPickupResponse, error)
+	GetSelectPickupProbability(ctx context.Context, in *GashaGetSelectPickupProbabilityRequest, opts ...grpc.CallOption) (*GashaGetSelectPickupProbabilityResponse, error)
+	DrawStepUp(ctx context.Context, in *GashaDrawStepUpRequest, opts ...grpc.CallOption) (*GashaDrawStepUpResponse, error)
+	GetStepUpProbability(ctx context.Context, in *GashaGetStepUpProbabilityRequest, opts ...grpc.CallOption) (*GashaGetStepUpProbabilityResponse, error)
+	GetPointExchange(ctx context.Context, in *GashaGetPointExchangeRequest, opts ...grpc.CallOption) (*GashaGetPointExchangeResponse, error)
+	ExchangePoint(ctx context.Context, in *GashaExchangePointRequest, opts ...grpc.CallOption) (*GashaExchangePointResponse, error)
+	ExpirePoint(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GashaExpirePointResponse, error)
+	GetPrecaution(ctx context.Context, in *GashaGetPrecautionRequest, opts ...grpc.CallOption) (*GashaGetPrecautionResponse, error)
+}
+
+type gashaClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGashaClient(cc grpc.ClientConnInterface) GashaClient {
+	return &gashaClient{cc}
+}
+
+func (c *gashaClient) List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GashaListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaListResponse)
+	err := c.cc.Invoke(ctx, Gasha_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) Draw(ctx context.Context, in *GashaDrawRequest, opts ...grpc.CallOption) (*GashaDrawResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaDrawResponse)
+	err := c.cc.Invoke(ctx, Gasha_Draw_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) GetProbability(ctx context.Context, in *GashaGetProbabilityRequest, opts ...grpc.CallOption) (*GashaGetProbabilityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaGetProbabilityResponse)
+	err := c.cc.Invoke(ctx, Gasha_GetProbability_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) SelectPickup(ctx context.Context, in *GashaSelectPickupRequest, opts ...grpc.CallOption) (*GashaSelectPickupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaSelectPickupResponse)
+	err := c.cc.Invoke(ctx, Gasha_SelectPickup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) DrawSelectPickup(ctx context.Context, in *GashaDrawSelectPickupRequest, opts ...grpc.CallOption) (*GashaDrawSelectPickupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaDrawSelectPickupResponse)
+	err := c.cc.Invoke(ctx, Gasha_DrawSelectPickup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) GetSelectPickupProbability(ctx context.Context, in *GashaGetSelectPickupProbabilityRequest, opts ...grpc.CallOption) (*GashaGetSelectPickupProbabilityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaGetSelectPickupProbabilityResponse)
+	err := c.cc.Invoke(ctx, Gasha_GetSelectPickupProbability_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) DrawStepUp(ctx context.Context, in *GashaDrawStepUpRequest, opts ...grpc.CallOption) (*GashaDrawStepUpResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaDrawStepUpResponse)
+	err := c.cc.Invoke(ctx, Gasha_DrawStepUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) GetStepUpProbability(ctx context.Context, in *GashaGetStepUpProbabilityRequest, opts ...grpc.CallOption) (*GashaGetStepUpProbabilityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaGetStepUpProbabilityResponse)
+	err := c.cc.Invoke(ctx, Gasha_GetStepUpProbability_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) GetPointExchange(ctx context.Context, in *GashaGetPointExchangeRequest, opts ...grpc.CallOption) (*GashaGetPointExchangeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaGetPointExchangeResponse)
+	err := c.cc.Invoke(ctx, Gasha_GetPointExchange_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) ExchangePoint(ctx context.Context, in *GashaExchangePointRequest, opts ...grpc.CallOption) (*GashaExchangePointResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaExchangePointResponse)
+	err := c.cc.Invoke(ctx, Gasha_ExchangePoint_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) ExpirePoint(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GashaExpirePointResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaExpirePointResponse)
+	err := c.cc.Invoke(ctx, Gasha_ExpirePoint_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gashaClient) GetPrecaution(ctx context.Context, in *GashaGetPrecautionRequest, opts ...grpc.CallOption) (*GashaGetPrecautionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GashaGetPrecautionResponse)
+	err := c.cc.Invoke(ctx, Gasha_GetPrecaution_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GashaServer is the server API for Gasha service.
+// All implementations must embed UnimplementedGashaServer
+// for forward compatibility.
+type GashaServer interface {
+	List(context.Context, *Empty) (*GashaListResponse, error)
+	Draw(context.Context, *GashaDrawRequest) (*GashaDrawResponse, error)
+	GetProbability(context.Context, *GashaGetProbabilityRequest) (*GashaGetProbabilityResponse, error)
+	SelectPickup(context.Context, *GashaSelectPickupRequest) (*GashaSelectPickupResponse, error)
+	DrawSelectPickup(context.Context, *GashaDrawSelectPickupRequest) (*GashaDrawSelectPickupResponse, error)
+	GetSelectPickupProbability(context.Context, *GashaGetSelectPickupProbabilityRequest) (*GashaGetSelectPickupProbabilityResponse, error)
+	DrawStepUp(context.Context, *GashaDrawStepUpRequest) (*GashaDrawStepUpResponse, error)
+	GetStepUpProbability(context.Context, *GashaGetStepUpProbabilityRequest) (*GashaGetStepUpProbabilityResponse, error)
+	GetPointExchange(context.Context, *GashaGetPointExchangeRequest) (*GashaGetPointExchangeResponse, error)
+	ExchangePoint(context.Context, *GashaExchangePointRequest) (*GashaExchangePointResponse, error)
+	ExpirePoint(context.Context, *Empty) (*GashaExpirePointResponse, error)
+	GetPrecaution(context.Context, *GashaGetPrecautionRequest) (*GashaGetPrecautionResponse, error)
+	mustEmbedUnimplementedGashaServer()
+}
+
+// UnimplementedGashaServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedGashaServer struct{}
+
+func (UnimplementedGashaServer) List(context.Context, *Empty) (*GashaListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedGashaServer) Draw(context.Context, *GashaDrawRequest) (*GashaDrawResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Draw not implemented")
+}
+func (UnimplementedGashaServer) GetProbability(context.Context, *GashaGetProbabilityRequest) (*GashaGetProbabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProbability not implemented")
+}
+func (UnimplementedGashaServer) SelectPickup(context.Context, *GashaSelectPickupRequest) (*GashaSelectPickupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelectPickup not implemented")
+}
+func (UnimplementedGashaServer) DrawSelectPickup(context.Context, *GashaDrawSelectPickupRequest) (*GashaDrawSelectPickupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DrawSelectPickup not implemented")
+}
+func (UnimplementedGashaServer) GetSelectPickupProbability(context.Context, *GashaGetSelectPickupProbabilityRequest) (*GashaGetSelectPickupProbabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSelectPickupProbability not implemented")
+}
+func (UnimplementedGashaServer) DrawStepUp(context.Context, *GashaDrawStepUpRequest) (*GashaDrawStepUpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DrawStepUp not implemented")
+}
+func (UnimplementedGashaServer) GetStepUpProbability(context.Context, *GashaGetStepUpProbabilityRequest) (*GashaGetStepUpProbabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStepUpProbability not implemented")
+}
+func (UnimplementedGashaServer) GetPointExchange(context.Context, *GashaGetPointExchangeRequest) (*GashaGetPointExchangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPointExchange not implemented")
+}
+func (UnimplementedGashaServer) ExchangePoint(context.Context, *GashaExchangePointRequest) (*GashaExchangePointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExchangePoint not implemented")
+}
+func (UnimplementedGashaServer) ExpirePoint(context.Context, *Empty) (*GashaExpirePointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExpirePoint not implemented")
+}
+func (UnimplementedGashaServer) GetPrecaution(context.Context, *GashaGetPrecautionRequest) (*GashaGetPrecautionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPrecaution not implemented")
+}
+func (UnimplementedGashaServer) mustEmbedUnimplementedGashaServer() {}
+func (UnimplementedGashaServer) testEmbeddedByValue()               {}
+
+// UnsafeGashaServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GashaServer will
+// result in compilation errors.
+type UnsafeGashaServer interface {
+	mustEmbedUnimplementedGashaServer()
+}
+
+func RegisterGashaServer(s grpc.ServiceRegistrar, srv GashaServer) {
+	// If the following call pancis, it indicates UnimplementedGashaServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Gasha_ServiceDesc, srv)
+}
+
+func _Gasha_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).List(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_Draw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaDrawRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).Draw(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_Draw_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).Draw(ctx, req.(*GashaDrawRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_GetProbability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaGetProbabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).GetProbability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_GetProbability_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).GetProbability(ctx, req.(*GashaGetProbabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_SelectPickup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaSelectPickupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).SelectPickup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_SelectPickup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).SelectPickup(ctx, req.(*GashaSelectPickupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_DrawSelectPickup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaDrawSelectPickupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).DrawSelectPickup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_DrawSelectPickup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).DrawSelectPickup(ctx, req.(*GashaDrawSelectPickupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_GetSelectPickupProbability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaGetSelectPickupProbabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).GetSelectPickupProbability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_GetSelectPickupProbability_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).GetSelectPickupProbability(ctx, req.(*GashaGetSelectPickupProbabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_DrawStepUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaDrawStepUpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).DrawStepUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_DrawStepUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).DrawStepUp(ctx, req.(*GashaDrawStepUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_GetStepUpProbability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaGetStepUpProbabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).GetStepUpProbability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_GetStepUpProbability_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).GetStepUpProbability(ctx, req.(*GashaGetStepUpProbabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_GetPointExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaGetPointExchangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).GetPointExchange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_GetPointExchange_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).GetPointExchange(ctx, req.(*GashaGetPointExchangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_ExchangePoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaExchangePointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).ExchangePoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_ExchangePoint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).ExchangePoint(ctx, req.(*GashaExchangePointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_ExpirePoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).ExpirePoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_ExpirePoint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).ExpirePoint(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gasha_GetPrecaution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GashaGetPrecautionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GashaServer).GetPrecaution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gasha_GetPrecaution_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GashaServer).GetPrecaution(ctx, req.(*GashaGetPrecautionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Gasha_ServiceDesc is the grpc.ServiceDesc for Gasha service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Gasha_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Gasha",
+	HandlerType: (*GashaServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _Gasha_List_Handler,
+		},
+		{
+			MethodName: "Draw",
+			Handler:    _Gasha_Draw_Handler,
+		},
+		{
+			MethodName: "GetProbability",
+			Handler:    _Gasha_GetProbability_Handler,
+		},
+		{
+			MethodName: "SelectPickup",
+			Handler:    _Gasha_SelectPickup_Handler,
+		},
+		{
+			MethodName: "DrawSelectPickup",
+			Handler:    _Gasha_DrawSelectPickup_Handler,
+		},
+		{
+			MethodName: "GetSelectPickupProbability",
+			Handler:    _Gasha_GetSelectPickupProbability_Handler,
+		},
+		{
+			MethodName: "DrawStepUp",
+			Handler:    _Gasha_DrawStepUp_Handler,
+		},
+		{
+			MethodName: "GetStepUpProbability",
+			Handler:    _Gasha_GetStepUpProbability_Handler,
+		},
+		{
+			MethodName: "GetPointExchange",
+			Handler:    _Gasha_GetPointExchange_Handler,
+		},
+		{
+			MethodName: "ExchangePoint",
+			Handler:    _Gasha_ExchangePoint_Handler,
+		},
+		{
+			MethodName: "ExpirePoint",
+			Handler:    _Gasha_ExpirePoint_Handler,
+		},
+		{
+			MethodName: "GetPrecaution",
+			Handler:    _Gasha_GetPrecaution_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Gift_List_FullMethodName        = "/client.api.Gift/List"
+	Gift_Count_FullMethodName       = "/client.api.Gift/Count"
+	Gift_ListHistory_FullMethodName = "/client.api.Gift/ListHistory"
+	Gift_Open_FullMethodName        = "/client.api.Gift/Open"
+)
+
+// GiftClient is the client API for Gift service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GiftClient interface {
+	List(ctx context.Context, in *GiftListRequest, opts ...grpc.CallOption) (*GiftListResponse, error)
+	Count(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GiftCountResponse, error)
+	ListHistory(ctx context.Context, in *GiftListHistoryRequest, opts ...grpc.CallOption) (*GiftListHistoryResponse, error)
+	Open(ctx context.Context, in *GiftOpenRequest, opts ...grpc.CallOption) (*GiftOpenResponse, error)
+}
+
+type giftClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGiftClient(cc grpc.ClientConnInterface) GiftClient {
+	return &giftClient{cc}
+}
+
+func (c *giftClient) List(ctx context.Context, in *GiftListRequest, opts ...grpc.CallOption) (*GiftListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GiftListResponse)
+	err := c.cc.Invoke(ctx, Gift_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftClient) Count(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GiftCountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GiftCountResponse)
+	err := c.cc.Invoke(ctx, Gift_Count_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftClient) ListHistory(ctx context.Context, in *GiftListHistoryRequest, opts ...grpc.CallOption) (*GiftListHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GiftListHistoryResponse)
+	err := c.cc.Invoke(ctx, Gift_ListHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *giftClient) Open(ctx context.Context, in *GiftOpenRequest, opts ...grpc.CallOption) (*GiftOpenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GiftOpenResponse)
+	err := c.cc.Invoke(ctx, Gift_Open_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GiftServer is the server API for Gift service.
+// All implementations must embed UnimplementedGiftServer
+// for forward compatibility.
+type GiftServer interface {
+	List(context.Context, *GiftListRequest) (*GiftListResponse, error)
+	Count(context.Context, *Empty) (*GiftCountResponse, error)
+	ListHistory(context.Context, *GiftListHistoryRequest) (*GiftListHistoryResponse, error)
+	Open(context.Context, *GiftOpenRequest) (*GiftOpenResponse, error)
+	mustEmbedUnimplementedGiftServer()
+}
+
+// UnimplementedGiftServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedGiftServer struct{}
+
+func (UnimplementedGiftServer) List(context.Context, *GiftListRequest) (*GiftListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedGiftServer) Count(context.Context, *Empty) (*GiftCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Count not implemented")
+}
+func (UnimplementedGiftServer) ListHistory(context.Context, *GiftListHistoryRequest) (*GiftListHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHistory not implemented")
+}
+func (UnimplementedGiftServer) Open(context.Context, *GiftOpenRequest) (*GiftOpenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Open not implemented")
+}
+func (UnimplementedGiftServer) mustEmbedUnimplementedGiftServer() {}
+func (UnimplementedGiftServer) testEmbeddedByValue()              {}
+
+// UnsafeGiftServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GiftServer will
+// result in compilation errors.
+type UnsafeGiftServer interface {
+	mustEmbedUnimplementedGiftServer()
+}
+
+func RegisterGiftServer(s grpc.ServiceRegistrar, srv GiftServer) {
+	// If the following call pancis, it indicates UnimplementedGiftServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Gift_ServiceDesc, srv)
+}
+
+func _Gift_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GiftListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).List(ctx, req.(*GiftListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gift_Count_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).Count(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_Count_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).Count(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gift_ListHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GiftListHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).ListHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_ListHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).ListHistory(ctx, req.(*GiftListHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gift_Open_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GiftOpenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GiftServer).Open(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Gift_Open_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GiftServer).Open(ctx, req.(*GiftOpenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Gift_ServiceDesc is the grpc.ServiceDesc for Gift service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Gift_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Gift",
+	HandlerType: (*GiftServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _Gift_List_Handler,
+		},
+		{
+			MethodName: "Count",
+			Handler:    _Gift_Count_Handler,
+		},
+		{
+			MethodName: "ListHistory",
+			Handler:    _Gift_ListHistory_Handler,
+		},
+		{
+			MethodName: "Open",
+			Handler:    _Gift_Open_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Guild_Top_FullMethodName                         = "/client.api.Guild/Top"
+	Guild_Search_FullMethodName                      = "/client.api.Guild/Search"
+	Guild_Get_FullMethodName                         = "/client.api.Guild/Get"
+	Guild_Establish_FullMethodName                   = "/client.api.Guild/Establish"
+	Guild_EditDetail_FullMethodName                  = "/client.api.Guild/EditDetail"
+	Guild_EditLeaderMessage_FullMethodName           = "/client.api.Guild/EditLeaderMessage"
+	Guild_ApplyJoinRequest_FullMethodName            = "/client.api.Guild/ApplyJoinRequest"
+	Guild_CancelJoinRequest_FullMethodName           = "/client.api.Guild/CancelJoinRequest"
+	Guild_ListJoinRequest_FullMethodName             = "/client.api.Guild/ListJoinRequest"
+	Guild_ApproveJoinRequest_FullMethodName          = "/client.api.Guild/ApproveJoinRequest"
+	Guild_RejectJoinRequest_FullMethodName           = "/client.api.Guild/RejectJoinRequest"
+	Guild_Leave_FullMethodName                       = "/client.api.Guild/Leave"
+	Guild_Dismiss_FullMethodName                     = "/client.api.Guild/Dismiss"
+	Guild_ChangeLeader_FullMethodName                = "/client.api.Guild/ChangeLeader"
+	Guild_ListMember_FullMethodName                  = "/client.api.Guild/ListMember"
+	Guild_Dissolve_FullMethodName                    = "/client.api.Guild/Dissolve"
+	Guild_ListDonationRequest_FullMethodName         = "/client.api.Guild/ListDonationRequest"
+	Guild_RequestDonation_FullMethodName             = "/client.api.Guild/RequestDonation"
+	Guild_Donate_FullMethodName                      = "/client.api.Guild/Donate"
+	Guild_ReceiveDonation_FullMethodName             = "/client.api.Guild/ReceiveDonation"
+	Guild_UpdateLeaderMessageReaction_FullMethodName = "/client.api.Guild/UpdateLeaderMessageReaction"
+)
+
+// GuildClient is the client API for Guild service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GuildClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildTopResponse, error)
+	Search(ctx context.Context, in *GuildSearchRequest, opts ...grpc.CallOption) (*GuildSearchResponse, error)
+	Get(ctx context.Context, in *GuildGetRequest, opts ...grpc.CallOption) (*GuildGetResponse, error)
+	Establish(ctx context.Context, in *GuildEstablishRequest, opts ...grpc.CallOption) (*GuildEstablishResponse, error)
+	EditDetail(ctx context.Context, in *GuildEditDetailRequest, opts ...grpc.CallOption) (*GuildEditDetailResponse, error)
+	EditLeaderMessage(ctx context.Context, in *GuildEditLeaderMessageRequest, opts ...grpc.CallOption) (*GuildEditLeaderMessageResponse, error)
+	ApplyJoinRequest(ctx context.Context, in *GuildApplyJoinRequestRequest, opts ...grpc.CallOption) (*GuildApplyJoinRequestResponse, error)
+	CancelJoinRequest(ctx context.Context, in *GuildCancelJoinRequestRequest, opts ...grpc.CallOption) (*GuildCancelJoinRequestResponse, error)
+	ListJoinRequest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListJoinRequestResponse, error)
+	ApproveJoinRequest(ctx context.Context, in *GuildApproveJoinRequestRequest, opts ...grpc.CallOption) (*GuildApproveJoinRequestResponse, error)
+	RejectJoinRequest(ctx context.Context, in *GuildRejectJoinRequestRequest, opts ...grpc.CallOption) (*GuildRejectJoinRequestResponse, error)
+	Leave(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildLeaveResponse, error)
+	Dismiss(ctx context.Context, in *GuildDismissRequest, opts ...grpc.CallOption) (*GuildDismissResponse, error)
+	ChangeLeader(ctx context.Context, in *GuildChangeLeaderRequest, opts ...grpc.CallOption) (*GuildChangeLeaderResponse, error)
+	ListMember(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListMemberResponse, error)
+	Dissolve(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildDissolveResponse, error)
+	ListDonationRequest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListDonationRequestResponse, error)
+	RequestDonation(ctx context.Context, in *GuildRequestDonationRequest, opts ...grpc.CallOption) (*GuildRequestDonationResponse, error)
+	Donate(ctx context.Context, in *GuildDonateRequest, opts ...grpc.CallOption) (*GuildDonateResponse, error)
+	ReceiveDonation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildReceiveDonationResponse, error)
+	UpdateLeaderMessageReaction(ctx context.Context, in *GuildUpdateLeaderMessageReactionRequest, opts ...grpc.CallOption) (*GuildUpdateLeaderMessageReactionResponse, error)
+}
+
+type guildClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGuildClient(cc grpc.ClientConnInterface) GuildClient {
+	return &guildClient{cc}
+}
+
+func (c *guildClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildTopResponse)
+	err := c.cc.Invoke(ctx, Guild_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Search(ctx context.Context, in *GuildSearchRequest, opts ...grpc.CallOption) (*GuildSearchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildSearchResponse)
+	err := c.cc.Invoke(ctx, Guild_Search_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Get(ctx context.Context, in *GuildGetRequest, opts ...grpc.CallOption) (*GuildGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildGetResponse)
+	err := c.cc.Invoke(ctx, Guild_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Establish(ctx context.Context, in *GuildEstablishRequest, opts ...grpc.CallOption) (*GuildEstablishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildEstablishResponse)
+	err := c.cc.Invoke(ctx, Guild_Establish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) EditDetail(ctx context.Context, in *GuildEditDetailRequest, opts ...grpc.CallOption) (*GuildEditDetailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildEditDetailResponse)
+	err := c.cc.Invoke(ctx, Guild_EditDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) EditLeaderMessage(ctx context.Context, in *GuildEditLeaderMessageRequest, opts ...grpc.CallOption) (*GuildEditLeaderMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildEditLeaderMessageResponse)
+	err := c.cc.Invoke(ctx, Guild_EditLeaderMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ApplyJoinRequest(ctx context.Context, in *GuildApplyJoinRequestRequest, opts ...grpc.CallOption) (*GuildApplyJoinRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildApplyJoinRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_ApplyJoinRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) CancelJoinRequest(ctx context.Context, in *GuildCancelJoinRequestRequest, opts ...grpc.CallOption) (*GuildCancelJoinRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildCancelJoinRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_CancelJoinRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ListJoinRequest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListJoinRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildListJoinRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_ListJoinRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ApproveJoinRequest(ctx context.Context, in *GuildApproveJoinRequestRequest, opts ...grpc.CallOption) (*GuildApproveJoinRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildApproveJoinRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_ApproveJoinRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) RejectJoinRequest(ctx context.Context, in *GuildRejectJoinRequestRequest, opts ...grpc.CallOption) (*GuildRejectJoinRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildRejectJoinRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_RejectJoinRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Leave(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildLeaveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildLeaveResponse)
+	err := c.cc.Invoke(ctx, Guild_Leave_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Dismiss(ctx context.Context, in *GuildDismissRequest, opts ...grpc.CallOption) (*GuildDismissResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildDismissResponse)
+	err := c.cc.Invoke(ctx, Guild_Dismiss_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ChangeLeader(ctx context.Context, in *GuildChangeLeaderRequest, opts ...grpc.CallOption) (*GuildChangeLeaderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildChangeLeaderResponse)
+	err := c.cc.Invoke(ctx, Guild_ChangeLeader_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ListMember(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListMemberResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildListMemberResponse)
+	err := c.cc.Invoke(ctx, Guild_ListMember_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Dissolve(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildDissolveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildDissolveResponse)
+	err := c.cc.Invoke(ctx, Guild_Dissolve_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ListDonationRequest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildListDonationRequestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildListDonationRequestResponse)
+	err := c.cc.Invoke(ctx, Guild_ListDonationRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) RequestDonation(ctx context.Context, in *GuildRequestDonationRequest, opts ...grpc.CallOption) (*GuildRequestDonationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildRequestDonationResponse)
+	err := c.cc.Invoke(ctx, Guild_RequestDonation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) Donate(ctx context.Context, in *GuildDonateRequest, opts ...grpc.CallOption) (*GuildDonateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildDonateResponse)
+	err := c.cc.Invoke(ctx, Guild_Donate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) ReceiveDonation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GuildReceiveDonationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildReceiveDonationResponse)
+	err := c.cc.Invoke(ctx, Guild_ReceiveDonation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *guildClient) UpdateLeaderMessageReaction(ctx context.Context, in *GuildUpdateLeaderMessageReactionRequest, opts ...grpc.CallOption) (*GuildUpdateLeaderMessageReactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GuildUpdateLeaderMessageReactionResponse)
+	err := c.cc.Invoke(ctx, Guild_UpdateLeaderMessageReaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GuildServer is the server API for Guild service.
+// All implementations must embed UnimplementedGuildServer
+// for forward compatibility.
+type GuildServer interface {
+	Top(context.Context, *Empty) (*GuildTopResponse, error)
+	Search(context.Context, *GuildSearchRequest) (*GuildSearchResponse, error)
+	Get(context.Context, *GuildGetRequest) (*GuildGetResponse, error)
+	Establish(context.Context, *GuildEstablishRequest) (*GuildEstablishResponse, error)
+	EditDetail(context.Context, *GuildEditDetailRequest) (*GuildEditDetailResponse, error)
+	EditLeaderMessage(context.Context, *GuildEditLeaderMessageRequest) (*GuildEditLeaderMessageResponse, error)
+	ApplyJoinRequest(context.Context, *GuildApplyJoinRequestRequest) (*GuildApplyJoinRequestResponse, error)
+	CancelJoinRequest(context.Context, *GuildCancelJoinRequestRequest) (*GuildCancelJoinRequestResponse, error)
+	ListJoinRequest(context.Context, *Empty) (*GuildListJoinRequestResponse, error)
+	ApproveJoinRequest(context.Context, *GuildApproveJoinRequestRequest) (*GuildApproveJoinRequestResponse, error)
+	RejectJoinRequest(context.Context, *GuildRejectJoinRequestRequest) (*GuildRejectJoinRequestResponse, error)
+	Leave(context.Context, *Empty) (*GuildLeaveResponse, error)
+	Dismiss(context.Context, *GuildDismissRequest) (*GuildDismissResponse, error)
+	ChangeLeader(context.Context, *GuildChangeLeaderRequest) (*GuildChangeLeaderResponse, error)
+	ListMember(context.Context, *Empty) (*GuildListMemberResponse, error)
+	Dissolve(context.Context, *Empty) (*GuildDissolveResponse, error)
+	ListDonationRequest(context.Context, *Empty) (*GuildListDonationRequestResponse, error)
+	RequestDonation(context.Context, *GuildRequestDonationRequest) (*GuildRequestDonationResponse, error)
+	Donate(context.Context, *GuildDonateRequest) (*GuildDonateResponse, error)
+	ReceiveDonation(context.Context, *Empty) (*GuildReceiveDonationResponse, error)
+	UpdateLeaderMessageReaction(context.Context, *GuildUpdateLeaderMessageReactionRequest) (*GuildUpdateLeaderMessageReactionResponse, error)
+	mustEmbedUnimplementedGuildServer()
+}
+
+// UnimplementedGuildServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedGuildServer struct{}
+
+func (UnimplementedGuildServer) Top(context.Context, *Empty) (*GuildTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedGuildServer) Search(context.Context, *GuildSearchRequest) (*GuildSearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (UnimplementedGuildServer) Get(context.Context, *GuildGetRequest) (*GuildGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedGuildServer) Establish(context.Context, *GuildEstablishRequest) (*GuildEstablishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Establish not implemented")
+}
+func (UnimplementedGuildServer) EditDetail(context.Context, *GuildEditDetailRequest) (*GuildEditDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditDetail not implemented")
+}
+func (UnimplementedGuildServer) EditLeaderMessage(context.Context, *GuildEditLeaderMessageRequest) (*GuildEditLeaderMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditLeaderMessage not implemented")
+}
+func (UnimplementedGuildServer) ApplyJoinRequest(context.Context, *GuildApplyJoinRequestRequest) (*GuildApplyJoinRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApplyJoinRequest not implemented")
+}
+func (UnimplementedGuildServer) CancelJoinRequest(context.Context, *GuildCancelJoinRequestRequest) (*GuildCancelJoinRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelJoinRequest not implemented")
+}
+func (UnimplementedGuildServer) ListJoinRequest(context.Context, *Empty) (*GuildListJoinRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListJoinRequest not implemented")
+}
+func (UnimplementedGuildServer) ApproveJoinRequest(context.Context, *GuildApproveJoinRequestRequest) (*GuildApproveJoinRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApproveJoinRequest not implemented")
+}
+func (UnimplementedGuildServer) RejectJoinRequest(context.Context, *GuildRejectJoinRequestRequest) (*GuildRejectJoinRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectJoinRequest not implemented")
+}
+func (UnimplementedGuildServer) Leave(context.Context, *Empty) (*GuildLeaveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Leave not implemented")
+}
+func (UnimplementedGuildServer) Dismiss(context.Context, *GuildDismissRequest) (*GuildDismissResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Dismiss not implemented")
+}
+func (UnimplementedGuildServer) ChangeLeader(context.Context, *GuildChangeLeaderRequest) (*GuildChangeLeaderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeLeader not implemented")
+}
+func (UnimplementedGuildServer) ListMember(context.Context, *Empty) (*GuildListMemberResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMember not implemented")
+}
+func (UnimplementedGuildServer) Dissolve(context.Context, *Empty) (*GuildDissolveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Dissolve not implemented")
+}
+func (UnimplementedGuildServer) ListDonationRequest(context.Context, *Empty) (*GuildListDonationRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDonationRequest not implemented")
+}
+func (UnimplementedGuildServer) RequestDonation(context.Context, *GuildRequestDonationRequest) (*GuildRequestDonationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestDonation not implemented")
+}
+func (UnimplementedGuildServer) Donate(context.Context, *GuildDonateRequest) (*GuildDonateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Donate not implemented")
+}
+func (UnimplementedGuildServer) ReceiveDonation(context.Context, *Empty) (*GuildReceiveDonationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveDonation not implemented")
+}
+func (UnimplementedGuildServer) UpdateLeaderMessageReaction(context.Context, *GuildUpdateLeaderMessageReactionRequest) (*GuildUpdateLeaderMessageReactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLeaderMessageReaction not implemented")
+}
+func (UnimplementedGuildServer) mustEmbedUnimplementedGuildServer() {}
+func (UnimplementedGuildServer) testEmbeddedByValue()               {}
+
+// UnsafeGuildServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GuildServer will
+// result in compilation errors.
+type UnsafeGuildServer interface {
+	mustEmbedUnimplementedGuildServer()
+}
+
+func RegisterGuildServer(s grpc.ServiceRegistrar, srv GuildServer) {
+	// If the following call pancis, it indicates UnimplementedGuildServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Guild_ServiceDesc, srv)
+}
+
+func _Guild_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildSearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Search(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Search_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Search(ctx, req.(*GuildSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Get(ctx, req.(*GuildGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Establish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildEstablishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Establish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Establish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Establish(ctx, req.(*GuildEstablishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_EditDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildEditDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).EditDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_EditDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).EditDetail(ctx, req.(*GuildEditDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_EditLeaderMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildEditLeaderMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).EditLeaderMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_EditLeaderMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).EditLeaderMessage(ctx, req.(*GuildEditLeaderMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ApplyJoinRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildApplyJoinRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ApplyJoinRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ApplyJoinRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ApplyJoinRequest(ctx, req.(*GuildApplyJoinRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_CancelJoinRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildCancelJoinRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).CancelJoinRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_CancelJoinRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).CancelJoinRequest(ctx, req.(*GuildCancelJoinRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ListJoinRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ListJoinRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ListJoinRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ListJoinRequest(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ApproveJoinRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildApproveJoinRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ApproveJoinRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ApproveJoinRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ApproveJoinRequest(ctx, req.(*GuildApproveJoinRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_RejectJoinRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildRejectJoinRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).RejectJoinRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_RejectJoinRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).RejectJoinRequest(ctx, req.(*GuildRejectJoinRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Leave_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Leave(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Leave_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Leave(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Dismiss_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildDismissRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Dismiss(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Dismiss_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Dismiss(ctx, req.(*GuildDismissRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ChangeLeader_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildChangeLeaderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ChangeLeader(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ChangeLeader_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ChangeLeader(ctx, req.(*GuildChangeLeaderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ListMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ListMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ListMember_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ListMember(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Dissolve_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Dissolve(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Dissolve_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Dissolve(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ListDonationRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ListDonationRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ListDonationRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ListDonationRequest(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_RequestDonation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildRequestDonationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).RequestDonation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_RequestDonation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).RequestDonation(ctx, req.(*GuildRequestDonationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_Donate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildDonateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).Donate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_Donate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).Donate(ctx, req.(*GuildDonateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_ReceiveDonation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).ReceiveDonation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_ReceiveDonation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).ReceiveDonation(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Guild_UpdateLeaderMessageReaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GuildUpdateLeaderMessageReactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GuildServer).UpdateLeaderMessageReaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Guild_UpdateLeaderMessageReaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GuildServer).UpdateLeaderMessageReaction(ctx, req.(*GuildUpdateLeaderMessageReactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Guild_ServiceDesc is the grpc.ServiceDesc for Guild service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Guild_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Guild",
+	HandlerType: (*GuildServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Guild_Top_Handler,
+		},
+		{
+			MethodName: "Search",
+			Handler:    _Guild_Search_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _Guild_Get_Handler,
+		},
+		{
+			MethodName: "Establish",
+			Handler:    _Guild_Establish_Handler,
+		},
+		{
+			MethodName: "EditDetail",
+			Handler:    _Guild_EditDetail_Handler,
+		},
+		{
+			MethodName: "EditLeaderMessage",
+			Handler:    _Guild_EditLeaderMessage_Handler,
+		},
+		{
+			MethodName: "ApplyJoinRequest",
+			Handler:    _Guild_ApplyJoinRequest_Handler,
+		},
+		{
+			MethodName: "CancelJoinRequest",
+			Handler:    _Guild_CancelJoinRequest_Handler,
+		},
+		{
+			MethodName: "ListJoinRequest",
+			Handler:    _Guild_ListJoinRequest_Handler,
+		},
+		{
+			MethodName: "ApproveJoinRequest",
+			Handler:    _Guild_ApproveJoinRequest_Handler,
+		},
+		{
+			MethodName: "RejectJoinRequest",
+			Handler:    _Guild_RejectJoinRequest_Handler,
+		},
+		{
+			MethodName: "Leave",
+			Handler:    _Guild_Leave_Handler,
+		},
+		{
+			MethodName: "Dismiss",
+			Handler:    _Guild_Dismiss_Handler,
+		},
+		{
+			MethodName: "ChangeLeader",
+			Handler:    _Guild_ChangeLeader_Handler,
+		},
+		{
+			MethodName: "ListMember",
+			Handler:    _Guild_ListMember_Handler,
+		},
+		{
+			MethodName: "Dissolve",
+			Handler:    _Guild_Dissolve_Handler,
+		},
+		{
+			MethodName: "ListDonationRequest",
+			Handler:    _Guild_ListDonationRequest_Handler,
+		},
+		{
+			MethodName: "RequestDonation",
+			Handler:    _Guild_RequestDonation_Handler,
+		},
+		{
+			MethodName: "Donate",
+			Handler:    _Guild_Donate_Handler,
+		},
+		{
+			MethodName: "ReceiveDonation",
+			Handler:    _Guild_ReceiveDonation_Handler,
+		},
+		{
+			MethodName: "UpdateLeaderMessageReaction",
+			Handler:    _Guild_UpdateLeaderMessageReaction_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	GvgRaid_Top_FullMethodName          = "/client.api.GvgRaid/Top"
+	GvgRaid_GetProgress_FullMethodName  = "/client.api.GvgRaid/GetProgress"
+	GvgRaid_Start_FullMethodName        = "/client.api.GvgRaid/Start"
+	GvgRaid_End_FullMethodName          = "/client.api.GvgRaid/End"
+	GvgRaid_PlayTest_FullMethodName     = "/client.api.GvgRaid/PlayTest"
+	GvgRaid_GuildRanking_FullMethodName = "/client.api.GvgRaid/GuildRanking"
+	GvgRaid_UserRanking_FullMethodName  = "/client.api.GvgRaid/UserRanking"
+	GvgRaid_UpdateDeck_FullMethodName   = "/client.api.GvgRaid/UpdateDeck"
+)
+
+// GvgRaidClient is the client API for GvgRaid service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GvgRaidClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidTopResponse, error)
+	GetProgress(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidGetProgressResponse, error)
+	Start(ctx context.Context, in *GvgRaidStartRequest, opts ...grpc.CallOption) (*GvgRaidStartResponse, error)
+	End(ctx context.Context, in *GvgRaidEndRequest, opts ...grpc.CallOption) (*GvgRaidEndResponse, error)
+	PlayTest(ctx context.Context, in *GvgRaidPlayTestRequest, opts ...grpc.CallOption) (*GvgRaidPlayTestResponse, error)
+	GuildRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidGuildRankingResponse, error)
+	UserRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidUserRankingResponse, error)
+	UpdateDeck(ctx context.Context, in *GvgRaidUpdateDeckRequest, opts ...grpc.CallOption) (*GvgRaidUpdateDeckResponse, error)
+}
+
+type gvgRaidClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGvgRaidClient(cc grpc.ClientConnInterface) GvgRaidClient {
+	return &gvgRaidClient{cc}
+}
+
+func (c *gvgRaidClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidTopResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) GetProgress(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidGetProgressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidGetProgressResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_GetProgress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) Start(ctx context.Context, in *GvgRaidStartRequest, opts ...grpc.CallOption) (*GvgRaidStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidStartResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) End(ctx context.Context, in *GvgRaidEndRequest, opts ...grpc.CallOption) (*GvgRaidEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidEndResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) PlayTest(ctx context.Context, in *GvgRaidPlayTestRequest, opts ...grpc.CallOption) (*GvgRaidPlayTestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidPlayTestResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_PlayTest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) GuildRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidGuildRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidGuildRankingResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_GuildRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) UserRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GvgRaidUserRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidUserRankingResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_UserRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gvgRaidClient) UpdateDeck(ctx context.Context, in *GvgRaidUpdateDeckRequest, opts ...grpc.CallOption) (*GvgRaidUpdateDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GvgRaidUpdateDeckResponse)
+	err := c.cc.Invoke(ctx, GvgRaid_UpdateDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GvgRaidServer is the server API for GvgRaid service.
+// All implementations must embed UnimplementedGvgRaidServer
+// for forward compatibility.
+type GvgRaidServer interface {
+	Top(context.Context, *Empty) (*GvgRaidTopResponse, error)
+	GetProgress(context.Context, *Empty) (*GvgRaidGetProgressResponse, error)
+	Start(context.Context, *GvgRaidStartRequest) (*GvgRaidStartResponse, error)
+	End(context.Context, *GvgRaidEndRequest) (*GvgRaidEndResponse, error)
+	PlayTest(context.Context, *GvgRaidPlayTestRequest) (*GvgRaidPlayTestResponse, error)
+	GuildRanking(context.Context, *Empty) (*GvgRaidGuildRankingResponse, error)
+	UserRanking(context.Context, *Empty) (*GvgRaidUserRankingResponse, error)
+	UpdateDeck(context.Context, *GvgRaidUpdateDeckRequest) (*GvgRaidUpdateDeckResponse, error)
+	mustEmbedUnimplementedGvgRaidServer()
+}
+
+// UnimplementedGvgRaidServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedGvgRaidServer struct{}
+
+func (UnimplementedGvgRaidServer) Top(context.Context, *Empty) (*GvgRaidTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedGvgRaidServer) GetProgress(context.Context, *Empty) (*GvgRaidGetProgressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProgress not implemented")
+}
+func (UnimplementedGvgRaidServer) Start(context.Context, *GvgRaidStartRequest) (*GvgRaidStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedGvgRaidServer) End(context.Context, *GvgRaidEndRequest) (*GvgRaidEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedGvgRaidServer) PlayTest(context.Context, *GvgRaidPlayTestRequest) (*GvgRaidPlayTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayTest not implemented")
+}
+func (UnimplementedGvgRaidServer) GuildRanking(context.Context, *Empty) (*GvgRaidGuildRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GuildRanking not implemented")
+}
+func (UnimplementedGvgRaidServer) UserRanking(context.Context, *Empty) (*GvgRaidUserRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserRanking not implemented")
+}
+func (UnimplementedGvgRaidServer) UpdateDeck(context.Context, *GvgRaidUpdateDeckRequest) (*GvgRaidUpdateDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeck not implemented")
+}
+func (UnimplementedGvgRaidServer) mustEmbedUnimplementedGvgRaidServer() {}
+func (UnimplementedGvgRaidServer) testEmbeddedByValue()                 {}
+
+// UnsafeGvgRaidServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GvgRaidServer will
+// result in compilation errors.
+type UnsafeGvgRaidServer interface {
+	mustEmbedUnimplementedGvgRaidServer()
+}
+
+func RegisterGvgRaidServer(s grpc.ServiceRegistrar, srv GvgRaidServer) {
+	// If the following call pancis, it indicates UnimplementedGvgRaidServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&GvgRaid_ServiceDesc, srv)
+}
+
+func _GvgRaid_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_GetProgress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).GetProgress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_GetProgress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).GetProgress(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GvgRaidStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).Start(ctx, req.(*GvgRaidStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GvgRaidEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).End(ctx, req.(*GvgRaidEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_PlayTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GvgRaidPlayTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).PlayTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_PlayTest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).PlayTest(ctx, req.(*GvgRaidPlayTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_GuildRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).GuildRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_GuildRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).GuildRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_UserRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).UserRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_UserRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).UserRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GvgRaid_UpdateDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GvgRaidUpdateDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GvgRaidServer).UpdateDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GvgRaid_UpdateDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GvgRaidServer).UpdateDeck(ctx, req.(*GvgRaidUpdateDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// GvgRaid_ServiceDesc is the grpc.ServiceDesc for GvgRaid service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var GvgRaid_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.GvgRaid",
+	HandlerType: (*GvgRaidServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _GvgRaid_Top_Handler,
+		},
+		{
+			MethodName: "GetProgress",
+			Handler:    _GvgRaid_GetProgress_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _GvgRaid_Start_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _GvgRaid_End_Handler,
+		},
+		{
+			MethodName: "PlayTest",
+			Handler:    _GvgRaid_PlayTest_Handler,
+		},
+		{
+			MethodName: "GuildRanking",
+			Handler:    _GvgRaid_GuildRanking_Handler,
+		},
+		{
+			MethodName: "UserRanking",
+			Handler:    _GvgRaid_UserRanking_Handler,
+		},
+		{
+			MethodName: "UpdateDeck",
+			Handler:    _GvgRaid_UpdateDeck_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Health_Check_FullMethodName = "/client.api.Health/Check"
+)
+
+// HealthClient is the client API for Health service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type HealthClient interface {
+	Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
+}
+
+type healthClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewHealthClient(cc grpc.ClientConnInterface) HealthClient {
+	return &healthClient{cc}
+}
+
+func (c *healthClient) Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HealthCheckResponse)
+	err := c.cc.Invoke(ctx, Health_Check_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// HealthServer is the server API for Health service.
+// All implementations must embed UnimplementedHealthServer
+// for forward compatibility.
+type HealthServer interface {
+	Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
+	mustEmbedUnimplementedHealthServer()
+}
+
+// UnimplementedHealthServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedHealthServer struct{}
+
+func (UnimplementedHealthServer) Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedHealthServer) mustEmbedUnimplementedHealthServer() {}
+func (UnimplementedHealthServer) testEmbeddedByValue()                {}
+
+// UnsafeHealthServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HealthServer will
+// result in compilation errors.
+type UnsafeHealthServer interface {
+	mustEmbedUnimplementedHealthServer()
+}
+
+func RegisterHealthServer(s grpc.ServiceRegistrar, srv HealthServer) {
+	// If the following call pancis, it indicates UnimplementedHealthServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Health_ServiceDesc, srv)
+}
+
+func _Health_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Health_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServer).Check(ctx, req.(*HealthCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Health_ServiceDesc is the grpc.ServiceDesc for Health service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Health_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Health",
+	HandlerType: (*HealthServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Check",
+			Handler:    _Health_Check_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Home_Login_FullMethodName             = "/client.api.Home/Login"
+	Home_Enter_FullMethodName             = "/client.api.Home/Enter"
+	Home_ListEvent_FullMethodName         = "/client.api.Home/ListEvent"
+	Home_ConfirmBanWarning_FullMethodName = "/client.api.Home/ConfirmBanWarning"
+	Home_SetCharacters_FullMethodName     = "/client.api.Home/SetCharacters"
 )
 
 // HomeClient is the client API for Home service.
@@ -437,6 +3472,9 @@ const (
 type HomeClient interface {
 	Login(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeLoginResponse, error)
 	Enter(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeEnterResponse, error)
+	ListEvent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeListEventResponse, error)
+	ConfirmBanWarning(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeConfirmBanWarningResponse, error)
+	SetCharacters(ctx context.Context, in *HomeSetCharactersRequest, opts ...grpc.CallOption) (*HomeSetCharactersResponse, error)
 }
 
 type homeClient struct {
@@ -467,12 +3505,45 @@ func (c *homeClient) Enter(ctx context.Context, in *Empty, opts ...grpc.CallOpti
 	return out, nil
 }
 
+func (c *homeClient) ListEvent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeListEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HomeListEventResponse)
+	err := c.cc.Invoke(ctx, Home_ListEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *homeClient) ConfirmBanWarning(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*HomeConfirmBanWarningResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HomeConfirmBanWarningResponse)
+	err := c.cc.Invoke(ctx, Home_ConfirmBanWarning_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *homeClient) SetCharacters(ctx context.Context, in *HomeSetCharactersRequest, opts ...grpc.CallOption) (*HomeSetCharactersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HomeSetCharactersResponse)
+	err := c.cc.Invoke(ctx, Home_SetCharacters_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HomeServer is the server API for Home service.
 // All implementations must embed UnimplementedHomeServer
 // for forward compatibility.
 type HomeServer interface {
 	Login(context.Context, *Empty) (*HomeLoginResponse, error)
 	Enter(context.Context, *Empty) (*HomeEnterResponse, error)
+	ListEvent(context.Context, *Empty) (*HomeListEventResponse, error)
+	ConfirmBanWarning(context.Context, *Empty) (*HomeConfirmBanWarningResponse, error)
+	SetCharacters(context.Context, *HomeSetCharactersRequest) (*HomeSetCharactersResponse, error)
 	mustEmbedUnimplementedHomeServer()
 }
 
@@ -488,6 +3559,15 @@ func (UnimplementedHomeServer) Login(context.Context, *Empty) (*HomeLoginRespons
 }
 func (UnimplementedHomeServer) Enter(context.Context, *Empty) (*HomeEnterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enter not implemented")
+}
+func (UnimplementedHomeServer) ListEvent(context.Context, *Empty) (*HomeListEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEvent not implemented")
+}
+func (UnimplementedHomeServer) ConfirmBanWarning(context.Context, *Empty) (*HomeConfirmBanWarningResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmBanWarning not implemented")
+}
+func (UnimplementedHomeServer) SetCharacters(context.Context, *HomeSetCharactersRequest) (*HomeSetCharactersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCharacters not implemented")
 }
 func (UnimplementedHomeServer) mustEmbedUnimplementedHomeServer() {}
 func (UnimplementedHomeServer) testEmbeddedByValue()              {}
@@ -546,6 +3626,60 @@ func _Home_Enter_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Home_ListEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomeServer).ListEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Home_ListEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomeServer).ListEvent(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Home_ConfirmBanWarning_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomeServer).ConfirmBanWarning(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Home_ConfirmBanWarning_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomeServer).ConfirmBanWarning(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Home_SetCharacters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HomeSetCharactersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomeServer).SetCharacters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Home_SetCharacters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomeServer).SetCharacters(ctx, req.(*HomeSetCharactersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Home_ServiceDesc is the grpc.ServiceDesc for Home service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -560,6 +3694,590 @@ var Home_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Enter",
 			Handler:    _Home_Enter_Handler,
+		},
+		{
+			MethodName: "ListEvent",
+			Handler:    _Home_ListEvent_Handler,
+		},
+		{
+			MethodName: "ConfirmBanWarning",
+			Handler:    _Home_ConfirmBanWarning_Handler,
+		},
+		{
+			MethodName: "SetCharacters",
+			Handler:    _Home_SetCharacters_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	IdolCard_UpgradeLevelLimitRank_FullMethodName = "/client.api.IdolCard/UpgradeLevelLimitRank"
+	IdolCard_UpgradePotentialRank_FullMethodName  = "/client.api.IdolCard/UpgradePotentialRank"
+	IdolCard_Release_FullMethodName               = "/client.api.IdolCard/Release"
+	IdolCard_ChangeSkin_FullMethodName            = "/client.api.IdolCard/ChangeSkin"
+)
+
+// IdolCardClient is the client API for IdolCard service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type IdolCardClient interface {
+	UpgradeLevelLimitRank(ctx context.Context, in *IdolCardUpgradeLevelLimitRankRequest, opts ...grpc.CallOption) (*IdolCardUpgradeLevelLimitRankResponse, error)
+	UpgradePotentialRank(ctx context.Context, in *IdolCardUpgradePotentialRankRequest, opts ...grpc.CallOption) (*IdolCardUpgradePotentialRankResponse, error)
+	Release(ctx context.Context, in *IdolCardReleaseRequest, opts ...grpc.CallOption) (*IdolCardReleaseResponse, error)
+	ChangeSkin(ctx context.Context, in *IdolCardChangeSkinRequest, opts ...grpc.CallOption) (*IdolCardChangeSkinResponse, error)
+}
+
+type idolCardClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewIdolCardClient(cc grpc.ClientConnInterface) IdolCardClient {
+	return &idolCardClient{cc}
+}
+
+func (c *idolCardClient) UpgradeLevelLimitRank(ctx context.Context, in *IdolCardUpgradeLevelLimitRankRequest, opts ...grpc.CallOption) (*IdolCardUpgradeLevelLimitRankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IdolCardUpgradeLevelLimitRankResponse)
+	err := c.cc.Invoke(ctx, IdolCard_UpgradeLevelLimitRank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *idolCardClient) UpgradePotentialRank(ctx context.Context, in *IdolCardUpgradePotentialRankRequest, opts ...grpc.CallOption) (*IdolCardUpgradePotentialRankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IdolCardUpgradePotentialRankResponse)
+	err := c.cc.Invoke(ctx, IdolCard_UpgradePotentialRank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *idolCardClient) Release(ctx context.Context, in *IdolCardReleaseRequest, opts ...grpc.CallOption) (*IdolCardReleaseResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IdolCardReleaseResponse)
+	err := c.cc.Invoke(ctx, IdolCard_Release_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *idolCardClient) ChangeSkin(ctx context.Context, in *IdolCardChangeSkinRequest, opts ...grpc.CallOption) (*IdolCardChangeSkinResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IdolCardChangeSkinResponse)
+	err := c.cc.Invoke(ctx, IdolCard_ChangeSkin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// IdolCardServer is the server API for IdolCard service.
+// All implementations must embed UnimplementedIdolCardServer
+// for forward compatibility.
+type IdolCardServer interface {
+	UpgradeLevelLimitRank(context.Context, *IdolCardUpgradeLevelLimitRankRequest) (*IdolCardUpgradeLevelLimitRankResponse, error)
+	UpgradePotentialRank(context.Context, *IdolCardUpgradePotentialRankRequest) (*IdolCardUpgradePotentialRankResponse, error)
+	Release(context.Context, *IdolCardReleaseRequest) (*IdolCardReleaseResponse, error)
+	ChangeSkin(context.Context, *IdolCardChangeSkinRequest) (*IdolCardChangeSkinResponse, error)
+	mustEmbedUnimplementedIdolCardServer()
+}
+
+// UnimplementedIdolCardServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedIdolCardServer struct{}
+
+func (UnimplementedIdolCardServer) UpgradeLevelLimitRank(context.Context, *IdolCardUpgradeLevelLimitRankRequest) (*IdolCardUpgradeLevelLimitRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpgradeLevelLimitRank not implemented")
+}
+func (UnimplementedIdolCardServer) UpgradePotentialRank(context.Context, *IdolCardUpgradePotentialRankRequest) (*IdolCardUpgradePotentialRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpgradePotentialRank not implemented")
+}
+func (UnimplementedIdolCardServer) Release(context.Context, *IdolCardReleaseRequest) (*IdolCardReleaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Release not implemented")
+}
+func (UnimplementedIdolCardServer) ChangeSkin(context.Context, *IdolCardChangeSkinRequest) (*IdolCardChangeSkinResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeSkin not implemented")
+}
+func (UnimplementedIdolCardServer) mustEmbedUnimplementedIdolCardServer() {}
+func (UnimplementedIdolCardServer) testEmbeddedByValue()                  {}
+
+// UnsafeIdolCardServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to IdolCardServer will
+// result in compilation errors.
+type UnsafeIdolCardServer interface {
+	mustEmbedUnimplementedIdolCardServer()
+}
+
+func RegisterIdolCardServer(s grpc.ServiceRegistrar, srv IdolCardServer) {
+	// If the following call pancis, it indicates UnimplementedIdolCardServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&IdolCard_ServiceDesc, srv)
+}
+
+func _IdolCard_UpgradeLevelLimitRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdolCardUpgradeLevelLimitRankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdolCardServer).UpgradeLevelLimitRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdolCard_UpgradeLevelLimitRank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdolCardServer).UpgradeLevelLimitRank(ctx, req.(*IdolCardUpgradeLevelLimitRankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdolCard_UpgradePotentialRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdolCardUpgradePotentialRankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdolCardServer).UpgradePotentialRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdolCard_UpgradePotentialRank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdolCardServer).UpgradePotentialRank(ctx, req.(*IdolCardUpgradePotentialRankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdolCard_Release_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdolCardReleaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdolCardServer).Release(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdolCard_Release_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdolCardServer).Release(ctx, req.(*IdolCardReleaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdolCard_ChangeSkin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdolCardChangeSkinRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdolCardServer).ChangeSkin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IdolCard_ChangeSkin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdolCardServer).ChangeSkin(ctx, req.(*IdolCardChangeSkinRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// IdolCard_ServiceDesc is the grpc.ServiceDesc for IdolCard service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var IdolCard_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.IdolCard",
+	HandlerType: (*IdolCardServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UpgradeLevelLimitRank",
+			Handler:    _IdolCard_UpgradeLevelLimitRank_Handler,
+		},
+		{
+			MethodName: "UpgradePotentialRank",
+			Handler:    _IdolCard_UpgradePotentialRank_Handler,
+		},
+		{
+			MethodName: "Release",
+			Handler:    _IdolCard_Release_Handler,
+		},
+		{
+			MethodName: "ChangeSkin",
+			Handler:    _IdolCard_ChangeSkin_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Invitation_EnterInvitationCode_FullMethodName    = "/client.api.Invitation/EnterInvitationCode"
+	Invitation_ListInviteUser_FullMethodName         = "/client.api.Invitation/ListInviteUser"
+	Invitation_ReceiveInvitationPoint_FullMethodName = "/client.api.Invitation/ReceiveInvitationPoint"
+)
+
+// InvitationClient is the client API for Invitation service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type InvitationClient interface {
+	EnterInvitationCode(ctx context.Context, in *InvitationEnterInvitationCodeRequest, opts ...grpc.CallOption) (*InvitationEnterInvitationCodeResponse, error)
+	ListInviteUser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*InvitationListInviteUserResponse, error)
+	ReceiveInvitationPoint(ctx context.Context, in *InvitationReceiveInvitationPointRequest, opts ...grpc.CallOption) (*InvitationReceiveInvitationPointResponse, error)
+}
+
+type invitationClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewInvitationClient(cc grpc.ClientConnInterface) InvitationClient {
+	return &invitationClient{cc}
+}
+
+func (c *invitationClient) EnterInvitationCode(ctx context.Context, in *InvitationEnterInvitationCodeRequest, opts ...grpc.CallOption) (*InvitationEnterInvitationCodeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InvitationEnterInvitationCodeResponse)
+	err := c.cc.Invoke(ctx, Invitation_EnterInvitationCode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invitationClient) ListInviteUser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*InvitationListInviteUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InvitationListInviteUserResponse)
+	err := c.cc.Invoke(ctx, Invitation_ListInviteUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *invitationClient) ReceiveInvitationPoint(ctx context.Context, in *InvitationReceiveInvitationPointRequest, opts ...grpc.CallOption) (*InvitationReceiveInvitationPointResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InvitationReceiveInvitationPointResponse)
+	err := c.cc.Invoke(ctx, Invitation_ReceiveInvitationPoint_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// InvitationServer is the server API for Invitation service.
+// All implementations must embed UnimplementedInvitationServer
+// for forward compatibility.
+type InvitationServer interface {
+	EnterInvitationCode(context.Context, *InvitationEnterInvitationCodeRequest) (*InvitationEnterInvitationCodeResponse, error)
+	ListInviteUser(context.Context, *Empty) (*InvitationListInviteUserResponse, error)
+	ReceiveInvitationPoint(context.Context, *InvitationReceiveInvitationPointRequest) (*InvitationReceiveInvitationPointResponse, error)
+	mustEmbedUnimplementedInvitationServer()
+}
+
+// UnimplementedInvitationServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedInvitationServer struct{}
+
+func (UnimplementedInvitationServer) EnterInvitationCode(context.Context, *InvitationEnterInvitationCodeRequest) (*InvitationEnterInvitationCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnterInvitationCode not implemented")
+}
+func (UnimplementedInvitationServer) ListInviteUser(context.Context, *Empty) (*InvitationListInviteUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListInviteUser not implemented")
+}
+func (UnimplementedInvitationServer) ReceiveInvitationPoint(context.Context, *InvitationReceiveInvitationPointRequest) (*InvitationReceiveInvitationPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveInvitationPoint not implemented")
+}
+func (UnimplementedInvitationServer) mustEmbedUnimplementedInvitationServer() {}
+func (UnimplementedInvitationServer) testEmbeddedByValue()                    {}
+
+// UnsafeInvitationServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to InvitationServer will
+// result in compilation errors.
+type UnsafeInvitationServer interface {
+	mustEmbedUnimplementedInvitationServer()
+}
+
+func RegisterInvitationServer(s grpc.ServiceRegistrar, srv InvitationServer) {
+	// If the following call pancis, it indicates UnimplementedInvitationServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Invitation_ServiceDesc, srv)
+}
+
+func _Invitation_EnterInvitationCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvitationEnterInvitationCodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvitationServer).EnterInvitationCode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Invitation_EnterInvitationCode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvitationServer).EnterInvitationCode(ctx, req.(*InvitationEnterInvitationCodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Invitation_ListInviteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvitationServer).ListInviteUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Invitation_ListInviteUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvitationServer).ListInviteUser(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Invitation_ReceiveInvitationPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InvitationReceiveInvitationPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvitationServer).ReceiveInvitationPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Invitation_ReceiveInvitationPoint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvitationServer).ReceiveInvitationPoint(ctx, req.(*InvitationReceiveInvitationPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Invitation_ServiceDesc is the grpc.ServiceDesc for Invitation service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Invitation_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Invitation",
+	HandlerType: (*InvitationServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "EnterInvitationCode",
+			Handler:    _Invitation_EnterInvitationCode_Handler,
+		},
+		{
+			MethodName: "ListInviteUser",
+			Handler:    _Invitation_ListInviteUser_Handler,
+		},
+		{
+			MethodName: "ReceiveInvitationPoint",
+			Handler:    _Invitation_ReceiveInvitationPoint_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Item_Sell_FullMethodName                   = "/client.api.Item/Sell"
+	Item_ExchangeIdolCardPiece_FullMethodName  = "/client.api.Item/ExchangeIdolCardPiece"
+	Item_UseActionPointRecovery_FullMethodName = "/client.api.Item/UseActionPointRecovery"
+)
+
+// ItemClient is the client API for Item service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ItemClient interface {
+	Sell(ctx context.Context, in *ItemSellRequest, opts ...grpc.CallOption) (*ItemSellResponse, error)
+	ExchangeIdolCardPiece(ctx context.Context, in *ItemExchangeIdolCardPieceRequest, opts ...grpc.CallOption) (*ItemExchangeIdolCardPieceResponse, error)
+	UseActionPointRecovery(ctx context.Context, in *ItemUseActionPointRecoveryRequest, opts ...grpc.CallOption) (*ItemUseActionPointRecoveryResponse, error)
+}
+
+type itemClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewItemClient(cc grpc.ClientConnInterface) ItemClient {
+	return &itemClient{cc}
+}
+
+func (c *itemClient) Sell(ctx context.Context, in *ItemSellRequest, opts ...grpc.CallOption) (*ItemSellResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ItemSellResponse)
+	err := c.cc.Invoke(ctx, Item_Sell_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *itemClient) ExchangeIdolCardPiece(ctx context.Context, in *ItemExchangeIdolCardPieceRequest, opts ...grpc.CallOption) (*ItemExchangeIdolCardPieceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ItemExchangeIdolCardPieceResponse)
+	err := c.cc.Invoke(ctx, Item_ExchangeIdolCardPiece_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *itemClient) UseActionPointRecovery(ctx context.Context, in *ItemUseActionPointRecoveryRequest, opts ...grpc.CallOption) (*ItemUseActionPointRecoveryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ItemUseActionPointRecoveryResponse)
+	err := c.cc.Invoke(ctx, Item_UseActionPointRecovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ItemServer is the server API for Item service.
+// All implementations must embed UnimplementedItemServer
+// for forward compatibility.
+type ItemServer interface {
+	Sell(context.Context, *ItemSellRequest) (*ItemSellResponse, error)
+	ExchangeIdolCardPiece(context.Context, *ItemExchangeIdolCardPieceRequest) (*ItemExchangeIdolCardPieceResponse, error)
+	UseActionPointRecovery(context.Context, *ItemUseActionPointRecoveryRequest) (*ItemUseActionPointRecoveryResponse, error)
+	mustEmbedUnimplementedItemServer()
+}
+
+// UnimplementedItemServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedItemServer struct{}
+
+func (UnimplementedItemServer) Sell(context.Context, *ItemSellRequest) (*ItemSellResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sell not implemented")
+}
+func (UnimplementedItemServer) ExchangeIdolCardPiece(context.Context, *ItemExchangeIdolCardPieceRequest) (*ItemExchangeIdolCardPieceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExchangeIdolCardPiece not implemented")
+}
+func (UnimplementedItemServer) UseActionPointRecovery(context.Context, *ItemUseActionPointRecoveryRequest) (*ItemUseActionPointRecoveryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UseActionPointRecovery not implemented")
+}
+func (UnimplementedItemServer) mustEmbedUnimplementedItemServer() {}
+func (UnimplementedItemServer) testEmbeddedByValue()              {}
+
+// UnsafeItemServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ItemServer will
+// result in compilation errors.
+type UnsafeItemServer interface {
+	mustEmbedUnimplementedItemServer()
+}
+
+func RegisterItemServer(s grpc.ServiceRegistrar, srv ItemServer) {
+	// If the following call pancis, it indicates UnimplementedItemServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Item_ServiceDesc, srv)
+}
+
+func _Item_Sell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ItemSellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ItemServer).Sell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Item_Sell_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ItemServer).Sell(ctx, req.(*ItemSellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Item_ExchangeIdolCardPiece_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ItemExchangeIdolCardPieceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ItemServer).ExchangeIdolCardPiece(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Item_ExchangeIdolCardPiece_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ItemServer).ExchangeIdolCardPiece(ctx, req.(*ItemExchangeIdolCardPieceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Item_UseActionPointRecovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ItemUseActionPointRecoveryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ItemServer).UseActionPointRecovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Item_UseActionPointRecovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ItemServer).UseActionPointRecovery(ctx, req.(*ItemUseActionPointRecoveryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Item_ServiceDesc is the grpc.ServiceDesc for Item service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Item_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Item",
+	HandlerType: (*ItemServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Sell",
+			Handler:    _Item_Sell_Handler,
+		},
+		{
+			MethodName: "ExchangeIdolCardPiece",
+			Handler:    _Item_ExchangeIdolCardPiece_Handler,
+		},
+		{
+			MethodName: "UseActionPointRecovery",
+			Handler:    _Item_UseActionPointRecovery_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -707,8 +4425,1701 @@ var LoginBonus_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Notice_ListAll_FullMethodName   = "/client.api.Notice/ListAll"
-	Notice_FetchList_FullMethodName = "/client.api.Notice/FetchList"
+	Master_Get_FullMethodName = "/client.api.Master/Get"
+)
+
+// MasterClient is the client API for Master service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MasterClient interface {
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MasterGetResponse, error)
+}
+
+type masterClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMasterClient(cc grpc.ClientConnInterface) MasterClient {
+	return &masterClient{cc}
+}
+
+func (c *masterClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MasterGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MasterGetResponse)
+	err := c.cc.Invoke(ctx, Master_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MasterServer is the server API for Master service.
+// All implementations must embed UnimplementedMasterServer
+// for forward compatibility.
+type MasterServer interface {
+	Get(context.Context, *Empty) (*MasterGetResponse, error)
+	mustEmbedUnimplementedMasterServer()
+}
+
+// UnimplementedMasterServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMasterServer struct{}
+
+func (UnimplementedMasterServer) Get(context.Context, *Empty) (*MasterGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedMasterServer) mustEmbedUnimplementedMasterServer() {}
+func (UnimplementedMasterServer) testEmbeddedByValue()                {}
+
+// UnsafeMasterServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MasterServer will
+// result in compilation errors.
+type UnsafeMasterServer interface {
+	mustEmbedUnimplementedMasterServer()
+}
+
+func RegisterMasterServer(s grpc.ServiceRegistrar, srv MasterServer) {
+	// If the following call pancis, it indicates UnimplementedMasterServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Master_ServiceDesc, srv)
+}
+
+func _Master_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MasterServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Master_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MasterServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Master_ServiceDesc is the grpc.ServiceDesc for Master service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Master_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Master",
+	HandlerType: (*MasterServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _Master_Get_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Media_Play_FullMethodName = "/client.api.Media/Play"
+)
+
+// MediaClient is the client API for Media service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MediaClient interface {
+	Play(ctx context.Context, in *MediaPlayRequest, opts ...grpc.CallOption) (*MediaPlayResponse, error)
+}
+
+type mediaClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMediaClient(cc grpc.ClientConnInterface) MediaClient {
+	return &mediaClient{cc}
+}
+
+func (c *mediaClient) Play(ctx context.Context, in *MediaPlayRequest, opts ...grpc.CallOption) (*MediaPlayResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MediaPlayResponse)
+	err := c.cc.Invoke(ctx, Media_Play_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MediaServer is the server API for Media service.
+// All implementations must embed UnimplementedMediaServer
+// for forward compatibility.
+type MediaServer interface {
+	Play(context.Context, *MediaPlayRequest) (*MediaPlayResponse, error)
+	mustEmbedUnimplementedMediaServer()
+}
+
+// UnimplementedMediaServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMediaServer struct{}
+
+func (UnimplementedMediaServer) Play(context.Context, *MediaPlayRequest) (*MediaPlayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Play not implemented")
+}
+func (UnimplementedMediaServer) mustEmbedUnimplementedMediaServer() {}
+func (UnimplementedMediaServer) testEmbeddedByValue()               {}
+
+// UnsafeMediaServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MediaServer will
+// result in compilation errors.
+type UnsafeMediaServer interface {
+	mustEmbedUnimplementedMediaServer()
+}
+
+func RegisterMediaServer(s grpc.ServiceRegistrar, srv MediaServer) {
+	// If the following call pancis, it indicates UnimplementedMediaServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Media_ServiceDesc, srv)
+}
+
+func _Media_Play_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MediaPlayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MediaServer).Play(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Media_Play_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MediaServer).Play(ctx, req.(*MediaPlayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Media_ServiceDesc is the grpc.ServiceDesc for Media service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Media_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Media",
+	HandlerType: (*MediaServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Play",
+			Handler:    _Media_Play_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Meishi_Get_FullMethodName                = "/client.api.Meishi/Get"
+	Meishi_GetDetail_FullMethodName          = "/client.api.Meishi/GetDetail"
+	Meishi_List_FullMethodName               = "/client.api.Meishi/List"
+	Meishi_ListFollow_FullMethodName         = "/client.api.Meishi/ListFollow"
+	Meishi_Set_FullMethodName                = "/client.api.Meishi/Set"
+	Meishi_Update_FullMethodName             = "/client.api.Meishi/Update"
+	Meishi_Delete_FullMethodName             = "/client.api.Meishi/Delete"
+	Meishi_Follow_FullMethodName             = "/client.api.Meishi/Follow"
+	Meishi_Unfollow_FullMethodName           = "/client.api.Meishi/Unfollow"
+	Meishi_ReportXPostMission_FullMethodName = "/client.api.Meishi/ReportXPostMission"
+)
+
+// MeishiClient is the client API for Meishi service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MeishiClient interface {
+	Get(ctx context.Context, in *MeishiGetRequest, opts ...grpc.CallOption) (*MeishiGetResponse, error)
+	GetDetail(ctx context.Context, in *MeishiGetDetailRequest, opts ...grpc.CallOption) (*MeishiGetDetailResponse, error)
+	List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MeishiListResponse, error)
+	ListFollow(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MeishiListFollowResponse, error)
+	Set(ctx context.Context, in *MeishiSetRequest, opts ...grpc.CallOption) (*MeishiSetResponse, error)
+	Update(ctx context.Context, in *MeishiUpdateRequest, opts ...grpc.CallOption) (*MeishiUpdateResponse, error)
+	Delete(ctx context.Context, in *MeishiDeleteRequest, opts ...grpc.CallOption) (*MeishiDeleteResponse, error)
+	Follow(ctx context.Context, in *MeishiFollowRequest, opts ...grpc.CallOption) (*MeishiFollowResponse, error)
+	Unfollow(ctx context.Context, in *MeishiUnfollowRequest, opts ...grpc.CallOption) (*MeishiUnfollowResponse, error)
+	ReportXPostMission(ctx context.Context, in *MeishiReportXPostMissionRequest, opts ...grpc.CallOption) (*MeishiReportXPostMissionResponse, error)
+}
+
+type meishiClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMeishiClient(cc grpc.ClientConnInterface) MeishiClient {
+	return &meishiClient{cc}
+}
+
+func (c *meishiClient) Get(ctx context.Context, in *MeishiGetRequest, opts ...grpc.CallOption) (*MeishiGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiGetResponse)
+	err := c.cc.Invoke(ctx, Meishi_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) GetDetail(ctx context.Context, in *MeishiGetDetailRequest, opts ...grpc.CallOption) (*MeishiGetDetailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiGetDetailResponse)
+	err := c.cc.Invoke(ctx, Meishi_GetDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) List(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MeishiListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiListResponse)
+	err := c.cc.Invoke(ctx, Meishi_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) ListFollow(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MeishiListFollowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiListFollowResponse)
+	err := c.cc.Invoke(ctx, Meishi_ListFollow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) Set(ctx context.Context, in *MeishiSetRequest, opts ...grpc.CallOption) (*MeishiSetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiSetResponse)
+	err := c.cc.Invoke(ctx, Meishi_Set_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) Update(ctx context.Context, in *MeishiUpdateRequest, opts ...grpc.CallOption) (*MeishiUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiUpdateResponse)
+	err := c.cc.Invoke(ctx, Meishi_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) Delete(ctx context.Context, in *MeishiDeleteRequest, opts ...grpc.CallOption) (*MeishiDeleteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiDeleteResponse)
+	err := c.cc.Invoke(ctx, Meishi_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) Follow(ctx context.Context, in *MeishiFollowRequest, opts ...grpc.CallOption) (*MeishiFollowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiFollowResponse)
+	err := c.cc.Invoke(ctx, Meishi_Follow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) Unfollow(ctx context.Context, in *MeishiUnfollowRequest, opts ...grpc.CallOption) (*MeishiUnfollowResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiUnfollowResponse)
+	err := c.cc.Invoke(ctx, Meishi_Unfollow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meishiClient) ReportXPostMission(ctx context.Context, in *MeishiReportXPostMissionRequest, opts ...grpc.CallOption) (*MeishiReportXPostMissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeishiReportXPostMissionResponse)
+	err := c.cc.Invoke(ctx, Meishi_ReportXPostMission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MeishiServer is the server API for Meishi service.
+// All implementations must embed UnimplementedMeishiServer
+// for forward compatibility.
+type MeishiServer interface {
+	Get(context.Context, *MeishiGetRequest) (*MeishiGetResponse, error)
+	GetDetail(context.Context, *MeishiGetDetailRequest) (*MeishiGetDetailResponse, error)
+	List(context.Context, *Empty) (*MeishiListResponse, error)
+	ListFollow(context.Context, *Empty) (*MeishiListFollowResponse, error)
+	Set(context.Context, *MeishiSetRequest) (*MeishiSetResponse, error)
+	Update(context.Context, *MeishiUpdateRequest) (*MeishiUpdateResponse, error)
+	Delete(context.Context, *MeishiDeleteRequest) (*MeishiDeleteResponse, error)
+	Follow(context.Context, *MeishiFollowRequest) (*MeishiFollowResponse, error)
+	Unfollow(context.Context, *MeishiUnfollowRequest) (*MeishiUnfollowResponse, error)
+	ReportXPostMission(context.Context, *MeishiReportXPostMissionRequest) (*MeishiReportXPostMissionResponse, error)
+	mustEmbedUnimplementedMeishiServer()
+}
+
+// UnimplementedMeishiServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMeishiServer struct{}
+
+func (UnimplementedMeishiServer) Get(context.Context, *MeishiGetRequest) (*MeishiGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedMeishiServer) GetDetail(context.Context, *MeishiGetDetailRequest) (*MeishiGetDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDetail not implemented")
+}
+func (UnimplementedMeishiServer) List(context.Context, *Empty) (*MeishiListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedMeishiServer) ListFollow(context.Context, *Empty) (*MeishiListFollowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFollow not implemented")
+}
+func (UnimplementedMeishiServer) Set(context.Context, *MeishiSetRequest) (*MeishiSetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedMeishiServer) Update(context.Context, *MeishiUpdateRequest) (*MeishiUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedMeishiServer) Delete(context.Context, *MeishiDeleteRequest) (*MeishiDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedMeishiServer) Follow(context.Context, *MeishiFollowRequest) (*MeishiFollowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Follow not implemented")
+}
+func (UnimplementedMeishiServer) Unfollow(context.Context, *MeishiUnfollowRequest) (*MeishiUnfollowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unfollow not implemented")
+}
+func (UnimplementedMeishiServer) ReportXPostMission(context.Context, *MeishiReportXPostMissionRequest) (*MeishiReportXPostMissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReportXPostMission not implemented")
+}
+func (UnimplementedMeishiServer) mustEmbedUnimplementedMeishiServer() {}
+func (UnimplementedMeishiServer) testEmbeddedByValue()                {}
+
+// UnsafeMeishiServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MeishiServer will
+// result in compilation errors.
+type UnsafeMeishiServer interface {
+	mustEmbedUnimplementedMeishiServer()
+}
+
+func RegisterMeishiServer(s grpc.ServiceRegistrar, srv MeishiServer) {
+	// If the following call pancis, it indicates UnimplementedMeishiServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Meishi_ServiceDesc, srv)
+}
+
+func _Meishi_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Get(ctx, req.(*MeishiGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_GetDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiGetDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).GetDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_GetDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).GetDetail(ctx, req.(*MeishiGetDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).List(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_ListFollow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).ListFollow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_ListFollow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).ListFollow(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Set_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Set(ctx, req.(*MeishiSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Update(ctx, req.(*MeishiUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Delete(ctx, req.(*MeishiDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_Follow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiFollowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Follow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Follow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Follow(ctx, req.(*MeishiFollowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_Unfollow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiUnfollowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).Unfollow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_Unfollow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).Unfollow(ctx, req.(*MeishiUnfollowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Meishi_ReportXPostMission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeishiReportXPostMissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeishiServer).ReportXPostMission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Meishi_ReportXPostMission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeishiServer).ReportXPostMission(ctx, req.(*MeishiReportXPostMissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Meishi_ServiceDesc is the grpc.ServiceDesc for Meishi service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Meishi_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Meishi",
+	HandlerType: (*MeishiServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _Meishi_Get_Handler,
+		},
+		{
+			MethodName: "GetDetail",
+			Handler:    _Meishi_GetDetail_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _Meishi_List_Handler,
+		},
+		{
+			MethodName: "ListFollow",
+			Handler:    _Meishi_ListFollow_Handler,
+		},
+		{
+			MethodName: "Set",
+			Handler:    _Meishi_Set_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Meishi_Update_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Meishi_Delete_Handler,
+		},
+		{
+			MethodName: "Follow",
+			Handler:    _Meishi_Follow_Handler,
+		},
+		{
+			MethodName: "Unfollow",
+			Handler:    _Meishi_Unfollow_Handler,
+		},
+		{
+			MethodName: "ReportXPostMission",
+			Handler:    _Meishi_ReportXPostMission_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Memory_Inherit_FullMethodName          = "/client.api.Memory/Inherit"
+	Memory_FixInherit_FullMethodName       = "/client.api.Memory/FixInherit"
+	Memory_Exchange_FullMethodName         = "/client.api.Memory/Exchange"
+	Memory_UpdateProtection_FullMethodName = "/client.api.Memory/UpdateProtection"
+	Memory_UpdateTagSetting_FullMethodName = "/client.api.Memory/UpdateTagSetting"
+	Memory_Reshooting_FullMethodName       = "/client.api.Memory/Reshooting"
+)
+
+// MemoryClient is the client API for Memory service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MemoryClient interface {
+	Inherit(ctx context.Context, in *MemoryInheritRequest, opts ...grpc.CallOption) (*MemoryInheritResponse, error)
+	FixInherit(ctx context.Context, in *MemoryFixInheritRequest, opts ...grpc.CallOption) (*MemoryFixInheritResponse, error)
+	Exchange(ctx context.Context, in *MemoryExchangeRequest, opts ...grpc.CallOption) (*MemoryExchangeResponse, error)
+	UpdateProtection(ctx context.Context, in *MemoryUpdateProtectionRequest, opts ...grpc.CallOption) (*MemoryUpdateProtectionResponse, error)
+	UpdateTagSetting(ctx context.Context, in *MemoryUpdateTagSettingRequest, opts ...grpc.CallOption) (*MemoryUpdateTagSettingResponse, error)
+	Reshooting(ctx context.Context, in *MemoryReshootingRequest, opts ...grpc.CallOption) (*MemoryReshootingResponse, error)
+}
+
+type memoryClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMemoryClient(cc grpc.ClientConnInterface) MemoryClient {
+	return &memoryClient{cc}
+}
+
+func (c *memoryClient) Inherit(ctx context.Context, in *MemoryInheritRequest, opts ...grpc.CallOption) (*MemoryInheritResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryInheritResponse)
+	err := c.cc.Invoke(ctx, Memory_Inherit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memoryClient) FixInherit(ctx context.Context, in *MemoryFixInheritRequest, opts ...grpc.CallOption) (*MemoryFixInheritResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryFixInheritResponse)
+	err := c.cc.Invoke(ctx, Memory_FixInherit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memoryClient) Exchange(ctx context.Context, in *MemoryExchangeRequest, opts ...grpc.CallOption) (*MemoryExchangeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryExchangeResponse)
+	err := c.cc.Invoke(ctx, Memory_Exchange_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memoryClient) UpdateProtection(ctx context.Context, in *MemoryUpdateProtectionRequest, opts ...grpc.CallOption) (*MemoryUpdateProtectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryUpdateProtectionResponse)
+	err := c.cc.Invoke(ctx, Memory_UpdateProtection_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memoryClient) UpdateTagSetting(ctx context.Context, in *MemoryUpdateTagSettingRequest, opts ...grpc.CallOption) (*MemoryUpdateTagSettingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryUpdateTagSettingResponse)
+	err := c.cc.Invoke(ctx, Memory_UpdateTagSetting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *memoryClient) Reshooting(ctx context.Context, in *MemoryReshootingRequest, opts ...grpc.CallOption) (*MemoryReshootingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryReshootingResponse)
+	err := c.cc.Invoke(ctx, Memory_Reshooting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MemoryServer is the server API for Memory service.
+// All implementations must embed UnimplementedMemoryServer
+// for forward compatibility.
+type MemoryServer interface {
+	Inherit(context.Context, *MemoryInheritRequest) (*MemoryInheritResponse, error)
+	FixInherit(context.Context, *MemoryFixInheritRequest) (*MemoryFixInheritResponse, error)
+	Exchange(context.Context, *MemoryExchangeRequest) (*MemoryExchangeResponse, error)
+	UpdateProtection(context.Context, *MemoryUpdateProtectionRequest) (*MemoryUpdateProtectionResponse, error)
+	UpdateTagSetting(context.Context, *MemoryUpdateTagSettingRequest) (*MemoryUpdateTagSettingResponse, error)
+	Reshooting(context.Context, *MemoryReshootingRequest) (*MemoryReshootingResponse, error)
+	mustEmbedUnimplementedMemoryServer()
+}
+
+// UnimplementedMemoryServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMemoryServer struct{}
+
+func (UnimplementedMemoryServer) Inherit(context.Context, *MemoryInheritRequest) (*MemoryInheritResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Inherit not implemented")
+}
+func (UnimplementedMemoryServer) FixInherit(context.Context, *MemoryFixInheritRequest) (*MemoryFixInheritResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FixInherit not implemented")
+}
+func (UnimplementedMemoryServer) Exchange(context.Context, *MemoryExchangeRequest) (*MemoryExchangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Exchange not implemented")
+}
+func (UnimplementedMemoryServer) UpdateProtection(context.Context, *MemoryUpdateProtectionRequest) (*MemoryUpdateProtectionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProtection not implemented")
+}
+func (UnimplementedMemoryServer) UpdateTagSetting(context.Context, *MemoryUpdateTagSettingRequest) (*MemoryUpdateTagSettingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTagSetting not implemented")
+}
+func (UnimplementedMemoryServer) Reshooting(context.Context, *MemoryReshootingRequest) (*MemoryReshootingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Reshooting not implemented")
+}
+func (UnimplementedMemoryServer) mustEmbedUnimplementedMemoryServer() {}
+func (UnimplementedMemoryServer) testEmbeddedByValue()                {}
+
+// UnsafeMemoryServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MemoryServer will
+// result in compilation errors.
+type UnsafeMemoryServer interface {
+	mustEmbedUnimplementedMemoryServer()
+}
+
+func RegisterMemoryServer(s grpc.ServiceRegistrar, srv MemoryServer) {
+	// If the following call pancis, it indicates UnimplementedMemoryServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Memory_ServiceDesc, srv)
+}
+
+func _Memory_Inherit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryInheritRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).Inherit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_Inherit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).Inherit(ctx, req.(*MemoryInheritRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Memory_FixInherit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryFixInheritRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).FixInherit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_FixInherit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).FixInherit(ctx, req.(*MemoryFixInheritRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Memory_Exchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryExchangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).Exchange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_Exchange_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).Exchange(ctx, req.(*MemoryExchangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Memory_UpdateProtection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryUpdateProtectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).UpdateProtection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_UpdateProtection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).UpdateProtection(ctx, req.(*MemoryUpdateProtectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Memory_UpdateTagSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryUpdateTagSettingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).UpdateTagSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_UpdateTagSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).UpdateTagSetting(ctx, req.(*MemoryUpdateTagSettingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Memory_Reshooting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryReshootingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).Reshooting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_Reshooting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).Reshooting(ctx, req.(*MemoryReshootingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Memory_ServiceDesc is the grpc.ServiceDesc for Memory service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Memory_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Memory",
+	HandlerType: (*MemoryServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Inherit",
+			Handler:    _Memory_Inherit_Handler,
+		},
+		{
+			MethodName: "FixInherit",
+			Handler:    _Memory_FixInherit_Handler,
+		},
+		{
+			MethodName: "Exchange",
+			Handler:    _Memory_Exchange_Handler,
+		},
+		{
+			MethodName: "UpdateProtection",
+			Handler:    _Memory_UpdateProtection_Handler,
+		},
+		{
+			MethodName: "UpdateTagSetting",
+			Handler:    _Memory_UpdateTagSetting_Handler,
+		},
+		{
+			MethodName: "Reshooting",
+			Handler:    _Memory_Reshooting_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Mission_ListEvent_FullMethodName         = "/client.api.Mission/ListEvent"
+	Mission_Receive_FullMethodName           = "/client.api.Mission/Receive"
+	Mission_ReceiveGroup_FullMethodName      = "/client.api.Mission/ReceiveGroup"
+	Mission_ReceiveGroupAll_FullMethodName   = "/client.api.Mission/ReceiveGroupAll"
+	Mission_ReceivePass_FullMethodName       = "/client.api.Mission/ReceivePass"
+	Mission_ExchangePassPoint_FullMethodName = "/client.api.Mission/ExchangePassPoint"
+	Mission_UrlTransition_FullMethodName     = "/client.api.Mission/UrlTransition"
+)
+
+// MissionClient is the client API for Mission service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MissionClient interface {
+	ListEvent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MissionListEventResponse, error)
+	Receive(ctx context.Context, in *MissionReceiveRequest, opts ...grpc.CallOption) (*MissionReceiveResponse, error)
+	ReceiveGroup(ctx context.Context, in *MissionReceiveGroupRequest, opts ...grpc.CallOption) (*MissionReceiveGroupResponse, error)
+	ReceiveGroupAll(ctx context.Context, in *MissionReceiveGroupAllRequest, opts ...grpc.CallOption) (*MissionReceiveGroupAllResponse, error)
+	ReceivePass(ctx context.Context, in *MissionReceivePassRequest, opts ...grpc.CallOption) (*MissionReceivePassResponse, error)
+	ExchangePassPoint(ctx context.Context, in *MissionExchangePassPointRequest, opts ...grpc.CallOption) (*MissionExchangePassPointResponse, error)
+	UrlTransition(ctx context.Context, in *MissionUrlTransitionRequest, opts ...grpc.CallOption) (*MissionUrlTransitionResponse, error)
+}
+
+type missionClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMissionClient(cc grpc.ClientConnInterface) MissionClient {
+	return &missionClient{cc}
+}
+
+func (c *missionClient) ListEvent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MissionListEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionListEventResponse)
+	err := c.cc.Invoke(ctx, Mission_ListEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) Receive(ctx context.Context, in *MissionReceiveRequest, opts ...grpc.CallOption) (*MissionReceiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionReceiveResponse)
+	err := c.cc.Invoke(ctx, Mission_Receive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) ReceiveGroup(ctx context.Context, in *MissionReceiveGroupRequest, opts ...grpc.CallOption) (*MissionReceiveGroupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionReceiveGroupResponse)
+	err := c.cc.Invoke(ctx, Mission_ReceiveGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) ReceiveGroupAll(ctx context.Context, in *MissionReceiveGroupAllRequest, opts ...grpc.CallOption) (*MissionReceiveGroupAllResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionReceiveGroupAllResponse)
+	err := c.cc.Invoke(ctx, Mission_ReceiveGroupAll_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) ReceivePass(ctx context.Context, in *MissionReceivePassRequest, opts ...grpc.CallOption) (*MissionReceivePassResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionReceivePassResponse)
+	err := c.cc.Invoke(ctx, Mission_ReceivePass_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) ExchangePassPoint(ctx context.Context, in *MissionExchangePassPointRequest, opts ...grpc.CallOption) (*MissionExchangePassPointResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionExchangePassPointResponse)
+	err := c.cc.Invoke(ctx, Mission_ExchangePassPoint_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *missionClient) UrlTransition(ctx context.Context, in *MissionUrlTransitionRequest, opts ...grpc.CallOption) (*MissionUrlTransitionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MissionUrlTransitionResponse)
+	err := c.cc.Invoke(ctx, Mission_UrlTransition_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MissionServer is the server API for Mission service.
+// All implementations must embed UnimplementedMissionServer
+// for forward compatibility.
+type MissionServer interface {
+	ListEvent(context.Context, *Empty) (*MissionListEventResponse, error)
+	Receive(context.Context, *MissionReceiveRequest) (*MissionReceiveResponse, error)
+	ReceiveGroup(context.Context, *MissionReceiveGroupRequest) (*MissionReceiveGroupResponse, error)
+	ReceiveGroupAll(context.Context, *MissionReceiveGroupAllRequest) (*MissionReceiveGroupAllResponse, error)
+	ReceivePass(context.Context, *MissionReceivePassRequest) (*MissionReceivePassResponse, error)
+	ExchangePassPoint(context.Context, *MissionExchangePassPointRequest) (*MissionExchangePassPointResponse, error)
+	UrlTransition(context.Context, *MissionUrlTransitionRequest) (*MissionUrlTransitionResponse, error)
+	mustEmbedUnimplementedMissionServer()
+}
+
+// UnimplementedMissionServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMissionServer struct{}
+
+func (UnimplementedMissionServer) ListEvent(context.Context, *Empty) (*MissionListEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEvent not implemented")
+}
+func (UnimplementedMissionServer) Receive(context.Context, *MissionReceiveRequest) (*MissionReceiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Receive not implemented")
+}
+func (UnimplementedMissionServer) ReceiveGroup(context.Context, *MissionReceiveGroupRequest) (*MissionReceiveGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveGroup not implemented")
+}
+func (UnimplementedMissionServer) ReceiveGroupAll(context.Context, *MissionReceiveGroupAllRequest) (*MissionReceiveGroupAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveGroupAll not implemented")
+}
+func (UnimplementedMissionServer) ReceivePass(context.Context, *MissionReceivePassRequest) (*MissionReceivePassResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceivePass not implemented")
+}
+func (UnimplementedMissionServer) ExchangePassPoint(context.Context, *MissionExchangePassPointRequest) (*MissionExchangePassPointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExchangePassPoint not implemented")
+}
+func (UnimplementedMissionServer) UrlTransition(context.Context, *MissionUrlTransitionRequest) (*MissionUrlTransitionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UrlTransition not implemented")
+}
+func (UnimplementedMissionServer) mustEmbedUnimplementedMissionServer() {}
+func (UnimplementedMissionServer) testEmbeddedByValue()                 {}
+
+// UnsafeMissionServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MissionServer will
+// result in compilation errors.
+type UnsafeMissionServer interface {
+	mustEmbedUnimplementedMissionServer()
+}
+
+func RegisterMissionServer(s grpc.ServiceRegistrar, srv MissionServer) {
+	// If the following call pancis, it indicates UnimplementedMissionServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Mission_ServiceDesc, srv)
+}
+
+func _Mission_ListEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).ListEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_ListEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).ListEvent(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_Receive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionReceiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).Receive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_Receive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).Receive(ctx, req.(*MissionReceiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_ReceiveGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionReceiveGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).ReceiveGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_ReceiveGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).ReceiveGroup(ctx, req.(*MissionReceiveGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_ReceiveGroupAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionReceiveGroupAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).ReceiveGroupAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_ReceiveGroupAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).ReceiveGroupAll(ctx, req.(*MissionReceiveGroupAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_ReceivePass_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionReceivePassRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).ReceivePass(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_ReceivePass_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).ReceivePass(ctx, req.(*MissionReceivePassRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_ExchangePassPoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionExchangePassPointRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).ExchangePassPoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_ExchangePassPoint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).ExchangePassPoint(ctx, req.(*MissionExchangePassPointRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Mission_UrlTransition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MissionUrlTransitionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MissionServer).UrlTransition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Mission_UrlTransition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MissionServer).UrlTransition(ctx, req.(*MissionUrlTransitionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Mission_ServiceDesc is the grpc.ServiceDesc for Mission service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Mission_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Mission",
+	HandlerType: (*MissionServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListEvent",
+			Handler:    _Mission_ListEvent_Handler,
+		},
+		{
+			MethodName: "Receive",
+			Handler:    _Mission_Receive_Handler,
+		},
+		{
+			MethodName: "ReceiveGroup",
+			Handler:    _Mission_ReceiveGroup_Handler,
+		},
+		{
+			MethodName: "ReceiveGroupAll",
+			Handler:    _Mission_ReceiveGroupAll_Handler,
+		},
+		{
+			MethodName: "ReceivePass",
+			Handler:    _Mission_ReceivePass_Handler,
+		},
+		{
+			MethodName: "ExchangePassPoint",
+			Handler:    _Mission_ExchangePassPoint_Handler,
+		},
+		{
+			MethodName: "UrlTransition",
+			Handler:    _Mission_UrlTransition_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Money_Receive_FullMethodName = "/client.api.Money/Receive"
+)
+
+// MoneyClient is the client API for Money service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MoneyClient interface {
+	Receive(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MoneyReceiveResponse, error)
+}
+
+type moneyClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMoneyClient(cc grpc.ClientConnInterface) MoneyClient {
+	return &moneyClient{cc}
+}
+
+func (c *moneyClient) Receive(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*MoneyReceiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MoneyReceiveResponse)
+	err := c.cc.Invoke(ctx, Money_Receive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MoneyServer is the server API for Money service.
+// All implementations must embed UnimplementedMoneyServer
+// for forward compatibility.
+type MoneyServer interface {
+	Receive(context.Context, *Empty) (*MoneyReceiveResponse, error)
+	mustEmbedUnimplementedMoneyServer()
+}
+
+// UnimplementedMoneyServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMoneyServer struct{}
+
+func (UnimplementedMoneyServer) Receive(context.Context, *Empty) (*MoneyReceiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Receive not implemented")
+}
+func (UnimplementedMoneyServer) mustEmbedUnimplementedMoneyServer() {}
+func (UnimplementedMoneyServer) testEmbeddedByValue()               {}
+
+// UnsafeMoneyServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MoneyServer will
+// result in compilation errors.
+type UnsafeMoneyServer interface {
+	mustEmbedUnimplementedMoneyServer()
+}
+
+func RegisterMoneyServer(s grpc.ServiceRegistrar, srv MoneyServer) {
+	// If the following call pancis, it indicates UnimplementedMoneyServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Money_ServiceDesc, srv)
+}
+
+func _Money_Receive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MoneyServer).Receive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Money_Receive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MoneyServer).Receive(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Money_ServiceDesc is the grpc.ServiceDesc for Money service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Money_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Money",
+	HandlerType: (*MoneyServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Receive",
+			Handler:    _Money_Receive_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Movie_Create_FullMethodName = "/client.api.Movie/Create"
+	Movie_Delete_FullMethodName = "/client.api.Movie/Delete"
+	Movie_Retake_FullMethodName = "/client.api.Movie/Retake"
+)
+
+// MovieClient is the client API for Movie service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MovieClient interface {
+	Create(ctx context.Context, in *MovieCreateRequest, opts ...grpc.CallOption) (*MovieCreateResponse, error)
+	Delete(ctx context.Context, in *MovieDeleteRequest, opts ...grpc.CallOption) (*MovieDeleteResponse, error)
+	Retake(ctx context.Context, in *MovieRetakeRequest, opts ...grpc.CallOption) (*MovieRetakeResponse, error)
+}
+
+type movieClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMovieClient(cc grpc.ClientConnInterface) MovieClient {
+	return &movieClient{cc}
+}
+
+func (c *movieClient) Create(ctx context.Context, in *MovieCreateRequest, opts ...grpc.CallOption) (*MovieCreateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MovieCreateResponse)
+	err := c.cc.Invoke(ctx, Movie_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *movieClient) Delete(ctx context.Context, in *MovieDeleteRequest, opts ...grpc.CallOption) (*MovieDeleteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MovieDeleteResponse)
+	err := c.cc.Invoke(ctx, Movie_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *movieClient) Retake(ctx context.Context, in *MovieRetakeRequest, opts ...grpc.CallOption) (*MovieRetakeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MovieRetakeResponse)
+	err := c.cc.Invoke(ctx, Movie_Retake_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MovieServer is the server API for Movie service.
+// All implementations must embed UnimplementedMovieServer
+// for forward compatibility.
+type MovieServer interface {
+	Create(context.Context, *MovieCreateRequest) (*MovieCreateResponse, error)
+	Delete(context.Context, *MovieDeleteRequest) (*MovieDeleteResponse, error)
+	Retake(context.Context, *MovieRetakeRequest) (*MovieRetakeResponse, error)
+	mustEmbedUnimplementedMovieServer()
+}
+
+// UnimplementedMovieServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMovieServer struct{}
+
+func (UnimplementedMovieServer) Create(context.Context, *MovieCreateRequest) (*MovieCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedMovieServer) Delete(context.Context, *MovieDeleteRequest) (*MovieDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedMovieServer) Retake(context.Context, *MovieRetakeRequest) (*MovieRetakeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Retake not implemented")
+}
+func (UnimplementedMovieServer) mustEmbedUnimplementedMovieServer() {}
+func (UnimplementedMovieServer) testEmbeddedByValue()               {}
+
+// UnsafeMovieServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MovieServer will
+// result in compilation errors.
+type UnsafeMovieServer interface {
+	mustEmbedUnimplementedMovieServer()
+}
+
+func RegisterMovieServer(s grpc.ServiceRegistrar, srv MovieServer) {
+	// If the following call pancis, it indicates UnimplementedMovieServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Movie_ServiceDesc, srv)
+}
+
+func _Movie_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MovieCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovieServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Movie_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovieServer).Create(ctx, req.(*MovieCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Movie_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MovieDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovieServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Movie_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovieServer).Delete(ctx, req.(*MovieDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Movie_Retake_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MovieRetakeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MovieServer).Retake(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Movie_Retake_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MovieServer).Retake(ctx, req.(*MovieRetakeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Movie_ServiceDesc is the grpc.ServiceDesc for Movie service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Movie_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Movie",
+	HandlerType: (*MovieServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Movie_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Movie_Delete_Handler,
+		},
+		{
+			MethodName: "Retake",
+			Handler:    _Movie_Retake_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Music_SendActionLog_FullMethodName    = "/client.api.Music/SendActionLog"
+	Music_SendBuyActionLog_FullMethodName = "/client.api.Music/SendBuyActionLog"
+)
+
+// MusicClient is the client API for Music service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MusicClient interface {
+	SendActionLog(ctx context.Context, in *MusicSendActionLogRequest, opts ...grpc.CallOption) (*MusicSendActionLogResponse, error)
+	SendBuyActionLog(ctx context.Context, in *MusicSendBuyActionLogRequest, opts ...grpc.CallOption) (*MusicSendBuyActionLogResponse, error)
+}
+
+type musicClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMusicClient(cc grpc.ClientConnInterface) MusicClient {
+	return &musicClient{cc}
+}
+
+func (c *musicClient) SendActionLog(ctx context.Context, in *MusicSendActionLogRequest, opts ...grpc.CallOption) (*MusicSendActionLogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MusicSendActionLogResponse)
+	err := c.cc.Invoke(ctx, Music_SendActionLog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *musicClient) SendBuyActionLog(ctx context.Context, in *MusicSendBuyActionLogRequest, opts ...grpc.CallOption) (*MusicSendBuyActionLogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MusicSendBuyActionLogResponse)
+	err := c.cc.Invoke(ctx, Music_SendBuyActionLog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MusicServer is the server API for Music service.
+// All implementations must embed UnimplementedMusicServer
+// for forward compatibility.
+type MusicServer interface {
+	SendActionLog(context.Context, *MusicSendActionLogRequest) (*MusicSendActionLogResponse, error)
+	SendBuyActionLog(context.Context, *MusicSendBuyActionLogRequest) (*MusicSendBuyActionLogResponse, error)
+	mustEmbedUnimplementedMusicServer()
+}
+
+// UnimplementedMusicServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMusicServer struct{}
+
+func (UnimplementedMusicServer) SendActionLog(context.Context, *MusicSendActionLogRequest) (*MusicSendActionLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendActionLog not implemented")
+}
+func (UnimplementedMusicServer) SendBuyActionLog(context.Context, *MusicSendBuyActionLogRequest) (*MusicSendBuyActionLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendBuyActionLog not implemented")
+}
+func (UnimplementedMusicServer) mustEmbedUnimplementedMusicServer() {}
+func (UnimplementedMusicServer) testEmbeddedByValue()               {}
+
+// UnsafeMusicServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MusicServer will
+// result in compilation errors.
+type UnsafeMusicServer interface {
+	mustEmbedUnimplementedMusicServer()
+}
+
+func RegisterMusicServer(s grpc.ServiceRegistrar, srv MusicServer) {
+	// If the following call pancis, it indicates UnimplementedMusicServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Music_ServiceDesc, srv)
+}
+
+func _Music_SendActionLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MusicSendActionLogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MusicServer).SendActionLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Music_SendActionLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MusicServer).SendActionLog(ctx, req.(*MusicSendActionLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Music_SendBuyActionLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MusicSendBuyActionLogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MusicServer).SendBuyActionLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Music_SendBuyActionLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MusicServer).SendBuyActionLog(ctx, req.(*MusicSendBuyActionLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Music_ServiceDesc is the grpc.ServiceDesc for Music service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Music_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Music",
+	HandlerType: (*MusicServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendActionLog",
+			Handler:    _Music_SendActionLog_Handler,
+		},
+		{
+			MethodName: "SendBuyActionLog",
+			Handler:    _Music_SendBuyActionLog_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Notice_ListAll_FullMethodName            = "/client.api.Notice/ListAll"
+	Notice_FetchList_FullMethodName          = "/client.api.Notice/FetchList"
+	Notice_Get_FullMethodName                = "/client.api.Notice/Get"
+	Notice_UpdateCategoryTime_FullMethodName = "/client.api.Notice/UpdateCategoryTime"
+	Notice_UpdateDetailTime_FullMethodName   = "/client.api.Notice/UpdateDetailTime"
 )
 
 // NoticeClient is the client API for Notice service.
@@ -717,6 +6128,9 @@ const (
 type NoticeClient interface {
 	ListAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*NoticeListAllResponse, error)
 	FetchList(ctx context.Context, in *NoticeFetchListRequest, opts ...grpc.CallOption) (*NoticeFetchListResponse, error)
+	Get(ctx context.Context, in *NoticeGetRequest, opts ...grpc.CallOption) (*NoticeGetResponse, error)
+	UpdateCategoryTime(ctx context.Context, in *NoticeUpdateCategoryTimeRequest, opts ...grpc.CallOption) (*NoticeUpdateCategoryTimeResponse, error)
+	UpdateDetailTime(ctx context.Context, in *NoticeUpdateDetailTimeRequest, opts ...grpc.CallOption) (*NoticeUpdateDetailTimeResponse, error)
 }
 
 type noticeClient struct {
@@ -747,12 +6161,45 @@ func (c *noticeClient) FetchList(ctx context.Context, in *NoticeFetchListRequest
 	return out, nil
 }
 
+func (c *noticeClient) Get(ctx context.Context, in *NoticeGetRequest, opts ...grpc.CallOption) (*NoticeGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NoticeGetResponse)
+	err := c.cc.Invoke(ctx, Notice_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *noticeClient) UpdateCategoryTime(ctx context.Context, in *NoticeUpdateCategoryTimeRequest, opts ...grpc.CallOption) (*NoticeUpdateCategoryTimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NoticeUpdateCategoryTimeResponse)
+	err := c.cc.Invoke(ctx, Notice_UpdateCategoryTime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *noticeClient) UpdateDetailTime(ctx context.Context, in *NoticeUpdateDetailTimeRequest, opts ...grpc.CallOption) (*NoticeUpdateDetailTimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NoticeUpdateDetailTimeResponse)
+	err := c.cc.Invoke(ctx, Notice_UpdateDetailTime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NoticeServer is the server API for Notice service.
 // All implementations must embed UnimplementedNoticeServer
 // for forward compatibility.
 type NoticeServer interface {
 	ListAll(context.Context, *Empty) (*NoticeListAllResponse, error)
 	FetchList(context.Context, *NoticeFetchListRequest) (*NoticeFetchListResponse, error)
+	Get(context.Context, *NoticeGetRequest) (*NoticeGetResponse, error)
+	UpdateCategoryTime(context.Context, *NoticeUpdateCategoryTimeRequest) (*NoticeUpdateCategoryTimeResponse, error)
+	UpdateDetailTime(context.Context, *NoticeUpdateDetailTimeRequest) (*NoticeUpdateDetailTimeResponse, error)
 	mustEmbedUnimplementedNoticeServer()
 }
 
@@ -768,6 +6215,15 @@ func (UnimplementedNoticeServer) ListAll(context.Context, *Empty) (*NoticeListAl
 }
 func (UnimplementedNoticeServer) FetchList(context.Context, *NoticeFetchListRequest) (*NoticeFetchListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchList not implemented")
+}
+func (UnimplementedNoticeServer) Get(context.Context, *NoticeGetRequest) (*NoticeGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedNoticeServer) UpdateCategoryTime(context.Context, *NoticeUpdateCategoryTimeRequest) (*NoticeUpdateCategoryTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateCategoryTime not implemented")
+}
+func (UnimplementedNoticeServer) UpdateDetailTime(context.Context, *NoticeUpdateDetailTimeRequest) (*NoticeUpdateDetailTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDetailTime not implemented")
 }
 func (UnimplementedNoticeServer) mustEmbedUnimplementedNoticeServer() {}
 func (UnimplementedNoticeServer) testEmbeddedByValue()                {}
@@ -826,6 +6282,60 @@ func _Notice_FetchList_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Notice_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoticeGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NoticeServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Notice_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NoticeServer).Get(ctx, req.(*NoticeGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Notice_UpdateCategoryTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoticeUpdateCategoryTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NoticeServer).UpdateCategoryTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Notice_UpdateCategoryTime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NoticeServer).UpdateCategoryTime(ctx, req.(*NoticeUpdateCategoryTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Notice_UpdateDetailTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NoticeUpdateDetailTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NoticeServer).UpdateDetailTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Notice_UpdateDetailTime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NoticeServer).UpdateDetailTime(ctx, req.(*NoticeUpdateDetailTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Notice_ServiceDesc is the grpc.ServiceDesc for Notice service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -841,22 +6351,2954 @@ var Notice_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "FetchList",
 			Handler:    _Notice_FetchList_Handler,
 		},
+		{
+			MethodName: "Get",
+			Handler:    _Notice_Get_Handler,
+		},
+		{
+			MethodName: "UpdateCategoryTime",
+			Handler:    _Notice_UpdateCategoryTime_Handler,
+		},
+		{
+			MethodName: "UpdateDetailTime",
+			Handler:    _Notice_UpdateDetailTime_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "papi.proto",
 }
 
 const (
-	PvpRate_Get_FullMethodName        = "/client.api.PvpRate/Get"
-	PvpRate_Initialize_FullMethodName = "/client.api.PvpRate/Initialize"
+	Photo_Create_FullMethodName           = "/client.api.Photo/Create"
+	Photo_CreateIdol_FullMethodName       = "/client.api.Photo/CreateIdol"
+	Photo_CreateByMemory_FullMethodName   = "/client.api.Photo/CreateByMemory"
+	Photo_UpdateName_FullMethodName       = "/client.api.Photo/UpdateName"
+	Photo_UpdateProtection_FullMethodName = "/client.api.Photo/UpdateProtection"
+	Photo_Delete_FullMethodName           = "/client.api.Photo/Delete"
+)
+
+// PhotoClient is the client API for Photo service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PhotoClient interface {
+	Create(ctx context.Context, in *PhotoCreateRequest, opts ...grpc.CallOption) (*PhotoCreateResponse, error)
+	CreateIdol(ctx context.Context, in *PhotoCreateIdolRequest, opts ...grpc.CallOption) (*PhotoCreateIdolResponse, error)
+	CreateByMemory(ctx context.Context, in *PhotoCreateByMemoryRequest, opts ...grpc.CallOption) (*PhotoCreateByMemoryResponse, error)
+	UpdateName(ctx context.Context, in *PhotoUpdateNameRequest, opts ...grpc.CallOption) (*PhotoUpdateNameResponse, error)
+	UpdateProtection(ctx context.Context, in *PhotoUpdateProtectionRequest, opts ...grpc.CallOption) (*PhotoUpdateProtectionResponse, error)
+	Delete(ctx context.Context, in *PhotoDeleteRequest, opts ...grpc.CallOption) (*PhotoDeleteResponse, error)
+}
+
+type photoClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPhotoClient(cc grpc.ClientConnInterface) PhotoClient {
+	return &photoClient{cc}
+}
+
+func (c *photoClient) Create(ctx context.Context, in *PhotoCreateRequest, opts ...grpc.CallOption) (*PhotoCreateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoCreateResponse)
+	err := c.cc.Invoke(ctx, Photo_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoClient) CreateIdol(ctx context.Context, in *PhotoCreateIdolRequest, opts ...grpc.CallOption) (*PhotoCreateIdolResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoCreateIdolResponse)
+	err := c.cc.Invoke(ctx, Photo_CreateIdol_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoClient) CreateByMemory(ctx context.Context, in *PhotoCreateByMemoryRequest, opts ...grpc.CallOption) (*PhotoCreateByMemoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoCreateByMemoryResponse)
+	err := c.cc.Invoke(ctx, Photo_CreateByMemory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoClient) UpdateName(ctx context.Context, in *PhotoUpdateNameRequest, opts ...grpc.CallOption) (*PhotoUpdateNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoUpdateNameResponse)
+	err := c.cc.Invoke(ctx, Photo_UpdateName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoClient) UpdateProtection(ctx context.Context, in *PhotoUpdateProtectionRequest, opts ...grpc.CallOption) (*PhotoUpdateProtectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoUpdateProtectionResponse)
+	err := c.cc.Invoke(ctx, Photo_UpdateProtection_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *photoClient) Delete(ctx context.Context, in *PhotoDeleteRequest, opts ...grpc.CallOption) (*PhotoDeleteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PhotoDeleteResponse)
+	err := c.cc.Invoke(ctx, Photo_Delete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PhotoServer is the server API for Photo service.
+// All implementations must embed UnimplementedPhotoServer
+// for forward compatibility.
+type PhotoServer interface {
+	Create(context.Context, *PhotoCreateRequest) (*PhotoCreateResponse, error)
+	CreateIdol(context.Context, *PhotoCreateIdolRequest) (*PhotoCreateIdolResponse, error)
+	CreateByMemory(context.Context, *PhotoCreateByMemoryRequest) (*PhotoCreateByMemoryResponse, error)
+	UpdateName(context.Context, *PhotoUpdateNameRequest) (*PhotoUpdateNameResponse, error)
+	UpdateProtection(context.Context, *PhotoUpdateProtectionRequest) (*PhotoUpdateProtectionResponse, error)
+	Delete(context.Context, *PhotoDeleteRequest) (*PhotoDeleteResponse, error)
+	mustEmbedUnimplementedPhotoServer()
+}
+
+// UnimplementedPhotoServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedPhotoServer struct{}
+
+func (UnimplementedPhotoServer) Create(context.Context, *PhotoCreateRequest) (*PhotoCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPhotoServer) CreateIdol(context.Context, *PhotoCreateIdolRequest) (*PhotoCreateIdolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateIdol not implemented")
+}
+func (UnimplementedPhotoServer) CreateByMemory(context.Context, *PhotoCreateByMemoryRequest) (*PhotoCreateByMemoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateByMemory not implemented")
+}
+func (UnimplementedPhotoServer) UpdateName(context.Context, *PhotoUpdateNameRequest) (*PhotoUpdateNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateName not implemented")
+}
+func (UnimplementedPhotoServer) UpdateProtection(context.Context, *PhotoUpdateProtectionRequest) (*PhotoUpdateProtectionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProtection not implemented")
+}
+func (UnimplementedPhotoServer) Delete(context.Context, *PhotoDeleteRequest) (*PhotoDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedPhotoServer) mustEmbedUnimplementedPhotoServer() {}
+func (UnimplementedPhotoServer) testEmbeddedByValue()               {}
+
+// UnsafePhotoServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PhotoServer will
+// result in compilation errors.
+type UnsafePhotoServer interface {
+	mustEmbedUnimplementedPhotoServer()
+}
+
+func RegisterPhotoServer(s grpc.ServiceRegistrar, srv PhotoServer) {
+	// If the following call pancis, it indicates UnimplementedPhotoServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Photo_ServiceDesc, srv)
+}
+
+func _Photo_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).Create(ctx, req.(*PhotoCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Photo_CreateIdol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoCreateIdolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).CreateIdol(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_CreateIdol_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).CreateIdol(ctx, req.(*PhotoCreateIdolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Photo_CreateByMemory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoCreateByMemoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).CreateByMemory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_CreateByMemory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).CreateByMemory(ctx, req.(*PhotoCreateByMemoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Photo_UpdateName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoUpdateNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).UpdateName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_UpdateName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).UpdateName(ctx, req.(*PhotoUpdateNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Photo_UpdateProtection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoUpdateProtectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).UpdateProtection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_UpdateProtection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).UpdateProtection(ctx, req.(*PhotoUpdateProtectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Photo_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PhotoDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhotoServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Photo_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhotoServer).Delete(ctx, req.(*PhotoDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Photo_ServiceDesc is the grpc.ServiceDesc for Photo service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Photo_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Photo",
+	HandlerType: (*PhotoServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Photo_Create_Handler,
+		},
+		{
+			MethodName: "CreateIdol",
+			Handler:    _Photo_CreateIdol_Handler,
+		},
+		{
+			MethodName: "CreateByMemory",
+			Handler:    _Photo_CreateByMemory_Handler,
+		},
+		{
+			MethodName: "UpdateName",
+			Handler:    _Photo_UpdateName_Handler,
+		},
+		{
+			MethodName: "UpdateProtection",
+			Handler:    _Photo_UpdateProtection_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Photo_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Preference_Update_FullMethodName = "/client.api.Preference/Update"
+)
+
+// PreferenceClient is the client API for Preference service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PreferenceClient interface {
+	Update(ctx context.Context, in *PreferenceUpdateRequest, opts ...grpc.CallOption) (*PreferenceUpdateResponse, error)
+}
+
+type preferenceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPreferenceClient(cc grpc.ClientConnInterface) PreferenceClient {
+	return &preferenceClient{cc}
+}
+
+func (c *preferenceClient) Update(ctx context.Context, in *PreferenceUpdateRequest, opts ...grpc.CallOption) (*PreferenceUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PreferenceUpdateResponse)
+	err := c.cc.Invoke(ctx, Preference_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PreferenceServer is the server API for Preference service.
+// All implementations must embed UnimplementedPreferenceServer
+// for forward compatibility.
+type PreferenceServer interface {
+	Update(context.Context, *PreferenceUpdateRequest) (*PreferenceUpdateResponse, error)
+	mustEmbedUnimplementedPreferenceServer()
+}
+
+// UnimplementedPreferenceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedPreferenceServer struct{}
+
+func (UnimplementedPreferenceServer) Update(context.Context, *PreferenceUpdateRequest) (*PreferenceUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPreferenceServer) mustEmbedUnimplementedPreferenceServer() {}
+func (UnimplementedPreferenceServer) testEmbeddedByValue()                    {}
+
+// UnsafePreferenceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PreferenceServer will
+// result in compilation errors.
+type UnsafePreferenceServer interface {
+	mustEmbedUnimplementedPreferenceServer()
+}
+
+func RegisterPreferenceServer(s grpc.ServiceRegistrar, srv PreferenceServer) {
+	// If the following call pancis, it indicates UnimplementedPreferenceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Preference_ServiceDesc, srv)
+}
+
+func _Preference_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreferenceUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PreferenceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Preference_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PreferenceServer).Update(ctx, req.(*PreferenceUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Preference_ServiceDesc is the grpc.ServiceDesc for Preference service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Preference_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Preference",
+	HandlerType: (*PreferenceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Update",
+			Handler:    _Preference_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Produce_Top_FullMethodName                       = "/client.api.Produce/Top"
+	Produce_ChangeForceLiveCommon_FullMethodName     = "/client.api.Produce/ChangeForceLiveCommon"
+	Produce_UpdateSupportCardDeck_FullMethodName     = "/client.api.Produce/UpdateSupportCardDeck"
+	Produce_UpdateMemoryDeck_FullMethodName          = "/client.api.Produce/UpdateMemoryDeck"
+	Produce_ListRentalSupportCard_FullMethodName     = "/client.api.Produce/ListRentalSupportCard"
+	Produce_ListRentalMemory_FullMethodName          = "/client.api.Produce/ListRentalMemory"
+	Produce_CheckProgress_FullMethodName             = "/client.api.Produce/CheckProgress"
+	Produce_Start_FullMethodName                     = "/client.api.Produce/Start"
+	Produce_Next_FullMethodName                      = "/client.api.Produce/Next"
+	Produce_StepSkip_FullMethodName                  = "/client.api.Produce/StepSkip"
+	Produce_StepEvent_FullMethodName                 = "/client.api.Produce/StepEvent"
+	Produce_StepBusinessStart_FullMethodName         = "/client.api.Produce/StepBusinessStart"
+	Produce_StepBusinessSelect_FullMethodName        = "/client.api.Produce/StepBusinessSelect"
+	Produce_StepCustomizeStart_FullMethodName        = "/client.api.Produce/StepCustomizeStart"
+	Produce_StepCustomizeSelect_FullMethodName       = "/client.api.Produce/StepCustomizeSelect"
+	Produce_StepCustomizeEnd_FullMethodName          = "/client.api.Produce/StepCustomizeEnd"
+	Produce_StepRefresh_FullMethodName               = "/client.api.Produce/StepRefresh"
+	Produce_StepShopStart_FullMethodName             = "/client.api.Produce/StepShopStart"
+	Produce_StepShopReroll_FullMethodName            = "/client.api.Produce/StepShopReroll"
+	Produce_StepShopBuy_FullMethodName               = "/client.api.Produce/StepShopBuy"
+	Produce_StepShopEnd_FullMethodName               = "/client.api.Produce/StepShopEnd"
+	Produce_StepPresentStart_FullMethodName          = "/client.api.Produce/StepPresentStart"
+	Produce_StepPresentReceive_FullMethodName        = "/client.api.Produce/StepPresentReceive"
+	Produce_StepPresentEnd_FullMethodName            = "/client.api.Produce/StepPresentEnd"
+	Produce_StepLessonStart_FullMethodName           = "/client.api.Produce/StepLessonStart"
+	Produce_StepLessonEnd_FullMethodName             = "/client.api.Produce/StepLessonEnd"
+	Produce_StepSelfLessonStart_FullMethodName       = "/client.api.Produce/StepSelfLessonStart"
+	Produce_StepSelfLessonEnd_FullMethodName         = "/client.api.Produce/StepSelfLessonEnd"
+	Produce_StepAuditionRefresh_FullMethodName       = "/client.api.Produce/StepAuditionRefresh"
+	Produce_StepAuditionStart_FullMethodName         = "/client.api.Produce/StepAuditionStart"
+	Produce_StepAuditionEndExamBattle_FullMethodName = "/client.api.Produce/StepAuditionEndExamBattle"
+	Produce_StepAuditionEnd_FullMethodName           = "/client.api.Produce/StepAuditionEnd"
+	Produce_DiscardDrink_FullMethodName              = "/client.api.Produce/DiscardDrink"
+	Produce_RerollSelectProduceCard_FullMethodName   = "/client.api.Produce/RerollSelectProduceCard"
+	Produce_ExcludeProduceCard_FullMethodName        = "/client.api.Produce/ExcludeProduceCard"
+	Produce_ActivateEffect_FullMethodName            = "/client.api.Produce/ActivateEffect"
+	Produce_ReadDearnessStory_FullMethodName         = "/client.api.Produce/ReadDearnessStory"
+	Produce_ReadAdv_FullMethodName                   = "/client.api.Produce/ReadAdv"
+	Produce_StartBeforeLiveEvaluation_FullMethodName = "/client.api.Produce/StartBeforeLiveEvaluation"
+	Produce_EndBeforeLiveEvaluation_FullMethodName   = "/client.api.Produce/EndBeforeLiveEvaluation"
+	Produce_RerollMemory_FullMethodName              = "/client.api.Produce/RerollMemory"
+	Produce_End_FullMethodName                       = "/client.api.Produce/End"
+	Produce_Result_FullMethodName                    = "/client.api.Produce/Result"
+	Produce_ReportGuildMission_FullMethodName        = "/client.api.Produce/ReportGuildMission"
+	Produce_Continue_FullMethodName                  = "/client.api.Produce/Continue"
+	Produce_Retire_FullMethodName                    = "/client.api.Produce/Retire"
+	Produce_History_FullMethodName                   = "/client.api.Produce/History"
+	Produce_RankingTop_FullMethodName                = "/client.api.Produce/RankingTop"
+	Produce_Ranking_FullMethodName                   = "/client.api.Produce/Ranking"
+	Produce_ChangeCostume_FullMethodName             = "/client.api.Produce/ChangeCostume"
+	Produce_ViewPictureBookLive_FullMethodName       = "/client.api.Produce/ViewPictureBookLive"
+	Produce_UnlockPictureBookLive_FullMethodName     = "/client.api.Produce/UnlockPictureBookLive"
+)
+
+// ProduceClient is the client API for Produce service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProduceClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceTopResponse, error)
+	ChangeForceLiveCommon(ctx context.Context, in *ProduceChangeForceLiveCommonRequest, opts ...grpc.CallOption) (*ProduceChangeForceLiveCommonResponse, error)
+	UpdateSupportCardDeck(ctx context.Context, in *ProduceUpdateSupportCardDeckRequest, opts ...grpc.CallOption) (*ProduceUpdateSupportCardDeckResponse, error)
+	UpdateMemoryDeck(ctx context.Context, in *ProduceUpdateMemoryDeckRequest, opts ...grpc.CallOption) (*ProduceUpdateMemoryDeckResponse, error)
+	ListRentalSupportCard(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceListRentalSupportCardResponse, error)
+	ListRentalMemory(ctx context.Context, in *ProduceListRentalMemoryRequest, opts ...grpc.CallOption) (*ProduceListRentalMemoryResponse, error)
+	CheckProgress(ctx context.Context, in *ProduceCheckProgressRequest, opts ...grpc.CallOption) (*ProduceCheckProgressResponse, error)
+	Start(ctx context.Context, in *ProduceStartRequest, opts ...grpc.CallOption) (*ProduceStartResponse, error)
+	Next(ctx context.Context, in *ProduceNextRequest, opts ...grpc.CallOption) (*ProduceNextResponse, error)
+	StepSkip(ctx context.Context, in *ProduceStepSkipRequest, opts ...grpc.CallOption) (*ProduceStepSkipResponse, error)
+	StepEvent(ctx context.Context, in *ProduceStepEventRequest, opts ...grpc.CallOption) (*ProduceStepEventResponse, error)
+	StepBusinessStart(ctx context.Context, in *ProduceStepBusinessStartRequest, opts ...grpc.CallOption) (*ProduceStepBusinessStartResponse, error)
+	StepBusinessSelect(ctx context.Context, in *ProduceStepBusinessSelectRequest, opts ...grpc.CallOption) (*ProduceStepBusinessSelectResponse, error)
+	StepCustomizeStart(ctx context.Context, in *ProduceStepCustomizeStartRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeStartResponse, error)
+	StepCustomizeSelect(ctx context.Context, in *ProduceStepCustomizeSelectRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeSelectResponse, error)
+	StepCustomizeEnd(ctx context.Context, in *ProduceStepCustomizeEndRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeEndResponse, error)
+	StepRefresh(ctx context.Context, in *ProduceStepRefreshRequest, opts ...grpc.CallOption) (*ProduceStepRefreshResponse, error)
+	StepShopStart(ctx context.Context, in *ProduceStepShopStartRequest, opts ...grpc.CallOption) (*ProduceStepShopStartResponse, error)
+	StepShopReroll(ctx context.Context, in *ProduceStepShopRerollRequest, opts ...grpc.CallOption) (*ProduceStepShopRerollResponse, error)
+	StepShopBuy(ctx context.Context, in *ProduceStepShopBuyRequest, opts ...grpc.CallOption) (*ProduceStepShopBuyResponse, error)
+	StepShopEnd(ctx context.Context, in *ProduceStepShopEndRequest, opts ...grpc.CallOption) (*ProduceStepShopEndResponse, error)
+	StepPresentStart(ctx context.Context, in *ProduceStepPresentStartRequest, opts ...grpc.CallOption) (*ProduceStepPresentStartResponse, error)
+	StepPresentReceive(ctx context.Context, in *ProduceStepPresentReceiveRequest, opts ...grpc.CallOption) (*ProduceStepPresentReceiveResponse, error)
+	StepPresentEnd(ctx context.Context, in *ProduceStepPresentEndRequest, opts ...grpc.CallOption) (*ProduceStepPresentEndResponse, error)
+	StepLessonStart(ctx context.Context, in *ProduceStepLessonStartRequest, opts ...grpc.CallOption) (*ProduceStepLessonStartResponse, error)
+	StepLessonEnd(ctx context.Context, in *ProduceStepLessonEndRequest, opts ...grpc.CallOption) (*ProduceStepLessonEndResponse, error)
+	StepSelfLessonStart(ctx context.Context, in *ProduceStepSelfLessonStartRequest, opts ...grpc.CallOption) (*ProduceStepSelfLessonStartResponse, error)
+	StepSelfLessonEnd(ctx context.Context, in *ProduceStepSelfLessonEndRequest, opts ...grpc.CallOption) (*ProduceStepSelfLessonEndResponse, error)
+	StepAuditionRefresh(ctx context.Context, in *ProduceStepAuditionRefreshRequest, opts ...grpc.CallOption) (*ProduceStepAuditionRefreshResponse, error)
+	StepAuditionStart(ctx context.Context, in *ProduceStepAuditionStartRequest, opts ...grpc.CallOption) (*ProduceStepAuditionStartResponse, error)
+	StepAuditionEndExamBattle(ctx context.Context, in *ProduceStepAuditionEndExamBattleRequest, opts ...grpc.CallOption) (*ProduceStepAuditionEndExamBattleResponse, error)
+	StepAuditionEnd(ctx context.Context, in *ProduceStepAuditionEndRequest, opts ...grpc.CallOption) (*ProduceStepAuditionEndResponse, error)
+	DiscardDrink(ctx context.Context, in *ProduceDiscardDrinkRequest, opts ...grpc.CallOption) (*ProduceDiscardDrinkResponse, error)
+	RerollSelectProduceCard(ctx context.Context, in *ProduceRerollSelectProduceCardRequest, opts ...grpc.CallOption) (*ProduceRerollSelectProduceCardResponse, error)
+	ExcludeProduceCard(ctx context.Context, in *ProduceExcludeProduceCardRequest, opts ...grpc.CallOption) (*ProduceExcludeProduceCardResponse, error)
+	ActivateEffect(ctx context.Context, in *ProduceActivateEffectRequest, opts ...grpc.CallOption) (*ProduceActivateEffectResponse, error)
+	ReadDearnessStory(ctx context.Context, in *ProduceReadDearnessStoryRequest, opts ...grpc.CallOption) (*ProduceReadDearnessStoryResponse, error)
+	ReadAdv(ctx context.Context, in *ProduceReadAdvRequest, opts ...grpc.CallOption) (*ProduceReadAdvResponse, error)
+	StartBeforeLiveEvaluation(ctx context.Context, in *ProduceStartBeforeLiveEvaluationRequest, opts ...grpc.CallOption) (*ProduceStartBeforeLiveEvaluationResponse, error)
+	EndBeforeLiveEvaluation(ctx context.Context, in *ProduceEndBeforeLiveEvaluationRequest, opts ...grpc.CallOption) (*ProduceEndBeforeLiveEvaluationResponse, error)
+	RerollMemory(ctx context.Context, in *ProduceRerollMemoryRequest, opts ...grpc.CallOption) (*ProduceRerollMemoryResponse, error)
+	End(ctx context.Context, in *ProduceEndRequest, opts ...grpc.CallOption) (*ProduceEndResponse, error)
+	Result(ctx context.Context, in *ProduceResultRequest, opts ...grpc.CallOption) (*ProduceResultResponse, error)
+	ReportGuildMission(ctx context.Context, in *ProduceReportGuildMissionRequest, opts ...grpc.CallOption) (*ProduceReportGuildMissionResponse, error)
+	Continue(ctx context.Context, in *ProduceContinueRequest, opts ...grpc.CallOption) (*ProduceContinueResponse, error)
+	Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceRetireResponse, error)
+	History(ctx context.Context, in *ProduceHistoryRequest, opts ...grpc.CallOption) (*ProduceHistoryResponse, error)
+	RankingTop(ctx context.Context, in *ProduceRankingTopRequest, opts ...grpc.CallOption) (*ProduceRankingTopResponse, error)
+	Ranking(ctx context.Context, in *ProduceRankingRequest, opts ...grpc.CallOption) (*ProduceRankingResponse, error)
+	ChangeCostume(ctx context.Context, in *ProduceChangeCostumeRequest, opts ...grpc.CallOption) (*ProduceChangeCostumeResponse, error)
+	ViewPictureBookLive(ctx context.Context, in *ProduceViewPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceViewPictureBookLiveResponse, error)
+	UnlockPictureBookLive(ctx context.Context, in *ProduceUnlockPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceUnlockPictureBookLiveResponse, error)
+}
+
+type produceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProduceClient(cc grpc.ClientConnInterface) ProduceClient {
+	return &produceClient{cc}
+}
+
+func (c *produceClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceTopResponse)
+	err := c.cc.Invoke(ctx, Produce_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ChangeForceLiveCommon(ctx context.Context, in *ProduceChangeForceLiveCommonRequest, opts ...grpc.CallOption) (*ProduceChangeForceLiveCommonResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceChangeForceLiveCommonResponse)
+	err := c.cc.Invoke(ctx, Produce_ChangeForceLiveCommon_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) UpdateSupportCardDeck(ctx context.Context, in *ProduceUpdateSupportCardDeckRequest, opts ...grpc.CallOption) (*ProduceUpdateSupportCardDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceUpdateSupportCardDeckResponse)
+	err := c.cc.Invoke(ctx, Produce_UpdateSupportCardDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) UpdateMemoryDeck(ctx context.Context, in *ProduceUpdateMemoryDeckRequest, opts ...grpc.CallOption) (*ProduceUpdateMemoryDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceUpdateMemoryDeckResponse)
+	err := c.cc.Invoke(ctx, Produce_UpdateMemoryDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ListRentalSupportCard(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceListRentalSupportCardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceListRentalSupportCardResponse)
+	err := c.cc.Invoke(ctx, Produce_ListRentalSupportCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ListRentalMemory(ctx context.Context, in *ProduceListRentalMemoryRequest, opts ...grpc.CallOption) (*ProduceListRentalMemoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceListRentalMemoryResponse)
+	err := c.cc.Invoke(ctx, Produce_ListRentalMemory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) CheckProgress(ctx context.Context, in *ProduceCheckProgressRequest, opts ...grpc.CallOption) (*ProduceCheckProgressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceCheckProgressResponse)
+	err := c.cc.Invoke(ctx, Produce_CheckProgress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Start(ctx context.Context, in *ProduceStartRequest, opts ...grpc.CallOption) (*ProduceStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStartResponse)
+	err := c.cc.Invoke(ctx, Produce_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Next(ctx context.Context, in *ProduceNextRequest, opts ...grpc.CallOption) (*ProduceNextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceNextResponse)
+	err := c.cc.Invoke(ctx, Produce_Next_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepSkip(ctx context.Context, in *ProduceStepSkipRequest, opts ...grpc.CallOption) (*ProduceStepSkipResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepSkipResponse)
+	err := c.cc.Invoke(ctx, Produce_StepSkip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepEvent(ctx context.Context, in *ProduceStepEventRequest, opts ...grpc.CallOption) (*ProduceStepEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepEventResponse)
+	err := c.cc.Invoke(ctx, Produce_StepEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepBusinessStart(ctx context.Context, in *ProduceStepBusinessStartRequest, opts ...grpc.CallOption) (*ProduceStepBusinessStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepBusinessStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepBusinessStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepBusinessSelect(ctx context.Context, in *ProduceStepBusinessSelectRequest, opts ...grpc.CallOption) (*ProduceStepBusinessSelectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepBusinessSelectResponse)
+	err := c.cc.Invoke(ctx, Produce_StepBusinessSelect_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepCustomizeStart(ctx context.Context, in *ProduceStepCustomizeStartRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepCustomizeStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepCustomizeStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepCustomizeSelect(ctx context.Context, in *ProduceStepCustomizeSelectRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeSelectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepCustomizeSelectResponse)
+	err := c.cc.Invoke(ctx, Produce_StepCustomizeSelect_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepCustomizeEnd(ctx context.Context, in *ProduceStepCustomizeEndRequest, opts ...grpc.CallOption) (*ProduceStepCustomizeEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepCustomizeEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepCustomizeEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepRefresh(ctx context.Context, in *ProduceStepRefreshRequest, opts ...grpc.CallOption) (*ProduceStepRefreshResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepRefreshResponse)
+	err := c.cc.Invoke(ctx, Produce_StepRefresh_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepShopStart(ctx context.Context, in *ProduceStepShopStartRequest, opts ...grpc.CallOption) (*ProduceStepShopStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepShopStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepShopStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepShopReroll(ctx context.Context, in *ProduceStepShopRerollRequest, opts ...grpc.CallOption) (*ProduceStepShopRerollResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepShopRerollResponse)
+	err := c.cc.Invoke(ctx, Produce_StepShopReroll_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepShopBuy(ctx context.Context, in *ProduceStepShopBuyRequest, opts ...grpc.CallOption) (*ProduceStepShopBuyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepShopBuyResponse)
+	err := c.cc.Invoke(ctx, Produce_StepShopBuy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepShopEnd(ctx context.Context, in *ProduceStepShopEndRequest, opts ...grpc.CallOption) (*ProduceStepShopEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepShopEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepShopEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepPresentStart(ctx context.Context, in *ProduceStepPresentStartRequest, opts ...grpc.CallOption) (*ProduceStepPresentStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepPresentStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepPresentStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepPresentReceive(ctx context.Context, in *ProduceStepPresentReceiveRequest, opts ...grpc.CallOption) (*ProduceStepPresentReceiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepPresentReceiveResponse)
+	err := c.cc.Invoke(ctx, Produce_StepPresentReceive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepPresentEnd(ctx context.Context, in *ProduceStepPresentEndRequest, opts ...grpc.CallOption) (*ProduceStepPresentEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepPresentEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepPresentEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepLessonStart(ctx context.Context, in *ProduceStepLessonStartRequest, opts ...grpc.CallOption) (*ProduceStepLessonStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepLessonStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepLessonStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepLessonEnd(ctx context.Context, in *ProduceStepLessonEndRequest, opts ...grpc.CallOption) (*ProduceStepLessonEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepLessonEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepLessonEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepSelfLessonStart(ctx context.Context, in *ProduceStepSelfLessonStartRequest, opts ...grpc.CallOption) (*ProduceStepSelfLessonStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepSelfLessonStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepSelfLessonStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepSelfLessonEnd(ctx context.Context, in *ProduceStepSelfLessonEndRequest, opts ...grpc.CallOption) (*ProduceStepSelfLessonEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepSelfLessonEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepSelfLessonEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepAuditionRefresh(ctx context.Context, in *ProduceStepAuditionRefreshRequest, opts ...grpc.CallOption) (*ProduceStepAuditionRefreshResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepAuditionRefreshResponse)
+	err := c.cc.Invoke(ctx, Produce_StepAuditionRefresh_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepAuditionStart(ctx context.Context, in *ProduceStepAuditionStartRequest, opts ...grpc.CallOption) (*ProduceStepAuditionStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepAuditionStartResponse)
+	err := c.cc.Invoke(ctx, Produce_StepAuditionStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepAuditionEndExamBattle(ctx context.Context, in *ProduceStepAuditionEndExamBattleRequest, opts ...grpc.CallOption) (*ProduceStepAuditionEndExamBattleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepAuditionEndExamBattleResponse)
+	err := c.cc.Invoke(ctx, Produce_StepAuditionEndExamBattle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StepAuditionEnd(ctx context.Context, in *ProduceStepAuditionEndRequest, opts ...grpc.CallOption) (*ProduceStepAuditionEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStepAuditionEndResponse)
+	err := c.cc.Invoke(ctx, Produce_StepAuditionEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) DiscardDrink(ctx context.Context, in *ProduceDiscardDrinkRequest, opts ...grpc.CallOption) (*ProduceDiscardDrinkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceDiscardDrinkResponse)
+	err := c.cc.Invoke(ctx, Produce_DiscardDrink_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) RerollSelectProduceCard(ctx context.Context, in *ProduceRerollSelectProduceCardRequest, opts ...grpc.CallOption) (*ProduceRerollSelectProduceCardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRerollSelectProduceCardResponse)
+	err := c.cc.Invoke(ctx, Produce_RerollSelectProduceCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ExcludeProduceCard(ctx context.Context, in *ProduceExcludeProduceCardRequest, opts ...grpc.CallOption) (*ProduceExcludeProduceCardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceExcludeProduceCardResponse)
+	err := c.cc.Invoke(ctx, Produce_ExcludeProduceCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ActivateEffect(ctx context.Context, in *ProduceActivateEffectRequest, opts ...grpc.CallOption) (*ProduceActivateEffectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceActivateEffectResponse)
+	err := c.cc.Invoke(ctx, Produce_ActivateEffect_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ReadDearnessStory(ctx context.Context, in *ProduceReadDearnessStoryRequest, opts ...grpc.CallOption) (*ProduceReadDearnessStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceReadDearnessStoryResponse)
+	err := c.cc.Invoke(ctx, Produce_ReadDearnessStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ReadAdv(ctx context.Context, in *ProduceReadAdvRequest, opts ...grpc.CallOption) (*ProduceReadAdvResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceReadAdvResponse)
+	err := c.cc.Invoke(ctx, Produce_ReadAdv_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) StartBeforeLiveEvaluation(ctx context.Context, in *ProduceStartBeforeLiveEvaluationRequest, opts ...grpc.CallOption) (*ProduceStartBeforeLiveEvaluationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceStartBeforeLiveEvaluationResponse)
+	err := c.cc.Invoke(ctx, Produce_StartBeforeLiveEvaluation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) EndBeforeLiveEvaluation(ctx context.Context, in *ProduceEndBeforeLiveEvaluationRequest, opts ...grpc.CallOption) (*ProduceEndBeforeLiveEvaluationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceEndBeforeLiveEvaluationResponse)
+	err := c.cc.Invoke(ctx, Produce_EndBeforeLiveEvaluation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) RerollMemory(ctx context.Context, in *ProduceRerollMemoryRequest, opts ...grpc.CallOption) (*ProduceRerollMemoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRerollMemoryResponse)
+	err := c.cc.Invoke(ctx, Produce_RerollMemory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) End(ctx context.Context, in *ProduceEndRequest, opts ...grpc.CallOption) (*ProduceEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceEndResponse)
+	err := c.cc.Invoke(ctx, Produce_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Result(ctx context.Context, in *ProduceResultRequest, opts ...grpc.CallOption) (*ProduceResultResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceResultResponse)
+	err := c.cc.Invoke(ctx, Produce_Result_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ReportGuildMission(ctx context.Context, in *ProduceReportGuildMissionRequest, opts ...grpc.CallOption) (*ProduceReportGuildMissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceReportGuildMissionResponse)
+	err := c.cc.Invoke(ctx, Produce_ReportGuildMission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Continue(ctx context.Context, in *ProduceContinueRequest, opts ...grpc.CallOption) (*ProduceContinueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceContinueResponse)
+	err := c.cc.Invoke(ctx, Produce_Continue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceRetireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRetireResponse)
+	err := c.cc.Invoke(ctx, Produce_Retire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) History(ctx context.Context, in *ProduceHistoryRequest, opts ...grpc.CallOption) (*ProduceHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceHistoryResponse)
+	err := c.cc.Invoke(ctx, Produce_History_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) RankingTop(ctx context.Context, in *ProduceRankingTopRequest, opts ...grpc.CallOption) (*ProduceRankingTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRankingTopResponse)
+	err := c.cc.Invoke(ctx, Produce_RankingTop_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Ranking(ctx context.Context, in *ProduceRankingRequest, opts ...grpc.CallOption) (*ProduceRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRankingResponse)
+	err := c.cc.Invoke(ctx, Produce_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ChangeCostume(ctx context.Context, in *ProduceChangeCostumeRequest, opts ...grpc.CallOption) (*ProduceChangeCostumeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceChangeCostumeResponse)
+	err := c.cc.Invoke(ctx, Produce_ChangeCostume_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) ViewPictureBookLive(ctx context.Context, in *ProduceViewPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceViewPictureBookLiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceViewPictureBookLiveResponse)
+	err := c.cc.Invoke(ctx, Produce_ViewPictureBookLive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) UnlockPictureBookLive(ctx context.Context, in *ProduceUnlockPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceUnlockPictureBookLiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceUnlockPictureBookLiveResponse)
+	err := c.cc.Invoke(ctx, Produce_UnlockPictureBookLive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProduceServer is the server API for Produce service.
+// All implementations must embed UnimplementedProduceServer
+// for forward compatibility.
+type ProduceServer interface {
+	Top(context.Context, *Empty) (*ProduceTopResponse, error)
+	ChangeForceLiveCommon(context.Context, *ProduceChangeForceLiveCommonRequest) (*ProduceChangeForceLiveCommonResponse, error)
+	UpdateSupportCardDeck(context.Context, *ProduceUpdateSupportCardDeckRequest) (*ProduceUpdateSupportCardDeckResponse, error)
+	UpdateMemoryDeck(context.Context, *ProduceUpdateMemoryDeckRequest) (*ProduceUpdateMemoryDeckResponse, error)
+	ListRentalSupportCard(context.Context, *Empty) (*ProduceListRentalSupportCardResponse, error)
+	ListRentalMemory(context.Context, *ProduceListRentalMemoryRequest) (*ProduceListRentalMemoryResponse, error)
+	CheckProgress(context.Context, *ProduceCheckProgressRequest) (*ProduceCheckProgressResponse, error)
+	Start(context.Context, *ProduceStartRequest) (*ProduceStartResponse, error)
+	Next(context.Context, *ProduceNextRequest) (*ProduceNextResponse, error)
+	StepSkip(context.Context, *ProduceStepSkipRequest) (*ProduceStepSkipResponse, error)
+	StepEvent(context.Context, *ProduceStepEventRequest) (*ProduceStepEventResponse, error)
+	StepBusinessStart(context.Context, *ProduceStepBusinessStartRequest) (*ProduceStepBusinessStartResponse, error)
+	StepBusinessSelect(context.Context, *ProduceStepBusinessSelectRequest) (*ProduceStepBusinessSelectResponse, error)
+	StepCustomizeStart(context.Context, *ProduceStepCustomizeStartRequest) (*ProduceStepCustomizeStartResponse, error)
+	StepCustomizeSelect(context.Context, *ProduceStepCustomizeSelectRequest) (*ProduceStepCustomizeSelectResponse, error)
+	StepCustomizeEnd(context.Context, *ProduceStepCustomizeEndRequest) (*ProduceStepCustomizeEndResponse, error)
+	StepRefresh(context.Context, *ProduceStepRefreshRequest) (*ProduceStepRefreshResponse, error)
+	StepShopStart(context.Context, *ProduceStepShopStartRequest) (*ProduceStepShopStartResponse, error)
+	StepShopReroll(context.Context, *ProduceStepShopRerollRequest) (*ProduceStepShopRerollResponse, error)
+	StepShopBuy(context.Context, *ProduceStepShopBuyRequest) (*ProduceStepShopBuyResponse, error)
+	StepShopEnd(context.Context, *ProduceStepShopEndRequest) (*ProduceStepShopEndResponse, error)
+	StepPresentStart(context.Context, *ProduceStepPresentStartRequest) (*ProduceStepPresentStartResponse, error)
+	StepPresentReceive(context.Context, *ProduceStepPresentReceiveRequest) (*ProduceStepPresentReceiveResponse, error)
+	StepPresentEnd(context.Context, *ProduceStepPresentEndRequest) (*ProduceStepPresentEndResponse, error)
+	StepLessonStart(context.Context, *ProduceStepLessonStartRequest) (*ProduceStepLessonStartResponse, error)
+	StepLessonEnd(context.Context, *ProduceStepLessonEndRequest) (*ProduceStepLessonEndResponse, error)
+	StepSelfLessonStart(context.Context, *ProduceStepSelfLessonStartRequest) (*ProduceStepSelfLessonStartResponse, error)
+	StepSelfLessonEnd(context.Context, *ProduceStepSelfLessonEndRequest) (*ProduceStepSelfLessonEndResponse, error)
+	StepAuditionRefresh(context.Context, *ProduceStepAuditionRefreshRequest) (*ProduceStepAuditionRefreshResponse, error)
+	StepAuditionStart(context.Context, *ProduceStepAuditionStartRequest) (*ProduceStepAuditionStartResponse, error)
+	StepAuditionEndExamBattle(context.Context, *ProduceStepAuditionEndExamBattleRequest) (*ProduceStepAuditionEndExamBattleResponse, error)
+	StepAuditionEnd(context.Context, *ProduceStepAuditionEndRequest) (*ProduceStepAuditionEndResponse, error)
+	DiscardDrink(context.Context, *ProduceDiscardDrinkRequest) (*ProduceDiscardDrinkResponse, error)
+	RerollSelectProduceCard(context.Context, *ProduceRerollSelectProduceCardRequest) (*ProduceRerollSelectProduceCardResponse, error)
+	ExcludeProduceCard(context.Context, *ProduceExcludeProduceCardRequest) (*ProduceExcludeProduceCardResponse, error)
+	ActivateEffect(context.Context, *ProduceActivateEffectRequest) (*ProduceActivateEffectResponse, error)
+	ReadDearnessStory(context.Context, *ProduceReadDearnessStoryRequest) (*ProduceReadDearnessStoryResponse, error)
+	ReadAdv(context.Context, *ProduceReadAdvRequest) (*ProduceReadAdvResponse, error)
+	StartBeforeLiveEvaluation(context.Context, *ProduceStartBeforeLiveEvaluationRequest) (*ProduceStartBeforeLiveEvaluationResponse, error)
+	EndBeforeLiveEvaluation(context.Context, *ProduceEndBeforeLiveEvaluationRequest) (*ProduceEndBeforeLiveEvaluationResponse, error)
+	RerollMemory(context.Context, *ProduceRerollMemoryRequest) (*ProduceRerollMemoryResponse, error)
+	End(context.Context, *ProduceEndRequest) (*ProduceEndResponse, error)
+	Result(context.Context, *ProduceResultRequest) (*ProduceResultResponse, error)
+	ReportGuildMission(context.Context, *ProduceReportGuildMissionRequest) (*ProduceReportGuildMissionResponse, error)
+	Continue(context.Context, *ProduceContinueRequest) (*ProduceContinueResponse, error)
+	Retire(context.Context, *Empty) (*ProduceRetireResponse, error)
+	History(context.Context, *ProduceHistoryRequest) (*ProduceHistoryResponse, error)
+	RankingTop(context.Context, *ProduceRankingTopRequest) (*ProduceRankingTopResponse, error)
+	Ranking(context.Context, *ProduceRankingRequest) (*ProduceRankingResponse, error)
+	ChangeCostume(context.Context, *ProduceChangeCostumeRequest) (*ProduceChangeCostumeResponse, error)
+	ViewPictureBookLive(context.Context, *ProduceViewPictureBookLiveRequest) (*ProduceViewPictureBookLiveResponse, error)
+	UnlockPictureBookLive(context.Context, *ProduceUnlockPictureBookLiveRequest) (*ProduceUnlockPictureBookLiveResponse, error)
+	mustEmbedUnimplementedProduceServer()
+}
+
+// UnimplementedProduceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProduceServer struct{}
+
+func (UnimplementedProduceServer) Top(context.Context, *Empty) (*ProduceTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedProduceServer) ChangeForceLiveCommon(context.Context, *ProduceChangeForceLiveCommonRequest) (*ProduceChangeForceLiveCommonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeForceLiveCommon not implemented")
+}
+func (UnimplementedProduceServer) UpdateSupportCardDeck(context.Context, *ProduceUpdateSupportCardDeckRequest) (*ProduceUpdateSupportCardDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSupportCardDeck not implemented")
+}
+func (UnimplementedProduceServer) UpdateMemoryDeck(context.Context, *ProduceUpdateMemoryDeckRequest) (*ProduceUpdateMemoryDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMemoryDeck not implemented")
+}
+func (UnimplementedProduceServer) ListRentalSupportCard(context.Context, *Empty) (*ProduceListRentalSupportCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRentalSupportCard not implemented")
+}
+func (UnimplementedProduceServer) ListRentalMemory(context.Context, *ProduceListRentalMemoryRequest) (*ProduceListRentalMemoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRentalMemory not implemented")
+}
+func (UnimplementedProduceServer) CheckProgress(context.Context, *ProduceCheckProgressRequest) (*ProduceCheckProgressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckProgress not implemented")
+}
+func (UnimplementedProduceServer) Start(context.Context, *ProduceStartRequest) (*ProduceStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedProduceServer) Next(context.Context, *ProduceNextRequest) (*ProduceNextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Next not implemented")
+}
+func (UnimplementedProduceServer) StepSkip(context.Context, *ProduceStepSkipRequest) (*ProduceStepSkipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepSkip not implemented")
+}
+func (UnimplementedProduceServer) StepEvent(context.Context, *ProduceStepEventRequest) (*ProduceStepEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepEvent not implemented")
+}
+func (UnimplementedProduceServer) StepBusinessStart(context.Context, *ProduceStepBusinessStartRequest) (*ProduceStepBusinessStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepBusinessStart not implemented")
+}
+func (UnimplementedProduceServer) StepBusinessSelect(context.Context, *ProduceStepBusinessSelectRequest) (*ProduceStepBusinessSelectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepBusinessSelect not implemented")
+}
+func (UnimplementedProduceServer) StepCustomizeStart(context.Context, *ProduceStepCustomizeStartRequest) (*ProduceStepCustomizeStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepCustomizeStart not implemented")
+}
+func (UnimplementedProduceServer) StepCustomizeSelect(context.Context, *ProduceStepCustomizeSelectRequest) (*ProduceStepCustomizeSelectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepCustomizeSelect not implemented")
+}
+func (UnimplementedProduceServer) StepCustomizeEnd(context.Context, *ProduceStepCustomizeEndRequest) (*ProduceStepCustomizeEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepCustomizeEnd not implemented")
+}
+func (UnimplementedProduceServer) StepRefresh(context.Context, *ProduceStepRefreshRequest) (*ProduceStepRefreshResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepRefresh not implemented")
+}
+func (UnimplementedProduceServer) StepShopStart(context.Context, *ProduceStepShopStartRequest) (*ProduceStepShopStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepShopStart not implemented")
+}
+func (UnimplementedProduceServer) StepShopReroll(context.Context, *ProduceStepShopRerollRequest) (*ProduceStepShopRerollResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepShopReroll not implemented")
+}
+func (UnimplementedProduceServer) StepShopBuy(context.Context, *ProduceStepShopBuyRequest) (*ProduceStepShopBuyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepShopBuy not implemented")
+}
+func (UnimplementedProduceServer) StepShopEnd(context.Context, *ProduceStepShopEndRequest) (*ProduceStepShopEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepShopEnd not implemented")
+}
+func (UnimplementedProduceServer) StepPresentStart(context.Context, *ProduceStepPresentStartRequest) (*ProduceStepPresentStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepPresentStart not implemented")
+}
+func (UnimplementedProduceServer) StepPresentReceive(context.Context, *ProduceStepPresentReceiveRequest) (*ProduceStepPresentReceiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepPresentReceive not implemented")
+}
+func (UnimplementedProduceServer) StepPresentEnd(context.Context, *ProduceStepPresentEndRequest) (*ProduceStepPresentEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepPresentEnd not implemented")
+}
+func (UnimplementedProduceServer) StepLessonStart(context.Context, *ProduceStepLessonStartRequest) (*ProduceStepLessonStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepLessonStart not implemented")
+}
+func (UnimplementedProduceServer) StepLessonEnd(context.Context, *ProduceStepLessonEndRequest) (*ProduceStepLessonEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepLessonEnd not implemented")
+}
+func (UnimplementedProduceServer) StepSelfLessonStart(context.Context, *ProduceStepSelfLessonStartRequest) (*ProduceStepSelfLessonStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepSelfLessonStart not implemented")
+}
+func (UnimplementedProduceServer) StepSelfLessonEnd(context.Context, *ProduceStepSelfLessonEndRequest) (*ProduceStepSelfLessonEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepSelfLessonEnd not implemented")
+}
+func (UnimplementedProduceServer) StepAuditionRefresh(context.Context, *ProduceStepAuditionRefreshRequest) (*ProduceStepAuditionRefreshResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepAuditionRefresh not implemented")
+}
+func (UnimplementedProduceServer) StepAuditionStart(context.Context, *ProduceStepAuditionStartRequest) (*ProduceStepAuditionStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepAuditionStart not implemented")
+}
+func (UnimplementedProduceServer) StepAuditionEndExamBattle(context.Context, *ProduceStepAuditionEndExamBattleRequest) (*ProduceStepAuditionEndExamBattleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepAuditionEndExamBattle not implemented")
+}
+func (UnimplementedProduceServer) StepAuditionEnd(context.Context, *ProduceStepAuditionEndRequest) (*ProduceStepAuditionEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StepAuditionEnd not implemented")
+}
+func (UnimplementedProduceServer) DiscardDrink(context.Context, *ProduceDiscardDrinkRequest) (*ProduceDiscardDrinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiscardDrink not implemented")
+}
+func (UnimplementedProduceServer) RerollSelectProduceCard(context.Context, *ProduceRerollSelectProduceCardRequest) (*ProduceRerollSelectProduceCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RerollSelectProduceCard not implemented")
+}
+func (UnimplementedProduceServer) ExcludeProduceCard(context.Context, *ProduceExcludeProduceCardRequest) (*ProduceExcludeProduceCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExcludeProduceCard not implemented")
+}
+func (UnimplementedProduceServer) ActivateEffect(context.Context, *ProduceActivateEffectRequest) (*ProduceActivateEffectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ActivateEffect not implemented")
+}
+func (UnimplementedProduceServer) ReadDearnessStory(context.Context, *ProduceReadDearnessStoryRequest) (*ProduceReadDearnessStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadDearnessStory not implemented")
+}
+func (UnimplementedProduceServer) ReadAdv(context.Context, *ProduceReadAdvRequest) (*ProduceReadAdvResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadAdv not implemented")
+}
+func (UnimplementedProduceServer) StartBeforeLiveEvaluation(context.Context, *ProduceStartBeforeLiveEvaluationRequest) (*ProduceStartBeforeLiveEvaluationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartBeforeLiveEvaluation not implemented")
+}
+func (UnimplementedProduceServer) EndBeforeLiveEvaluation(context.Context, *ProduceEndBeforeLiveEvaluationRequest) (*ProduceEndBeforeLiveEvaluationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EndBeforeLiveEvaluation not implemented")
+}
+func (UnimplementedProduceServer) RerollMemory(context.Context, *ProduceRerollMemoryRequest) (*ProduceRerollMemoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RerollMemory not implemented")
+}
+func (UnimplementedProduceServer) End(context.Context, *ProduceEndRequest) (*ProduceEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedProduceServer) Result(context.Context, *ProduceResultRequest) (*ProduceResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Result not implemented")
+}
+func (UnimplementedProduceServer) ReportGuildMission(context.Context, *ProduceReportGuildMissionRequest) (*ProduceReportGuildMissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReportGuildMission not implemented")
+}
+func (UnimplementedProduceServer) Continue(context.Context, *ProduceContinueRequest) (*ProduceContinueResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Continue not implemented")
+}
+func (UnimplementedProduceServer) Retire(context.Context, *Empty) (*ProduceRetireResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Retire not implemented")
+}
+func (UnimplementedProduceServer) History(context.Context, *ProduceHistoryRequest) (*ProduceHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method History not implemented")
+}
+func (UnimplementedProduceServer) RankingTop(context.Context, *ProduceRankingTopRequest) (*ProduceRankingTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RankingTop not implemented")
+}
+func (UnimplementedProduceServer) Ranking(context.Context, *ProduceRankingRequest) (*ProduceRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedProduceServer) ChangeCostume(context.Context, *ProduceChangeCostumeRequest) (*ProduceChangeCostumeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeCostume not implemented")
+}
+func (UnimplementedProduceServer) ViewPictureBookLive(context.Context, *ProduceViewPictureBookLiveRequest) (*ProduceViewPictureBookLiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ViewPictureBookLive not implemented")
+}
+func (UnimplementedProduceServer) UnlockPictureBookLive(context.Context, *ProduceUnlockPictureBookLiveRequest) (*ProduceUnlockPictureBookLiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockPictureBookLive not implemented")
+}
+func (UnimplementedProduceServer) mustEmbedUnimplementedProduceServer() {}
+func (UnimplementedProduceServer) testEmbeddedByValue()                 {}
+
+// UnsafeProduceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProduceServer will
+// result in compilation errors.
+type UnsafeProduceServer interface {
+	mustEmbedUnimplementedProduceServer()
+}
+
+func RegisterProduceServer(s grpc.ServiceRegistrar, srv ProduceServer) {
+	// If the following call pancis, it indicates UnimplementedProduceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Produce_ServiceDesc, srv)
+}
+
+func _Produce_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ChangeForceLiveCommon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceChangeForceLiveCommonRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ChangeForceLiveCommon(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ChangeForceLiveCommon_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ChangeForceLiveCommon(ctx, req.(*ProduceChangeForceLiveCommonRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_UpdateSupportCardDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceUpdateSupportCardDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).UpdateSupportCardDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_UpdateSupportCardDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).UpdateSupportCardDeck(ctx, req.(*ProduceUpdateSupportCardDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_UpdateMemoryDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceUpdateMemoryDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).UpdateMemoryDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_UpdateMemoryDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).UpdateMemoryDeck(ctx, req.(*ProduceUpdateMemoryDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ListRentalSupportCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ListRentalSupportCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ListRentalSupportCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ListRentalSupportCard(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ListRentalMemory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceListRentalMemoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ListRentalMemory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ListRentalMemory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ListRentalMemory(ctx, req.(*ProduceListRentalMemoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_CheckProgress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceCheckProgressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).CheckProgress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_CheckProgress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).CheckProgress(ctx, req.(*ProduceCheckProgressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Start(ctx, req.(*ProduceStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Next_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceNextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Next(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Next_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Next(ctx, req.(*ProduceNextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepSkip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepSkipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepSkip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepSkip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepSkip(ctx, req.(*ProduceStepSkipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepEvent(ctx, req.(*ProduceStepEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepBusinessStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepBusinessStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepBusinessStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepBusinessStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepBusinessStart(ctx, req.(*ProduceStepBusinessStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepBusinessSelect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepBusinessSelectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepBusinessSelect(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepBusinessSelect_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepBusinessSelect(ctx, req.(*ProduceStepBusinessSelectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepCustomizeStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepCustomizeStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepCustomizeStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepCustomizeStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepCustomizeStart(ctx, req.(*ProduceStepCustomizeStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepCustomizeSelect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepCustomizeSelectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepCustomizeSelect(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepCustomizeSelect_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepCustomizeSelect(ctx, req.(*ProduceStepCustomizeSelectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepCustomizeEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepCustomizeEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepCustomizeEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepCustomizeEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepCustomizeEnd(ctx, req.(*ProduceStepCustomizeEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepRefreshRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepRefresh(ctx, req.(*ProduceStepRefreshRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepShopStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepShopStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepShopStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepShopStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepShopStart(ctx, req.(*ProduceStepShopStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepShopReroll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepShopRerollRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepShopReroll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepShopReroll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepShopReroll(ctx, req.(*ProduceStepShopRerollRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepShopBuy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepShopBuyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepShopBuy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepShopBuy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepShopBuy(ctx, req.(*ProduceStepShopBuyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepShopEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepShopEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepShopEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepShopEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepShopEnd(ctx, req.(*ProduceStepShopEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepPresentStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepPresentStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepPresentStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepPresentStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepPresentStart(ctx, req.(*ProduceStepPresentStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepPresentReceive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepPresentReceiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepPresentReceive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepPresentReceive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepPresentReceive(ctx, req.(*ProduceStepPresentReceiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepPresentEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepPresentEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepPresentEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepPresentEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepPresentEnd(ctx, req.(*ProduceStepPresentEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepLessonStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepLessonStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepLessonStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepLessonStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepLessonStart(ctx, req.(*ProduceStepLessonStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepLessonEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepLessonEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepLessonEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepLessonEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepLessonEnd(ctx, req.(*ProduceStepLessonEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepSelfLessonStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepSelfLessonStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepSelfLessonStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepSelfLessonStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepSelfLessonStart(ctx, req.(*ProduceStepSelfLessonStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepSelfLessonEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepSelfLessonEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepSelfLessonEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepSelfLessonEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepSelfLessonEnd(ctx, req.(*ProduceStepSelfLessonEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepAuditionRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepAuditionRefreshRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepAuditionRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepAuditionRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepAuditionRefresh(ctx, req.(*ProduceStepAuditionRefreshRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepAuditionStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepAuditionStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepAuditionStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepAuditionStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepAuditionStart(ctx, req.(*ProduceStepAuditionStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepAuditionEndExamBattle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepAuditionEndExamBattleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepAuditionEndExamBattle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepAuditionEndExamBattle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepAuditionEndExamBattle(ctx, req.(*ProduceStepAuditionEndExamBattleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StepAuditionEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStepAuditionEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StepAuditionEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StepAuditionEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StepAuditionEnd(ctx, req.(*ProduceStepAuditionEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_DiscardDrink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceDiscardDrinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).DiscardDrink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_DiscardDrink_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).DiscardDrink(ctx, req.(*ProduceDiscardDrinkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_RerollSelectProduceCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceRerollSelectProduceCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).RerollSelectProduceCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_RerollSelectProduceCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).RerollSelectProduceCard(ctx, req.(*ProduceRerollSelectProduceCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ExcludeProduceCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceExcludeProduceCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ExcludeProduceCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ExcludeProduceCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ExcludeProduceCard(ctx, req.(*ProduceExcludeProduceCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ActivateEffect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceActivateEffectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ActivateEffect(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ActivateEffect_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ActivateEffect(ctx, req.(*ProduceActivateEffectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ReadDearnessStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceReadDearnessStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ReadDearnessStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ReadDearnessStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ReadDearnessStory(ctx, req.(*ProduceReadDearnessStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ReadAdv_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceReadAdvRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ReadAdv(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ReadAdv_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ReadAdv(ctx, req.(*ProduceReadAdvRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_StartBeforeLiveEvaluation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceStartBeforeLiveEvaluationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).StartBeforeLiveEvaluation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_StartBeforeLiveEvaluation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).StartBeforeLiveEvaluation(ctx, req.(*ProduceStartBeforeLiveEvaluationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_EndBeforeLiveEvaluation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceEndBeforeLiveEvaluationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).EndBeforeLiveEvaluation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_EndBeforeLiveEvaluation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).EndBeforeLiveEvaluation(ctx, req.(*ProduceEndBeforeLiveEvaluationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_RerollMemory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceRerollMemoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).RerollMemory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_RerollMemory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).RerollMemory(ctx, req.(*ProduceRerollMemoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).End(ctx, req.(*ProduceEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Result_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceResultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Result(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Result_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Result(ctx, req.(*ProduceResultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ReportGuildMission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceReportGuildMissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ReportGuildMission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ReportGuildMission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ReportGuildMission(ctx, req.(*ProduceReportGuildMissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Continue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceContinueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Continue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Continue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Continue(ctx, req.(*ProduceContinueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Retire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Retire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Retire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Retire(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_History_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).History(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_History_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).History(ctx, req.(*ProduceHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_RankingTop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceRankingTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).RankingTop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_RankingTop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).RankingTop(ctx, req.(*ProduceRankingTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Ranking(ctx, req.(*ProduceRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ChangeCostume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceChangeCostumeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ChangeCostume(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ChangeCostume_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ChangeCostume(ctx, req.(*ProduceChangeCostumeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_ViewPictureBookLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceViewPictureBookLiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ViewPictureBookLive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ViewPictureBookLive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ViewPictureBookLive(ctx, req.(*ProduceViewPictureBookLiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_UnlockPictureBookLive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceUnlockPictureBookLiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).UnlockPictureBookLive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_UnlockPictureBookLive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).UnlockPictureBookLive(ctx, req.(*ProduceUnlockPictureBookLiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Produce_ServiceDesc is the grpc.ServiceDesc for Produce service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Produce_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Produce",
+	HandlerType: (*ProduceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Produce_Top_Handler,
+		},
+		{
+			MethodName: "ChangeForceLiveCommon",
+			Handler:    _Produce_ChangeForceLiveCommon_Handler,
+		},
+		{
+			MethodName: "UpdateSupportCardDeck",
+			Handler:    _Produce_UpdateSupportCardDeck_Handler,
+		},
+		{
+			MethodName: "UpdateMemoryDeck",
+			Handler:    _Produce_UpdateMemoryDeck_Handler,
+		},
+		{
+			MethodName: "ListRentalSupportCard",
+			Handler:    _Produce_ListRentalSupportCard_Handler,
+		},
+		{
+			MethodName: "ListRentalMemory",
+			Handler:    _Produce_ListRentalMemory_Handler,
+		},
+		{
+			MethodName: "CheckProgress",
+			Handler:    _Produce_CheckProgress_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _Produce_Start_Handler,
+		},
+		{
+			MethodName: "Next",
+			Handler:    _Produce_Next_Handler,
+		},
+		{
+			MethodName: "StepSkip",
+			Handler:    _Produce_StepSkip_Handler,
+		},
+		{
+			MethodName: "StepEvent",
+			Handler:    _Produce_StepEvent_Handler,
+		},
+		{
+			MethodName: "StepBusinessStart",
+			Handler:    _Produce_StepBusinessStart_Handler,
+		},
+		{
+			MethodName: "StepBusinessSelect",
+			Handler:    _Produce_StepBusinessSelect_Handler,
+		},
+		{
+			MethodName: "StepCustomizeStart",
+			Handler:    _Produce_StepCustomizeStart_Handler,
+		},
+		{
+			MethodName: "StepCustomizeSelect",
+			Handler:    _Produce_StepCustomizeSelect_Handler,
+		},
+		{
+			MethodName: "StepCustomizeEnd",
+			Handler:    _Produce_StepCustomizeEnd_Handler,
+		},
+		{
+			MethodName: "StepRefresh",
+			Handler:    _Produce_StepRefresh_Handler,
+		},
+		{
+			MethodName: "StepShopStart",
+			Handler:    _Produce_StepShopStart_Handler,
+		},
+		{
+			MethodName: "StepShopReroll",
+			Handler:    _Produce_StepShopReroll_Handler,
+		},
+		{
+			MethodName: "StepShopBuy",
+			Handler:    _Produce_StepShopBuy_Handler,
+		},
+		{
+			MethodName: "StepShopEnd",
+			Handler:    _Produce_StepShopEnd_Handler,
+		},
+		{
+			MethodName: "StepPresentStart",
+			Handler:    _Produce_StepPresentStart_Handler,
+		},
+		{
+			MethodName: "StepPresentReceive",
+			Handler:    _Produce_StepPresentReceive_Handler,
+		},
+		{
+			MethodName: "StepPresentEnd",
+			Handler:    _Produce_StepPresentEnd_Handler,
+		},
+		{
+			MethodName: "StepLessonStart",
+			Handler:    _Produce_StepLessonStart_Handler,
+		},
+		{
+			MethodName: "StepLessonEnd",
+			Handler:    _Produce_StepLessonEnd_Handler,
+		},
+		{
+			MethodName: "StepSelfLessonStart",
+			Handler:    _Produce_StepSelfLessonStart_Handler,
+		},
+		{
+			MethodName: "StepSelfLessonEnd",
+			Handler:    _Produce_StepSelfLessonEnd_Handler,
+		},
+		{
+			MethodName: "StepAuditionRefresh",
+			Handler:    _Produce_StepAuditionRefresh_Handler,
+		},
+		{
+			MethodName: "StepAuditionStart",
+			Handler:    _Produce_StepAuditionStart_Handler,
+		},
+		{
+			MethodName: "StepAuditionEndExamBattle",
+			Handler:    _Produce_StepAuditionEndExamBattle_Handler,
+		},
+		{
+			MethodName: "StepAuditionEnd",
+			Handler:    _Produce_StepAuditionEnd_Handler,
+		},
+		{
+			MethodName: "DiscardDrink",
+			Handler:    _Produce_DiscardDrink_Handler,
+		},
+		{
+			MethodName: "RerollSelectProduceCard",
+			Handler:    _Produce_RerollSelectProduceCard_Handler,
+		},
+		{
+			MethodName: "ExcludeProduceCard",
+			Handler:    _Produce_ExcludeProduceCard_Handler,
+		},
+		{
+			MethodName: "ActivateEffect",
+			Handler:    _Produce_ActivateEffect_Handler,
+		},
+		{
+			MethodName: "ReadDearnessStory",
+			Handler:    _Produce_ReadDearnessStory_Handler,
+		},
+		{
+			MethodName: "ReadAdv",
+			Handler:    _Produce_ReadAdv_Handler,
+		},
+		{
+			MethodName: "StartBeforeLiveEvaluation",
+			Handler:    _Produce_StartBeforeLiveEvaluation_Handler,
+		},
+		{
+			MethodName: "EndBeforeLiveEvaluation",
+			Handler:    _Produce_EndBeforeLiveEvaluation_Handler,
+		},
+		{
+			MethodName: "RerollMemory",
+			Handler:    _Produce_RerollMemory_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _Produce_End_Handler,
+		},
+		{
+			MethodName: "Result",
+			Handler:    _Produce_Result_Handler,
+		},
+		{
+			MethodName: "ReportGuildMission",
+			Handler:    _Produce_ReportGuildMission_Handler,
+		},
+		{
+			MethodName: "Continue",
+			Handler:    _Produce_Continue_Handler,
+		},
+		{
+			MethodName: "Retire",
+			Handler:    _Produce_Retire_Handler,
+		},
+		{
+			MethodName: "History",
+			Handler:    _Produce_History_Handler,
+		},
+		{
+			MethodName: "RankingTop",
+			Handler:    _Produce_RankingTop_Handler,
+		},
+		{
+			MethodName: "Ranking",
+			Handler:    _Produce_Ranking_Handler,
+		},
+		{
+			MethodName: "ChangeCostume",
+			Handler:    _Produce_ChangeCostume_Handler,
+		},
+		{
+			MethodName: "ViewPictureBookLive",
+			Handler:    _Produce_ViewPictureBookLive_Handler,
+		},
+		{
+			MethodName: "UnlockPictureBookLive",
+			Handler:    _Produce_UnlockPictureBookLive_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	ProduceHighScore_Get_FullMethodName            = "/client.api.ProduceHighScore/Get"
+	ProduceHighScore_Ranking_FullMethodName        = "/client.api.ProduceHighScore/Ranking"
+	ProduceHighScore_ListRankReward_FullMethodName = "/client.api.ProduceHighScore/ListRankReward"
+)
+
+// ProduceHighScoreClient is the client API for ProduceHighScore service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProduceHighScoreClient interface {
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceHighScoreGetResponse, error)
+	Ranking(ctx context.Context, in *ProduceHighScoreRankingRequest, opts ...grpc.CallOption) (*ProduceHighScoreRankingResponse, error)
+	ListRankReward(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceHighScoreListRankRewardResponse, error)
+}
+
+type produceHighScoreClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProduceHighScoreClient(cc grpc.ClientConnInterface) ProduceHighScoreClient {
+	return &produceHighScoreClient{cc}
+}
+
+func (c *produceHighScoreClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceHighScoreGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceHighScoreGetResponse)
+	err := c.cc.Invoke(ctx, ProduceHighScore_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceHighScoreClient) Ranking(ctx context.Context, in *ProduceHighScoreRankingRequest, opts ...grpc.CallOption) (*ProduceHighScoreRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceHighScoreRankingResponse)
+	err := c.cc.Invoke(ctx, ProduceHighScore_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceHighScoreClient) ListRankReward(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceHighScoreListRankRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceHighScoreListRankRewardResponse)
+	err := c.cc.Invoke(ctx, ProduceHighScore_ListRankReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProduceHighScoreServer is the server API for ProduceHighScore service.
+// All implementations must embed UnimplementedProduceHighScoreServer
+// for forward compatibility.
+type ProduceHighScoreServer interface {
+	Get(context.Context, *Empty) (*ProduceHighScoreGetResponse, error)
+	Ranking(context.Context, *ProduceHighScoreRankingRequest) (*ProduceHighScoreRankingResponse, error)
+	ListRankReward(context.Context, *Empty) (*ProduceHighScoreListRankRewardResponse, error)
+	mustEmbedUnimplementedProduceHighScoreServer()
+}
+
+// UnimplementedProduceHighScoreServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProduceHighScoreServer struct{}
+
+func (UnimplementedProduceHighScoreServer) Get(context.Context, *Empty) (*ProduceHighScoreGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedProduceHighScoreServer) Ranking(context.Context, *ProduceHighScoreRankingRequest) (*ProduceHighScoreRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedProduceHighScoreServer) ListRankReward(context.Context, *Empty) (*ProduceHighScoreListRankRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRankReward not implemented")
+}
+func (UnimplementedProduceHighScoreServer) mustEmbedUnimplementedProduceHighScoreServer() {}
+func (UnimplementedProduceHighScoreServer) testEmbeddedByValue()                          {}
+
+// UnsafeProduceHighScoreServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProduceHighScoreServer will
+// result in compilation errors.
+type UnsafeProduceHighScoreServer interface {
+	mustEmbedUnimplementedProduceHighScoreServer()
+}
+
+func RegisterProduceHighScoreServer(s grpc.ServiceRegistrar, srv ProduceHighScoreServer) {
+	// If the following call pancis, it indicates UnimplementedProduceHighScoreServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&ProduceHighScore_ServiceDesc, srv)
+}
+
+func _ProduceHighScore_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceHighScoreServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceHighScore_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceHighScoreServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceHighScore_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceHighScoreRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceHighScoreServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceHighScore_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceHighScoreServer).Ranking(ctx, req.(*ProduceHighScoreRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceHighScore_ListRankReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceHighScoreServer).ListRankReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceHighScore_ListRankReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceHighScoreServer).ListRankReward(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProduceHighScore_ServiceDesc is the grpc.ServiceDesc for ProduceHighScore service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProduceHighScore_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.ProduceHighScore",
+	HandlerType: (*ProduceHighScoreServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _ProduceHighScore_Get_Handler,
+		},
+		{
+			MethodName: "Ranking",
+			Handler:    _ProduceHighScore_Ranking_Handler,
+		},
+		{
+			MethodName: "ListRankReward",
+			Handler:    _ProduceHighScore_ListRankReward_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Profile_Get_FullMethodName               = "/client.api.Profile/Get"
+	Profile_UpdateName_FullMethodName        = "/client.api.Profile/UpdateName"
+	Profile_UpdateComment_FullMethodName     = "/client.api.Profile/UpdateComment"
+	Profile_UpdateBirthday_FullMethodName    = "/client.api.Profile/UpdateBirthday"
+	Profile_UpdateSupportCard_FullMethodName = "/client.api.Profile/UpdateSupportCard"
+	Profile_UpdateMemory_FullMethodName      = "/client.api.Profile/UpdateMemory"
+)
+
+// ProfileClient is the client API for Profile service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProfileClient interface {
+	Get(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
+	UpdateName(ctx context.Context, in *ProfileUpdateNameRequest, opts ...grpc.CallOption) (*ProfileUpdateNameResponse, error)
+	UpdateComment(ctx context.Context, in *ProfileUpdateCommentRequest, opts ...grpc.CallOption) (*ProfileUpdateCommentResponse, error)
+	UpdateBirthday(ctx context.Context, in *ProfileUpdateBirthdayRequest, opts ...grpc.CallOption) (*ProfileUpdateBirthdayResponse, error)
+	UpdateSupportCard(ctx context.Context, in *ProfileUpdateSupportCardRequest, opts ...grpc.CallOption) (*ProfileUpdateSupportCardResponse, error)
+	UpdateMemory(ctx context.Context, in *ProfileUpdateMemoryRequest, opts ...grpc.CallOption) (*ProfileUpdateMemoryResponse, error)
+}
+
+type profileClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProfileClient(cc grpc.ClientConnInterface) ProfileClient {
+	return &profileClient{cc}
+}
+
+func (c *profileClient) Get(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileGetResponse)
+	err := c.cc.Invoke(ctx, Profile_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileClient) UpdateName(ctx context.Context, in *ProfileUpdateNameRequest, opts ...grpc.CallOption) (*ProfileUpdateNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateNameResponse)
+	err := c.cc.Invoke(ctx, Profile_UpdateName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileClient) UpdateComment(ctx context.Context, in *ProfileUpdateCommentRequest, opts ...grpc.CallOption) (*ProfileUpdateCommentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateCommentResponse)
+	err := c.cc.Invoke(ctx, Profile_UpdateComment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileClient) UpdateBirthday(ctx context.Context, in *ProfileUpdateBirthdayRequest, opts ...grpc.CallOption) (*ProfileUpdateBirthdayResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateBirthdayResponse)
+	err := c.cc.Invoke(ctx, Profile_UpdateBirthday_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileClient) UpdateSupportCard(ctx context.Context, in *ProfileUpdateSupportCardRequest, opts ...grpc.CallOption) (*ProfileUpdateSupportCardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateSupportCardResponse)
+	err := c.cc.Invoke(ctx, Profile_UpdateSupportCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileClient) UpdateMemory(ctx context.Context, in *ProfileUpdateMemoryRequest, opts ...grpc.CallOption) (*ProfileUpdateMemoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateMemoryResponse)
+	err := c.cc.Invoke(ctx, Profile_UpdateMemory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProfileServer is the server API for Profile service.
+// All implementations must embed UnimplementedProfileServer
+// for forward compatibility.
+type ProfileServer interface {
+	Get(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
+	UpdateName(context.Context, *ProfileUpdateNameRequest) (*ProfileUpdateNameResponse, error)
+	UpdateComment(context.Context, *ProfileUpdateCommentRequest) (*ProfileUpdateCommentResponse, error)
+	UpdateBirthday(context.Context, *ProfileUpdateBirthdayRequest) (*ProfileUpdateBirthdayResponse, error)
+	UpdateSupportCard(context.Context, *ProfileUpdateSupportCardRequest) (*ProfileUpdateSupportCardResponse, error)
+	UpdateMemory(context.Context, *ProfileUpdateMemoryRequest) (*ProfileUpdateMemoryResponse, error)
+	mustEmbedUnimplementedProfileServer()
+}
+
+// UnimplementedProfileServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProfileServer struct{}
+
+func (UnimplementedProfileServer) Get(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedProfileServer) UpdateName(context.Context, *ProfileUpdateNameRequest) (*ProfileUpdateNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateName not implemented")
+}
+func (UnimplementedProfileServer) UpdateComment(context.Context, *ProfileUpdateCommentRequest) (*ProfileUpdateCommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateComment not implemented")
+}
+func (UnimplementedProfileServer) UpdateBirthday(context.Context, *ProfileUpdateBirthdayRequest) (*ProfileUpdateBirthdayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBirthday not implemented")
+}
+func (UnimplementedProfileServer) UpdateSupportCard(context.Context, *ProfileUpdateSupportCardRequest) (*ProfileUpdateSupportCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSupportCard not implemented")
+}
+func (UnimplementedProfileServer) UpdateMemory(context.Context, *ProfileUpdateMemoryRequest) (*ProfileUpdateMemoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMemory not implemented")
+}
+func (UnimplementedProfileServer) mustEmbedUnimplementedProfileServer() {}
+func (UnimplementedProfileServer) testEmbeddedByValue()                 {}
+
+// UnsafeProfileServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProfileServer will
+// result in compilation errors.
+type UnsafeProfileServer interface {
+	mustEmbedUnimplementedProfileServer()
+}
+
+func RegisterProfileServer(s grpc.ServiceRegistrar, srv ProfileServer) {
+	// If the following call pancis, it indicates UnimplementedProfileServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Profile_ServiceDesc, srv)
+}
+
+func _Profile_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).Get(ctx, req.(*ProfileGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profile_UpdateName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).UpdateName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_UpdateName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).UpdateName(ctx, req.(*ProfileUpdateNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profile_UpdateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateCommentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).UpdateComment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_UpdateComment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).UpdateComment(ctx, req.(*ProfileUpdateCommentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profile_UpdateBirthday_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateBirthdayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).UpdateBirthday(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_UpdateBirthday_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).UpdateBirthday(ctx, req.(*ProfileUpdateBirthdayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profile_UpdateSupportCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateSupportCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).UpdateSupportCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_UpdateSupportCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).UpdateSupportCard(ctx, req.(*ProfileUpdateSupportCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Profile_UpdateMemory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateMemoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServer).UpdateMemory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Profile_UpdateMemory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServer).UpdateMemory(ctx, req.(*ProfileUpdateMemoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Profile_ServiceDesc is the grpc.ServiceDesc for Profile service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Profile_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Profile",
+	HandlerType: (*ProfileServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _Profile_Get_Handler,
+		},
+		{
+			MethodName: "UpdateName",
+			Handler:    _Profile_UpdateName_Handler,
+		},
+		{
+			MethodName: "UpdateComment",
+			Handler:    _Profile_UpdateComment_Handler,
+		},
+		{
+			MethodName: "UpdateBirthday",
+			Handler:    _Profile_UpdateBirthday_Handler,
+		},
+		{
+			MethodName: "UpdateSupportCard",
+			Handler:    _Profile_UpdateSupportCard_Handler,
+		},
+		{
+			MethodName: "UpdateMemory",
+			Handler:    _Profile_UpdateMemory_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	PvpRate_Initialize_FullMethodName            = "/client.api.PvpRate/Initialize"
+	PvpRate_Get_FullMethodName                   = "/client.api.PvpRate/Get"
+	PvpRate_Start_FullMethodName                 = "/client.api.PvpRate/Start"
+	PvpRate_PlayExamBattle_FullMethodName        = "/client.api.PvpRate/PlayExamBattle"
+	PvpRate_End_FullMethodName                   = "/client.api.PvpRate/End"
+	PvpRate_PlayTest_FullMethodName              = "/client.api.PvpRate/PlayTest"
+	PvpRate_ListRanking_FullMethodName           = "/client.api.PvpRate/ListRanking"
+	PvpRate_ListHistory_FullMethodName           = "/client.api.PvpRate/ListHistory"
+	PvpRate_GetHistory_FullMethodName            = "/client.api.PvpRate/GetHistory"
+	PvpRate_UpdateUserPvpRateUnit_FullMethodName = "/client.api.PvpRate/UpdateUserPvpRateUnit"
 )
 
 // PvpRateClient is the client API for PvpRate service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PvpRateClient interface {
-	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error)
 	Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateInitializeResponse, error)
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error)
+	Start(ctx context.Context, in *PvpRateStartRequest, opts ...grpc.CallOption) (*PvpRateStartResponse, error)
+	PlayExamBattle(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRatePlayExamBattleResponse, error)
+	End(ctx context.Context, in *PvpRateEndRequest, opts ...grpc.CallOption) (*PvpRateEndResponse, error)
+	PlayTest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRatePlayTestResponse, error)
+	ListRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateListRankingResponse, error)
+	ListHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateListHistoryResponse, error)
+	GetHistory(ctx context.Context, in *PvpRateGetHistoryRequest, opts ...grpc.CallOption) (*PvpRateGetHistoryResponse, error)
+	UpdateUserPvpRateUnit(ctx context.Context, in *PvpRateUpdateUserPvpRateUnitRequest, opts ...grpc.CallOption) (*PvpRateUpdateUserPvpRateUnitResponse, error)
 }
 
 type pvpRateClient struct {
@@ -865,16 +9307,6 @@ type pvpRateClient struct {
 
 func NewPvpRateClient(cc grpc.ClientConnInterface) PvpRateClient {
 	return &pvpRateClient{cc}
-}
-
-func (c *pvpRateClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PvpRateGetResponse)
-	err := c.cc.Invoke(ctx, PvpRate_Get_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *pvpRateClient) Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateInitializeResponse, error) {
@@ -887,12 +9319,110 @@ func (c *pvpRateClient) Initialize(ctx context.Context, in *Empty, opts ...grpc.
 	return out, nil
 }
 
+func (c *pvpRateClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateGetResponse)
+	err := c.cc.Invoke(ctx, PvpRate_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) Start(ctx context.Context, in *PvpRateStartRequest, opts ...grpc.CallOption) (*PvpRateStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateStartResponse)
+	err := c.cc.Invoke(ctx, PvpRate_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) PlayExamBattle(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRatePlayExamBattleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRatePlayExamBattleResponse)
+	err := c.cc.Invoke(ctx, PvpRate_PlayExamBattle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) End(ctx context.Context, in *PvpRateEndRequest, opts ...grpc.CallOption) (*PvpRateEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateEndResponse)
+	err := c.cc.Invoke(ctx, PvpRate_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) PlayTest(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRatePlayTestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRatePlayTestResponse)
+	err := c.cc.Invoke(ctx, PvpRate_PlayTest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) ListRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateListRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateListRankingResponse)
+	err := c.cc.Invoke(ctx, PvpRate_ListRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) ListHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PvpRateListHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateListHistoryResponse)
+	err := c.cc.Invoke(ctx, PvpRate_ListHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) GetHistory(ctx context.Context, in *PvpRateGetHistoryRequest, opts ...grpc.CallOption) (*PvpRateGetHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateGetHistoryResponse)
+	err := c.cc.Invoke(ctx, PvpRate_GetHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pvpRateClient) UpdateUserPvpRateUnit(ctx context.Context, in *PvpRateUpdateUserPvpRateUnitRequest, opts ...grpc.CallOption) (*PvpRateUpdateUserPvpRateUnitResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PvpRateUpdateUserPvpRateUnitResponse)
+	err := c.cc.Invoke(ctx, PvpRate_UpdateUserPvpRateUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PvpRateServer is the server API for PvpRate service.
 // All implementations must embed UnimplementedPvpRateServer
 // for forward compatibility.
 type PvpRateServer interface {
-	Get(context.Context, *Empty) (*PvpRateGetResponse, error)
 	Initialize(context.Context, *Empty) (*PvpRateInitializeResponse, error)
+	Get(context.Context, *Empty) (*PvpRateGetResponse, error)
+	Start(context.Context, *PvpRateStartRequest) (*PvpRateStartResponse, error)
+	PlayExamBattle(context.Context, *Empty) (*PvpRatePlayExamBattleResponse, error)
+	End(context.Context, *PvpRateEndRequest) (*PvpRateEndResponse, error)
+	PlayTest(context.Context, *Empty) (*PvpRatePlayTestResponse, error)
+	ListRanking(context.Context, *Empty) (*PvpRateListRankingResponse, error)
+	ListHistory(context.Context, *Empty) (*PvpRateListHistoryResponse, error)
+	GetHistory(context.Context, *PvpRateGetHistoryRequest) (*PvpRateGetHistoryResponse, error)
+	UpdateUserPvpRateUnit(context.Context, *PvpRateUpdateUserPvpRateUnitRequest) (*PvpRateUpdateUserPvpRateUnitResponse, error)
 	mustEmbedUnimplementedPvpRateServer()
 }
 
@@ -903,11 +9433,35 @@ type PvpRateServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPvpRateServer struct{}
 
+func (UnimplementedPvpRateServer) Initialize(context.Context, *Empty) (*PvpRateInitializeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Initialize not implemented")
+}
 func (UnimplementedPvpRateServer) Get(context.Context, *Empty) (*PvpRateGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedPvpRateServer) Initialize(context.Context, *Empty) (*PvpRateInitializeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Initialize not implemented")
+func (UnimplementedPvpRateServer) Start(context.Context, *PvpRateStartRequest) (*PvpRateStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedPvpRateServer) PlayExamBattle(context.Context, *Empty) (*PvpRatePlayExamBattleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayExamBattle not implemented")
+}
+func (UnimplementedPvpRateServer) End(context.Context, *PvpRateEndRequest) (*PvpRateEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedPvpRateServer) PlayTest(context.Context, *Empty) (*PvpRatePlayTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayTest not implemented")
+}
+func (UnimplementedPvpRateServer) ListRanking(context.Context, *Empty) (*PvpRateListRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRanking not implemented")
+}
+func (UnimplementedPvpRateServer) ListHistory(context.Context, *Empty) (*PvpRateListHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHistory not implemented")
+}
+func (UnimplementedPvpRateServer) GetHistory(context.Context, *PvpRateGetHistoryRequest) (*PvpRateGetHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHistory not implemented")
+}
+func (UnimplementedPvpRateServer) UpdateUserPvpRateUnit(context.Context, *PvpRateUpdateUserPvpRateUnitRequest) (*PvpRateUpdateUserPvpRateUnitResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserPvpRateUnit not implemented")
 }
 func (UnimplementedPvpRateServer) mustEmbedUnimplementedPvpRateServer() {}
 func (UnimplementedPvpRateServer) testEmbeddedByValue()                 {}
@@ -930,24 +9484,6 @@ func RegisterPvpRateServer(s grpc.ServiceRegistrar, srv PvpRateServer) {
 	s.RegisterService(&PvpRate_ServiceDesc, srv)
 }
 
-func _PvpRate_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PvpRateServer).Get(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PvpRate_Get_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PvpRateServer).Get(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PvpRate_Initialize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -966,6 +9502,168 @@ func _PvpRate_Initialize_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PvpRate_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PvpRateStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).Start(ctx, req.(*PvpRateStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_PlayExamBattle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).PlayExamBattle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_PlayExamBattle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).PlayExamBattle(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PvpRateEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).End(ctx, req.(*PvpRateEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_PlayTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).PlayTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_PlayTest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).PlayTest(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_ListRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).ListRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_ListRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).ListRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_ListHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).ListHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_ListHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).ListHistory(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_GetHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PvpRateGetHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).GetHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_GetHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).GetHistory(ctx, req.(*PvpRateGetHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PvpRate_UpdateUserPvpRateUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PvpRateUpdateUserPvpRateUnitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PvpRateServer).UpdateUserPvpRateUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PvpRate_UpdateUserPvpRateUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PvpRateServer).UpdateUserPvpRateUnit(ctx, req.(*PvpRateUpdateUserPvpRateUnitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PvpRate_ServiceDesc is the grpc.ServiceDesc for PvpRate service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -974,12 +9672,3396 @@ var PvpRate_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PvpRateServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Initialize",
+			Handler:    _PvpRate_Initialize_Handler,
+		},
+		{
 			MethodName: "Get",
 			Handler:    _PvpRate_Get_Handler,
 		},
 		{
-			MethodName: "Initialize",
-			Handler:    _PvpRate_Initialize_Handler,
+			MethodName: "Start",
+			Handler:    _PvpRate_Start_Handler,
+		},
+		{
+			MethodName: "PlayExamBattle",
+			Handler:    _PvpRate_PlayExamBattle_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _PvpRate_End_Handler,
+		},
+		{
+			MethodName: "PlayTest",
+			Handler:    _PvpRate_PlayTest_Handler,
+		},
+		{
+			MethodName: "ListRanking",
+			Handler:    _PvpRate_ListRanking_Handler,
+		},
+		{
+			MethodName: "ListHistory",
+			Handler:    _PvpRate_ListHistory_Handler,
+		},
+		{
+			MethodName: "GetHistory",
+			Handler:    _PvpRate_GetHistory_Handler,
+		},
+		{
+			MethodName: "UpdateUserPvpRateUnit",
+			Handler:    _PvpRate_UpdateUserPvpRateUnit_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Seminar_ListExam_FullMethodName = "/client.api.Seminar/ListExam"
+	Seminar_GetExam_FullMethodName  = "/client.api.Seminar/GetExam"
+	Seminar_EndExam_FullMethodName  = "/client.api.Seminar/EndExam"
+)
+
+// SeminarClient is the client API for Seminar service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SeminarClient interface {
+	ListExam(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*SeminarListExamResponse, error)
+	GetExam(ctx context.Context, in *SeminarGetExamRequest, opts ...grpc.CallOption) (*SeminarGetExamResponse, error)
+	EndExam(ctx context.Context, in *SeminarEndExamRequest, opts ...grpc.CallOption) (*SeminarEndExamResponse, error)
+}
+
+type seminarClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSeminarClient(cc grpc.ClientConnInterface) SeminarClient {
+	return &seminarClient{cc}
+}
+
+func (c *seminarClient) ListExam(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*SeminarListExamResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SeminarListExamResponse)
+	err := c.cc.Invoke(ctx, Seminar_ListExam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seminarClient) GetExam(ctx context.Context, in *SeminarGetExamRequest, opts ...grpc.CallOption) (*SeminarGetExamResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SeminarGetExamResponse)
+	err := c.cc.Invoke(ctx, Seminar_GetExam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seminarClient) EndExam(ctx context.Context, in *SeminarEndExamRequest, opts ...grpc.CallOption) (*SeminarEndExamResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SeminarEndExamResponse)
+	err := c.cc.Invoke(ctx, Seminar_EndExam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SeminarServer is the server API for Seminar service.
+// All implementations must embed UnimplementedSeminarServer
+// for forward compatibility.
+type SeminarServer interface {
+	ListExam(context.Context, *Empty) (*SeminarListExamResponse, error)
+	GetExam(context.Context, *SeminarGetExamRequest) (*SeminarGetExamResponse, error)
+	EndExam(context.Context, *SeminarEndExamRequest) (*SeminarEndExamResponse, error)
+	mustEmbedUnimplementedSeminarServer()
+}
+
+// UnimplementedSeminarServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSeminarServer struct{}
+
+func (UnimplementedSeminarServer) ListExam(context.Context, *Empty) (*SeminarListExamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListExam not implemented")
+}
+func (UnimplementedSeminarServer) GetExam(context.Context, *SeminarGetExamRequest) (*SeminarGetExamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetExam not implemented")
+}
+func (UnimplementedSeminarServer) EndExam(context.Context, *SeminarEndExamRequest) (*SeminarEndExamResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EndExam not implemented")
+}
+func (UnimplementedSeminarServer) mustEmbedUnimplementedSeminarServer() {}
+func (UnimplementedSeminarServer) testEmbeddedByValue()                 {}
+
+// UnsafeSeminarServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SeminarServer will
+// result in compilation errors.
+type UnsafeSeminarServer interface {
+	mustEmbedUnimplementedSeminarServer()
+}
+
+func RegisterSeminarServer(s grpc.ServiceRegistrar, srv SeminarServer) {
+	// If the following call pancis, it indicates UnimplementedSeminarServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Seminar_ServiceDesc, srv)
+}
+
+func _Seminar_ListExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServer).ListExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seminar_ListExam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServer).ListExam(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Seminar_GetExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SeminarGetExamRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServer).GetExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seminar_GetExam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServer).GetExam(ctx, req.(*SeminarGetExamRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Seminar_EndExam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SeminarEndExamRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServer).EndExam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Seminar_EndExam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServer).EndExam(ctx, req.(*SeminarEndExamRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Seminar_ServiceDesc is the grpc.ServiceDesc for Seminar service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Seminar_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Seminar",
+	HandlerType: (*SeminarServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListExam",
+			Handler:    _Seminar_ListExam_Handler,
+		},
+		{
+			MethodName: "GetExam",
+			Handler:    _Seminar_GetExam_Handler,
+		},
+		{
+			MethodName: "EndExam",
+			Handler:    _Seminar_EndExam_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Shop_Top_FullMethodName                              = "/client.api.Shop/Top"
+	Shop_ListItems_FullMethodName                        = "/client.api.Shop/ListItems"
+	Shop_Purchase_FullMethodName                         = "/client.api.Shop/Purchase"
+	Shop_CheckPurchaseJewel_FullMethodName               = "/client.api.Shop/CheckPurchaseJewel"
+	Shop_RegisterBirthday_FullMethodName                 = "/client.api.Shop/RegisterBirthday"
+	Shop_RegisterPurchaseTransaction_FullMethodName      = "/client.api.Shop/RegisterPurchaseTransaction"
+	Shop_CancelPurchaseTransaction_FullMethodName        = "/client.api.Shop/CancelPurchaseTransaction"
+	Shop_PurchaseJewel_FullMethodName                    = "/client.api.Shop/PurchaseJewel"
+	Shop_RecoverPurchaseJewel_FullMethodName             = "/client.api.Shop/RecoverPurchaseJewel"
+	Shop_RegisterDelayPurchaseTransaction_FullMethodName = "/client.api.Shop/RegisterDelayPurchaseTransaction"
+)
+
+// ShopClient is the client API for Shop service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ShopClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ShopTopResponse, error)
+	ListItems(ctx context.Context, in *ShopListItemsRequest, opts ...grpc.CallOption) (*ShopListItemsResponse, error)
+	Purchase(ctx context.Context, in *ShopPurchaseRequest, opts ...grpc.CallOption) (*ShopPurchaseResponse, error)
+	CheckPurchaseJewel(ctx context.Context, in *ShopCheckPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopCheckPurchaseJewelResponse, error)
+	RegisterBirthday(ctx context.Context, in *ShopRegisterBirthdayRequest, opts ...grpc.CallOption) (*ShopRegisterBirthdayResponse, error)
+	RegisterPurchaseTransaction(ctx context.Context, in *ShopRegisterPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterPurchaseTransactionResponse, error)
+	CancelPurchaseTransaction(ctx context.Context, in *ShopCancelPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopCancelPurchaseTransactionResponse, error)
+	PurchaseJewel(ctx context.Context, in *ShopPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopPurchaseJewelResponse, error)
+	RecoverPurchaseJewel(ctx context.Context, in *ShopRecoverPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopRecoverPurchaseJewelResponse, error)
+	RegisterDelayPurchaseTransaction(ctx context.Context, in *ShopRegisterDelayPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterDelayPurchaseTransactionResponse, error)
+}
+
+type shopClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewShopClient(cc grpc.ClientConnInterface) ShopClient {
+	return &shopClient{cc}
+}
+
+func (c *shopClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ShopTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopTopResponse)
+	err := c.cc.Invoke(ctx, Shop_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) ListItems(ctx context.Context, in *ShopListItemsRequest, opts ...grpc.CallOption) (*ShopListItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopListItemsResponse)
+	err := c.cc.Invoke(ctx, Shop_ListItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) Purchase(ctx context.Context, in *ShopPurchaseRequest, opts ...grpc.CallOption) (*ShopPurchaseResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopPurchaseResponse)
+	err := c.cc.Invoke(ctx, Shop_Purchase_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) CheckPurchaseJewel(ctx context.Context, in *ShopCheckPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopCheckPurchaseJewelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopCheckPurchaseJewelResponse)
+	err := c.cc.Invoke(ctx, Shop_CheckPurchaseJewel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) RegisterBirthday(ctx context.Context, in *ShopRegisterBirthdayRequest, opts ...grpc.CallOption) (*ShopRegisterBirthdayResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopRegisterBirthdayResponse)
+	err := c.cc.Invoke(ctx, Shop_RegisterBirthday_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) RegisterPurchaseTransaction(ctx context.Context, in *ShopRegisterPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterPurchaseTransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopRegisterPurchaseTransactionResponse)
+	err := c.cc.Invoke(ctx, Shop_RegisterPurchaseTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) CancelPurchaseTransaction(ctx context.Context, in *ShopCancelPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopCancelPurchaseTransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopCancelPurchaseTransactionResponse)
+	err := c.cc.Invoke(ctx, Shop_CancelPurchaseTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) PurchaseJewel(ctx context.Context, in *ShopPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopPurchaseJewelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopPurchaseJewelResponse)
+	err := c.cc.Invoke(ctx, Shop_PurchaseJewel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) RecoverPurchaseJewel(ctx context.Context, in *ShopRecoverPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopRecoverPurchaseJewelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopRecoverPurchaseJewelResponse)
+	err := c.cc.Invoke(ctx, Shop_RecoverPurchaseJewel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) RegisterDelayPurchaseTransaction(ctx context.Context, in *ShopRegisterDelayPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterDelayPurchaseTransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopRegisterDelayPurchaseTransactionResponse)
+	err := c.cc.Invoke(ctx, Shop_RegisterDelayPurchaseTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ShopServer is the server API for Shop service.
+// All implementations must embed UnimplementedShopServer
+// for forward compatibility.
+type ShopServer interface {
+	Top(context.Context, *Empty) (*ShopTopResponse, error)
+	ListItems(context.Context, *ShopListItemsRequest) (*ShopListItemsResponse, error)
+	Purchase(context.Context, *ShopPurchaseRequest) (*ShopPurchaseResponse, error)
+	CheckPurchaseJewel(context.Context, *ShopCheckPurchaseJewelRequest) (*ShopCheckPurchaseJewelResponse, error)
+	RegisterBirthday(context.Context, *ShopRegisterBirthdayRequest) (*ShopRegisterBirthdayResponse, error)
+	RegisterPurchaseTransaction(context.Context, *ShopRegisterPurchaseTransactionRequest) (*ShopRegisterPurchaseTransactionResponse, error)
+	CancelPurchaseTransaction(context.Context, *ShopCancelPurchaseTransactionRequest) (*ShopCancelPurchaseTransactionResponse, error)
+	PurchaseJewel(context.Context, *ShopPurchaseJewelRequest) (*ShopPurchaseJewelResponse, error)
+	RecoverPurchaseJewel(context.Context, *ShopRecoverPurchaseJewelRequest) (*ShopRecoverPurchaseJewelResponse, error)
+	RegisterDelayPurchaseTransaction(context.Context, *ShopRegisterDelayPurchaseTransactionRequest) (*ShopRegisterDelayPurchaseTransactionResponse, error)
+	mustEmbedUnimplementedShopServer()
+}
+
+// UnimplementedShopServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedShopServer struct{}
+
+func (UnimplementedShopServer) Top(context.Context, *Empty) (*ShopTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedShopServer) ListItems(context.Context, *ShopListItemsRequest) (*ShopListItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListItems not implemented")
+}
+func (UnimplementedShopServer) Purchase(context.Context, *ShopPurchaseRequest) (*ShopPurchaseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Purchase not implemented")
+}
+func (UnimplementedShopServer) CheckPurchaseJewel(context.Context, *ShopCheckPurchaseJewelRequest) (*ShopCheckPurchaseJewelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPurchaseJewel not implemented")
+}
+func (UnimplementedShopServer) RegisterBirthday(context.Context, *ShopRegisterBirthdayRequest) (*ShopRegisterBirthdayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterBirthday not implemented")
+}
+func (UnimplementedShopServer) RegisterPurchaseTransaction(context.Context, *ShopRegisterPurchaseTransactionRequest) (*ShopRegisterPurchaseTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterPurchaseTransaction not implemented")
+}
+func (UnimplementedShopServer) CancelPurchaseTransaction(context.Context, *ShopCancelPurchaseTransactionRequest) (*ShopCancelPurchaseTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelPurchaseTransaction not implemented")
+}
+func (UnimplementedShopServer) PurchaseJewel(context.Context, *ShopPurchaseJewelRequest) (*ShopPurchaseJewelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PurchaseJewel not implemented")
+}
+func (UnimplementedShopServer) RecoverPurchaseJewel(context.Context, *ShopRecoverPurchaseJewelRequest) (*ShopRecoverPurchaseJewelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecoverPurchaseJewel not implemented")
+}
+func (UnimplementedShopServer) RegisterDelayPurchaseTransaction(context.Context, *ShopRegisterDelayPurchaseTransactionRequest) (*ShopRegisterDelayPurchaseTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterDelayPurchaseTransaction not implemented")
+}
+func (UnimplementedShopServer) mustEmbedUnimplementedShopServer() {}
+func (UnimplementedShopServer) testEmbeddedByValue()              {}
+
+// UnsafeShopServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ShopServer will
+// result in compilation errors.
+type UnsafeShopServer interface {
+	mustEmbedUnimplementedShopServer()
+}
+
+func RegisterShopServer(s grpc.ServiceRegistrar, srv ShopServer) {
+	// If the following call pancis, it indicates UnimplementedShopServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Shop_ServiceDesc, srv)
+}
+
+func _Shop_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_ListItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopListItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).ListItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_ListItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).ListItems(ctx, req.(*ShopListItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_Purchase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopPurchaseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).Purchase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_Purchase_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).Purchase(ctx, req.(*ShopPurchaseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_CheckPurchaseJewel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopCheckPurchaseJewelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).CheckPurchaseJewel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_CheckPurchaseJewel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).CheckPurchaseJewel(ctx, req.(*ShopCheckPurchaseJewelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_RegisterBirthday_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopRegisterBirthdayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).RegisterBirthday(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_RegisterBirthday_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).RegisterBirthday(ctx, req.(*ShopRegisterBirthdayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_RegisterPurchaseTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopRegisterPurchaseTransactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).RegisterPurchaseTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_RegisterPurchaseTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).RegisterPurchaseTransaction(ctx, req.(*ShopRegisterPurchaseTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_CancelPurchaseTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopCancelPurchaseTransactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).CancelPurchaseTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_CancelPurchaseTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).CancelPurchaseTransaction(ctx, req.(*ShopCancelPurchaseTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_PurchaseJewel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopPurchaseJewelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).PurchaseJewel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_PurchaseJewel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).PurchaseJewel(ctx, req.(*ShopPurchaseJewelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_RecoverPurchaseJewel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopRecoverPurchaseJewelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).RecoverPurchaseJewel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_RecoverPurchaseJewel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).RecoverPurchaseJewel(ctx, req.(*ShopRecoverPurchaseJewelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_RegisterDelayPurchaseTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopRegisterDelayPurchaseTransactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).RegisterDelayPurchaseTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_RegisterDelayPurchaseTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).RegisterDelayPurchaseTransaction(ctx, req.(*ShopRegisterDelayPurchaseTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Shop_ServiceDesc is the grpc.ServiceDesc for Shop service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Shop_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Shop",
+	HandlerType: (*ShopServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Shop_Top_Handler,
+		},
+		{
+			MethodName: "ListItems",
+			Handler:    _Shop_ListItems_Handler,
+		},
+		{
+			MethodName: "Purchase",
+			Handler:    _Shop_Purchase_Handler,
+		},
+		{
+			MethodName: "CheckPurchaseJewel",
+			Handler:    _Shop_CheckPurchaseJewel_Handler,
+		},
+		{
+			MethodName: "RegisterBirthday",
+			Handler:    _Shop_RegisterBirthday_Handler,
+		},
+		{
+			MethodName: "RegisterPurchaseTransaction",
+			Handler:    _Shop_RegisterPurchaseTransaction_Handler,
+		},
+		{
+			MethodName: "CancelPurchaseTransaction",
+			Handler:    _Shop_CancelPurchaseTransaction_Handler,
+		},
+		{
+			MethodName: "PurchaseJewel",
+			Handler:    _Shop_PurchaseJewel_Handler,
+		},
+		{
+			MethodName: "RecoverPurchaseJewel",
+			Handler:    _Shop_RecoverPurchaseJewel_Handler,
+		},
+		{
+			MethodName: "RegisterDelayPurchaseTransaction",
+			Handler:    _Shop_RegisterDelayPurchaseTransaction_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Startup_ListNotifications_FullMethodName = "/client.api.Startup/ListNotifications"
+	Startup_Confirm_FullMethodName           = "/client.api.Startup/Confirm"
+)
+
+// StartupClient is the client API for Startup service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StartupClient interface {
+	ListNotifications(ctx context.Context, in *StartupListNotificationsRequest, opts ...grpc.CallOption) (*StartupListNotificationsResponse, error)
+	Confirm(ctx context.Context, in *StartupConfirmRequest, opts ...grpc.CallOption) (*StartupConfirmResponse, error)
+}
+
+type startupClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStartupClient(cc grpc.ClientConnInterface) StartupClient {
+	return &startupClient{cc}
+}
+
+func (c *startupClient) ListNotifications(ctx context.Context, in *StartupListNotificationsRequest, opts ...grpc.CallOption) (*StartupListNotificationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StartupListNotificationsResponse)
+	err := c.cc.Invoke(ctx, Startup_ListNotifications_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *startupClient) Confirm(ctx context.Context, in *StartupConfirmRequest, opts ...grpc.CallOption) (*StartupConfirmResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StartupConfirmResponse)
+	err := c.cc.Invoke(ctx, Startup_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StartupServer is the server API for Startup service.
+// All implementations must embed UnimplementedStartupServer
+// for forward compatibility.
+type StartupServer interface {
+	ListNotifications(context.Context, *StartupListNotificationsRequest) (*StartupListNotificationsResponse, error)
+	Confirm(context.Context, *StartupConfirmRequest) (*StartupConfirmResponse, error)
+	mustEmbedUnimplementedStartupServer()
+}
+
+// UnimplementedStartupServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedStartupServer struct{}
+
+func (UnimplementedStartupServer) ListNotifications(context.Context, *StartupListNotificationsRequest) (*StartupListNotificationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNotifications not implemented")
+}
+func (UnimplementedStartupServer) Confirm(context.Context, *StartupConfirmRequest) (*StartupConfirmResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
+}
+func (UnimplementedStartupServer) mustEmbedUnimplementedStartupServer() {}
+func (UnimplementedStartupServer) testEmbeddedByValue()                 {}
+
+// UnsafeStartupServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StartupServer will
+// result in compilation errors.
+type UnsafeStartupServer interface {
+	mustEmbedUnimplementedStartupServer()
+}
+
+func RegisterStartupServer(s grpc.ServiceRegistrar, srv StartupServer) {
+	// If the following call pancis, it indicates UnimplementedStartupServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Startup_ServiceDesc, srv)
+}
+
+func _Startup_ListNotifications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartupListNotificationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StartupServer).ListNotifications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Startup_ListNotifications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StartupServer).ListNotifications(ctx, req.(*StartupListNotificationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Startup_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartupConfirmRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StartupServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Startup_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StartupServer).Confirm(ctx, req.(*StartupConfirmRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Startup_ServiceDesc is the grpc.ServiceDesc for Startup service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Startup_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Startup",
+	HandlerType: (*StartupServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListNotifications",
+			Handler:    _Startup_ListNotifications_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _Startup_Confirm_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	StoryEvent_Top_FullMethodName                 = "/client.api.StoryEvent/Top"
+	StoryEvent_ListGuildMission_FullMethodName    = "/client.api.StoryEvent/ListGuildMission"
+	StoryEvent_ReceiveGuildMission_FullMethodName = "/client.api.StoryEvent/ReceiveGuildMission"
+)
+
+// StoryEventClient is the client API for StoryEvent service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StoryEventClient interface {
+	Top(ctx context.Context, in *StoryEventTopRequest, opts ...grpc.CallOption) (*StoryEventTopResponse, error)
+	ListGuildMission(ctx context.Context, in *StoryEventListGuildMissionRequest, opts ...grpc.CallOption) (*StoryEventListGuildMissionResponse, error)
+	ReceiveGuildMission(ctx context.Context, in *StoryEventReceiveGuildMissionRequest, opts ...grpc.CallOption) (*StoryEventReceiveGuildMissionResponse, error)
+}
+
+type storyEventClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStoryEventClient(cc grpc.ClientConnInterface) StoryEventClient {
+	return &storyEventClient{cc}
+}
+
+func (c *storyEventClient) Top(ctx context.Context, in *StoryEventTopRequest, opts ...grpc.CallOption) (*StoryEventTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryEventTopResponse)
+	err := c.cc.Invoke(ctx, StoryEvent_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyEventClient) ListGuildMission(ctx context.Context, in *StoryEventListGuildMissionRequest, opts ...grpc.CallOption) (*StoryEventListGuildMissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryEventListGuildMissionResponse)
+	err := c.cc.Invoke(ctx, StoryEvent_ListGuildMission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyEventClient) ReceiveGuildMission(ctx context.Context, in *StoryEventReceiveGuildMissionRequest, opts ...grpc.CallOption) (*StoryEventReceiveGuildMissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryEventReceiveGuildMissionResponse)
+	err := c.cc.Invoke(ctx, StoryEvent_ReceiveGuildMission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StoryEventServer is the server API for StoryEvent service.
+// All implementations must embed UnimplementedStoryEventServer
+// for forward compatibility.
+type StoryEventServer interface {
+	Top(context.Context, *StoryEventTopRequest) (*StoryEventTopResponse, error)
+	ListGuildMission(context.Context, *StoryEventListGuildMissionRequest) (*StoryEventListGuildMissionResponse, error)
+	ReceiveGuildMission(context.Context, *StoryEventReceiveGuildMissionRequest) (*StoryEventReceiveGuildMissionResponse, error)
+	mustEmbedUnimplementedStoryEventServer()
+}
+
+// UnimplementedStoryEventServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedStoryEventServer struct{}
+
+func (UnimplementedStoryEventServer) Top(context.Context, *StoryEventTopRequest) (*StoryEventTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedStoryEventServer) ListGuildMission(context.Context, *StoryEventListGuildMissionRequest) (*StoryEventListGuildMissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGuildMission not implemented")
+}
+func (UnimplementedStoryEventServer) ReceiveGuildMission(context.Context, *StoryEventReceiveGuildMissionRequest) (*StoryEventReceiveGuildMissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveGuildMission not implemented")
+}
+func (UnimplementedStoryEventServer) mustEmbedUnimplementedStoryEventServer() {}
+func (UnimplementedStoryEventServer) testEmbeddedByValue()                    {}
+
+// UnsafeStoryEventServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StoryEventServer will
+// result in compilation errors.
+type UnsafeStoryEventServer interface {
+	mustEmbedUnimplementedStoryEventServer()
+}
+
+func RegisterStoryEventServer(s grpc.ServiceRegistrar, srv StoryEventServer) {
+	// If the following call pancis, it indicates UnimplementedStoryEventServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&StoryEvent_ServiceDesc, srv)
+}
+
+func _StoryEvent_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryEventTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryEventServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StoryEvent_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryEventServer).Top(ctx, req.(*StoryEventTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StoryEvent_ListGuildMission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryEventListGuildMissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryEventServer).ListGuildMission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StoryEvent_ListGuildMission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryEventServer).ListGuildMission(ctx, req.(*StoryEventListGuildMissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StoryEvent_ReceiveGuildMission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryEventReceiveGuildMissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryEventServer).ReceiveGuildMission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StoryEvent_ReceiveGuildMission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryEventServer).ReceiveGuildMission(ctx, req.(*StoryEventReceiveGuildMissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// StoryEvent_ServiceDesc is the grpc.ServiceDesc for StoryEvent service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StoryEvent_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.StoryEvent",
+	HandlerType: (*StoryEventServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _StoryEvent_Top_Handler,
+		},
+		{
+			MethodName: "ListGuildMission",
+			Handler:    _StoryEvent_ListGuildMission_Handler,
+		},
+		{
+			MethodName: "ReceiveGuildMission",
+			Handler:    _StoryEvent_ReceiveGuildMission_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Story_Read_FullMethodName               = "/client.api.Story/Read"
+	Story_ReadProduceStory_FullMethodName   = "/client.api.Story/ReadProduceStory"
+	Story_ReadDearnessStory_FullMethodName  = "/client.api.Story/ReadDearnessStory"
+	Story_Unlock_FullMethodName             = "/client.api.Story/Unlock"
+	Story_UnlockProduceStory_FullMethodName = "/client.api.Story/UnlockProduceStory"
+)
+
+// StoryClient is the client API for Story service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StoryClient interface {
+	Read(ctx context.Context, in *StoryReadRequest, opts ...grpc.CallOption) (*StoryReadResponse, error)
+	ReadProduceStory(ctx context.Context, in *StoryReadProduceStoryRequest, opts ...grpc.CallOption) (*StoryReadProduceStoryResponse, error)
+	ReadDearnessStory(ctx context.Context, in *StoryReadDearnessStoryRequest, opts ...grpc.CallOption) (*StoryReadDearnessStoryResponse, error)
+	Unlock(ctx context.Context, in *StoryUnlockRequest, opts ...grpc.CallOption) (*StoryUnlockResponse, error)
+	UnlockProduceStory(ctx context.Context, in *StoryUnlockProduceStoryRequest, opts ...grpc.CallOption) (*StoryUnlockProduceStoryResponse, error)
+}
+
+type storyClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStoryClient(cc grpc.ClientConnInterface) StoryClient {
+	return &storyClient{cc}
+}
+
+func (c *storyClient) Read(ctx context.Context, in *StoryReadRequest, opts ...grpc.CallOption) (*StoryReadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryReadResponse)
+	err := c.cc.Invoke(ctx, Story_Read_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyClient) ReadProduceStory(ctx context.Context, in *StoryReadProduceStoryRequest, opts ...grpc.CallOption) (*StoryReadProduceStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryReadProduceStoryResponse)
+	err := c.cc.Invoke(ctx, Story_ReadProduceStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyClient) ReadDearnessStory(ctx context.Context, in *StoryReadDearnessStoryRequest, opts ...grpc.CallOption) (*StoryReadDearnessStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryReadDearnessStoryResponse)
+	err := c.cc.Invoke(ctx, Story_ReadDearnessStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyClient) Unlock(ctx context.Context, in *StoryUnlockRequest, opts ...grpc.CallOption) (*StoryUnlockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryUnlockResponse)
+	err := c.cc.Invoke(ctx, Story_Unlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storyClient) UnlockProduceStory(ctx context.Context, in *StoryUnlockProduceStoryRequest, opts ...grpc.CallOption) (*StoryUnlockProduceStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryUnlockProduceStoryResponse)
+	err := c.cc.Invoke(ctx, Story_UnlockProduceStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StoryServer is the server API for Story service.
+// All implementations must embed UnimplementedStoryServer
+// for forward compatibility.
+type StoryServer interface {
+	Read(context.Context, *StoryReadRequest) (*StoryReadResponse, error)
+	ReadProduceStory(context.Context, *StoryReadProduceStoryRequest) (*StoryReadProduceStoryResponse, error)
+	ReadDearnessStory(context.Context, *StoryReadDearnessStoryRequest) (*StoryReadDearnessStoryResponse, error)
+	Unlock(context.Context, *StoryUnlockRequest) (*StoryUnlockResponse, error)
+	UnlockProduceStory(context.Context, *StoryUnlockProduceStoryRequest) (*StoryUnlockProduceStoryResponse, error)
+	mustEmbedUnimplementedStoryServer()
+}
+
+// UnimplementedStoryServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedStoryServer struct{}
+
+func (UnimplementedStoryServer) Read(context.Context, *StoryReadRequest) (*StoryReadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Read not implemented")
+}
+func (UnimplementedStoryServer) ReadProduceStory(context.Context, *StoryReadProduceStoryRequest) (*StoryReadProduceStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadProduceStory not implemented")
+}
+func (UnimplementedStoryServer) ReadDearnessStory(context.Context, *StoryReadDearnessStoryRequest) (*StoryReadDearnessStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadDearnessStory not implemented")
+}
+func (UnimplementedStoryServer) Unlock(context.Context, *StoryUnlockRequest) (*StoryUnlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unlock not implemented")
+}
+func (UnimplementedStoryServer) UnlockProduceStory(context.Context, *StoryUnlockProduceStoryRequest) (*StoryUnlockProduceStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockProduceStory not implemented")
+}
+func (UnimplementedStoryServer) mustEmbedUnimplementedStoryServer() {}
+func (UnimplementedStoryServer) testEmbeddedByValue()               {}
+
+// UnsafeStoryServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StoryServer will
+// result in compilation errors.
+type UnsafeStoryServer interface {
+	mustEmbedUnimplementedStoryServer()
+}
+
+func RegisterStoryServer(s grpc.ServiceRegistrar, srv StoryServer) {
+	// If the following call pancis, it indicates UnimplementedStoryServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Story_ServiceDesc, srv)
+}
+
+func _Story_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryReadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_Read_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).Read(ctx, req.(*StoryReadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Story_ReadProduceStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryReadProduceStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).ReadProduceStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_ReadProduceStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).ReadProduceStory(ctx, req.(*StoryReadProduceStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Story_ReadDearnessStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryReadDearnessStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).ReadDearnessStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_ReadDearnessStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).ReadDearnessStory(ctx, req.(*StoryReadDearnessStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Story_Unlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryUnlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).Unlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_Unlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).Unlock(ctx, req.(*StoryUnlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Story_UnlockProduceStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryUnlockProduceStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).UnlockProduceStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_UnlockProduceStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).UnlockProduceStory(ctx, req.(*StoryUnlockProduceStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Story_ServiceDesc is the grpc.ServiceDesc for Story service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Story_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Story",
+	HandlerType: (*StoryServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Read",
+			Handler:    _Story_Read_Handler,
+		},
+		{
+			MethodName: "ReadProduceStory",
+			Handler:    _Story_ReadProduceStory_Handler,
+		},
+		{
+			MethodName: "ReadDearnessStory",
+			Handler:    _Story_ReadDearnessStory_Handler,
+		},
+		{
+			MethodName: "Unlock",
+			Handler:    _Story_Unlock_Handler,
+		},
+		{
+			MethodName: "UnlockProduceStory",
+			Handler:    _Story_UnlockProduceStory_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	SupportCard_Enhance_FullMethodName               = "/client.api.SupportCard/Enhance"
+	SupportCard_UpgradeLevelLimitRank_FullMethodName = "/client.api.SupportCard/UpgradeLevelLimitRank"
+	SupportCard_Exchange_FullMethodName              = "/client.api.SupportCard/Exchange"
+)
+
+// SupportCardClient is the client API for SupportCard service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SupportCardClient interface {
+	Enhance(ctx context.Context, in *SupportCardEnhanceRequest, opts ...grpc.CallOption) (*SupportCardEnhanceResponse, error)
+	UpgradeLevelLimitRank(ctx context.Context, in *SupportCardUpgradeLevelLimitRankRequest, opts ...grpc.CallOption) (*SupportCardUpgradeLevelLimitRankResponse, error)
+	Exchange(ctx context.Context, in *SupportCardExchangeRequest, opts ...grpc.CallOption) (*SupportCardExchangeResponse, error)
+}
+
+type supportCardClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSupportCardClient(cc grpc.ClientConnInterface) SupportCardClient {
+	return &supportCardClient{cc}
+}
+
+func (c *supportCardClient) Enhance(ctx context.Context, in *SupportCardEnhanceRequest, opts ...grpc.CallOption) (*SupportCardEnhanceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SupportCardEnhanceResponse)
+	err := c.cc.Invoke(ctx, SupportCard_Enhance_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *supportCardClient) UpgradeLevelLimitRank(ctx context.Context, in *SupportCardUpgradeLevelLimitRankRequest, opts ...grpc.CallOption) (*SupportCardUpgradeLevelLimitRankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SupportCardUpgradeLevelLimitRankResponse)
+	err := c.cc.Invoke(ctx, SupportCard_UpgradeLevelLimitRank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *supportCardClient) Exchange(ctx context.Context, in *SupportCardExchangeRequest, opts ...grpc.CallOption) (*SupportCardExchangeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SupportCardExchangeResponse)
+	err := c.cc.Invoke(ctx, SupportCard_Exchange_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SupportCardServer is the server API for SupportCard service.
+// All implementations must embed UnimplementedSupportCardServer
+// for forward compatibility.
+type SupportCardServer interface {
+	Enhance(context.Context, *SupportCardEnhanceRequest) (*SupportCardEnhanceResponse, error)
+	UpgradeLevelLimitRank(context.Context, *SupportCardUpgradeLevelLimitRankRequest) (*SupportCardUpgradeLevelLimitRankResponse, error)
+	Exchange(context.Context, *SupportCardExchangeRequest) (*SupportCardExchangeResponse, error)
+	mustEmbedUnimplementedSupportCardServer()
+}
+
+// UnimplementedSupportCardServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSupportCardServer struct{}
+
+func (UnimplementedSupportCardServer) Enhance(context.Context, *SupportCardEnhanceRequest) (*SupportCardEnhanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enhance not implemented")
+}
+func (UnimplementedSupportCardServer) UpgradeLevelLimitRank(context.Context, *SupportCardUpgradeLevelLimitRankRequest) (*SupportCardUpgradeLevelLimitRankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpgradeLevelLimitRank not implemented")
+}
+func (UnimplementedSupportCardServer) Exchange(context.Context, *SupportCardExchangeRequest) (*SupportCardExchangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Exchange not implemented")
+}
+func (UnimplementedSupportCardServer) mustEmbedUnimplementedSupportCardServer() {}
+func (UnimplementedSupportCardServer) testEmbeddedByValue()                     {}
+
+// UnsafeSupportCardServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SupportCardServer will
+// result in compilation errors.
+type UnsafeSupportCardServer interface {
+	mustEmbedUnimplementedSupportCardServer()
+}
+
+func RegisterSupportCardServer(s grpc.ServiceRegistrar, srv SupportCardServer) {
+	// If the following call pancis, it indicates UnimplementedSupportCardServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SupportCard_ServiceDesc, srv)
+}
+
+func _SupportCard_Enhance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SupportCardEnhanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupportCardServer).Enhance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SupportCard_Enhance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupportCardServer).Enhance(ctx, req.(*SupportCardEnhanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SupportCard_UpgradeLevelLimitRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SupportCardUpgradeLevelLimitRankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupportCardServer).UpgradeLevelLimitRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SupportCard_UpgradeLevelLimitRank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupportCardServer).UpgradeLevelLimitRank(ctx, req.(*SupportCardUpgradeLevelLimitRankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SupportCard_Exchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SupportCardExchangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SupportCardServer).Exchange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SupportCard_Exchange_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SupportCardServer).Exchange(ctx, req.(*SupportCardExchangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SupportCard_ServiceDesc is the grpc.ServiceDesc for SupportCard service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SupportCard_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.SupportCard",
+	HandlerType: (*SupportCardServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Enhance",
+			Handler:    _SupportCard_Enhance_Handler,
+		},
+		{
+			MethodName: "UpgradeLevelLimitRank",
+			Handler:    _SupportCard_UpgradeLevelLimitRank_Handler,
+		},
+		{
+			MethodName: "Exchange",
+			Handler:    _SupportCard_Exchange_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	System_Check_FullMethodName = "/client.api.System/Check"
+)
+
+// SystemClient is the client API for System service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SystemClient interface {
+	Check(ctx context.Context, in *SystemCheckRequest, opts ...grpc.CallOption) (*SystemCheckResponse, error)
+}
+
+type systemClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSystemClient(cc grpc.ClientConnInterface) SystemClient {
+	return &systemClient{cc}
+}
+
+func (c *systemClient) Check(ctx context.Context, in *SystemCheckRequest, opts ...grpc.CallOption) (*SystemCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SystemCheckResponse)
+	err := c.cc.Invoke(ctx, System_Check_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SystemServer is the server API for System service.
+// All implementations must embed UnimplementedSystemServer
+// for forward compatibility.
+type SystemServer interface {
+	Check(context.Context, *SystemCheckRequest) (*SystemCheckResponse, error)
+	mustEmbedUnimplementedSystemServer()
+}
+
+// UnimplementedSystemServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSystemServer struct{}
+
+func (UnimplementedSystemServer) Check(context.Context, *SystemCheckRequest) (*SystemCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedSystemServer) mustEmbedUnimplementedSystemServer() {}
+func (UnimplementedSystemServer) testEmbeddedByValue()                {}
+
+// UnsafeSystemServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SystemServer will
+// result in compilation errors.
+type UnsafeSystemServer interface {
+	mustEmbedUnimplementedSystemServer()
+}
+
+func RegisterSystemServer(s grpc.ServiceRegistrar, srv SystemServer) {
+	// If the following call pancis, it indicates UnimplementedSystemServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&System_ServiceDesc, srv)
+}
+
+func _System_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SystemCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SystemServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: System_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SystemServer).Check(ctx, req.(*SystemCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// System_ServiceDesc is the grpc.ServiceDesc for System service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var System_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.System",
+	HandlerType: (*SystemServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Check",
+			Handler:    _System_Check_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	TicketExchange_ListItems_FullMethodName = "/client.api.TicketExchange/ListItems"
+	TicketExchange_Execute_FullMethodName   = "/client.api.TicketExchange/Execute"
+)
+
+// TicketExchangeClient is the client API for TicketExchange service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TicketExchangeClient interface {
+	ListItems(ctx context.Context, in *TicketExchangeListItemsRequest, opts ...grpc.CallOption) (*TicketExchangeListItemsResponse, error)
+	Execute(ctx context.Context, in *TicketExchangeExecuteRequest, opts ...grpc.CallOption) (*TicketExchangeExecuteResponse, error)
+}
+
+type ticketExchangeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTicketExchangeClient(cc grpc.ClientConnInterface) TicketExchangeClient {
+	return &ticketExchangeClient{cc}
+}
+
+func (c *ticketExchangeClient) ListItems(ctx context.Context, in *TicketExchangeListItemsRequest, opts ...grpc.CallOption) (*TicketExchangeListItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TicketExchangeListItemsResponse)
+	err := c.cc.Invoke(ctx, TicketExchange_ListItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ticketExchangeClient) Execute(ctx context.Context, in *TicketExchangeExecuteRequest, opts ...grpc.CallOption) (*TicketExchangeExecuteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TicketExchangeExecuteResponse)
+	err := c.cc.Invoke(ctx, TicketExchange_Execute_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TicketExchangeServer is the server API for TicketExchange service.
+// All implementations must embed UnimplementedTicketExchangeServer
+// for forward compatibility.
+type TicketExchangeServer interface {
+	ListItems(context.Context, *TicketExchangeListItemsRequest) (*TicketExchangeListItemsResponse, error)
+	Execute(context.Context, *TicketExchangeExecuteRequest) (*TicketExchangeExecuteResponse, error)
+	mustEmbedUnimplementedTicketExchangeServer()
+}
+
+// UnimplementedTicketExchangeServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTicketExchangeServer struct{}
+
+func (UnimplementedTicketExchangeServer) ListItems(context.Context, *TicketExchangeListItemsRequest) (*TicketExchangeListItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListItems not implemented")
+}
+func (UnimplementedTicketExchangeServer) Execute(context.Context, *TicketExchangeExecuteRequest) (*TicketExchangeExecuteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Execute not implemented")
+}
+func (UnimplementedTicketExchangeServer) mustEmbedUnimplementedTicketExchangeServer() {}
+func (UnimplementedTicketExchangeServer) testEmbeddedByValue()                        {}
+
+// UnsafeTicketExchangeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TicketExchangeServer will
+// result in compilation errors.
+type UnsafeTicketExchangeServer interface {
+	mustEmbedUnimplementedTicketExchangeServer()
+}
+
+func RegisterTicketExchangeServer(s grpc.ServiceRegistrar, srv TicketExchangeServer) {
+	// If the following call pancis, it indicates UnimplementedTicketExchangeServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&TicketExchange_ServiceDesc, srv)
+}
+
+func _TicketExchange_ListItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TicketExchangeListItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TicketExchangeServer).ListItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TicketExchange_ListItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TicketExchangeServer).ListItems(ctx, req.(*TicketExchangeListItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TicketExchange_Execute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TicketExchangeExecuteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TicketExchangeServer).Execute(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TicketExchange_Execute_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TicketExchangeServer).Execute(ctx, req.(*TicketExchangeExecuteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TicketExchange_ServiceDesc is the grpc.ServiceDesc for TicketExchange service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TicketExchange_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.TicketExchange",
+	HandlerType: (*TicketExchangeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListItems",
+			Handler:    _TicketExchange_ListItems_Handler,
+		},
+		{
+			MethodName: "Execute",
+			Handler:    _TicketExchange_Execute_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Tower_Top_FullMethodName                                  = "/client.api.Tower/Top"
+	Tower_ListLayers_FullMethodName                           = "/client.api.Tower/ListLayers"
+	Tower_GetLayer_FullMethodName                             = "/client.api.Tower/GetLayer"
+	Tower_Start_FullMethodName                                = "/client.api.Tower/Start"
+	Tower_End_FullMethodName                                  = "/client.api.Tower/End"
+	Tower_Check_FullMethodName                                = "/client.api.Tower/Check"
+	Tower_UpdateMemoryDeck_FullMethodName                     = "/client.api.Tower/UpdateMemoryDeck"
+	Tower_ReceiveLayerCountReward_FullMethodName              = "/client.api.Tower/ReceiveLayerCountReward"
+	Tower_ReceiveTotalClearRankReward_FullMethodName          = "/client.api.Tower/ReceiveTotalClearRankReward"
+	Tower_ListLayerPlayerHistories_FullMethodName             = "/client.api.Tower/ListLayerPlayerHistories"
+	Tower_GetRanking_FullMethodName                           = "/client.api.Tower/GetRanking"
+	Tower_GetPastSeasonRanking_FullMethodName                 = "/client.api.Tower/GetPastSeasonRanking"
+	Tower_GetLayerIdolCardRanking_FullMethodName              = "/client.api.Tower/GetLayerIdolCardRanking"
+	Tower_GetPastSeasonLayerIdolCardRanking_FullMethodName    = "/client.api.Tower/GetPastSeasonLayerIdolCardRanking"
+	Tower_GetLayerIdolCardRankingTop_FullMethodName           = "/client.api.Tower/GetLayerIdolCardRankingTop"
+	Tower_GetPastSeasonLayerIdolCardRankingTop_FullMethodName = "/client.api.Tower/GetPastSeasonLayerIdolCardRankingTop"
+	Tower_GetRankingDeck_FullMethodName                       = "/client.api.Tower/GetRankingDeck"
+)
+
+// TowerClient is the client API for Tower service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TowerClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TowerTopResponse, error)
+	ListLayers(ctx context.Context, in *TowerListLayersRequest, opts ...grpc.CallOption) (*TowerListLayersResponse, error)
+	GetLayer(ctx context.Context, in *TowerGetLayerRequest, opts ...grpc.CallOption) (*TowerGetLayerResponse, error)
+	Start(ctx context.Context, in *TowerStartRequest, opts ...grpc.CallOption) (*TowerStartResponse, error)
+	End(ctx context.Context, in *TowerEndRequest, opts ...grpc.CallOption) (*TowerEndResponse, error)
+	Check(ctx context.Context, in *TowerCheckRequest, opts ...grpc.CallOption) (*TowerCheckResponse, error)
+	UpdateMemoryDeck(ctx context.Context, in *TowerUpdateMemoryDeckRequest, opts ...grpc.CallOption) (*TowerUpdateMemoryDeckResponse, error)
+	ReceiveLayerCountReward(ctx context.Context, in *TowerReceiveLayerCountRewardRequest, opts ...grpc.CallOption) (*TowerReceiveLayerCountRewardResponse, error)
+	ReceiveTotalClearRankReward(ctx context.Context, in *TowerReceiveTotalClearRankRewardRequest, opts ...grpc.CallOption) (*TowerReceiveTotalClearRankRewardResponse, error)
+	ListLayerPlayerHistories(ctx context.Context, in *TowerListLayerPlayerHistoriesRequest, opts ...grpc.CallOption) (*TowerListLayerPlayerHistoriesResponse, error)
+	GetRanking(ctx context.Context, in *TowerGetRankingRequest, opts ...grpc.CallOption) (*TowerGetRankingResponse, error)
+	GetPastSeasonRanking(ctx context.Context, in *TowerGetPastSeasonRankingRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonRankingResponse, error)
+	GetLayerIdolCardRanking(ctx context.Context, in *TowerGetLayerIdolCardRankingRequest, opts ...grpc.CallOption) (*TowerGetLayerIdolCardRankingResponse, error)
+	GetPastSeasonLayerIdolCardRanking(ctx context.Context, in *TowerGetPastSeasonLayerIdolCardRankingRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonLayerIdolCardRankingResponse, error)
+	GetLayerIdolCardRankingTop(ctx context.Context, in *TowerGetLayerIdolCardRankingTopRequest, opts ...grpc.CallOption) (*TowerGetLayerIdolCardRankingTopResponse, error)
+	GetPastSeasonLayerIdolCardRankingTop(ctx context.Context, in *TowerGetPastSeasonLayerIdolCardRankingTopRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonLayerIdolCardRankingTopResponse, error)
+	GetRankingDeck(ctx context.Context, in *TowerGetRankingDeckRequest, opts ...grpc.CallOption) (*TowerGetRankingDeckResponse, error)
+}
+
+type towerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTowerClient(cc grpc.ClientConnInterface) TowerClient {
+	return &towerClient{cc}
+}
+
+func (c *towerClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TowerTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerTopResponse)
+	err := c.cc.Invoke(ctx, Tower_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) ListLayers(ctx context.Context, in *TowerListLayersRequest, opts ...grpc.CallOption) (*TowerListLayersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerListLayersResponse)
+	err := c.cc.Invoke(ctx, Tower_ListLayers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetLayer(ctx context.Context, in *TowerGetLayerRequest, opts ...grpc.CallOption) (*TowerGetLayerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetLayerResponse)
+	err := c.cc.Invoke(ctx, Tower_GetLayer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) Start(ctx context.Context, in *TowerStartRequest, opts ...grpc.CallOption) (*TowerStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerStartResponse)
+	err := c.cc.Invoke(ctx, Tower_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) End(ctx context.Context, in *TowerEndRequest, opts ...grpc.CallOption) (*TowerEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerEndResponse)
+	err := c.cc.Invoke(ctx, Tower_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) Check(ctx context.Context, in *TowerCheckRequest, opts ...grpc.CallOption) (*TowerCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerCheckResponse)
+	err := c.cc.Invoke(ctx, Tower_Check_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) UpdateMemoryDeck(ctx context.Context, in *TowerUpdateMemoryDeckRequest, opts ...grpc.CallOption) (*TowerUpdateMemoryDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerUpdateMemoryDeckResponse)
+	err := c.cc.Invoke(ctx, Tower_UpdateMemoryDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) ReceiveLayerCountReward(ctx context.Context, in *TowerReceiveLayerCountRewardRequest, opts ...grpc.CallOption) (*TowerReceiveLayerCountRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerReceiveLayerCountRewardResponse)
+	err := c.cc.Invoke(ctx, Tower_ReceiveLayerCountReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) ReceiveTotalClearRankReward(ctx context.Context, in *TowerReceiveTotalClearRankRewardRequest, opts ...grpc.CallOption) (*TowerReceiveTotalClearRankRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerReceiveTotalClearRankRewardResponse)
+	err := c.cc.Invoke(ctx, Tower_ReceiveTotalClearRankReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) ListLayerPlayerHistories(ctx context.Context, in *TowerListLayerPlayerHistoriesRequest, opts ...grpc.CallOption) (*TowerListLayerPlayerHistoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerListLayerPlayerHistoriesResponse)
+	err := c.cc.Invoke(ctx, Tower_ListLayerPlayerHistories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetRanking(ctx context.Context, in *TowerGetRankingRequest, opts ...grpc.CallOption) (*TowerGetRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetRankingResponse)
+	err := c.cc.Invoke(ctx, Tower_GetRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetPastSeasonRanking(ctx context.Context, in *TowerGetPastSeasonRankingRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetPastSeasonRankingResponse)
+	err := c.cc.Invoke(ctx, Tower_GetPastSeasonRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetLayerIdolCardRanking(ctx context.Context, in *TowerGetLayerIdolCardRankingRequest, opts ...grpc.CallOption) (*TowerGetLayerIdolCardRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetLayerIdolCardRankingResponse)
+	err := c.cc.Invoke(ctx, Tower_GetLayerIdolCardRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetPastSeasonLayerIdolCardRanking(ctx context.Context, in *TowerGetPastSeasonLayerIdolCardRankingRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonLayerIdolCardRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetPastSeasonLayerIdolCardRankingResponse)
+	err := c.cc.Invoke(ctx, Tower_GetPastSeasonLayerIdolCardRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetLayerIdolCardRankingTop(ctx context.Context, in *TowerGetLayerIdolCardRankingTopRequest, opts ...grpc.CallOption) (*TowerGetLayerIdolCardRankingTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetLayerIdolCardRankingTopResponse)
+	err := c.cc.Invoke(ctx, Tower_GetLayerIdolCardRankingTop_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetPastSeasonLayerIdolCardRankingTop(ctx context.Context, in *TowerGetPastSeasonLayerIdolCardRankingTopRequest, opts ...grpc.CallOption) (*TowerGetPastSeasonLayerIdolCardRankingTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetPastSeasonLayerIdolCardRankingTopResponse)
+	err := c.cc.Invoke(ctx, Tower_GetPastSeasonLayerIdolCardRankingTop_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *towerClient) GetRankingDeck(ctx context.Context, in *TowerGetRankingDeckRequest, opts ...grpc.CallOption) (*TowerGetRankingDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TowerGetRankingDeckResponse)
+	err := c.cc.Invoke(ctx, Tower_GetRankingDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TowerServer is the server API for Tower service.
+// All implementations must embed UnimplementedTowerServer
+// for forward compatibility.
+type TowerServer interface {
+	Top(context.Context, *Empty) (*TowerTopResponse, error)
+	ListLayers(context.Context, *TowerListLayersRequest) (*TowerListLayersResponse, error)
+	GetLayer(context.Context, *TowerGetLayerRequest) (*TowerGetLayerResponse, error)
+	Start(context.Context, *TowerStartRequest) (*TowerStartResponse, error)
+	End(context.Context, *TowerEndRequest) (*TowerEndResponse, error)
+	Check(context.Context, *TowerCheckRequest) (*TowerCheckResponse, error)
+	UpdateMemoryDeck(context.Context, *TowerUpdateMemoryDeckRequest) (*TowerUpdateMemoryDeckResponse, error)
+	ReceiveLayerCountReward(context.Context, *TowerReceiveLayerCountRewardRequest) (*TowerReceiveLayerCountRewardResponse, error)
+	ReceiveTotalClearRankReward(context.Context, *TowerReceiveTotalClearRankRewardRequest) (*TowerReceiveTotalClearRankRewardResponse, error)
+	ListLayerPlayerHistories(context.Context, *TowerListLayerPlayerHistoriesRequest) (*TowerListLayerPlayerHistoriesResponse, error)
+	GetRanking(context.Context, *TowerGetRankingRequest) (*TowerGetRankingResponse, error)
+	GetPastSeasonRanking(context.Context, *TowerGetPastSeasonRankingRequest) (*TowerGetPastSeasonRankingResponse, error)
+	GetLayerIdolCardRanking(context.Context, *TowerGetLayerIdolCardRankingRequest) (*TowerGetLayerIdolCardRankingResponse, error)
+	GetPastSeasonLayerIdolCardRanking(context.Context, *TowerGetPastSeasonLayerIdolCardRankingRequest) (*TowerGetPastSeasonLayerIdolCardRankingResponse, error)
+	GetLayerIdolCardRankingTop(context.Context, *TowerGetLayerIdolCardRankingTopRequest) (*TowerGetLayerIdolCardRankingTopResponse, error)
+	GetPastSeasonLayerIdolCardRankingTop(context.Context, *TowerGetPastSeasonLayerIdolCardRankingTopRequest) (*TowerGetPastSeasonLayerIdolCardRankingTopResponse, error)
+	GetRankingDeck(context.Context, *TowerGetRankingDeckRequest) (*TowerGetRankingDeckResponse, error)
+	mustEmbedUnimplementedTowerServer()
+}
+
+// UnimplementedTowerServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTowerServer struct{}
+
+func (UnimplementedTowerServer) Top(context.Context, *Empty) (*TowerTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedTowerServer) ListLayers(context.Context, *TowerListLayersRequest) (*TowerListLayersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLayers not implemented")
+}
+func (UnimplementedTowerServer) GetLayer(context.Context, *TowerGetLayerRequest) (*TowerGetLayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLayer not implemented")
+}
+func (UnimplementedTowerServer) Start(context.Context, *TowerStartRequest) (*TowerStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedTowerServer) End(context.Context, *TowerEndRequest) (*TowerEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedTowerServer) Check(context.Context, *TowerCheckRequest) (*TowerCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedTowerServer) UpdateMemoryDeck(context.Context, *TowerUpdateMemoryDeckRequest) (*TowerUpdateMemoryDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMemoryDeck not implemented")
+}
+func (UnimplementedTowerServer) ReceiveLayerCountReward(context.Context, *TowerReceiveLayerCountRewardRequest) (*TowerReceiveLayerCountRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveLayerCountReward not implemented")
+}
+func (UnimplementedTowerServer) ReceiveTotalClearRankReward(context.Context, *TowerReceiveTotalClearRankRewardRequest) (*TowerReceiveTotalClearRankRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveTotalClearRankReward not implemented")
+}
+func (UnimplementedTowerServer) ListLayerPlayerHistories(context.Context, *TowerListLayerPlayerHistoriesRequest) (*TowerListLayerPlayerHistoriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLayerPlayerHistories not implemented")
+}
+func (UnimplementedTowerServer) GetRanking(context.Context, *TowerGetRankingRequest) (*TowerGetRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRanking not implemented")
+}
+func (UnimplementedTowerServer) GetPastSeasonRanking(context.Context, *TowerGetPastSeasonRankingRequest) (*TowerGetPastSeasonRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPastSeasonRanking not implemented")
+}
+func (UnimplementedTowerServer) GetLayerIdolCardRanking(context.Context, *TowerGetLayerIdolCardRankingRequest) (*TowerGetLayerIdolCardRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLayerIdolCardRanking not implemented")
+}
+func (UnimplementedTowerServer) GetPastSeasonLayerIdolCardRanking(context.Context, *TowerGetPastSeasonLayerIdolCardRankingRequest) (*TowerGetPastSeasonLayerIdolCardRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPastSeasonLayerIdolCardRanking not implemented")
+}
+func (UnimplementedTowerServer) GetLayerIdolCardRankingTop(context.Context, *TowerGetLayerIdolCardRankingTopRequest) (*TowerGetLayerIdolCardRankingTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLayerIdolCardRankingTop not implemented")
+}
+func (UnimplementedTowerServer) GetPastSeasonLayerIdolCardRankingTop(context.Context, *TowerGetPastSeasonLayerIdolCardRankingTopRequest) (*TowerGetPastSeasonLayerIdolCardRankingTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPastSeasonLayerIdolCardRankingTop not implemented")
+}
+func (UnimplementedTowerServer) GetRankingDeck(context.Context, *TowerGetRankingDeckRequest) (*TowerGetRankingDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRankingDeck not implemented")
+}
+func (UnimplementedTowerServer) mustEmbedUnimplementedTowerServer() {}
+func (UnimplementedTowerServer) testEmbeddedByValue()               {}
+
+// UnsafeTowerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TowerServer will
+// result in compilation errors.
+type UnsafeTowerServer interface {
+	mustEmbedUnimplementedTowerServer()
+}
+
+func RegisterTowerServer(s grpc.ServiceRegistrar, srv TowerServer) {
+	// If the following call pancis, it indicates UnimplementedTowerServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Tower_ServiceDesc, srv)
+}
+
+func _Tower_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_ListLayers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerListLayersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).ListLayers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_ListLayers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).ListLayers(ctx, req.(*TowerListLayersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetLayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetLayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetLayer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetLayer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetLayer(ctx, req.(*TowerGetLayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).Start(ctx, req.(*TowerStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).End(ctx, req.(*TowerEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).Check(ctx, req.(*TowerCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_UpdateMemoryDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerUpdateMemoryDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).UpdateMemoryDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_UpdateMemoryDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).UpdateMemoryDeck(ctx, req.(*TowerUpdateMemoryDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_ReceiveLayerCountReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerReceiveLayerCountRewardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).ReceiveLayerCountReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_ReceiveLayerCountReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).ReceiveLayerCountReward(ctx, req.(*TowerReceiveLayerCountRewardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_ReceiveTotalClearRankReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerReceiveTotalClearRankRewardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).ReceiveTotalClearRankReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_ReceiveTotalClearRankReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).ReceiveTotalClearRankReward(ctx, req.(*TowerReceiveTotalClearRankRewardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_ListLayerPlayerHistories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerListLayerPlayerHistoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).ListLayerPlayerHistories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_ListLayerPlayerHistories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).ListLayerPlayerHistories(ctx, req.(*TowerListLayerPlayerHistoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetRanking(ctx, req.(*TowerGetRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetPastSeasonRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetPastSeasonRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetPastSeasonRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetPastSeasonRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetPastSeasonRanking(ctx, req.(*TowerGetPastSeasonRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetLayerIdolCardRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetLayerIdolCardRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetLayerIdolCardRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetLayerIdolCardRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetLayerIdolCardRanking(ctx, req.(*TowerGetLayerIdolCardRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetPastSeasonLayerIdolCardRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetPastSeasonLayerIdolCardRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetPastSeasonLayerIdolCardRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetPastSeasonLayerIdolCardRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetPastSeasonLayerIdolCardRanking(ctx, req.(*TowerGetPastSeasonLayerIdolCardRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetLayerIdolCardRankingTop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetLayerIdolCardRankingTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetLayerIdolCardRankingTop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetLayerIdolCardRankingTop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetLayerIdolCardRankingTop(ctx, req.(*TowerGetLayerIdolCardRankingTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetPastSeasonLayerIdolCardRankingTop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetPastSeasonLayerIdolCardRankingTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetPastSeasonLayerIdolCardRankingTop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetPastSeasonLayerIdolCardRankingTop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetPastSeasonLayerIdolCardRankingTop(ctx, req.(*TowerGetPastSeasonLayerIdolCardRankingTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tower_GetRankingDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TowerGetRankingDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TowerServer).GetRankingDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tower_GetRankingDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TowerServer).GetRankingDeck(ctx, req.(*TowerGetRankingDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Tower_ServiceDesc is the grpc.ServiceDesc for Tower service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tower_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Tower",
+	HandlerType: (*TowerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Tower_Top_Handler,
+		},
+		{
+			MethodName: "ListLayers",
+			Handler:    _Tower_ListLayers_Handler,
+		},
+		{
+			MethodName: "GetLayer",
+			Handler:    _Tower_GetLayer_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _Tower_Start_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _Tower_End_Handler,
+		},
+		{
+			MethodName: "Check",
+			Handler:    _Tower_Check_Handler,
+		},
+		{
+			MethodName: "UpdateMemoryDeck",
+			Handler:    _Tower_UpdateMemoryDeck_Handler,
+		},
+		{
+			MethodName: "ReceiveLayerCountReward",
+			Handler:    _Tower_ReceiveLayerCountReward_Handler,
+		},
+		{
+			MethodName: "ReceiveTotalClearRankReward",
+			Handler:    _Tower_ReceiveTotalClearRankReward_Handler,
+		},
+		{
+			MethodName: "ListLayerPlayerHistories",
+			Handler:    _Tower_ListLayerPlayerHistories_Handler,
+		},
+		{
+			MethodName: "GetRanking",
+			Handler:    _Tower_GetRanking_Handler,
+		},
+		{
+			MethodName: "GetPastSeasonRanking",
+			Handler:    _Tower_GetPastSeasonRanking_Handler,
+		},
+		{
+			MethodName: "GetLayerIdolCardRanking",
+			Handler:    _Tower_GetLayerIdolCardRanking_Handler,
+		},
+		{
+			MethodName: "GetPastSeasonLayerIdolCardRanking",
+			Handler:    _Tower_GetPastSeasonLayerIdolCardRanking_Handler,
+		},
+		{
+			MethodName: "GetLayerIdolCardRankingTop",
+			Handler:    _Tower_GetLayerIdolCardRankingTop_Handler,
+		},
+		{
+			MethodName: "GetPastSeasonLayerIdolCardRankingTop",
+			Handler:    _Tower_GetPastSeasonLayerIdolCardRankingTop_Handler,
+		},
+		{
+			MethodName: "GetRankingDeck",
+			Handler:    _Tower_GetRankingDeck_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Tutorial_UnlockFeature_FullMethodName                    = "/client.api.Tutorial/UnlockFeature"
+	Tutorial_SetName_FullMethodName                          = "/client.api.Tutorial/SetName"
+	Tutorial_Progress_FullMethodName                         = "/client.api.Tutorial/Progress"
+	Tutorial_Skip_FullMethodName                             = "/client.api.Tutorial/Skip"
+	Tutorial_ReadDearnessStory_FullMethodName                = "/client.api.Tutorial/ReadDearnessStory"
+	Tutorial_ReceiveIdolCard_FullMethodName                  = "/client.api.Tutorial/ReceiveIdolCard"
+	Tutorial_ProduceStart_FullMethodName                     = "/client.api.Tutorial/ProduceStart"
+	Tutorial_ProduceNext_FullMethodName                      = "/client.api.Tutorial/ProduceNext"
+	Tutorial_ProduceStepLessonEnd_FullMethodName             = "/client.api.Tutorial/ProduceStepLessonEnd"
+	Tutorial_ProduceStepPresentReceive_FullMethodName        = "/client.api.Tutorial/ProduceStepPresentReceive"
+	Tutorial_ProduceStepAuditionExamEnd_FullMethodName       = "/client.api.Tutorial/ProduceStepAuditionExamEnd"
+	Tutorial_ProduceStepAuditionEnd_FullMethodName           = "/client.api.Tutorial/ProduceStepAuditionEnd"
+	Tutorial_CheckBeforeLiveProduceEvaluation_FullMethodName = "/client.api.Tutorial/CheckBeforeLiveProduceEvaluation"
+	Tutorial_ProduceResult_FullMethodName                    = "/client.api.Tutorial/ProduceResult"
+)
+
+// TutorialClient is the client API for Tutorial service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TutorialClient interface {
+	UnlockFeature(ctx context.Context, in *TutorialUnlockFeatureRequest, opts ...grpc.CallOption) (*TutorialUnlockFeatureResponse, error)
+	SetName(ctx context.Context, in *TutorialSetNameRequest, opts ...grpc.CallOption) (*TutorialSetNameResponse, error)
+	Progress(ctx context.Context, in *TutorialProgressRequest, opts ...grpc.CallOption) (*TutorialProgressResponse, error)
+	Skip(ctx context.Context, in *TutorialSkipRequest, opts ...grpc.CallOption) (*TutorialSkipResponse, error)
+	ReadDearnessStory(ctx context.Context, in *TutorialReadDearnessStoryRequest, opts ...grpc.CallOption) (*TutorialReadDearnessStoryResponse, error)
+	ReceiveIdolCard(ctx context.Context, in *TutorialReceiveIdolCardRequest, opts ...grpc.CallOption) (*TutorialReceiveIdolCardResponse, error)
+	ProduceStart(ctx context.Context, in *TutorialProduceStartRequest, opts ...grpc.CallOption) (*TutorialProduceStartResponse, error)
+	ProduceNext(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialProduceNextResponse, error)
+	ProduceStepLessonEnd(ctx context.Context, in *TutorialProduceStepLessonEndRequest, opts ...grpc.CallOption) (*TutorialProduceStepLessonEndResponse, error)
+	ProduceStepPresentReceive(ctx context.Context, in *TutorialProduceStepPresentReceiveRequest, opts ...grpc.CallOption) (*TutorialProduceStepPresentReceiveResponse, error)
+	ProduceStepAuditionExamEnd(ctx context.Context, in *TutorialProduceStepAuditionExamEndRequest, opts ...grpc.CallOption) (*TutorialProduceStepAuditionExamEndResponse, error)
+	ProduceStepAuditionEnd(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialProduceStepAuditionEndResponse, error)
+	CheckBeforeLiveProduceEvaluation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialCheckBeforeLiveProduceEvaluationResponse, error)
+	ProduceResult(ctx context.Context, in *TutorialProduceResultRequest, opts ...grpc.CallOption) (*TutorialProduceResultResponse, error)
+}
+
+type tutorialClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTutorialClient(cc grpc.ClientConnInterface) TutorialClient {
+	return &tutorialClient{cc}
+}
+
+func (c *tutorialClient) UnlockFeature(ctx context.Context, in *TutorialUnlockFeatureRequest, opts ...grpc.CallOption) (*TutorialUnlockFeatureResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialUnlockFeatureResponse)
+	err := c.cc.Invoke(ctx, Tutorial_UnlockFeature_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) SetName(ctx context.Context, in *TutorialSetNameRequest, opts ...grpc.CallOption) (*TutorialSetNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialSetNameResponse)
+	err := c.cc.Invoke(ctx, Tutorial_SetName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) Progress(ctx context.Context, in *TutorialProgressRequest, opts ...grpc.CallOption) (*TutorialProgressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProgressResponse)
+	err := c.cc.Invoke(ctx, Tutorial_Progress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) Skip(ctx context.Context, in *TutorialSkipRequest, opts ...grpc.CallOption) (*TutorialSkipResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialSkipResponse)
+	err := c.cc.Invoke(ctx, Tutorial_Skip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ReadDearnessStory(ctx context.Context, in *TutorialReadDearnessStoryRequest, opts ...grpc.CallOption) (*TutorialReadDearnessStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialReadDearnessStoryResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ReadDearnessStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ReceiveIdolCard(ctx context.Context, in *TutorialReceiveIdolCardRequest, opts ...grpc.CallOption) (*TutorialReceiveIdolCardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialReceiveIdolCardResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ReceiveIdolCard_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceStart(ctx context.Context, in *TutorialProduceStartRequest, opts ...grpc.CallOption) (*TutorialProduceStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceStartResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceNext(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialProduceNextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceNextResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceNext_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceStepLessonEnd(ctx context.Context, in *TutorialProduceStepLessonEndRequest, opts ...grpc.CallOption) (*TutorialProduceStepLessonEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceStepLessonEndResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceStepLessonEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceStepPresentReceive(ctx context.Context, in *TutorialProduceStepPresentReceiveRequest, opts ...grpc.CallOption) (*TutorialProduceStepPresentReceiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceStepPresentReceiveResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceStepPresentReceive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceStepAuditionExamEnd(ctx context.Context, in *TutorialProduceStepAuditionExamEndRequest, opts ...grpc.CallOption) (*TutorialProduceStepAuditionExamEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceStepAuditionExamEndResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceStepAuditionExamEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceStepAuditionEnd(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialProduceStepAuditionEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceStepAuditionEndResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceStepAuditionEnd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) CheckBeforeLiveProduceEvaluation(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TutorialCheckBeforeLiveProduceEvaluationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialCheckBeforeLiveProduceEvaluationResponse)
+	err := c.cc.Invoke(ctx, Tutorial_CheckBeforeLiveProduceEvaluation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tutorialClient) ProduceResult(ctx context.Context, in *TutorialProduceResultRequest, opts ...grpc.CallOption) (*TutorialProduceResultResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TutorialProduceResultResponse)
+	err := c.cc.Invoke(ctx, Tutorial_ProduceResult_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TutorialServer is the server API for Tutorial service.
+// All implementations must embed UnimplementedTutorialServer
+// for forward compatibility.
+type TutorialServer interface {
+	UnlockFeature(context.Context, *TutorialUnlockFeatureRequest) (*TutorialUnlockFeatureResponse, error)
+	SetName(context.Context, *TutorialSetNameRequest) (*TutorialSetNameResponse, error)
+	Progress(context.Context, *TutorialProgressRequest) (*TutorialProgressResponse, error)
+	Skip(context.Context, *TutorialSkipRequest) (*TutorialSkipResponse, error)
+	ReadDearnessStory(context.Context, *TutorialReadDearnessStoryRequest) (*TutorialReadDearnessStoryResponse, error)
+	ReceiveIdolCard(context.Context, *TutorialReceiveIdolCardRequest) (*TutorialReceiveIdolCardResponse, error)
+	ProduceStart(context.Context, *TutorialProduceStartRequest) (*TutorialProduceStartResponse, error)
+	ProduceNext(context.Context, *Empty) (*TutorialProduceNextResponse, error)
+	ProduceStepLessonEnd(context.Context, *TutorialProduceStepLessonEndRequest) (*TutorialProduceStepLessonEndResponse, error)
+	ProduceStepPresentReceive(context.Context, *TutorialProduceStepPresentReceiveRequest) (*TutorialProduceStepPresentReceiveResponse, error)
+	ProduceStepAuditionExamEnd(context.Context, *TutorialProduceStepAuditionExamEndRequest) (*TutorialProduceStepAuditionExamEndResponse, error)
+	ProduceStepAuditionEnd(context.Context, *Empty) (*TutorialProduceStepAuditionEndResponse, error)
+	CheckBeforeLiveProduceEvaluation(context.Context, *Empty) (*TutorialCheckBeforeLiveProduceEvaluationResponse, error)
+	ProduceResult(context.Context, *TutorialProduceResultRequest) (*TutorialProduceResultResponse, error)
+	mustEmbedUnimplementedTutorialServer()
+}
+
+// UnimplementedTutorialServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTutorialServer struct{}
+
+func (UnimplementedTutorialServer) UnlockFeature(context.Context, *TutorialUnlockFeatureRequest) (*TutorialUnlockFeatureResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockFeature not implemented")
+}
+func (UnimplementedTutorialServer) SetName(context.Context, *TutorialSetNameRequest) (*TutorialSetNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetName not implemented")
+}
+func (UnimplementedTutorialServer) Progress(context.Context, *TutorialProgressRequest) (*TutorialProgressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Progress not implemented")
+}
+func (UnimplementedTutorialServer) Skip(context.Context, *TutorialSkipRequest) (*TutorialSkipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Skip not implemented")
+}
+func (UnimplementedTutorialServer) ReadDearnessStory(context.Context, *TutorialReadDearnessStoryRequest) (*TutorialReadDearnessStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadDearnessStory not implemented")
+}
+func (UnimplementedTutorialServer) ReceiveIdolCard(context.Context, *TutorialReceiveIdolCardRequest) (*TutorialReceiveIdolCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveIdolCard not implemented")
+}
+func (UnimplementedTutorialServer) ProduceStart(context.Context, *TutorialProduceStartRequest) (*TutorialProduceStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceStart not implemented")
+}
+func (UnimplementedTutorialServer) ProduceNext(context.Context, *Empty) (*TutorialProduceNextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceNext not implemented")
+}
+func (UnimplementedTutorialServer) ProduceStepLessonEnd(context.Context, *TutorialProduceStepLessonEndRequest) (*TutorialProduceStepLessonEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceStepLessonEnd not implemented")
+}
+func (UnimplementedTutorialServer) ProduceStepPresentReceive(context.Context, *TutorialProduceStepPresentReceiveRequest) (*TutorialProduceStepPresentReceiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceStepPresentReceive not implemented")
+}
+func (UnimplementedTutorialServer) ProduceStepAuditionExamEnd(context.Context, *TutorialProduceStepAuditionExamEndRequest) (*TutorialProduceStepAuditionExamEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceStepAuditionExamEnd not implemented")
+}
+func (UnimplementedTutorialServer) ProduceStepAuditionEnd(context.Context, *Empty) (*TutorialProduceStepAuditionEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceStepAuditionEnd not implemented")
+}
+func (UnimplementedTutorialServer) CheckBeforeLiveProduceEvaluation(context.Context, *Empty) (*TutorialCheckBeforeLiveProduceEvaluationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckBeforeLiveProduceEvaluation not implemented")
+}
+func (UnimplementedTutorialServer) ProduceResult(context.Context, *TutorialProduceResultRequest) (*TutorialProduceResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProduceResult not implemented")
+}
+func (UnimplementedTutorialServer) mustEmbedUnimplementedTutorialServer() {}
+func (UnimplementedTutorialServer) testEmbeddedByValue()                  {}
+
+// UnsafeTutorialServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TutorialServer will
+// result in compilation errors.
+type UnsafeTutorialServer interface {
+	mustEmbedUnimplementedTutorialServer()
+}
+
+func RegisterTutorialServer(s grpc.ServiceRegistrar, srv TutorialServer) {
+	// If the following call pancis, it indicates UnimplementedTutorialServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Tutorial_ServiceDesc, srv)
+}
+
+func _Tutorial_UnlockFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialUnlockFeatureRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).UnlockFeature(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_UnlockFeature_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).UnlockFeature(ctx, req.(*TutorialUnlockFeatureRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_SetName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialSetNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).SetName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_SetName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).SetName(ctx, req.(*TutorialSetNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_Progress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProgressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).Progress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_Progress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).Progress(ctx, req.(*TutorialProgressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_Skip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialSkipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).Skip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_Skip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).Skip(ctx, req.(*TutorialSkipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ReadDearnessStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialReadDearnessStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ReadDearnessStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ReadDearnessStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ReadDearnessStory(ctx, req.(*TutorialReadDearnessStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ReceiveIdolCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialReceiveIdolCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ReceiveIdolCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ReceiveIdolCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ReceiveIdolCard(ctx, req.(*TutorialReceiveIdolCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProduceStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceStart(ctx, req.(*TutorialProduceStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceNext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceNext(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceNext_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceNext(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceStepLessonEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProduceStepLessonEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceStepLessonEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceStepLessonEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceStepLessonEnd(ctx, req.(*TutorialProduceStepLessonEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceStepPresentReceive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProduceStepPresentReceiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceStepPresentReceive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceStepPresentReceive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceStepPresentReceive(ctx, req.(*TutorialProduceStepPresentReceiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceStepAuditionExamEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProduceStepAuditionExamEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceStepAuditionExamEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceStepAuditionExamEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceStepAuditionExamEnd(ctx, req.(*TutorialProduceStepAuditionExamEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceStepAuditionEnd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceStepAuditionEnd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceStepAuditionEnd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceStepAuditionEnd(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_CheckBeforeLiveProduceEvaluation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).CheckBeforeLiveProduceEvaluation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_CheckBeforeLiveProduceEvaluation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).CheckBeforeLiveProduceEvaluation(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tutorial_ProduceResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TutorialProduceResultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TutorialServer).ProduceResult(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tutorial_ProduceResult_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TutorialServer).ProduceResult(ctx, req.(*TutorialProduceResultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Tutorial_ServiceDesc is the grpc.ServiceDesc for Tutorial service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tutorial_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Tutorial",
+	HandlerType: (*TutorialServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UnlockFeature",
+			Handler:    _Tutorial_UnlockFeature_Handler,
+		},
+		{
+			MethodName: "SetName",
+			Handler:    _Tutorial_SetName_Handler,
+		},
+		{
+			MethodName: "Progress",
+			Handler:    _Tutorial_Progress_Handler,
+		},
+		{
+			MethodName: "Skip",
+			Handler:    _Tutorial_Skip_Handler,
+		},
+		{
+			MethodName: "ReadDearnessStory",
+			Handler:    _Tutorial_ReadDearnessStory_Handler,
+		},
+		{
+			MethodName: "ReceiveIdolCard",
+			Handler:    _Tutorial_ReceiveIdolCard_Handler,
+		},
+		{
+			MethodName: "ProduceStart",
+			Handler:    _Tutorial_ProduceStart_Handler,
+		},
+		{
+			MethodName: "ProduceNext",
+			Handler:    _Tutorial_ProduceNext_Handler,
+		},
+		{
+			MethodName: "ProduceStepLessonEnd",
+			Handler:    _Tutorial_ProduceStepLessonEnd_Handler,
+		},
+		{
+			MethodName: "ProduceStepPresentReceive",
+			Handler:    _Tutorial_ProduceStepPresentReceive_Handler,
+		},
+		{
+			MethodName: "ProduceStepAuditionExamEnd",
+			Handler:    _Tutorial_ProduceStepAuditionExamEnd_Handler,
+		},
+		{
+			MethodName: "ProduceStepAuditionEnd",
+			Handler:    _Tutorial_ProduceStepAuditionEnd_Handler,
+		},
+		{
+			MethodName: "CheckBeforeLiveProduceEvaluation",
+			Handler:    _Tutorial_CheckBeforeLiveProduceEvaluation_Handler,
+		},
+		{
+			MethodName: "ProduceResult",
+			Handler:    _Tutorial_ProduceResult_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	User_Get_FullMethodName         = "/client.api.User/Get"
+	User_ListMessage_FullMethodName = "/client.api.User/ListMessage"
+	User_ReadMessage_FullMethodName = "/client.api.User/ReadMessage"
+)
+
+// UserClient is the client API for User service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UserClient interface {
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserGetResponse, error)
+	ListMessage(ctx context.Context, in *UserListMessageRequest, opts ...grpc.CallOption) (*UserListMessageResponse, error)
+	ReadMessage(ctx context.Context, in *UserReadMessageRequest, opts ...grpc.CallOption) (*UserReadMessageResponse, error)
+}
+
+type userClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUserClient(cc grpc.ClientConnInterface) UserClient {
+	return &userClient{cc}
+}
+
+func (c *userClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserGetResponse)
+	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ListMessage(ctx context.Context, in *UserListMessageRequest, opts ...grpc.CallOption) (*UserListMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserListMessageResponse)
+	err := c.cc.Invoke(ctx, User_ListMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ReadMessage(ctx context.Context, in *UserReadMessageRequest, opts ...grpc.CallOption) (*UserReadMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserReadMessageResponse)
+	err := c.cc.Invoke(ctx, User_ReadMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserServer is the server API for User service.
+// All implementations must embed UnimplementedUserServer
+// for forward compatibility.
+type UserServer interface {
+	Get(context.Context, *Empty) (*UserGetResponse, error)
+	ListMessage(context.Context, *UserListMessageRequest) (*UserListMessageResponse, error)
+	ReadMessage(context.Context, *UserReadMessageRequest) (*UserReadMessageResponse, error)
+	mustEmbedUnimplementedUserServer()
+}
+
+// UnimplementedUserServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedUserServer struct{}
+
+func (UnimplementedUserServer) Get(context.Context, *Empty) (*UserGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedUserServer) ListMessage(context.Context, *UserListMessageRequest) (*UserListMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMessage not implemented")
+}
+func (UnimplementedUserServer) ReadMessage(context.Context, *UserReadMessageRequest) (*UserReadMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadMessage not implemented")
+}
+func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
+func (UnimplementedUserServer) testEmbeddedByValue()              {}
+
+// UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserServer will
+// result in compilation errors.
+type UnsafeUserServer interface {
+	mustEmbedUnimplementedUserServer()
+}
+
+func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
+	// If the following call pancis, it indicates UnimplementedUserServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&User_ServiceDesc, srv)
+}
+
+func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ListMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserListMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ListMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ListMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ListMessage(ctx, req.(*UserListMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ReadMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserReadMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ReadMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ReadMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ReadMessage(ctx, req.(*UserReadMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// User_ServiceDesc is the grpc.ServiceDesc for User service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.User",
+	HandlerType: (*UserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _User_Get_Handler,
+		},
+		{
+			MethodName: "ListMessage",
+			Handler:    _User_ListMessage_Handler,
+		},
+		{
+			MethodName: "ReadMessage",
+			Handler:    _User_ReadMessage_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	Work_Top_FullMethodName    = "/client.api.Work/Top"
+	Work_Start_FullMethodName  = "/client.api.Work/Start"
+	Work_Stop_FullMethodName   = "/client.api.Work/Stop"
+	Work_Skip_FullMethodName   = "/client.api.Work/Skip"
+	Work_Finish_FullMethodName = "/client.api.Work/Finish"
+)
+
+// WorkClient is the client API for Work service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type WorkClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WorkTopResponse, error)
+	Start(ctx context.Context, in *WorkStartRequest, opts ...grpc.CallOption) (*WorkStartResponse, error)
+	Stop(ctx context.Context, in *WorkStopRequest, opts ...grpc.CallOption) (*WorkStopResponse, error)
+	Skip(ctx context.Context, in *WorkSkipRequest, opts ...grpc.CallOption) (*WorkSkipResponse, error)
+	Finish(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WorkFinishResponse, error)
+}
+
+type workClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWorkClient(cc grpc.ClientConnInterface) WorkClient {
+	return &workClient{cc}
+}
+
+func (c *workClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WorkTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkTopResponse)
+	err := c.cc.Invoke(ctx, Work_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workClient) Start(ctx context.Context, in *WorkStartRequest, opts ...grpc.CallOption) (*WorkStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkStartResponse)
+	err := c.cc.Invoke(ctx, Work_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workClient) Stop(ctx context.Context, in *WorkStopRequest, opts ...grpc.CallOption) (*WorkStopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkStopResponse)
+	err := c.cc.Invoke(ctx, Work_Stop_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workClient) Skip(ctx context.Context, in *WorkSkipRequest, opts ...grpc.CallOption) (*WorkSkipResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkSkipResponse)
+	err := c.cc.Invoke(ctx, Work_Skip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workClient) Finish(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WorkFinishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WorkFinishResponse)
+	err := c.cc.Invoke(ctx, Work_Finish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WorkServer is the server API for Work service.
+// All implementations must embed UnimplementedWorkServer
+// for forward compatibility.
+type WorkServer interface {
+	Top(context.Context, *Empty) (*WorkTopResponse, error)
+	Start(context.Context, *WorkStartRequest) (*WorkStartResponse, error)
+	Stop(context.Context, *WorkStopRequest) (*WorkStopResponse, error)
+	Skip(context.Context, *WorkSkipRequest) (*WorkSkipResponse, error)
+	Finish(context.Context, *Empty) (*WorkFinishResponse, error)
+	mustEmbedUnimplementedWorkServer()
+}
+
+// UnimplementedWorkServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedWorkServer struct{}
+
+func (UnimplementedWorkServer) Top(context.Context, *Empty) (*WorkTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedWorkServer) Start(context.Context, *WorkStartRequest) (*WorkStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedWorkServer) Stop(context.Context, *WorkStopRequest) (*WorkStopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Stop not implemented")
+}
+func (UnimplementedWorkServer) Skip(context.Context, *WorkSkipRequest) (*WorkSkipResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Skip not implemented")
+}
+func (UnimplementedWorkServer) Finish(context.Context, *Empty) (*WorkFinishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Finish not implemented")
+}
+func (UnimplementedWorkServer) mustEmbedUnimplementedWorkServer() {}
+func (UnimplementedWorkServer) testEmbeddedByValue()              {}
+
+// UnsafeWorkServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WorkServer will
+// result in compilation errors.
+type UnsafeWorkServer interface {
+	mustEmbedUnimplementedWorkServer()
+}
+
+func RegisterWorkServer(s grpc.ServiceRegistrar, srv WorkServer) {
+	// If the following call pancis, it indicates UnimplementedWorkServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Work_ServiceDesc, srv)
+}
+
+func _Work_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Work_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Work_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Work_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkServer).Start(ctx, req.(*WorkStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Work_Stop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkStopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkServer).Stop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Work_Stop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkServer).Stop(ctx, req.(*WorkStopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Work_Skip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WorkSkipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkServer).Skip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Work_Skip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkServer).Skip(ctx, req.(*WorkSkipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Work_Finish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkServer).Finish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Work_Finish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkServer).Finish(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Work_ServiceDesc is the grpc.ServiceDesc for Work service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Work_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Work",
+	HandlerType: (*WorkServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Work_Top_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _Work_Start_Handler,
+		},
+		{
+			MethodName: "Stop",
+			Handler:    _Work_Stop_Handler,
+		},
+		{
+			MethodName: "Skip",
+			Handler:    _Work_Skip_Handler,
+		},
+		{
+			MethodName: "Finish",
+			Handler:    _Work_Finish_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

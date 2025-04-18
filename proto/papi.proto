@@ -6,36 +6,365 @@ import "pcommon.proto";
 import "pmaster.proto";
 import "papicommon.proto";
 
-service System {
-  rpc Check(SystemCheckRequest) returns (SystemCheckResponse);
-}
+message Empty {}
+
 service Auth {
+  rpc Create(Empty) returns (AuthCreateResponse);
   rpc Login(AuthLoginRequest) returns (AuthLoginResponse);
+  rpc LinkBandaiNamcoId(AuthLinkBandaiNamcoIdRequest) returns (AuthLinkBandaiNamcoIdResponse);
+  rpc Unlink(Empty) returns (AuthUnlinkResponse);
+  rpc PrepareMigrationBandaiNamcoId(AuthPrepareMigrationBandaiNamcoIdRequest) returns (AuthPrepareMigrationBandaiNamcoIdResponse);
+  rpc Migrate(AuthMigrateRequest) returns (AuthMigrateResponse);
+  rpc MigrateDmmGamesId(Empty) returns (AuthMigrateDmmGamesIdResponse);
+  rpc AgreeTerms(AuthAgreeTermsRequest) returns (AuthAgreeTermsResponse);
+  rpc GetConsent(Empty) returns (AuthGetConsentResponse);
+  rpc SendConsent(AuthSendConsentRequest) returns (AuthSendConsentResponse);
 }
-service Master {
-  rpc Get(Empty) returns (MasterGetResponse);
+service Character {
+  rpc CheckRoster(CharacterCheckRosterRequest) returns (CharacterCheckRosterResponse);
 }
-service User {
-  rpc Get(Empty) returns (UserGetResponse);
+service CoinGasha {
+  rpc Get(CoinGashaGetRequest) returns (CoinGashaGetResponse);
+  rpc List(Empty) returns (CoinGashaListResponse);
+  rpc Draw(CoinGashaDrawRequest) returns (CoinGashaDrawResponse);
+  rpc ResetBox(CoinGashaResetBoxRequest) returns (CoinGashaResetBoxResponse);
+}
+service Costume {
+  rpc Set(CostumeSetRequest) returns (CostumeSetResponse);
+  rpc Check(CostumeCheckRequest) returns (CostumeCheckResponse);
+}
+service Exchange {
+  rpc Get(ExchangeGetRequest) returns (ExchangeGetResponse);
+  rpc List(ExchangeListRequest) returns (ExchangeListResponse);
+  rpc Execute(ExchangeExecuteRequest) returns (ExchangeExecuteResponse);
+  rpc Reset(ExchangeResetRequest) returns (ExchangeResetResponse);
+}
+service Friend {
+  rpc List(Empty) returns (FriendListResponse);
+  rpc ListSuggestion(Empty) returns (FriendListSuggestionResponse);
+  rpc Follow(FriendFollowRequest) returns (FriendFollowResponse);
+  rpc UnFollow(FriendUnFollowRequest) returns (FriendUnFollowResponse);
+  rpc DeleteFollower(FriendDeleteFollowerRequest) returns (FriendDeleteFollowerResponse);
+}
+service Gasha {
+  rpc List(Empty) returns (GashaListResponse);
+  rpc Draw(GashaDrawRequest) returns (GashaDrawResponse);
+  rpc GetProbability(GashaGetProbabilityRequest) returns (GashaGetProbabilityResponse);
+  rpc SelectPickup(GashaSelectPickupRequest) returns (GashaSelectPickupResponse);
+  rpc DrawSelectPickup(GashaDrawSelectPickupRequest) returns (GashaDrawSelectPickupResponse);
+  rpc GetSelectPickupProbability(GashaGetSelectPickupProbabilityRequest) returns (GashaGetSelectPickupProbabilityResponse);
+  rpc DrawStepUp(GashaDrawStepUpRequest) returns (GashaDrawStepUpResponse);
+  rpc GetStepUpProbability(GashaGetStepUpProbabilityRequest) returns (GashaGetStepUpProbabilityResponse);
+  rpc GetPointExchange(GashaGetPointExchangeRequest) returns (GashaGetPointExchangeResponse);
+  rpc ExchangePoint(GashaExchangePointRequest) returns (GashaExchangePointResponse);
+  rpc ExpirePoint(Empty) returns (GashaExpirePointResponse);
+  rpc GetPrecaution(GashaGetPrecautionRequest) returns (GashaGetPrecautionResponse);
+}
+service Gift {
+  rpc List(GiftListRequest) returns (GiftListResponse);
+  rpc Count(Empty) returns (GiftCountResponse);
+  rpc ListHistory(GiftListHistoryRequest) returns (GiftListHistoryResponse);
+  rpc Open(GiftOpenRequest) returns (GiftOpenResponse);
+}
+service Guild {
+  rpc Top(Empty) returns (GuildTopResponse);
+  rpc Search(GuildSearchRequest) returns (GuildSearchResponse);
+  rpc Get(GuildGetRequest) returns (GuildGetResponse);
+  rpc Establish(GuildEstablishRequest) returns (GuildEstablishResponse);
+  rpc EditDetail(GuildEditDetailRequest) returns (GuildEditDetailResponse);
+  rpc EditLeaderMessage(GuildEditLeaderMessageRequest) returns (GuildEditLeaderMessageResponse);
+  rpc ApplyJoinRequest(GuildApplyJoinRequestRequest) returns (GuildApplyJoinRequestResponse);
+  rpc CancelJoinRequest(GuildCancelJoinRequestRequest) returns (GuildCancelJoinRequestResponse);
+  rpc ListJoinRequest(Empty) returns (GuildListJoinRequestResponse);
+  rpc ApproveJoinRequest(GuildApproveJoinRequestRequest) returns (GuildApproveJoinRequestResponse);
+  rpc RejectJoinRequest(GuildRejectJoinRequestRequest) returns (GuildRejectJoinRequestResponse);
+  rpc Leave(Empty) returns (GuildLeaveResponse);
+  rpc Dismiss(GuildDismissRequest) returns (GuildDismissResponse);
+  rpc ChangeLeader(GuildChangeLeaderRequest) returns (GuildChangeLeaderResponse);
+  rpc ListMember(Empty) returns (GuildListMemberResponse);
+  rpc Dissolve(Empty) returns (GuildDissolveResponse);
+  rpc ListDonationRequest(Empty) returns (GuildListDonationRequestResponse);
+  rpc RequestDonation(GuildRequestDonationRequest) returns (GuildRequestDonationResponse);
+  rpc Donate(GuildDonateRequest) returns (GuildDonateResponse);
+  rpc ReceiveDonation(Empty) returns (GuildReceiveDonationResponse);
+  rpc UpdateLeaderMessageReaction(GuildUpdateLeaderMessageReactionRequest) returns (GuildUpdateLeaderMessageReactionResponse);
+}
+service GvgRaid {
+  rpc Top(Empty) returns (GvgRaidTopResponse);
+  rpc GetProgress(Empty) returns (GvgRaidGetProgressResponse);
+  rpc Start(GvgRaidStartRequest) returns (GvgRaidStartResponse);
+  rpc End(GvgRaidEndRequest) returns (GvgRaidEndResponse);
+  rpc PlayTest(GvgRaidPlayTestRequest) returns (GvgRaidPlayTestResponse);
+  rpc GuildRanking(Empty) returns (GvgRaidGuildRankingResponse);
+  rpc UserRanking(Empty) returns (GvgRaidUserRankingResponse);
+  rpc UpdateDeck(GvgRaidUpdateDeckRequest) returns (GvgRaidUpdateDeckResponse);
+}
+service Health {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
 }
 service Home {
   rpc Login(Empty) returns (HomeLoginResponse);
   rpc Enter(Empty) returns (HomeEnterResponse);
+  rpc ListEvent(Empty) returns (HomeListEventResponse);
+  rpc ConfirmBanWarning(Empty) returns (HomeConfirmBanWarningResponse);
+  rpc SetCharacters(HomeSetCharactersRequest) returns (HomeSetCharactersResponse);
+}
+service IdolCard {
+  rpc UpgradeLevelLimitRank(IdolCardUpgradeLevelLimitRankRequest) returns (IdolCardUpgradeLevelLimitRankResponse);
+  rpc UpgradePotentialRank(IdolCardUpgradePotentialRankRequest) returns (IdolCardUpgradePotentialRankResponse);
+  rpc Release(IdolCardReleaseRequest) returns (IdolCardReleaseResponse);
+  rpc ChangeSkin(IdolCardChangeSkinRequest) returns (IdolCardChangeSkinResponse);
+}
+service Invitation {
+  rpc EnterInvitationCode(InvitationEnterInvitationCodeRequest) returns (InvitationEnterInvitationCodeResponse);
+  rpc ListInviteUser(Empty) returns (InvitationListInviteUserResponse);
+  rpc ReceiveInvitationPoint(InvitationReceiveInvitationPointRequest) returns (InvitationReceiveInvitationPointResponse);
+}
+service Item {
+  rpc Sell(ItemSellRequest) returns (ItemSellResponse);
+  rpc ExchangeIdolCardPiece(ItemExchangeIdolCardPieceRequest) returns (ItemExchangeIdolCardPieceResponse);
+  rpc UseActionPointRecovery(ItemUseActionPointRecoveryRequest) returns (ItemUseActionPointRecoveryResponse);
 }
 service LoginBonus {
   rpc Check(Empty) returns (LoginBonusCheckResponse);
   rpc Confirm(Empty) returns (LoginBonusConfirmResponse);
 }
+service Master {
+  rpc Get(Empty) returns (MasterGetResponse);
+}
+service Media {
+  rpc Play(MediaPlayRequest) returns (MediaPlayResponse);
+}
+service Meishi {
+  rpc Get(MeishiGetRequest) returns (MeishiGetResponse);
+  rpc GetDetail(MeishiGetDetailRequest) returns (MeishiGetDetailResponse);
+  rpc List(Empty) returns (MeishiListResponse);
+  rpc ListFollow(Empty) returns (MeishiListFollowResponse);
+  rpc Set(MeishiSetRequest) returns (MeishiSetResponse);
+  rpc Update(MeishiUpdateRequest) returns (MeishiUpdateResponse);
+  rpc Delete(MeishiDeleteRequest) returns (MeishiDeleteResponse);
+  rpc Follow(MeishiFollowRequest) returns (MeishiFollowResponse);
+  rpc Unfollow(MeishiUnfollowRequest) returns (MeishiUnfollowResponse);
+  rpc ReportXPostMission(MeishiReportXPostMissionRequest) returns (MeishiReportXPostMissionResponse);
+}
+service Memory {
+  rpc Inherit(MemoryInheritRequest) returns (MemoryInheritResponse);
+  rpc FixInherit(MemoryFixInheritRequest) returns (MemoryFixInheritResponse);
+  rpc Exchange(MemoryExchangeRequest) returns (MemoryExchangeResponse);
+  rpc UpdateProtection(MemoryUpdateProtectionRequest) returns (MemoryUpdateProtectionResponse);
+  rpc UpdateTagSetting(MemoryUpdateTagSettingRequest) returns (MemoryUpdateTagSettingResponse);
+  rpc Reshooting(MemoryReshootingRequest) returns (MemoryReshootingResponse);
+}
+service Mission {
+  rpc ListEvent(Empty) returns (MissionListEventResponse);
+  rpc Receive(MissionReceiveRequest) returns (MissionReceiveResponse);
+  rpc ReceiveGroup(MissionReceiveGroupRequest) returns (MissionReceiveGroupResponse);
+  rpc ReceiveGroupAll(MissionReceiveGroupAllRequest) returns (MissionReceiveGroupAllResponse);
+  rpc ReceivePass(MissionReceivePassRequest) returns (MissionReceivePassResponse);
+  rpc ExchangePassPoint(MissionExchangePassPointRequest) returns (MissionExchangePassPointResponse);
+  rpc UrlTransition(MissionUrlTransitionRequest) returns (MissionUrlTransitionResponse);
+}
+service Money {
+  rpc Receive(Empty) returns (MoneyReceiveResponse);
+}
+service Movie {
+  rpc Create(MovieCreateRequest) returns (MovieCreateResponse);
+  rpc Delete(MovieDeleteRequest) returns (MovieDeleteResponse);
+  rpc Retake(MovieRetakeRequest) returns (MovieRetakeResponse);
+}
+service Music {
+  rpc SendActionLog(MusicSendActionLogRequest) returns (MusicSendActionLogResponse);
+  rpc SendBuyActionLog(MusicSendBuyActionLogRequest) returns (MusicSendBuyActionLogResponse);
+}
 service Notice {
   rpc ListAll(Empty) returns (NoticeListAllResponse);
   rpc FetchList(NoticeFetchListRequest) returns (NoticeFetchListResponse);
+  rpc Get(NoticeGetRequest) returns (NoticeGetResponse);
+  rpc UpdateCategoryTime(NoticeUpdateCategoryTimeRequest) returns (NoticeUpdateCategoryTimeResponse);
+  rpc UpdateDetailTime(NoticeUpdateDetailTimeRequest) returns (NoticeUpdateDetailTimeResponse);
+}
+service Photo {
+  rpc Create(PhotoCreateRequest) returns (PhotoCreateResponse);
+  rpc CreateIdol(PhotoCreateIdolRequest) returns (PhotoCreateIdolResponse);
+  rpc CreateByMemory(PhotoCreateByMemoryRequest) returns (PhotoCreateByMemoryResponse);
+  rpc UpdateName(PhotoUpdateNameRequest) returns (PhotoUpdateNameResponse);
+  rpc UpdateProtection(PhotoUpdateProtectionRequest) returns (PhotoUpdateProtectionResponse);
+  rpc Delete(PhotoDeleteRequest) returns (PhotoDeleteResponse);
+}
+service Preference {
+  rpc Update(PreferenceUpdateRequest) returns (PreferenceUpdateResponse);
+}
+service Produce {
+  rpc Top(Empty) returns (ProduceTopResponse);
+  rpc ChangeForceLiveCommon(ProduceChangeForceLiveCommonRequest) returns (ProduceChangeForceLiveCommonResponse);
+  rpc UpdateSupportCardDeck(ProduceUpdateSupportCardDeckRequest) returns (ProduceUpdateSupportCardDeckResponse);
+  rpc UpdateMemoryDeck(ProduceUpdateMemoryDeckRequest) returns (ProduceUpdateMemoryDeckResponse);
+  rpc ListRentalSupportCard(Empty) returns (ProduceListRentalSupportCardResponse);
+  rpc ListRentalMemory(ProduceListRentalMemoryRequest) returns (ProduceListRentalMemoryResponse);
+  rpc CheckProgress(ProduceCheckProgressRequest) returns (ProduceCheckProgressResponse);
+  rpc Start(ProduceStartRequest) returns (ProduceStartResponse);
+  rpc Next(ProduceNextRequest) returns (ProduceNextResponse);
+  rpc StepSkip(ProduceStepSkipRequest) returns (ProduceStepSkipResponse);
+  rpc StepEvent(ProduceStepEventRequest) returns (ProduceStepEventResponse);
+  rpc StepBusinessStart(ProduceStepBusinessStartRequest) returns (ProduceStepBusinessStartResponse);
+  rpc StepBusinessSelect(ProduceStepBusinessSelectRequest) returns (ProduceStepBusinessSelectResponse);
+  rpc StepCustomizeStart(ProduceStepCustomizeStartRequest) returns (ProduceStepCustomizeStartResponse);
+  rpc StepCustomizeSelect(ProduceStepCustomizeSelectRequest) returns (ProduceStepCustomizeSelectResponse);
+  rpc StepCustomizeEnd(ProduceStepCustomizeEndRequest) returns (ProduceStepCustomizeEndResponse);
+  rpc StepRefresh(ProduceStepRefreshRequest) returns (ProduceStepRefreshResponse);
+  rpc StepShopStart(ProduceStepShopStartRequest) returns (ProduceStepShopStartResponse);
+  rpc StepShopReroll(ProduceStepShopRerollRequest) returns (ProduceStepShopRerollResponse);
+  rpc StepShopBuy(ProduceStepShopBuyRequest) returns (ProduceStepShopBuyResponse);
+  rpc StepShopEnd(ProduceStepShopEndRequest) returns (ProduceStepShopEndResponse);
+  rpc StepPresentStart(ProduceStepPresentStartRequest) returns (ProduceStepPresentStartResponse);
+  rpc StepPresentReceive(ProduceStepPresentReceiveRequest) returns (ProduceStepPresentReceiveResponse);
+  rpc StepPresentEnd(ProduceStepPresentEndRequest) returns (ProduceStepPresentEndResponse);
+  rpc StepLessonStart(ProduceStepLessonStartRequest) returns (ProduceStepLessonStartResponse);
+  rpc StepLessonEnd(ProduceStepLessonEndRequest) returns (ProduceStepLessonEndResponse);
+  rpc StepSelfLessonStart(ProduceStepSelfLessonStartRequest) returns (ProduceStepSelfLessonStartResponse);
+  rpc StepSelfLessonEnd(ProduceStepSelfLessonEndRequest) returns (ProduceStepSelfLessonEndResponse);
+  rpc StepAuditionRefresh(ProduceStepAuditionRefreshRequest) returns (ProduceStepAuditionRefreshResponse);
+  rpc StepAuditionStart(ProduceStepAuditionStartRequest) returns (ProduceStepAuditionStartResponse);
+  rpc StepAuditionEndExamBattle(ProduceStepAuditionEndExamBattleRequest) returns (ProduceStepAuditionEndExamBattleResponse);
+  rpc StepAuditionEnd(ProduceStepAuditionEndRequest) returns (ProduceStepAuditionEndResponse);
+  rpc DiscardDrink(ProduceDiscardDrinkRequest) returns (ProduceDiscardDrinkResponse);
+  rpc RerollSelectProduceCard(ProduceRerollSelectProduceCardRequest) returns (ProduceRerollSelectProduceCardResponse);
+  rpc ExcludeProduceCard(ProduceExcludeProduceCardRequest) returns (ProduceExcludeProduceCardResponse);
+  rpc ActivateEffect(ProduceActivateEffectRequest) returns (ProduceActivateEffectResponse);
+  rpc ReadDearnessStory(ProduceReadDearnessStoryRequest) returns (ProduceReadDearnessStoryResponse);
+  rpc ReadAdv(ProduceReadAdvRequest) returns (ProduceReadAdvResponse);
+  rpc StartBeforeLiveEvaluation(ProduceStartBeforeLiveEvaluationRequest) returns (ProduceStartBeforeLiveEvaluationResponse);
+  rpc EndBeforeLiveEvaluation(ProduceEndBeforeLiveEvaluationRequest) returns (ProduceEndBeforeLiveEvaluationResponse);
+  rpc RerollMemory(ProduceRerollMemoryRequest) returns (ProduceRerollMemoryResponse);
+  rpc End(ProduceEndRequest) returns (ProduceEndResponse);
+  rpc Result(ProduceResultRequest) returns (ProduceResultResponse);
+  rpc ReportGuildMission(ProduceReportGuildMissionRequest) returns (ProduceReportGuildMissionResponse);
+  rpc Continue(ProduceContinueRequest) returns (ProduceContinueResponse);
+  rpc Retire(Empty) returns (ProduceRetireResponse);
+  rpc History(ProduceHistoryRequest) returns (ProduceHistoryResponse);
+  rpc RankingTop(ProduceRankingTopRequest) returns (ProduceRankingTopResponse);
+  rpc Ranking(ProduceRankingRequest) returns (ProduceRankingResponse);
+  rpc ChangeCostume(ProduceChangeCostumeRequest) returns (ProduceChangeCostumeResponse);
+  rpc ViewPictureBookLive(ProduceViewPictureBookLiveRequest) returns (ProduceViewPictureBookLiveResponse);
+  rpc UnlockPictureBookLive(ProduceUnlockPictureBookLiveRequest) returns (ProduceUnlockPictureBookLiveResponse);
+}
+service ProduceHighScore {
+  rpc Get(Empty) returns (ProduceHighScoreGetResponse);
+  rpc Ranking(ProduceHighScoreRankingRequest) returns (ProduceHighScoreRankingResponse);
+  rpc ListRankReward(Empty) returns (ProduceHighScoreListRankRewardResponse);
+}
+service Profile {
+  rpc Get(ProfileGetRequest) returns (ProfileGetResponse);
+  rpc UpdateName(ProfileUpdateNameRequest) returns (ProfileUpdateNameResponse);
+  rpc UpdateComment(ProfileUpdateCommentRequest) returns (ProfileUpdateCommentResponse);
+  rpc UpdateBirthday(ProfileUpdateBirthdayRequest) returns (ProfileUpdateBirthdayResponse);
+  rpc UpdateSupportCard(ProfileUpdateSupportCardRequest) returns (ProfileUpdateSupportCardResponse);
+  rpc UpdateMemory(ProfileUpdateMemoryRequest) returns (ProfileUpdateMemoryResponse);
 }
 service PvpRate {
-  rpc Get(Empty) returns (PvpRateGetResponse);
   rpc Initialize(Empty) returns (PvpRateInitializeResponse);
+  rpc Get(Empty) returns (PvpRateGetResponse);
+  rpc Start(PvpRateStartRequest) returns (PvpRateStartResponse);
+  rpc PlayExamBattle(Empty) returns (PvpRatePlayExamBattleResponse);
+  rpc End(PvpRateEndRequest) returns (PvpRateEndResponse);
+  rpc PlayTest(Empty) returns (PvpRatePlayTestResponse);
+  rpc ListRanking(Empty) returns (PvpRateListRankingResponse);
+  rpc ListHistory(Empty) returns (PvpRateListHistoryResponse);
+  rpc GetHistory(PvpRateGetHistoryRequest) returns (PvpRateGetHistoryResponse);
+  rpc UpdateUserPvpRateUnit(PvpRateUpdateUserPvpRateUnitRequest) returns (PvpRateUpdateUserPvpRateUnitResponse);
 }
-message Empty {}
-
+service Seminar {
+  rpc ListExam(Empty) returns (SeminarListExamResponse);
+  rpc GetExam(SeminarGetExamRequest) returns (SeminarGetExamResponse);
+  rpc EndExam(SeminarEndExamRequest) returns (SeminarEndExamResponse);
+}
+service Shop {
+  rpc Top(Empty) returns (ShopTopResponse);
+  rpc ListItems(ShopListItemsRequest) returns (ShopListItemsResponse);
+  rpc Purchase(ShopPurchaseRequest) returns (ShopPurchaseResponse);
+  rpc CheckPurchaseJewel(ShopCheckPurchaseJewelRequest) returns (ShopCheckPurchaseJewelResponse);
+  rpc RegisterBirthday(ShopRegisterBirthdayRequest) returns (ShopRegisterBirthdayResponse);
+  rpc RegisterPurchaseTransaction(ShopRegisterPurchaseTransactionRequest) returns (ShopRegisterPurchaseTransactionResponse);
+  rpc CancelPurchaseTransaction(ShopCancelPurchaseTransactionRequest) returns (ShopCancelPurchaseTransactionResponse);
+  rpc PurchaseJewel(ShopPurchaseJewelRequest) returns (ShopPurchaseJewelResponse);
+  rpc RecoverPurchaseJewel(ShopRecoverPurchaseJewelRequest) returns (ShopRecoverPurchaseJewelResponse);
+  rpc RegisterDelayPurchaseTransaction(ShopRegisterDelayPurchaseTransactionRequest) returns (ShopRegisterDelayPurchaseTransactionResponse);
+}
+service Startup {
+  rpc ListNotifications(StartupListNotificationsRequest) returns (StartupListNotificationsResponse);
+  rpc Confirm(StartupConfirmRequest) returns (StartupConfirmResponse);
+}
+service StoryEvent {
+  rpc Top(StoryEventTopRequest) returns (StoryEventTopResponse);
+  rpc ListGuildMission(StoryEventListGuildMissionRequest) returns (StoryEventListGuildMissionResponse);
+  rpc ReceiveGuildMission(StoryEventReceiveGuildMissionRequest) returns (StoryEventReceiveGuildMissionResponse);
+}
+service Story {
+  rpc Read(StoryReadRequest) returns (StoryReadResponse);
+  rpc ReadProduceStory(StoryReadProduceStoryRequest) returns (StoryReadProduceStoryResponse);
+  rpc ReadDearnessStory(StoryReadDearnessStoryRequest) returns (StoryReadDearnessStoryResponse);
+  rpc Unlock(StoryUnlockRequest) returns (StoryUnlockResponse);
+  rpc UnlockProduceStory(StoryUnlockProduceStoryRequest) returns (StoryUnlockProduceStoryResponse);
+}
+service SupportCard {
+  rpc Enhance(SupportCardEnhanceRequest) returns (SupportCardEnhanceResponse);
+  rpc UpgradeLevelLimitRank(SupportCardUpgradeLevelLimitRankRequest) returns (SupportCardUpgradeLevelLimitRankResponse);
+  rpc Exchange(SupportCardExchangeRequest) returns (SupportCardExchangeResponse);
+}
+service System {
+  rpc Check(SystemCheckRequest) returns (SystemCheckResponse);
+}
+service TicketExchange {
+  rpc ListItems(TicketExchangeListItemsRequest) returns (TicketExchangeListItemsResponse);
+  rpc Execute(TicketExchangeExecuteRequest) returns (TicketExchangeExecuteResponse);
+}
+service Tower {
+  rpc Top(Empty) returns (TowerTopResponse);
+  rpc ListLayers(TowerListLayersRequest) returns (TowerListLayersResponse);
+  rpc GetLayer(TowerGetLayerRequest) returns (TowerGetLayerResponse);
+  rpc Start(TowerStartRequest) returns (TowerStartResponse);
+  rpc End(TowerEndRequest) returns (TowerEndResponse);
+  rpc Check(TowerCheckRequest) returns (TowerCheckResponse);
+  rpc UpdateMemoryDeck(TowerUpdateMemoryDeckRequest) returns (TowerUpdateMemoryDeckResponse);
+  rpc ReceiveLayerCountReward(TowerReceiveLayerCountRewardRequest) returns (TowerReceiveLayerCountRewardResponse);
+  rpc ReceiveTotalClearRankReward(TowerReceiveTotalClearRankRewardRequest) returns (TowerReceiveTotalClearRankRewardResponse);
+  rpc ListLayerPlayerHistories(TowerListLayerPlayerHistoriesRequest) returns (TowerListLayerPlayerHistoriesResponse);
+  rpc GetRanking(TowerGetRankingRequest) returns (TowerGetRankingResponse);
+  rpc GetPastSeasonRanking(TowerGetPastSeasonRankingRequest) returns (TowerGetPastSeasonRankingResponse);
+  rpc GetLayerIdolCardRanking(TowerGetLayerIdolCardRankingRequest) returns (TowerGetLayerIdolCardRankingResponse);
+  rpc GetPastSeasonLayerIdolCardRanking(TowerGetPastSeasonLayerIdolCardRankingRequest) returns (TowerGetPastSeasonLayerIdolCardRankingResponse);
+  rpc GetLayerIdolCardRankingTop(TowerGetLayerIdolCardRankingTopRequest) returns (TowerGetLayerIdolCardRankingTopResponse);
+  rpc GetPastSeasonLayerIdolCardRankingTop(TowerGetPastSeasonLayerIdolCardRankingTopRequest) returns (TowerGetPastSeasonLayerIdolCardRankingTopResponse);
+  rpc GetRankingDeck(TowerGetRankingDeckRequest) returns (TowerGetRankingDeckResponse);
+}
+service Tutorial {
+  rpc UnlockFeature(TutorialUnlockFeatureRequest) returns (TutorialUnlockFeatureResponse);
+  rpc SetName(TutorialSetNameRequest) returns (TutorialSetNameResponse);
+  rpc Progress(TutorialProgressRequest) returns (TutorialProgressResponse);
+  rpc Skip(TutorialSkipRequest) returns (TutorialSkipResponse);
+  rpc ReadDearnessStory(TutorialReadDearnessStoryRequest) returns (TutorialReadDearnessStoryResponse);
+  rpc ReceiveIdolCard(TutorialReceiveIdolCardRequest) returns (TutorialReceiveIdolCardResponse);
+  rpc ProduceStart(TutorialProduceStartRequest) returns (TutorialProduceStartResponse);
+  rpc ProduceNext(Empty) returns (TutorialProduceNextResponse);
+  rpc ProduceStepLessonEnd(TutorialProduceStepLessonEndRequest) returns (TutorialProduceStepLessonEndResponse);
+  rpc ProduceStepPresentReceive(TutorialProduceStepPresentReceiveRequest) returns (TutorialProduceStepPresentReceiveResponse);
+  rpc ProduceStepAuditionExamEnd(TutorialProduceStepAuditionExamEndRequest) returns (TutorialProduceStepAuditionExamEndResponse);
+  rpc ProduceStepAuditionEnd(Empty) returns (TutorialProduceStepAuditionEndResponse);
+  rpc CheckBeforeLiveProduceEvaluation(Empty) returns (TutorialCheckBeforeLiveProduceEvaluationResponse);
+  rpc ProduceResult(TutorialProduceResultRequest) returns (TutorialProduceResultResponse);
+}
+service User {
+  rpc Get(Empty) returns (UserGetResponse);
+  rpc ListMessage(UserListMessageRequest) returns (UserListMessageResponse);
+  rpc ReadMessage(UserReadMessageRequest) returns (UserReadMessageResponse);
+}
+service Work {
+  rpc Top(Empty) returns (WorkTopResponse);
+  rpc Start(WorkStartRequest) returns (WorkStartResponse);
+  rpc Stop(WorkStopRequest) returns (WorkStopResponse);
+  rpc Skip(WorkSkipRequest) returns (WorkSkipResponse);
+  rpc Finish(Empty) returns (WorkFinishResponse);
+}
 message AuthAgreeTermsRequest {
   repeated penum.TermsType types = 4;
 }
