@@ -822,6 +822,21 @@ message IdolCardSkinSelectReward {
 message IdolCardSkinSelectRewardList {
   repeated IdolCardSkinSelectReward list = 1;
 }
+message IdolCardSkinUnit {
+  string id = 1;
+  repeated string idolCardSkinIds = 2;
+  repeated IdolCardSkinUnit.UnitCharacter unitCharacters = 7;
+  repeated string liveOrderCharacterIds = 8;
+  message UnitCharacter {
+    string characterId = 1;
+    string assetId = 2;
+    string costumeHeadId = 3;
+    string costumeId = 4;
+  }
+}
+message IdolCardSkinUnitList {
+  repeated IdolCardSkinUnit list = 1;
+}
 message InvitationMission {
   int32 producerLevel = 1;
   int32 rewardQuantity = 2;
@@ -1251,6 +1266,7 @@ message Music {
   string arranger = 6;
   string jacketAssetId = 8;
   string gameVersionAssetId = 9;
+  string idolCardSkinUnitId = 10;
   int32 shortVersionStartMilliseconds = 11;
   int32 shortVersionEndMilliseconds = 12;
   string viewConditionSetId = 13;
@@ -1943,6 +1959,14 @@ message ProduceExamTrigger {
 message ProduceExamTriggerList {
   repeated ProduceExamTrigger list = 1;
 }
+message ProduceGrade {
+  string produceGroupId = 1;
+  penum.ResultGrade grade = 2;
+  int32 threshold = 3;
+}
+message ProduceGradeList {
+  repeated ProduceGrade list = 1;
+}
 message ProduceGroup {
   string id = 1;
   string name = 2;
@@ -1955,6 +1979,7 @@ message ProduceGroup {
   string description = 9;
   bool isForceLiveCommon = 10;
   penum.ProduceLiveType disableForceLiveCommonEndingLiveType = 11;
+  penum.ResultGrade limitGrade = 12;
   int32 order = 99;
 }
 message ProduceGroupList {
@@ -1977,6 +2002,48 @@ message ProduceGroupLiveCommon {
 }
 message ProduceGroupLiveCommonList {
   repeated ProduceGroupLiveCommon list = 1;
+}
+message ProduceGuide {
+  string idolCardId = 1;
+  int32 producerLevel = 2;
+  string produceGuideProduceCardCategoryGroupId = 3;
+  string produceGuideProduceCardSampleDeckCategoryGroupId = 4;
+}
+message ProduceGuideList {
+  repeated ProduceGuide list = 1;
+}
+message ProduceGuideProduceCardCategory {
+  string id = 1;
+  string label = 2;
+  int32 produceCardCount = 3;
+  repeated string effectGroupIds = 4;
+  repeated string produceCardIds = 5;
+}
+message ProduceGuideProduceCardCategoryGroup {
+  string id = 1;
+  string description = 2;
+  repeated string produceGuideProduceCardCategoryIds = 3;
+}
+message ProduceGuideProduceCardCategoryGroupList {
+  repeated ProduceGuideProduceCardCategoryGroup list = 1;
+}
+message ProduceGuideProduceCardCategoryList {
+  repeated ProduceGuideProduceCardCategory list = 1;
+}
+message ProduceGuideProduceCardSampleDeckCategory {
+  string id = 1;
+  string label = 2;
+  repeated string produceCardIds = 3;
+}
+message ProduceGuideProduceCardSampleDeckCategoryGroup {
+  string id = 1;
+  repeated string produceGuideProduceCardSampleDeckCategoryIds = 3;
+}
+message ProduceGuideProduceCardSampleDeckCategoryGroupList {
+  repeated ProduceGuideProduceCardSampleDeckCategoryGroup list = 1;
+}
+message ProduceGuideProduceCardSampleDeckCategoryList {
+  repeated ProduceGuideProduceCardSampleDeckCategory list = 1;
 }
 message ProduceHighScore {
   string id = 1;
@@ -2067,6 +2134,8 @@ message ProduceLive {
   string afterAdvAssetId = 10;
   string liveMusicAssetId = 11;
   repeated string motionAssetIds = 12;
+  repeated string unitLiveThumbnailAssetCharacterIds = 13;
+  repeated string unitLiveThumbnailAssetIds = 14;
 }
 message ProduceLiveList {
   repeated ProduceLive list = 1;
@@ -2588,6 +2657,11 @@ message Setting {
   bool produceDescriptionProduceStepCategoryEnable = 1038;
   bool produceCardEffectCancelEnable = 1039;
   bool produceMemoryProduceCardProducerLevelLimitDisable = 1040;
+  repeated int32 produceSupportCardRecommendUsageRateRankAdditionValues = 1041;
+  repeated int32 produceSupportCardRecommendTypePreferentialSlotCounts = 1042;
+  int32 produceSupportCardRecommendTypePreferentialCoefficientPermil = 1043;
+  repeated int32 produceSupportCardRecommendSpPreferentialSlotCounts = 1044;
+  int32 produceSupportCardRecommendSpPreferentialCoefficientPermil = 1045;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -2689,6 +2763,7 @@ message ShopProduct {
   string dmmGamesProductId = 4;
   int32 jewel = 10;
   int32 priceJpy = 11;
+  string recoverName = 20;
 }
 message ShopProductList {
   repeated ShopProduct list = 1;

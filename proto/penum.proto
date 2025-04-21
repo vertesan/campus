@@ -944,6 +944,11 @@ enum NoticeType {
   NoticeType_Maintenance = 7;
   NoticeType_Bug = 8;
 }
+enum PaymentPendingReceiptDialogTimingType {
+  PaymentPendingReceiptDialogTimingType_Unknown = 0;
+  PaymentPendingReceiptDialogTimingType_Skip = 1;
+  PaymentPendingReceiptDialogTimingType_Daily = 2;
+}
 enum PhotoBackgroundCategory {
   PhotoBackgroundCategory_Unknown = 0;
   PhotoBackgroundCategory_Gakuen = 1;
@@ -2146,6 +2151,8 @@ enum ResultGrade {
   ResultGrade_SPlus = 11;
   ResultGrade_Ss = 12;
   ResultGrade_SsPlus = 13;
+  ResultGrade_Sss = 14;
+  ResultGrade_SssPlus = 15;
 }
 enum ResultGradeType {
   ResultGradeType_Unknown = 0;
@@ -2363,6 +2370,7 @@ enum TutorialType {
   TutorialType_Photo = 25;
   TutorialType_MeishiEditCustom = 26;
   TutorialType_MeishiEditCustomManual = 27;
+  TutorialType_IdolCardSkinUnit = 28;
   TutorialType_ProduceIdolCardSelect = 100;
   TutorialType_ProduceSupportCardSelect = 101;
   TutorialType_ProduceMemorySelect = 102;

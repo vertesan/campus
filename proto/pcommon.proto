@@ -360,6 +360,8 @@ message MeishiBase {
   string userPhotoId = 18;
   string userMovieId = 19;
   string meishiBaseColorId = 20;
+  string beforeIdolCardSkinId = 21;
+  string afterIdolCardSkinId = 22;
 }
 message MeishiObject {
   penum.MeishiObjectType type = 1;
@@ -439,6 +441,7 @@ message ProduceCampaign {
   int32 remainingCount = 9;
   bool isHalf = 20;
   int32 memoryRentalCount = 30;
+  repeated Reward appealRewards = 40;
   int32 memoryRerollCount = 60;
   int64 startTime = 97;
   int64 endTime = 98;

@@ -289,6 +289,7 @@ service Shop {
   rpc PurchaseJewel(ShopPurchaseJewelRequest) returns (ShopPurchaseJewelResponse);
   rpc RecoverPurchaseJewel(ShopRecoverPurchaseJewelRequest) returns (ShopRecoverPurchaseJewelResponse);
   rpc RegisterDelayPurchaseTransaction(ShopRegisterDelayPurchaseTransactionRequest) returns (ShopRegisterDelayPurchaseTransactionResponse);
+  rpc GetPurchasePlatformTransaction(ShopGetPurchasePlatformTransactionRequest) returns (ShopGetPurchasePlatformTransactionResponse);
 }
 service Startup {
   rpc ListNotifications(StartupListNotificationsRequest) returns (StartupListNotificationsResponse);
@@ -310,6 +311,7 @@ service SupportCard {
   rpc Enhance(SupportCardEnhanceRequest) returns (SupportCardEnhanceResponse);
   rpc UpgradeLevelLimitRank(SupportCardUpgradeLevelLimitRankRequest) returns (SupportCardUpgradeLevelLimitRankResponse);
   rpc Exchange(SupportCardExchangeRequest) returns (SupportCardExchangeResponse);
+  rpc ListDeckRanking(Empty) returns (SupportCardListDeckRankingResponse);
 }
 service System {
   rpc Check(SystemCheckRequest) returns (SystemCheckResponse);
@@ -1271,6 +1273,7 @@ message IdolCardProbability {
   int32 tenPermyriadProbability = 2;
   repeated pcommon.Reward rewards = 3;
   bool isPickup = 4;
+  bool isProbabilityUp = 5;
 }
 message IdolCardRarityProbability {
   penum.IdolCardRarity rarity = 1;
@@ -1476,6 +1479,8 @@ message MeishiUpdateRequest {
     string userPhotoId = 15;
     string userMovieId = 16;
     string meishiBaseColorId = 17;
+    string beforeIdolCardSkinId = 18;
+    string afterIdolCardSkinId = 19;
   }
   message Object {
     penum.MeishiObjectType objectType = 1;
@@ -1748,6 +1753,12 @@ message PhotoCreateRequest {
   string costumeId = 3;
   string costumeHeadId = 4;
   string characterId = 5;
+  repeated PhotoCreateRequest.UnitCharacter unitCharacters = 6;
+  message UnitCharacter {
+    string characterId = 1;
+    string costumeId = 2;
+    string costumeHeadId = 3;
+  }
 }
 message PhotoCreateResponse {
   papicommon.Response commonResponse = 9999;
@@ -1791,6 +1802,7 @@ message ProduceChangeCostumeRequest {
   bool produce = 1;
   bool live = 2;
   bool training = 3;
+  repeated string changeCostumeLiveUnitCharacterIds = 4;
 }
 message ProduceChangeCostumeResponse {
   papicommon.Response commonResponse = 9999;
@@ -2057,6 +2069,7 @@ message ProduceResultRequest {
   string memoryTagId = 5;
   int32 memoryNumber = 6;
   bool isMemoryExchanged = 7;
+  bool useCharacterFocusCamera = 8;
 }
 message ProduceResultResponse {
   repeated pcommon.RewardResult rewardResults = 1;
@@ -2103,6 +2116,7 @@ message ProduceStartRequest {
   bool isChangeCostumeTraining = 9;
   repeated string challengeProduceItemIds = 10;
   bool isHighScoreRush = 11;
+  repeated string changeCostumeLiveUnitCharacterIds = 12;
   string clientProduceUuid = 99;
   message Memory {
     string userMemoryId = 1;
@@ -2369,6 +2383,7 @@ message ProduceUseDrinkResponse {
 }
 message ProduceViewPictureBookLiveRequest {
   string musicId = 1;
+  string characterId = 2;
 }
 message ProduceViewPictureBookLiveResponse {
   papicommon.Response commonResponse = 9999;
@@ -2675,6 +2690,17 @@ message ShopCheckPurchaseJewelResponse {
   bool isUnderage = 5;
   papicommon.Response commonResponse = 9999;
 }
+message ShopGetPurchasePlatformTransactionRequest {
+  repeated string storeTransactionIds = 1;
+}
+message ShopGetPurchasePlatformTransactionResponse {
+  repeated ShopGetPurchasePlatformTransactionResponse.PlatformTransaction platformTransactions = 1;
+  papicommon.Response commonResponse = 9999;
+  message PlatformTransaction {
+    string storeTransactionId = 1;
+    penum.PaymentPendingReceiptDialogTimingType paymentPendingReceiptDialogTimingType = 2;
+  }
+}
 message ShopItem {
   string shopId = 1;
   string id = 2;
@@ -2837,6 +2863,7 @@ message StoryEventTopResponse {
   string idolCardSkinBeforeAssetId = 18;
   string idolCardSkinAfterAssetId = 19;
   penum.IdolCardPotentialRank maxIdolCardPotentialRank = 25;
+  string appealImageAssetId = 26;
   string consumptionItemId = 20;
   repeated pcommon.StoryEventPointReward storyEventPointRewards = 21;
   int64 currentPoint = 22;
@@ -2919,11 +2946,24 @@ message SupportCardExchangeRequest {
 message SupportCardExchangeResponse {
   papicommon.Response commonResponse = 9999;
 }
+message SupportCardListDeckRankingResponse {
+  repeated SupportCardListDeckRankingResponse.Ranking rankings = 1;
+  papicommon.Response commonResponse = 9999;
+  message SupportCardRank {
+    string supportCardId = 1;
+    int32 rank = 2;
+  }
+  message Ranking {
+    string produceGroupId = 1;
+    repeated SupportCardListDeckRankingResponse.SupportCardRank supportCardRanks = 2;
+  }
+}
 message SupportCardProbability {
   string supportCardId = 1;
   int32 tenPermyriadProbability = 2;
   repeated pcommon.Reward rewards = 3;
   bool isPickup = 4;
+  bool isProbabilityUp = 5;
 }
 message SupportCardRarityProbability {
   penum.SupportCardRarity rarity = 1;

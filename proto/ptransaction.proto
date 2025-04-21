@@ -155,9 +155,16 @@ message UserMemory {
   int32 reshootingCount = 103;
   string musicId = 104;
   bool isHighScoreRush = 105;
+  repeated UserMemory.UnitCharacter unitCharacters = 120;
+  bool useCharacterFocusCamera = 121;
   message MemoryAbility {
     string id = 1;
     int32 level = 2;
+  }
+  message UnitCharacter {
+    string characterId = 1;
+    string liveCostumeId = 2;
+    string liveCostumeHeadId = 3;
   }
 }
 message UserMemoryInherit {
@@ -273,6 +280,8 @@ message UserProduceLive {
   string musicId = 2;
   penum.ProduceLiveType liveType = 3;
   bool viewed = 4;
+  repeated string unlockCharacterIds = 5;
+  repeated string viewedCharacterIds = 6;
 }
 message UserProduceMemoryDeck {
   penum.ProduceType produceType = 2;
@@ -317,6 +326,7 @@ message UserProduceProgress {
   bool isChangeCostumeLive = 124;
   bool isChangeCostumeTraining = 126;
   string rentalPublicUserId = 125;
+  repeated string changeCostumeLiveUnitCharacterIds = 127;
   int32 vocal = 200;
   int32 dance = 201;
   int32 visual = 202;
