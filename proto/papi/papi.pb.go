@@ -8830,12 +8830,13 @@ func (x *HomeListEventResponse) GetCommonResponse() *papicommon.Response {
 }
 
 type HomeLoginResponse struct {
-	state                protoimpl.MessageState          `protogen:"open.v1"`
-	FriendResult         *HomeLoginResponse_FriendResult `protobuf:"bytes,1,opt,name=friendResult,proto3" json:"friendResult,omitempty"`
-	ProducerLevelUnlocks []*pcommon.ProducerLevelUnlock  `protobuf:"bytes,2,rep,name=producerLevelUnlocks,proto3" json:"producerLevelUnlocks,omitempty"`
-	CommonResponse       *papicommon.Response            `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	state                                     protoimpl.MessageState                                       `protogen:"open.v1"`
+	FriendResult                              *HomeLoginResponse_FriendResult                              `protobuf:"bytes,1,opt,name=friendResult,proto3" json:"friendResult,omitempty"`
+	ProducerLevelUnlocks                      []*pcommon.ProducerLevelUnlock                               `protobuf:"bytes,2,rep,name=producerLevelUnlocks,proto3" json:"producerLevelUnlocks,omitempty"`
+	ProduceNextIdolAuditionMasterSeasonResult *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult `protobuf:"bytes,100,opt,name=produceNextIdolAuditionMasterSeasonResult,proto3" json:"produceNextIdolAuditionMasterSeasonResult,omitempty"`
+	CommonResponse                            *papicommon.Response                                         `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields                             protoimpl.UnknownFields
+	sizeCache                                 protoimpl.SizeCache
 }
 
 func (x *HomeLoginResponse) Reset() {
@@ -8878,6 +8879,13 @@ func (x *HomeLoginResponse) GetFriendResult() *HomeLoginResponse_FriendResult {
 func (x *HomeLoginResponse) GetProducerLevelUnlocks() []*pcommon.ProducerLevelUnlock {
 	if x != nil {
 		return x.ProducerLevelUnlocks
+	}
+	return nil
+}
+
+func (x *HomeLoginResponse) GetProduceNextIdolAuditionMasterSeasonResult() *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult {
+	if x != nil {
+		return x.ProduceNextIdolAuditionMasterSeasonResult
 	}
 	return nil
 }
@@ -15346,14 +15354,15 @@ func (x *ProduceGrowthResult) GetGrowthRateBonusVisual() int32 {
 }
 
 type ProduceHighScoreCharacter struct {
-	state            protoimpl.MessageState        `protogen:"open.v1"`
-	CharacterId      string                        `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	Rank             int32                         `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"`
-	HighScore        int32                         `protobuf:"varint,3,opt,name=highScore,proto3" json:"highScore,omitempty"`
-	RankRewards      []*ProduceHighScoreRankReward `protobuf:"bytes,4,rep,name=rankRewards,proto3" json:"rankRewards,omitempty"`
-	HighScoreRewards []*ProduceHighScoreReward     `protobuf:"bytes,5,rep,name=highScoreRewards,proto3" json:"highScoreRewards,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state               protoimpl.MessageState        `protogen:"open.v1"`
+	CharacterId         string                        `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Rank                int32                         `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"`
+	HighScore           int32                         `protobuf:"varint,3,opt,name=highScore,proto3" json:"highScore,omitempty"`
+	ReceivedRewardScore int32                         `protobuf:"varint,6,opt,name=receivedRewardScore,proto3" json:"receivedRewardScore,omitempty"`
+	RankRewards         []*ProduceHighScoreRankReward `protobuf:"bytes,4,rep,name=rankRewards,proto3" json:"rankRewards,omitempty"`
+	HighScoreRewards    []*ProduceHighScoreReward     `protobuf:"bytes,5,rep,name=highScoreRewards,proto3" json:"highScoreRewards,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ProduceHighScoreCharacter) Reset() {
@@ -15407,6 +15416,13 @@ func (x *ProduceHighScoreCharacter) GetHighScore() int32 {
 	return 0
 }
 
+func (x *ProduceHighScoreCharacter) GetReceivedRewardScore() int32 {
+	if x != nil {
+		return x.ReceivedRewardScore
+	}
+	return 0
+}
+
 func (x *ProduceHighScoreCharacter) GetRankRewards() []*ProduceHighScoreRankReward {
 	if x != nil {
 		return x.RankRewards
@@ -15427,6 +15443,7 @@ type ProduceHighScoreGetResponse struct {
 	TitleAssetId               string                          `protobuf:"bytes,1,opt,name=titleAssetId,proto3" json:"titleAssetId,omitempty"`
 	Rank                       int32                           `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"`
 	HighScore                  int32                           `protobuf:"varint,3,opt,name=highScore,proto3" json:"highScore,omitempty"`
+	ReceivedRewardScore        int32                           `protobuf:"varint,13,opt,name=receivedRewardScore,proto3" json:"receivedRewardScore,omitempty"`
 	HighScoreRewards           []*ProduceHighScoreReward       `protobuf:"bytes,4,rep,name=highScoreRewards,proto3" json:"highScoreRewards,omitempty"`
 	RankRewards                []*ProduceHighScoreRankReward   `protobuf:"bytes,5,rep,name=rankRewards,proto3" json:"rankRewards,omitempty"`
 	Characters                 []*ProduceHighScoreCharacter    `protobuf:"bytes,6,rep,name=characters,proto3" json:"characters,omitempty"`
@@ -15500,6 +15517,13 @@ func (x *ProduceHighScoreGetResponse) GetRank() int32 {
 func (x *ProduceHighScoreGetResponse) GetHighScore() int32 {
 	if x != nil {
 		return x.HighScore
+	}
+	return 0
+}
+
+func (x *ProduceHighScoreGetResponse) GetReceivedRewardScore() int32 {
+	if x != nil {
+		return x.ReceivedRewardScore
 	}
 	return 0
 }
@@ -16245,6 +16269,214 @@ func (x *ProduceListRentalSupportCardResponse) GetCommonResponse() *papicommon.R
 	return nil
 }
 
+type ProduceNextIdolAuditionMasterListRankRewardRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardRequest) Reset() {
+	*x = ProduceNextIdolAuditionMasterListRankRewardRequest{}
+	mi := &file_papi_proto_msgTypes[287]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterListRankRewardRequest) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[287]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterListRankRewardRequest.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterListRankRewardRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{287}
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardRequest) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+type ProduceNextIdolAuditionMasterListRankRewardResponse struct {
+	state          protoimpl.MessageState                                        `protogen:"open.v1"`
+	Rank           int32                                                         `protobuf:"varint,1,opt,name=rank,proto3" json:"rank,omitempty"`
+	RankRewards    []*ProduceNextIdolAuditionMasterListRankRewardResponse_Reward `protobuf:"bytes,2,rep,name=rankRewards,proto3" json:"rankRewards,omitempty"`
+	CommonResponse *papicommon.Response                                          `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) Reset() {
+	*x = ProduceNextIdolAuditionMasterListRankRewardResponse{}
+	mi := &file_papi_proto_msgTypes[288]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterListRankRewardResponse) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[288]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterListRankRewardResponse.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterListRankRewardResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{288}
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) GetRankRewards() []*ProduceNextIdolAuditionMasterListRankRewardResponse_Reward {
+	if x != nil {
+		return x.RankRewards
+	}
+	return nil
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
+type ProduceNextIdolAuditionMasterRankingRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingRequest) Reset() {
+	*x = ProduceNextIdolAuditionMasterRankingRequest{}
+	mi := &file_papi_proto_msgTypes[289]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterRankingRequest) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterRankingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[289]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterRankingRequest.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterRankingRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{289}
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingRequest) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+type ProduceNextIdolAuditionMasterRankingResponse struct {
+	state          protoimpl.MessageState                               `protogen:"open.v1"`
+	SelfRank       *ProduceNextIdolAuditionMasterRankingResponse_Rank   `protobuf:"bytes,1,opt,name=selfRank,proto3" json:"selfRank,omitempty"`
+	Ranks          []*ProduceNextIdolAuditionMasterRankingResponse_Rank `protobuf:"bytes,2,rep,name=ranks,proto3" json:"ranks,omitempty"`
+	CommonResponse *papicommon.Response                                 `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) Reset() {
+	*x = ProduceNextIdolAuditionMasterRankingResponse{}
+	mi := &file_papi_proto_msgTypes[290]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterRankingResponse) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[290]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterRankingResponse.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterRankingResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{290}
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) GetSelfRank() *ProduceNextIdolAuditionMasterRankingResponse_Rank {
+	if x != nil {
+		return x.SelfRank
+	}
+	return nil
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) GetRanks() []*ProduceNextIdolAuditionMasterRankingResponse_Rank {
+	if x != nil {
+		return x.Ranks
+	}
+	return nil
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
 type ProduceNextRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProduceUuid   string                 `protobuf:"bytes,1,opt,name=produceUuid,proto3" json:"produceUuid,omitempty"`
@@ -16256,7 +16488,7 @@ type ProduceNextRequest struct {
 
 func (x *ProduceNextRequest) Reset() {
 	*x = ProduceNextRequest{}
-	mi := &file_papi_proto_msgTypes[287]
+	mi := &file_papi_proto_msgTypes[291]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16268,7 +16500,7 @@ func (x *ProduceNextRequest) String() string {
 func (*ProduceNextRequest) ProtoMessage() {}
 
 func (x *ProduceNextRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[287]
+	mi := &file_papi_proto_msgTypes[291]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16281,7 +16513,7 @@ func (x *ProduceNextRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceNextRequest.ProtoReflect.Descriptor instead.
 func (*ProduceNextRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{287}
+	return file_papi_proto_rawDescGZIP(), []int{291}
 }
 
 func (x *ProduceNextRequest) GetProduceUuid() string {
@@ -16315,7 +16547,7 @@ type ProduceNextResponse struct {
 
 func (x *ProduceNextResponse) Reset() {
 	*x = ProduceNextResponse{}
-	mi := &file_papi_proto_msgTypes[288]
+	mi := &file_papi_proto_msgTypes[292]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16327,7 +16559,7 @@ func (x *ProduceNextResponse) String() string {
 func (*ProduceNextResponse) ProtoMessage() {}
 
 func (x *ProduceNextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[288]
+	mi := &file_papi_proto_msgTypes[292]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16340,7 +16572,7 @@ func (x *ProduceNextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceNextResponse.ProtoReflect.Descriptor instead.
 func (*ProduceNextResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{288}
+	return file_papi_proto_rawDescGZIP(), []int{292}
 }
 
 func (x *ProduceNextResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -16370,7 +16602,7 @@ type ProduceRank struct {
 
 func (x *ProduceRank) Reset() {
 	*x = ProduceRank{}
-	mi := &file_papi_proto_msgTypes[289]
+	mi := &file_papi_proto_msgTypes[293]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16382,7 +16614,7 @@ func (x *ProduceRank) String() string {
 func (*ProduceRank) ProtoMessage() {}
 
 func (x *ProduceRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[289]
+	mi := &file_papi_proto_msgTypes[293]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16395,7 +16627,7 @@ func (x *ProduceRank) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRank.ProtoReflect.Descriptor instead.
 func (*ProduceRank) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{289}
+	return file_papi_proto_rawDescGZIP(), []int{293}
 }
 
 func (x *ProduceRank) GetProfile() *pcommon.SimpleProfile {
@@ -16443,7 +16675,7 @@ type ProduceRankingRequest struct {
 
 func (x *ProduceRankingRequest) Reset() {
 	*x = ProduceRankingRequest{}
-	mi := &file_papi_proto_msgTypes[290]
+	mi := &file_papi_proto_msgTypes[294]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16455,7 +16687,7 @@ func (x *ProduceRankingRequest) String() string {
 func (*ProduceRankingRequest) ProtoMessage() {}
 
 func (x *ProduceRankingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[290]
+	mi := &file_papi_proto_msgTypes[294]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16468,7 +16700,7 @@ func (x *ProduceRankingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRankingRequest.ProtoReflect.Descriptor instead.
 func (*ProduceRankingRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{290}
+	return file_papi_proto_rawDescGZIP(), []int{294}
 }
 
 func (x *ProduceRankingRequest) GetProduceGroupId() string {
@@ -16499,7 +16731,7 @@ type ProduceRankingResponse struct {
 
 func (x *ProduceRankingResponse) Reset() {
 	*x = ProduceRankingResponse{}
-	mi := &file_papi_proto_msgTypes[291]
+	mi := &file_papi_proto_msgTypes[295]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16511,7 +16743,7 @@ func (x *ProduceRankingResponse) String() string {
 func (*ProduceRankingResponse) ProtoMessage() {}
 
 func (x *ProduceRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[291]
+	mi := &file_papi_proto_msgTypes[295]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16524,7 +16756,7 @@ func (x *ProduceRankingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRankingResponse.ProtoReflect.Descriptor instead.
 func (*ProduceRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{291}
+	return file_papi_proto_rawDescGZIP(), []int{295}
 }
 
 func (x *ProduceRankingResponse) GetRanks() []*ProduceRank {
@@ -16579,7 +16811,7 @@ type ProduceRankingTopRequest struct {
 
 func (x *ProduceRankingTopRequest) Reset() {
 	*x = ProduceRankingTopRequest{}
-	mi := &file_papi_proto_msgTypes[292]
+	mi := &file_papi_proto_msgTypes[296]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16591,7 +16823,7 @@ func (x *ProduceRankingTopRequest) String() string {
 func (*ProduceRankingTopRequest) ProtoMessage() {}
 
 func (x *ProduceRankingTopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[292]
+	mi := &file_papi_proto_msgTypes[296]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16604,7 +16836,7 @@ func (x *ProduceRankingTopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRankingTopRequest.ProtoReflect.Descriptor instead.
 func (*ProduceRankingTopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{292}
+	return file_papi_proto_rawDescGZIP(), []int{296}
 }
 
 func (x *ProduceRankingTopRequest) GetProduceGroupId() string {
@@ -16631,7 +16863,7 @@ type ProduceRankingTopResponse struct {
 
 func (x *ProduceRankingTopResponse) Reset() {
 	*x = ProduceRankingTopResponse{}
-	mi := &file_papi_proto_msgTypes[293]
+	mi := &file_papi_proto_msgTypes[297]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16643,7 +16875,7 @@ func (x *ProduceRankingTopResponse) String() string {
 func (*ProduceRankingTopResponse) ProtoMessage() {}
 
 func (x *ProduceRankingTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[293]
+	mi := &file_papi_proto_msgTypes[297]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16656,7 +16888,7 @@ func (x *ProduceRankingTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRankingTopResponse.ProtoReflect.Descriptor instead.
 func (*ProduceRankingTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{293}
+	return file_papi_proto_rawDescGZIP(), []int{297}
 }
 
 func (x *ProduceRankingTopResponse) GetRankings() []*ProduceRankingTopResponse_Ranking {
@@ -16683,7 +16915,7 @@ type ProduceReadAdvRequest struct {
 
 func (x *ProduceReadAdvRequest) Reset() {
 	*x = ProduceReadAdvRequest{}
-	mi := &file_papi_proto_msgTypes[294]
+	mi := &file_papi_proto_msgTypes[298]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16695,7 +16927,7 @@ func (x *ProduceReadAdvRequest) String() string {
 func (*ProduceReadAdvRequest) ProtoMessage() {}
 
 func (x *ProduceReadAdvRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[294]
+	mi := &file_papi_proto_msgTypes[298]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16708,7 +16940,7 @@ func (x *ProduceReadAdvRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceReadAdvRequest.ProtoReflect.Descriptor instead.
 func (*ProduceReadAdvRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{294}
+	return file_papi_proto_rawDescGZIP(), []int{298}
 }
 
 func (x *ProduceReadAdvRequest) GetProduceUuid() string {
@@ -16734,7 +16966,7 @@ type ProduceReadAdvResponse struct {
 
 func (x *ProduceReadAdvResponse) Reset() {
 	*x = ProduceReadAdvResponse{}
-	mi := &file_papi_proto_msgTypes[295]
+	mi := &file_papi_proto_msgTypes[299]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16746,7 +16978,7 @@ func (x *ProduceReadAdvResponse) String() string {
 func (*ProduceReadAdvResponse) ProtoMessage() {}
 
 func (x *ProduceReadAdvResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[295]
+	mi := &file_papi_proto_msgTypes[299]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16759,7 +16991,7 @@ func (x *ProduceReadAdvResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceReadAdvResponse.ProtoReflect.Descriptor instead.
 func (*ProduceReadAdvResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{295}
+	return file_papi_proto_rawDescGZIP(), []int{299}
 }
 
 func (x *ProduceReadAdvResponse) GetCommonResponse() *papicommon.Response {
@@ -16780,7 +17012,7 @@ type ProduceReadDearnessStoryRequest struct {
 
 func (x *ProduceReadDearnessStoryRequest) Reset() {
 	*x = ProduceReadDearnessStoryRequest{}
-	mi := &file_papi_proto_msgTypes[296]
+	mi := &file_papi_proto_msgTypes[300]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16792,7 +17024,7 @@ func (x *ProduceReadDearnessStoryRequest) String() string {
 func (*ProduceReadDearnessStoryRequest) ProtoMessage() {}
 
 func (x *ProduceReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[296]
+	mi := &file_papi_proto_msgTypes[300]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16805,7 +17037,7 @@ func (x *ProduceReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceReadDearnessStoryRequest.ProtoReflect.Descriptor instead.
 func (*ProduceReadDearnessStoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{296}
+	return file_papi_proto_rawDescGZIP(), []int{300}
 }
 
 func (x *ProduceReadDearnessStoryRequest) GetProduceUuid() string {
@@ -16841,7 +17073,7 @@ type ProduceReadDearnessStoryResponse struct {
 
 func (x *ProduceReadDearnessStoryResponse) Reset() {
 	*x = ProduceReadDearnessStoryResponse{}
-	mi := &file_papi_proto_msgTypes[297]
+	mi := &file_papi_proto_msgTypes[301]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16853,7 +17085,7 @@ func (x *ProduceReadDearnessStoryResponse) String() string {
 func (*ProduceReadDearnessStoryResponse) ProtoMessage() {}
 
 func (x *ProduceReadDearnessStoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[297]
+	mi := &file_papi_proto_msgTypes[301]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16866,7 +17098,7 @@ func (x *ProduceReadDearnessStoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceReadDearnessStoryResponse.ProtoReflect.Descriptor instead.
 func (*ProduceReadDearnessStoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{297}
+	return file_papi_proto_rawDescGZIP(), []int{301}
 }
 
 func (x *ProduceReadDearnessStoryResponse) GetIsFirst() bool {
@@ -16897,6 +17129,126 @@ func (x *ProduceReadDearnessStoryResponse) GetCommonResponse() *papicommon.Respo
 	return nil
 }
 
+type ProduceReportDearnessBoostEventRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProduceUuid   string                 `protobuf:"bytes,1,opt,name=produceUuid,proto3" json:"produceUuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceReportDearnessBoostEventRequest) Reset() {
+	*x = ProduceReportDearnessBoostEventRequest{}
+	mi := &file_papi_proto_msgTypes[302]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceReportDearnessBoostEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceReportDearnessBoostEventRequest) ProtoMessage() {}
+
+func (x *ProduceReportDearnessBoostEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[302]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceReportDearnessBoostEventRequest.ProtoReflect.Descriptor instead.
+func (*ProduceReportDearnessBoostEventRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{302}
+}
+
+func (x *ProduceReportDearnessBoostEventRequest) GetProduceUuid() string {
+	if x != nil {
+		return x.ProduceUuid
+	}
+	return ""
+}
+
+type ProduceReportDearnessBoostEventResponse struct {
+	state                    protoimpl.MessageState  `protogen:"open.v1"`
+	MissionPanelSheetGroupId string                  `protobuf:"bytes,1,opt,name=missionPanelSheetGroupId,proto3" json:"missionPanelSheetGroupId,omitempty"`
+	Missions                 []*pmaster.Mission      `protobuf:"bytes,2,rep,name=missions,proto3" json:"missions,omitempty"`
+	GroupRewardResults       []*pcommon.RewardResult `protobuf:"bytes,3,rep,name=groupRewardResults,proto3" json:"groupRewardResults,omitempty"`
+	RewardResults            []*pcommon.RewardResult `protobuf:"bytes,4,rep,name=rewardResults,proto3" json:"rewardResults,omitempty"`
+	CommonResponse           *papicommon.Response    `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) Reset() {
+	*x = ProduceReportDearnessBoostEventResponse{}
+	mi := &file_papi_proto_msgTypes[303]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceReportDearnessBoostEventResponse) ProtoMessage() {}
+
+func (x *ProduceReportDearnessBoostEventResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[303]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceReportDearnessBoostEventResponse.ProtoReflect.Descriptor instead.
+func (*ProduceReportDearnessBoostEventResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{303}
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) GetMissionPanelSheetGroupId() string {
+	if x != nil {
+		return x.MissionPanelSheetGroupId
+	}
+	return ""
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) GetMissions() []*pmaster.Mission {
+	if x != nil {
+		return x.Missions
+	}
+	return nil
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) GetGroupRewardResults() []*pcommon.RewardResult {
+	if x != nil {
+		return x.GroupRewardResults
+	}
+	return nil
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) GetRewardResults() []*pcommon.RewardResult {
+	if x != nil {
+		return x.RewardResults
+	}
+	return nil
+}
+
+func (x *ProduceReportDearnessBoostEventResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
 type ProduceReportGuildMissionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProduceUuid   string                 `protobuf:"bytes,1,opt,name=produceUuid,proto3" json:"produceUuid,omitempty"`
@@ -16906,7 +17258,7 @@ type ProduceReportGuildMissionRequest struct {
 
 func (x *ProduceReportGuildMissionRequest) Reset() {
 	*x = ProduceReportGuildMissionRequest{}
-	mi := &file_papi_proto_msgTypes[298]
+	mi := &file_papi_proto_msgTypes[304]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16918,7 +17270,7 @@ func (x *ProduceReportGuildMissionRequest) String() string {
 func (*ProduceReportGuildMissionRequest) ProtoMessage() {}
 
 func (x *ProduceReportGuildMissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[298]
+	mi := &file_papi_proto_msgTypes[304]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16931,7 +17283,7 @@ func (x *ProduceReportGuildMissionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceReportGuildMissionRequest.ProtoReflect.Descriptor instead.
 func (*ProduceReportGuildMissionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{298}
+	return file_papi_proto_rawDescGZIP(), []int{304}
 }
 
 func (x *ProduceReportGuildMissionRequest) GetProduceUuid() string {
@@ -16953,7 +17305,7 @@ type ProduceReportGuildMissionResponse struct {
 
 func (x *ProduceReportGuildMissionResponse) Reset() {
 	*x = ProduceReportGuildMissionResponse{}
-	mi := &file_papi_proto_msgTypes[299]
+	mi := &file_papi_proto_msgTypes[305]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16965,7 +17317,7 @@ func (x *ProduceReportGuildMissionResponse) String() string {
 func (*ProduceReportGuildMissionResponse) ProtoMessage() {}
 
 func (x *ProduceReportGuildMissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[299]
+	mi := &file_papi_proto_msgTypes[305]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16978,7 +17330,7 @@ func (x *ProduceReportGuildMissionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceReportGuildMissionResponse.ProtoReflect.Descriptor instead.
 func (*ProduceReportGuildMissionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{299}
+	return file_papi_proto_rawDescGZIP(), []int{305}
 }
 
 func (x *ProduceReportGuildMissionResponse) GetGuildMissions() []*pcommon.GuildMission {
@@ -17018,7 +17370,7 @@ type ProduceRerollMemoryRequest struct {
 
 func (x *ProduceRerollMemoryRequest) Reset() {
 	*x = ProduceRerollMemoryRequest{}
-	mi := &file_papi_proto_msgTypes[300]
+	mi := &file_papi_proto_msgTypes[306]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17030,7 +17382,7 @@ func (x *ProduceRerollMemoryRequest) String() string {
 func (*ProduceRerollMemoryRequest) ProtoMessage() {}
 
 func (x *ProduceRerollMemoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[300]
+	mi := &file_papi_proto_msgTypes[306]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17043,7 +17395,7 @@ func (x *ProduceRerollMemoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRerollMemoryRequest.ProtoReflect.Descriptor instead.
 func (*ProduceRerollMemoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{300}
+	return file_papi_proto_rawDescGZIP(), []int{306}
 }
 
 func (x *ProduceRerollMemoryRequest) GetProduceUuid() string {
@@ -17062,7 +17414,7 @@ type ProduceRerollMemoryResponse struct {
 
 func (x *ProduceRerollMemoryResponse) Reset() {
 	*x = ProduceRerollMemoryResponse{}
-	mi := &file_papi_proto_msgTypes[301]
+	mi := &file_papi_proto_msgTypes[307]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17074,7 +17426,7 @@ func (x *ProduceRerollMemoryResponse) String() string {
 func (*ProduceRerollMemoryResponse) ProtoMessage() {}
 
 func (x *ProduceRerollMemoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[301]
+	mi := &file_papi_proto_msgTypes[307]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17087,7 +17439,7 @@ func (x *ProduceRerollMemoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRerollMemoryResponse.ProtoReflect.Descriptor instead.
 func (*ProduceRerollMemoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{301}
+	return file_papi_proto_rawDescGZIP(), []int{307}
 }
 
 func (x *ProduceRerollMemoryResponse) GetCommonResponse() *papicommon.Response {
@@ -17106,7 +17458,7 @@ type ProduceRerollSelectProduceCardRequest struct {
 
 func (x *ProduceRerollSelectProduceCardRequest) Reset() {
 	*x = ProduceRerollSelectProduceCardRequest{}
-	mi := &file_papi_proto_msgTypes[302]
+	mi := &file_papi_proto_msgTypes[308]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17118,7 +17470,7 @@ func (x *ProduceRerollSelectProduceCardRequest) String() string {
 func (*ProduceRerollSelectProduceCardRequest) ProtoMessage() {}
 
 func (x *ProduceRerollSelectProduceCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[302]
+	mi := &file_papi_proto_msgTypes[308]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17131,7 +17483,7 @@ func (x *ProduceRerollSelectProduceCardRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ProduceRerollSelectProduceCardRequest.ProtoReflect.Descriptor instead.
 func (*ProduceRerollSelectProduceCardRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{302}
+	return file_papi_proto_rawDescGZIP(), []int{308}
 }
 
 func (x *ProduceRerollSelectProduceCardRequest) GetProduceUuid() string {
@@ -17150,7 +17502,7 @@ type ProduceRerollSelectProduceCardResponse struct {
 
 func (x *ProduceRerollSelectProduceCardResponse) Reset() {
 	*x = ProduceRerollSelectProduceCardResponse{}
-	mi := &file_papi_proto_msgTypes[303]
+	mi := &file_papi_proto_msgTypes[309]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17162,7 +17514,7 @@ func (x *ProduceRerollSelectProduceCardResponse) String() string {
 func (*ProduceRerollSelectProduceCardResponse) ProtoMessage() {}
 
 func (x *ProduceRerollSelectProduceCardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[303]
+	mi := &file_papi_proto_msgTypes[309]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17175,7 +17527,7 @@ func (x *ProduceRerollSelectProduceCardResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ProduceRerollSelectProduceCardResponse.ProtoReflect.Descriptor instead.
 func (*ProduceRerollSelectProduceCardResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{303}
+	return file_papi_proto_rawDescGZIP(), []int{309}
 }
 
 func (x *ProduceRerollSelectProduceCardResponse) GetCommonResponse() *papicommon.Response {
@@ -17201,7 +17553,7 @@ type ProduceResultRequest struct {
 
 func (x *ProduceResultRequest) Reset() {
 	*x = ProduceResultRequest{}
-	mi := &file_papi_proto_msgTypes[304]
+	mi := &file_papi_proto_msgTypes[310]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17213,7 +17565,7 @@ func (x *ProduceResultRequest) String() string {
 func (*ProduceResultRequest) ProtoMessage() {}
 
 func (x *ProduceResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[304]
+	mi := &file_papi_proto_msgTypes[310]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17226,7 +17578,7 @@ func (x *ProduceResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceResultRequest.ProtoReflect.Descriptor instead.
 func (*ProduceResultRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{304}
+	return file_papi_proto_rawDescGZIP(), []int{310}
 }
 
 func (x *ProduceResultRequest) GetProduceUuid() string {
@@ -17298,7 +17650,7 @@ type ProduceResultResponse struct {
 
 func (x *ProduceResultResponse) Reset() {
 	*x = ProduceResultResponse{}
-	mi := &file_papi_proto_msgTypes[305]
+	mi := &file_papi_proto_msgTypes[311]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17310,7 +17662,7 @@ func (x *ProduceResultResponse) String() string {
 func (*ProduceResultResponse) ProtoMessage() {}
 
 func (x *ProduceResultResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[305]
+	mi := &file_papi_proto_msgTypes[311]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17323,7 +17675,7 @@ func (x *ProduceResultResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceResultResponse.ProtoReflect.Descriptor instead.
 func (*ProduceResultResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{305}
+	return file_papi_proto_rawDescGZIP(), []int{311}
 }
 
 func (x *ProduceResultResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -17370,7 +17722,7 @@ type ProduceRetireResponse struct {
 
 func (x *ProduceRetireResponse) Reset() {
 	*x = ProduceRetireResponse{}
-	mi := &file_papi_proto_msgTypes[306]
+	mi := &file_papi_proto_msgTypes[312]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17382,7 +17734,7 @@ func (x *ProduceRetireResponse) String() string {
 func (*ProduceRetireResponse) ProtoMessage() {}
 
 func (x *ProduceRetireResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[306]
+	mi := &file_papi_proto_msgTypes[312]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17395,7 +17747,7 @@ func (x *ProduceRetireResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceRetireResponse.ProtoReflect.Descriptor instead.
 func (*ProduceRetireResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{306}
+	return file_papi_proto_rawDescGZIP(), []int{312}
 }
 
 func (x *ProduceRetireResponse) GetCommonResponse() *papicommon.Response {
@@ -17414,7 +17766,7 @@ type ProduceStartBeforeLiveEvaluationRequest struct {
 
 func (x *ProduceStartBeforeLiveEvaluationRequest) Reset() {
 	*x = ProduceStartBeforeLiveEvaluationRequest{}
-	mi := &file_papi_proto_msgTypes[307]
+	mi := &file_papi_proto_msgTypes[313]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17426,7 +17778,7 @@ func (x *ProduceStartBeforeLiveEvaluationRequest) String() string {
 func (*ProduceStartBeforeLiveEvaluationRequest) ProtoMessage() {}
 
 func (x *ProduceStartBeforeLiveEvaluationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[307]
+	mi := &file_papi_proto_msgTypes[313]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17439,7 +17791,7 @@ func (x *ProduceStartBeforeLiveEvaluationRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ProduceStartBeforeLiveEvaluationRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStartBeforeLiveEvaluationRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{307}
+	return file_papi_proto_rawDescGZIP(), []int{313}
 }
 
 func (x *ProduceStartBeforeLiveEvaluationRequest) GetProduceUuid() string {
@@ -17458,7 +17810,7 @@ type ProduceStartBeforeLiveEvaluationResponse struct {
 
 func (x *ProduceStartBeforeLiveEvaluationResponse) Reset() {
 	*x = ProduceStartBeforeLiveEvaluationResponse{}
-	mi := &file_papi_proto_msgTypes[308]
+	mi := &file_papi_proto_msgTypes[314]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17470,7 +17822,7 @@ func (x *ProduceStartBeforeLiveEvaluationResponse) String() string {
 func (*ProduceStartBeforeLiveEvaluationResponse) ProtoMessage() {}
 
 func (x *ProduceStartBeforeLiveEvaluationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[308]
+	mi := &file_papi_proto_msgTypes[314]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17483,7 +17835,7 @@ func (x *ProduceStartBeforeLiveEvaluationResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ProduceStartBeforeLiveEvaluationResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStartBeforeLiveEvaluationResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{308}
+	return file_papi_proto_rawDescGZIP(), []int{314}
 }
 
 func (x *ProduceStartBeforeLiveEvaluationResponse) GetCommonResponse() *papicommon.Response {
@@ -17514,7 +17866,7 @@ type ProduceStartRequest struct {
 
 func (x *ProduceStartRequest) Reset() {
 	*x = ProduceStartRequest{}
-	mi := &file_papi_proto_msgTypes[309]
+	mi := &file_papi_proto_msgTypes[315]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17526,7 +17878,7 @@ func (x *ProduceStartRequest) String() string {
 func (*ProduceStartRequest) ProtoMessage() {}
 
 func (x *ProduceStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[309]
+	mi := &file_papi_proto_msgTypes[315]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17539,7 +17891,7 @@ func (x *ProduceStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{309}
+	return file_papi_proto_rawDescGZIP(), []int{315}
 }
 
 func (x *ProduceStartRequest) GetProduceGroupId() string {
@@ -17644,7 +17996,7 @@ type ProduceStartResponse struct {
 
 func (x *ProduceStartResponse) Reset() {
 	*x = ProduceStartResponse{}
-	mi := &file_papi_proto_msgTypes[310]
+	mi := &file_papi_proto_msgTypes[316]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17656,7 +18008,7 @@ func (x *ProduceStartResponse) String() string {
 func (*ProduceStartResponse) ProtoMessage() {}
 
 func (x *ProduceStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[310]
+	mi := &file_papi_proto_msgTypes[316]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17669,7 +18021,7 @@ func (x *ProduceStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{310}
+	return file_papi_proto_rawDescGZIP(), []int{316}
 }
 
 func (x *ProduceStartResponse) GetProduceUuid() string {
@@ -17704,7 +18056,7 @@ type ProduceStepAuditionEndExamBattleRequest struct {
 
 func (x *ProduceStepAuditionEndExamBattleRequest) Reset() {
 	*x = ProduceStepAuditionEndExamBattleRequest{}
-	mi := &file_papi_proto_msgTypes[311]
+	mi := &file_papi_proto_msgTypes[317]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17716,7 +18068,7 @@ func (x *ProduceStepAuditionEndExamBattleRequest) String() string {
 func (*ProduceStepAuditionEndExamBattleRequest) ProtoMessage() {}
 
 func (x *ProduceStepAuditionEndExamBattleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[311]
+	mi := &file_papi_proto_msgTypes[317]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17729,7 +18081,7 @@ func (x *ProduceStepAuditionEndExamBattleRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ProduceStepAuditionEndExamBattleRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionEndExamBattleRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{311}
+	return file_papi_proto_rawDescGZIP(), []int{317}
 }
 
 func (x *ProduceStepAuditionEndExamBattleRequest) GetProduceUuid() string {
@@ -17763,7 +18115,7 @@ type ProduceStepAuditionEndExamBattleResponse struct {
 
 func (x *ProduceStepAuditionEndExamBattleResponse) Reset() {
 	*x = ProduceStepAuditionEndExamBattleResponse{}
-	mi := &file_papi_proto_msgTypes[312]
+	mi := &file_papi_proto_msgTypes[318]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17775,7 +18127,7 @@ func (x *ProduceStepAuditionEndExamBattleResponse) String() string {
 func (*ProduceStepAuditionEndExamBattleResponse) ProtoMessage() {}
 
 func (x *ProduceStepAuditionEndExamBattleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[312]
+	mi := &file_papi_proto_msgTypes[318]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17788,7 +18140,7 @@ func (x *ProduceStepAuditionEndExamBattleResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ProduceStepAuditionEndExamBattleResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionEndExamBattleResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{312}
+	return file_papi_proto_rawDescGZIP(), []int{318}
 }
 
 func (x *ProduceStepAuditionEndExamBattleResponse) GetShouldTransitionSeminar() bool {
@@ -17814,7 +18166,7 @@ type ProduceStepAuditionEndRequest struct {
 
 func (x *ProduceStepAuditionEndRequest) Reset() {
 	*x = ProduceStepAuditionEndRequest{}
-	mi := &file_papi_proto_msgTypes[313]
+	mi := &file_papi_proto_msgTypes[319]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17826,7 +18178,7 @@ func (x *ProduceStepAuditionEndRequest) String() string {
 func (*ProduceStepAuditionEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepAuditionEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[313]
+	mi := &file_papi_proto_msgTypes[319]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17839,7 +18191,7 @@ func (x *ProduceStepAuditionEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{313}
+	return file_papi_proto_rawDescGZIP(), []int{319}
 }
 
 func (x *ProduceStepAuditionEndRequest) GetProduceUuid() string {
@@ -17861,7 +18213,7 @@ type ProduceStepAuditionEndResponse struct {
 
 func (x *ProduceStepAuditionEndResponse) Reset() {
 	*x = ProduceStepAuditionEndResponse{}
-	mi := &file_papi_proto_msgTypes[314]
+	mi := &file_papi_proto_msgTypes[320]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17873,7 +18225,7 @@ func (x *ProduceStepAuditionEndResponse) String() string {
 func (*ProduceStepAuditionEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepAuditionEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[314]
+	mi := &file_papi_proto_msgTypes[320]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17886,7 +18238,7 @@ func (x *ProduceStepAuditionEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{314}
+	return file_papi_proto_rawDescGZIP(), []int{320}
 }
 
 func (x *ProduceStepAuditionEndResponse) GetRewardResults() []*pcommon.ProduceRewardResult {
@@ -17926,7 +18278,7 @@ type ProduceStepAuditionRefreshRequest struct {
 
 func (x *ProduceStepAuditionRefreshRequest) Reset() {
 	*x = ProduceStepAuditionRefreshRequest{}
-	mi := &file_papi_proto_msgTypes[315]
+	mi := &file_papi_proto_msgTypes[321]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17938,7 +18290,7 @@ func (x *ProduceStepAuditionRefreshRequest) String() string {
 func (*ProduceStepAuditionRefreshRequest) ProtoMessage() {}
 
 func (x *ProduceStepAuditionRefreshRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[315]
+	mi := &file_papi_proto_msgTypes[321]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17951,7 +18303,7 @@ func (x *ProduceStepAuditionRefreshRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepAuditionRefreshRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionRefreshRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{315}
+	return file_papi_proto_rawDescGZIP(), []int{321}
 }
 
 func (x *ProduceStepAuditionRefreshRequest) GetProduceUuid() string {
@@ -17973,7 +18325,7 @@ type ProduceStepAuditionRefreshResponse struct {
 
 func (x *ProduceStepAuditionRefreshResponse) Reset() {
 	*x = ProduceStepAuditionRefreshResponse{}
-	mi := &file_papi_proto_msgTypes[316]
+	mi := &file_papi_proto_msgTypes[322]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17985,7 +18337,7 @@ func (x *ProduceStepAuditionRefreshResponse) String() string {
 func (*ProduceStepAuditionRefreshResponse) ProtoMessage() {}
 
 func (x *ProduceStepAuditionRefreshResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[316]
+	mi := &file_papi_proto_msgTypes[322]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17998,7 +18350,7 @@ func (x *ProduceStepAuditionRefreshResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ProduceStepAuditionRefreshResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionRefreshResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{316}
+	return file_papi_proto_rawDescGZIP(), []int{322}
 }
 
 func (x *ProduceStepAuditionRefreshResponse) GetBeforeStamina() int32 {
@@ -18038,7 +18390,7 @@ type ProduceStepAuditionStartRequest struct {
 
 func (x *ProduceStepAuditionStartRequest) Reset() {
 	*x = ProduceStepAuditionStartRequest{}
-	mi := &file_papi_proto_msgTypes[317]
+	mi := &file_papi_proto_msgTypes[323]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18050,7 +18402,7 @@ func (x *ProduceStepAuditionStartRequest) String() string {
 func (*ProduceStepAuditionStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepAuditionStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[317]
+	mi := &file_papi_proto_msgTypes[323]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18063,7 +18415,7 @@ func (x *ProduceStepAuditionStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{317}
+	return file_papi_proto_rawDescGZIP(), []int{323}
 }
 
 func (x *ProduceStepAuditionStartRequest) GetProduceUuid() string {
@@ -18083,7 +18435,7 @@ type ProduceStepAuditionStartResponse struct {
 
 func (x *ProduceStepAuditionStartResponse) Reset() {
 	*x = ProduceStepAuditionStartResponse{}
-	mi := &file_papi_proto_msgTypes[318]
+	mi := &file_papi_proto_msgTypes[324]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18095,7 +18447,7 @@ func (x *ProduceStepAuditionStartResponse) String() string {
 func (*ProduceStepAuditionStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepAuditionStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[318]
+	mi := &file_papi_proto_msgTypes[324]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18108,7 +18460,7 @@ func (x *ProduceStepAuditionStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{318}
+	return file_papi_proto_rawDescGZIP(), []int{324}
 }
 
 func (x *ProduceStepAuditionStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -18135,7 +18487,7 @@ type ProduceStepBusinessSelectRequest struct {
 
 func (x *ProduceStepBusinessSelectRequest) Reset() {
 	*x = ProduceStepBusinessSelectRequest{}
-	mi := &file_papi_proto_msgTypes[319]
+	mi := &file_papi_proto_msgTypes[325]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18147,7 +18499,7 @@ func (x *ProduceStepBusinessSelectRequest) String() string {
 func (*ProduceStepBusinessSelectRequest) ProtoMessage() {}
 
 func (x *ProduceStepBusinessSelectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[319]
+	mi := &file_papi_proto_msgTypes[325]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18160,7 +18512,7 @@ func (x *ProduceStepBusinessSelectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepBusinessSelectRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepBusinessSelectRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{319}
+	return file_papi_proto_rawDescGZIP(), []int{325}
 }
 
 func (x *ProduceStepBusinessSelectRequest) GetProduceUuid() string {
@@ -18188,7 +18540,7 @@ type ProduceStepBusinessSelectResponse struct {
 
 func (x *ProduceStepBusinessSelectResponse) Reset() {
 	*x = ProduceStepBusinessSelectResponse{}
-	mi := &file_papi_proto_msgTypes[320]
+	mi := &file_papi_proto_msgTypes[326]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18200,7 +18552,7 @@ func (x *ProduceStepBusinessSelectResponse) String() string {
 func (*ProduceStepBusinessSelectResponse) ProtoMessage() {}
 
 func (x *ProduceStepBusinessSelectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[320]
+	mi := &file_papi_proto_msgTypes[326]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18213,7 +18565,7 @@ func (x *ProduceStepBusinessSelectResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepBusinessSelectResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepBusinessSelectResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{320}
+	return file_papi_proto_rawDescGZIP(), []int{326}
 }
 
 func (x *ProduceStepBusinessSelectResponse) GetConsumptionResults() []*pcommon.ProduceConsumptionResult {
@@ -18246,7 +18598,7 @@ type ProduceStepBusinessStartRequest struct {
 
 func (x *ProduceStepBusinessStartRequest) Reset() {
 	*x = ProduceStepBusinessStartRequest{}
-	mi := &file_papi_proto_msgTypes[321]
+	mi := &file_papi_proto_msgTypes[327]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18258,7 +18610,7 @@ func (x *ProduceStepBusinessStartRequest) String() string {
 func (*ProduceStepBusinessStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepBusinessStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[321]
+	mi := &file_papi_proto_msgTypes[327]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18271,7 +18623,7 @@ func (x *ProduceStepBusinessStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepBusinessStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepBusinessStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{321}
+	return file_papi_proto_rawDescGZIP(), []int{327}
 }
 
 func (x *ProduceStepBusinessStartRequest) GetProduceUuid() string {
@@ -18291,7 +18643,7 @@ type ProduceStepBusinessStartResponse struct {
 
 func (x *ProduceStepBusinessStartResponse) Reset() {
 	*x = ProduceStepBusinessStartResponse{}
-	mi := &file_papi_proto_msgTypes[322]
+	mi := &file_papi_proto_msgTypes[328]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18303,7 +18655,7 @@ func (x *ProduceStepBusinessStartResponse) String() string {
 func (*ProduceStepBusinessStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepBusinessStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[322]
+	mi := &file_papi_proto_msgTypes[328]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18316,7 +18668,7 @@ func (x *ProduceStepBusinessStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepBusinessStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepBusinessStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{322}
+	return file_papi_proto_rawDescGZIP(), []int{328}
 }
 
 func (x *ProduceStepBusinessStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -18342,7 +18694,7 @@ type ProduceStepCustomizeEndRequest struct {
 
 func (x *ProduceStepCustomizeEndRequest) Reset() {
 	*x = ProduceStepCustomizeEndRequest{}
-	mi := &file_papi_proto_msgTypes[323]
+	mi := &file_papi_proto_msgTypes[329]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18354,7 +18706,7 @@ func (x *ProduceStepCustomizeEndRequest) String() string {
 func (*ProduceStepCustomizeEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[323]
+	mi := &file_papi_proto_msgTypes[329]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18367,7 +18719,7 @@ func (x *ProduceStepCustomizeEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepCustomizeEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{323}
+	return file_papi_proto_rawDescGZIP(), []int{329}
 }
 
 func (x *ProduceStepCustomizeEndRequest) GetProduceUuid() string {
@@ -18387,7 +18739,7 @@ type ProduceStepCustomizeEndResponse struct {
 
 func (x *ProduceStepCustomizeEndResponse) Reset() {
 	*x = ProduceStepCustomizeEndResponse{}
-	mi := &file_papi_proto_msgTypes[324]
+	mi := &file_papi_proto_msgTypes[330]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18399,7 +18751,7 @@ func (x *ProduceStepCustomizeEndResponse) String() string {
 func (*ProduceStepCustomizeEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[324]
+	mi := &file_papi_proto_msgTypes[330]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18412,7 +18764,7 @@ func (x *ProduceStepCustomizeEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepCustomizeEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{324}
+	return file_papi_proto_rawDescGZIP(), []int{330}
 }
 
 func (x *ProduceStepCustomizeEndResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -18440,7 +18792,7 @@ type ProduceStepCustomizeSelectRequest struct {
 
 func (x *ProduceStepCustomizeSelectRequest) Reset() {
 	*x = ProduceStepCustomizeSelectRequest{}
-	mi := &file_papi_proto_msgTypes[325]
+	mi := &file_papi_proto_msgTypes[331]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18452,7 +18804,7 @@ func (x *ProduceStepCustomizeSelectRequest) String() string {
 func (*ProduceStepCustomizeSelectRequest) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeSelectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[325]
+	mi := &file_papi_proto_msgTypes[331]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18465,7 +18817,7 @@ func (x *ProduceStepCustomizeSelectRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepCustomizeSelectRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeSelectRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{325}
+	return file_papi_proto_rawDescGZIP(), []int{331}
 }
 
 func (x *ProduceStepCustomizeSelectRequest) GetProduceUuid() string {
@@ -18501,7 +18853,7 @@ type ProduceStepCustomizeSelectResponse struct {
 
 func (x *ProduceStepCustomizeSelectResponse) Reset() {
 	*x = ProduceStepCustomizeSelectResponse{}
-	mi := &file_papi_proto_msgTypes[326]
+	mi := &file_papi_proto_msgTypes[332]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18513,7 +18865,7 @@ func (x *ProduceStepCustomizeSelectResponse) String() string {
 func (*ProduceStepCustomizeSelectResponse) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeSelectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[326]
+	mi := &file_papi_proto_msgTypes[332]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18526,7 +18878,7 @@ func (x *ProduceStepCustomizeSelectResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ProduceStepCustomizeSelectResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeSelectResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{326}
+	return file_papi_proto_rawDescGZIP(), []int{332}
 }
 
 func (x *ProduceStepCustomizeSelectResponse) GetBeforeProducePoint() int32 {
@@ -18566,7 +18918,7 @@ type ProduceStepCustomizeStartRequest struct {
 
 func (x *ProduceStepCustomizeStartRequest) Reset() {
 	*x = ProduceStepCustomizeStartRequest{}
-	mi := &file_papi_proto_msgTypes[327]
+	mi := &file_papi_proto_msgTypes[333]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18578,7 +18930,7 @@ func (x *ProduceStepCustomizeStartRequest) String() string {
 func (*ProduceStepCustomizeStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[327]
+	mi := &file_papi_proto_msgTypes[333]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18591,7 +18943,7 @@ func (x *ProduceStepCustomizeStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepCustomizeStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{327}
+	return file_papi_proto_rawDescGZIP(), []int{333}
 }
 
 func (x *ProduceStepCustomizeStartRequest) GetProduceUuid() string {
@@ -18611,7 +18963,7 @@ type ProduceStepCustomizeStartResponse struct {
 
 func (x *ProduceStepCustomizeStartResponse) Reset() {
 	*x = ProduceStepCustomizeStartResponse{}
-	mi := &file_papi_proto_msgTypes[328]
+	mi := &file_papi_proto_msgTypes[334]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18623,7 +18975,7 @@ func (x *ProduceStepCustomizeStartResponse) String() string {
 func (*ProduceStepCustomizeStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepCustomizeStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[328]
+	mi := &file_papi_proto_msgTypes[334]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18636,7 +18988,7 @@ func (x *ProduceStepCustomizeStartResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepCustomizeStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepCustomizeStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{328}
+	return file_papi_proto_rawDescGZIP(), []int{334}
 }
 
 func (x *ProduceStepCustomizeStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -18665,7 +19017,7 @@ type ProduceStepEventRequest struct {
 
 func (x *ProduceStepEventRequest) Reset() {
 	*x = ProduceStepEventRequest{}
-	mi := &file_papi_proto_msgTypes[329]
+	mi := &file_papi_proto_msgTypes[335]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18677,7 +19029,7 @@ func (x *ProduceStepEventRequest) String() string {
 func (*ProduceStepEventRequest) ProtoMessage() {}
 
 func (x *ProduceStepEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[329]
+	mi := &file_papi_proto_msgTypes[335]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18690,7 +19042,7 @@ func (x *ProduceStepEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{329}
+	return file_papi_proto_rawDescGZIP(), []int{335}
 }
 
 func (x *ProduceStepEventRequest) GetProduceUuid() string {
@@ -18733,7 +19085,7 @@ type ProduceStepEventResponse struct {
 
 func (x *ProduceStepEventResponse) Reset() {
 	*x = ProduceStepEventResponse{}
-	mi := &file_papi_proto_msgTypes[330]
+	mi := &file_papi_proto_msgTypes[336]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18745,7 +19097,7 @@ func (x *ProduceStepEventResponse) String() string {
 func (*ProduceStepEventResponse) ProtoMessage() {}
 
 func (x *ProduceStepEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[330]
+	mi := &file_papi_proto_msgTypes[336]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18758,7 +19110,7 @@ func (x *ProduceStepEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{330}
+	return file_papi_proto_rawDescGZIP(), []int{336}
 }
 
 func (x *ProduceStepEventResponse) GetSuccess() bool {
@@ -18800,7 +19152,7 @@ type ProduceStepLessonEndRequest struct {
 
 func (x *ProduceStepLessonEndRequest) Reset() {
 	*x = ProduceStepLessonEndRequest{}
-	mi := &file_papi_proto_msgTypes[331]
+	mi := &file_papi_proto_msgTypes[337]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18812,7 +19164,7 @@ func (x *ProduceStepLessonEndRequest) String() string {
 func (*ProduceStepLessonEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepLessonEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[331]
+	mi := &file_papi_proto_msgTypes[337]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18825,7 +19177,7 @@ func (x *ProduceStepLessonEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{331}
+	return file_papi_proto_rawDescGZIP(), []int{337}
 }
 
 func (x *ProduceStepLessonEndRequest) GetProduceUuid() string {
@@ -18860,7 +19212,7 @@ type ProduceStepLessonEndResponse struct {
 
 func (x *ProduceStepLessonEndResponse) Reset() {
 	*x = ProduceStepLessonEndResponse{}
-	mi := &file_papi_proto_msgTypes[332]
+	mi := &file_papi_proto_msgTypes[338]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18872,7 +19224,7 @@ func (x *ProduceStepLessonEndResponse) String() string {
 func (*ProduceStepLessonEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepLessonEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[332]
+	mi := &file_papi_proto_msgTypes[338]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18885,7 +19237,7 @@ func (x *ProduceStepLessonEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{332}
+	return file_papi_proto_rawDescGZIP(), []int{338}
 }
 
 func (x *ProduceStepLessonEndResponse) GetShouldTransitionSeminar() bool {
@@ -18918,7 +19270,7 @@ type ProduceStepLessonStartRequest struct {
 
 func (x *ProduceStepLessonStartRequest) Reset() {
 	*x = ProduceStepLessonStartRequest{}
-	mi := &file_papi_proto_msgTypes[333]
+	mi := &file_papi_proto_msgTypes[339]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18930,7 +19282,7 @@ func (x *ProduceStepLessonStartRequest) String() string {
 func (*ProduceStepLessonStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepLessonStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[333]
+	mi := &file_papi_proto_msgTypes[339]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18943,7 +19295,7 @@ func (x *ProduceStepLessonStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{333}
+	return file_papi_proto_rawDescGZIP(), []int{339}
 }
 
 func (x *ProduceStepLessonStartRequest) GetProduceUuid() string {
@@ -18963,7 +19315,7 @@ type ProduceStepLessonStartResponse struct {
 
 func (x *ProduceStepLessonStartResponse) Reset() {
 	*x = ProduceStepLessonStartResponse{}
-	mi := &file_papi_proto_msgTypes[334]
+	mi := &file_papi_proto_msgTypes[340]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18975,7 +19327,7 @@ func (x *ProduceStepLessonStartResponse) String() string {
 func (*ProduceStepLessonStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepLessonStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[334]
+	mi := &file_papi_proto_msgTypes[340]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18988,7 +19340,7 @@ func (x *ProduceStepLessonStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{334}
+	return file_papi_proto_rawDescGZIP(), []int{340}
 }
 
 func (x *ProduceStepLessonStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -19014,7 +19366,7 @@ type ProduceStepPresentEndRequest struct {
 
 func (x *ProduceStepPresentEndRequest) Reset() {
 	*x = ProduceStepPresentEndRequest{}
-	mi := &file_papi_proto_msgTypes[335]
+	mi := &file_papi_proto_msgTypes[341]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19026,7 +19378,7 @@ func (x *ProduceStepPresentEndRequest) String() string {
 func (*ProduceStepPresentEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepPresentEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[335]
+	mi := &file_papi_proto_msgTypes[341]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19039,7 +19391,7 @@ func (x *ProduceStepPresentEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepPresentEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{335}
+	return file_papi_proto_rawDescGZIP(), []int{341}
 }
 
 func (x *ProduceStepPresentEndRequest) GetProduceUuid() string {
@@ -19060,7 +19412,7 @@ type ProduceStepPresentEndResponse struct {
 
 func (x *ProduceStepPresentEndResponse) Reset() {
 	*x = ProduceStepPresentEndResponse{}
-	mi := &file_papi_proto_msgTypes[336]
+	mi := &file_papi_proto_msgTypes[342]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19072,7 +19424,7 @@ func (x *ProduceStepPresentEndResponse) String() string {
 func (*ProduceStepPresentEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepPresentEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[336]
+	mi := &file_papi_proto_msgTypes[342]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19085,7 +19437,7 @@ func (x *ProduceStepPresentEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepPresentEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{336}
+	return file_papi_proto_rawDescGZIP(), []int{342}
 }
 
 func (x *ProduceStepPresentEndResponse) GetRewardResults() []*pcommon.ProduceRewardResult {
@@ -19120,7 +19472,7 @@ type ProduceStepPresentReceiveRequest struct {
 
 func (x *ProduceStepPresentReceiveRequest) Reset() {
 	*x = ProduceStepPresentReceiveRequest{}
-	mi := &file_papi_proto_msgTypes[337]
+	mi := &file_papi_proto_msgTypes[343]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19132,7 +19484,7 @@ func (x *ProduceStepPresentReceiveRequest) String() string {
 func (*ProduceStepPresentReceiveRequest) ProtoMessage() {}
 
 func (x *ProduceStepPresentReceiveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[337]
+	mi := &file_papi_proto_msgTypes[343]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19145,7 +19497,7 @@ func (x *ProduceStepPresentReceiveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepPresentReceiveRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentReceiveRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{337}
+	return file_papi_proto_rawDescGZIP(), []int{343}
 }
 
 func (x *ProduceStepPresentReceiveRequest) GetProduceUuid() string {
@@ -19180,7 +19532,7 @@ type ProduceStepPresentReceiveResponse struct {
 
 func (x *ProduceStepPresentReceiveResponse) Reset() {
 	*x = ProduceStepPresentReceiveResponse{}
-	mi := &file_papi_proto_msgTypes[338]
+	mi := &file_papi_proto_msgTypes[344]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19192,7 +19544,7 @@ func (x *ProduceStepPresentReceiveResponse) String() string {
 func (*ProduceStepPresentReceiveResponse) ProtoMessage() {}
 
 func (x *ProduceStepPresentReceiveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[338]
+	mi := &file_papi_proto_msgTypes[344]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19205,7 +19557,7 @@ func (x *ProduceStepPresentReceiveResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepPresentReceiveResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentReceiveResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{338}
+	return file_papi_proto_rawDescGZIP(), []int{344}
 }
 
 func (x *ProduceStepPresentReceiveResponse) GetProvidedRewards() []*pcommon.ProduceRewardResult {
@@ -19238,7 +19590,7 @@ type ProduceStepPresentStartRequest struct {
 
 func (x *ProduceStepPresentStartRequest) Reset() {
 	*x = ProduceStepPresentStartRequest{}
-	mi := &file_papi_proto_msgTypes[339]
+	mi := &file_papi_proto_msgTypes[345]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19250,7 +19602,7 @@ func (x *ProduceStepPresentStartRequest) String() string {
 func (*ProduceStepPresentStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepPresentStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[339]
+	mi := &file_papi_proto_msgTypes[345]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19263,7 +19615,7 @@ func (x *ProduceStepPresentStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepPresentStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{339}
+	return file_papi_proto_rawDescGZIP(), []int{345}
 }
 
 func (x *ProduceStepPresentStartRequest) GetProduceUuid() string {
@@ -19283,7 +19635,7 @@ type ProduceStepPresentStartResponse struct {
 
 func (x *ProduceStepPresentStartResponse) Reset() {
 	*x = ProduceStepPresentStartResponse{}
-	mi := &file_papi_proto_msgTypes[340]
+	mi := &file_papi_proto_msgTypes[346]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19295,7 +19647,7 @@ func (x *ProduceStepPresentStartResponse) String() string {
 func (*ProduceStepPresentStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepPresentStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[340]
+	mi := &file_papi_proto_msgTypes[346]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19308,7 +19660,7 @@ func (x *ProduceStepPresentStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepPresentStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepPresentStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{340}
+	return file_papi_proto_rawDescGZIP(), []int{346}
 }
 
 func (x *ProduceStepPresentStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -19334,7 +19686,7 @@ type ProduceStepRefreshRequest struct {
 
 func (x *ProduceStepRefreshRequest) Reset() {
 	*x = ProduceStepRefreshRequest{}
-	mi := &file_papi_proto_msgTypes[341]
+	mi := &file_papi_proto_msgTypes[347]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19346,7 +19698,7 @@ func (x *ProduceStepRefreshRequest) String() string {
 func (*ProduceStepRefreshRequest) ProtoMessage() {}
 
 func (x *ProduceStepRefreshRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[341]
+	mi := &file_papi_proto_msgTypes[347]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19359,7 +19711,7 @@ func (x *ProduceStepRefreshRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepRefreshRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepRefreshRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{341}
+	return file_papi_proto_rawDescGZIP(), []int{347}
 }
 
 func (x *ProduceStepRefreshRequest) GetProduceUuid() string {
@@ -19381,7 +19733,7 @@ type ProduceStepRefreshResponse struct {
 
 func (x *ProduceStepRefreshResponse) Reset() {
 	*x = ProduceStepRefreshResponse{}
-	mi := &file_papi_proto_msgTypes[342]
+	mi := &file_papi_proto_msgTypes[348]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19393,7 +19745,7 @@ func (x *ProduceStepRefreshResponse) String() string {
 func (*ProduceStepRefreshResponse) ProtoMessage() {}
 
 func (x *ProduceStepRefreshResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[342]
+	mi := &file_papi_proto_msgTypes[348]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19406,7 +19758,7 @@ func (x *ProduceStepRefreshResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepRefreshResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepRefreshResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{342}
+	return file_papi_proto_rawDescGZIP(), []int{348}
 }
 
 func (x *ProduceStepRefreshResponse) GetBeforeStamina() int32 {
@@ -19446,7 +19798,7 @@ type ProduceStepSelfLessonEndRequest struct {
 
 func (x *ProduceStepSelfLessonEndRequest) Reset() {
 	*x = ProduceStepSelfLessonEndRequest{}
-	mi := &file_papi_proto_msgTypes[343]
+	mi := &file_papi_proto_msgTypes[349]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19458,7 +19810,7 @@ func (x *ProduceStepSelfLessonEndRequest) String() string {
 func (*ProduceStepSelfLessonEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[343]
+	mi := &file_papi_proto_msgTypes[349]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19471,7 +19823,7 @@ func (x *ProduceStepSelfLessonEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLessonEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{343}
+	return file_papi_proto_rawDescGZIP(), []int{349}
 }
 
 func (x *ProduceStepSelfLessonEndRequest) GetProduceUuid() string {
@@ -19492,7 +19844,7 @@ type ProduceStepSelfLessonEndResponse struct {
 
 func (x *ProduceStepSelfLessonEndResponse) Reset() {
 	*x = ProduceStepSelfLessonEndResponse{}
-	mi := &file_papi_proto_msgTypes[344]
+	mi := &file_papi_proto_msgTypes[350]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19504,7 +19856,7 @@ func (x *ProduceStepSelfLessonEndResponse) String() string {
 func (*ProduceStepSelfLessonEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[344]
+	mi := &file_papi_proto_msgTypes[350]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19517,7 +19869,7 @@ func (x *ProduceStepSelfLessonEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLessonEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{344}
+	return file_papi_proto_rawDescGZIP(), []int{350}
 }
 
 func (x *ProduceStepSelfLessonEndResponse) GetRewardResults() []*pcommon.ProduceRewardResult {
@@ -19550,7 +19902,7 @@ type ProduceStepSelfLessonStartRequest struct {
 
 func (x *ProduceStepSelfLessonStartRequest) Reset() {
 	*x = ProduceStepSelfLessonStartRequest{}
-	mi := &file_papi_proto_msgTypes[345]
+	mi := &file_papi_proto_msgTypes[351]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19562,7 +19914,7 @@ func (x *ProduceStepSelfLessonStartRequest) String() string {
 func (*ProduceStepSelfLessonStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[345]
+	mi := &file_papi_proto_msgTypes[351]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19575,7 +19927,7 @@ func (x *ProduceStepSelfLessonStartRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepSelfLessonStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{345}
+	return file_papi_proto_rawDescGZIP(), []int{351}
 }
 
 func (x *ProduceStepSelfLessonStartRequest) GetProduceUuid() string {
@@ -19597,7 +19949,7 @@ type ProduceStepSelfLessonStartResponse struct {
 
 func (x *ProduceStepSelfLessonStartResponse) Reset() {
 	*x = ProduceStepSelfLessonStartResponse{}
-	mi := &file_papi_proto_msgTypes[346]
+	mi := &file_papi_proto_msgTypes[352]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19609,7 +19961,7 @@ func (x *ProduceStepSelfLessonStartResponse) String() string {
 func (*ProduceStepSelfLessonStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[346]
+	mi := &file_papi_proto_msgTypes[352]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19622,7 +19974,7 @@ func (x *ProduceStepSelfLessonStartResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ProduceStepSelfLessonStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{346}
+	return file_papi_proto_rawDescGZIP(), []int{352}
 }
 
 func (x *ProduceStepSelfLessonStartResponse) GetBeforeStamina() int32 {
@@ -19664,7 +20016,7 @@ type ProduceStepShopBuyRequest struct {
 
 func (x *ProduceStepShopBuyRequest) Reset() {
 	*x = ProduceStepShopBuyRequest{}
-	mi := &file_papi_proto_msgTypes[347]
+	mi := &file_papi_proto_msgTypes[353]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19676,7 +20028,7 @@ func (x *ProduceStepShopBuyRequest) String() string {
 func (*ProduceStepShopBuyRequest) ProtoMessage() {}
 
 func (x *ProduceStepShopBuyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[347]
+	mi := &file_papi_proto_msgTypes[353]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19689,7 +20041,7 @@ func (x *ProduceStepShopBuyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopBuyRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopBuyRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{347}
+	return file_papi_proto_rawDescGZIP(), []int{353}
 }
 
 func (x *ProduceStepShopBuyRequest) GetProduceUuid() string {
@@ -19726,7 +20078,7 @@ type ProduceStepShopBuyResponse struct {
 
 func (x *ProduceStepShopBuyResponse) Reset() {
 	*x = ProduceStepShopBuyResponse{}
-	mi := &file_papi_proto_msgTypes[348]
+	mi := &file_papi_proto_msgTypes[354]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19738,7 +20090,7 @@ func (x *ProduceStepShopBuyResponse) String() string {
 func (*ProduceStepShopBuyResponse) ProtoMessage() {}
 
 func (x *ProduceStepShopBuyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[348]
+	mi := &file_papi_proto_msgTypes[354]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19751,7 +20103,7 @@ func (x *ProduceStepShopBuyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopBuyResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopBuyResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{348}
+	return file_papi_proto_rawDescGZIP(), []int{354}
 }
 
 func (x *ProduceStepShopBuyResponse) GetProvidedRewards() []*pcommon.ProduceRewardResult {
@@ -19798,7 +20150,7 @@ type ProduceStepShopEndRequest struct {
 
 func (x *ProduceStepShopEndRequest) Reset() {
 	*x = ProduceStepShopEndRequest{}
-	mi := &file_papi_proto_msgTypes[349]
+	mi := &file_papi_proto_msgTypes[355]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19810,7 +20162,7 @@ func (x *ProduceStepShopEndRequest) String() string {
 func (*ProduceStepShopEndRequest) ProtoMessage() {}
 
 func (x *ProduceStepShopEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[349]
+	mi := &file_papi_proto_msgTypes[355]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19823,7 +20175,7 @@ func (x *ProduceStepShopEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopEndRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{349}
+	return file_papi_proto_rawDescGZIP(), []int{355}
 }
 
 func (x *ProduceStepShopEndRequest) GetProduceUuid() string {
@@ -19843,7 +20195,7 @@ type ProduceStepShopEndResponse struct {
 
 func (x *ProduceStepShopEndResponse) Reset() {
 	*x = ProduceStepShopEndResponse{}
-	mi := &file_papi_proto_msgTypes[350]
+	mi := &file_papi_proto_msgTypes[356]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19855,7 +20207,7 @@ func (x *ProduceStepShopEndResponse) String() string {
 func (*ProduceStepShopEndResponse) ProtoMessage() {}
 
 func (x *ProduceStepShopEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[350]
+	mi := &file_papi_proto_msgTypes[356]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19868,7 +20220,7 @@ func (x *ProduceStepShopEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopEndResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{350}
+	return file_papi_proto_rawDescGZIP(), []int{356}
 }
 
 func (x *ProduceStepShopEndResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -19894,7 +20246,7 @@ type ProduceStepShopRerollRequest struct {
 
 func (x *ProduceStepShopRerollRequest) Reset() {
 	*x = ProduceStepShopRerollRequest{}
-	mi := &file_papi_proto_msgTypes[351]
+	mi := &file_papi_proto_msgTypes[357]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19906,7 +20258,7 @@ func (x *ProduceStepShopRerollRequest) String() string {
 func (*ProduceStepShopRerollRequest) ProtoMessage() {}
 
 func (x *ProduceStepShopRerollRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[351]
+	mi := &file_papi_proto_msgTypes[357]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19919,7 +20271,7 @@ func (x *ProduceStepShopRerollRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopRerollRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopRerollRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{351}
+	return file_papi_proto_rawDescGZIP(), []int{357}
 }
 
 func (x *ProduceStepShopRerollRequest) GetProduceUuid() string {
@@ -19938,7 +20290,7 @@ type ProduceStepShopRerollResponse struct {
 
 func (x *ProduceStepShopRerollResponse) Reset() {
 	*x = ProduceStepShopRerollResponse{}
-	mi := &file_papi_proto_msgTypes[352]
+	mi := &file_papi_proto_msgTypes[358]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19950,7 +20302,7 @@ func (x *ProduceStepShopRerollResponse) String() string {
 func (*ProduceStepShopRerollResponse) ProtoMessage() {}
 
 func (x *ProduceStepShopRerollResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[352]
+	mi := &file_papi_proto_msgTypes[358]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19963,7 +20315,7 @@ func (x *ProduceStepShopRerollResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopRerollResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopRerollResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{352}
+	return file_papi_proto_rawDescGZIP(), []int{358}
 }
 
 func (x *ProduceStepShopRerollResponse) GetCommonResponse() *papicommon.Response {
@@ -19982,7 +20334,7 @@ type ProduceStepShopStartRequest struct {
 
 func (x *ProduceStepShopStartRequest) Reset() {
 	*x = ProduceStepShopStartRequest{}
-	mi := &file_papi_proto_msgTypes[353]
+	mi := &file_papi_proto_msgTypes[359]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19994,7 +20346,7 @@ func (x *ProduceStepShopStartRequest) String() string {
 func (*ProduceStepShopStartRequest) ProtoMessage() {}
 
 func (x *ProduceStepShopStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[353]
+	mi := &file_papi_proto_msgTypes[359]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20007,7 +20359,7 @@ func (x *ProduceStepShopStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopStartRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{353}
+	return file_papi_proto_rawDescGZIP(), []int{359}
 }
 
 func (x *ProduceStepShopStartRequest) GetProduceUuid() string {
@@ -20027,7 +20379,7 @@ type ProduceStepShopStartResponse struct {
 
 func (x *ProduceStepShopStartResponse) Reset() {
 	*x = ProduceStepShopStartResponse{}
-	mi := &file_papi_proto_msgTypes[354]
+	mi := &file_papi_proto_msgTypes[360]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20039,7 +20391,7 @@ func (x *ProduceStepShopStartResponse) String() string {
 func (*ProduceStepShopStartResponse) ProtoMessage() {}
 
 func (x *ProduceStepShopStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[354]
+	mi := &file_papi_proto_msgTypes[360]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20052,7 +20404,7 @@ func (x *ProduceStepShopStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepShopStartResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepShopStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{354}
+	return file_papi_proto_rawDescGZIP(), []int{360}
 }
 
 func (x *ProduceStepShopStartResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -20078,7 +20430,7 @@ type ProduceStepSkipRequest struct {
 
 func (x *ProduceStepSkipRequest) Reset() {
 	*x = ProduceStepSkipRequest{}
-	mi := &file_papi_proto_msgTypes[355]
+	mi := &file_papi_proto_msgTypes[361]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20090,7 +20442,7 @@ func (x *ProduceStepSkipRequest) String() string {
 func (*ProduceStepSkipRequest) ProtoMessage() {}
 
 func (x *ProduceStepSkipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[355]
+	mi := &file_papi_proto_msgTypes[361]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20103,7 +20455,7 @@ func (x *ProduceStepSkipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSkipRequest.ProtoReflect.Descriptor instead.
 func (*ProduceStepSkipRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{355}
+	return file_papi_proto_rawDescGZIP(), []int{361}
 }
 
 func (x *ProduceStepSkipRequest) GetProduceUuid() string {
@@ -20124,7 +20476,7 @@ type ProduceStepSkipResponse struct {
 
 func (x *ProduceStepSkipResponse) Reset() {
 	*x = ProduceStepSkipResponse{}
-	mi := &file_papi_proto_msgTypes[356]
+	mi := &file_papi_proto_msgTypes[362]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20136,7 +20488,7 @@ func (x *ProduceStepSkipResponse) String() string {
 func (*ProduceStepSkipResponse) ProtoMessage() {}
 
 func (x *ProduceStepSkipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[356]
+	mi := &file_papi_proto_msgTypes[362]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20149,7 +20501,7 @@ func (x *ProduceStepSkipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSkipResponse.ProtoReflect.Descriptor instead.
 func (*ProduceStepSkipResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{356}
+	return file_papi_proto_rawDescGZIP(), []int{362}
 }
 
 func (x *ProduceStepSkipResponse) GetBeforeStamina() int32 {
@@ -20190,7 +20542,7 @@ type ProduceTopResponse struct {
 
 func (x *ProduceTopResponse) Reset() {
 	*x = ProduceTopResponse{}
-	mi := &file_papi_proto_msgTypes[357]
+	mi := &file_papi_proto_msgTypes[363]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20202,7 +20554,7 @@ func (x *ProduceTopResponse) String() string {
 func (*ProduceTopResponse) ProtoMessage() {}
 
 func (x *ProduceTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[357]
+	mi := &file_papi_proto_msgTypes[363]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20215,7 +20567,7 @@ func (x *ProduceTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceTopResponse.ProtoReflect.Descriptor instead.
 func (*ProduceTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{357}
+	return file_papi_proto_rawDescGZIP(), []int{363}
 }
 
 func (x *ProduceTopResponse) GetNewSeminarExam() bool {
@@ -20290,7 +20642,7 @@ type ProduceUnlockPictureBookLiveRequest struct {
 
 func (x *ProduceUnlockPictureBookLiveRequest) Reset() {
 	*x = ProduceUnlockPictureBookLiveRequest{}
-	mi := &file_papi_proto_msgTypes[358]
+	mi := &file_papi_proto_msgTypes[364]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20302,7 +20654,7 @@ func (x *ProduceUnlockPictureBookLiveRequest) String() string {
 func (*ProduceUnlockPictureBookLiveRequest) ProtoMessage() {}
 
 func (x *ProduceUnlockPictureBookLiveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[358]
+	mi := &file_papi_proto_msgTypes[364]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20315,7 +20667,7 @@ func (x *ProduceUnlockPictureBookLiveRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceUnlockPictureBookLiveRequest.ProtoReflect.Descriptor instead.
 func (*ProduceUnlockPictureBookLiveRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{358}
+	return file_papi_proto_rawDescGZIP(), []int{364}
 }
 
 func (x *ProduceUnlockPictureBookLiveRequest) GetMusicId() string {
@@ -20334,7 +20686,7 @@ type ProduceUnlockPictureBookLiveResponse struct {
 
 func (x *ProduceUnlockPictureBookLiveResponse) Reset() {
 	*x = ProduceUnlockPictureBookLiveResponse{}
-	mi := &file_papi_proto_msgTypes[359]
+	mi := &file_papi_proto_msgTypes[365]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20346,7 +20698,7 @@ func (x *ProduceUnlockPictureBookLiveResponse) String() string {
 func (*ProduceUnlockPictureBookLiveResponse) ProtoMessage() {}
 
 func (x *ProduceUnlockPictureBookLiveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[359]
+	mi := &file_papi_proto_msgTypes[365]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20359,7 +20711,7 @@ func (x *ProduceUnlockPictureBookLiveResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ProduceUnlockPictureBookLiveResponse.ProtoReflect.Descriptor instead.
 func (*ProduceUnlockPictureBookLiveResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{359}
+	return file_papi_proto_rawDescGZIP(), []int{365}
 }
 
 func (x *ProduceUnlockPictureBookLiveResponse) GetCommonResponse() *papicommon.Response {
@@ -20382,7 +20734,7 @@ type ProduceUpdateMemoryDeck struct {
 
 func (x *ProduceUpdateMemoryDeck) Reset() {
 	*x = ProduceUpdateMemoryDeck{}
-	mi := &file_papi_proto_msgTypes[360]
+	mi := &file_papi_proto_msgTypes[366]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20394,7 +20746,7 @@ func (x *ProduceUpdateMemoryDeck) String() string {
 func (*ProduceUpdateMemoryDeck) ProtoMessage() {}
 
 func (x *ProduceUpdateMemoryDeck) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[360]
+	mi := &file_papi_proto_msgTypes[366]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20407,7 +20759,7 @@ func (x *ProduceUpdateMemoryDeck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceUpdateMemoryDeck.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateMemoryDeck) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{360}
+	return file_papi_proto_rawDescGZIP(), []int{366}
 }
 
 func (x *ProduceUpdateMemoryDeck) GetProduceType() penum.ProduceType {
@@ -20454,7 +20806,7 @@ type ProduceUpdateMemoryDeckRequest struct {
 
 func (x *ProduceUpdateMemoryDeckRequest) Reset() {
 	*x = ProduceUpdateMemoryDeckRequest{}
-	mi := &file_papi_proto_msgTypes[361]
+	mi := &file_papi_proto_msgTypes[367]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20466,7 +20818,7 @@ func (x *ProduceUpdateMemoryDeckRequest) String() string {
 func (*ProduceUpdateMemoryDeckRequest) ProtoMessage() {}
 
 func (x *ProduceUpdateMemoryDeckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[361]
+	mi := &file_papi_proto_msgTypes[367]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20479,7 +20831,7 @@ func (x *ProduceUpdateMemoryDeckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceUpdateMemoryDeckRequest.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateMemoryDeckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{361}
+	return file_papi_proto_rawDescGZIP(), []int{367}
 }
 
 func (x *ProduceUpdateMemoryDeckRequest) GetDecks() []*ProduceUpdateMemoryDeck {
@@ -20498,7 +20850,7 @@ type ProduceUpdateMemoryDeckResponse struct {
 
 func (x *ProduceUpdateMemoryDeckResponse) Reset() {
 	*x = ProduceUpdateMemoryDeckResponse{}
-	mi := &file_papi_proto_msgTypes[362]
+	mi := &file_papi_proto_msgTypes[368]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20510,7 +20862,7 @@ func (x *ProduceUpdateMemoryDeckResponse) String() string {
 func (*ProduceUpdateMemoryDeckResponse) ProtoMessage() {}
 
 func (x *ProduceUpdateMemoryDeckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[362]
+	mi := &file_papi_proto_msgTypes[368]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20523,7 +20875,7 @@ func (x *ProduceUpdateMemoryDeckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceUpdateMemoryDeckResponse.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateMemoryDeckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{362}
+	return file_papi_proto_rawDescGZIP(), []int{368}
 }
 
 func (x *ProduceUpdateMemoryDeckResponse) GetCommonResponse() *papicommon.Response {
@@ -20546,7 +20898,7 @@ type ProduceUpdateSupportCardDeck struct {
 
 func (x *ProduceUpdateSupportCardDeck) Reset() {
 	*x = ProduceUpdateSupportCardDeck{}
-	mi := &file_papi_proto_msgTypes[363]
+	mi := &file_papi_proto_msgTypes[369]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20558,7 +20910,7 @@ func (x *ProduceUpdateSupportCardDeck) String() string {
 func (*ProduceUpdateSupportCardDeck) ProtoMessage() {}
 
 func (x *ProduceUpdateSupportCardDeck) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[363]
+	mi := &file_papi_proto_msgTypes[369]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20571,7 +20923,7 @@ func (x *ProduceUpdateSupportCardDeck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceUpdateSupportCardDeck.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateSupportCardDeck) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{363}
+	return file_papi_proto_rawDescGZIP(), []int{369}
 }
 
 func (x *ProduceUpdateSupportCardDeck) GetProduceType() penum.ProduceType {
@@ -20618,7 +20970,7 @@ type ProduceUpdateSupportCardDeckRequest struct {
 
 func (x *ProduceUpdateSupportCardDeckRequest) Reset() {
 	*x = ProduceUpdateSupportCardDeckRequest{}
-	mi := &file_papi_proto_msgTypes[364]
+	mi := &file_papi_proto_msgTypes[370]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20630,7 +20982,7 @@ func (x *ProduceUpdateSupportCardDeckRequest) String() string {
 func (*ProduceUpdateSupportCardDeckRequest) ProtoMessage() {}
 
 func (x *ProduceUpdateSupportCardDeckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[364]
+	mi := &file_papi_proto_msgTypes[370]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20643,7 +20995,7 @@ func (x *ProduceUpdateSupportCardDeckRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceUpdateSupportCardDeckRequest.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateSupportCardDeckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{364}
+	return file_papi_proto_rawDescGZIP(), []int{370}
 }
 
 func (x *ProduceUpdateSupportCardDeckRequest) GetDecks() []*ProduceUpdateSupportCardDeck {
@@ -20662,7 +21014,7 @@ type ProduceUpdateSupportCardDeckResponse struct {
 
 func (x *ProduceUpdateSupportCardDeckResponse) Reset() {
 	*x = ProduceUpdateSupportCardDeckResponse{}
-	mi := &file_papi_proto_msgTypes[365]
+	mi := &file_papi_proto_msgTypes[371]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20674,7 +21026,7 @@ func (x *ProduceUpdateSupportCardDeckResponse) String() string {
 func (*ProduceUpdateSupportCardDeckResponse) ProtoMessage() {}
 
 func (x *ProduceUpdateSupportCardDeckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[365]
+	mi := &file_papi_proto_msgTypes[371]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20687,7 +21039,7 @@ func (x *ProduceUpdateSupportCardDeckResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ProduceUpdateSupportCardDeckResponse.ProtoReflect.Descriptor instead.
 func (*ProduceUpdateSupportCardDeckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{365}
+	return file_papi_proto_rawDescGZIP(), []int{371}
 }
 
 func (x *ProduceUpdateSupportCardDeckResponse) GetCommonResponse() *papicommon.Response {
@@ -20706,7 +21058,7 @@ type ProduceUseDrinkResponse struct {
 
 func (x *ProduceUseDrinkResponse) Reset() {
 	*x = ProduceUseDrinkResponse{}
-	mi := &file_papi_proto_msgTypes[366]
+	mi := &file_papi_proto_msgTypes[372]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20718,7 +21070,7 @@ func (x *ProduceUseDrinkResponse) String() string {
 func (*ProduceUseDrinkResponse) ProtoMessage() {}
 
 func (x *ProduceUseDrinkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[366]
+	mi := &file_papi_proto_msgTypes[372]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20731,7 +21083,7 @@ func (x *ProduceUseDrinkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceUseDrinkResponse.ProtoReflect.Descriptor instead.
 func (*ProduceUseDrinkResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{366}
+	return file_papi_proto_rawDescGZIP(), []int{372}
 }
 
 func (x *ProduceUseDrinkResponse) GetEffectResults() []*pcommon.ProduceEffectResult {
@@ -20751,7 +21103,7 @@ type ProduceViewPictureBookLiveRequest struct {
 
 func (x *ProduceViewPictureBookLiveRequest) Reset() {
 	*x = ProduceViewPictureBookLiveRequest{}
-	mi := &file_papi_proto_msgTypes[367]
+	mi := &file_papi_proto_msgTypes[373]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20763,7 +21115,7 @@ func (x *ProduceViewPictureBookLiveRequest) String() string {
 func (*ProduceViewPictureBookLiveRequest) ProtoMessage() {}
 
 func (x *ProduceViewPictureBookLiveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[367]
+	mi := &file_papi_proto_msgTypes[373]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20776,7 +21128,7 @@ func (x *ProduceViewPictureBookLiveRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceViewPictureBookLiveRequest.ProtoReflect.Descriptor instead.
 func (*ProduceViewPictureBookLiveRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{367}
+	return file_papi_proto_rawDescGZIP(), []int{373}
 }
 
 func (x *ProduceViewPictureBookLiveRequest) GetMusicId() string {
@@ -20802,7 +21154,7 @@ type ProduceViewPictureBookLiveResponse struct {
 
 func (x *ProduceViewPictureBookLiveResponse) Reset() {
 	*x = ProduceViewPictureBookLiveResponse{}
-	mi := &file_papi_proto_msgTypes[368]
+	mi := &file_papi_proto_msgTypes[374]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20814,7 +21166,7 @@ func (x *ProduceViewPictureBookLiveResponse) String() string {
 func (*ProduceViewPictureBookLiveResponse) ProtoMessage() {}
 
 func (x *ProduceViewPictureBookLiveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[368]
+	mi := &file_papi_proto_msgTypes[374]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20827,7 +21179,7 @@ func (x *ProduceViewPictureBookLiveResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ProduceViewPictureBookLiveResponse.ProtoReflect.Descriptor instead.
 func (*ProduceViewPictureBookLiveResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{368}
+	return file_papi_proto_rawDescGZIP(), []int{374}
 }
 
 func (x *ProduceViewPictureBookLiveResponse) GetCommonResponse() *papicommon.Response {
@@ -20847,7 +21199,7 @@ type ProfileBirthday struct {
 
 func (x *ProfileBirthday) Reset() {
 	*x = ProfileBirthday{}
-	mi := &file_papi_proto_msgTypes[369]
+	mi := &file_papi_proto_msgTypes[375]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20859,7 +21211,7 @@ func (x *ProfileBirthday) String() string {
 func (*ProfileBirthday) ProtoMessage() {}
 
 func (x *ProfileBirthday) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[369]
+	mi := &file_papi_proto_msgTypes[375]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20872,7 +21224,7 @@ func (x *ProfileBirthday) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileBirthday.ProtoReflect.Descriptor instead.
 func (*ProfileBirthday) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{369}
+	return file_papi_proto_rawDescGZIP(), []int{375}
 }
 
 func (x *ProfileBirthday) GetMonth() int32 {
@@ -20898,7 +21250,7 @@ type ProfileGetRequest struct {
 
 func (x *ProfileGetRequest) Reset() {
 	*x = ProfileGetRequest{}
-	mi := &file_papi_proto_msgTypes[370]
+	mi := &file_papi_proto_msgTypes[376]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20910,7 +21262,7 @@ func (x *ProfileGetRequest) String() string {
 func (*ProfileGetRequest) ProtoMessage() {}
 
 func (x *ProfileGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[370]
+	mi := &file_papi_proto_msgTypes[376]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20923,7 +21275,7 @@ func (x *ProfileGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileGetRequest.ProtoReflect.Descriptor instead.
 func (*ProfileGetRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{370}
+	return file_papi_proto_rawDescGZIP(), []int{376}
 }
 
 func (x *ProfileGetRequest) GetPublicUserId() string {
@@ -20963,7 +21315,7 @@ type ProfileGetResponse struct {
 
 func (x *ProfileGetResponse) Reset() {
 	*x = ProfileGetResponse{}
-	mi := &file_papi_proto_msgTypes[371]
+	mi := &file_papi_proto_msgTypes[377]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20975,7 +21327,7 @@ func (x *ProfileGetResponse) String() string {
 func (*ProfileGetResponse) ProtoMessage() {}
 
 func (x *ProfileGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[371]
+	mi := &file_papi_proto_msgTypes[377]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20988,7 +21340,7 @@ func (x *ProfileGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileGetResponse.ProtoReflect.Descriptor instead.
 func (*ProfileGetResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{371}
+	return file_papi_proto_rawDescGZIP(), []int{377}
 }
 
 func (x *ProfileGetResponse) GetPublicUserId() string {
@@ -21155,7 +21507,7 @@ type ProfileUpdateBirthdayRequest struct {
 
 func (x *ProfileUpdateBirthdayRequest) Reset() {
 	*x = ProfileUpdateBirthdayRequest{}
-	mi := &file_papi_proto_msgTypes[372]
+	mi := &file_papi_proto_msgTypes[378]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21167,7 +21519,7 @@ func (x *ProfileUpdateBirthdayRequest) String() string {
 func (*ProfileUpdateBirthdayRequest) ProtoMessage() {}
 
 func (x *ProfileUpdateBirthdayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[372]
+	mi := &file_papi_proto_msgTypes[378]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21180,7 +21532,7 @@ func (x *ProfileUpdateBirthdayRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateBirthdayRequest.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateBirthdayRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{372}
+	return file_papi_proto_rawDescGZIP(), []int{378}
 }
 
 func (x *ProfileUpdateBirthdayRequest) GetMonth() int32 {
@@ -21206,7 +21558,7 @@ type ProfileUpdateBirthdayResponse struct {
 
 func (x *ProfileUpdateBirthdayResponse) Reset() {
 	*x = ProfileUpdateBirthdayResponse{}
-	mi := &file_papi_proto_msgTypes[373]
+	mi := &file_papi_proto_msgTypes[379]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21218,7 +21570,7 @@ func (x *ProfileUpdateBirthdayResponse) String() string {
 func (*ProfileUpdateBirthdayResponse) ProtoMessage() {}
 
 func (x *ProfileUpdateBirthdayResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[373]
+	mi := &file_papi_proto_msgTypes[379]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21231,7 +21583,7 @@ func (x *ProfileUpdateBirthdayResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateBirthdayResponse.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateBirthdayResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{373}
+	return file_papi_proto_rawDescGZIP(), []int{379}
 }
 
 func (x *ProfileUpdateBirthdayResponse) GetCommonResponse() *papicommon.Response {
@@ -21250,7 +21602,7 @@ type ProfileUpdateCommentRequest struct {
 
 func (x *ProfileUpdateCommentRequest) Reset() {
 	*x = ProfileUpdateCommentRequest{}
-	mi := &file_papi_proto_msgTypes[374]
+	mi := &file_papi_proto_msgTypes[380]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21262,7 +21614,7 @@ func (x *ProfileUpdateCommentRequest) String() string {
 func (*ProfileUpdateCommentRequest) ProtoMessage() {}
 
 func (x *ProfileUpdateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[374]
+	mi := &file_papi_proto_msgTypes[380]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21275,7 +21627,7 @@ func (x *ProfileUpdateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateCommentRequest.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{374}
+	return file_papi_proto_rawDescGZIP(), []int{380}
 }
 
 func (x *ProfileUpdateCommentRequest) GetComment() string {
@@ -21294,7 +21646,7 @@ type ProfileUpdateCommentResponse struct {
 
 func (x *ProfileUpdateCommentResponse) Reset() {
 	*x = ProfileUpdateCommentResponse{}
-	mi := &file_papi_proto_msgTypes[375]
+	mi := &file_papi_proto_msgTypes[381]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21306,7 +21658,7 @@ func (x *ProfileUpdateCommentResponse) String() string {
 func (*ProfileUpdateCommentResponse) ProtoMessage() {}
 
 func (x *ProfileUpdateCommentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[375]
+	mi := &file_papi_proto_msgTypes[381]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21319,7 +21671,7 @@ func (x *ProfileUpdateCommentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateCommentResponse.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateCommentResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{375}
+	return file_papi_proto_rawDescGZIP(), []int{381}
 }
 
 func (x *ProfileUpdateCommentResponse) GetCommonResponse() *papicommon.Response {
@@ -21338,7 +21690,7 @@ type ProfileUpdateMemoryRequest struct {
 
 func (x *ProfileUpdateMemoryRequest) Reset() {
 	*x = ProfileUpdateMemoryRequest{}
-	mi := &file_papi_proto_msgTypes[376]
+	mi := &file_papi_proto_msgTypes[382]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21350,7 +21702,7 @@ func (x *ProfileUpdateMemoryRequest) String() string {
 func (*ProfileUpdateMemoryRequest) ProtoMessage() {}
 
 func (x *ProfileUpdateMemoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[376]
+	mi := &file_papi_proto_msgTypes[382]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21363,7 +21715,7 @@ func (x *ProfileUpdateMemoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateMemoryRequest.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateMemoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{376}
+	return file_papi_proto_rawDescGZIP(), []int{382}
 }
 
 func (x *ProfileUpdateMemoryRequest) GetUserMemoryId() string {
@@ -21382,7 +21734,7 @@ type ProfileUpdateMemoryResponse struct {
 
 func (x *ProfileUpdateMemoryResponse) Reset() {
 	*x = ProfileUpdateMemoryResponse{}
-	mi := &file_papi_proto_msgTypes[377]
+	mi := &file_papi_proto_msgTypes[383]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21394,7 +21746,7 @@ func (x *ProfileUpdateMemoryResponse) String() string {
 func (*ProfileUpdateMemoryResponse) ProtoMessage() {}
 
 func (x *ProfileUpdateMemoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[377]
+	mi := &file_papi_proto_msgTypes[383]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21407,7 +21759,7 @@ func (x *ProfileUpdateMemoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateMemoryResponse.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateMemoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{377}
+	return file_papi_proto_rawDescGZIP(), []int{383}
 }
 
 func (x *ProfileUpdateMemoryResponse) GetCommonResponse() *papicommon.Response {
@@ -21426,7 +21778,7 @@ type ProfileUpdateNameRequest struct {
 
 func (x *ProfileUpdateNameRequest) Reset() {
 	*x = ProfileUpdateNameRequest{}
-	mi := &file_papi_proto_msgTypes[378]
+	mi := &file_papi_proto_msgTypes[384]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21438,7 +21790,7 @@ func (x *ProfileUpdateNameRequest) String() string {
 func (*ProfileUpdateNameRequest) ProtoMessage() {}
 
 func (x *ProfileUpdateNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[378]
+	mi := &file_papi_proto_msgTypes[384]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21451,7 +21803,7 @@ func (x *ProfileUpdateNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateNameRequest.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateNameRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{378}
+	return file_papi_proto_rawDescGZIP(), []int{384}
 }
 
 func (x *ProfileUpdateNameRequest) GetName() string {
@@ -21470,7 +21822,7 @@ type ProfileUpdateNameResponse struct {
 
 func (x *ProfileUpdateNameResponse) Reset() {
 	*x = ProfileUpdateNameResponse{}
-	mi := &file_papi_proto_msgTypes[379]
+	mi := &file_papi_proto_msgTypes[385]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21482,7 +21834,7 @@ func (x *ProfileUpdateNameResponse) String() string {
 func (*ProfileUpdateNameResponse) ProtoMessage() {}
 
 func (x *ProfileUpdateNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[379]
+	mi := &file_papi_proto_msgTypes[385]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21495,7 +21847,7 @@ func (x *ProfileUpdateNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateNameResponse.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateNameResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{379}
+	return file_papi_proto_rawDescGZIP(), []int{385}
 }
 
 func (x *ProfileUpdateNameResponse) GetCommonResponse() *papicommon.Response {
@@ -21514,7 +21866,7 @@ type ProfileUpdateSupportCardRequest struct {
 
 func (x *ProfileUpdateSupportCardRequest) Reset() {
 	*x = ProfileUpdateSupportCardRequest{}
-	mi := &file_papi_proto_msgTypes[380]
+	mi := &file_papi_proto_msgTypes[386]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21526,7 +21878,7 @@ func (x *ProfileUpdateSupportCardRequest) String() string {
 func (*ProfileUpdateSupportCardRequest) ProtoMessage() {}
 
 func (x *ProfileUpdateSupportCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[380]
+	mi := &file_papi_proto_msgTypes[386]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21539,7 +21891,7 @@ func (x *ProfileUpdateSupportCardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateSupportCardRequest.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateSupportCardRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{380}
+	return file_papi_proto_rawDescGZIP(), []int{386}
 }
 
 func (x *ProfileUpdateSupportCardRequest) GetSupportCardId() string {
@@ -21558,7 +21910,7 @@ type ProfileUpdateSupportCardResponse struct {
 
 func (x *ProfileUpdateSupportCardResponse) Reset() {
 	*x = ProfileUpdateSupportCardResponse{}
-	mi := &file_papi_proto_msgTypes[381]
+	mi := &file_papi_proto_msgTypes[387]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21570,7 +21922,7 @@ func (x *ProfileUpdateSupportCardResponse) String() string {
 func (*ProfileUpdateSupportCardResponse) ProtoMessage() {}
 
 func (x *ProfileUpdateSupportCardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[381]
+	mi := &file_papi_proto_msgTypes[387]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21583,7 +21935,7 @@ func (x *ProfileUpdateSupportCardResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileUpdateSupportCardResponse.ProtoReflect.Descriptor instead.
 func (*ProfileUpdateSupportCardResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{381}
+	return file_papi_proto_rawDescGZIP(), []int{387}
 }
 
 func (x *ProfileUpdateSupportCardResponse) GetCommonResponse() *papicommon.Response {
@@ -21602,7 +21954,7 @@ type PvpRateEndRequest struct {
 
 func (x *PvpRateEndRequest) Reset() {
 	*x = PvpRateEndRequest{}
-	mi := &file_papi_proto_msgTypes[382]
+	mi := &file_papi_proto_msgTypes[388]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21614,7 +21966,7 @@ func (x *PvpRateEndRequest) String() string {
 func (*PvpRateEndRequest) ProtoMessage() {}
 
 func (x *PvpRateEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[382]
+	mi := &file_papi_proto_msgTypes[388]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21627,7 +21979,7 @@ func (x *PvpRateEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateEndRequest.ProtoReflect.Descriptor instead.
 func (*PvpRateEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{382}
+	return file_papi_proto_rawDescGZIP(), []int{388}
 }
 
 func (x *PvpRateEndRequest) GetStages() []*pcommon.ExamBattleAutoStageResult {
@@ -21654,7 +22006,7 @@ type PvpRateEndResponse struct {
 
 func (x *PvpRateEndResponse) Reset() {
 	*x = PvpRateEndResponse{}
-	mi := &file_papi_proto_msgTypes[383]
+	mi := &file_papi_proto_msgTypes[389]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21666,7 +22018,7 @@ func (x *PvpRateEndResponse) String() string {
 func (*PvpRateEndResponse) ProtoMessage() {}
 
 func (x *PvpRateEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[383]
+	mi := &file_papi_proto_msgTypes[389]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21679,7 +22031,7 @@ func (x *PvpRateEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateEndResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{383}
+	return file_papi_proto_rawDescGZIP(), []int{389}
 }
 
 func (x *PvpRateEndResponse) GetAddRate() int32 {
@@ -21754,7 +22106,7 @@ type PvpRateGetHistoryRequest struct {
 
 func (x *PvpRateGetHistoryRequest) Reset() {
 	*x = PvpRateGetHistoryRequest{}
-	mi := &file_papi_proto_msgTypes[384]
+	mi := &file_papi_proto_msgTypes[390]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21766,7 +22118,7 @@ func (x *PvpRateGetHistoryRequest) String() string {
 func (*PvpRateGetHistoryRequest) ProtoMessage() {}
 
 func (x *PvpRateGetHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[384]
+	mi := &file_papi_proto_msgTypes[390]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21779,7 +22131,7 @@ func (x *PvpRateGetHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateGetHistoryRequest.ProtoReflect.Descriptor instead.
 func (*PvpRateGetHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{384}
+	return file_papi_proto_rawDescGZIP(), []int{390}
 }
 
 func (x *PvpRateGetHistoryRequest) GetPlayTime() int64 {
@@ -21799,7 +22151,7 @@ type PvpRateGetHistoryResponse struct {
 
 func (x *PvpRateGetHistoryResponse) Reset() {
 	*x = PvpRateGetHistoryResponse{}
-	mi := &file_papi_proto_msgTypes[385]
+	mi := &file_papi_proto_msgTypes[391]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21811,7 +22163,7 @@ func (x *PvpRateGetHistoryResponse) String() string {
 func (*PvpRateGetHistoryResponse) ProtoMessage() {}
 
 func (x *PvpRateGetHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[385]
+	mi := &file_papi_proto_msgTypes[391]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21824,7 +22176,7 @@ func (x *PvpRateGetHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateGetHistoryResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateGetHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{385}
+	return file_papi_proto_rawDescGZIP(), []int{391}
 }
 
 func (x *PvpRateGetHistoryResponse) GetExamBattleResult() *pcommon.PvpRateExamBattleResult {
@@ -21868,7 +22220,7 @@ type PvpRateGetResponse struct {
 
 func (x *PvpRateGetResponse) Reset() {
 	*x = PvpRateGetResponse{}
-	mi := &file_papi_proto_msgTypes[386]
+	mi := &file_papi_proto_msgTypes[392]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21880,7 +22232,7 @@ func (x *PvpRateGetResponse) String() string {
 func (*PvpRateGetResponse) ProtoMessage() {}
 
 func (x *PvpRateGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[386]
+	mi := &file_papi_proto_msgTypes[392]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21893,7 +22245,7 @@ func (x *PvpRateGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateGetResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateGetResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{386}
+	return file_papi_proto_rawDescGZIP(), []int{392}
 }
 
 func (x *PvpRateGetResponse) GetStartTime() int64 {
@@ -22040,7 +22392,7 @@ type PvpRateInitializeResponse struct {
 
 func (x *PvpRateInitializeResponse) Reset() {
 	*x = PvpRateInitializeResponse{}
-	mi := &file_papi_proto_msgTypes[387]
+	mi := &file_papi_proto_msgTypes[393]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22052,7 +22404,7 @@ func (x *PvpRateInitializeResponse) String() string {
 func (*PvpRateInitializeResponse) ProtoMessage() {}
 
 func (x *PvpRateInitializeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[387]
+	mi := &file_papi_proto_msgTypes[393]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22065,7 +22417,7 @@ func (x *PvpRateInitializeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateInitializeResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateInitializeResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{387}
+	return file_papi_proto_rawDescGZIP(), []int{393}
 }
 
 func (x *PvpRateInitializeResponse) GetPreviousSeasonResult() *PvpRateSeasonResult {
@@ -22099,7 +22451,7 @@ type PvpRateListHistoryResponse struct {
 
 func (x *PvpRateListHistoryResponse) Reset() {
 	*x = PvpRateListHistoryResponse{}
-	mi := &file_papi_proto_msgTypes[388]
+	mi := &file_papi_proto_msgTypes[394]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22111,7 +22463,7 @@ func (x *PvpRateListHistoryResponse) String() string {
 func (*PvpRateListHistoryResponse) ProtoMessage() {}
 
 func (x *PvpRateListHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[388]
+	mi := &file_papi_proto_msgTypes[394]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22124,7 +22476,7 @@ func (x *PvpRateListHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateListHistoryResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateListHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{388}
+	return file_papi_proto_rawDescGZIP(), []int{394}
 }
 
 func (x *PvpRateListHistoryResponse) GetHistories() []*PvpRateListHistoryResponse_PvpRateHistory {
@@ -22152,7 +22504,7 @@ type PvpRateListRankingResponse struct {
 
 func (x *PvpRateListRankingResponse) Reset() {
 	*x = PvpRateListRankingResponse{}
-	mi := &file_papi_proto_msgTypes[389]
+	mi := &file_papi_proto_msgTypes[395]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22164,7 +22516,7 @@ func (x *PvpRateListRankingResponse) String() string {
 func (*PvpRateListRankingResponse) ProtoMessage() {}
 
 func (x *PvpRateListRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[389]
+	mi := &file_papi_proto_msgTypes[395]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22177,7 +22529,7 @@ func (x *PvpRateListRankingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateListRankingResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateListRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{389}
+	return file_papi_proto_rawDescGZIP(), []int{395}
 }
 
 func (x *PvpRateListRankingResponse) GetUsers() []*PvpRateRankingUser {
@@ -22210,7 +22562,7 @@ type PvpRatePlayExamBattleResponse struct {
 
 func (x *PvpRatePlayExamBattleResponse) Reset() {
 	*x = PvpRatePlayExamBattleResponse{}
-	mi := &file_papi_proto_msgTypes[390]
+	mi := &file_papi_proto_msgTypes[396]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22222,7 +22574,7 @@ func (x *PvpRatePlayExamBattleResponse) String() string {
 func (*PvpRatePlayExamBattleResponse) ProtoMessage() {}
 
 func (x *PvpRatePlayExamBattleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[390]
+	mi := &file_papi_proto_msgTypes[396]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22235,7 +22587,7 @@ func (x *PvpRatePlayExamBattleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRatePlayExamBattleResponse.ProtoReflect.Descriptor instead.
 func (*PvpRatePlayExamBattleResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{390}
+	return file_papi_proto_rawDescGZIP(), []int{396}
 }
 
 func (x *PvpRatePlayExamBattleResponse) GetCommonResponse() *papicommon.Response {
@@ -22256,7 +22608,7 @@ type PvpRatePlayTestResponse struct {
 
 func (x *PvpRatePlayTestResponse) Reset() {
 	*x = PvpRatePlayTestResponse{}
-	mi := &file_papi_proto_msgTypes[391]
+	mi := &file_papi_proto_msgTypes[397]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22268,7 +22620,7 @@ func (x *PvpRatePlayTestResponse) String() string {
 func (*PvpRatePlayTestResponse) ProtoMessage() {}
 
 func (x *PvpRatePlayTestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[391]
+	mi := &file_papi_proto_msgTypes[397]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22281,7 +22633,7 @@ func (x *PvpRatePlayTestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRatePlayTestResponse.ProtoReflect.Descriptor instead.
 func (*PvpRatePlayTestResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{391}
+	return file_papi_proto_rawDescGZIP(), []int{397}
 }
 
 func (x *PvpRatePlayTestResponse) GetExamBattleAutoRequest() *pcommon.ExamBattleAutoRequest {
@@ -22316,7 +22668,7 @@ type PvpRateRankReward struct {
 
 func (x *PvpRateRankReward) Reset() {
 	*x = PvpRateRankReward{}
-	mi := &file_papi_proto_msgTypes[392]
+	mi := &file_papi_proto_msgTypes[398]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22328,7 +22680,7 @@ func (x *PvpRateRankReward) String() string {
 func (*PvpRateRankReward) ProtoMessage() {}
 
 func (x *PvpRateRankReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[392]
+	mi := &file_papi_proto_msgTypes[398]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22341,7 +22693,7 @@ func (x *PvpRateRankReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateRankReward.ProtoReflect.Descriptor instead.
 func (*PvpRateRankReward) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{392}
+	return file_papi_proto_rawDescGZIP(), []int{398}
 }
 
 func (x *PvpRateRankReward) GetUpperRank() int32 {
@@ -22377,7 +22729,7 @@ type PvpRateRankingUser struct {
 
 func (x *PvpRateRankingUser) Reset() {
 	*x = PvpRateRankingUser{}
-	mi := &file_papi_proto_msgTypes[393]
+	mi := &file_papi_proto_msgTypes[399]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22389,7 +22741,7 @@ func (x *PvpRateRankingUser) String() string {
 func (*PvpRateRankingUser) ProtoMessage() {}
 
 func (x *PvpRateRankingUser) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[393]
+	mi := &file_papi_proto_msgTypes[399]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22402,7 +22754,7 @@ func (x *PvpRateRankingUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateRankingUser.ProtoReflect.Descriptor instead.
 func (*PvpRateRankingUser) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{393}
+	return file_papi_proto_rawDescGZIP(), []int{399}
 }
 
 func (x *PvpRateRankingUser) GetProfile() *pcommon.SimpleProfile {
@@ -22443,7 +22795,7 @@ type PvpRateRateReward struct {
 
 func (x *PvpRateRateReward) Reset() {
 	*x = PvpRateRateReward{}
-	mi := &file_papi_proto_msgTypes[394]
+	mi := &file_papi_proto_msgTypes[400]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22455,7 +22807,7 @@ func (x *PvpRateRateReward) String() string {
 func (*PvpRateRateReward) ProtoMessage() {}
 
 func (x *PvpRateRateReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[394]
+	mi := &file_papi_proto_msgTypes[400]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22468,7 +22820,7 @@ func (x *PvpRateRateReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateRateReward.ProtoReflect.Descriptor instead.
 func (*PvpRateRateReward) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{394}
+	return file_papi_proto_rawDescGZIP(), []int{400}
 }
 
 func (x *PvpRateRateReward) GetRate() int32 {
@@ -22498,7 +22850,7 @@ type PvpRateRival struct {
 
 func (x *PvpRateRival) Reset() {
 	*x = PvpRateRival{}
-	mi := &file_papi_proto_msgTypes[395]
+	mi := &file_papi_proto_msgTypes[401]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22510,7 +22862,7 @@ func (x *PvpRateRival) String() string {
 func (*PvpRateRival) ProtoMessage() {}
 
 func (x *PvpRateRival) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[395]
+	mi := &file_papi_proto_msgTypes[401]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22523,7 +22875,7 @@ func (x *PvpRateRival) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateRival.ProtoReflect.Descriptor instead.
 func (*PvpRateRival) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{395}
+	return file_papi_proto_rawDescGZIP(), []int{401}
 }
 
 func (x *PvpRateRival) GetProfile() *pcommon.SimpleProfile {
@@ -22578,7 +22930,7 @@ type PvpRateSeasonResult struct {
 
 func (x *PvpRateSeasonResult) Reset() {
 	*x = PvpRateSeasonResult{}
-	mi := &file_papi_proto_msgTypes[396]
+	mi := &file_papi_proto_msgTypes[402]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22590,7 +22942,7 @@ func (x *PvpRateSeasonResult) String() string {
 func (*PvpRateSeasonResult) ProtoMessage() {}
 
 func (x *PvpRateSeasonResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[396]
+	mi := &file_papi_proto_msgTypes[402]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22603,7 +22955,7 @@ func (x *PvpRateSeasonResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateSeasonResult.ProtoReflect.Descriptor instead.
 func (*PvpRateSeasonResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{396}
+	return file_papi_proto_rawDescGZIP(), []int{402}
 }
 
 func (x *PvpRateSeasonResult) GetSeasonStartTime() int64 {
@@ -22678,7 +23030,7 @@ type PvpRateStartRequest struct {
 
 func (x *PvpRateStartRequest) Reset() {
 	*x = PvpRateStartRequest{}
-	mi := &file_papi_proto_msgTypes[397]
+	mi := &file_papi_proto_msgTypes[403]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22690,7 +23042,7 @@ func (x *PvpRateStartRequest) String() string {
 func (*PvpRateStartRequest) ProtoMessage() {}
 
 func (x *PvpRateStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[397]
+	mi := &file_papi_proto_msgTypes[403]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22703,7 +23055,7 @@ func (x *PvpRateStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateStartRequest.ProtoReflect.Descriptor instead.
 func (*PvpRateStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{397}
+	return file_papi_proto_rawDescGZIP(), []int{403}
 }
 
 func (x *PvpRateStartRequest) GetRivalType() penum.PvpRateRivalType {
@@ -22725,7 +23077,7 @@ type PvpRateStartResponse struct {
 
 func (x *PvpRateStartResponse) Reset() {
 	*x = PvpRateStartResponse{}
-	mi := &file_papi_proto_msgTypes[398]
+	mi := &file_papi_proto_msgTypes[404]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22737,7 +23089,7 @@ func (x *PvpRateStartResponse) String() string {
 func (*PvpRateStartResponse) ProtoMessage() {}
 
 func (x *PvpRateStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[398]
+	mi := &file_papi_proto_msgTypes[404]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22750,7 +23102,7 @@ func (x *PvpRateStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateStartResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{398}
+	return file_papi_proto_rawDescGZIP(), []int{404}
 }
 
 func (x *PvpRateStartResponse) GetExamBattleAutoRequest() *pcommon.ExamBattleAutoRequest {
@@ -22791,7 +23143,7 @@ type PvpRateUnitStageFormation struct {
 
 func (x *PvpRateUnitStageFormation) Reset() {
 	*x = PvpRateUnitStageFormation{}
-	mi := &file_papi_proto_msgTypes[399]
+	mi := &file_papi_proto_msgTypes[405]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22803,7 +23155,7 @@ func (x *PvpRateUnitStageFormation) String() string {
 func (*PvpRateUnitStageFormation) ProtoMessage() {}
 
 func (x *PvpRateUnitStageFormation) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[399]
+	mi := &file_papi_proto_msgTypes[405]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22816,7 +23168,7 @@ func (x *PvpRateUnitStageFormation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateUnitStageFormation.ProtoReflect.Descriptor instead.
 func (*PvpRateUnitStageFormation) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{399}
+	return file_papi_proto_rawDescGZIP(), []int{405}
 }
 
 func (x *PvpRateUnitStageFormation) GetStage() penum.PvpRateStageType {
@@ -22843,7 +23195,7 @@ type PvpRateUpdateUserPvpRateUnitRequest struct {
 
 func (x *PvpRateUpdateUserPvpRateUnitRequest) Reset() {
 	*x = PvpRateUpdateUserPvpRateUnitRequest{}
-	mi := &file_papi_proto_msgTypes[400]
+	mi := &file_papi_proto_msgTypes[406]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22855,7 +23207,7 @@ func (x *PvpRateUpdateUserPvpRateUnitRequest) String() string {
 func (*PvpRateUpdateUserPvpRateUnitRequest) ProtoMessage() {}
 
 func (x *PvpRateUpdateUserPvpRateUnitRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[400]
+	mi := &file_papi_proto_msgTypes[406]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22868,7 +23220,7 @@ func (x *PvpRateUpdateUserPvpRateUnitRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use PvpRateUpdateUserPvpRateUnitRequest.ProtoReflect.Descriptor instead.
 func (*PvpRateUpdateUserPvpRateUnitRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{400}
+	return file_papi_proto_rawDescGZIP(), []int{406}
 }
 
 func (x *PvpRateUpdateUserPvpRateUnitRequest) GetStageFormations() []*pcommon.PvpRateSetupUnitStageFormation {
@@ -22894,7 +23246,7 @@ type PvpRateUpdateUserPvpRateUnitResponse struct {
 
 func (x *PvpRateUpdateUserPvpRateUnitResponse) Reset() {
 	*x = PvpRateUpdateUserPvpRateUnitResponse{}
-	mi := &file_papi_proto_msgTypes[401]
+	mi := &file_papi_proto_msgTypes[407]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22906,7 +23258,7 @@ func (x *PvpRateUpdateUserPvpRateUnitResponse) String() string {
 func (*PvpRateUpdateUserPvpRateUnitResponse) ProtoMessage() {}
 
 func (x *PvpRateUpdateUserPvpRateUnitResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[401]
+	mi := &file_papi_proto_msgTypes[407]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22919,7 +23271,7 @@ func (x *PvpRateUpdateUserPvpRateUnitResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use PvpRateUpdateUserPvpRateUnitResponse.ProtoReflect.Descriptor instead.
 func (*PvpRateUpdateUserPvpRateUnitResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{401}
+	return file_papi_proto_rawDescGZIP(), []int{407}
 }
 
 func (x *PvpRateUpdateUserPvpRateUnitResponse) GetCommonResponse() *papicommon.Response {
@@ -22941,7 +23293,7 @@ type SeminarEndExamRequest struct {
 
 func (x *SeminarEndExamRequest) Reset() {
 	*x = SeminarEndExamRequest{}
-	mi := &file_papi_proto_msgTypes[402]
+	mi := &file_papi_proto_msgTypes[408]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22953,7 +23305,7 @@ func (x *SeminarEndExamRequest) String() string {
 func (*SeminarEndExamRequest) ProtoMessage() {}
 
 func (x *SeminarEndExamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[402]
+	mi := &file_papi_proto_msgTypes[408]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22966,7 +23318,7 @@ func (x *SeminarEndExamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarEndExamRequest.ProtoReflect.Descriptor instead.
 func (*SeminarEndExamRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{402}
+	return file_papi_proto_rawDescGZIP(), []int{408}
 }
 
 func (x *SeminarEndExamRequest) GetGroupId() string {
@@ -23006,7 +23358,7 @@ type SeminarEndExamResponse struct {
 
 func (x *SeminarEndExamResponse) Reset() {
 	*x = SeminarEndExamResponse{}
-	mi := &file_papi_proto_msgTypes[403]
+	mi := &file_papi_proto_msgTypes[409]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23018,7 +23370,7 @@ func (x *SeminarEndExamResponse) String() string {
 func (*SeminarEndExamResponse) ProtoMessage() {}
 
 func (x *SeminarEndExamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[403]
+	mi := &file_papi_proto_msgTypes[409]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23031,7 +23383,7 @@ func (x *SeminarEndExamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarEndExamResponse.ProtoReflect.Descriptor instead.
 func (*SeminarEndExamResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{403}
+	return file_papi_proto_rawDescGZIP(), []int{409}
 }
 
 func (x *SeminarEndExamResponse) GetCommonResponse() *papicommon.Response {
@@ -23051,7 +23403,7 @@ type SeminarGetExamRequest struct {
 
 func (x *SeminarGetExamRequest) Reset() {
 	*x = SeminarGetExamRequest{}
-	mi := &file_papi_proto_msgTypes[404]
+	mi := &file_papi_proto_msgTypes[410]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23063,7 +23415,7 @@ func (x *SeminarGetExamRequest) String() string {
 func (*SeminarGetExamRequest) ProtoMessage() {}
 
 func (x *SeminarGetExamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[404]
+	mi := &file_papi_proto_msgTypes[410]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23076,7 +23428,7 @@ func (x *SeminarGetExamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarGetExamRequest.ProtoReflect.Descriptor instead.
 func (*SeminarGetExamRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{404}
+	return file_papi_proto_rawDescGZIP(), []int{410}
 }
 
 func (x *SeminarGetExamRequest) GetGroupId() string {
@@ -23124,7 +23476,7 @@ type SeminarGetExamResponse struct {
 
 func (x *SeminarGetExamResponse) Reset() {
 	*x = SeminarGetExamResponse{}
-	mi := &file_papi_proto_msgTypes[405]
+	mi := &file_papi_proto_msgTypes[411]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23136,7 +23488,7 @@ func (x *SeminarGetExamResponse) String() string {
 func (*SeminarGetExamResponse) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[405]
+	mi := &file_papi_proto_msgTypes[411]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23149,7 +23501,7 @@ func (x *SeminarGetExamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarGetExamResponse.ProtoReflect.Descriptor instead.
 func (*SeminarGetExamResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{405}
+	return file_papi_proto_rawDescGZIP(), []int{411}
 }
 
 func (x *SeminarGetExamResponse) GetGroupId() string {
@@ -23323,7 +23675,7 @@ type SeminarListExamResponse struct {
 
 func (x *SeminarListExamResponse) Reset() {
 	*x = SeminarListExamResponse{}
-	mi := &file_papi_proto_msgTypes[406]
+	mi := &file_papi_proto_msgTypes[412]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23335,7 +23687,7 @@ func (x *SeminarListExamResponse) String() string {
 func (*SeminarListExamResponse) ProtoMessage() {}
 
 func (x *SeminarListExamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[406]
+	mi := &file_papi_proto_msgTypes[412]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23348,7 +23700,7 @@ func (x *SeminarListExamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarListExamResponse.ProtoReflect.Descriptor instead.
 func (*SeminarListExamResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{406}
+	return file_papi_proto_rawDescGZIP(), []int{412}
 }
 
 func (x *SeminarListExamResponse) GetGroups() []*SeminarListExamResponse_ExamGroup {
@@ -23374,7 +23726,7 @@ type ShopCancelPurchaseTransactionRequest struct {
 
 func (x *ShopCancelPurchaseTransactionRequest) Reset() {
 	*x = ShopCancelPurchaseTransactionRequest{}
-	mi := &file_papi_proto_msgTypes[407]
+	mi := &file_papi_proto_msgTypes[413]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23386,7 +23738,7 @@ func (x *ShopCancelPurchaseTransactionRequest) String() string {
 func (*ShopCancelPurchaseTransactionRequest) ProtoMessage() {}
 
 func (x *ShopCancelPurchaseTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[407]
+	mi := &file_papi_proto_msgTypes[413]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23399,7 +23751,7 @@ func (x *ShopCancelPurchaseTransactionRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ShopCancelPurchaseTransactionRequest.ProtoReflect.Descriptor instead.
 func (*ShopCancelPurchaseTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{407}
+	return file_papi_proto_rawDescGZIP(), []int{413}
 }
 
 func (x *ShopCancelPurchaseTransactionRequest) GetTransactionId() string {
@@ -23418,7 +23770,7 @@ type ShopCancelPurchaseTransactionResponse struct {
 
 func (x *ShopCancelPurchaseTransactionResponse) Reset() {
 	*x = ShopCancelPurchaseTransactionResponse{}
-	mi := &file_papi_proto_msgTypes[408]
+	mi := &file_papi_proto_msgTypes[414]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23430,7 +23782,7 @@ func (x *ShopCancelPurchaseTransactionResponse) String() string {
 func (*ShopCancelPurchaseTransactionResponse) ProtoMessage() {}
 
 func (x *ShopCancelPurchaseTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[408]
+	mi := &file_papi_proto_msgTypes[414]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23443,7 +23795,7 @@ func (x *ShopCancelPurchaseTransactionResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ShopCancelPurchaseTransactionResponse.ProtoReflect.Descriptor instead.
 func (*ShopCancelPurchaseTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{408}
+	return file_papi_proto_rawDescGZIP(), []int{414}
 }
 
 func (x *ShopCancelPurchaseTransactionResponse) GetCommonResponse() *papicommon.Response {
@@ -23462,7 +23814,7 @@ type ShopCheckPurchaseJewelRequest struct {
 
 func (x *ShopCheckPurchaseJewelRequest) Reset() {
 	*x = ShopCheckPurchaseJewelRequest{}
-	mi := &file_papi_proto_msgTypes[409]
+	mi := &file_papi_proto_msgTypes[415]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23474,7 +23826,7 @@ func (x *ShopCheckPurchaseJewelRequest) String() string {
 func (*ShopCheckPurchaseJewelRequest) ProtoMessage() {}
 
 func (x *ShopCheckPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[409]
+	mi := &file_papi_proto_msgTypes[415]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23487,7 +23839,7 @@ func (x *ShopCheckPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopCheckPurchaseJewelRequest.ProtoReflect.Descriptor instead.
 func (*ShopCheckPurchaseJewelRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{409}
+	return file_papi_proto_rawDescGZIP(), []int{415}
 }
 
 func (x *ShopCheckPurchaseJewelRequest) GetShopItemId() string {
@@ -23511,7 +23863,7 @@ type ShopCheckPurchaseJewelResponse struct {
 
 func (x *ShopCheckPurchaseJewelResponse) Reset() {
 	*x = ShopCheckPurchaseJewelResponse{}
-	mi := &file_papi_proto_msgTypes[410]
+	mi := &file_papi_proto_msgTypes[416]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23523,7 +23875,7 @@ func (x *ShopCheckPurchaseJewelResponse) String() string {
 func (*ShopCheckPurchaseJewelResponse) ProtoMessage() {}
 
 func (x *ShopCheckPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[410]
+	mi := &file_papi_proto_msgTypes[416]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23536,7 +23888,7 @@ func (x *ShopCheckPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopCheckPurchaseJewelResponse.ProtoReflect.Descriptor instead.
 func (*ShopCheckPurchaseJewelResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{410}
+	return file_papi_proto_rawDescGZIP(), []int{416}
 }
 
 func (x *ShopCheckPurchaseJewelResponse) GetBirthdayNotRegistered() bool {
@@ -23590,7 +23942,7 @@ type ShopGetPurchasePlatformTransactionRequest struct {
 
 func (x *ShopGetPurchasePlatformTransactionRequest) Reset() {
 	*x = ShopGetPurchasePlatformTransactionRequest{}
-	mi := &file_papi_proto_msgTypes[411]
+	mi := &file_papi_proto_msgTypes[417]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23602,7 +23954,7 @@ func (x *ShopGetPurchasePlatformTransactionRequest) String() string {
 func (*ShopGetPurchasePlatformTransactionRequest) ProtoMessage() {}
 
 func (x *ShopGetPurchasePlatformTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[411]
+	mi := &file_papi_proto_msgTypes[417]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23615,7 +23967,7 @@ func (x *ShopGetPurchasePlatformTransactionRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use ShopGetPurchasePlatformTransactionRequest.ProtoReflect.Descriptor instead.
 func (*ShopGetPurchasePlatformTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{411}
+	return file_papi_proto_rawDescGZIP(), []int{417}
 }
 
 func (x *ShopGetPurchasePlatformTransactionRequest) GetStoreTransactionIds() []string {
@@ -23635,7 +23987,7 @@ type ShopGetPurchasePlatformTransactionResponse struct {
 
 func (x *ShopGetPurchasePlatformTransactionResponse) Reset() {
 	*x = ShopGetPurchasePlatformTransactionResponse{}
-	mi := &file_papi_proto_msgTypes[412]
+	mi := &file_papi_proto_msgTypes[418]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23647,7 +23999,7 @@ func (x *ShopGetPurchasePlatformTransactionResponse) String() string {
 func (*ShopGetPurchasePlatformTransactionResponse) ProtoMessage() {}
 
 func (x *ShopGetPurchasePlatformTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[412]
+	mi := &file_papi_proto_msgTypes[418]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23660,7 +24012,7 @@ func (x *ShopGetPurchasePlatformTransactionResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use ShopGetPurchasePlatformTransactionResponse.ProtoReflect.Descriptor instead.
 func (*ShopGetPurchasePlatformTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{412}
+	return file_papi_proto_rawDescGZIP(), []int{418}
 }
 
 func (x *ShopGetPurchasePlatformTransactionResponse) GetPlatformTransactions() []*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction {
@@ -23694,7 +24046,7 @@ type ShopItem struct {
 
 func (x *ShopItem) Reset() {
 	*x = ShopItem{}
-	mi := &file_papi_proto_msgTypes[413]
+	mi := &file_papi_proto_msgTypes[419]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23706,7 +24058,7 @@ func (x *ShopItem) String() string {
 func (*ShopItem) ProtoMessage() {}
 
 func (x *ShopItem) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[413]
+	mi := &file_papi_proto_msgTypes[419]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23719,7 +24071,7 @@ func (x *ShopItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopItem.ProtoReflect.Descriptor instead.
 func (*ShopItem) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{413}
+	return file_papi_proto_rawDescGZIP(), []int{419}
 }
 
 func (x *ShopItem) GetShopId() string {
@@ -23794,7 +24146,7 @@ type ShopListItemsRequest struct {
 
 func (x *ShopListItemsRequest) Reset() {
 	*x = ShopListItemsRequest{}
-	mi := &file_papi_proto_msgTypes[414]
+	mi := &file_papi_proto_msgTypes[420]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23806,7 +24158,7 @@ func (x *ShopListItemsRequest) String() string {
 func (*ShopListItemsRequest) ProtoMessage() {}
 
 func (x *ShopListItemsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[414]
+	mi := &file_papi_proto_msgTypes[420]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23819,7 +24171,7 @@ func (x *ShopListItemsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopListItemsRequest.ProtoReflect.Descriptor instead.
 func (*ShopListItemsRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{414}
+	return file_papi_proto_rawDescGZIP(), []int{420}
 }
 
 func (x *ShopListItemsRequest) GetShopId() string {
@@ -23839,7 +24191,7 @@ type ShopListItemsResponse struct {
 
 func (x *ShopListItemsResponse) Reset() {
 	*x = ShopListItemsResponse{}
-	mi := &file_papi_proto_msgTypes[415]
+	mi := &file_papi_proto_msgTypes[421]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23851,7 +24203,7 @@ func (x *ShopListItemsResponse) String() string {
 func (*ShopListItemsResponse) ProtoMessage() {}
 
 func (x *ShopListItemsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[415]
+	mi := &file_papi_proto_msgTypes[421]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23864,7 +24216,7 @@ func (x *ShopListItemsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopListItemsResponse.ProtoReflect.Descriptor instead.
 func (*ShopListItemsResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{415}
+	return file_papi_proto_rawDescGZIP(), []int{421}
 }
 
 func (x *ShopListItemsResponse) GetList() []*pmaster.ShopItem {
@@ -23898,7 +24250,7 @@ type ShopPurchaseJewelRequest struct {
 
 func (x *ShopPurchaseJewelRequest) Reset() {
 	*x = ShopPurchaseJewelRequest{}
-	mi := &file_papi_proto_msgTypes[416]
+	mi := &file_papi_proto_msgTypes[422]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23910,7 +24262,7 @@ func (x *ShopPurchaseJewelRequest) String() string {
 func (*ShopPurchaseJewelRequest) ProtoMessage() {}
 
 func (x *ShopPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[416]
+	mi := &file_papi_proto_msgTypes[422]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23923,7 +24275,7 @@ func (x *ShopPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopPurchaseJewelRequest.ProtoReflect.Descriptor instead.
 func (*ShopPurchaseJewelRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{416}
+	return file_papi_proto_rawDescGZIP(), []int{422}
 }
 
 func (x *ShopPurchaseJewelRequest) GetProductId() string {
@@ -23999,7 +24351,7 @@ type ShopPurchaseJewelResponse struct {
 
 func (x *ShopPurchaseJewelResponse) Reset() {
 	*x = ShopPurchaseJewelResponse{}
-	mi := &file_papi_proto_msgTypes[417]
+	mi := &file_papi_proto_msgTypes[423]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24011,7 +24363,7 @@ func (x *ShopPurchaseJewelResponse) String() string {
 func (*ShopPurchaseJewelResponse) ProtoMessage() {}
 
 func (x *ShopPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[417]
+	mi := &file_papi_proto_msgTypes[423]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24024,7 +24376,7 @@ func (x *ShopPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopPurchaseJewelResponse.ProtoReflect.Descriptor instead.
 func (*ShopPurchaseJewelResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{417}
+	return file_papi_proto_rawDescGZIP(), []int{423}
 }
 
 func (x *ShopPurchaseJewelResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -24050,7 +24402,7 @@ type ShopPurchaseRequest struct {
 
 func (x *ShopPurchaseRequest) Reset() {
 	*x = ShopPurchaseRequest{}
-	mi := &file_papi_proto_msgTypes[418]
+	mi := &file_papi_proto_msgTypes[424]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24062,7 +24414,7 @@ func (x *ShopPurchaseRequest) String() string {
 func (*ShopPurchaseRequest) ProtoMessage() {}
 
 func (x *ShopPurchaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[418]
+	mi := &file_papi_proto_msgTypes[424]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24075,7 +24427,7 @@ func (x *ShopPurchaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopPurchaseRequest.ProtoReflect.Descriptor instead.
 func (*ShopPurchaseRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{418}
+	return file_papi_proto_rawDescGZIP(), []int{424}
 }
 
 func (x *ShopPurchaseRequest) GetShopItemId() string {
@@ -24095,7 +24447,7 @@ type ShopPurchaseResponse struct {
 
 func (x *ShopPurchaseResponse) Reset() {
 	*x = ShopPurchaseResponse{}
-	mi := &file_papi_proto_msgTypes[419]
+	mi := &file_papi_proto_msgTypes[425]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24107,7 +24459,7 @@ func (x *ShopPurchaseResponse) String() string {
 func (*ShopPurchaseResponse) ProtoMessage() {}
 
 func (x *ShopPurchaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[419]
+	mi := &file_papi_proto_msgTypes[425]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24120,7 +24472,7 @@ func (x *ShopPurchaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopPurchaseResponse.ProtoReflect.Descriptor instead.
 func (*ShopPurchaseResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{419}
+	return file_papi_proto_rawDescGZIP(), []int{425}
 }
 
 func (x *ShopPurchaseResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -24153,7 +24505,7 @@ type ShopRecoverPurchaseJewelRequest struct {
 
 func (x *ShopRecoverPurchaseJewelRequest) Reset() {
 	*x = ShopRecoverPurchaseJewelRequest{}
-	mi := &file_papi_proto_msgTypes[420]
+	mi := &file_papi_proto_msgTypes[426]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24165,7 +24517,7 @@ func (x *ShopRecoverPurchaseJewelRequest) String() string {
 func (*ShopRecoverPurchaseJewelRequest) ProtoMessage() {}
 
 func (x *ShopRecoverPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[420]
+	mi := &file_papi_proto_msgTypes[426]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24178,7 +24530,7 @@ func (x *ShopRecoverPurchaseJewelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopRecoverPurchaseJewelRequest.ProtoReflect.Descriptor instead.
 func (*ShopRecoverPurchaseJewelRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{420}
+	return file_papi_proto_rawDescGZIP(), []int{426}
 }
 
 func (x *ShopRecoverPurchaseJewelRequest) GetProductId() string {
@@ -24247,7 +24599,7 @@ type ShopRecoverPurchaseJewelResponse struct {
 
 func (x *ShopRecoverPurchaseJewelResponse) Reset() {
 	*x = ShopRecoverPurchaseJewelResponse{}
-	mi := &file_papi_proto_msgTypes[421]
+	mi := &file_papi_proto_msgTypes[427]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24259,7 +24611,7 @@ func (x *ShopRecoverPurchaseJewelResponse) String() string {
 func (*ShopRecoverPurchaseJewelResponse) ProtoMessage() {}
 
 func (x *ShopRecoverPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[421]
+	mi := &file_papi_proto_msgTypes[427]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24272,7 +24624,7 @@ func (x *ShopRecoverPurchaseJewelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopRecoverPurchaseJewelResponse.ProtoReflect.Descriptor instead.
 func (*ShopRecoverPurchaseJewelResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{421}
+	return file_papi_proto_rawDescGZIP(), []int{427}
 }
 
 func (x *ShopRecoverPurchaseJewelResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -24300,7 +24652,7 @@ type ShopRegisterBirthdayRequest struct {
 
 func (x *ShopRegisterBirthdayRequest) Reset() {
 	*x = ShopRegisterBirthdayRequest{}
-	mi := &file_papi_proto_msgTypes[422]
+	mi := &file_papi_proto_msgTypes[428]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24312,7 +24664,7 @@ func (x *ShopRegisterBirthdayRequest) String() string {
 func (*ShopRegisterBirthdayRequest) ProtoMessage() {}
 
 func (x *ShopRegisterBirthdayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[422]
+	mi := &file_papi_proto_msgTypes[428]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24325,7 +24677,7 @@ func (x *ShopRegisterBirthdayRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopRegisterBirthdayRequest.ProtoReflect.Descriptor instead.
 func (*ShopRegisterBirthdayRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{422}
+	return file_papi_proto_rawDescGZIP(), []int{428}
 }
 
 func (x *ShopRegisterBirthdayRequest) GetYear() int32 {
@@ -24358,7 +24710,7 @@ type ShopRegisterBirthdayResponse struct {
 
 func (x *ShopRegisterBirthdayResponse) Reset() {
 	*x = ShopRegisterBirthdayResponse{}
-	mi := &file_papi_proto_msgTypes[423]
+	mi := &file_papi_proto_msgTypes[429]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24370,7 +24722,7 @@ func (x *ShopRegisterBirthdayResponse) String() string {
 func (*ShopRegisterBirthdayResponse) ProtoMessage() {}
 
 func (x *ShopRegisterBirthdayResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[423]
+	mi := &file_papi_proto_msgTypes[429]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24383,7 +24735,7 @@ func (x *ShopRegisterBirthdayResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopRegisterBirthdayResponse.ProtoReflect.Descriptor instead.
 func (*ShopRegisterBirthdayResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{423}
+	return file_papi_proto_rawDescGZIP(), []int{429}
 }
 
 func (x *ShopRegisterBirthdayResponse) GetCommonResponse() *papicommon.Response {
@@ -24403,7 +24755,7 @@ type ShopRegisterDelayPurchaseTransactionRequest struct {
 
 func (x *ShopRegisterDelayPurchaseTransactionRequest) Reset() {
 	*x = ShopRegisterDelayPurchaseTransactionRequest{}
-	mi := &file_papi_proto_msgTypes[424]
+	mi := &file_papi_proto_msgTypes[430]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24415,7 +24767,7 @@ func (x *ShopRegisterDelayPurchaseTransactionRequest) String() string {
 func (*ShopRegisterDelayPurchaseTransactionRequest) ProtoMessage() {}
 
 func (x *ShopRegisterDelayPurchaseTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[424]
+	mi := &file_papi_proto_msgTypes[430]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24428,7 +24780,7 @@ func (x *ShopRegisterDelayPurchaseTransactionRequest) ProtoReflect() protoreflec
 
 // Deprecated: Use ShopRegisterDelayPurchaseTransactionRequest.ProtoReflect.Descriptor instead.
 func (*ShopRegisterDelayPurchaseTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{424}
+	return file_papi_proto_rawDescGZIP(), []int{430}
 }
 
 func (x *ShopRegisterDelayPurchaseTransactionRequest) GetTransactionId() string {
@@ -24454,7 +24806,7 @@ type ShopRegisterDelayPurchaseTransactionResponse struct {
 
 func (x *ShopRegisterDelayPurchaseTransactionResponse) Reset() {
 	*x = ShopRegisterDelayPurchaseTransactionResponse{}
-	mi := &file_papi_proto_msgTypes[425]
+	mi := &file_papi_proto_msgTypes[431]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24466,7 +24818,7 @@ func (x *ShopRegisterDelayPurchaseTransactionResponse) String() string {
 func (*ShopRegisterDelayPurchaseTransactionResponse) ProtoMessage() {}
 
 func (x *ShopRegisterDelayPurchaseTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[425]
+	mi := &file_papi_proto_msgTypes[431]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24479,7 +24831,7 @@ func (x *ShopRegisterDelayPurchaseTransactionResponse) ProtoReflect() protorefle
 
 // Deprecated: Use ShopRegisterDelayPurchaseTransactionResponse.ProtoReflect.Descriptor instead.
 func (*ShopRegisterDelayPurchaseTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{425}
+	return file_papi_proto_rawDescGZIP(), []int{431}
 }
 
 func (x *ShopRegisterDelayPurchaseTransactionResponse) GetCommonResponse() *papicommon.Response {
@@ -24498,7 +24850,7 @@ type ShopRegisterPurchaseTransactionRequest struct {
 
 func (x *ShopRegisterPurchaseTransactionRequest) Reset() {
 	*x = ShopRegisterPurchaseTransactionRequest{}
-	mi := &file_papi_proto_msgTypes[426]
+	mi := &file_papi_proto_msgTypes[432]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24510,7 +24862,7 @@ func (x *ShopRegisterPurchaseTransactionRequest) String() string {
 func (*ShopRegisterPurchaseTransactionRequest) ProtoMessage() {}
 
 func (x *ShopRegisterPurchaseTransactionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[426]
+	mi := &file_papi_proto_msgTypes[432]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24523,7 +24875,7 @@ func (x *ShopRegisterPurchaseTransactionRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ShopRegisterPurchaseTransactionRequest.ProtoReflect.Descriptor instead.
 func (*ShopRegisterPurchaseTransactionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{426}
+	return file_papi_proto_rawDescGZIP(), []int{432}
 }
 
 func (x *ShopRegisterPurchaseTransactionRequest) GetShopItemId() string {
@@ -24543,7 +24895,7 @@ type ShopRegisterPurchaseTransactionResponse struct {
 
 func (x *ShopRegisterPurchaseTransactionResponse) Reset() {
 	*x = ShopRegisterPurchaseTransactionResponse{}
-	mi := &file_papi_proto_msgTypes[427]
+	mi := &file_papi_proto_msgTypes[433]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24555,7 +24907,7 @@ func (x *ShopRegisterPurchaseTransactionResponse) String() string {
 func (*ShopRegisterPurchaseTransactionResponse) ProtoMessage() {}
 
 func (x *ShopRegisterPurchaseTransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[427]
+	mi := &file_papi_proto_msgTypes[433]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24568,7 +24920,7 @@ func (x *ShopRegisterPurchaseTransactionResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ShopRegisterPurchaseTransactionResponse.ProtoReflect.Descriptor instead.
 func (*ShopRegisterPurchaseTransactionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{427}
+	return file_papi_proto_rawDescGZIP(), []int{433}
 }
 
 func (x *ShopRegisterPurchaseTransactionResponse) GetTransactionId() string {
@@ -24601,7 +24953,7 @@ type ShopTopResponse struct {
 
 func (x *ShopTopResponse) Reset() {
 	*x = ShopTopResponse{}
-	mi := &file_papi_proto_msgTypes[428]
+	mi := &file_papi_proto_msgTypes[434]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24613,7 +24965,7 @@ func (x *ShopTopResponse) String() string {
 func (*ShopTopResponse) ProtoMessage() {}
 
 func (x *ShopTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[428]
+	mi := &file_papi_proto_msgTypes[434]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24626,7 +24978,7 @@ func (x *ShopTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopTopResponse.ProtoReflect.Descriptor instead.
 func (*ShopTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{428}
+	return file_papi_proto_rawDescGZIP(), []int{434}
 }
 
 func (x *ShopTopResponse) GetShopList() []*ShopTopResponse_Shop {
@@ -24694,7 +25046,7 @@ type StartupConfirmRequest struct {
 
 func (x *StartupConfirmRequest) Reset() {
 	*x = StartupConfirmRequest{}
-	mi := &file_papi_proto_msgTypes[429]
+	mi := &file_papi_proto_msgTypes[435]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24706,7 +25058,7 @@ func (x *StartupConfirmRequest) String() string {
 func (*StartupConfirmRequest) ProtoMessage() {}
 
 func (x *StartupConfirmRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[429]
+	mi := &file_papi_proto_msgTypes[435]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24719,7 +25071,7 @@ func (x *StartupConfirmRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartupConfirmRequest.ProtoReflect.Descriptor instead.
 func (*StartupConfirmRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{429}
+	return file_papi_proto_rawDescGZIP(), []int{435}
 }
 
 func (x *StartupConfirmRequest) GetNotifications() []*StartupConfirmRequest_Notification {
@@ -24739,7 +25091,7 @@ type StartupConfirmResponse struct {
 
 func (x *StartupConfirmResponse) Reset() {
 	*x = StartupConfirmResponse{}
-	mi := &file_papi_proto_msgTypes[430]
+	mi := &file_papi_proto_msgTypes[436]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24751,7 +25103,7 @@ func (x *StartupConfirmResponse) String() string {
 func (*StartupConfirmResponse) ProtoMessage() {}
 
 func (x *StartupConfirmResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[430]
+	mi := &file_papi_proto_msgTypes[436]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24764,7 +25116,7 @@ func (x *StartupConfirmResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartupConfirmResponse.ProtoReflect.Descriptor instead.
 func (*StartupConfirmResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{430}
+	return file_papi_proto_rawDescGZIP(), []int{436}
 }
 
 func (x *StartupConfirmResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -24791,7 +25143,7 @@ type StartupListNotificationsRequest struct {
 
 func (x *StartupListNotificationsRequest) Reset() {
 	*x = StartupListNotificationsRequest{}
-	mi := &file_papi_proto_msgTypes[431]
+	mi := &file_papi_proto_msgTypes[437]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24803,7 +25155,7 @@ func (x *StartupListNotificationsRequest) String() string {
 func (*StartupListNotificationsRequest) ProtoMessage() {}
 
 func (x *StartupListNotificationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[431]
+	mi := &file_papi_proto_msgTypes[437]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24816,7 +25168,7 @@ func (x *StartupListNotificationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartupListNotificationsRequest.ProtoReflect.Descriptor instead.
 func (*StartupListNotificationsRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{431}
+	return file_papi_proto_rawDescGZIP(), []int{437}
 }
 
 func (x *StartupListNotificationsRequest) GetDisplayType() penum.StartupNotificationDisplayType {
@@ -24843,7 +25195,7 @@ type StartupListNotificationsResponse struct {
 
 func (x *StartupListNotificationsResponse) Reset() {
 	*x = StartupListNotificationsResponse{}
-	mi := &file_papi_proto_msgTypes[432]
+	mi := &file_papi_proto_msgTypes[438]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24855,7 +25207,7 @@ func (x *StartupListNotificationsResponse) String() string {
 func (*StartupListNotificationsResponse) ProtoMessage() {}
 
 func (x *StartupListNotificationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[432]
+	mi := &file_papi_proto_msgTypes[438]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24868,7 +25220,7 @@ func (x *StartupListNotificationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartupListNotificationsResponse.ProtoReflect.Descriptor instead.
 func (*StartupListNotificationsResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{432}
+	return file_papi_proto_rawDescGZIP(), []int{438}
 }
 
 func (x *StartupListNotificationsResponse) GetNotifications() []*pcommon.StartupNotification {
@@ -24895,7 +25247,7 @@ type StepUpGashaProbability struct {
 
 func (x *StepUpGashaProbability) Reset() {
 	*x = StepUpGashaProbability{}
-	mi := &file_papi_proto_msgTypes[433]
+	mi := &file_papi_proto_msgTypes[439]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24907,7 +25259,7 @@ func (x *StepUpGashaProbability) String() string {
 func (*StepUpGashaProbability) ProtoMessage() {}
 
 func (x *StepUpGashaProbability) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[433]
+	mi := &file_papi_proto_msgTypes[439]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24920,7 +25272,7 @@ func (x *StepUpGashaProbability) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StepUpGashaProbability.ProtoReflect.Descriptor instead.
 func (*StepUpGashaProbability) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{433}
+	return file_papi_proto_rawDescGZIP(), []int{439}
 }
 
 func (x *StepUpGashaProbability) GetStep() int32 {
@@ -24946,7 +25298,7 @@ type StoryEventListGuildMissionRequest struct {
 
 func (x *StoryEventListGuildMissionRequest) Reset() {
 	*x = StoryEventListGuildMissionRequest{}
-	mi := &file_papi_proto_msgTypes[434]
+	mi := &file_papi_proto_msgTypes[440]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24958,7 +25310,7 @@ func (x *StoryEventListGuildMissionRequest) String() string {
 func (*StoryEventListGuildMissionRequest) ProtoMessage() {}
 
 func (x *StoryEventListGuildMissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[434]
+	mi := &file_papi_proto_msgTypes[440]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24971,7 +25323,7 @@ func (x *StoryEventListGuildMissionRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use StoryEventListGuildMissionRequest.ProtoReflect.Descriptor instead.
 func (*StoryEventListGuildMissionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{434}
+	return file_papi_proto_rawDescGZIP(), []int{440}
 }
 
 func (x *StoryEventListGuildMissionRequest) GetStoryEventId() string {
@@ -24993,7 +25345,7 @@ type StoryEventListGuildMissionResponse struct {
 
 func (x *StoryEventListGuildMissionResponse) Reset() {
 	*x = StoryEventListGuildMissionResponse{}
-	mi := &file_papi_proto_msgTypes[435]
+	mi := &file_papi_proto_msgTypes[441]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25005,7 +25357,7 @@ func (x *StoryEventListGuildMissionResponse) String() string {
 func (*StoryEventListGuildMissionResponse) ProtoMessage() {}
 
 func (x *StoryEventListGuildMissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[435]
+	mi := &file_papi_proto_msgTypes[441]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25018,7 +25370,7 @@ func (x *StoryEventListGuildMissionResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use StoryEventListGuildMissionResponse.ProtoReflect.Descriptor instead.
 func (*StoryEventListGuildMissionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{435}
+	return file_papi_proto_rawDescGZIP(), []int{441}
 }
 
 func (x *StoryEventListGuildMissionResponse) GetGuildMissions() []*pcommon.GuildMission {
@@ -25059,7 +25411,7 @@ type StoryEventReceiveGuildMissionRequest struct {
 
 func (x *StoryEventReceiveGuildMissionRequest) Reset() {
 	*x = StoryEventReceiveGuildMissionRequest{}
-	mi := &file_papi_proto_msgTypes[436]
+	mi := &file_papi_proto_msgTypes[442]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25071,7 +25423,7 @@ func (x *StoryEventReceiveGuildMissionRequest) String() string {
 func (*StoryEventReceiveGuildMissionRequest) ProtoMessage() {}
 
 func (x *StoryEventReceiveGuildMissionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[436]
+	mi := &file_papi_proto_msgTypes[442]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25084,7 +25436,7 @@ func (x *StoryEventReceiveGuildMissionRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use StoryEventReceiveGuildMissionRequest.ProtoReflect.Descriptor instead.
 func (*StoryEventReceiveGuildMissionRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{436}
+	return file_papi_proto_rawDescGZIP(), []int{442}
 }
 
 func (x *StoryEventReceiveGuildMissionRequest) GetStoryEventId() string {
@@ -25111,7 +25463,7 @@ type StoryEventReceiveGuildMissionResponse struct {
 
 func (x *StoryEventReceiveGuildMissionResponse) Reset() {
 	*x = StoryEventReceiveGuildMissionResponse{}
-	mi := &file_papi_proto_msgTypes[437]
+	mi := &file_papi_proto_msgTypes[443]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25123,7 +25475,7 @@ func (x *StoryEventReceiveGuildMissionResponse) String() string {
 func (*StoryEventReceiveGuildMissionResponse) ProtoMessage() {}
 
 func (x *StoryEventReceiveGuildMissionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[437]
+	mi := &file_papi_proto_msgTypes[443]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25136,7 +25488,7 @@ func (x *StoryEventReceiveGuildMissionResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use StoryEventReceiveGuildMissionResponse.ProtoReflect.Descriptor instead.
 func (*StoryEventReceiveGuildMissionResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{437}
+	return file_papi_proto_rawDescGZIP(), []int{443}
 }
 
 func (x *StoryEventReceiveGuildMissionResponse) GetReceiveResults() []*StoryEventReceiveGuildMissionResponse_ReceiveResult {
@@ -25162,7 +25514,7 @@ type StoryEventTopRequest struct {
 
 func (x *StoryEventTopRequest) Reset() {
 	*x = StoryEventTopRequest{}
-	mi := &file_papi_proto_msgTypes[438]
+	mi := &file_papi_proto_msgTypes[444]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25174,7 +25526,7 @@ func (x *StoryEventTopRequest) String() string {
 func (*StoryEventTopRequest) ProtoMessage() {}
 
 func (x *StoryEventTopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[438]
+	mi := &file_papi_proto_msgTypes[444]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25187,7 +25539,7 @@ func (x *StoryEventTopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventTopRequest.ProtoReflect.Descriptor instead.
 func (*StoryEventTopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{438}
+	return file_papi_proto_rawDescGZIP(), []int{444}
 }
 
 func (x *StoryEventTopRequest) GetStoryEventId() string {
@@ -25238,7 +25590,7 @@ type StoryEventTopResponse struct {
 
 func (x *StoryEventTopResponse) Reset() {
 	*x = StoryEventTopResponse{}
-	mi := &file_papi_proto_msgTypes[439]
+	mi := &file_papi_proto_msgTypes[445]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25250,7 +25602,7 @@ func (x *StoryEventTopResponse) String() string {
 func (*StoryEventTopResponse) ProtoMessage() {}
 
 func (x *StoryEventTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[439]
+	mi := &file_papi_proto_msgTypes[445]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25263,7 +25615,7 @@ func (x *StoryEventTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventTopResponse.ProtoReflect.Descriptor instead.
 func (*StoryEventTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{439}
+	return file_papi_proto_rawDescGZIP(), []int{445}
 }
 
 func (x *StoryEventTopResponse) GetTitle() string {
@@ -25509,7 +25861,7 @@ type StoryReadDearnessStoryRequest struct {
 
 func (x *StoryReadDearnessStoryRequest) Reset() {
 	*x = StoryReadDearnessStoryRequest{}
-	mi := &file_papi_proto_msgTypes[440]
+	mi := &file_papi_proto_msgTypes[446]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25521,7 +25873,7 @@ func (x *StoryReadDearnessStoryRequest) String() string {
 func (*StoryReadDearnessStoryRequest) ProtoMessage() {}
 
 func (x *StoryReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[440]
+	mi := &file_papi_proto_msgTypes[446]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25534,7 +25886,7 @@ func (x *StoryReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadDearnessStoryRequest.ProtoReflect.Descriptor instead.
 func (*StoryReadDearnessStoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{440}
+	return file_papi_proto_rawDescGZIP(), []int{446}
 }
 
 func (x *StoryReadDearnessStoryRequest) GetCharacterId() string {
@@ -25578,7 +25930,7 @@ type StoryReadDearnessStoryResponse struct {
 
 func (x *StoryReadDearnessStoryResponse) Reset() {
 	*x = StoryReadDearnessStoryResponse{}
-	mi := &file_papi_proto_msgTypes[441]
+	mi := &file_papi_proto_msgTypes[447]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25590,7 +25942,7 @@ func (x *StoryReadDearnessStoryResponse) String() string {
 func (*StoryReadDearnessStoryResponse) ProtoMessage() {}
 
 func (x *StoryReadDearnessStoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[441]
+	mi := &file_papi_proto_msgTypes[447]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25603,7 +25955,7 @@ func (x *StoryReadDearnessStoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadDearnessStoryResponse.ProtoReflect.Descriptor instead.
 func (*StoryReadDearnessStoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{441}
+	return file_papi_proto_rawDescGZIP(), []int{447}
 }
 
 func (x *StoryReadDearnessStoryResponse) GetCharacterId() string {
@@ -25652,7 +26004,7 @@ type StoryReadProduceStoryRequest struct {
 
 func (x *StoryReadProduceStoryRequest) Reset() {
 	*x = StoryReadProduceStoryRequest{}
-	mi := &file_papi_proto_msgTypes[442]
+	mi := &file_papi_proto_msgTypes[448]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25664,7 +26016,7 @@ func (x *StoryReadProduceStoryRequest) String() string {
 func (*StoryReadProduceStoryRequest) ProtoMessage() {}
 
 func (x *StoryReadProduceStoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[442]
+	mi := &file_papi_proto_msgTypes[448]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25677,7 +26029,7 @@ func (x *StoryReadProduceStoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadProduceStoryRequest.ProtoReflect.Descriptor instead.
 func (*StoryReadProduceStoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{442}
+	return file_papi_proto_rawDescGZIP(), []int{448}
 }
 
 func (x *StoryReadProduceStoryRequest) GetProduceStoryId() string {
@@ -25710,7 +26062,7 @@ type StoryReadProduceStoryResponse struct {
 
 func (x *StoryReadProduceStoryResponse) Reset() {
 	*x = StoryReadProduceStoryResponse{}
-	mi := &file_papi_proto_msgTypes[443]
+	mi := &file_papi_proto_msgTypes[449]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25722,7 +26074,7 @@ func (x *StoryReadProduceStoryResponse) String() string {
 func (*StoryReadProduceStoryResponse) ProtoMessage() {}
 
 func (x *StoryReadProduceStoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[443]
+	mi := &file_papi_proto_msgTypes[449]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25735,7 +26087,7 @@ func (x *StoryReadProduceStoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadProduceStoryResponse.ProtoReflect.Descriptor instead.
 func (*StoryReadProduceStoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{443}
+	return file_papi_proto_rawDescGZIP(), []int{449}
 }
 
 func (x *StoryReadProduceStoryResponse) GetCommonResponse() *papicommon.Response {
@@ -25756,7 +26108,7 @@ type StoryReadRequest struct {
 
 func (x *StoryReadRequest) Reset() {
 	*x = StoryReadRequest{}
-	mi := &file_papi_proto_msgTypes[444]
+	mi := &file_papi_proto_msgTypes[450]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25768,7 +26120,7 @@ func (x *StoryReadRequest) String() string {
 func (*StoryReadRequest) ProtoMessage() {}
 
 func (x *StoryReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[444]
+	mi := &file_papi_proto_msgTypes[450]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25781,7 +26133,7 @@ func (x *StoryReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadRequest.ProtoReflect.Descriptor instead.
 func (*StoryReadRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{444}
+	return file_papi_proto_rawDescGZIP(), []int{450}
 }
 
 func (x *StoryReadRequest) GetStoryId() string {
@@ -25815,7 +26167,7 @@ type StoryReadResponse struct {
 
 func (x *StoryReadResponse) Reset() {
 	*x = StoryReadResponse{}
-	mi := &file_papi_proto_msgTypes[445]
+	mi := &file_papi_proto_msgTypes[451]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25827,7 +26179,7 @@ func (x *StoryReadResponse) String() string {
 func (*StoryReadResponse) ProtoMessage() {}
 
 func (x *StoryReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[445]
+	mi := &file_papi_proto_msgTypes[451]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25840,7 +26192,7 @@ func (x *StoryReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryReadResponse.ProtoReflect.Descriptor instead.
 func (*StoryReadResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{445}
+	return file_papi_proto_rawDescGZIP(), []int{451}
 }
 
 func (x *StoryReadResponse) GetRewardResults() []*pcommon.RewardResult {
@@ -25857,6 +26209,102 @@ func (x *StoryReadResponse) GetCommonResponse() *papicommon.Response {
 	return nil
 }
 
+type StoryUnlockDearnessStoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	DearnessLevel int32                  `protobuf:"varint,2,opt,name=dearnessLevel,proto3" json:"dearnessLevel,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StoryUnlockDearnessStoryRequest) Reset() {
+	*x = StoryUnlockDearnessStoryRequest{}
+	mi := &file_papi_proto_msgTypes[452]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StoryUnlockDearnessStoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StoryUnlockDearnessStoryRequest) ProtoMessage() {}
+
+func (x *StoryUnlockDearnessStoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[452]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StoryUnlockDearnessStoryRequest.ProtoReflect.Descriptor instead.
+func (*StoryUnlockDearnessStoryRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{452}
+}
+
+func (x *StoryUnlockDearnessStoryRequest) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *StoryUnlockDearnessStoryRequest) GetDearnessLevel() int32 {
+	if x != nil {
+		return x.DearnessLevel
+	}
+	return 0
+}
+
+type StoryUnlockDearnessStoryResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	CommonResponse *papicommon.Response   `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *StoryUnlockDearnessStoryResponse) Reset() {
+	*x = StoryUnlockDearnessStoryResponse{}
+	mi := &file_papi_proto_msgTypes[453]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StoryUnlockDearnessStoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StoryUnlockDearnessStoryResponse) ProtoMessage() {}
+
+func (x *StoryUnlockDearnessStoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[453]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StoryUnlockDearnessStoryResponse.ProtoReflect.Descriptor instead.
+func (*StoryUnlockDearnessStoryResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{453}
+}
+
+func (x *StoryUnlockDearnessStoryResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
 type StoryUnlockProduceStoryRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ProduceStoryId string                 `protobuf:"bytes,1,opt,name=produceStoryId,proto3" json:"produceStoryId,omitempty"`
@@ -25866,7 +26314,7 @@ type StoryUnlockProduceStoryRequest struct {
 
 func (x *StoryUnlockProduceStoryRequest) Reset() {
 	*x = StoryUnlockProduceStoryRequest{}
-	mi := &file_papi_proto_msgTypes[446]
+	mi := &file_papi_proto_msgTypes[454]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25878,7 +26326,7 @@ func (x *StoryUnlockProduceStoryRequest) String() string {
 func (*StoryUnlockProduceStoryRequest) ProtoMessage() {}
 
 func (x *StoryUnlockProduceStoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[446]
+	mi := &file_papi_proto_msgTypes[454]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25891,7 +26339,7 @@ func (x *StoryUnlockProduceStoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryUnlockProduceStoryRequest.ProtoReflect.Descriptor instead.
 func (*StoryUnlockProduceStoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{446}
+	return file_papi_proto_rawDescGZIP(), []int{454}
 }
 
 func (x *StoryUnlockProduceStoryRequest) GetProduceStoryId() string {
@@ -25910,7 +26358,7 @@ type StoryUnlockProduceStoryResponse struct {
 
 func (x *StoryUnlockProduceStoryResponse) Reset() {
 	*x = StoryUnlockProduceStoryResponse{}
-	mi := &file_papi_proto_msgTypes[447]
+	mi := &file_papi_proto_msgTypes[455]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25922,7 +26370,7 @@ func (x *StoryUnlockProduceStoryResponse) String() string {
 func (*StoryUnlockProduceStoryResponse) ProtoMessage() {}
 
 func (x *StoryUnlockProduceStoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[447]
+	mi := &file_papi_proto_msgTypes[455]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25935,7 +26383,7 @@ func (x *StoryUnlockProduceStoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryUnlockProduceStoryResponse.ProtoReflect.Descriptor instead.
 func (*StoryUnlockProduceStoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{447}
+	return file_papi_proto_rawDescGZIP(), []int{455}
 }
 
 func (x *StoryUnlockProduceStoryResponse) GetCommonResponse() *papicommon.Response {
@@ -25954,7 +26402,7 @@ type StoryUnlockRequest struct {
 
 func (x *StoryUnlockRequest) Reset() {
 	*x = StoryUnlockRequest{}
-	mi := &file_papi_proto_msgTypes[448]
+	mi := &file_papi_proto_msgTypes[456]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25966,7 +26414,7 @@ func (x *StoryUnlockRequest) String() string {
 func (*StoryUnlockRequest) ProtoMessage() {}
 
 func (x *StoryUnlockRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[448]
+	mi := &file_papi_proto_msgTypes[456]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25979,7 +26427,7 @@ func (x *StoryUnlockRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryUnlockRequest.ProtoReflect.Descriptor instead.
 func (*StoryUnlockRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{448}
+	return file_papi_proto_rawDescGZIP(), []int{456}
 }
 
 func (x *StoryUnlockRequest) GetStoryId() string {
@@ -25998,7 +26446,7 @@ type StoryUnlockResponse struct {
 
 func (x *StoryUnlockResponse) Reset() {
 	*x = StoryUnlockResponse{}
-	mi := &file_papi_proto_msgTypes[449]
+	mi := &file_papi_proto_msgTypes[457]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26010,7 +26458,7 @@ func (x *StoryUnlockResponse) String() string {
 func (*StoryUnlockResponse) ProtoMessage() {}
 
 func (x *StoryUnlockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[449]
+	mi := &file_papi_proto_msgTypes[457]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26023,7 +26471,7 @@ func (x *StoryUnlockResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryUnlockResponse.ProtoReflect.Descriptor instead.
 func (*StoryUnlockResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{449}
+	return file_papi_proto_rawDescGZIP(), []int{457}
 }
 
 func (x *StoryUnlockResponse) GetCommonResponse() *papicommon.Response {
@@ -26043,7 +26491,7 @@ type SupportCardEnhanceRequest struct {
 
 func (x *SupportCardEnhanceRequest) Reset() {
 	*x = SupportCardEnhanceRequest{}
-	mi := &file_papi_proto_msgTypes[450]
+	mi := &file_papi_proto_msgTypes[458]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26055,7 +26503,7 @@ func (x *SupportCardEnhanceRequest) String() string {
 func (*SupportCardEnhanceRequest) ProtoMessage() {}
 
 func (x *SupportCardEnhanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[450]
+	mi := &file_papi_proto_msgTypes[458]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26068,7 +26516,7 @@ func (x *SupportCardEnhanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardEnhanceRequest.ProtoReflect.Descriptor instead.
 func (*SupportCardEnhanceRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{450}
+	return file_papi_proto_rawDescGZIP(), []int{458}
 }
 
 func (x *SupportCardEnhanceRequest) GetSupportCardId() string {
@@ -26094,7 +26542,7 @@ type SupportCardEnhanceResponse struct {
 
 func (x *SupportCardEnhanceResponse) Reset() {
 	*x = SupportCardEnhanceResponse{}
-	mi := &file_papi_proto_msgTypes[451]
+	mi := &file_papi_proto_msgTypes[459]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26106,7 +26554,7 @@ func (x *SupportCardEnhanceResponse) String() string {
 func (*SupportCardEnhanceResponse) ProtoMessage() {}
 
 func (x *SupportCardEnhanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[451]
+	mi := &file_papi_proto_msgTypes[459]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26119,7 +26567,7 @@ func (x *SupportCardEnhanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardEnhanceResponse.ProtoReflect.Descriptor instead.
 func (*SupportCardEnhanceResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{451}
+	return file_papi_proto_rawDescGZIP(), []int{459}
 }
 
 func (x *SupportCardEnhanceResponse) GetCommonResponse() *papicommon.Response {
@@ -26138,7 +26586,7 @@ type SupportCardExchangeRequest struct {
 
 func (x *SupportCardExchangeRequest) Reset() {
 	*x = SupportCardExchangeRequest{}
-	mi := &file_papi_proto_msgTypes[452]
+	mi := &file_papi_proto_msgTypes[460]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26150,7 +26598,7 @@ func (x *SupportCardExchangeRequest) String() string {
 func (*SupportCardExchangeRequest) ProtoMessage() {}
 
 func (x *SupportCardExchangeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[452]
+	mi := &file_papi_proto_msgTypes[460]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26163,7 +26611,7 @@ func (x *SupportCardExchangeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardExchangeRequest.ProtoReflect.Descriptor instead.
 func (*SupportCardExchangeRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{452}
+	return file_papi_proto_rawDescGZIP(), []int{460}
 }
 
 func (x *SupportCardExchangeRequest) GetParameters() []*SupportCardExchangeRequest_Parameter {
@@ -26182,7 +26630,7 @@ type SupportCardExchangeResponse struct {
 
 func (x *SupportCardExchangeResponse) Reset() {
 	*x = SupportCardExchangeResponse{}
-	mi := &file_papi_proto_msgTypes[453]
+	mi := &file_papi_proto_msgTypes[461]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26194,7 +26642,7 @@ func (x *SupportCardExchangeResponse) String() string {
 func (*SupportCardExchangeResponse) ProtoMessage() {}
 
 func (x *SupportCardExchangeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[453]
+	mi := &file_papi_proto_msgTypes[461]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26207,7 +26655,7 @@ func (x *SupportCardExchangeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardExchangeResponse.ProtoReflect.Descriptor instead.
 func (*SupportCardExchangeResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{453}
+	return file_papi_proto_rawDescGZIP(), []int{461}
 }
 
 func (x *SupportCardExchangeResponse) GetCommonResponse() *papicommon.Response {
@@ -26227,7 +26675,7 @@ type SupportCardListDeckRankingResponse struct {
 
 func (x *SupportCardListDeckRankingResponse) Reset() {
 	*x = SupportCardListDeckRankingResponse{}
-	mi := &file_papi_proto_msgTypes[454]
+	mi := &file_papi_proto_msgTypes[462]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26239,7 +26687,7 @@ func (x *SupportCardListDeckRankingResponse) String() string {
 func (*SupportCardListDeckRankingResponse) ProtoMessage() {}
 
 func (x *SupportCardListDeckRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[454]
+	mi := &file_papi_proto_msgTypes[462]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26252,7 +26700,7 @@ func (x *SupportCardListDeckRankingResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use SupportCardListDeckRankingResponse.ProtoReflect.Descriptor instead.
 func (*SupportCardListDeckRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{454}
+	return file_papi_proto_rawDescGZIP(), []int{462}
 }
 
 func (x *SupportCardListDeckRankingResponse) GetRankings() []*SupportCardListDeckRankingResponse_Ranking {
@@ -26282,7 +26730,7 @@ type SupportCardProbability struct {
 
 func (x *SupportCardProbability) Reset() {
 	*x = SupportCardProbability{}
-	mi := &file_papi_proto_msgTypes[455]
+	mi := &file_papi_proto_msgTypes[463]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26294,7 +26742,7 @@ func (x *SupportCardProbability) String() string {
 func (*SupportCardProbability) ProtoMessage() {}
 
 func (x *SupportCardProbability) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[455]
+	mi := &file_papi_proto_msgTypes[463]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26307,7 +26755,7 @@ func (x *SupportCardProbability) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardProbability.ProtoReflect.Descriptor instead.
 func (*SupportCardProbability) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{455}
+	return file_papi_proto_rawDescGZIP(), []int{463}
 }
 
 func (x *SupportCardProbability) GetSupportCardId() string {
@@ -26356,7 +26804,7 @@ type SupportCardRarityProbability struct {
 
 func (x *SupportCardRarityProbability) Reset() {
 	*x = SupportCardRarityProbability{}
-	mi := &file_papi_proto_msgTypes[456]
+	mi := &file_papi_proto_msgTypes[464]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26368,7 +26816,7 @@ func (x *SupportCardRarityProbability) String() string {
 func (*SupportCardRarityProbability) ProtoMessage() {}
 
 func (x *SupportCardRarityProbability) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[456]
+	mi := &file_papi_proto_msgTypes[464]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26381,7 +26829,7 @@ func (x *SupportCardRarityProbability) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardRarityProbability.ProtoReflect.Descriptor instead.
 func (*SupportCardRarityProbability) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{456}
+	return file_papi_proto_rawDescGZIP(), []int{464}
 }
 
 func (x *SupportCardRarityProbability) GetRarity() penum.SupportCardRarity {
@@ -26415,7 +26863,7 @@ type SupportCardUpgradeLevelLimitRankRequest struct {
 
 func (x *SupportCardUpgradeLevelLimitRankRequest) Reset() {
 	*x = SupportCardUpgradeLevelLimitRankRequest{}
-	mi := &file_papi_proto_msgTypes[457]
+	mi := &file_papi_proto_msgTypes[465]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26427,7 +26875,7 @@ func (x *SupportCardUpgradeLevelLimitRankRequest) String() string {
 func (*SupportCardUpgradeLevelLimitRankRequest) ProtoMessage() {}
 
 func (x *SupportCardUpgradeLevelLimitRankRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[457]
+	mi := &file_papi_proto_msgTypes[465]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26440,7 +26888,7 @@ func (x *SupportCardUpgradeLevelLimitRankRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use SupportCardUpgradeLevelLimitRankRequest.ProtoReflect.Descriptor instead.
 func (*SupportCardUpgradeLevelLimitRankRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{457}
+	return file_papi_proto_rawDescGZIP(), []int{465}
 }
 
 func (x *SupportCardUpgradeLevelLimitRankRequest) GetSupportCardId() string {
@@ -26466,7 +26914,7 @@ type SupportCardUpgradeLevelLimitRankResponse struct {
 
 func (x *SupportCardUpgradeLevelLimitRankResponse) Reset() {
 	*x = SupportCardUpgradeLevelLimitRankResponse{}
-	mi := &file_papi_proto_msgTypes[458]
+	mi := &file_papi_proto_msgTypes[466]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26478,7 +26926,7 @@ func (x *SupportCardUpgradeLevelLimitRankResponse) String() string {
 func (*SupportCardUpgradeLevelLimitRankResponse) ProtoMessage() {}
 
 func (x *SupportCardUpgradeLevelLimitRankResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[458]
+	mi := &file_papi_proto_msgTypes[466]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26491,7 +26939,7 @@ func (x *SupportCardUpgradeLevelLimitRankResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use SupportCardUpgradeLevelLimitRankResponse.ProtoReflect.Descriptor instead.
 func (*SupportCardUpgradeLevelLimitRankResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{458}
+	return file_papi_proto_rawDescGZIP(), []int{466}
 }
 
 func (x *SupportCardUpgradeLevelLimitRankResponse) GetCommonResponse() *papicommon.Response {
@@ -26510,7 +26958,7 @@ type SystemCheckRequest struct {
 
 func (x *SystemCheckRequest) Reset() {
 	*x = SystemCheckRequest{}
-	mi := &file_papi_proto_msgTypes[459]
+	mi := &file_papi_proto_msgTypes[467]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26522,7 +26970,7 @@ func (x *SystemCheckRequest) String() string {
 func (*SystemCheckRequest) ProtoMessage() {}
 
 func (x *SystemCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[459]
+	mi := &file_papi_proto_msgTypes[467]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26535,7 +26983,7 @@ func (x *SystemCheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemCheckRequest.ProtoReflect.Descriptor instead.
 func (*SystemCheckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{459}
+	return file_papi_proto_rawDescGZIP(), []int{467}
 }
 
 func (x *SystemCheckRequest) GetIdToken() string {
@@ -26564,7 +27012,7 @@ type SystemCheckResponse struct {
 
 func (x *SystemCheckResponse) Reset() {
 	*x = SystemCheckResponse{}
-	mi := &file_papi_proto_msgTypes[460]
+	mi := &file_papi_proto_msgTypes[468]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26576,7 +27024,7 @@ func (x *SystemCheckResponse) String() string {
 func (*SystemCheckResponse) ProtoMessage() {}
 
 func (x *SystemCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[460]
+	mi := &file_papi_proto_msgTypes[468]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26589,7 +27037,7 @@ func (x *SystemCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemCheckResponse.ProtoReflect.Descriptor instead.
 func (*SystemCheckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{460}
+	return file_papi_proto_rawDescGZIP(), []int{468}
 }
 
 func (x *SystemCheckResponse) GetMaintenanceInfo() *SystemCheckResponse_MaintenanceInfo {
@@ -26678,7 +27126,7 @@ type TicketExchangeExecuteRequest struct {
 
 func (x *TicketExchangeExecuteRequest) Reset() {
 	*x = TicketExchangeExecuteRequest{}
-	mi := &file_papi_proto_msgTypes[461]
+	mi := &file_papi_proto_msgTypes[469]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26690,7 +27138,7 @@ func (x *TicketExchangeExecuteRequest) String() string {
 func (*TicketExchangeExecuteRequest) ProtoMessage() {}
 
 func (x *TicketExchangeExecuteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[461]
+	mi := &file_papi_proto_msgTypes[469]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26703,7 +27151,7 @@ func (x *TicketExchangeExecuteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TicketExchangeExecuteRequest.ProtoReflect.Descriptor instead.
 func (*TicketExchangeExecuteRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{461}
+	return file_papi_proto_rawDescGZIP(), []int{469}
 }
 
 func (x *TicketExchangeExecuteRequest) GetTicketExchangeItemId() string {
@@ -26724,7 +27172,7 @@ type TicketExchangeExecuteResponse struct {
 
 func (x *TicketExchangeExecuteResponse) Reset() {
 	*x = TicketExchangeExecuteResponse{}
-	mi := &file_papi_proto_msgTypes[462]
+	mi := &file_papi_proto_msgTypes[470]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26736,7 +27184,7 @@ func (x *TicketExchangeExecuteResponse) String() string {
 func (*TicketExchangeExecuteResponse) ProtoMessage() {}
 
 func (x *TicketExchangeExecuteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[462]
+	mi := &file_papi_proto_msgTypes[470]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26749,7 +27197,7 @@ func (x *TicketExchangeExecuteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TicketExchangeExecuteResponse.ProtoReflect.Descriptor instead.
 func (*TicketExchangeExecuteResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{462}
+	return file_papi_proto_rawDescGZIP(), []int{470}
 }
 
 func (x *TicketExchangeExecuteResponse) GetItem() *TicketExchangeItem {
@@ -26787,7 +27235,7 @@ type TicketExchangeItem struct {
 
 func (x *TicketExchangeItem) Reset() {
 	*x = TicketExchangeItem{}
-	mi := &file_papi_proto_msgTypes[463]
+	mi := &file_papi_proto_msgTypes[471]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26799,7 +27247,7 @@ func (x *TicketExchangeItem) String() string {
 func (*TicketExchangeItem) ProtoMessage() {}
 
 func (x *TicketExchangeItem) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[463]
+	mi := &file_papi_proto_msgTypes[471]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26812,7 +27260,7 @@ func (x *TicketExchangeItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TicketExchangeItem.ProtoReflect.Descriptor instead.
 func (*TicketExchangeItem) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{463}
+	return file_papi_proto_rawDescGZIP(), []int{471}
 }
 
 func (x *TicketExchangeItem) GetId() string {
@@ -26866,7 +27314,7 @@ type TicketExchangeListItemsRequest struct {
 
 func (x *TicketExchangeListItemsRequest) Reset() {
 	*x = TicketExchangeListItemsRequest{}
-	mi := &file_papi_proto_msgTypes[464]
+	mi := &file_papi_proto_msgTypes[472]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26878,7 +27326,7 @@ func (x *TicketExchangeListItemsRequest) String() string {
 func (*TicketExchangeListItemsRequest) ProtoMessage() {}
 
 func (x *TicketExchangeListItemsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[464]
+	mi := &file_papi_proto_msgTypes[472]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26891,7 +27339,7 @@ func (x *TicketExchangeListItemsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TicketExchangeListItemsRequest.ProtoReflect.Descriptor instead.
 func (*TicketExchangeListItemsRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{464}
+	return file_papi_proto_rawDescGZIP(), []int{472}
 }
 
 func (x *TicketExchangeListItemsRequest) GetTicketItemId() string {
@@ -26911,7 +27359,7 @@ type TicketExchangeListItemsResponse struct {
 
 func (x *TicketExchangeListItemsResponse) Reset() {
 	*x = TicketExchangeListItemsResponse{}
-	mi := &file_papi_proto_msgTypes[465]
+	mi := &file_papi_proto_msgTypes[473]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26923,7 +27371,7 @@ func (x *TicketExchangeListItemsResponse) String() string {
 func (*TicketExchangeListItemsResponse) ProtoMessage() {}
 
 func (x *TicketExchangeListItemsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[465]
+	mi := &file_papi_proto_msgTypes[473]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26936,7 +27384,7 @@ func (x *TicketExchangeListItemsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TicketExchangeListItemsResponse.ProtoReflect.Descriptor instead.
 func (*TicketExchangeListItemsResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{465}
+	return file_papi_proto_rawDescGZIP(), []int{473}
 }
 
 func (x *TicketExchangeListItemsResponse) GetItems() []*TicketExchangeItem {
@@ -26962,7 +27410,7 @@ type TowerCheckRequest struct {
 
 func (x *TowerCheckRequest) Reset() {
 	*x = TowerCheckRequest{}
-	mi := &file_papi_proto_msgTypes[466]
+	mi := &file_papi_proto_msgTypes[474]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26974,7 +27422,7 @@ func (x *TowerCheckRequest) String() string {
 func (*TowerCheckRequest) ProtoMessage() {}
 
 func (x *TowerCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[466]
+	mi := &file_papi_proto_msgTypes[474]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26987,7 +27435,7 @@ func (x *TowerCheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerCheckRequest.ProtoReflect.Descriptor instead.
 func (*TowerCheckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{466}
+	return file_papi_proto_rawDescGZIP(), []int{474}
 }
 
 func (x *TowerCheckRequest) GetSeed() int64 {
@@ -27007,7 +27455,7 @@ type TowerCheckResponse struct {
 
 func (x *TowerCheckResponse) Reset() {
 	*x = TowerCheckResponse{}
-	mi := &file_papi_proto_msgTypes[467]
+	mi := &file_papi_proto_msgTypes[475]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27019,7 +27467,7 @@ func (x *TowerCheckResponse) String() string {
 func (*TowerCheckResponse) ProtoMessage() {}
 
 func (x *TowerCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[467]
+	mi := &file_papi_proto_msgTypes[475]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27032,7 +27480,7 @@ func (x *TowerCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerCheckResponse.ProtoReflect.Descriptor instead.
 func (*TowerCheckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{467}
+	return file_papi_proto_rawDescGZIP(), []int{475}
 }
 
 func (x *TowerCheckResponse) GetIsCurrentTower() bool {
@@ -27060,7 +27508,7 @@ type TowerEndRequest struct {
 
 func (x *TowerEndRequest) Reset() {
 	*x = TowerEndRequest{}
-	mi := &file_papi_proto_msgTypes[468]
+	mi := &file_papi_proto_msgTypes[476]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27072,7 +27520,7 @@ func (x *TowerEndRequest) String() string {
 func (*TowerEndRequest) ProtoMessage() {}
 
 func (x *TowerEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[468]
+	mi := &file_papi_proto_msgTypes[476]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27085,7 +27533,7 @@ func (x *TowerEndRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerEndRequest.ProtoReflect.Descriptor instead.
 func (*TowerEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{468}
+	return file_papi_proto_rawDescGZIP(), []int{476}
 }
 
 func (x *TowerEndRequest) GetSeed() int64 {
@@ -27119,7 +27567,7 @@ type TowerEndResponse struct {
 
 func (x *TowerEndResponse) Reset() {
 	*x = TowerEndResponse{}
-	mi := &file_papi_proto_msgTypes[469]
+	mi := &file_papi_proto_msgTypes[477]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27131,7 +27579,7 @@ func (x *TowerEndResponse) String() string {
 func (*TowerEndResponse) ProtoMessage() {}
 
 func (x *TowerEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[469]
+	mi := &file_papi_proto_msgTypes[477]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27144,7 +27592,7 @@ func (x *TowerEndResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerEndResponse.ProtoReflect.Descriptor instead.
 func (*TowerEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{469}
+	return file_papi_proto_rawDescGZIP(), []int{477}
 }
 
 func (x *TowerEndResponse) GetResults() []*pcommon.RewardResult {
@@ -27172,7 +27620,7 @@ type TowerGetLayerIdolCardRankingRequest struct {
 
 func (x *TowerGetLayerIdolCardRankingRequest) Reset() {
 	*x = TowerGetLayerIdolCardRankingRequest{}
-	mi := &file_papi_proto_msgTypes[470]
+	mi := &file_papi_proto_msgTypes[478]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27184,7 +27632,7 @@ func (x *TowerGetLayerIdolCardRankingRequest) String() string {
 func (*TowerGetLayerIdolCardRankingRequest) ProtoMessage() {}
 
 func (x *TowerGetLayerIdolCardRankingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[470]
+	mi := &file_papi_proto_msgTypes[478]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27197,7 +27645,7 @@ func (x *TowerGetLayerIdolCardRankingRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use TowerGetLayerIdolCardRankingRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerIdolCardRankingRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{470}
+	return file_papi_proto_rawDescGZIP(), []int{478}
 }
 
 func (x *TowerGetLayerIdolCardRankingRequest) GetTowerId() string {
@@ -27231,7 +27679,7 @@ type TowerGetLayerIdolCardRankingResponse struct {
 
 func (x *TowerGetLayerIdolCardRankingResponse) Reset() {
 	*x = TowerGetLayerIdolCardRankingResponse{}
-	mi := &file_papi_proto_msgTypes[471]
+	mi := &file_papi_proto_msgTypes[479]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27243,7 +27691,7 @@ func (x *TowerGetLayerIdolCardRankingResponse) String() string {
 func (*TowerGetLayerIdolCardRankingResponse) ProtoMessage() {}
 
 func (x *TowerGetLayerIdolCardRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[471]
+	mi := &file_papi_proto_msgTypes[479]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27256,7 +27704,7 @@ func (x *TowerGetLayerIdolCardRankingResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use TowerGetLayerIdolCardRankingResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerIdolCardRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{471}
+	return file_papi_proto_rawDescGZIP(), []int{479}
 }
 
 func (x *TowerGetLayerIdolCardRankingResponse) GetTowerRankingResult() *TowerRankingResult {
@@ -27283,7 +27731,7 @@ type TowerGetLayerIdolCardRankingTopRequest struct {
 
 func (x *TowerGetLayerIdolCardRankingTopRequest) Reset() {
 	*x = TowerGetLayerIdolCardRankingTopRequest{}
-	mi := &file_papi_proto_msgTypes[472]
+	mi := &file_papi_proto_msgTypes[480]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27295,7 +27743,7 @@ func (x *TowerGetLayerIdolCardRankingTopRequest) String() string {
 func (*TowerGetLayerIdolCardRankingTopRequest) ProtoMessage() {}
 
 func (x *TowerGetLayerIdolCardRankingTopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[472]
+	mi := &file_papi_proto_msgTypes[480]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27308,7 +27756,7 @@ func (x *TowerGetLayerIdolCardRankingTopRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use TowerGetLayerIdolCardRankingTopRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerIdolCardRankingTopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{472}
+	return file_papi_proto_rawDescGZIP(), []int{480}
 }
 
 func (x *TowerGetLayerIdolCardRankingTopRequest) GetTowerId() string {
@@ -27335,7 +27783,7 @@ type TowerGetLayerIdolCardRankingTopResponse struct {
 
 func (x *TowerGetLayerIdolCardRankingTopResponse) Reset() {
 	*x = TowerGetLayerIdolCardRankingTopResponse{}
-	mi := &file_papi_proto_msgTypes[473]
+	mi := &file_papi_proto_msgTypes[481]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27347,7 +27795,7 @@ func (x *TowerGetLayerIdolCardRankingTopResponse) String() string {
 func (*TowerGetLayerIdolCardRankingTopResponse) ProtoMessage() {}
 
 func (x *TowerGetLayerIdolCardRankingTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[473]
+	mi := &file_papi_proto_msgTypes[481]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27360,7 +27808,7 @@ func (x *TowerGetLayerIdolCardRankingTopResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use TowerGetLayerIdolCardRankingTopResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerIdolCardRankingTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{473}
+	return file_papi_proto_rawDescGZIP(), []int{481}
 }
 
 func (x *TowerGetLayerIdolCardRankingTopResponse) GetRankingCaches() []*TowerRankingCache {
@@ -27387,7 +27835,7 @@ type TowerGetLayerRequest struct {
 
 func (x *TowerGetLayerRequest) Reset() {
 	*x = TowerGetLayerRequest{}
-	mi := &file_papi_proto_msgTypes[474]
+	mi := &file_papi_proto_msgTypes[482]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27399,7 +27847,7 @@ func (x *TowerGetLayerRequest) String() string {
 func (*TowerGetLayerRequest) ProtoMessage() {}
 
 func (x *TowerGetLayerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[474]
+	mi := &file_papi_proto_msgTypes[482]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27412,7 +27860,7 @@ func (x *TowerGetLayerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetLayerRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{474}
+	return file_papi_proto_rawDescGZIP(), []int{482}
 }
 
 func (x *TowerGetLayerRequest) GetTowerId() string {
@@ -27445,7 +27893,7 @@ type TowerGetLayerResponse struct {
 
 func (x *TowerGetLayerResponse) Reset() {
 	*x = TowerGetLayerResponse{}
-	mi := &file_papi_proto_msgTypes[475]
+	mi := &file_papi_proto_msgTypes[483]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27457,7 +27905,7 @@ func (x *TowerGetLayerResponse) String() string {
 func (*TowerGetLayerResponse) ProtoMessage() {}
 
 func (x *TowerGetLayerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[475]
+	mi := &file_papi_proto_msgTypes[483]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27470,7 +27918,7 @@ func (x *TowerGetLayerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetLayerResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{475}
+	return file_papi_proto_rawDescGZIP(), []int{483}
 }
 
 func (x *TowerGetLayerResponse) GetMaxSubMemoryCount() int32 {
@@ -27542,7 +27990,7 @@ type TowerGetPastSeasonLayerIdolCardRankingRequest struct {
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingRequest) Reset() {
 	*x = TowerGetPastSeasonLayerIdolCardRankingRequest{}
-	mi := &file_papi_proto_msgTypes[476]
+	mi := &file_papi_proto_msgTypes[484]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27554,7 +28002,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingRequest) String() string {
 func (*TowerGetPastSeasonLayerIdolCardRankingRequest) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[476]
+	mi := &file_papi_proto_msgTypes[484]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27567,7 +28015,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingRequest) ProtoReflect() protorefl
 
 // Deprecated: Use TowerGetPastSeasonLayerIdolCardRankingRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonLayerIdolCardRankingRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{476}
+	return file_papi_proto_rawDescGZIP(), []int{484}
 }
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingRequest) GetSeasonStartYear() int64 {
@@ -27615,7 +28063,7 @@ type TowerGetPastSeasonLayerIdolCardRankingResponse struct {
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingResponse) Reset() {
 	*x = TowerGetPastSeasonLayerIdolCardRankingResponse{}
-	mi := &file_papi_proto_msgTypes[477]
+	mi := &file_papi_proto_msgTypes[485]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27627,7 +28075,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingResponse) String() string {
 func (*TowerGetPastSeasonLayerIdolCardRankingResponse) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[477]
+	mi := &file_papi_proto_msgTypes[485]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27640,7 +28088,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingResponse) ProtoReflect() protoref
 
 // Deprecated: Use TowerGetPastSeasonLayerIdolCardRankingResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonLayerIdolCardRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{477}
+	return file_papi_proto_rawDescGZIP(), []int{485}
 }
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingResponse) GetTowerRankingResult() *TowerRankingResult {
@@ -27669,7 +28117,7 @@ type TowerGetPastSeasonLayerIdolCardRankingTopRequest struct {
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopRequest) Reset() {
 	*x = TowerGetPastSeasonLayerIdolCardRankingTopRequest{}
-	mi := &file_papi_proto_msgTypes[478]
+	mi := &file_papi_proto_msgTypes[486]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27681,7 +28129,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingTopRequest) String() string {
 func (*TowerGetPastSeasonLayerIdolCardRankingTopRequest) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[478]
+	mi := &file_papi_proto_msgTypes[486]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27694,7 +28142,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingTopRequest) ProtoReflect() protor
 
 // Deprecated: Use TowerGetPastSeasonLayerIdolCardRankingTopRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonLayerIdolCardRankingTopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{478}
+	return file_papi_proto_rawDescGZIP(), []int{486}
 }
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopRequest) GetSeasonStartYear() int64 {
@@ -27735,7 +28183,7 @@ type TowerGetPastSeasonLayerIdolCardRankingTopResponse struct {
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopResponse) Reset() {
 	*x = TowerGetPastSeasonLayerIdolCardRankingTopResponse{}
-	mi := &file_papi_proto_msgTypes[479]
+	mi := &file_papi_proto_msgTypes[487]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27747,7 +28195,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingTopResponse) String() string {
 func (*TowerGetPastSeasonLayerIdolCardRankingTopResponse) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[479]
+	mi := &file_papi_proto_msgTypes[487]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27760,7 +28208,7 @@ func (x *TowerGetPastSeasonLayerIdolCardRankingTopResponse) ProtoReflect() proto
 
 // Deprecated: Use TowerGetPastSeasonLayerIdolCardRankingTopResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonLayerIdolCardRankingTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{479}
+	return file_papi_proto_rawDescGZIP(), []int{487}
 }
 
 func (x *TowerGetPastSeasonLayerIdolCardRankingTopResponse) GetRankingCaches() []*TowerRankingCache {
@@ -27788,7 +28236,7 @@ type TowerGetPastSeasonRankingRequest struct {
 
 func (x *TowerGetPastSeasonRankingRequest) Reset() {
 	*x = TowerGetPastSeasonRankingRequest{}
-	mi := &file_papi_proto_msgTypes[480]
+	mi := &file_papi_proto_msgTypes[488]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27800,7 +28248,7 @@ func (x *TowerGetPastSeasonRankingRequest) String() string {
 func (*TowerGetPastSeasonRankingRequest) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonRankingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[480]
+	mi := &file_papi_proto_msgTypes[488]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27813,7 +28261,7 @@ func (x *TowerGetPastSeasonRankingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetPastSeasonRankingRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonRankingRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{480}
+	return file_papi_proto_rawDescGZIP(), []int{488}
 }
 
 func (x *TowerGetPastSeasonRankingRequest) GetSeasonStartYear() int64 {
@@ -27847,7 +28295,7 @@ type TowerGetPastSeasonRankingResponse struct {
 
 func (x *TowerGetPastSeasonRankingResponse) Reset() {
 	*x = TowerGetPastSeasonRankingResponse{}
-	mi := &file_papi_proto_msgTypes[481]
+	mi := &file_papi_proto_msgTypes[489]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27859,7 +28307,7 @@ func (x *TowerGetPastSeasonRankingResponse) String() string {
 func (*TowerGetPastSeasonRankingResponse) ProtoMessage() {}
 
 func (x *TowerGetPastSeasonRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[481]
+	mi := &file_papi_proto_msgTypes[489]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27872,7 +28320,7 @@ func (x *TowerGetPastSeasonRankingResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use TowerGetPastSeasonRankingResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetPastSeasonRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{481}
+	return file_papi_proto_rawDescGZIP(), []int{489}
 }
 
 func (x *TowerGetPastSeasonRankingResponse) GetTowerRankingResult() *TowerRankingResult {
@@ -27901,7 +28349,7 @@ type TowerGetRankingDeckRequest struct {
 
 func (x *TowerGetRankingDeckRequest) Reset() {
 	*x = TowerGetRankingDeckRequest{}
-	mi := &file_papi_proto_msgTypes[482]
+	mi := &file_papi_proto_msgTypes[490]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27913,7 +28361,7 @@ func (x *TowerGetRankingDeckRequest) String() string {
 func (*TowerGetRankingDeckRequest) ProtoMessage() {}
 
 func (x *TowerGetRankingDeckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[482]
+	mi := &file_papi_proto_msgTypes[490]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27926,7 +28374,7 @@ func (x *TowerGetRankingDeckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetRankingDeckRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetRankingDeckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{482}
+	return file_papi_proto_rawDescGZIP(), []int{490}
 }
 
 func (x *TowerGetRankingDeckRequest) GetTowerId() string {
@@ -27968,7 +28416,7 @@ type TowerGetRankingDeckResponse struct {
 
 func (x *TowerGetRankingDeckResponse) Reset() {
 	*x = TowerGetRankingDeckResponse{}
-	mi := &file_papi_proto_msgTypes[483]
+	mi := &file_papi_proto_msgTypes[491]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27980,7 +28428,7 @@ func (x *TowerGetRankingDeckResponse) String() string {
 func (*TowerGetRankingDeckResponse) ProtoMessage() {}
 
 func (x *TowerGetRankingDeckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[483]
+	mi := &file_papi_proto_msgTypes[491]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27993,7 +28441,7 @@ func (x *TowerGetRankingDeckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetRankingDeckResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetRankingDeckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{483}
+	return file_papi_proto_rawDescGZIP(), []int{491}
 }
 
 func (x *TowerGetRankingDeckResponse) GetMemories() []*pcommon.Memory {
@@ -28026,7 +28474,7 @@ type TowerGetRankingRequest struct {
 
 func (x *TowerGetRankingRequest) Reset() {
 	*x = TowerGetRankingRequest{}
-	mi := &file_papi_proto_msgTypes[484]
+	mi := &file_papi_proto_msgTypes[492]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28038,7 +28486,7 @@ func (x *TowerGetRankingRequest) String() string {
 func (*TowerGetRankingRequest) ProtoMessage() {}
 
 func (x *TowerGetRankingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[484]
+	mi := &file_papi_proto_msgTypes[492]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28051,7 +28499,7 @@ func (x *TowerGetRankingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetRankingRequest.ProtoReflect.Descriptor instead.
 func (*TowerGetRankingRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{484}
+	return file_papi_proto_rawDescGZIP(), []int{492}
 }
 
 func (x *TowerGetRankingRequest) GetTowerId() string {
@@ -28071,7 +28519,7 @@ type TowerGetRankingResponse struct {
 
 func (x *TowerGetRankingResponse) Reset() {
 	*x = TowerGetRankingResponse{}
-	mi := &file_papi_proto_msgTypes[485]
+	mi := &file_papi_proto_msgTypes[493]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28083,7 +28531,7 @@ func (x *TowerGetRankingResponse) String() string {
 func (*TowerGetRankingResponse) ProtoMessage() {}
 
 func (x *TowerGetRankingResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[485]
+	mi := &file_papi_proto_msgTypes[493]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28096,7 +28544,7 @@ func (x *TowerGetRankingResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetRankingResponse.ProtoReflect.Descriptor instead.
 func (*TowerGetRankingResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{485}
+	return file_papi_proto_rawDescGZIP(), []int{493}
 }
 
 func (x *TowerGetRankingResponse) GetTowerRankingResult() *TowerRankingResult {
@@ -28123,7 +28571,7 @@ type TowerListLayerPlayerHistoriesRequest struct {
 
 func (x *TowerListLayerPlayerHistoriesRequest) Reset() {
 	*x = TowerListLayerPlayerHistoriesRequest{}
-	mi := &file_papi_proto_msgTypes[486]
+	mi := &file_papi_proto_msgTypes[494]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28135,7 +28583,7 @@ func (x *TowerListLayerPlayerHistoriesRequest) String() string {
 func (*TowerListLayerPlayerHistoriesRequest) ProtoMessage() {}
 
 func (x *TowerListLayerPlayerHistoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[486]
+	mi := &file_papi_proto_msgTypes[494]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28148,7 +28596,7 @@ func (x *TowerListLayerPlayerHistoriesRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use TowerListLayerPlayerHistoriesRequest.ProtoReflect.Descriptor instead.
 func (*TowerListLayerPlayerHistoriesRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{486}
+	return file_papi_proto_rawDescGZIP(), []int{494}
 }
 
 func (x *TowerListLayerPlayerHistoriesRequest) GetTowerId() string {
@@ -28175,7 +28623,7 @@ type TowerListLayerPlayerHistoriesResponse struct {
 
 func (x *TowerListLayerPlayerHistoriesResponse) Reset() {
 	*x = TowerListLayerPlayerHistoriesResponse{}
-	mi := &file_papi_proto_msgTypes[487]
+	mi := &file_papi_proto_msgTypes[495]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28187,7 +28635,7 @@ func (x *TowerListLayerPlayerHistoriesResponse) String() string {
 func (*TowerListLayerPlayerHistoriesResponse) ProtoMessage() {}
 
 func (x *TowerListLayerPlayerHistoriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[487]
+	mi := &file_papi_proto_msgTypes[495]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28200,7 +28648,7 @@ func (x *TowerListLayerPlayerHistoriesResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use TowerListLayerPlayerHistoriesResponse.ProtoReflect.Descriptor instead.
 func (*TowerListLayerPlayerHistoriesResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{487}
+	return file_papi_proto_rawDescGZIP(), []int{495}
 }
 
 func (x *TowerListLayerPlayerHistoriesResponse) GetHistories() []*pcommon.TowerLayerHistory {
@@ -28226,7 +28674,7 @@ type TowerListLayersRequest struct {
 
 func (x *TowerListLayersRequest) Reset() {
 	*x = TowerListLayersRequest{}
-	mi := &file_papi_proto_msgTypes[488]
+	mi := &file_papi_proto_msgTypes[496]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28238,7 +28686,7 @@ func (x *TowerListLayersRequest) String() string {
 func (*TowerListLayersRequest) ProtoMessage() {}
 
 func (x *TowerListLayersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[488]
+	mi := &file_papi_proto_msgTypes[496]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28251,7 +28699,7 @@ func (x *TowerListLayersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerListLayersRequest.ProtoReflect.Descriptor instead.
 func (*TowerListLayersRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{488}
+	return file_papi_proto_rawDescGZIP(), []int{496}
 }
 
 func (x *TowerListLayersRequest) GetTowerId() string {
@@ -28272,7 +28720,7 @@ type TowerListLayersResponse struct {
 
 func (x *TowerListLayersResponse) Reset() {
 	*x = TowerListLayersResponse{}
-	mi := &file_papi_proto_msgTypes[489]
+	mi := &file_papi_proto_msgTypes[497]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28284,7 +28732,7 @@ func (x *TowerListLayersResponse) String() string {
 func (*TowerListLayersResponse) ProtoMessage() {}
 
 func (x *TowerListLayersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[489]
+	mi := &file_papi_proto_msgTypes[497]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28297,7 +28745,7 @@ func (x *TowerListLayersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerListLayersResponse.ProtoReflect.Descriptor instead.
 func (*TowerListLayersResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{489}
+	return file_papi_proto_rawDescGZIP(), []int{497}
 }
 
 func (x *TowerListLayersResponse) GetLayers() []*TowerListLayersResponse_TowerLayer {
@@ -28332,7 +28780,7 @@ type TowerRank struct {
 
 func (x *TowerRank) Reset() {
 	*x = TowerRank{}
-	mi := &file_papi_proto_msgTypes[490]
+	mi := &file_papi_proto_msgTypes[498]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28344,7 +28792,7 @@ func (x *TowerRank) String() string {
 func (*TowerRank) ProtoMessage() {}
 
 func (x *TowerRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[490]
+	mi := &file_papi_proto_msgTypes[498]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28357,7 +28805,7 @@ func (x *TowerRank) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerRank.ProtoReflect.Descriptor instead.
 func (*TowerRank) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{490}
+	return file_papi_proto_rawDescGZIP(), []int{498}
 }
 
 func (x *TowerRank) GetProfile() *pcommon.SimpleProfile {
@@ -28393,7 +28841,7 @@ type TowerRankingCache struct {
 
 func (x *TowerRankingCache) Reset() {
 	*x = TowerRankingCache{}
-	mi := &file_papi_proto_msgTypes[491]
+	mi := &file_papi_proto_msgTypes[499]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28405,7 +28853,7 @@ func (x *TowerRankingCache) String() string {
 func (*TowerRankingCache) ProtoMessage() {}
 
 func (x *TowerRankingCache) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[491]
+	mi := &file_papi_proto_msgTypes[499]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28418,7 +28866,7 @@ func (x *TowerRankingCache) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerRankingCache.ProtoReflect.Descriptor instead.
 func (*TowerRankingCache) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{491}
+	return file_papi_proto_rawDescGZIP(), []int{499}
 }
 
 func (x *TowerRankingCache) GetIdolCardId() string {
@@ -28461,7 +28909,7 @@ type TowerRankingResult struct {
 
 func (x *TowerRankingResult) Reset() {
 	*x = TowerRankingResult{}
-	mi := &file_papi_proto_msgTypes[492]
+	mi := &file_papi_proto_msgTypes[500]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28473,7 +28921,7 @@ func (x *TowerRankingResult) String() string {
 func (*TowerRankingResult) ProtoMessage() {}
 
 func (x *TowerRankingResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[492]
+	mi := &file_papi_proto_msgTypes[500]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28486,7 +28934,7 @@ func (x *TowerRankingResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerRankingResult.ProtoReflect.Descriptor instead.
 func (*TowerRankingResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{492}
+	return file_papi_proto_rawDescGZIP(), []int{500}
 }
 
 func (x *TowerRankingResult) GetTowerRanks() []*TowerRank {
@@ -28529,7 +28977,7 @@ type TowerRankingSeason struct {
 
 func (x *TowerRankingSeason) Reset() {
 	*x = TowerRankingSeason{}
-	mi := &file_papi_proto_msgTypes[493]
+	mi := &file_papi_proto_msgTypes[501]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28541,7 +28989,7 @@ func (x *TowerRankingSeason) String() string {
 func (*TowerRankingSeason) ProtoMessage() {}
 
 func (x *TowerRankingSeason) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[493]
+	mi := &file_papi_proto_msgTypes[501]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28554,7 +29002,7 @@ func (x *TowerRankingSeason) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerRankingSeason.ProtoReflect.Descriptor instead.
 func (*TowerRankingSeason) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{493}
+	return file_papi_proto_rawDescGZIP(), []int{501}
 }
 
 func (x *TowerRankingSeason) GetStartTime() int64 {
@@ -28595,7 +29043,7 @@ type TowerReceiveLayerCountRewardRequest struct {
 
 func (x *TowerReceiveLayerCountRewardRequest) Reset() {
 	*x = TowerReceiveLayerCountRewardRequest{}
-	mi := &file_papi_proto_msgTypes[494]
+	mi := &file_papi_proto_msgTypes[502]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28607,7 +29055,7 @@ func (x *TowerReceiveLayerCountRewardRequest) String() string {
 func (*TowerReceiveLayerCountRewardRequest) ProtoMessage() {}
 
 func (x *TowerReceiveLayerCountRewardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[494]
+	mi := &file_papi_proto_msgTypes[502]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28620,7 +29068,7 @@ func (x *TowerReceiveLayerCountRewardRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use TowerReceiveLayerCountRewardRequest.ProtoReflect.Descriptor instead.
 func (*TowerReceiveLayerCountRewardRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{494}
+	return file_papi_proto_rawDescGZIP(), []int{502}
 }
 
 func (x *TowerReceiveLayerCountRewardRequest) GetTargetTowerId() string {
@@ -28647,7 +29095,7 @@ type TowerReceiveLayerCountRewardResponse struct {
 
 func (x *TowerReceiveLayerCountRewardResponse) Reset() {
 	*x = TowerReceiveLayerCountRewardResponse{}
-	mi := &file_papi_proto_msgTypes[495]
+	mi := &file_papi_proto_msgTypes[503]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28659,7 +29107,7 @@ func (x *TowerReceiveLayerCountRewardResponse) String() string {
 func (*TowerReceiveLayerCountRewardResponse) ProtoMessage() {}
 
 func (x *TowerReceiveLayerCountRewardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[495]
+	mi := &file_papi_proto_msgTypes[503]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28672,7 +29120,7 @@ func (x *TowerReceiveLayerCountRewardResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use TowerReceiveLayerCountRewardResponse.ProtoReflect.Descriptor instead.
 func (*TowerReceiveLayerCountRewardResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{495}
+	return file_papi_proto_rawDescGZIP(), []int{503}
 }
 
 func (x *TowerReceiveLayerCountRewardResponse) GetResult() []*pcommon.RewardResult {
@@ -28698,7 +29146,7 @@ type TowerReceiveTotalClearRankRewardRequest struct {
 
 func (x *TowerReceiveTotalClearRankRewardRequest) Reset() {
 	*x = TowerReceiveTotalClearRankRewardRequest{}
-	mi := &file_papi_proto_msgTypes[496]
+	mi := &file_papi_proto_msgTypes[504]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28710,7 +29158,7 @@ func (x *TowerReceiveTotalClearRankRewardRequest) String() string {
 func (*TowerReceiveTotalClearRankRewardRequest) ProtoMessage() {}
 
 func (x *TowerReceiveTotalClearRankRewardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[496]
+	mi := &file_papi_proto_msgTypes[504]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28723,7 +29171,7 @@ func (x *TowerReceiveTotalClearRankRewardRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use TowerReceiveTotalClearRankRewardRequest.ProtoReflect.Descriptor instead.
 func (*TowerReceiveTotalClearRankRewardRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{496}
+	return file_papi_proto_rawDescGZIP(), []int{504}
 }
 
 func (x *TowerReceiveTotalClearRankRewardRequest) GetTargetRank() int32 {
@@ -28743,7 +29191,7 @@ type TowerReceiveTotalClearRankRewardResponse struct {
 
 func (x *TowerReceiveTotalClearRankRewardResponse) Reset() {
 	*x = TowerReceiveTotalClearRankRewardResponse{}
-	mi := &file_papi_proto_msgTypes[497]
+	mi := &file_papi_proto_msgTypes[505]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28755,7 +29203,7 @@ func (x *TowerReceiveTotalClearRankRewardResponse) String() string {
 func (*TowerReceiveTotalClearRankRewardResponse) ProtoMessage() {}
 
 func (x *TowerReceiveTotalClearRankRewardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[497]
+	mi := &file_papi_proto_msgTypes[505]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28768,7 +29216,7 @@ func (x *TowerReceiveTotalClearRankRewardResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use TowerReceiveTotalClearRankRewardResponse.ProtoReflect.Descriptor instead.
 func (*TowerReceiveTotalClearRankRewardResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{497}
+	return file_papi_proto_rawDescGZIP(), []int{505}
 }
 
 func (x *TowerReceiveTotalClearRankRewardResponse) GetResult() []*pcommon.RewardResult {
@@ -28795,7 +29243,7 @@ type TowerStartRequest struct {
 
 func (x *TowerStartRequest) Reset() {
 	*x = TowerStartRequest{}
-	mi := &file_papi_proto_msgTypes[498]
+	mi := &file_papi_proto_msgTypes[506]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28807,7 +29255,7 @@ func (x *TowerStartRequest) String() string {
 func (*TowerStartRequest) ProtoMessage() {}
 
 func (x *TowerStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[498]
+	mi := &file_papi_proto_msgTypes[506]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28820,7 +29268,7 @@ func (x *TowerStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerStartRequest.ProtoReflect.Descriptor instead.
 func (*TowerStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{498}
+	return file_papi_proto_rawDescGZIP(), []int{506}
 }
 
 func (x *TowerStartRequest) GetTowerId() string {
@@ -28854,7 +29302,7 @@ type TowerStartResponse struct {
 
 func (x *TowerStartResponse) Reset() {
 	*x = TowerStartResponse{}
-	mi := &file_papi_proto_msgTypes[499]
+	mi := &file_papi_proto_msgTypes[507]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28866,7 +29314,7 @@ func (x *TowerStartResponse) String() string {
 func (*TowerStartResponse) ProtoMessage() {}
 
 func (x *TowerStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[499]
+	mi := &file_papi_proto_msgTypes[507]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28879,7 +29327,7 @@ func (x *TowerStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerStartResponse.ProtoReflect.Descriptor instead.
 func (*TowerStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{499}
+	return file_papi_proto_rawDescGZIP(), []int{507}
 }
 
 func (x *TowerStartResponse) GetSeed() int64 {
@@ -28960,7 +29408,7 @@ type TowerTopResponse struct {
 
 func (x *TowerTopResponse) Reset() {
 	*x = TowerTopResponse{}
-	mi := &file_papi_proto_msgTypes[500]
+	mi := &file_papi_proto_msgTypes[508]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28972,7 +29420,7 @@ func (x *TowerTopResponse) String() string {
 func (*TowerTopResponse) ProtoMessage() {}
 
 func (x *TowerTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[500]
+	mi := &file_papi_proto_msgTypes[508]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28985,7 +29433,7 @@ func (x *TowerTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerTopResponse.ProtoReflect.Descriptor instead.
 func (*TowerTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{500}
+	return file_papi_proto_rawDescGZIP(), []int{508}
 }
 
 func (x *TowerTopResponse) GetTowers() []*TowerTopResponse_Tower {
@@ -29048,7 +29496,7 @@ type TowerUpdateMemoryDeckRequest struct {
 
 func (x *TowerUpdateMemoryDeckRequest) Reset() {
 	*x = TowerUpdateMemoryDeckRequest{}
-	mi := &file_papi_proto_msgTypes[501]
+	mi := &file_papi_proto_msgTypes[509]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29060,7 +29508,7 @@ func (x *TowerUpdateMemoryDeckRequest) String() string {
 func (*TowerUpdateMemoryDeckRequest) ProtoMessage() {}
 
 func (x *TowerUpdateMemoryDeckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[501]
+	mi := &file_papi_proto_msgTypes[509]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29073,7 +29521,7 @@ func (x *TowerUpdateMemoryDeckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerUpdateMemoryDeckRequest.ProtoReflect.Descriptor instead.
 func (*TowerUpdateMemoryDeckRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{501}
+	return file_papi_proto_rawDescGZIP(), []int{509}
 }
 
 func (x *TowerUpdateMemoryDeckRequest) GetTowerId() string {
@@ -29106,7 +29554,7 @@ type TowerUpdateMemoryDeckResponse struct {
 
 func (x *TowerUpdateMemoryDeckResponse) Reset() {
 	*x = TowerUpdateMemoryDeckResponse{}
-	mi := &file_papi_proto_msgTypes[502]
+	mi := &file_papi_proto_msgTypes[510]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29118,7 +29566,7 @@ func (x *TowerUpdateMemoryDeckResponse) String() string {
 func (*TowerUpdateMemoryDeckResponse) ProtoMessage() {}
 
 func (x *TowerUpdateMemoryDeckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[502]
+	mi := &file_papi_proto_msgTypes[510]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29131,7 +29579,7 @@ func (x *TowerUpdateMemoryDeckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerUpdateMemoryDeckResponse.ProtoReflect.Descriptor instead.
 func (*TowerUpdateMemoryDeckResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{502}
+	return file_papi_proto_rawDescGZIP(), []int{510}
 }
 
 func (x *TowerUpdateMemoryDeckResponse) GetCommonResponse() *papicommon.Response {
@@ -29150,7 +29598,7 @@ type TutorialCheckBeforeLiveProduceEvaluationResponse struct {
 
 func (x *TutorialCheckBeforeLiveProduceEvaluationResponse) Reset() {
 	*x = TutorialCheckBeforeLiveProduceEvaluationResponse{}
-	mi := &file_papi_proto_msgTypes[503]
+	mi := &file_papi_proto_msgTypes[511]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29162,7 +29610,7 @@ func (x *TutorialCheckBeforeLiveProduceEvaluationResponse) String() string {
 func (*TutorialCheckBeforeLiveProduceEvaluationResponse) ProtoMessage() {}
 
 func (x *TutorialCheckBeforeLiveProduceEvaluationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[503]
+	mi := &file_papi_proto_msgTypes[511]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29175,7 +29623,7 @@ func (x *TutorialCheckBeforeLiveProduceEvaluationResponse) ProtoReflect() protor
 
 // Deprecated: Use TutorialCheckBeforeLiveProduceEvaluationResponse.ProtoReflect.Descriptor instead.
 func (*TutorialCheckBeforeLiveProduceEvaluationResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{503}
+	return file_papi_proto_rawDescGZIP(), []int{511}
 }
 
 func (x *TutorialCheckBeforeLiveProduceEvaluationResponse) GetCommonResponse() *papicommon.Response {
@@ -29196,7 +29644,7 @@ type TutorialProduceNextResponse struct {
 
 func (x *TutorialProduceNextResponse) Reset() {
 	*x = TutorialProduceNextResponse{}
-	mi := &file_papi_proto_msgTypes[504]
+	mi := &file_papi_proto_msgTypes[512]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29208,7 +29656,7 @@ func (x *TutorialProduceNextResponse) String() string {
 func (*TutorialProduceNextResponse) ProtoMessage() {}
 
 func (x *TutorialProduceNextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[504]
+	mi := &file_papi_proto_msgTypes[512]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29221,7 +29669,7 @@ func (x *TutorialProduceNextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceNextResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceNextResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{504}
+	return file_papi_proto_rawDescGZIP(), []int{512}
 }
 
 func (x *TutorialProduceNextResponse) GetBeforeStamina() int32 {
@@ -29255,7 +29703,7 @@ type TutorialProduceResultRequest struct {
 
 func (x *TutorialProduceResultRequest) Reset() {
 	*x = TutorialProduceResultRequest{}
-	mi := &file_papi_proto_msgTypes[505]
+	mi := &file_papi_proto_msgTypes[513]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29267,7 +29715,7 @@ func (x *TutorialProduceResultRequest) String() string {
 func (*TutorialProduceResultRequest) ProtoMessage() {}
 
 func (x *TutorialProduceResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[505]
+	mi := &file_papi_proto_msgTypes[513]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29280,7 +29728,7 @@ func (x *TutorialProduceResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceResultRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProduceResultRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{505}
+	return file_papi_proto_rawDescGZIP(), []int{513}
 }
 
 func (x *TutorialProduceResultRequest) GetUserMemoryId() string {
@@ -29307,7 +29755,7 @@ type TutorialProduceResultResponse struct {
 
 func (x *TutorialProduceResultResponse) Reset() {
 	*x = TutorialProduceResultResponse{}
-	mi := &file_papi_proto_msgTypes[506]
+	mi := &file_papi_proto_msgTypes[514]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29319,7 +29767,7 @@ func (x *TutorialProduceResultResponse) String() string {
 func (*TutorialProduceResultResponse) ProtoMessage() {}
 
 func (x *TutorialProduceResultResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[506]
+	mi := &file_papi_proto_msgTypes[514]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29332,7 +29780,7 @@ func (x *TutorialProduceResultResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceResultResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceResultResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{506}
+	return file_papi_proto_rawDescGZIP(), []int{514}
 }
 
 func (x *TutorialProduceResultResponse) GetMemory() *pcommon.Memory {
@@ -29358,7 +29806,7 @@ type TutorialProduceStartRequest struct {
 
 func (x *TutorialProduceStartRequest) Reset() {
 	*x = TutorialProduceStartRequest{}
-	mi := &file_papi_proto_msgTypes[507]
+	mi := &file_papi_proto_msgTypes[515]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29370,7 +29818,7 @@ func (x *TutorialProduceStartRequest) String() string {
 func (*TutorialProduceStartRequest) ProtoMessage() {}
 
 func (x *TutorialProduceStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[507]
+	mi := &file_papi_proto_msgTypes[515]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29383,7 +29831,7 @@ func (x *TutorialProduceStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceStartRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{507}
+	return file_papi_proto_rawDescGZIP(), []int{515}
 }
 
 func (x *TutorialProduceStartRequest) GetIdolCardId() string {
@@ -29402,7 +29850,7 @@ type TutorialProduceStartResponse struct {
 
 func (x *TutorialProduceStartResponse) Reset() {
 	*x = TutorialProduceStartResponse{}
-	mi := &file_papi_proto_msgTypes[508]
+	mi := &file_papi_proto_msgTypes[516]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29414,7 +29862,7 @@ func (x *TutorialProduceStartResponse) String() string {
 func (*TutorialProduceStartResponse) ProtoMessage() {}
 
 func (x *TutorialProduceStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[508]
+	mi := &file_papi_proto_msgTypes[516]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29427,7 +29875,7 @@ func (x *TutorialProduceStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceStartResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{508}
+	return file_papi_proto_rawDescGZIP(), []int{516}
 }
 
 func (x *TutorialProduceStartResponse) GetCommonResponse() *papicommon.Response {
@@ -29446,7 +29894,7 @@ type TutorialProduceStepAuditionEndResponse struct {
 
 func (x *TutorialProduceStepAuditionEndResponse) Reset() {
 	*x = TutorialProduceStepAuditionEndResponse{}
-	mi := &file_papi_proto_msgTypes[509]
+	mi := &file_papi_proto_msgTypes[517]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29458,7 +29906,7 @@ func (x *TutorialProduceStepAuditionEndResponse) String() string {
 func (*TutorialProduceStepAuditionEndResponse) ProtoMessage() {}
 
 func (x *TutorialProduceStepAuditionEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[509]
+	mi := &file_papi_proto_msgTypes[517]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29471,7 +29919,7 @@ func (x *TutorialProduceStepAuditionEndResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use TutorialProduceStepAuditionEndResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepAuditionEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{509}
+	return file_papi_proto_rawDescGZIP(), []int{517}
 }
 
 func (x *TutorialProduceStepAuditionEndResponse) GetCommonResponse() *papicommon.Response {
@@ -29493,7 +29941,7 @@ type TutorialProduceStepAuditionExamEndRequest struct {
 
 func (x *TutorialProduceStepAuditionExamEndRequest) Reset() {
 	*x = TutorialProduceStepAuditionExamEndRequest{}
-	mi := &file_papi_proto_msgTypes[510]
+	mi := &file_papi_proto_msgTypes[518]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29505,7 +29953,7 @@ func (x *TutorialProduceStepAuditionExamEndRequest) String() string {
 func (*TutorialProduceStepAuditionExamEndRequest) ProtoMessage() {}
 
 func (x *TutorialProduceStepAuditionExamEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[510]
+	mi := &file_papi_proto_msgTypes[518]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29518,7 +29966,7 @@ func (x *TutorialProduceStepAuditionExamEndRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use TutorialProduceStepAuditionExamEndRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepAuditionExamEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{510}
+	return file_papi_proto_rawDescGZIP(), []int{518}
 }
 
 func (x *TutorialProduceStepAuditionExamEndRequest) GetRank() int32 {
@@ -29558,7 +30006,7 @@ type TutorialProduceStepAuditionExamEndResponse struct {
 
 func (x *TutorialProduceStepAuditionExamEndResponse) Reset() {
 	*x = TutorialProduceStepAuditionExamEndResponse{}
-	mi := &file_papi_proto_msgTypes[511]
+	mi := &file_papi_proto_msgTypes[519]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29570,7 +30018,7 @@ func (x *TutorialProduceStepAuditionExamEndResponse) String() string {
 func (*TutorialProduceStepAuditionExamEndResponse) ProtoMessage() {}
 
 func (x *TutorialProduceStepAuditionExamEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[511]
+	mi := &file_papi_proto_msgTypes[519]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29583,7 +30031,7 @@ func (x *TutorialProduceStepAuditionExamEndResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use TutorialProduceStepAuditionExamEndResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepAuditionExamEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{511}
+	return file_papi_proto_rawDescGZIP(), []int{519}
 }
 
 func (x *TutorialProduceStepAuditionExamEndResponse) GetCommonResponse() *papicommon.Response {
@@ -29604,7 +30052,7 @@ type TutorialProduceStepLessonEndRequest struct {
 
 func (x *TutorialProduceStepLessonEndRequest) Reset() {
 	*x = TutorialProduceStepLessonEndRequest{}
-	mi := &file_papi_proto_msgTypes[512]
+	mi := &file_papi_proto_msgTypes[520]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29616,7 +30064,7 @@ func (x *TutorialProduceStepLessonEndRequest) String() string {
 func (*TutorialProduceStepLessonEndRequest) ProtoMessage() {}
 
 func (x *TutorialProduceStepLessonEndRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[512]
+	mi := &file_papi_proto_msgTypes[520]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29629,7 +30077,7 @@ func (x *TutorialProduceStepLessonEndRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use TutorialProduceStepLessonEndRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepLessonEndRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{512}
+	return file_papi_proto_rawDescGZIP(), []int{520}
 }
 
 func (x *TutorialProduceStepLessonEndRequest) GetResultTargetValue() int32 {
@@ -29662,7 +30110,7 @@ type TutorialProduceStepLessonEndResponse struct {
 
 func (x *TutorialProduceStepLessonEndResponse) Reset() {
 	*x = TutorialProduceStepLessonEndResponse{}
-	mi := &file_papi_proto_msgTypes[513]
+	mi := &file_papi_proto_msgTypes[521]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29674,7 +30122,7 @@ func (x *TutorialProduceStepLessonEndResponse) String() string {
 func (*TutorialProduceStepLessonEndResponse) ProtoMessage() {}
 
 func (x *TutorialProduceStepLessonEndResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[513]
+	mi := &file_papi_proto_msgTypes[521]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29687,7 +30135,7 @@ func (x *TutorialProduceStepLessonEndResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use TutorialProduceStepLessonEndResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepLessonEndResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{513}
+	return file_papi_proto_rawDescGZIP(), []int{521}
 }
 
 func (x *TutorialProduceStepLessonEndResponse) GetCommonResponse() *papicommon.Response {
@@ -29707,7 +30155,7 @@ type TutorialProduceStepPresentReceiveRequest struct {
 
 func (x *TutorialProduceStepPresentReceiveRequest) Reset() {
 	*x = TutorialProduceStepPresentReceiveRequest{}
-	mi := &file_papi_proto_msgTypes[514]
+	mi := &file_papi_proto_msgTypes[522]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29719,7 +30167,7 @@ func (x *TutorialProduceStepPresentReceiveRequest) String() string {
 func (*TutorialProduceStepPresentReceiveRequest) ProtoMessage() {}
 
 func (x *TutorialProduceStepPresentReceiveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[514]
+	mi := &file_papi_proto_msgTypes[522]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29732,7 +30180,7 @@ func (x *TutorialProduceStepPresentReceiveRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use TutorialProduceStepPresentReceiveRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepPresentReceiveRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{514}
+	return file_papi_proto_rawDescGZIP(), []int{522}
 }
 
 func (x *TutorialProduceStepPresentReceiveRequest) GetPositionNumber() int32 {
@@ -29759,7 +30207,7 @@ type TutorialProduceStepPresentReceiveResponse struct {
 
 func (x *TutorialProduceStepPresentReceiveResponse) Reset() {
 	*x = TutorialProduceStepPresentReceiveResponse{}
-	mi := &file_papi_proto_msgTypes[515]
+	mi := &file_papi_proto_msgTypes[523]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29771,7 +30219,7 @@ func (x *TutorialProduceStepPresentReceiveResponse) String() string {
 func (*TutorialProduceStepPresentReceiveResponse) ProtoMessage() {}
 
 func (x *TutorialProduceStepPresentReceiveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[515]
+	mi := &file_papi_proto_msgTypes[523]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29784,7 +30232,7 @@ func (x *TutorialProduceStepPresentReceiveResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use TutorialProduceStepPresentReceiveResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepPresentReceiveResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{515}
+	return file_papi_proto_rawDescGZIP(), []int{523}
 }
 
 func (x *TutorialProduceStepPresentReceiveResponse) GetProvidedRewards() []*pcommon.ProduceRewardResult {
@@ -29811,7 +30259,7 @@ type TutorialProgressRequest struct {
 
 func (x *TutorialProgressRequest) Reset() {
 	*x = TutorialProgressRequest{}
-	mi := &file_papi_proto_msgTypes[516]
+	mi := &file_papi_proto_msgTypes[524]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29823,7 +30271,7 @@ func (x *TutorialProgressRequest) String() string {
 func (*TutorialProgressRequest) ProtoMessage() {}
 
 func (x *TutorialProgressRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[516]
+	mi := &file_papi_proto_msgTypes[524]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29836,7 +30284,7 @@ func (x *TutorialProgressRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProgressRequest.ProtoReflect.Descriptor instead.
 func (*TutorialProgressRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{516}
+	return file_papi_proto_rawDescGZIP(), []int{524}
 }
 
 func (x *TutorialProgressRequest) GetType() penum.TutorialType {
@@ -29862,7 +30310,7 @@ type TutorialProgressResponse struct {
 
 func (x *TutorialProgressResponse) Reset() {
 	*x = TutorialProgressResponse{}
-	mi := &file_papi_proto_msgTypes[517]
+	mi := &file_papi_proto_msgTypes[525]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29874,7 +30322,7 @@ func (x *TutorialProgressResponse) String() string {
 func (*TutorialProgressResponse) ProtoMessage() {}
 
 func (x *TutorialProgressResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[517]
+	mi := &file_papi_proto_msgTypes[525]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29887,7 +30335,7 @@ func (x *TutorialProgressResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProgressResponse.ProtoReflect.Descriptor instead.
 func (*TutorialProgressResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{517}
+	return file_papi_proto_rawDescGZIP(), []int{525}
 }
 
 func (x *TutorialProgressResponse) GetCommonResponse() *papicommon.Response {
@@ -29909,7 +30357,7 @@ type TutorialReadDearnessStoryRequest struct {
 
 func (x *TutorialReadDearnessStoryRequest) Reset() {
 	*x = TutorialReadDearnessStoryRequest{}
-	mi := &file_papi_proto_msgTypes[518]
+	mi := &file_papi_proto_msgTypes[526]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29921,7 +30369,7 @@ func (x *TutorialReadDearnessStoryRequest) String() string {
 func (*TutorialReadDearnessStoryRequest) ProtoMessage() {}
 
 func (x *TutorialReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[518]
+	mi := &file_papi_proto_msgTypes[526]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29934,7 +30382,7 @@ func (x *TutorialReadDearnessStoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialReadDearnessStoryRequest.ProtoReflect.Descriptor instead.
 func (*TutorialReadDearnessStoryRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{518}
+	return file_papi_proto_rawDescGZIP(), []int{526}
 }
 
 func (x *TutorialReadDearnessStoryRequest) GetCharacterId() string {
@@ -29974,7 +30422,7 @@ type TutorialReadDearnessStoryResponse struct {
 
 func (x *TutorialReadDearnessStoryResponse) Reset() {
 	*x = TutorialReadDearnessStoryResponse{}
-	mi := &file_papi_proto_msgTypes[519]
+	mi := &file_papi_proto_msgTypes[527]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29986,7 +30434,7 @@ func (x *TutorialReadDearnessStoryResponse) String() string {
 func (*TutorialReadDearnessStoryResponse) ProtoMessage() {}
 
 func (x *TutorialReadDearnessStoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[519]
+	mi := &file_papi_proto_msgTypes[527]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29999,7 +30447,7 @@ func (x *TutorialReadDearnessStoryResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use TutorialReadDearnessStoryResponse.ProtoReflect.Descriptor instead.
 func (*TutorialReadDearnessStoryResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{519}
+	return file_papi_proto_rawDescGZIP(), []int{527}
 }
 
 func (x *TutorialReadDearnessStoryResponse) GetCommonResponse() *papicommon.Response {
@@ -30018,7 +30466,7 @@ type TutorialReceiveIdolCardRequest struct {
 
 func (x *TutorialReceiveIdolCardRequest) Reset() {
 	*x = TutorialReceiveIdolCardRequest{}
-	mi := &file_papi_proto_msgTypes[520]
+	mi := &file_papi_proto_msgTypes[528]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30030,7 +30478,7 @@ func (x *TutorialReceiveIdolCardRequest) String() string {
 func (*TutorialReceiveIdolCardRequest) ProtoMessage() {}
 
 func (x *TutorialReceiveIdolCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[520]
+	mi := &file_papi_proto_msgTypes[528]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30043,7 +30491,7 @@ func (x *TutorialReceiveIdolCardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialReceiveIdolCardRequest.ProtoReflect.Descriptor instead.
 func (*TutorialReceiveIdolCardRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{520}
+	return file_papi_proto_rawDescGZIP(), []int{528}
 }
 
 func (x *TutorialReceiveIdolCardRequest) GetIdolCardSkinId() string {
@@ -30063,7 +30511,7 @@ type TutorialReceiveIdolCardResponse struct {
 
 func (x *TutorialReceiveIdolCardResponse) Reset() {
 	*x = TutorialReceiveIdolCardResponse{}
-	mi := &file_papi_proto_msgTypes[521]
+	mi := &file_papi_proto_msgTypes[529]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30075,7 +30523,7 @@ func (x *TutorialReceiveIdolCardResponse) String() string {
 func (*TutorialReceiveIdolCardResponse) ProtoMessage() {}
 
 func (x *TutorialReceiveIdolCardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[521]
+	mi := &file_papi_proto_msgTypes[529]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30088,7 +30536,7 @@ func (x *TutorialReceiveIdolCardResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialReceiveIdolCardResponse.ProtoReflect.Descriptor instead.
 func (*TutorialReceiveIdolCardResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{521}
+	return file_papi_proto_rawDescGZIP(), []int{529}
 }
 
 func (x *TutorialReceiveIdolCardResponse) GetResults() []*pcommon.RewardResult {
@@ -30114,7 +30562,7 @@ type TutorialSetNameRequest struct {
 
 func (x *TutorialSetNameRequest) Reset() {
 	*x = TutorialSetNameRequest{}
-	mi := &file_papi_proto_msgTypes[522]
+	mi := &file_papi_proto_msgTypes[530]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30126,7 +30574,7 @@ func (x *TutorialSetNameRequest) String() string {
 func (*TutorialSetNameRequest) ProtoMessage() {}
 
 func (x *TutorialSetNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[522]
+	mi := &file_papi_proto_msgTypes[530]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30139,7 +30587,7 @@ func (x *TutorialSetNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialSetNameRequest.ProtoReflect.Descriptor instead.
 func (*TutorialSetNameRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{522}
+	return file_papi_proto_rawDescGZIP(), []int{530}
 }
 
 func (x *TutorialSetNameRequest) GetName() string {
@@ -30158,7 +30606,7 @@ type TutorialSetNameResponse struct {
 
 func (x *TutorialSetNameResponse) Reset() {
 	*x = TutorialSetNameResponse{}
-	mi := &file_papi_proto_msgTypes[523]
+	mi := &file_papi_proto_msgTypes[531]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30170,7 +30618,7 @@ func (x *TutorialSetNameResponse) String() string {
 func (*TutorialSetNameResponse) ProtoMessage() {}
 
 func (x *TutorialSetNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[523]
+	mi := &file_papi_proto_msgTypes[531]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30183,7 +30631,7 @@ func (x *TutorialSetNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialSetNameResponse.ProtoReflect.Descriptor instead.
 func (*TutorialSetNameResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{523}
+	return file_papi_proto_rawDescGZIP(), []int{531}
 }
 
 func (x *TutorialSetNameResponse) GetCommonResponse() *papicommon.Response {
@@ -30203,7 +30651,7 @@ type TutorialSkipRequest struct {
 
 func (x *TutorialSkipRequest) Reset() {
 	*x = TutorialSkipRequest{}
-	mi := &file_papi_proto_msgTypes[524]
+	mi := &file_papi_proto_msgTypes[532]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30215,7 +30663,7 @@ func (x *TutorialSkipRequest) String() string {
 func (*TutorialSkipRequest) ProtoMessage() {}
 
 func (x *TutorialSkipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[524]
+	mi := &file_papi_proto_msgTypes[532]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30228,7 +30676,7 @@ func (x *TutorialSkipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialSkipRequest.ProtoReflect.Descriptor instead.
 func (*TutorialSkipRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{524}
+	return file_papi_proto_rawDescGZIP(), []int{532}
 }
 
 func (x *TutorialSkipRequest) GetName() string {
@@ -30254,7 +30702,7 @@ type TutorialSkipResponse struct {
 
 func (x *TutorialSkipResponse) Reset() {
 	*x = TutorialSkipResponse{}
-	mi := &file_papi_proto_msgTypes[525]
+	mi := &file_papi_proto_msgTypes[533]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30266,7 +30714,7 @@ func (x *TutorialSkipResponse) String() string {
 func (*TutorialSkipResponse) ProtoMessage() {}
 
 func (x *TutorialSkipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[525]
+	mi := &file_papi_proto_msgTypes[533]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30279,7 +30727,7 @@ func (x *TutorialSkipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialSkipResponse.ProtoReflect.Descriptor instead.
 func (*TutorialSkipResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{525}
+	return file_papi_proto_rawDescGZIP(), []int{533}
 }
 
 func (x *TutorialSkipResponse) GetCommonResponse() *papicommon.Response {
@@ -30298,7 +30746,7 @@ type TutorialUnlockFeatureRequest struct {
 
 func (x *TutorialUnlockFeatureRequest) Reset() {
 	*x = TutorialUnlockFeatureRequest{}
-	mi := &file_papi_proto_msgTypes[526]
+	mi := &file_papi_proto_msgTypes[534]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30310,7 +30758,7 @@ func (x *TutorialUnlockFeatureRequest) String() string {
 func (*TutorialUnlockFeatureRequest) ProtoMessage() {}
 
 func (x *TutorialUnlockFeatureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[526]
+	mi := &file_papi_proto_msgTypes[534]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30323,7 +30771,7 @@ func (x *TutorialUnlockFeatureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialUnlockFeatureRequest.ProtoReflect.Descriptor instead.
 func (*TutorialUnlockFeatureRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{526}
+	return file_papi_proto_rawDescGZIP(), []int{534}
 }
 
 func (x *TutorialUnlockFeatureRequest) GetType() penum.TutorialType {
@@ -30342,7 +30790,7 @@ type TutorialUnlockFeatureResponse struct {
 
 func (x *TutorialUnlockFeatureResponse) Reset() {
 	*x = TutorialUnlockFeatureResponse{}
-	mi := &file_papi_proto_msgTypes[527]
+	mi := &file_papi_proto_msgTypes[535]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30354,7 +30802,7 @@ func (x *TutorialUnlockFeatureResponse) String() string {
 func (*TutorialUnlockFeatureResponse) ProtoMessage() {}
 
 func (x *TutorialUnlockFeatureResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[527]
+	mi := &file_papi_proto_msgTypes[535]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30367,7 +30815,7 @@ func (x *TutorialUnlockFeatureResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialUnlockFeatureResponse.ProtoReflect.Descriptor instead.
 func (*TutorialUnlockFeatureResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{527}
+	return file_papi_proto_rawDescGZIP(), []int{535}
 }
 
 func (x *TutorialUnlockFeatureResponse) GetCommonResponse() *papicommon.Response {
@@ -30386,7 +30834,7 @@ type UserGetResponse struct {
 
 func (x *UserGetResponse) Reset() {
 	*x = UserGetResponse{}
-	mi := &file_papi_proto_msgTypes[528]
+	mi := &file_papi_proto_msgTypes[536]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30398,7 +30846,7 @@ func (x *UserGetResponse) String() string {
 func (*UserGetResponse) ProtoMessage() {}
 
 func (x *UserGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[528]
+	mi := &file_papi_proto_msgTypes[536]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30411,7 +30859,7 @@ func (x *UserGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGetResponse.ProtoReflect.Descriptor instead.
 func (*UserGetResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{528}
+	return file_papi_proto_rawDescGZIP(), []int{536}
 }
 
 func (x *UserGetResponse) GetUserData() *papicommon.UserData {
@@ -30430,7 +30878,7 @@ type UserListMessageRequest struct {
 
 func (x *UserListMessageRequest) Reset() {
 	*x = UserListMessageRequest{}
-	mi := &file_papi_proto_msgTypes[529]
+	mi := &file_papi_proto_msgTypes[537]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30442,7 +30890,7 @@ func (x *UserListMessageRequest) String() string {
 func (*UserListMessageRequest) ProtoMessage() {}
 
 func (x *UserListMessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[529]
+	mi := &file_papi_proto_msgTypes[537]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30455,7 +30903,7 @@ func (x *UserListMessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserListMessageRequest.ProtoReflect.Descriptor instead.
 func (*UserListMessageRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{529}
+	return file_papi_proto_rawDescGZIP(), []int{537}
 }
 
 func (x *UserListMessageRequest) GetOffset() int32 {
@@ -30478,7 +30926,7 @@ type UserListMessageResponse struct {
 
 func (x *UserListMessageResponse) Reset() {
 	*x = UserListMessageResponse{}
-	mi := &file_papi_proto_msgTypes[530]
+	mi := &file_papi_proto_msgTypes[538]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30490,7 +30938,7 @@ func (x *UserListMessageResponse) String() string {
 func (*UserListMessageResponse) ProtoMessage() {}
 
 func (x *UserListMessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[530]
+	mi := &file_papi_proto_msgTypes[538]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30503,7 +30951,7 @@ func (x *UserListMessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserListMessageResponse.ProtoReflect.Descriptor instead.
 func (*UserListMessageResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{530}
+	return file_papi_proto_rawDescGZIP(), []int{538}
 }
 
 func (x *UserListMessageResponse) GetPersonalMessages() []*UserListMessageResponse_PersonalMessage {
@@ -30550,7 +30998,7 @@ type UserReadMessageRequest struct {
 
 func (x *UserReadMessageRequest) Reset() {
 	*x = UserReadMessageRequest{}
-	mi := &file_papi_proto_msgTypes[531]
+	mi := &file_papi_proto_msgTypes[539]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30562,7 +31010,7 @@ func (x *UserReadMessageRequest) String() string {
 func (*UserReadMessageRequest) ProtoMessage() {}
 
 func (x *UserReadMessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[531]
+	mi := &file_papi_proto_msgTypes[539]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30575,7 +31023,7 @@ func (x *UserReadMessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserReadMessageRequest.ProtoReflect.Descriptor instead.
 func (*UserReadMessageRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{531}
+	return file_papi_proto_rawDescGZIP(), []int{539}
 }
 
 func (x *UserReadMessageRequest) GetUserPersonalMessageIds() []string {
@@ -30594,7 +31042,7 @@ type UserReadMessageResponse struct {
 
 func (x *UserReadMessageResponse) Reset() {
 	*x = UserReadMessageResponse{}
-	mi := &file_papi_proto_msgTypes[532]
+	mi := &file_papi_proto_msgTypes[540]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30606,7 +31054,7 @@ func (x *UserReadMessageResponse) String() string {
 func (*UserReadMessageResponse) ProtoMessage() {}
 
 func (x *UserReadMessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[532]
+	mi := &file_papi_proto_msgTypes[540]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30619,7 +31067,7 @@ func (x *UserReadMessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserReadMessageResponse.ProtoReflect.Descriptor instead.
 func (*UserReadMessageResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{532}
+	return file_papi_proto_rawDescGZIP(), []int{540}
 }
 
 func (x *UserReadMessageResponse) GetCommonResponse() *papicommon.Response {
@@ -30639,7 +31087,7 @@ type WorkFinishResponse struct {
 
 func (x *WorkFinishResponse) Reset() {
 	*x = WorkFinishResponse{}
-	mi := &file_papi_proto_msgTypes[533]
+	mi := &file_papi_proto_msgTypes[541]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30651,7 +31099,7 @@ func (x *WorkFinishResponse) String() string {
 func (*WorkFinishResponse) ProtoMessage() {}
 
 func (x *WorkFinishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[533]
+	mi := &file_papi_proto_msgTypes[541]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30664,7 +31112,7 @@ func (x *WorkFinishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkFinishResponse.ProtoReflect.Descriptor instead.
 func (*WorkFinishResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{533}
+	return file_papi_proto_rawDescGZIP(), []int{541}
 }
 
 func (x *WorkFinishResponse) GetFinishResults() []*WorkFinishResult {
@@ -30693,7 +31141,7 @@ type WorkFinishResult struct {
 
 func (x *WorkFinishResult) Reset() {
 	*x = WorkFinishResult{}
-	mi := &file_papi_proto_msgTypes[534]
+	mi := &file_papi_proto_msgTypes[542]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30705,7 +31153,7 @@ func (x *WorkFinishResult) String() string {
 func (*WorkFinishResult) ProtoMessage() {}
 
 func (x *WorkFinishResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[534]
+	mi := &file_papi_proto_msgTypes[542]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30718,7 +31166,7 @@ func (x *WorkFinishResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkFinishResult.ProtoReflect.Descriptor instead.
 func (*WorkFinishResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{534}
+	return file_papi_proto_rawDescGZIP(), []int{542}
 }
 
 func (x *WorkFinishResult) GetType() penum.WorkType {
@@ -30758,7 +31206,7 @@ type WorkSkipRequest struct {
 
 func (x *WorkSkipRequest) Reset() {
 	*x = WorkSkipRequest{}
-	mi := &file_papi_proto_msgTypes[535]
+	mi := &file_papi_proto_msgTypes[543]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30770,7 +31218,7 @@ func (x *WorkSkipRequest) String() string {
 func (*WorkSkipRequest) ProtoMessage() {}
 
 func (x *WorkSkipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[535]
+	mi := &file_papi_proto_msgTypes[543]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30783,7 +31231,7 @@ func (x *WorkSkipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkipRequest.ProtoReflect.Descriptor instead.
 func (*WorkSkipRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{535}
+	return file_papi_proto_rawDescGZIP(), []int{543}
 }
 
 func (x *WorkSkipRequest) GetType() penum.WorkType {
@@ -30803,7 +31251,7 @@ type WorkSkipResponse struct {
 
 func (x *WorkSkipResponse) Reset() {
 	*x = WorkSkipResponse{}
-	mi := &file_papi_proto_msgTypes[536]
+	mi := &file_papi_proto_msgTypes[544]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30815,7 +31263,7 @@ func (x *WorkSkipResponse) String() string {
 func (*WorkSkipResponse) ProtoMessage() {}
 
 func (x *WorkSkipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[536]
+	mi := &file_papi_proto_msgTypes[544]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30828,7 +31276,7 @@ func (x *WorkSkipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkipResponse.ProtoReflect.Descriptor instead.
 func (*WorkSkipResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{536}
+	return file_papi_proto_rawDescGZIP(), []int{544}
 }
 
 func (x *WorkSkipResponse) GetFinishResult() *WorkFinishResult {
@@ -30856,7 +31304,7 @@ type WorkStartRequest struct {
 
 func (x *WorkStartRequest) Reset() {
 	*x = WorkStartRequest{}
-	mi := &file_papi_proto_msgTypes[537]
+	mi := &file_papi_proto_msgTypes[545]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30868,7 +31316,7 @@ func (x *WorkStartRequest) String() string {
 func (*WorkStartRequest) ProtoMessage() {}
 
 func (x *WorkStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[537]
+	mi := &file_papi_proto_msgTypes[545]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30881,7 +31329,7 @@ func (x *WorkStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStartRequest.ProtoReflect.Descriptor instead.
 func (*WorkStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{537}
+	return file_papi_proto_rawDescGZIP(), []int{545}
 }
 
 func (x *WorkStartRequest) GetType() penum.WorkType {
@@ -30914,7 +31362,7 @@ type WorkStartResponse struct {
 
 func (x *WorkStartResponse) Reset() {
 	*x = WorkStartResponse{}
-	mi := &file_papi_proto_msgTypes[538]
+	mi := &file_papi_proto_msgTypes[546]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30926,7 +31374,7 @@ func (x *WorkStartResponse) String() string {
 func (*WorkStartResponse) ProtoMessage() {}
 
 func (x *WorkStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[538]
+	mi := &file_papi_proto_msgTypes[546]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30939,7 +31387,7 @@ func (x *WorkStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStartResponse.ProtoReflect.Descriptor instead.
 func (*WorkStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{538}
+	return file_papi_proto_rawDescGZIP(), []int{546}
 }
 
 func (x *WorkStartResponse) GetCommonResponse() *papicommon.Response {
@@ -30958,7 +31406,7 @@ type WorkStopRequest struct {
 
 func (x *WorkStopRequest) Reset() {
 	*x = WorkStopRequest{}
-	mi := &file_papi_proto_msgTypes[539]
+	mi := &file_papi_proto_msgTypes[547]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30970,7 +31418,7 @@ func (x *WorkStopRequest) String() string {
 func (*WorkStopRequest) ProtoMessage() {}
 
 func (x *WorkStopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[539]
+	mi := &file_papi_proto_msgTypes[547]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30983,7 +31431,7 @@ func (x *WorkStopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStopRequest.ProtoReflect.Descriptor instead.
 func (*WorkStopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{539}
+	return file_papi_proto_rawDescGZIP(), []int{547}
 }
 
 func (x *WorkStopRequest) GetType() penum.WorkType {
@@ -31002,7 +31450,7 @@ type WorkStopResponse struct {
 
 func (x *WorkStopResponse) Reset() {
 	*x = WorkStopResponse{}
-	mi := &file_papi_proto_msgTypes[540]
+	mi := &file_papi_proto_msgTypes[548]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31014,7 +31462,7 @@ func (x *WorkStopResponse) String() string {
 func (*WorkStopResponse) ProtoMessage() {}
 
 func (x *WorkStopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[540]
+	mi := &file_papi_proto_msgTypes[548]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31027,7 +31475,7 @@ func (x *WorkStopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStopResponse.ProtoReflect.Descriptor instead.
 func (*WorkStopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{540}
+	return file_papi_proto_rawDescGZIP(), []int{548}
 }
 
 func (x *WorkStopResponse) GetCommonResponse() *papicommon.Response {
@@ -31047,7 +31495,7 @@ type WorkTopResponse struct {
 
 func (x *WorkTopResponse) Reset() {
 	*x = WorkTopResponse{}
-	mi := &file_papi_proto_msgTypes[541]
+	mi := &file_papi_proto_msgTypes[549]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31059,7 +31507,7 @@ func (x *WorkTopResponse) String() string {
 func (*WorkTopResponse) ProtoMessage() {}
 
 func (x *WorkTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[541]
+	mi := &file_papi_proto_msgTypes[549]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31072,7 +31520,7 @@ func (x *WorkTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTopResponse.ProtoReflect.Descriptor instead.
 func (*WorkTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{541}
+	return file_papi_proto_rawDescGZIP(), []int{549}
 }
 
 func (x *WorkTopResponse) GetFinishResults() []*WorkFinishResult {
@@ -31100,7 +31548,7 @@ type AuthLoginResponse_Term struct {
 
 func (x *AuthLoginResponse_Term) Reset() {
 	*x = AuthLoginResponse_Term{}
-	mi := &file_papi_proto_msgTypes[542]
+	mi := &file_papi_proto_msgTypes[550]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31112,7 +31560,7 @@ func (x *AuthLoginResponse_Term) String() string {
 func (*AuthLoginResponse_Term) ProtoMessage() {}
 
 func (x *AuthLoginResponse_Term) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[542]
+	mi := &file_papi_proto_msgTypes[550]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31159,7 +31607,7 @@ type AuthSendConsentRequest_Consent struct {
 
 func (x *AuthSendConsentRequest_Consent) Reset() {
 	*x = AuthSendConsentRequest_Consent{}
-	mi := &file_papi_proto_msgTypes[543]
+	mi := &file_papi_proto_msgTypes[551]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31171,7 +31619,7 @@ func (x *AuthSendConsentRequest_Consent) String() string {
 func (*AuthSendConsentRequest_Consent) ProtoMessage() {}
 
 func (x *AuthSendConsentRequest_Consent) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[543]
+	mi := &file_papi_proto_msgTypes[551]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31211,7 +31659,7 @@ type ExchangeItem_ConsumptionResource struct {
 
 func (x *ExchangeItem_ConsumptionResource) Reset() {
 	*x = ExchangeItem_ConsumptionResource{}
-	mi := &file_papi_proto_msgTypes[544]
+	mi := &file_papi_proto_msgTypes[552]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31223,7 +31671,7 @@ func (x *ExchangeItem_ConsumptionResource) String() string {
 func (*ExchangeItem_ConsumptionResource) ProtoMessage() {}
 
 func (x *ExchangeItem_ConsumptionResource) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[544]
+	mi := &file_papi_proto_msgTypes[552]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31264,7 +31712,7 @@ type FriendInfo_SupportCard struct {
 
 func (x *FriendInfo_SupportCard) Reset() {
 	*x = FriendInfo_SupportCard{}
-	mi := &file_papi_proto_msgTypes[545]
+	mi := &file_papi_proto_msgTypes[553]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31276,7 +31724,7 @@ func (x *FriendInfo_SupportCard) String() string {
 func (*FriendInfo_SupportCard) ProtoMessage() {}
 
 func (x *FriendInfo_SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[545]
+	mi := &file_papi_proto_msgTypes[553]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31324,7 +31772,7 @@ type GashaExpirePointResponse_GashaBanner struct {
 
 func (x *GashaExpirePointResponse_GashaBanner) Reset() {
 	*x = GashaExpirePointResponse_GashaBanner{}
-	mi := &file_papi_proto_msgTypes[546]
+	mi := &file_papi_proto_msgTypes[554]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31336,7 +31784,7 @@ func (x *GashaExpirePointResponse_GashaBanner) String() string {
 func (*GashaExpirePointResponse_GashaBanner) ProtoMessage() {}
 
 func (x *GashaExpirePointResponse_GashaBanner) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[546]
+	mi := &file_papi_proto_msgTypes[554]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31386,7 +31834,7 @@ type GashaExpirePointResponse_GashaPoint struct {
 
 func (x *GashaExpirePointResponse_GashaPoint) Reset() {
 	*x = GashaExpirePointResponse_GashaPoint{}
-	mi := &file_papi_proto_msgTypes[547]
+	mi := &file_papi_proto_msgTypes[555]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31398,7 +31846,7 @@ func (x *GashaExpirePointResponse_GashaPoint) String() string {
 func (*GashaExpirePointResponse_GashaPoint) ProtoMessage() {}
 
 func (x *GashaExpirePointResponse_GashaPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[547]
+	mi := &file_papi_proto_msgTypes[555]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31460,7 +31908,7 @@ type GashaGetPointExchangeResponse_ExchangeResource struct {
 
 func (x *GashaGetPointExchangeResponse_ExchangeResource) Reset() {
 	*x = GashaGetPointExchangeResponse_ExchangeResource{}
-	mi := &file_papi_proto_msgTypes[548]
+	mi := &file_papi_proto_msgTypes[556]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31472,7 +31920,7 @@ func (x *GashaGetPointExchangeResponse_ExchangeResource) String() string {
 func (*GashaGetPointExchangeResponse_ExchangeResource) ProtoMessage() {}
 
 func (x *GashaGetPointExchangeResponse_ExchangeResource) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[548]
+	mi := &file_papi_proto_msgTypes[556]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31524,7 +31972,7 @@ type GiftListHistoryResponse_UserGiftHistory struct {
 
 func (x *GiftListHistoryResponse_UserGiftHistory) Reset() {
 	*x = GiftListHistoryResponse_UserGiftHistory{}
-	mi := &file_papi_proto_msgTypes[549]
+	mi := &file_papi_proto_msgTypes[557]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31536,7 +31984,7 @@ func (x *GiftListHistoryResponse_UserGiftHistory) String() string {
 func (*GiftListHistoryResponse_UserGiftHistory) ProtoMessage() {}
 
 func (x *GiftListHistoryResponse_UserGiftHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[549]
+	mi := &file_papi_proto_msgTypes[557]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31617,7 +32065,7 @@ type GiftListResponse_UserGift struct {
 
 func (x *GiftListResponse_UserGift) Reset() {
 	*x = GiftListResponse_UserGift{}
-	mi := &file_papi_proto_msgTypes[550]
+	mi := &file_papi_proto_msgTypes[558]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31629,7 +32077,7 @@ func (x *GiftListResponse_UserGift) String() string {
 func (*GiftListResponse_UserGift) ProtoMessage() {}
 
 func (x *GiftListResponse_UserGift) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[550]
+	mi := &file_papi_proto_msgTypes[558]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31725,7 +32173,7 @@ type GuildTopResponse_HomeInfo struct {
 
 func (x *GuildTopResponse_HomeInfo) Reset() {
 	*x = GuildTopResponse_HomeInfo{}
-	mi := &file_papi_proto_msgTypes[551]
+	mi := &file_papi_proto_msgTypes[559]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31737,7 +32185,7 @@ func (x *GuildTopResponse_HomeInfo) String() string {
 func (*GuildTopResponse_HomeInfo) ProtoMessage() {}
 
 func (x *GuildTopResponse_HomeInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[551]
+	mi := &file_papi_proto_msgTypes[559]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31876,7 +32324,7 @@ type GuildTopResponse_HomeInfo_ReceivedDonationInfo struct {
 
 func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) Reset() {
 	*x = GuildTopResponse_HomeInfo_ReceivedDonationInfo{}
-	mi := &file_papi_proto_msgTypes[552]
+	mi := &file_papi_proto_msgTypes[560]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31888,7 +32336,7 @@ func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) String() string {
 func (*GuildTopResponse_HomeInfo_ReceivedDonationInfo) ProtoMessage() {}
 
 func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[552]
+	mi := &file_papi_proto_msgTypes[560]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31961,7 +32409,7 @@ type GvgRaidTopResponse_Stage struct {
 
 func (x *GvgRaidTopResponse_Stage) Reset() {
 	*x = GvgRaidTopResponse_Stage{}
-	mi := &file_papi_proto_msgTypes[553]
+	mi := &file_papi_proto_msgTypes[561]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31973,7 +32421,7 @@ func (x *GvgRaidTopResponse_Stage) String() string {
 func (*GvgRaidTopResponse_Stage) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[553]
+	mi := &file_papi_proto_msgTypes[561]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32196,7 +32644,7 @@ type GvgRaidTopResponse_StageClearResult struct {
 
 func (x *GvgRaidTopResponse_StageClearResult) Reset() {
 	*x = GvgRaidTopResponse_StageClearResult{}
-	mi := &file_papi_proto_msgTypes[554]
+	mi := &file_papi_proto_msgTypes[562]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32208,7 +32656,7 @@ func (x *GvgRaidTopResponse_StageClearResult) String() string {
 func (*GvgRaidTopResponse_StageClearResult) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[554]
+	mi := &file_papi_proto_msgTypes[562]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32255,7 +32703,7 @@ type GvgRaidTopResponse_StageClearReward struct {
 
 func (x *GvgRaidTopResponse_StageClearReward) Reset() {
 	*x = GvgRaidTopResponse_StageClearReward{}
-	mi := &file_papi_proto_msgTypes[555]
+	mi := &file_papi_proto_msgTypes[563]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32267,7 +32715,7 @@ func (x *GvgRaidTopResponse_StageClearReward) String() string {
 func (*GvgRaidTopResponse_StageClearReward) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[555]
+	mi := &file_papi_proto_msgTypes[563]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32308,7 +32756,7 @@ type GvgRaidTopResponse_StageClearReward_ClearReward struct {
 
 func (x *GvgRaidTopResponse_StageClearReward_ClearReward) Reset() {
 	*x = GvgRaidTopResponse_StageClearReward_ClearReward{}
-	mi := &file_papi_proto_msgTypes[556]
+	mi := &file_papi_proto_msgTypes[564]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32320,7 +32768,7 @@ func (x *GvgRaidTopResponse_StageClearReward_ClearReward) String() string {
 func (*GvgRaidTopResponse_StageClearReward_ClearReward) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearReward_ClearReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[556]
+	mi := &file_papi_proto_msgTypes[564]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32367,7 +32815,7 @@ type GvgRaidUserRankingResponse_StageMvp struct {
 
 func (x *GvgRaidUserRankingResponse_StageMvp) Reset() {
 	*x = GvgRaidUserRankingResponse_StageMvp{}
-	mi := &file_papi_proto_msgTypes[557]
+	mi := &file_papi_proto_msgTypes[565]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32379,7 +32827,7 @@ func (x *GvgRaidUserRankingResponse_StageMvp) String() string {
 func (*GvgRaidUserRankingResponse_StageMvp) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageMvp) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[557]
+	mi := &file_papi_proto_msgTypes[565]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32419,7 +32867,7 @@ type GvgRaidUserRankingResponse_StageRanking struct {
 
 func (x *GvgRaidUserRankingResponse_StageRanking) Reset() {
 	*x = GvgRaidUserRankingResponse_StageRanking{}
-	mi := &file_papi_proto_msgTypes[558]
+	mi := &file_papi_proto_msgTypes[566]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32431,7 +32879,7 @@ func (x *GvgRaidUserRankingResponse_StageRanking) String() string {
 func (*GvgRaidUserRankingResponse_StageRanking) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageRanking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[558]
+	mi := &file_papi_proto_msgTypes[566]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32471,7 +32919,7 @@ type GvgRaidUserRankingResponse_StageMvp_MvpUser struct {
 
 func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) Reset() {
 	*x = GvgRaidUserRankingResponse_StageMvp_MvpUser{}
-	mi := &file_papi_proto_msgTypes[559]
+	mi := &file_papi_proto_msgTypes[567]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32483,7 +32931,7 @@ func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) String() string {
 func (*GvgRaidUserRankingResponse_StageMvp_MvpUser) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[559]
+	mi := &file_papi_proto_msgTypes[567]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32523,7 +32971,7 @@ type GvgRaidUserRankingResponse_StageRanking_Rank struct {
 
 func (x *GvgRaidUserRankingResponse_StageRanking_Rank) Reset() {
 	*x = GvgRaidUserRankingResponse_StageRanking_Rank{}
-	mi := &file_papi_proto_msgTypes[560]
+	mi := &file_papi_proto_msgTypes[568]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32535,7 +32983,7 @@ func (x *GvgRaidUserRankingResponse_StageRanking_Rank) String() string {
 func (*GvgRaidUserRankingResponse_StageRanking_Rank) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageRanking_Rank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[560]
+	mi := &file_papi_proto_msgTypes[568]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32577,7 +33025,7 @@ type HomeEnterResponse_FeatureMaintenance struct {
 
 func (x *HomeEnterResponse_FeatureMaintenance) Reset() {
 	*x = HomeEnterResponse_FeatureMaintenance{}
-	mi := &file_papi_proto_msgTypes[561]
+	mi := &file_papi_proto_msgTypes[569]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32589,7 +33037,7 @@ func (x *HomeEnterResponse_FeatureMaintenance) String() string {
 func (*HomeEnterResponse_FeatureMaintenance) ProtoMessage() {}
 
 func (x *HomeEnterResponse_FeatureMaintenance) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[561]
+	mi := &file_papi_proto_msgTypes[569]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32644,7 +33092,7 @@ type HomeLoginResponse_FriendResult struct {
 
 func (x *HomeLoginResponse_FriendResult) Reset() {
 	*x = HomeLoginResponse_FriendResult{}
-	mi := &file_papi_proto_msgTypes[562]
+	mi := &file_papi_proto_msgTypes[570]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32656,7 +33104,7 @@ func (x *HomeLoginResponse_FriendResult) String() string {
 func (*HomeLoginResponse_FriendResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_FriendResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[562]
+	mi := &file_papi_proto_msgTypes[570]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32693,6 +33141,126 @@ func (x *HomeLoginResponse_FriendResult) GetMemoryRentalCount() int32 {
 	return 0
 }
 
+type HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult struct {
+	state                                        protoimpl.MessageState                                                         `protogen:"open.v1"`
+	ProduceNextIdolAuditionMasterRankingSeasonId string                                                                         `protobuf:"bytes,1,opt,name=produceNextIdolAuditionMasterRankingSeasonId,proto3" json:"produceNextIdolAuditionMasterRankingSeasonId,omitempty"`
+	CharacterResults                             []*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult `protobuf:"bytes,2,rep,name=characterResults,proto3" json:"characterResults,omitempty"`
+	unknownFields                                protoimpl.UnknownFields
+	sizeCache                                    protoimpl.SizeCache
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) Reset() {
+	*x = HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult{}
+	mi := &file_papi_proto_msgTypes[571]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) ProtoMessage() {}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[571]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult.ProtoReflect.Descriptor instead.
+func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{147, 1}
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) GetProduceNextIdolAuditionMasterRankingSeasonId() string {
+	if x != nil {
+		return x.ProduceNextIdolAuditionMasterRankingSeasonId
+	}
+	return ""
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) GetCharacterResults() []*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult {
+	if x != nil {
+		return x.CharacterResults
+	}
+	return nil
+}
+
+type HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Rank          int32                  `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"`
+	Score         int32                  `protobuf:"varint,3,opt,name=score,proto3" json:"score,omitempty"`
+	Rewards       []*pcommon.Reward      `protobuf:"bytes,4,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) Reset() {
+	*x = HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult{}
+	mi := &file_papi_proto_msgTypes[572]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) ProtoMessage() {}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[572]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult.ProtoReflect.Descriptor instead.
+func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{147, 1, 0}
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) GetRewards() []*pcommon.Reward {
+	if x != nil {
+		return x.Rewards
+	}
+	return nil
+}
+
 type HomeSetCharactersRequest_HomeCharacter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	HomeType      penum.HomeType         `protobuf:"varint,1,opt,name=homeType,proto3,enum=penum.HomeType" json:"homeType,omitempty"`
@@ -32704,7 +33272,7 @@ type HomeSetCharactersRequest_HomeCharacter struct {
 
 func (x *HomeSetCharactersRequest_HomeCharacter) Reset() {
 	*x = HomeSetCharactersRequest_HomeCharacter{}
-	mi := &file_papi_proto_msgTypes[563]
+	mi := &file_papi_proto_msgTypes[573]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32716,7 +33284,7 @@ func (x *HomeSetCharactersRequest_HomeCharacter) String() string {
 func (*HomeSetCharactersRequest_HomeCharacter) ProtoMessage() {}
 
 func (x *HomeSetCharactersRequest_HomeCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[563]
+	mi := &file_papi_proto_msgTypes[573]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32771,7 +33339,7 @@ type LoginBonusCheckResponse_Info struct {
 
 func (x *LoginBonusCheckResponse_Info) Reset() {
 	*x = LoginBonusCheckResponse_Info{}
-	mi := &file_papi_proto_msgTypes[564]
+	mi := &file_papi_proto_msgTypes[574]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32783,7 +33351,7 @@ func (x *LoginBonusCheckResponse_Info) String() string {
 func (*LoginBonusCheckResponse_Info) ProtoMessage() {}
 
 func (x *LoginBonusCheckResponse_Info) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[564]
+	mi := &file_papi_proto_msgTypes[574]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32883,7 +33451,7 @@ type LoginBonusCheckResponse_TotalInfo struct {
 
 func (x *LoginBonusCheckResponse_TotalInfo) Reset() {
 	*x = LoginBonusCheckResponse_TotalInfo{}
-	mi := &file_papi_proto_msgTypes[565]
+	mi := &file_papi_proto_msgTypes[575]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32895,7 +33463,7 @@ func (x *LoginBonusCheckResponse_TotalInfo) String() string {
 func (*LoginBonusCheckResponse_TotalInfo) ProtoMessage() {}
 
 func (x *LoginBonusCheckResponse_TotalInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[565]
+	mi := &file_papi_proto_msgTypes[575]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32966,7 +33534,7 @@ type MasterGetResponse_MasterTagPack struct {
 
 func (x *MasterGetResponse_MasterTagPack) Reset() {
 	*x = MasterGetResponse_MasterTagPack{}
-	mi := &file_papi_proto_msgTypes[566]
+	mi := &file_papi_proto_msgTypes[576]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -32978,7 +33546,7 @@ func (x *MasterGetResponse_MasterTagPack) String() string {
 func (*MasterGetResponse_MasterTagPack) ProtoMessage() {}
 
 func (x *MasterGetResponse_MasterTagPack) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[566]
+	mi := &file_papi_proto_msgTypes[576]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33039,7 +33607,7 @@ type MasterGetResponse_MasterTag struct {
 
 func (x *MasterGetResponse_MasterTag) Reset() {
 	*x = MasterGetResponse_MasterTag{}
-	mi := &file_papi_proto_msgTypes[567]
+	mi := &file_papi_proto_msgTypes[577]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33051,7 +33619,7 @@ func (x *MasterGetResponse_MasterTag) String() string {
 func (*MasterGetResponse_MasterTag) ProtoMessage() {}
 
 func (x *MasterGetResponse_MasterTag) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[567]
+	mi := &file_papi_proto_msgTypes[577]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33093,7 +33661,7 @@ type MeishiListFollowResponse_Follow struct {
 
 func (x *MeishiListFollowResponse_Follow) Reset() {
 	*x = MeishiListFollowResponse_Follow{}
-	mi := &file_papi_proto_msgTypes[568]
+	mi := &file_papi_proto_msgTypes[578]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33105,7 +33673,7 @@ func (x *MeishiListFollowResponse_Follow) String() string {
 func (*MeishiListFollowResponse_Follow) ProtoMessage() {}
 
 func (x *MeishiListFollowResponse_Follow) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[568]
+	mi := &file_papi_proto_msgTypes[578]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33160,7 +33728,7 @@ type MeishiListResponse_MeishiInfo struct {
 
 func (x *MeishiListResponse_MeishiInfo) Reset() {
 	*x = MeishiListResponse_MeishiInfo{}
-	mi := &file_papi_proto_msgTypes[569]
+	mi := &file_papi_proto_msgTypes[579]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33172,7 +33740,7 @@ func (x *MeishiListResponse_MeishiInfo) String() string {
 func (*MeishiListResponse_MeishiInfo) ProtoMessage() {}
 
 func (x *MeishiListResponse_MeishiInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[569]
+	mi := &file_papi_proto_msgTypes[579]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33229,7 +33797,7 @@ type MeishiUpdateRequest_MeishiBase struct {
 
 func (x *MeishiUpdateRequest_MeishiBase) Reset() {
 	*x = MeishiUpdateRequest_MeishiBase{}
-	mi := &file_papi_proto_msgTypes[570]
+	mi := &file_papi_proto_msgTypes[580]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33241,7 +33809,7 @@ func (x *MeishiUpdateRequest_MeishiBase) String() string {
 func (*MeishiUpdateRequest_MeishiBase) ProtoMessage() {}
 
 func (x *MeishiUpdateRequest_MeishiBase) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[570]
+	mi := &file_papi_proto_msgTypes[580]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33375,7 +33943,7 @@ type MeishiUpdateRequest_Object struct {
 
 func (x *MeishiUpdateRequest_Object) Reset() {
 	*x = MeishiUpdateRequest_Object{}
-	mi := &file_papi_proto_msgTypes[571]
+	mi := &file_papi_proto_msgTypes[581]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33387,7 +33955,7 @@ func (x *MeishiUpdateRequest_Object) String() string {
 func (*MeishiUpdateRequest_Object) ProtoMessage() {}
 
 func (x *MeishiUpdateRequest_Object) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[571]
+	mi := &file_papi_proto_msgTypes[581]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33595,7 +34163,7 @@ type MissionReceiveRequest_Mission struct {
 
 func (x *MissionReceiveRequest_Mission) Reset() {
 	*x = MissionReceiveRequest_Mission{}
-	mi := &file_papi_proto_msgTypes[572]
+	mi := &file_papi_proto_msgTypes[582]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33607,7 +34175,7 @@ func (x *MissionReceiveRequest_Mission) String() string {
 func (*MissionReceiveRequest_Mission) ProtoMessage() {}
 
 func (x *MissionReceiveRequest_Mission) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[572]
+	mi := &file_papi_proto_msgTypes[582]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33647,7 +34215,7 @@ type MissionReceiveRequest_MissionPoint struct {
 
 func (x *MissionReceiveRequest_MissionPoint) Reset() {
 	*x = MissionReceiveRequest_MissionPoint{}
-	mi := &file_papi_proto_msgTypes[573]
+	mi := &file_papi_proto_msgTypes[583]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33659,7 +34227,7 @@ func (x *MissionReceiveRequest_MissionPoint) String() string {
 func (*MissionReceiveRequest_MissionPoint) ProtoMessage() {}
 
 func (x *MissionReceiveRequest_MissionPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[573]
+	mi := &file_papi_proto_msgTypes[583]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33701,7 +34269,7 @@ type MissionReceiveResponse_MasterAchievementProgress struct {
 
 func (x *MissionReceiveResponse_MasterAchievementProgress) Reset() {
 	*x = MissionReceiveResponse_MasterAchievementProgress{}
-	mi := &file_papi_proto_msgTypes[574]
+	mi := &file_papi_proto_msgTypes[584]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33713,7 +34281,7 @@ func (x *MissionReceiveResponse_MasterAchievementProgress) String() string {
 func (*MissionReceiveResponse_MasterAchievementProgress) ProtoMessage() {}
 
 func (x *MissionReceiveResponse_MasterAchievementProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[574]
+	mi := &file_papi_proto_msgTypes[584]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33769,7 +34337,7 @@ type MissionReceiveResponse_MasterAchievementProgressResult struct {
 
 func (x *MissionReceiveResponse_MasterAchievementProgressResult) Reset() {
 	*x = MissionReceiveResponse_MasterAchievementProgressResult{}
-	mi := &file_papi_proto_msgTypes[575]
+	mi := &file_papi_proto_msgTypes[585]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33781,7 +34349,7 @@ func (x *MissionReceiveResponse_MasterAchievementProgressResult) String() string
 func (*MissionReceiveResponse_MasterAchievementProgressResult) ProtoMessage() {}
 
 func (x *MissionReceiveResponse_MasterAchievementProgressResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[575]
+	mi := &file_papi_proto_msgTypes[585]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33836,7 +34404,7 @@ type PhotoCreateIdolRequest_CharacterSetting struct {
 
 func (x *PhotoCreateIdolRequest_CharacterSetting) Reset() {
 	*x = PhotoCreateIdolRequest_CharacterSetting{}
-	mi := &file_papi_proto_msgTypes[576]
+	mi := &file_papi_proto_msgTypes[586]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33848,7 +34416,7 @@ func (x *PhotoCreateIdolRequest_CharacterSetting) String() string {
 func (*PhotoCreateIdolRequest_CharacterSetting) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_CharacterSetting) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[576]
+	mi := &file_papi_proto_msgTypes[586]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33895,7 +34463,7 @@ type PhotoCreateIdolRequest_Photo struct {
 
 func (x *PhotoCreateIdolRequest_Photo) Reset() {
 	*x = PhotoCreateIdolRequest_Photo{}
-	mi := &file_papi_proto_msgTypes[577]
+	mi := &file_papi_proto_msgTypes[587]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33907,7 +34475,7 @@ func (x *PhotoCreateIdolRequest_Photo) String() string {
 func (*PhotoCreateIdolRequest_Photo) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_Photo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[577]
+	mi := &file_papi_proto_msgTypes[587]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33948,7 +34516,7 @@ type PhotoCreateIdolRequest_Photo_CharacterSetting struct {
 
 func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) Reset() {
 	*x = PhotoCreateIdolRequest_Photo_CharacterSetting{}
-	mi := &file_papi_proto_msgTypes[578]
+	mi := &file_papi_proto_msgTypes[588]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33960,7 +34528,7 @@ func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) String() string {
 func (*PhotoCreateIdolRequest_Photo_CharacterSetting) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[578]
+	mi := &file_papi_proto_msgTypes[588]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34008,7 +34576,7 @@ type PhotoCreateRequest_UnitCharacter struct {
 
 func (x *PhotoCreateRequest_UnitCharacter) Reset() {
 	*x = PhotoCreateRequest_UnitCharacter{}
-	mi := &file_papi_proto_msgTypes[579]
+	mi := &file_papi_proto_msgTypes[589]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34020,7 +34588,7 @@ func (x *PhotoCreateRequest_UnitCharacter) String() string {
 func (*PhotoCreateRequest_UnitCharacter) ProtoMessage() {}
 
 func (x *PhotoCreateRequest_UnitCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[579]
+	mi := &file_papi_proto_msgTypes[589]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34072,7 +34640,7 @@ type ProduceHighScoreRankingResponse_Rank struct {
 
 func (x *ProduceHighScoreRankingResponse_Rank) Reset() {
 	*x = ProduceHighScoreRankingResponse_Rank{}
-	mi := &file_papi_proto_msgTypes[580]
+	mi := &file_papi_proto_msgTypes[590]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34084,7 +34652,7 @@ func (x *ProduceHighScoreRankingResponse_Rank) String() string {
 func (*ProduceHighScoreRankingResponse_Rank) ProtoMessage() {}
 
 func (x *ProduceHighScoreRankingResponse_Rank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[580]
+	mi := &file_papi_proto_msgTypes[590]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34164,7 +34732,7 @@ type ProduceListRentalMemoryResponse_RentalMemory struct {
 
 func (x *ProduceListRentalMemoryResponse_RentalMemory) Reset() {
 	*x = ProduceListRentalMemoryResponse_RentalMemory{}
-	mi := &file_papi_proto_msgTypes[581]
+	mi := &file_papi_proto_msgTypes[591]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34176,7 +34744,7 @@ func (x *ProduceListRentalMemoryResponse_RentalMemory) String() string {
 func (*ProduceListRentalMemoryResponse_RentalMemory) ProtoMessage() {}
 
 func (x *ProduceListRentalMemoryResponse_RentalMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[581]
+	mi := &file_papi_proto_msgTypes[591]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34256,7 +34824,7 @@ type ProduceListRentalSupportCardResponse_RentalSupportCard struct {
 
 func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) Reset() {
 	*x = ProduceListRentalSupportCardResponse_RentalSupportCard{}
-	mi := &file_papi_proto_msgTypes[582]
+	mi := &file_papi_proto_msgTypes[592]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34268,7 +34836,7 @@ func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) String() string
 func (*ProduceListRentalSupportCardResponse_RentalSupportCard) ProtoMessage() {}
 
 func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[582]
+	mi := &file_papi_proto_msgTypes[592]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34333,6 +34901,158 @@ func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) GetIsGuildMembe
 	return false
 }
 
+type ProduceNextIdolAuditionMasterListRankRewardResponse_Reward struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UpperRank     int32                  `protobuf:"varint,1,opt,name=upperRank,proto3" json:"upperRank,omitempty"`
+	LowerRank     int32                  `protobuf:"varint,2,opt,name=lowerRank,proto3" json:"lowerRank,omitempty"`
+	BorderScore   int32                  `protobuf:"varint,3,opt,name=borderScore,proto3" json:"borderScore,omitempty"`
+	Rewards       []*pcommon.Reward      `protobuf:"bytes,4,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) Reset() {
+	*x = ProduceNextIdolAuditionMasterListRankRewardResponse_Reward{}
+	mi := &file_papi_proto_msgTypes[593]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[593]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterListRankRewardResponse_Reward.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{288, 0}
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) GetUpperRank() int32 {
+	if x != nil {
+		return x.UpperRank
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) GetLowerRank() int32 {
+	if x != nil {
+		return x.LowerRank
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) GetBorderScore() int32 {
+	if x != nil {
+		return x.BorderScore
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterListRankRewardResponse_Reward) GetRewards() []*pcommon.Reward {
+	if x != nil {
+		return x.Rewards
+	}
+	return nil
+}
+
+type ProduceNextIdolAuditionMasterRankingResponse_Rank struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Rank           int32                  `protobuf:"varint,1,opt,name=rank,proto3" json:"rank,omitempty"`
+	Score          int32                  `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
+	Grade          penum.ResultGrade      `protobuf:"varint,4,opt,name=grade,proto3,enum=penum.ResultGrade" json:"grade,omitempty"`
+	IdolCardSkinId string                 `protobuf:"bytes,6,opt,name=idolCardSkinId,proto3" json:"idolCardSkinId,omitempty"`
+	UserMemoryId   string                 `protobuf:"bytes,7,opt,name=userMemoryId,proto3" json:"userMemoryId,omitempty"`
+	Profile        *pcommon.SimpleProfile `protobuf:"bytes,99,opt,name=profile,proto3" json:"profile,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) Reset() {
+	*x = ProduceNextIdolAuditionMasterRankingResponse_Rank{}
+	mi := &file_papi_proto_msgTypes[594]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceNextIdolAuditionMasterRankingResponse_Rank) ProtoMessage() {}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[594]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceNextIdolAuditionMasterRankingResponse_Rank.ProtoReflect.Descriptor instead.
+func (*ProduceNextIdolAuditionMasterRankingResponse_Rank) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{290, 0}
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetGrade() penum.ResultGrade {
+	if x != nil {
+		return x.Grade
+	}
+	return penum.ResultGrade(0)
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetIdolCardSkinId() string {
+	if x != nil {
+		return x.IdolCardSkinId
+	}
+	return ""
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetUserMemoryId() string {
+	if x != nil {
+		return x.UserMemoryId
+	}
+	return ""
+}
+
+func (x *ProduceNextIdolAuditionMasterRankingResponse_Rank) GetProfile() *pcommon.SimpleProfile {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
 type ProduceRankingTopResponse_Ranking struct {
 	state                   protoimpl.MessageState `protogen:"open.v1"`
 	IdolCardId              string                 `protobuf:"bytes,1,opt,name=idolCardId,proto3" json:"idolCardId,omitempty"`
@@ -34347,7 +35067,7 @@ type ProduceRankingTopResponse_Ranking struct {
 
 func (x *ProduceRankingTopResponse_Ranking) Reset() {
 	*x = ProduceRankingTopResponse_Ranking{}
-	mi := &file_papi_proto_msgTypes[583]
+	mi := &file_papi_proto_msgTypes[595]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34359,7 +35079,7 @@ func (x *ProduceRankingTopResponse_Ranking) String() string {
 func (*ProduceRankingTopResponse_Ranking) ProtoMessage() {}
 
 func (x *ProduceRankingTopResponse_Ranking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[583]
+	mi := &file_papi_proto_msgTypes[595]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34372,7 +35092,7 @@ func (x *ProduceRankingTopResponse_Ranking) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceRankingTopResponse_Ranking.ProtoReflect.Descriptor instead.
 func (*ProduceRankingTopResponse_Ranking) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{293, 0}
+	return file_papi_proto_rawDescGZIP(), []int{297, 0}
 }
 
 func (x *ProduceRankingTopResponse_Ranking) GetIdolCardId() string {
@@ -34427,7 +35147,7 @@ type ProduceResultResponse_HighScoreReward struct {
 
 func (x *ProduceResultResponse_HighScoreReward) Reset() {
 	*x = ProduceResultResponse_HighScoreReward{}
-	mi := &file_papi_proto_msgTypes[584]
+	mi := &file_papi_proto_msgTypes[596]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34439,7 +35159,7 @@ func (x *ProduceResultResponse_HighScoreReward) String() string {
 func (*ProduceResultResponse_HighScoreReward) ProtoMessage() {}
 
 func (x *ProduceResultResponse_HighScoreReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[584]
+	mi := &file_papi_proto_msgTypes[596]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34452,7 +35172,7 @@ func (x *ProduceResultResponse_HighScoreReward) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ProduceResultResponse_HighScoreReward.ProtoReflect.Descriptor instead.
 func (*ProduceResultResponse_HighScoreReward) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{305, 0}
+	return file_papi_proto_rawDescGZIP(), []int{311, 0}
 }
 
 func (x *ProduceResultResponse_HighScoreReward) GetScore() int32 {
@@ -34488,7 +35208,7 @@ type ProduceResultResponse_HighScoreUpdateResult struct {
 
 func (x *ProduceResultResponse_HighScoreUpdateResult) Reset() {
 	*x = ProduceResultResponse_HighScoreUpdateResult{}
-	mi := &file_papi_proto_msgTypes[585]
+	mi := &file_papi_proto_msgTypes[597]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34500,7 +35220,7 @@ func (x *ProduceResultResponse_HighScoreUpdateResult) String() string {
 func (*ProduceResultResponse_HighScoreUpdateResult) ProtoMessage() {}
 
 func (x *ProduceResultResponse_HighScoreUpdateResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[585]
+	mi := &file_papi_proto_msgTypes[597]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34513,7 +35233,7 @@ func (x *ProduceResultResponse_HighScoreUpdateResult) ProtoReflect() protoreflec
 
 // Deprecated: Use ProduceResultResponse_HighScoreUpdateResult.ProtoReflect.Descriptor instead.
 func (*ProduceResultResponse_HighScoreUpdateResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{305, 1}
+	return file_papi_proto_rawDescGZIP(), []int{311, 1}
 }
 
 func (x *ProduceResultResponse_HighScoreUpdateResult) GetTitleAssetId() string {
@@ -34603,7 +35323,7 @@ type ProduceStartRequest_Memory struct {
 
 func (x *ProduceStartRequest_Memory) Reset() {
 	*x = ProduceStartRequest_Memory{}
-	mi := &file_papi_proto_msgTypes[586]
+	mi := &file_papi_proto_msgTypes[598]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34615,7 +35335,7 @@ func (x *ProduceStartRequest_Memory) String() string {
 func (*ProduceStartRequest_Memory) ProtoMessage() {}
 
 func (x *ProduceStartRequest_Memory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[586]
+	mi := &file_papi_proto_msgTypes[598]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34628,7 +35348,7 @@ func (x *ProduceStartRequest_Memory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartRequest_Memory.ProtoReflect.Descriptor instead.
 func (*ProduceStartRequest_Memory) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{309, 0}
+	return file_papi_proto_rawDescGZIP(), []int{315, 0}
 }
 
 func (x *ProduceStartRequest_Memory) GetUserMemoryId() string {
@@ -34655,7 +35375,7 @@ type ProduceStartRequest_SupportCard struct {
 
 func (x *ProduceStartRequest_SupportCard) Reset() {
 	*x = ProduceStartRequest_SupportCard{}
-	mi := &file_papi_proto_msgTypes[587]
+	mi := &file_papi_proto_msgTypes[599]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34667,7 +35387,7 @@ func (x *ProduceStartRequest_SupportCard) String() string {
 func (*ProduceStartRequest_SupportCard) ProtoMessage() {}
 
 func (x *ProduceStartRequest_SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[587]
+	mi := &file_papi_proto_msgTypes[599]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34680,7 +35400,7 @@ func (x *ProduceStartRequest_SupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartRequest_SupportCard.ProtoReflect.Descriptor instead.
 func (*ProduceStartRequest_SupportCard) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{309, 1}
+	return file_papi_proto_rawDescGZIP(), []int{315, 1}
 }
 
 func (x *ProduceStartRequest_SupportCard) GetSupportCardId() string {
@@ -34711,7 +35431,7 @@ type ProduceTopResponse_ProduceHighScore struct {
 
 func (x *ProduceTopResponse_ProduceHighScore) Reset() {
 	*x = ProduceTopResponse_ProduceHighScore{}
-	mi := &file_papi_proto_msgTypes[588]
+	mi := &file_papi_proto_msgTypes[600]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34723,7 +35443,7 @@ func (x *ProduceTopResponse_ProduceHighScore) String() string {
 func (*ProduceTopResponse_ProduceHighScore) ProtoMessage() {}
 
 func (x *ProduceTopResponse_ProduceHighScore) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[588]
+	mi := &file_papi_proto_msgTypes[600]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34736,7 +35456,7 @@ func (x *ProduceTopResponse_ProduceHighScore) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceTopResponse_ProduceHighScore.ProtoReflect.Descriptor instead.
 func (*ProduceTopResponse_ProduceHighScore) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{357, 0}
+	return file_papi_proto_rawDescGZIP(), []int{363, 0}
 }
 
 func (x *ProduceTopResponse_ProduceHighScore) GetEventType() penum.ProduceHighScoreEventType {
@@ -34792,7 +35512,7 @@ type ProfileGetResponse_ProduceRecord struct {
 
 func (x *ProfileGetResponse_ProduceRecord) Reset() {
 	*x = ProfileGetResponse_ProduceRecord{}
-	mi := &file_papi_proto_msgTypes[589]
+	mi := &file_papi_proto_msgTypes[601]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34804,7 +35524,7 @@ func (x *ProfileGetResponse_ProduceRecord) String() string {
 func (*ProfileGetResponse_ProduceRecord) ProtoMessage() {}
 
 func (x *ProfileGetResponse_ProduceRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[589]
+	mi := &file_papi_proto_msgTypes[601]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34817,7 +35537,7 @@ func (x *ProfileGetResponse_ProduceRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileGetResponse_ProduceRecord.ProtoReflect.Descriptor instead.
 func (*ProfileGetResponse_ProduceRecord) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{371, 0}
+	return file_papi_proto_rawDescGZIP(), []int{377, 0}
 }
 
 func (x *ProfileGetResponse_ProduceRecord) GetProduceType() penum.ProduceType {
@@ -34856,7 +35576,7 @@ type PvpRateListHistoryResponse_PvpRateHistory struct {
 
 func (x *PvpRateListHistoryResponse_PvpRateHistory) Reset() {
 	*x = PvpRateListHistoryResponse_PvpRateHistory{}
-	mi := &file_papi_proto_msgTypes[590]
+	mi := &file_papi_proto_msgTypes[602]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34868,7 +35588,7 @@ func (x *PvpRateListHistoryResponse_PvpRateHistory) String() string {
 func (*PvpRateListHistoryResponse_PvpRateHistory) ProtoMessage() {}
 
 func (x *PvpRateListHistoryResponse_PvpRateHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[590]
+	mi := &file_papi_proto_msgTypes[602]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34881,7 +35601,7 @@ func (x *PvpRateListHistoryResponse_PvpRateHistory) ProtoReflect() protoreflect.
 
 // Deprecated: Use PvpRateListHistoryResponse_PvpRateHistory.ProtoReflect.Descriptor instead.
 func (*PvpRateListHistoryResponse_PvpRateHistory) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{388, 0}
+	return file_papi_proto_rawDescGZIP(), []int{394, 0}
 }
 
 func (x *PvpRateListHistoryResponse_PvpRateHistory) GetPlayTimeUnixMilli() int64 {
@@ -34945,7 +35665,7 @@ type PvpRateUnitStageFormation_Slot struct {
 
 func (x *PvpRateUnitStageFormation_Slot) Reset() {
 	*x = PvpRateUnitStageFormation_Slot{}
-	mi := &file_papi_proto_msgTypes[591]
+	mi := &file_papi_proto_msgTypes[603]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34957,7 +35677,7 @@ func (x *PvpRateUnitStageFormation_Slot) String() string {
 func (*PvpRateUnitStageFormation_Slot) ProtoMessage() {}
 
 func (x *PvpRateUnitStageFormation_Slot) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[591]
+	mi := &file_papi_proto_msgTypes[603]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34970,7 +35690,7 @@ func (x *PvpRateUnitStageFormation_Slot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateUnitStageFormation_Slot.ProtoReflect.Descriptor instead.
 func (*PvpRateUnitStageFormation_Slot) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{399, 0}
+	return file_papi_proto_rawDescGZIP(), []int{405, 0}
 }
 
 func (x *PvpRateUnitStageFormation_Slot) GetMainMemory() *pcommon.Memory {
@@ -35012,7 +35732,7 @@ type SeminarEndExamRequest_Turn struct {
 
 func (x *SeminarEndExamRequest_Turn) Reset() {
 	*x = SeminarEndExamRequest_Turn{}
-	mi := &file_papi_proto_msgTypes[592]
+	mi := &file_papi_proto_msgTypes[604]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35024,7 +35744,7 @@ func (x *SeminarEndExamRequest_Turn) String() string {
 func (*SeminarEndExamRequest_Turn) ProtoMessage() {}
 
 func (x *SeminarEndExamRequest_Turn) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[592]
+	mi := &file_papi_proto_msgTypes[604]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35037,7 +35757,7 @@ func (x *SeminarEndExamRequest_Turn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarEndExamRequest_Turn.ProtoReflect.Descriptor instead.
 func (*SeminarEndExamRequest_Turn) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{402, 0}
+	return file_papi_proto_rawDescGZIP(), []int{408, 0}
 }
 
 func (x *SeminarEndExamRequest_Turn) GetTurn() int32 {
@@ -35072,7 +35792,7 @@ type SeminarGetExamResponse_TurnNavigationStep struct {
 
 func (x *SeminarGetExamResponse_TurnNavigationStep) Reset() {
 	*x = SeminarGetExamResponse_TurnNavigationStep{}
-	mi := &file_papi_proto_msgTypes[593]
+	mi := &file_papi_proto_msgTypes[605]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35084,7 +35804,7 @@ func (x *SeminarGetExamResponse_TurnNavigationStep) String() string {
 func (*SeminarGetExamResponse_TurnNavigationStep) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_TurnNavigationStep) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[593]
+	mi := &file_papi_proto_msgTypes[605]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35097,7 +35817,7 @@ func (x *SeminarGetExamResponse_TurnNavigationStep) ProtoReflect() protoreflect.
 
 // Deprecated: Use SeminarGetExamResponse_TurnNavigationStep.ProtoReflect.Descriptor instead.
 func (*SeminarGetExamResponse_TurnNavigationStep) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{405, 0}
+	return file_papi_proto_rawDescGZIP(), []int{411, 0}
 }
 
 func (x *SeminarGetExamResponse_TurnNavigationStep) GetNavigationType() penum.TutorialNavigationType {
@@ -35135,7 +35855,7 @@ type SeminarGetExamResponse_FailureNavigation struct {
 
 func (x *SeminarGetExamResponse_FailureNavigation) Reset() {
 	*x = SeminarGetExamResponse_FailureNavigation{}
-	mi := &file_papi_proto_msgTypes[594]
+	mi := &file_papi_proto_msgTypes[606]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35147,7 +35867,7 @@ func (x *SeminarGetExamResponse_FailureNavigation) String() string {
 func (*SeminarGetExamResponse_FailureNavigation) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_FailureNavigation) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[594]
+	mi := &file_papi_proto_msgTypes[606]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35160,7 +35880,7 @@ func (x *SeminarGetExamResponse_FailureNavigation) ProtoReflect() protoreflect.M
 
 // Deprecated: Use SeminarGetExamResponse_FailureNavigation.ProtoReflect.Descriptor instead.
 func (*SeminarGetExamResponse_FailureNavigation) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{405, 1}
+	return file_papi_proto_rawDescGZIP(), []int{411, 1}
 }
 
 func (x *SeminarGetExamResponse_FailureNavigation) GetProduceExamTriggerId() string {
@@ -35218,7 +35938,7 @@ type SeminarGetExamResponse_TurnNavigation struct {
 
 func (x *SeminarGetExamResponse_TurnNavigation) Reset() {
 	*x = SeminarGetExamResponse_TurnNavigation{}
-	mi := &file_papi_proto_msgTypes[595]
+	mi := &file_papi_proto_msgTypes[607]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35230,7 +35950,7 @@ func (x *SeminarGetExamResponse_TurnNavigation) String() string {
 func (*SeminarGetExamResponse_TurnNavigation) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_TurnNavigation) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[595]
+	mi := &file_papi_proto_msgTypes[607]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35243,7 +35963,7 @@ func (x *SeminarGetExamResponse_TurnNavigation) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SeminarGetExamResponse_TurnNavigation.ProtoReflect.Descriptor instead.
 func (*SeminarGetExamResponse_TurnNavigation) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{405, 2}
+	return file_papi_proto_rawDescGZIP(), []int{411, 2}
 }
 
 func (x *SeminarGetExamResponse_TurnNavigation) GetTurn() int32 {
@@ -35298,7 +36018,7 @@ type SeminarListExamResponse_Exam struct {
 
 func (x *SeminarListExamResponse_Exam) Reset() {
 	*x = SeminarListExamResponse_Exam{}
-	mi := &file_papi_proto_msgTypes[596]
+	mi := &file_papi_proto_msgTypes[608]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35310,7 +36030,7 @@ func (x *SeminarListExamResponse_Exam) String() string {
 func (*SeminarListExamResponse_Exam) ProtoMessage() {}
 
 func (x *SeminarListExamResponse_Exam) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[596]
+	mi := &file_papi_proto_msgTypes[608]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35323,7 +36043,7 @@ func (x *SeminarListExamResponse_Exam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarListExamResponse_Exam.ProtoReflect.Descriptor instead.
 func (*SeminarListExamResponse_Exam) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{406, 0}
+	return file_papi_proto_rawDescGZIP(), []int{412, 0}
 }
 
 func (x *SeminarListExamResponse_Exam) GetId() string {
@@ -35403,7 +36123,7 @@ type SeminarListExamResponse_ExamGroup struct {
 
 func (x *SeminarListExamResponse_ExamGroup) Reset() {
 	*x = SeminarListExamResponse_ExamGroup{}
-	mi := &file_papi_proto_msgTypes[597]
+	mi := &file_papi_proto_msgTypes[609]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35415,7 +36135,7 @@ func (x *SeminarListExamResponse_ExamGroup) String() string {
 func (*SeminarListExamResponse_ExamGroup) ProtoMessage() {}
 
 func (x *SeminarListExamResponse_ExamGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[597]
+	mi := &file_papi_proto_msgTypes[609]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35428,7 +36148,7 @@ func (x *SeminarListExamResponse_ExamGroup) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SeminarListExamResponse_ExamGroup.ProtoReflect.Descriptor instead.
 func (*SeminarListExamResponse_ExamGroup) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{406, 1}
+	return file_papi_proto_rawDescGZIP(), []int{412, 1}
 }
 
 func (x *SeminarListExamResponse_ExamGroup) GetId() string {
@@ -35483,7 +36203,7 @@ type ShopGetPurchasePlatformTransactionResponse_PlatformTransaction struct {
 
 func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) Reset() {
 	*x = ShopGetPurchasePlatformTransactionResponse_PlatformTransaction{}
-	mi := &file_papi_proto_msgTypes[598]
+	mi := &file_papi_proto_msgTypes[610]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35495,7 +36215,7 @@ func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) String(
 func (*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) ProtoMessage() {}
 
 func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[598]
+	mi := &file_papi_proto_msgTypes[610]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35508,7 +36228,7 @@ func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) ProtoRe
 
 // Deprecated: Use ShopGetPurchasePlatformTransactionResponse_PlatformTransaction.ProtoReflect.Descriptor instead.
 func (*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{412, 0}
+	return file_papi_proto_rawDescGZIP(), []int{418, 0}
 }
 
 func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) GetStoreTransactionId() string {
@@ -35537,7 +36257,7 @@ type ShopTopResponse_Shop struct {
 
 func (x *ShopTopResponse_Shop) Reset() {
 	*x = ShopTopResponse_Shop{}
-	mi := &file_papi_proto_msgTypes[599]
+	mi := &file_papi_proto_msgTypes[611]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35549,7 +36269,7 @@ func (x *ShopTopResponse_Shop) String() string {
 func (*ShopTopResponse_Shop) ProtoMessage() {}
 
 func (x *ShopTopResponse_Shop) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[599]
+	mi := &file_papi_proto_msgTypes[611]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35562,7 +36282,7 @@ func (x *ShopTopResponse_Shop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopTopResponse_Shop.ProtoReflect.Descriptor instead.
 func (*ShopTopResponse_Shop) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{428, 0}
+	return file_papi_proto_rawDescGZIP(), []int{434, 0}
 }
 
 func (x *ShopTopResponse_Shop) GetId() string {
@@ -35603,7 +36323,7 @@ type StartupConfirmRequest_Notification struct {
 
 func (x *StartupConfirmRequest_Notification) Reset() {
 	*x = StartupConfirmRequest_Notification{}
-	mi := &file_papi_proto_msgTypes[600]
+	mi := &file_papi_proto_msgTypes[612]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35615,7 +36335,7 @@ func (x *StartupConfirmRequest_Notification) String() string {
 func (*StartupConfirmRequest_Notification) ProtoMessage() {}
 
 func (x *StartupConfirmRequest_Notification) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[600]
+	mi := &file_papi_proto_msgTypes[612]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35628,7 +36348,7 @@ func (x *StartupConfirmRequest_Notification) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use StartupConfirmRequest_Notification.ProtoReflect.Descriptor instead.
 func (*StartupConfirmRequest_Notification) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{429, 0}
+	return file_papi_proto_rawDescGZIP(), []int{435, 0}
 }
 
 func (x *StartupConfirmRequest_Notification) GetStartupNotificationId() string {
@@ -35655,7 +36375,7 @@ type StoryEventReceiveGuildMissionResponse_ReceiveResult struct {
 
 func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) Reset() {
 	*x = StoryEventReceiveGuildMissionResponse_ReceiveResult{}
-	mi := &file_papi_proto_msgTypes[601]
+	mi := &file_papi_proto_msgTypes[613]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35667,7 +36387,7 @@ func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) String() string {
 func (*StoryEventReceiveGuildMissionResponse_ReceiveResult) ProtoMessage() {}
 
 func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[601]
+	mi := &file_papi_proto_msgTypes[613]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35680,7 +36400,7 @@ func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) ProtoReflect() pro
 
 // Deprecated: Use StoryEventReceiveGuildMissionResponse_ReceiveResult.ProtoReflect.Descriptor instead.
 func (*StoryEventReceiveGuildMissionResponse_ReceiveResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{437, 0}
+	return file_papi_proto_rawDescGZIP(), []int{443, 0}
 }
 
 func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) GetGuildMissionHistory() *pcommon.GuildMissionHistory {
@@ -35715,7 +36435,7 @@ type StoryEventTopResponse_Motion struct {
 
 func (x *StoryEventTopResponse_Motion) Reset() {
 	*x = StoryEventTopResponse_Motion{}
-	mi := &file_papi_proto_msgTypes[602]
+	mi := &file_papi_proto_msgTypes[614]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35727,7 +36447,7 @@ func (x *StoryEventTopResponse_Motion) String() string {
 func (*StoryEventTopResponse_Motion) ProtoMessage() {}
 
 func (x *StoryEventTopResponse_Motion) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[602]
+	mi := &file_papi_proto_msgTypes[614]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35740,7 +36460,7 @@ func (x *StoryEventTopResponse_Motion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventTopResponse_Motion.ProtoReflect.Descriptor instead.
 func (*StoryEventTopResponse_Motion) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{439, 0}
+	return file_papi_proto_rawDescGZIP(), []int{445, 0}
 }
 
 func (x *StoryEventTopResponse_Motion) GetCharacterId() string {
@@ -35823,7 +36543,7 @@ type SupportCardExchangeRequest_Parameter struct {
 
 func (x *SupportCardExchangeRequest_Parameter) Reset() {
 	*x = SupportCardExchangeRequest_Parameter{}
-	mi := &file_papi_proto_msgTypes[603]
+	mi := &file_papi_proto_msgTypes[615]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35835,7 +36555,7 @@ func (x *SupportCardExchangeRequest_Parameter) String() string {
 func (*SupportCardExchangeRequest_Parameter) ProtoMessage() {}
 
 func (x *SupportCardExchangeRequest_Parameter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[603]
+	mi := &file_papi_proto_msgTypes[615]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35848,7 +36568,7 @@ func (x *SupportCardExchangeRequest_Parameter) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SupportCardExchangeRequest_Parameter.ProtoReflect.Descriptor instead.
 func (*SupportCardExchangeRequest_Parameter) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{452, 0}
+	return file_papi_proto_rawDescGZIP(), []int{460, 0}
 }
 
 func (x *SupportCardExchangeRequest_Parameter) GetSupportCardId() string {
@@ -35875,7 +36595,7 @@ type SupportCardListDeckRankingResponse_SupportCardRank struct {
 
 func (x *SupportCardListDeckRankingResponse_SupportCardRank) Reset() {
 	*x = SupportCardListDeckRankingResponse_SupportCardRank{}
-	mi := &file_papi_proto_msgTypes[604]
+	mi := &file_papi_proto_msgTypes[616]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35887,7 +36607,7 @@ func (x *SupportCardListDeckRankingResponse_SupportCardRank) String() string {
 func (*SupportCardListDeckRankingResponse_SupportCardRank) ProtoMessage() {}
 
 func (x *SupportCardListDeckRankingResponse_SupportCardRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[604]
+	mi := &file_papi_proto_msgTypes[616]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35900,7 +36620,7 @@ func (x *SupportCardListDeckRankingResponse_SupportCardRank) ProtoReflect() prot
 
 // Deprecated: Use SupportCardListDeckRankingResponse_SupportCardRank.ProtoReflect.Descriptor instead.
 func (*SupportCardListDeckRankingResponse_SupportCardRank) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{454, 0}
+	return file_papi_proto_rawDescGZIP(), []int{462, 0}
 }
 
 func (x *SupportCardListDeckRankingResponse_SupportCardRank) GetSupportCardId() string {
@@ -35927,7 +36647,7 @@ type SupportCardListDeckRankingResponse_Ranking struct {
 
 func (x *SupportCardListDeckRankingResponse_Ranking) Reset() {
 	*x = SupportCardListDeckRankingResponse_Ranking{}
-	mi := &file_papi_proto_msgTypes[605]
+	mi := &file_papi_proto_msgTypes[617]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35939,7 +36659,7 @@ func (x *SupportCardListDeckRankingResponse_Ranking) String() string {
 func (*SupportCardListDeckRankingResponse_Ranking) ProtoMessage() {}
 
 func (x *SupportCardListDeckRankingResponse_Ranking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[605]
+	mi := &file_papi_proto_msgTypes[617]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35952,7 +36672,7 @@ func (x *SupportCardListDeckRankingResponse_Ranking) ProtoReflect() protoreflect
 
 // Deprecated: Use SupportCardListDeckRankingResponse_Ranking.ProtoReflect.Descriptor instead.
 func (*SupportCardListDeckRankingResponse_Ranking) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{454, 1}
+	return file_papi_proto_rawDescGZIP(), []int{462, 1}
 }
 
 func (x *SupportCardListDeckRankingResponse_Ranking) GetProduceGroupId() string {
@@ -35985,7 +36705,7 @@ type SystemCheckResponse_MaintenanceInfo struct {
 
 func (x *SystemCheckResponse_MaintenanceInfo) Reset() {
 	*x = SystemCheckResponse_MaintenanceInfo{}
-	mi := &file_papi_proto_msgTypes[606]
+	mi := &file_papi_proto_msgTypes[618]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35997,7 +36717,7 @@ func (x *SystemCheckResponse_MaintenanceInfo) String() string {
 func (*SystemCheckResponse_MaintenanceInfo) ProtoMessage() {}
 
 func (x *SystemCheckResponse_MaintenanceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[606]
+	mi := &file_papi_proto_msgTypes[618]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36010,7 +36730,7 @@ func (x *SystemCheckResponse_MaintenanceInfo) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SystemCheckResponse_MaintenanceInfo.ProtoReflect.Descriptor instead.
 func (*SystemCheckResponse_MaintenanceInfo) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{460, 0}
+	return file_papi_proto_rawDescGZIP(), []int{468, 0}
 }
 
 func (x *SystemCheckResponse_MaintenanceInfo) GetInMaintenance() bool {
@@ -36081,7 +36801,7 @@ type SystemCheckResponse_ReviewInfo struct {
 
 func (x *SystemCheckResponse_ReviewInfo) Reset() {
 	*x = SystemCheckResponse_ReviewInfo{}
-	mi := &file_papi_proto_msgTypes[607]
+	mi := &file_papi_proto_msgTypes[619]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36093,7 +36813,7 @@ func (x *SystemCheckResponse_ReviewInfo) String() string {
 func (*SystemCheckResponse_ReviewInfo) ProtoMessage() {}
 
 func (x *SystemCheckResponse_ReviewInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[607]
+	mi := &file_papi_proto_msgTypes[619]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36106,7 +36826,7 @@ func (x *SystemCheckResponse_ReviewInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SystemCheckResponse_ReviewInfo.ProtoReflect.Descriptor instead.
 func (*SystemCheckResponse_ReviewInfo) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{460, 1}
+	return file_papi_proto_rawDescGZIP(), []int{468, 1}
 }
 
 func (x *SystemCheckResponse_ReviewInfo) GetInReview() bool {
@@ -36152,7 +36872,7 @@ type TowerGetLayerResponse_Exam struct {
 
 func (x *TowerGetLayerResponse_Exam) Reset() {
 	*x = TowerGetLayerResponse_Exam{}
-	mi := &file_papi_proto_msgTypes[608]
+	mi := &file_papi_proto_msgTypes[620]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36164,7 +36884,7 @@ func (x *TowerGetLayerResponse_Exam) String() string {
 func (*TowerGetLayerResponse_Exam) ProtoMessage() {}
 
 func (x *TowerGetLayerResponse_Exam) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[608]
+	mi := &file_papi_proto_msgTypes[620]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36177,7 +36897,7 @@ func (x *TowerGetLayerResponse_Exam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerGetLayerResponse_Exam.ProtoReflect.Descriptor instead.
 func (*TowerGetLayerResponse_Exam) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{475, 0}
+	return file_papi_proto_rawDescGZIP(), []int{483, 0}
 }
 
 func (x *TowerGetLayerResponse_Exam) GetExamEffectType() penum.ProduceExamEffectType {
@@ -36241,7 +36961,7 @@ type TowerListLayersResponse_TowerLayerRank struct {
 
 func (x *TowerListLayersResponse_TowerLayerRank) Reset() {
 	*x = TowerListLayersResponse_TowerLayerRank{}
-	mi := &file_papi_proto_msgTypes[609]
+	mi := &file_papi_proto_msgTypes[621]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36253,7 +36973,7 @@ func (x *TowerListLayersResponse_TowerLayerRank) String() string {
 func (*TowerListLayersResponse_TowerLayerRank) ProtoMessage() {}
 
 func (x *TowerListLayersResponse_TowerLayerRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[609]
+	mi := &file_papi_proto_msgTypes[621]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36266,7 +36986,7 @@ func (x *TowerListLayersResponse_TowerLayerRank) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use TowerListLayersResponse_TowerLayerRank.ProtoReflect.Descriptor instead.
 func (*TowerListLayersResponse_TowerLayerRank) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{489, 0}
+	return file_papi_proto_rawDescGZIP(), []int{497, 0}
 }
 
 func (x *TowerListLayersResponse_TowerLayerRank) GetRank() int32 {
@@ -36310,7 +37030,7 @@ type TowerListLayersResponse_TowerLayer struct {
 
 func (x *TowerListLayersResponse_TowerLayer) Reset() {
 	*x = TowerListLayersResponse_TowerLayer{}
-	mi := &file_papi_proto_msgTypes[610]
+	mi := &file_papi_proto_msgTypes[622]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36322,7 +37042,7 @@ func (x *TowerListLayersResponse_TowerLayer) String() string {
 func (*TowerListLayersResponse_TowerLayer) ProtoMessage() {}
 
 func (x *TowerListLayersResponse_TowerLayer) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[610]
+	mi := &file_papi_proto_msgTypes[622]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36335,7 +37055,7 @@ func (x *TowerListLayersResponse_TowerLayer) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use TowerListLayersResponse_TowerLayer.ProtoReflect.Descriptor instead.
 func (*TowerListLayersResponse_TowerLayer) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{489, 1}
+	return file_papi_proto_rawDescGZIP(), []int{497, 1}
 }
 
 func (x *TowerListLayersResponse_TowerLayer) GetNumber() int32 {
@@ -36384,7 +37104,7 @@ type TowerTopResponse_Tower struct {
 
 func (x *TowerTopResponse_Tower) Reset() {
 	*x = TowerTopResponse_Tower{}
-	mi := &file_papi_proto_msgTypes[611]
+	mi := &file_papi_proto_msgTypes[623]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36396,7 +37116,7 @@ func (x *TowerTopResponse_Tower) String() string {
 func (*TowerTopResponse_Tower) ProtoMessage() {}
 
 func (x *TowerTopResponse_Tower) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[611]
+	mi := &file_papi_proto_msgTypes[623]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36409,7 +37129,7 @@ func (x *TowerTopResponse_Tower) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerTopResponse_Tower.ProtoReflect.Descriptor instead.
 func (*TowerTopResponse_Tower) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{500, 0}
+	return file_papi_proto_rawDescGZIP(), []int{508, 0}
 }
 
 func (x *TowerTopResponse_Tower) GetId() string {
@@ -36443,7 +37163,7 @@ type UserListMessageResponse_PersonalMessage struct {
 
 func (x *UserListMessageResponse_PersonalMessage) Reset() {
 	*x = UserListMessageResponse_PersonalMessage{}
-	mi := &file_papi_proto_msgTypes[612]
+	mi := &file_papi_proto_msgTypes[624]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36455,7 +37175,7 @@ func (x *UserListMessageResponse_PersonalMessage) String() string {
 func (*UserListMessageResponse_PersonalMessage) ProtoMessage() {}
 
 func (x *UserListMessageResponse_PersonalMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[612]
+	mi := &file_papi_proto_msgTypes[624]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36468,7 +37188,7 @@ func (x *UserListMessageResponse_PersonalMessage) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UserListMessageResponse_PersonalMessage.ProtoReflect.Descriptor instead.
 func (*UserListMessageResponse_PersonalMessage) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{530, 0}
+	return file_papi_proto_rawDescGZIP(), []int{538, 0}
 }
 
 func (x *UserListMessageResponse_PersonalMessage) GetUserPersonalMessageId() string {
@@ -37267,15 +37987,24 @@ const file_papi_proto_rawDesc = "" +
 	"\aendTime\x18\x04 \x01(\x03R\aendTime\"~\n" +
 	"\x15HomeListEventResponse\x12&\n" +
 	"\x06events\x18\x01 \x03(\v2\x0e.pcommon.EventR\x06events\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xab\x03\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xf6\a\n" +
 	"\x11HomeLoginResponse\x12N\n" +
 	"\ffriendResult\x18\x01 \x01(\v2*.client.api.HomeLoginResponse.FriendResultR\ffriendResult\x12P\n" +
-	"\x14producerLevelUnlocks\x18\x02 \x03(\v2\x1c.pcommon.ProducerLevelUnlockR\x14producerLevelUnlocks\x12=\n" +
+	"\x14producerLevelUnlocks\x18\x02 \x03(\v2\x1c.pcommon.ProducerLevelUnlockR\x14producerLevelUnlocks\x12\xa5\x01\n" +
+	")produceNextIdolAuditionMasterSeasonResult\x18d \x01(\v2G.client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResultR)produceNextIdolAuditionMasterSeasonResult\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xb4\x01\n" +
 	"\fFriendResult\x12>\n" +
 	"\x1areceivedFriendCoinQuantity\x18\x01 \x01(\x05R\x1areceivedFriendCoinQuantity\x126\n" +
 	"\x16supportCardRentalCount\x18\x02 \x01(\x05R\x16supportCardRentalCount\x12,\n" +
-	"\x11memoryRentalCount\x18\x03 \x01(\x05R\x11memoryRentalCount\"\xea\x01\n" +
+	"\x11memoryRentalCount\x18\x03 \x01(\x05R\x11memoryRentalCount\x1a\xa0\x03\n" +
+	")ProduceNextIdolAuditionMasterSeasonResult\x12b\n" +
+	",produceNextIdolAuditionMasterRankingSeasonId\x18\x01 \x01(\tR,produceNextIdolAuditionMasterRankingSeasonId\x12\x83\x01\n" +
+	"\x10characterResults\x18\x02 \x03(\v2W.client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResultR\x10characterResults\x1a\x88\x01\n" +
+	"\x0fCharacterResult\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x12\n" +
+	"\x04rank\x18\x02 \x01(\x05R\x04rank\x12\x14\n" +
+	"\x05score\x18\x03 \x01(\x05R\x05score\x12)\n" +
+	"\arewards\x18\x04 \x03(\v2\x0f.pcommon.RewardR\arewards\"\xea\x01\n" +
 	"\x18HomeSetCharactersRequest\x12R\n" +
 	"\n" +
 	"characters\x18\x01 \x03(\v22.client.api.HomeSetCharactersRequest.HomeCharacterR\n" +
@@ -37789,19 +38518,21 @@ const file_papi_proto_rawDesc = "" +
 	"\x06visual\x18\x03 \x01(\x05R\x06visual\x122\n" +
 	"\x14growthRateBonusVocal\x18\x04 \x01(\x05R\x14growthRateBonusVocal\x122\n" +
 	"\x14growthRateBonusDance\x18\x05 \x01(\x05R\x14growthRateBonusDance\x124\n" +
-	"\x15growthRateBonusVisual\x18\x06 \x01(\x05R\x15growthRateBonusVisual\"\x89\x02\n" +
+	"\x15growthRateBonusVisual\x18\x06 \x01(\x05R\x15growthRateBonusVisual\"\xbb\x02\n" +
 	"\x19ProduceHighScoreCharacter\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x12\n" +
 	"\x04rank\x18\x02 \x01(\x05R\x04rank\x12\x1c\n" +
-	"\thighScore\x18\x03 \x01(\x05R\thighScore\x12H\n" +
+	"\thighScore\x18\x03 \x01(\x05R\thighScore\x120\n" +
+	"\x13receivedRewardScore\x18\x06 \x01(\x05R\x13receivedRewardScore\x12H\n" +
 	"\vrankRewards\x18\x04 \x03(\v2&.client.api.ProduceHighScoreRankRewardR\vrankRewards\x12N\n" +
-	"\x10highScoreRewards\x18\x05 \x03(\v2\".client.api.ProduceHighScoreRewardR\x10highScoreRewards\"\xf3\a\n" +
+	"\x10highScoreRewards\x18\x05 \x03(\v2\".client.api.ProduceHighScoreRewardR\x10highScoreRewards\"\xa5\b\n" +
 	"\x1bProduceHighScoreGetResponse\x12^\n" +
 	"\x19produceHighScoreEventType\x18\n" +
 	" \x01(\x0e2 .penum.ProduceHighScoreEventTypeR\x19produceHighScoreEventType\x12\"\n" +
 	"\ftitleAssetId\x18\x01 \x01(\tR\ftitleAssetId\x12\x12\n" +
 	"\x04rank\x18\x02 \x01(\x05R\x04rank\x12\x1c\n" +
-	"\thighScore\x18\x03 \x01(\x05R\thighScore\x12N\n" +
+	"\thighScore\x18\x03 \x01(\x05R\thighScore\x120\n" +
+	"\x13receivedRewardScore\x18\r \x01(\x05R\x13receivedRewardScore\x12N\n" +
 	"\x10highScoreRewards\x18\x04 \x03(\v2\".client.api.ProduceHighScoreRewardR\x10highScoreRewards\x12H\n" +
 	"\vrankRewards\x18\x05 \x03(\v2&.client.api.ProduceHighScoreRankRewardR\vrankRewards\x12E\n" +
 	"\n" +
@@ -37893,7 +38624,31 @@ const file_papi_proto_rawDesc = "" +
 	"\n" +
 	"followedBy\x18\x06 \x01(\bR\n" +
 	"followedBy\x12$\n" +
-	"\risGuildMember\x18\a \x01(\bR\risGuildMember\"\x8e\x01\n" +
+	"\risGuildMember\x18\a \x01(\bR\risGuildMember\"V\n" +
+	"2ProduceNextIdolAuditionMasterListRankRewardRequest\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\"\x86\x03\n" +
+	"3ProduceNextIdolAuditionMasterListRankRewardResponse\x12\x12\n" +
+	"\x04rank\x18\x01 \x01(\x05R\x04rank\x12h\n" +
+	"\vrankRewards\x18\x02 \x03(\v2F.client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.RewardR\vrankRewards\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\x91\x01\n" +
+	"\x06Reward\x12\x1c\n" +
+	"\tupperRank\x18\x01 \x01(\x05R\tupperRank\x12\x1c\n" +
+	"\tlowerRank\x18\x02 \x01(\x05R\tlowerRank\x12 \n" +
+	"\vborderScore\x18\x03 \x01(\x05R\vborderScore\x12)\n" +
+	"\arewards\x18\x04 \x03(\v2\x0f.pcommon.RewardR\arewards\"O\n" +
+	"+ProduceNextIdolAuditionMasterRankingRequest\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\"\xf8\x03\n" +
+	",ProduceNextIdolAuditionMasterRankingResponse\x12Y\n" +
+	"\bselfRank\x18\x01 \x01(\v2=.client.api.ProduceNextIdolAuditionMasterRankingResponse.RankR\bselfRank\x12S\n" +
+	"\x05ranks\x18\x02 \x03(\v2=.client.api.ProduceNextIdolAuditionMasterRankingResponse.RankR\x05ranks\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xd8\x01\n" +
+	"\x04Rank\x12\x12\n" +
+	"\x04rank\x18\x01 \x01(\x05R\x04rank\x12\x14\n" +
+	"\x05score\x18\x02 \x01(\x05R\x05score\x12(\n" +
+	"\x05grade\x18\x04 \x01(\x0e2\x12.penum.ResultGradeR\x05grade\x12&\n" +
+	"\x0eidolCardSkinId\x18\x06 \x01(\tR\x0eidolCardSkinId\x12\"\n" +
+	"\fuserMemoryId\x18\a \x01(\tR\fuserMemoryId\x120\n" +
+	"\aprofile\x18c \x01(\v2\x16.pcommon.SimpleProfileR\aprofile\"\x8e\x01\n" +
 	"\x12ProduceNextRequest\x12 \n" +
 	"\vproduceUuid\x18\x01 \x01(\tR\vproduceUuid\x122\n" +
 	"\bstepType\x18\x02 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12\"\n" +
@@ -37947,6 +38702,14 @@ const file_papi_proto_rawDesc = "" +
 	"\aisFirst\x18\x01 \x01(\bR\aisFirst\x12;\n" +
 	"\rrewardResults\x18\x02 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12B\n" +
 	"\reffectResults\x18e \x03(\v2\x1c.pcommon.ProduceEffectResultR\reffectResults\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"J\n" +
+	"&ProduceReportDearnessBoostEventRequest\x12 \n" +
+	"\vproduceUuid\x18\x01 \x01(\tR\vproduceUuid\"\xd6\x02\n" +
+	"'ProduceReportDearnessBoostEventResponse\x12:\n" +
+	"\x18missionPanelSheetGroupId\x18\x01 \x01(\tR\x18missionPanelSheetGroupId\x12,\n" +
+	"\bmissions\x18\x02 \x03(\v2\x10.pmaster.MissionR\bmissions\x12E\n" +
+	"\x12groupRewardResults\x18\x03 \x03(\v2\x15.pcommon.RewardResultR\x12groupRewardResults\x12;\n" +
+	"\rrewardResults\x18\x04 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"D\n" +
 	" ProduceReportGuildMissionRequest\x12 \n" +
 	"\vproduceUuid\x18\x01 \x01(\tR\vproduceUuid\"\xcf\x02\n" +
@@ -38708,6 +39471,11 @@ const file_papi_proto_rawDesc = "" +
 	"\x06isSkip\x18\x03 \x01(\bR\x06isSkip\"\x8f\x01\n" +
 	"\x11StoryReadResponse\x12;\n" +
 	"\rrewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"i\n" +
+	"\x1fStoryUnlockDearnessStoryRequest\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12$\n" +
+	"\rdearnessLevel\x18\x02 \x01(\x05R\rdearnessLevel\"a\n" +
+	" StoryUnlockDearnessStoryResponse\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"H\n" +
 	"\x1eStoryUnlockProduceStoryRequest\x12&\n" +
 	"\x0eproduceStoryId\x18\x01 \x01(\tR\x0eproduceStoryId\"`\n" +
@@ -39286,7 +40054,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x06Delete\x12\x1e.client.api.PhotoDeleteRequest\x1a\x1f.client.api.PhotoDeleteResponse2a\n" +
 	"\n" +
 	"Preference\x12S\n" +
-	"\x06Update\x12#.client.api.PreferenceUpdateRequest\x1a$.client.api.PreferenceUpdateResponse2\xea)\n" +
+	"\x06Update\x12#.client.api.PreferenceUpdateRequest\x1a$.client.api.PreferenceUpdateResponse2\xf0*\n" +
 	"\aProduce\x128\n" +
 	"\x03Top\x12\x11.client.api.Empty\x1a\x1e.client.api.ProduceTopResponse\x12z\n" +
 	"\x15ChangeForceLiveCommon\x12/.client.api.ProduceChangeForceLiveCommonRequest\x1a0.client.api.ProduceChangeForceLiveCommonResponse\x12z\n" +
@@ -39331,7 +40099,8 @@ const file_papi_proto_rawDesc = "" +
 	"\fRerollMemory\x12&.client.api.ProduceRerollMemoryRequest\x1a'.client.api.ProduceRerollMemoryResponse\x12D\n" +
 	"\x03End\x12\x1d.client.api.ProduceEndRequest\x1a\x1e.client.api.ProduceEndResponse\x12M\n" +
 	"\x06Result\x12 .client.api.ProduceResultRequest\x1a!.client.api.ProduceResultResponse\x12q\n" +
-	"\x12ReportGuildMission\x12,.client.api.ProduceReportGuildMissionRequest\x1a-.client.api.ProduceReportGuildMissionResponse\x12S\n" +
+	"\x12ReportGuildMission\x12,.client.api.ProduceReportGuildMissionRequest\x1a-.client.api.ProduceReportGuildMissionResponse\x12\x83\x01\n" +
+	"\x18ReportDearnessBoostEvent\x122.client.api.ProduceReportDearnessBoostEventRequest\x1a3.client.api.ProduceReportDearnessBoostEventResponse\x12S\n" +
 	"\bContinue\x12\".client.api.ProduceContinueRequest\x1a#.client.api.ProduceContinueResponse\x12>\n" +
 	"\x06Retire\x12\x11.client.api.Empty\x1a!.client.api.ProduceRetireResponse\x12P\n" +
 	"\aHistory\x12!.client.api.ProduceHistoryRequest\x1a\".client.api.ProduceHistoryResponse\x12Y\n" +
@@ -39344,7 +40113,10 @@ const file_papi_proto_rawDesc = "" +
 	"\x10ProduceHighScore\x12A\n" +
 	"\x03Get\x12\x11.client.api.Empty\x1a'.client.api.ProduceHighScoreGetResponse\x12b\n" +
 	"\aRanking\x12*.client.api.ProduceHighScoreRankingRequest\x1a+.client.api.ProduceHighScoreRankingResponse\x12W\n" +
-	"\x0eListRankReward\x12\x11.client.api.Empty\x1a2.client.api.ProduceHighScoreListRankRewardResponse2\xc6\x04\n" +
+	"\x0eListRankReward\x12\x11.client.api.Empty\x1a2.client.api.ProduceHighScoreListRankRewardResponse2\xb1\x02\n" +
+	"\x1dProduceNextIdolAuditionMaster\x12|\n" +
+	"\aRanking\x127.client.api.ProduceNextIdolAuditionMasterRankingRequest\x1a8.client.api.ProduceNextIdolAuditionMasterRankingResponse\x12\x91\x01\n" +
+	"\x0eListRankReward\x12>.client.api.ProduceNextIdolAuditionMasterListRankRewardRequest\x1a?.client.api.ProduceNextIdolAuditionMasterListRankRewardResponse2\xc6\x04\n" +
 	"\aProfile\x12D\n" +
 	"\x03Get\x12\x1d.client.api.ProfileGetRequest\x1a\x1e.client.api.ProfileGetResponse\x12Y\n" +
 	"\n" +
@@ -39389,13 +40161,14 @@ const file_papi_proto_rawDesc = "" +
 	"StoryEvent\x12J\n" +
 	"\x03Top\x12 .client.api.StoryEventTopRequest\x1a!.client.api.StoryEventTopResponse\x12q\n" +
 	"\x10ListGuildMission\x12-.client.api.StoryEventListGuildMissionRequest\x1a..client.api.StoryEventListGuildMissionResponse\x12z\n" +
-	"\x13ReceiveGuildMission\x120.client.api.StoryEventReceiveGuildMissionRequest\x1a1.client.api.StoryEventReceiveGuildMissionResponse2\xdb\x03\n" +
+	"\x13ReceiveGuildMission\x120.client.api.StoryEventReceiveGuildMissionRequest\x1a1.client.api.StoryEventReceiveGuildMissionResponse2\xcd\x04\n" +
 	"\x05Story\x12C\n" +
 	"\x04Read\x12\x1c.client.api.StoryReadRequest\x1a\x1d.client.api.StoryReadResponse\x12g\n" +
 	"\x10ReadProduceStory\x12(.client.api.StoryReadProduceStoryRequest\x1a).client.api.StoryReadProduceStoryResponse\x12j\n" +
 	"\x11ReadDearnessStory\x12).client.api.StoryReadDearnessStoryRequest\x1a*.client.api.StoryReadDearnessStoryResponse\x12I\n" +
 	"\x06Unlock\x12\x1e.client.api.StoryUnlockRequest\x1a\x1f.client.api.StoryUnlockResponse\x12m\n" +
-	"\x12UnlockProduceStory\x12*.client.api.StoryUnlockProduceStoryRequest\x1a+.client.api.StoryUnlockProduceStoryResponse2\x9f\x03\n" +
+	"\x12UnlockProduceStory\x12*.client.api.StoryUnlockProduceStoryRequest\x1a+.client.api.StoryUnlockProduceStoryResponse\x12p\n" +
+	"\x13UnlockDearnessStory\x12+.client.api.StoryUnlockDearnessStoryRequest\x1a,.client.api.StoryUnlockDearnessStoryResponse2\x9f\x03\n" +
 	"\vSupportCard\x12X\n" +
 	"\aEnhance\x12%.client.api.SupportCardEnhanceRequest\x1a&.client.api.SupportCardEnhanceResponse\x12\x82\x01\n" +
 	"\x15UpgradeLevelLimitRank\x123.client.api.SupportCardUpgradeLevelLimitRankRequest\x1a4.client.api.SupportCardUpgradeLevelLimitRankResponse\x12[\n" +
@@ -39464,2027 +40237,2063 @@ func file_papi_proto_rawDescGZIP() []byte {
 	return file_papi_proto_rawDescData
 }
 
-var file_papi_proto_msgTypes = make([]protoimpl.MessageInfo, 613)
+var file_papi_proto_msgTypes = make([]protoimpl.MessageInfo, 625)
 var file_papi_proto_goTypes = []any{
-	(*Empty)(nil),                                                          // 0: client.api.Empty
-	(*AuthAgreeTermsRequest)(nil),                                          // 1: client.api.AuthAgreeTermsRequest
-	(*AuthAgreeTermsResponse)(nil),                                         // 2: client.api.AuthAgreeTermsResponse
-	(*AuthCreateResponse)(nil),                                             // 3: client.api.AuthCreateResponse
-	(*AuthGetConsentResponse)(nil),                                         // 4: client.api.AuthGetConsentResponse
-	(*AuthLinkBandaiNamcoIdRequest)(nil),                                   // 5: client.api.AuthLinkBandaiNamcoIdRequest
-	(*AuthLinkBandaiNamcoIdResponse)(nil),                                  // 6: client.api.AuthLinkBandaiNamcoIdResponse
-	(*AuthLoginRequest)(nil),                                               // 7: client.api.AuthLoginRequest
-	(*AuthLoginResponse)(nil),                                              // 8: client.api.AuthLoginResponse
-	(*AuthMigrateDmmGamesIdResponse)(nil),                                  // 9: client.api.AuthMigrateDmmGamesIdResponse
-	(*AuthMigrateRequest)(nil),                                             // 10: client.api.AuthMigrateRequest
-	(*AuthMigrateResponse)(nil),                                            // 11: client.api.AuthMigrateResponse
-	(*AuthPrepareMigrationBandaiNamcoIdRequest)(nil),                       // 12: client.api.AuthPrepareMigrationBandaiNamcoIdRequest
-	(*AuthPrepareMigrationBandaiNamcoIdResponse)(nil),                      // 13: client.api.AuthPrepareMigrationBandaiNamcoIdResponse
-	(*AuthSendConsentRequest)(nil),                                         // 14: client.api.AuthSendConsentRequest
-	(*AuthSendConsentResponse)(nil),                                        // 15: client.api.AuthSendConsentResponse
-	(*AuthUnlinkResponse)(nil),                                             // 16: client.api.AuthUnlinkResponse
-	(*CharacterCheckRosterRequest)(nil),                                    // 17: client.api.CharacterCheckRosterRequest
-	(*CharacterCheckRosterResponse)(nil),                                   // 18: client.api.CharacterCheckRosterResponse
-	(*CoinGashaDrawRequest)(nil),                                           // 19: client.api.CoinGashaDrawRequest
-	(*CoinGashaDrawResponse)(nil),                                          // 20: client.api.CoinGashaDrawResponse
-	(*CoinGashaDrawResult)(nil),                                            // 21: client.api.CoinGashaDrawResult
-	(*CoinGashaGetRequest)(nil),                                            // 22: client.api.CoinGashaGetRequest
-	(*CoinGashaGetResponse)(nil),                                           // 23: client.api.CoinGashaGetResponse
-	(*CoinGashaListResponse)(nil),                                          // 24: client.api.CoinGashaListResponse
-	(*CoinGashaResetBoxRequest)(nil),                                       // 25: client.api.CoinGashaResetBoxRequest
-	(*CoinGashaResetBoxResponse)(nil),                                      // 26: client.api.CoinGashaResetBoxResponse
-	(*Consent)(nil),                                                        // 27: client.api.Consent
-	(*CostumeCheckRequest)(nil),                                            // 28: client.api.CostumeCheckRequest
-	(*CostumeCheckResponse)(nil),                                           // 29: client.api.CostumeCheckResponse
-	(*CostumeSetRequest)(nil),                                              // 30: client.api.CostumeSetRequest
-	(*CostumeSetResponse)(nil),                                             // 31: client.api.CostumeSetResponse
-	(*DefaultGashaProbability)(nil),                                        // 32: client.api.DefaultGashaProbability
-	(*DonationRequest)(nil),                                                // 33: client.api.DonationRequest
-	(*ExchangeExecuteRequest)(nil),                                         // 34: client.api.ExchangeExecuteRequest
-	(*ExchangeExecuteResponse)(nil),                                        // 35: client.api.ExchangeExecuteResponse
-	(*ExchangeGetRequest)(nil),                                             // 36: client.api.ExchangeGetRequest
-	(*ExchangeGetResponse)(nil),                                            // 37: client.api.ExchangeGetResponse
-	(*ExchangeInfo)(nil),                                                   // 38: client.api.ExchangeInfo
-	(*ExchangeItem)(nil),                                                   // 39: client.api.ExchangeItem
-	(*ExchangeListRequest)(nil),                                            // 40: client.api.ExchangeListRequest
-	(*ExchangeListResponse)(nil),                                           // 41: client.api.ExchangeListResponse
-	(*ExchangeResetRequest)(nil),                                           // 42: client.api.ExchangeResetRequest
-	(*ExchangeResetResponse)(nil),                                          // 43: client.api.ExchangeResetResponse
-	(*FriendDeleteFollowerRequest)(nil),                                    // 44: client.api.FriendDeleteFollowerRequest
-	(*FriendDeleteFollowerResponse)(nil),                                   // 45: client.api.FriendDeleteFollowerResponse
-	(*FriendFollowRequest)(nil),                                            // 46: client.api.FriendFollowRequest
-	(*FriendFollowResponse)(nil),                                           // 47: client.api.FriendFollowResponse
-	(*FriendInfo)(nil),                                                     // 48: client.api.FriendInfo
-	(*FriendListResponse)(nil),                                             // 49: client.api.FriendListResponse
-	(*FriendListSuggestionResponse)(nil),                                   // 50: client.api.FriendListSuggestionResponse
-	(*FriendUnFollowRequest)(nil),                                          // 51: client.api.FriendUnFollowRequest
-	(*FriendUnFollowResponse)(nil),                                         // 52: client.api.FriendUnFollowResponse
-	(*GashaDrawRequest)(nil),                                               // 53: client.api.GashaDrawRequest
-	(*GashaDrawResponse)(nil),                                              // 54: client.api.GashaDrawResponse
-	(*GashaDrawResult)(nil),                                                // 55: client.api.GashaDrawResult
-	(*GashaDrawSelectPickupRequest)(nil),                                   // 56: client.api.GashaDrawSelectPickupRequest
-	(*GashaDrawSelectPickupResponse)(nil),                                  // 57: client.api.GashaDrawSelectPickupResponse
-	(*GashaDrawStepUpRequest)(nil),                                         // 58: client.api.GashaDrawStepUpRequest
-	(*GashaDrawStepUpResponse)(nil),                                        // 59: client.api.GashaDrawStepUpResponse
-	(*GashaExchangePointRequest)(nil),                                      // 60: client.api.GashaExchangePointRequest
-	(*GashaExchangePointResponse)(nil),                                     // 61: client.api.GashaExchangePointResponse
-	(*GashaExpirePointResponse)(nil),                                       // 62: client.api.GashaExpirePointResponse
-	(*GashaGetPointExchangeRequest)(nil),                                   // 63: client.api.GashaGetPointExchangeRequest
-	(*GashaGetPointExchangeResponse)(nil),                                  // 64: client.api.GashaGetPointExchangeResponse
-	(*GashaGetPrecautionRequest)(nil),                                      // 65: client.api.GashaGetPrecautionRequest
-	(*GashaGetPrecautionResponse)(nil),                                     // 66: client.api.GashaGetPrecautionResponse
-	(*GashaGetProbabilityRequest)(nil),                                     // 67: client.api.GashaGetProbabilityRequest
-	(*GashaGetProbabilityResponse)(nil),                                    // 68: client.api.GashaGetProbabilityResponse
-	(*GashaGetSelectPickupProbabilityRequest)(nil),                         // 69: client.api.GashaGetSelectPickupProbabilityRequest
-	(*GashaGetSelectPickupProbabilityResponse)(nil),                        // 70: client.api.GashaGetSelectPickupProbabilityResponse
-	(*GashaGetStepUpProbabilityRequest)(nil),                               // 71: client.api.GashaGetStepUpProbabilityRequest
-	(*GashaGetStepUpProbabilityResponse)(nil),                              // 72: client.api.GashaGetStepUpProbabilityResponse
-	(*GashaListResponse)(nil),                                              // 73: client.api.GashaListResponse
-	(*GashaProbability)(nil),                                               // 74: client.api.GashaProbability
-	(*GashaRarityProbability)(nil),                                         // 75: client.api.GashaRarityProbability
-	(*GashaSelectPickupRequest)(nil),                                       // 76: client.api.GashaSelectPickupRequest
-	(*GashaSelectPickupResponse)(nil),                                      // 77: client.api.GashaSelectPickupResponse
-	(*GiftCountResponse)(nil),                                              // 78: client.api.GiftCountResponse
-	(*GiftListHistoryRequest)(nil),                                         // 79: client.api.GiftListHistoryRequest
-	(*GiftListHistoryResponse)(nil),                                        // 80: client.api.GiftListHistoryResponse
-	(*GiftListRequest)(nil),                                                // 81: client.api.GiftListRequest
-	(*GiftListResponse)(nil),                                               // 82: client.api.GiftListResponse
-	(*GiftOpenRequest)(nil),                                                // 83: client.api.GiftOpenRequest
-	(*GiftOpenResponse)(nil),                                               // 84: client.api.GiftOpenResponse
-	(*GuildApplyJoinRequestRequest)(nil),                                   // 85: client.api.GuildApplyJoinRequestRequest
-	(*GuildApplyJoinRequestResponse)(nil),                                  // 86: client.api.GuildApplyJoinRequestResponse
-	(*GuildApproveJoinRequestRequest)(nil),                                 // 87: client.api.GuildApproveJoinRequestRequest
-	(*GuildApproveJoinRequestResponse)(nil),                                // 88: client.api.GuildApproveJoinRequestResponse
-	(*GuildCancelJoinRequestRequest)(nil),                                  // 89: client.api.GuildCancelJoinRequestRequest
-	(*GuildCancelJoinRequestResponse)(nil),                                 // 90: client.api.GuildCancelJoinRequestResponse
-	(*GuildChangeLeaderRequest)(nil),                                       // 91: client.api.GuildChangeLeaderRequest
-	(*GuildChangeLeaderResponse)(nil),                                      // 92: client.api.GuildChangeLeaderResponse
-	(*GuildDismissRequest)(nil),                                            // 93: client.api.GuildDismissRequest
-	(*GuildDismissResponse)(nil),                                           // 94: client.api.GuildDismissResponse
-	(*GuildDissolveResponse)(nil),                                          // 95: client.api.GuildDissolveResponse
-	(*GuildDonateRequest)(nil),                                             // 96: client.api.GuildDonateRequest
-	(*GuildDonateResponse)(nil),                                            // 97: client.api.GuildDonateResponse
-	(*GuildDonationInfo)(nil),                                              // 98: client.api.GuildDonationInfo
-	(*GuildEditDetailRequest)(nil),                                         // 99: client.api.GuildEditDetailRequest
-	(*GuildEditDetailResponse)(nil),                                        // 100: client.api.GuildEditDetailResponse
-	(*GuildEditLeaderMessageRequest)(nil),                                  // 101: client.api.GuildEditLeaderMessageRequest
-	(*GuildEditLeaderMessageResponse)(nil),                                 // 102: client.api.GuildEditLeaderMessageResponse
-	(*GuildEstablishRequest)(nil),                                          // 103: client.api.GuildEstablishRequest
-	(*GuildEstablishResponse)(nil),                                         // 104: client.api.GuildEstablishResponse
-	(*GuildGetRequest)(nil),                                                // 105: client.api.GuildGetRequest
-	(*GuildGetResponse)(nil),                                               // 106: client.api.GuildGetResponse
-	(*GuildInfo)(nil),                                                      // 107: client.api.GuildInfo
-	(*GuildLeaveResponse)(nil),                                             // 108: client.api.GuildLeaveResponse
-	(*GuildListDonationRequestResponse)(nil),                               // 109: client.api.GuildListDonationRequestResponse
-	(*GuildListJoinRequestResponse)(nil),                                   // 110: client.api.GuildListJoinRequestResponse
-	(*GuildListMemberResponse)(nil),                                        // 111: client.api.GuildListMemberResponse
-	(*GuildMemberInfo)(nil),                                                // 112: client.api.GuildMemberInfo
-	(*GuildReactionInfo)(nil),                                              // 113: client.api.GuildReactionInfo
-	(*GuildReceiveDonationResponse)(nil),                                   // 114: client.api.GuildReceiveDonationResponse
-	(*GuildRejectJoinRequestRequest)(nil),                                  // 115: client.api.GuildRejectJoinRequestRequest
-	(*GuildRejectJoinRequestResponse)(nil),                                 // 116: client.api.GuildRejectJoinRequestResponse
-	(*GuildRequestDonationRequest)(nil),                                    // 117: client.api.GuildRequestDonationRequest
-	(*GuildRequestDonationResponse)(nil),                                   // 118: client.api.GuildRequestDonationResponse
-	(*GuildSearchRequest)(nil),                                             // 119: client.api.GuildSearchRequest
-	(*GuildSearchResponse)(nil),                                            // 120: client.api.GuildSearchResponse
-	(*GuildTopResponse)(nil),                                               // 121: client.api.GuildTopResponse
-	(*GuildUpdateLeaderMessageReactionRequest)(nil),                        // 122: client.api.GuildUpdateLeaderMessageReactionRequest
-	(*GuildUpdateLeaderMessageReactionResponse)(nil),                       // 123: client.api.GuildUpdateLeaderMessageReactionResponse
-	(*GvgRaidDeck)(nil),                                                    // 124: client.api.GvgRaidDeck
-	(*GvgRaidEndRequest)(nil),                                              // 125: client.api.GvgRaidEndRequest
-	(*GvgRaidEndResponse)(nil),                                             // 126: client.api.GvgRaidEndResponse
-	(*GvgRaidGetProgressResponse)(nil),                                     // 127: client.api.GvgRaidGetProgressResponse
-	(*GvgRaidGuildRankReward)(nil),                                         // 128: client.api.GvgRaidGuildRankReward
-	(*GvgRaidGuildRankingResponse)(nil),                                    // 129: client.api.GvgRaidGuildRankingResponse
-	(*GvgRaidPlayTestRequest)(nil),                                         // 130: client.api.GvgRaidPlayTestRequest
-	(*GvgRaidPlayTestResponse)(nil),                                        // 131: client.api.GvgRaidPlayTestResponse
-	(*GvgRaidPointReward)(nil),                                             // 132: client.api.GvgRaidPointReward
-	(*GvgRaidSlot)(nil),                                                    // 133: client.api.GvgRaidSlot
-	(*GvgRaidStageChallengeReward)(nil),                                    // 134: client.api.GvgRaidStageChallengeReward
-	(*GvgRaidStartRequest)(nil),                                            // 135: client.api.GvgRaidStartRequest
-	(*GvgRaidStartResponse)(nil),                                           // 136: client.api.GvgRaidStartResponse
-	(*GvgRaidTopResponse)(nil),                                             // 137: client.api.GvgRaidTopResponse
-	(*GvgRaidUpdateDeckRequest)(nil),                                       // 138: client.api.GvgRaidUpdateDeckRequest
-	(*GvgRaidUpdateDeckResponse)(nil),                                      // 139: client.api.GvgRaidUpdateDeckResponse
-	(*GvgRaidUser)(nil),                                                    // 140: client.api.GvgRaidUser
-	(*GvgRaidUserRankingResponse)(nil),                                     // 141: client.api.GvgRaidUserRankingResponse
-	(*HealthCheckRequest)(nil),                                             // 142: client.api.HealthCheckRequest
-	(*HealthCheckResponse)(nil),                                            // 143: client.api.HealthCheckResponse
-	(*HomeConfirmBanWarningResponse)(nil),                                  // 144: client.api.HomeConfirmBanWarningResponse
-	(*HomeEnterResponse)(nil),                                              // 145: client.api.HomeEnterResponse
-	(*HomeListEventResponse)(nil),                                          // 146: client.api.HomeListEventResponse
-	(*HomeLoginResponse)(nil),                                              // 147: client.api.HomeLoginResponse
-	(*HomeSetCharactersRequest)(nil),                                       // 148: client.api.HomeSetCharactersRequest
-	(*HomeSetCharactersResponse)(nil),                                      // 149: client.api.HomeSetCharactersResponse
-	(*IdolCardChangeSkinRequest)(nil),                                      // 150: client.api.IdolCardChangeSkinRequest
-	(*IdolCardChangeSkinResponse)(nil),                                     // 151: client.api.IdolCardChangeSkinResponse
-	(*IdolCardProbability)(nil),                                            // 152: client.api.IdolCardProbability
-	(*IdolCardRarityProbability)(nil),                                      // 153: client.api.IdolCardRarityProbability
-	(*IdolCardReleaseRequest)(nil),                                         // 154: client.api.IdolCardReleaseRequest
-	(*IdolCardReleaseResponse)(nil),                                        // 155: client.api.IdolCardReleaseResponse
-	(*IdolCardUpgradeLevelLimitRankRequest)(nil),                           // 156: client.api.IdolCardUpgradeLevelLimitRankRequest
-	(*IdolCardUpgradeLevelLimitRankResponse)(nil),                          // 157: client.api.IdolCardUpgradeLevelLimitRankResponse
-	(*IdolCardUpgradePotentialRankRequest)(nil),                            // 158: client.api.IdolCardUpgradePotentialRankRequest
-	(*IdolCardUpgradePotentialRankResponse)(nil),                           // 159: client.api.IdolCardUpgradePotentialRankResponse
-	(*InvitationEnterInvitationCodeRequest)(nil),                           // 160: client.api.InvitationEnterInvitationCodeRequest
-	(*InvitationEnterInvitationCodeResponse)(nil),                          // 161: client.api.InvitationEnterInvitationCodeResponse
-	(*InvitationListInviteUserResponse)(nil),                               // 162: client.api.InvitationListInviteUserResponse
-	(*InvitationReceiveInvitationPointRequest)(nil),                        // 163: client.api.InvitationReceiveInvitationPointRequest
-	(*InvitationReceiveInvitationPointResponse)(nil),                       // 164: client.api.InvitationReceiveInvitationPointResponse
-	(*InviteUser)(nil),                                                     // 165: client.api.InviteUser
-	(*ItemExchangeIdolCardPieceRequest)(nil),                               // 166: client.api.ItemExchangeIdolCardPieceRequest
-	(*ItemExchangeIdolCardPieceResponse)(nil),                              // 167: client.api.ItemExchangeIdolCardPieceResponse
-	(*ItemSellRequest)(nil),                                                // 168: client.api.ItemSellRequest
-	(*ItemSellResponse)(nil),                                               // 169: client.api.ItemSellResponse
-	(*ItemUseActionPointRecoveryRequest)(nil),                              // 170: client.api.ItemUseActionPointRecoveryRequest
-	(*ItemUseActionPointRecoveryResponse)(nil),                             // 171: client.api.ItemUseActionPointRecoveryResponse
-	(*LoginBonusCheckResponse)(nil),                                        // 172: client.api.LoginBonusCheckResponse
-	(*LoginBonusConfirmResponse)(nil),                                      // 173: client.api.LoginBonusConfirmResponse
-	(*MasterGetResponse)(nil),                                              // 174: client.api.MasterGetResponse
-	(*MediaPlayRequest)(nil),                                               // 175: client.api.MediaPlayRequest
-	(*MediaPlayResponse)(nil),                                              // 176: client.api.MediaPlayResponse
-	(*MeishiDeleteRequest)(nil),                                            // 177: client.api.MeishiDeleteRequest
-	(*MeishiDeleteResponse)(nil),                                           // 178: client.api.MeishiDeleteResponse
-	(*MeishiFollowRequest)(nil),                                            // 179: client.api.MeishiFollowRequest
-	(*MeishiFollowResponse)(nil),                                           // 180: client.api.MeishiFollowResponse
-	(*MeishiGetDetailRequest)(nil),                                         // 181: client.api.MeishiGetDetailRequest
-	(*MeishiGetDetailResponse)(nil),                                        // 182: client.api.MeishiGetDetailResponse
-	(*MeishiGetRequest)(nil),                                               // 183: client.api.MeishiGetRequest
-	(*MeishiGetResponse)(nil),                                              // 184: client.api.MeishiGetResponse
-	(*MeishiListFollowResponse)(nil),                                       // 185: client.api.MeishiListFollowResponse
-	(*MeishiListResponse)(nil),                                             // 186: client.api.MeishiListResponse
-	(*MeishiReportXPostMissionRequest)(nil),                                // 187: client.api.MeishiReportXPostMissionRequest
-	(*MeishiReportXPostMissionResponse)(nil),                               // 188: client.api.MeishiReportXPostMissionResponse
-	(*MeishiSetRequest)(nil),                                               // 189: client.api.MeishiSetRequest
-	(*MeishiSetResponse)(nil),                                              // 190: client.api.MeishiSetResponse
-	(*MeishiUnfollowRequest)(nil),                                          // 191: client.api.MeishiUnfollowRequest
-	(*MeishiUnfollowResponse)(nil),                                         // 192: client.api.MeishiUnfollowResponse
-	(*MeishiUpdateRequest)(nil),                                            // 193: client.api.MeishiUpdateRequest
-	(*MeishiUpdateResponse)(nil),                                           // 194: client.api.MeishiUpdateResponse
-	(*MemoryExchangeRequest)(nil),                                          // 195: client.api.MemoryExchangeRequest
-	(*MemoryExchangeResponse)(nil),                                         // 196: client.api.MemoryExchangeResponse
-	(*MemoryFixInheritRequest)(nil),                                        // 197: client.api.MemoryFixInheritRequest
-	(*MemoryFixInheritResponse)(nil),                                       // 198: client.api.MemoryFixInheritResponse
-	(*MemoryInheritRequest)(nil),                                           // 199: client.api.MemoryInheritRequest
-	(*MemoryInheritResponse)(nil),                                          // 200: client.api.MemoryInheritResponse
-	(*MemoryReshootingRequest)(nil),                                        // 201: client.api.MemoryReshootingRequest
-	(*MemoryReshootingResponse)(nil),                                       // 202: client.api.MemoryReshootingResponse
-	(*MemoryUpdateProtectionRequest)(nil),                                  // 203: client.api.MemoryUpdateProtectionRequest
-	(*MemoryUpdateProtectionResponse)(nil),                                 // 204: client.api.MemoryUpdateProtectionResponse
-	(*MemoryUpdateTagSettingRequest)(nil),                                  // 205: client.api.MemoryUpdateTagSettingRequest
-	(*MemoryUpdateTagSettingResponse)(nil),                                 // 206: client.api.MemoryUpdateTagSettingResponse
-	(*MissionExchangePassPointRequest)(nil),                                // 207: client.api.MissionExchangePassPointRequest
-	(*MissionExchangePassPointResponse)(nil),                               // 208: client.api.MissionExchangePassPointResponse
-	(*MissionListEventResponse)(nil),                                       // 209: client.api.MissionListEventResponse
-	(*MissionReceiveGroupAllRequest)(nil),                                  // 210: client.api.MissionReceiveGroupAllRequest
-	(*MissionReceiveGroupAllResponse)(nil),                                 // 211: client.api.MissionReceiveGroupAllResponse
-	(*MissionReceiveGroupRequest)(nil),                                     // 212: client.api.MissionReceiveGroupRequest
-	(*MissionReceiveGroupResponse)(nil),                                    // 213: client.api.MissionReceiveGroupResponse
-	(*MissionReceivePassRequest)(nil),                                      // 214: client.api.MissionReceivePassRequest
-	(*MissionReceivePassResponse)(nil),                                     // 215: client.api.MissionReceivePassResponse
-	(*MissionReceiveRequest)(nil),                                          // 216: client.api.MissionReceiveRequest
-	(*MissionReceiveResponse)(nil),                                         // 217: client.api.MissionReceiveResponse
-	(*MissionUrlTransitionRequest)(nil),                                    // 218: client.api.MissionUrlTransitionRequest
-	(*MissionUrlTransitionResponse)(nil),                                   // 219: client.api.MissionUrlTransitionResponse
-	(*MoneyReceiveResponse)(nil),                                           // 220: client.api.MoneyReceiveResponse
-	(*MovieCreateRequest)(nil),                                             // 221: client.api.MovieCreateRequest
-	(*MovieCreateResponse)(nil),                                            // 222: client.api.MovieCreateResponse
-	(*MovieDeleteRequest)(nil),                                             // 223: client.api.MovieDeleteRequest
-	(*MovieDeleteResponse)(nil),                                            // 224: client.api.MovieDeleteResponse
-	(*MovieRetakeRequest)(nil),                                             // 225: client.api.MovieRetakeRequest
-	(*MovieRetakeResponse)(nil),                                            // 226: client.api.MovieRetakeResponse
-	(*MusicSendActionLogRequest)(nil),                                      // 227: client.api.MusicSendActionLogRequest
-	(*MusicSendActionLogResponse)(nil),                                     // 228: client.api.MusicSendActionLogResponse
-	(*MusicSendBuyActionLogRequest)(nil),                                   // 229: client.api.MusicSendBuyActionLogRequest
-	(*MusicSendBuyActionLogResponse)(nil),                                  // 230: client.api.MusicSendBuyActionLogResponse
-	(*NoticeFetchListRequest)(nil),                                         // 231: client.api.NoticeFetchListRequest
-	(*NoticeFetchListResponse)(nil),                                        // 232: client.api.NoticeFetchListResponse
-	(*NoticeGetRequest)(nil),                                               // 233: client.api.NoticeGetRequest
-	(*NoticeGetResponse)(nil),                                              // 234: client.api.NoticeGetResponse
-	(*NoticeInfo)(nil),                                                     // 235: client.api.NoticeInfo
-	(*NoticeListAllResponse)(nil),                                          // 236: client.api.NoticeListAllResponse
-	(*NoticeUpdateCategoryTimeRequest)(nil),                                // 237: client.api.NoticeUpdateCategoryTimeRequest
-	(*NoticeUpdateCategoryTimeResponse)(nil),                               // 238: client.api.NoticeUpdateCategoryTimeResponse
-	(*NoticeUpdateDetailTimeRequest)(nil),                                  // 239: client.api.NoticeUpdateDetailTimeRequest
-	(*NoticeUpdateDetailTimeResponse)(nil),                                 // 240: client.api.NoticeUpdateDetailTimeResponse
-	(*PhotoCreateByMemoryRequest)(nil),                                     // 241: client.api.PhotoCreateByMemoryRequest
-	(*PhotoCreateByMemoryResponse)(nil),                                    // 242: client.api.PhotoCreateByMemoryResponse
-	(*PhotoCreateIdolRequest)(nil),                                         // 243: client.api.PhotoCreateIdolRequest
-	(*PhotoCreateIdolResponse)(nil),                                        // 244: client.api.PhotoCreateIdolResponse
-	(*PhotoCreateRequest)(nil),                                             // 245: client.api.PhotoCreateRequest
-	(*PhotoCreateResponse)(nil),                                            // 246: client.api.PhotoCreateResponse
-	(*PhotoDeleteRequest)(nil),                                             // 247: client.api.PhotoDeleteRequest
-	(*PhotoDeleteResponse)(nil),                                            // 248: client.api.PhotoDeleteResponse
-	(*PhotoUpdateNameRequest)(nil),                                         // 249: client.api.PhotoUpdateNameRequest
-	(*PhotoUpdateNameResponse)(nil),                                        // 250: client.api.PhotoUpdateNameResponse
-	(*PhotoUpdateProtectionRequest)(nil),                                   // 251: client.api.PhotoUpdateProtectionRequest
-	(*PhotoUpdateProtectionResponse)(nil),                                  // 252: client.api.PhotoUpdateProtectionResponse
-	(*PreferenceUpdateRequest)(nil),                                        // 253: client.api.PreferenceUpdateRequest
-	(*PreferenceUpdateResponse)(nil),                                       // 254: client.api.PreferenceUpdateResponse
-	(*ProduceActivateEffectRequest)(nil),                                   // 255: client.api.ProduceActivateEffectRequest
-	(*ProduceActivateEffectResponse)(nil),                                  // 256: client.api.ProduceActivateEffectResponse
-	(*ProduceChangeCostumeRequest)(nil),                                    // 257: client.api.ProduceChangeCostumeRequest
-	(*ProduceChangeCostumeResponse)(nil),                                   // 258: client.api.ProduceChangeCostumeResponse
-	(*ProduceChangeForceLiveCommonRequest)(nil),                            // 259: client.api.ProduceChangeForceLiveCommonRequest
-	(*ProduceChangeForceLiveCommonResponse)(nil),                           // 260: client.api.ProduceChangeForceLiveCommonResponse
-	(*ProduceCheckProgressRequest)(nil),                                    // 261: client.api.ProduceCheckProgressRequest
-	(*ProduceCheckProgressResponse)(nil),                                   // 262: client.api.ProduceCheckProgressResponse
-	(*ProduceContinueRequest)(nil),                                         // 263: client.api.ProduceContinueRequest
-	(*ProduceContinueResponse)(nil),                                        // 264: client.api.ProduceContinueResponse
-	(*ProduceDiscardDrinkRequest)(nil),                                     // 265: client.api.ProduceDiscardDrinkRequest
-	(*ProduceDiscardDrinkResponse)(nil),                                    // 266: client.api.ProduceDiscardDrinkResponse
-	(*ProduceEndBeforeLiveEvaluationRequest)(nil),                          // 267: client.api.ProduceEndBeforeLiveEvaluationRequest
-	(*ProduceEndBeforeLiveEvaluationResponse)(nil),                         // 268: client.api.ProduceEndBeforeLiveEvaluationResponse
-	(*ProduceEndRequest)(nil),                                              // 269: client.api.ProduceEndRequest
-	(*ProduceEndResponse)(nil),                                             // 270: client.api.ProduceEndResponse
-	(*ProduceExcludeProduceCardRequest)(nil),                               // 271: client.api.ProduceExcludeProduceCardRequest
-	(*ProduceExcludeProduceCardResponse)(nil),                              // 272: client.api.ProduceExcludeProduceCardResponse
-	(*ProduceGrowthResult)(nil),                                            // 273: client.api.ProduceGrowthResult
-	(*ProduceHighScoreCharacter)(nil),                                      // 274: client.api.ProduceHighScoreCharacter
-	(*ProduceHighScoreGetResponse)(nil),                                    // 275: client.api.ProduceHighScoreGetResponse
-	(*ProduceHighScoreListRankRewardResponse)(nil),                         // 276: client.api.ProduceHighScoreListRankRewardResponse
-	(*ProduceHighScoreRankReward)(nil),                                     // 277: client.api.ProduceHighScoreRankReward
-	(*ProduceHighScoreRankingRequest)(nil),                                 // 278: client.api.ProduceHighScoreRankingRequest
-	(*ProduceHighScoreRankingResponse)(nil),                                // 279: client.api.ProduceHighScoreRankingResponse
-	(*ProduceHighScoreResult)(nil),                                         // 280: client.api.ProduceHighScoreResult
-	(*ProduceHighScoreReward)(nil),                                         // 281: client.api.ProduceHighScoreReward
-	(*ProduceHistoryRequest)(nil),                                          // 282: client.api.ProduceHistoryRequest
-	(*ProduceHistoryResponse)(nil),                                         // 283: client.api.ProduceHistoryResponse
-	(*ProduceListRentalMemoryRequest)(nil),                                 // 284: client.api.ProduceListRentalMemoryRequest
-	(*ProduceListRentalMemoryResponse)(nil),                                // 285: client.api.ProduceListRentalMemoryResponse
-	(*ProduceListRentalSupportCardResponse)(nil),                           // 286: client.api.ProduceListRentalSupportCardResponse
-	(*ProduceNextRequest)(nil),                                             // 287: client.api.ProduceNextRequest
-	(*ProduceNextResponse)(nil),                                            // 288: client.api.ProduceNextResponse
-	(*ProduceRank)(nil),                                                    // 289: client.api.ProduceRank
-	(*ProduceRankingRequest)(nil),                                          // 290: client.api.ProduceRankingRequest
-	(*ProduceRankingResponse)(nil),                                         // 291: client.api.ProduceRankingResponse
-	(*ProduceRankingTopRequest)(nil),                                       // 292: client.api.ProduceRankingTopRequest
-	(*ProduceRankingTopResponse)(nil),                                      // 293: client.api.ProduceRankingTopResponse
-	(*ProduceReadAdvRequest)(nil),                                          // 294: client.api.ProduceReadAdvRequest
-	(*ProduceReadAdvResponse)(nil),                                         // 295: client.api.ProduceReadAdvResponse
-	(*ProduceReadDearnessStoryRequest)(nil),                                // 296: client.api.ProduceReadDearnessStoryRequest
-	(*ProduceReadDearnessStoryResponse)(nil),                               // 297: client.api.ProduceReadDearnessStoryResponse
-	(*ProduceReportGuildMissionRequest)(nil),                               // 298: client.api.ProduceReportGuildMissionRequest
-	(*ProduceReportGuildMissionResponse)(nil),                              // 299: client.api.ProduceReportGuildMissionResponse
-	(*ProduceRerollMemoryRequest)(nil),                                     // 300: client.api.ProduceRerollMemoryRequest
-	(*ProduceRerollMemoryResponse)(nil),                                    // 301: client.api.ProduceRerollMemoryResponse
-	(*ProduceRerollSelectProduceCardRequest)(nil),                          // 302: client.api.ProduceRerollSelectProduceCardRequest
-	(*ProduceRerollSelectProduceCardResponse)(nil),                         // 303: client.api.ProduceRerollSelectProduceCardResponse
-	(*ProduceResultRequest)(nil),                                           // 304: client.api.ProduceResultRequest
-	(*ProduceResultResponse)(nil),                                          // 305: client.api.ProduceResultResponse
-	(*ProduceRetireResponse)(nil),                                          // 306: client.api.ProduceRetireResponse
-	(*ProduceStartBeforeLiveEvaluationRequest)(nil),                        // 307: client.api.ProduceStartBeforeLiveEvaluationRequest
-	(*ProduceStartBeforeLiveEvaluationResponse)(nil),                       // 308: client.api.ProduceStartBeforeLiveEvaluationResponse
-	(*ProduceStartRequest)(nil),                                            // 309: client.api.ProduceStartRequest
-	(*ProduceStartResponse)(nil),                                           // 310: client.api.ProduceStartResponse
-	(*ProduceStepAuditionEndExamBattleRequest)(nil),                        // 311: client.api.ProduceStepAuditionEndExamBattleRequest
-	(*ProduceStepAuditionEndExamBattleResponse)(nil),                       // 312: client.api.ProduceStepAuditionEndExamBattleResponse
-	(*ProduceStepAuditionEndRequest)(nil),                                  // 313: client.api.ProduceStepAuditionEndRequest
-	(*ProduceStepAuditionEndResponse)(nil),                                 // 314: client.api.ProduceStepAuditionEndResponse
-	(*ProduceStepAuditionRefreshRequest)(nil),                              // 315: client.api.ProduceStepAuditionRefreshRequest
-	(*ProduceStepAuditionRefreshResponse)(nil),                             // 316: client.api.ProduceStepAuditionRefreshResponse
-	(*ProduceStepAuditionStartRequest)(nil),                                // 317: client.api.ProduceStepAuditionStartRequest
-	(*ProduceStepAuditionStartResponse)(nil),                               // 318: client.api.ProduceStepAuditionStartResponse
-	(*ProduceStepBusinessSelectRequest)(nil),                               // 319: client.api.ProduceStepBusinessSelectRequest
-	(*ProduceStepBusinessSelectResponse)(nil),                              // 320: client.api.ProduceStepBusinessSelectResponse
-	(*ProduceStepBusinessStartRequest)(nil),                                // 321: client.api.ProduceStepBusinessStartRequest
-	(*ProduceStepBusinessStartResponse)(nil),                               // 322: client.api.ProduceStepBusinessStartResponse
-	(*ProduceStepCustomizeEndRequest)(nil),                                 // 323: client.api.ProduceStepCustomizeEndRequest
-	(*ProduceStepCustomizeEndResponse)(nil),                                // 324: client.api.ProduceStepCustomizeEndResponse
-	(*ProduceStepCustomizeSelectRequest)(nil),                              // 325: client.api.ProduceStepCustomizeSelectRequest
-	(*ProduceStepCustomizeSelectResponse)(nil),                             // 326: client.api.ProduceStepCustomizeSelectResponse
-	(*ProduceStepCustomizeStartRequest)(nil),                               // 327: client.api.ProduceStepCustomizeStartRequest
-	(*ProduceStepCustomizeStartResponse)(nil),                              // 328: client.api.ProduceStepCustomizeStartResponse
-	(*ProduceStepEventRequest)(nil),                                        // 329: client.api.ProduceStepEventRequest
-	(*ProduceStepEventResponse)(nil),                                       // 330: client.api.ProduceStepEventResponse
-	(*ProduceStepLessonEndRequest)(nil),                                    // 331: client.api.ProduceStepLessonEndRequest
-	(*ProduceStepLessonEndResponse)(nil),                                   // 332: client.api.ProduceStepLessonEndResponse
-	(*ProduceStepLessonStartRequest)(nil),                                  // 333: client.api.ProduceStepLessonStartRequest
-	(*ProduceStepLessonStartResponse)(nil),                                 // 334: client.api.ProduceStepLessonStartResponse
-	(*ProduceStepPresentEndRequest)(nil),                                   // 335: client.api.ProduceStepPresentEndRequest
-	(*ProduceStepPresentEndResponse)(nil),                                  // 336: client.api.ProduceStepPresentEndResponse
-	(*ProduceStepPresentReceiveRequest)(nil),                               // 337: client.api.ProduceStepPresentReceiveRequest
-	(*ProduceStepPresentReceiveResponse)(nil),                              // 338: client.api.ProduceStepPresentReceiveResponse
-	(*ProduceStepPresentStartRequest)(nil),                                 // 339: client.api.ProduceStepPresentStartRequest
-	(*ProduceStepPresentStartResponse)(nil),                                // 340: client.api.ProduceStepPresentStartResponse
-	(*ProduceStepRefreshRequest)(nil),                                      // 341: client.api.ProduceStepRefreshRequest
-	(*ProduceStepRefreshResponse)(nil),                                     // 342: client.api.ProduceStepRefreshResponse
-	(*ProduceStepSelfLessonEndRequest)(nil),                                // 343: client.api.ProduceStepSelfLessonEndRequest
-	(*ProduceStepSelfLessonEndResponse)(nil),                               // 344: client.api.ProduceStepSelfLessonEndResponse
-	(*ProduceStepSelfLessonStartRequest)(nil),                              // 345: client.api.ProduceStepSelfLessonStartRequest
-	(*ProduceStepSelfLessonStartResponse)(nil),                             // 346: client.api.ProduceStepSelfLessonStartResponse
-	(*ProduceStepShopBuyRequest)(nil),                                      // 347: client.api.ProduceStepShopBuyRequest
-	(*ProduceStepShopBuyResponse)(nil),                                     // 348: client.api.ProduceStepShopBuyResponse
-	(*ProduceStepShopEndRequest)(nil),                                      // 349: client.api.ProduceStepShopEndRequest
-	(*ProduceStepShopEndResponse)(nil),                                     // 350: client.api.ProduceStepShopEndResponse
-	(*ProduceStepShopRerollRequest)(nil),                                   // 351: client.api.ProduceStepShopRerollRequest
-	(*ProduceStepShopRerollResponse)(nil),                                  // 352: client.api.ProduceStepShopRerollResponse
-	(*ProduceStepShopStartRequest)(nil),                                    // 353: client.api.ProduceStepShopStartRequest
-	(*ProduceStepShopStartResponse)(nil),                                   // 354: client.api.ProduceStepShopStartResponse
-	(*ProduceStepSkipRequest)(nil),                                         // 355: client.api.ProduceStepSkipRequest
-	(*ProduceStepSkipResponse)(nil),                                        // 356: client.api.ProduceStepSkipResponse
-	(*ProduceTopResponse)(nil),                                             // 357: client.api.ProduceTopResponse
-	(*ProduceUnlockPictureBookLiveRequest)(nil),                            // 358: client.api.ProduceUnlockPictureBookLiveRequest
-	(*ProduceUnlockPictureBookLiveResponse)(nil),                           // 359: client.api.ProduceUnlockPictureBookLiveResponse
-	(*ProduceUpdateMemoryDeck)(nil),                                        // 360: client.api.ProduceUpdateMemoryDeck
-	(*ProduceUpdateMemoryDeckRequest)(nil),                                 // 361: client.api.ProduceUpdateMemoryDeckRequest
-	(*ProduceUpdateMemoryDeckResponse)(nil),                                // 362: client.api.ProduceUpdateMemoryDeckResponse
-	(*ProduceUpdateSupportCardDeck)(nil),                                   // 363: client.api.ProduceUpdateSupportCardDeck
-	(*ProduceUpdateSupportCardDeckRequest)(nil),                            // 364: client.api.ProduceUpdateSupportCardDeckRequest
-	(*ProduceUpdateSupportCardDeckResponse)(nil),                           // 365: client.api.ProduceUpdateSupportCardDeckResponse
-	(*ProduceUseDrinkResponse)(nil),                                        // 366: client.api.ProduceUseDrinkResponse
-	(*ProduceViewPictureBookLiveRequest)(nil),                              // 367: client.api.ProduceViewPictureBookLiveRequest
-	(*ProduceViewPictureBookLiveResponse)(nil),                             // 368: client.api.ProduceViewPictureBookLiveResponse
-	(*ProfileBirthday)(nil),                                                // 369: client.api.ProfileBirthday
-	(*ProfileGetRequest)(nil),                                              // 370: client.api.ProfileGetRequest
-	(*ProfileGetResponse)(nil),                                             // 371: client.api.ProfileGetResponse
-	(*ProfileUpdateBirthdayRequest)(nil),                                   // 372: client.api.ProfileUpdateBirthdayRequest
-	(*ProfileUpdateBirthdayResponse)(nil),                                  // 373: client.api.ProfileUpdateBirthdayResponse
-	(*ProfileUpdateCommentRequest)(nil),                                    // 374: client.api.ProfileUpdateCommentRequest
-	(*ProfileUpdateCommentResponse)(nil),                                   // 375: client.api.ProfileUpdateCommentResponse
-	(*ProfileUpdateMemoryRequest)(nil),                                     // 376: client.api.ProfileUpdateMemoryRequest
-	(*ProfileUpdateMemoryResponse)(nil),                                    // 377: client.api.ProfileUpdateMemoryResponse
-	(*ProfileUpdateNameRequest)(nil),                                       // 378: client.api.ProfileUpdateNameRequest
-	(*ProfileUpdateNameResponse)(nil),                                      // 379: client.api.ProfileUpdateNameResponse
-	(*ProfileUpdateSupportCardRequest)(nil),                                // 380: client.api.ProfileUpdateSupportCardRequest
-	(*ProfileUpdateSupportCardResponse)(nil),                               // 381: client.api.ProfileUpdateSupportCardResponse
-	(*PvpRateEndRequest)(nil),                                              // 382: client.api.PvpRateEndRequest
-	(*PvpRateEndResponse)(nil),                                             // 383: client.api.PvpRateEndResponse
-	(*PvpRateGetHistoryRequest)(nil),                                       // 384: client.api.PvpRateGetHistoryRequest
-	(*PvpRateGetHistoryResponse)(nil),                                      // 385: client.api.PvpRateGetHistoryResponse
-	(*PvpRateGetResponse)(nil),                                             // 386: client.api.PvpRateGetResponse
-	(*PvpRateInitializeResponse)(nil),                                      // 387: client.api.PvpRateInitializeResponse
-	(*PvpRateListHistoryResponse)(nil),                                     // 388: client.api.PvpRateListHistoryResponse
-	(*PvpRateListRankingResponse)(nil),                                     // 389: client.api.PvpRateListRankingResponse
-	(*PvpRatePlayExamBattleResponse)(nil),                                  // 390: client.api.PvpRatePlayExamBattleResponse
-	(*PvpRatePlayTestResponse)(nil),                                        // 391: client.api.PvpRatePlayTestResponse
-	(*PvpRateRankReward)(nil),                                              // 392: client.api.PvpRateRankReward
-	(*PvpRateRankingUser)(nil),                                             // 393: client.api.PvpRateRankingUser
-	(*PvpRateRateReward)(nil),                                              // 394: client.api.PvpRateRateReward
-	(*PvpRateRival)(nil),                                                   // 395: client.api.PvpRateRival
-	(*PvpRateSeasonResult)(nil),                                            // 396: client.api.PvpRateSeasonResult
-	(*PvpRateStartRequest)(nil),                                            // 397: client.api.PvpRateStartRequest
-	(*PvpRateStartResponse)(nil),                                           // 398: client.api.PvpRateStartResponse
-	(*PvpRateUnitStageFormation)(nil),                                      // 399: client.api.PvpRateUnitStageFormation
-	(*PvpRateUpdateUserPvpRateUnitRequest)(nil),                            // 400: client.api.PvpRateUpdateUserPvpRateUnitRequest
-	(*PvpRateUpdateUserPvpRateUnitResponse)(nil),                           // 401: client.api.PvpRateUpdateUserPvpRateUnitResponse
-	(*SeminarEndExamRequest)(nil),                                          // 402: client.api.SeminarEndExamRequest
-	(*SeminarEndExamResponse)(nil),                                         // 403: client.api.SeminarEndExamResponse
-	(*SeminarGetExamRequest)(nil),                                          // 404: client.api.SeminarGetExamRequest
-	(*SeminarGetExamResponse)(nil),                                         // 405: client.api.SeminarGetExamResponse
-	(*SeminarListExamResponse)(nil),                                        // 406: client.api.SeminarListExamResponse
-	(*ShopCancelPurchaseTransactionRequest)(nil),                           // 407: client.api.ShopCancelPurchaseTransactionRequest
-	(*ShopCancelPurchaseTransactionResponse)(nil),                          // 408: client.api.ShopCancelPurchaseTransactionResponse
-	(*ShopCheckPurchaseJewelRequest)(nil),                                  // 409: client.api.ShopCheckPurchaseJewelRequest
-	(*ShopCheckPurchaseJewelResponse)(nil),                                 // 410: client.api.ShopCheckPurchaseJewelResponse
-	(*ShopGetPurchasePlatformTransactionRequest)(nil),                      // 411: client.api.ShopGetPurchasePlatformTransactionRequest
-	(*ShopGetPurchasePlatformTransactionResponse)(nil),                     // 412: client.api.ShopGetPurchasePlatformTransactionResponse
-	(*ShopItem)(nil),                                                       // 413: client.api.ShopItem
-	(*ShopListItemsRequest)(nil),                                           // 414: client.api.ShopListItemsRequest
-	(*ShopListItemsResponse)(nil),                                          // 415: client.api.ShopListItemsResponse
-	(*ShopPurchaseJewelRequest)(nil),                                       // 416: client.api.ShopPurchaseJewelRequest
-	(*ShopPurchaseJewelResponse)(nil),                                      // 417: client.api.ShopPurchaseJewelResponse
-	(*ShopPurchaseRequest)(nil),                                            // 418: client.api.ShopPurchaseRequest
-	(*ShopPurchaseResponse)(nil),                                           // 419: client.api.ShopPurchaseResponse
-	(*ShopRecoverPurchaseJewelRequest)(nil),                                // 420: client.api.ShopRecoverPurchaseJewelRequest
-	(*ShopRecoverPurchaseJewelResponse)(nil),                               // 421: client.api.ShopRecoverPurchaseJewelResponse
-	(*ShopRegisterBirthdayRequest)(nil),                                    // 422: client.api.ShopRegisterBirthdayRequest
-	(*ShopRegisterBirthdayResponse)(nil),                                   // 423: client.api.ShopRegisterBirthdayResponse
-	(*ShopRegisterDelayPurchaseTransactionRequest)(nil),                    // 424: client.api.ShopRegisterDelayPurchaseTransactionRequest
-	(*ShopRegisterDelayPurchaseTransactionResponse)(nil),                   // 425: client.api.ShopRegisterDelayPurchaseTransactionResponse
-	(*ShopRegisterPurchaseTransactionRequest)(nil),                         // 426: client.api.ShopRegisterPurchaseTransactionRequest
-	(*ShopRegisterPurchaseTransactionResponse)(nil),                        // 427: client.api.ShopRegisterPurchaseTransactionResponse
-	(*ShopTopResponse)(nil),                                                // 428: client.api.ShopTopResponse
-	(*StartupConfirmRequest)(nil),                                          // 429: client.api.StartupConfirmRequest
-	(*StartupConfirmResponse)(nil),                                         // 430: client.api.StartupConfirmResponse
-	(*StartupListNotificationsRequest)(nil),                                // 431: client.api.StartupListNotificationsRequest
-	(*StartupListNotificationsResponse)(nil),                               // 432: client.api.StartupListNotificationsResponse
-	(*StepUpGashaProbability)(nil),                                         // 433: client.api.StepUpGashaProbability
-	(*StoryEventListGuildMissionRequest)(nil),                              // 434: client.api.StoryEventListGuildMissionRequest
-	(*StoryEventListGuildMissionResponse)(nil),                             // 435: client.api.StoryEventListGuildMissionResponse
-	(*StoryEventReceiveGuildMissionRequest)(nil),                           // 436: client.api.StoryEventReceiveGuildMissionRequest
-	(*StoryEventReceiveGuildMissionResponse)(nil),                          // 437: client.api.StoryEventReceiveGuildMissionResponse
-	(*StoryEventTopRequest)(nil),                                           // 438: client.api.StoryEventTopRequest
-	(*StoryEventTopResponse)(nil),                                          // 439: client.api.StoryEventTopResponse
-	(*StoryReadDearnessStoryRequest)(nil),                                  // 440: client.api.StoryReadDearnessStoryRequest
-	(*StoryReadDearnessStoryResponse)(nil),                                 // 441: client.api.StoryReadDearnessStoryResponse
-	(*StoryReadProduceStoryRequest)(nil),                                   // 442: client.api.StoryReadProduceStoryRequest
-	(*StoryReadProduceStoryResponse)(nil),                                  // 443: client.api.StoryReadProduceStoryResponse
-	(*StoryReadRequest)(nil),                                               // 444: client.api.StoryReadRequest
-	(*StoryReadResponse)(nil),                                              // 445: client.api.StoryReadResponse
-	(*StoryUnlockProduceStoryRequest)(nil),                                 // 446: client.api.StoryUnlockProduceStoryRequest
-	(*StoryUnlockProduceStoryResponse)(nil),                                // 447: client.api.StoryUnlockProduceStoryResponse
-	(*StoryUnlockRequest)(nil),                                             // 448: client.api.StoryUnlockRequest
-	(*StoryUnlockResponse)(nil),                                            // 449: client.api.StoryUnlockResponse
-	(*SupportCardEnhanceRequest)(nil),                                      // 450: client.api.SupportCardEnhanceRequest
-	(*SupportCardEnhanceResponse)(nil),                                     // 451: client.api.SupportCardEnhanceResponse
-	(*SupportCardExchangeRequest)(nil),                                     // 452: client.api.SupportCardExchangeRequest
-	(*SupportCardExchangeResponse)(nil),                                    // 453: client.api.SupportCardExchangeResponse
-	(*SupportCardListDeckRankingResponse)(nil),                             // 454: client.api.SupportCardListDeckRankingResponse
-	(*SupportCardProbability)(nil),                                         // 455: client.api.SupportCardProbability
-	(*SupportCardRarityProbability)(nil),                                   // 456: client.api.SupportCardRarityProbability
-	(*SupportCardUpgradeLevelLimitRankRequest)(nil),                        // 457: client.api.SupportCardUpgradeLevelLimitRankRequest
-	(*SupportCardUpgradeLevelLimitRankResponse)(nil),                       // 458: client.api.SupportCardUpgradeLevelLimitRankResponse
-	(*SystemCheckRequest)(nil),                                             // 459: client.api.SystemCheckRequest
-	(*SystemCheckResponse)(nil),                                            // 460: client.api.SystemCheckResponse
-	(*TicketExchangeExecuteRequest)(nil),                                   // 461: client.api.TicketExchangeExecuteRequest
-	(*TicketExchangeExecuteResponse)(nil),                                  // 462: client.api.TicketExchangeExecuteResponse
-	(*TicketExchangeItem)(nil),                                             // 463: client.api.TicketExchangeItem
-	(*TicketExchangeListItemsRequest)(nil),                                 // 464: client.api.TicketExchangeListItemsRequest
-	(*TicketExchangeListItemsResponse)(nil),                                // 465: client.api.TicketExchangeListItemsResponse
-	(*TowerCheckRequest)(nil),                                              // 466: client.api.TowerCheckRequest
-	(*TowerCheckResponse)(nil),                                             // 467: client.api.TowerCheckResponse
-	(*TowerEndRequest)(nil),                                                // 468: client.api.TowerEndRequest
-	(*TowerEndResponse)(nil),                                               // 469: client.api.TowerEndResponse
-	(*TowerGetLayerIdolCardRankingRequest)(nil),                            // 470: client.api.TowerGetLayerIdolCardRankingRequest
-	(*TowerGetLayerIdolCardRankingResponse)(nil),                           // 471: client.api.TowerGetLayerIdolCardRankingResponse
-	(*TowerGetLayerIdolCardRankingTopRequest)(nil),                         // 472: client.api.TowerGetLayerIdolCardRankingTopRequest
-	(*TowerGetLayerIdolCardRankingTopResponse)(nil),                        // 473: client.api.TowerGetLayerIdolCardRankingTopResponse
-	(*TowerGetLayerRequest)(nil),                                           // 474: client.api.TowerGetLayerRequest
-	(*TowerGetLayerResponse)(nil),                                          // 475: client.api.TowerGetLayerResponse
-	(*TowerGetPastSeasonLayerIdolCardRankingRequest)(nil),                  // 476: client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
-	(*TowerGetPastSeasonLayerIdolCardRankingResponse)(nil),                 // 477: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
-	(*TowerGetPastSeasonLayerIdolCardRankingTopRequest)(nil),               // 478: client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
-	(*TowerGetPastSeasonLayerIdolCardRankingTopResponse)(nil),              // 479: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
-	(*TowerGetPastSeasonRankingRequest)(nil),                               // 480: client.api.TowerGetPastSeasonRankingRequest
-	(*TowerGetPastSeasonRankingResponse)(nil),                              // 481: client.api.TowerGetPastSeasonRankingResponse
-	(*TowerGetRankingDeckRequest)(nil),                                     // 482: client.api.TowerGetRankingDeckRequest
-	(*TowerGetRankingDeckResponse)(nil),                                    // 483: client.api.TowerGetRankingDeckResponse
-	(*TowerGetRankingRequest)(nil),                                         // 484: client.api.TowerGetRankingRequest
-	(*TowerGetRankingResponse)(nil),                                        // 485: client.api.TowerGetRankingResponse
-	(*TowerListLayerPlayerHistoriesRequest)(nil),                           // 486: client.api.TowerListLayerPlayerHistoriesRequest
-	(*TowerListLayerPlayerHistoriesResponse)(nil),                          // 487: client.api.TowerListLayerPlayerHistoriesResponse
-	(*TowerListLayersRequest)(nil),                                         // 488: client.api.TowerListLayersRequest
-	(*TowerListLayersResponse)(nil),                                        // 489: client.api.TowerListLayersResponse
-	(*TowerRank)(nil),                                                      // 490: client.api.TowerRank
-	(*TowerRankingCache)(nil),                                              // 491: client.api.TowerRankingCache
-	(*TowerRankingResult)(nil),                                             // 492: client.api.TowerRankingResult
-	(*TowerRankingSeason)(nil),                                             // 493: client.api.TowerRankingSeason
-	(*TowerReceiveLayerCountRewardRequest)(nil),                            // 494: client.api.TowerReceiveLayerCountRewardRequest
-	(*TowerReceiveLayerCountRewardResponse)(nil),                           // 495: client.api.TowerReceiveLayerCountRewardResponse
-	(*TowerReceiveTotalClearRankRewardRequest)(nil),                        // 496: client.api.TowerReceiveTotalClearRankRewardRequest
-	(*TowerReceiveTotalClearRankRewardResponse)(nil),                       // 497: client.api.TowerReceiveTotalClearRankRewardResponse
-	(*TowerStartRequest)(nil),                                              // 498: client.api.TowerStartRequest
-	(*TowerStartResponse)(nil),                                             // 499: client.api.TowerStartResponse
-	(*TowerTopResponse)(nil),                                               // 500: client.api.TowerTopResponse
-	(*TowerUpdateMemoryDeckRequest)(nil),                                   // 501: client.api.TowerUpdateMemoryDeckRequest
-	(*TowerUpdateMemoryDeckResponse)(nil),                                  // 502: client.api.TowerUpdateMemoryDeckResponse
-	(*TutorialCheckBeforeLiveProduceEvaluationResponse)(nil),               // 503: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
-	(*TutorialProduceNextResponse)(nil),                                    // 504: client.api.TutorialProduceNextResponse
-	(*TutorialProduceResultRequest)(nil),                                   // 505: client.api.TutorialProduceResultRequest
-	(*TutorialProduceResultResponse)(nil),                                  // 506: client.api.TutorialProduceResultResponse
-	(*TutorialProduceStartRequest)(nil),                                    // 507: client.api.TutorialProduceStartRequest
-	(*TutorialProduceStartResponse)(nil),                                   // 508: client.api.TutorialProduceStartResponse
-	(*TutorialProduceStepAuditionEndResponse)(nil),                         // 509: client.api.TutorialProduceStepAuditionEndResponse
-	(*TutorialProduceStepAuditionExamEndRequest)(nil),                      // 510: client.api.TutorialProduceStepAuditionExamEndRequest
-	(*TutorialProduceStepAuditionExamEndResponse)(nil),                     // 511: client.api.TutorialProduceStepAuditionExamEndResponse
-	(*TutorialProduceStepLessonEndRequest)(nil),                            // 512: client.api.TutorialProduceStepLessonEndRequest
-	(*TutorialProduceStepLessonEndResponse)(nil),                           // 513: client.api.TutorialProduceStepLessonEndResponse
-	(*TutorialProduceStepPresentReceiveRequest)(nil),                       // 514: client.api.TutorialProduceStepPresentReceiveRequest
-	(*TutorialProduceStepPresentReceiveResponse)(nil),                      // 515: client.api.TutorialProduceStepPresentReceiveResponse
-	(*TutorialProgressRequest)(nil),                                        // 516: client.api.TutorialProgressRequest
-	(*TutorialProgressResponse)(nil),                                       // 517: client.api.TutorialProgressResponse
-	(*TutorialReadDearnessStoryRequest)(nil),                               // 518: client.api.TutorialReadDearnessStoryRequest
-	(*TutorialReadDearnessStoryResponse)(nil),                              // 519: client.api.TutorialReadDearnessStoryResponse
-	(*TutorialReceiveIdolCardRequest)(nil),                                 // 520: client.api.TutorialReceiveIdolCardRequest
-	(*TutorialReceiveIdolCardResponse)(nil),                                // 521: client.api.TutorialReceiveIdolCardResponse
-	(*TutorialSetNameRequest)(nil),                                         // 522: client.api.TutorialSetNameRequest
-	(*TutorialSetNameResponse)(nil),                                        // 523: client.api.TutorialSetNameResponse
-	(*TutorialSkipRequest)(nil),                                            // 524: client.api.TutorialSkipRequest
-	(*TutorialSkipResponse)(nil),                                           // 525: client.api.TutorialSkipResponse
-	(*TutorialUnlockFeatureRequest)(nil),                                   // 526: client.api.TutorialUnlockFeatureRequest
-	(*TutorialUnlockFeatureResponse)(nil),                                  // 527: client.api.TutorialUnlockFeatureResponse
-	(*UserGetResponse)(nil),                                                // 528: client.api.UserGetResponse
-	(*UserListMessageRequest)(nil),                                         // 529: client.api.UserListMessageRequest
-	(*UserListMessageResponse)(nil),                                        // 530: client.api.UserListMessageResponse
-	(*UserReadMessageRequest)(nil),                                         // 531: client.api.UserReadMessageRequest
-	(*UserReadMessageResponse)(nil),                                        // 532: client.api.UserReadMessageResponse
-	(*WorkFinishResponse)(nil),                                             // 533: client.api.WorkFinishResponse
-	(*WorkFinishResult)(nil),                                               // 534: client.api.WorkFinishResult
-	(*WorkSkipRequest)(nil),                                                // 535: client.api.WorkSkipRequest
-	(*WorkSkipResponse)(nil),                                               // 536: client.api.WorkSkipResponse
-	(*WorkStartRequest)(nil),                                               // 537: client.api.WorkStartRequest
-	(*WorkStartResponse)(nil),                                              // 538: client.api.WorkStartResponse
-	(*WorkStopRequest)(nil),                                                // 539: client.api.WorkStopRequest
-	(*WorkStopResponse)(nil),                                               // 540: client.api.WorkStopResponse
-	(*WorkTopResponse)(nil),                                                // 541: client.api.WorkTopResponse
-	(*AuthLoginResponse_Term)(nil),                                         // 542: client.api.AuthLoginResponse.Term
-	(*AuthSendConsentRequest_Consent)(nil),                                 // 543: client.api.AuthSendConsentRequest.Consent
-	(*ExchangeItem_ConsumptionResource)(nil),                               // 544: client.api.ExchangeItem.ConsumptionResource
-	(*FriendInfo_SupportCard)(nil),                                         // 545: client.api.FriendInfo.SupportCard
-	(*GashaExpirePointResponse_GashaBanner)(nil),                           // 546: client.api.GashaExpirePointResponse.GashaBanner
-	(*GashaExpirePointResponse_GashaPoint)(nil),                            // 547: client.api.GashaExpirePointResponse.GashaPoint
-	(*GashaGetPointExchangeResponse_ExchangeResource)(nil),                 // 548: client.api.GashaGetPointExchangeResponse.ExchangeResource
-	(*GiftListHistoryResponse_UserGiftHistory)(nil),                        // 549: client.api.GiftListHistoryResponse.UserGiftHistory
-	(*GiftListResponse_UserGift)(nil),                                      // 550: client.api.GiftListResponse.UserGift
-	(*GuildTopResponse_HomeInfo)(nil),                                      // 551: client.api.GuildTopResponse.HomeInfo
-	(*GuildTopResponse_HomeInfo_ReceivedDonationInfo)(nil),                 // 552: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
-	(*GvgRaidTopResponse_Stage)(nil),                                       // 553: client.api.GvgRaidTopResponse.Stage
-	(*GvgRaidTopResponse_StageClearResult)(nil),                            // 554: client.api.GvgRaidTopResponse.StageClearResult
-	(*GvgRaidTopResponse_StageClearReward)(nil),                            // 555: client.api.GvgRaidTopResponse.StageClearReward
-	(*GvgRaidTopResponse_StageClearReward_ClearReward)(nil),                // 556: client.api.GvgRaidTopResponse.StageClearReward.ClearReward
-	(*GvgRaidUserRankingResponse_StageMvp)(nil),                            // 557: client.api.GvgRaidUserRankingResponse.StageMvp
-	(*GvgRaidUserRankingResponse_StageRanking)(nil),                        // 558: client.api.GvgRaidUserRankingResponse.StageRanking
-	(*GvgRaidUserRankingResponse_StageMvp_MvpUser)(nil),                    // 559: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
-	(*GvgRaidUserRankingResponse_StageRanking_Rank)(nil),                   // 560: client.api.GvgRaidUserRankingResponse.StageRanking.Rank
-	(*HomeEnterResponse_FeatureMaintenance)(nil),                           // 561: client.api.HomeEnterResponse.FeatureMaintenance
-	(*HomeLoginResponse_FriendResult)(nil),                                 // 562: client.api.HomeLoginResponse.FriendResult
-	(*HomeSetCharactersRequest_HomeCharacter)(nil),                         // 563: client.api.HomeSetCharactersRequest.HomeCharacter
-	(*LoginBonusCheckResponse_Info)(nil),                                   // 564: client.api.LoginBonusCheckResponse.Info
-	(*LoginBonusCheckResponse_TotalInfo)(nil),                              // 565: client.api.LoginBonusCheckResponse.TotalInfo
-	(*MasterGetResponse_MasterTagPack)(nil),                                // 566: client.api.MasterGetResponse.MasterTagPack
-	(*MasterGetResponse_MasterTag)(nil),                                    // 567: client.api.MasterGetResponse.MasterTag
-	(*MeishiListFollowResponse_Follow)(nil),                                // 568: client.api.MeishiListFollowResponse.Follow
-	(*MeishiListResponse_MeishiInfo)(nil),                                  // 569: client.api.MeishiListResponse.MeishiInfo
-	(*MeishiUpdateRequest_MeishiBase)(nil),                                 // 570: client.api.MeishiUpdateRequest.MeishiBase
-	(*MeishiUpdateRequest_Object)(nil),                                     // 571: client.api.MeishiUpdateRequest.Object
-	(*MissionReceiveRequest_Mission)(nil),                                  // 572: client.api.MissionReceiveRequest.Mission
-	(*MissionReceiveRequest_MissionPoint)(nil),                             // 573: client.api.MissionReceiveRequest.MissionPoint
-	(*MissionReceiveResponse_MasterAchievementProgress)(nil),               // 574: client.api.MissionReceiveResponse.MasterAchievementProgress
-	(*MissionReceiveResponse_MasterAchievementProgressResult)(nil),         // 575: client.api.MissionReceiveResponse.MasterAchievementProgressResult
-	(*PhotoCreateIdolRequest_CharacterSetting)(nil),                        // 576: client.api.PhotoCreateIdolRequest.CharacterSetting
-	(*PhotoCreateIdolRequest_Photo)(nil),                                   // 577: client.api.PhotoCreateIdolRequest.Photo
-	(*PhotoCreateIdolRequest_Photo_CharacterSetting)(nil),                  // 578: client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
-	(*PhotoCreateRequest_UnitCharacter)(nil),                               // 579: client.api.PhotoCreateRequest.UnitCharacter
-	(*ProduceHighScoreRankingResponse_Rank)(nil),                           // 580: client.api.ProduceHighScoreRankingResponse.Rank
-	(*ProduceListRentalMemoryResponse_RentalMemory)(nil),                   // 581: client.api.ProduceListRentalMemoryResponse.RentalMemory
-	(*ProduceListRentalSupportCardResponse_RentalSupportCard)(nil),         // 582: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	(*ProduceRankingTopResponse_Ranking)(nil),                              // 583: client.api.ProduceRankingTopResponse.Ranking
-	(*ProduceResultResponse_HighScoreReward)(nil),                          // 584: client.api.ProduceResultResponse.HighScoreReward
-	(*ProduceResultResponse_HighScoreUpdateResult)(nil),                    // 585: client.api.ProduceResultResponse.HighScoreUpdateResult
-	(*ProduceStartRequest_Memory)(nil),                                     // 586: client.api.ProduceStartRequest.Memory
-	(*ProduceStartRequest_SupportCard)(nil),                                // 587: client.api.ProduceStartRequest.SupportCard
-	(*ProduceTopResponse_ProduceHighScore)(nil),                            // 588: client.api.ProduceTopResponse.ProduceHighScore
-	(*ProfileGetResponse_ProduceRecord)(nil),                               // 589: client.api.ProfileGetResponse.ProduceRecord
-	(*PvpRateListHistoryResponse_PvpRateHistory)(nil),                      // 590: client.api.PvpRateListHistoryResponse.PvpRateHistory
-	(*PvpRateUnitStageFormation_Slot)(nil),                                 // 591: client.api.PvpRateUnitStageFormation.Slot
-	(*SeminarEndExamRequest_Turn)(nil),                                     // 592: client.api.SeminarEndExamRequest.Turn
-	(*SeminarGetExamResponse_TurnNavigationStep)(nil),                      // 593: client.api.SeminarGetExamResponse.TurnNavigationStep
-	(*SeminarGetExamResponse_FailureNavigation)(nil),                       // 594: client.api.SeminarGetExamResponse.FailureNavigation
-	(*SeminarGetExamResponse_TurnNavigation)(nil),                          // 595: client.api.SeminarGetExamResponse.TurnNavigation
-	(*SeminarListExamResponse_Exam)(nil),                                   // 596: client.api.SeminarListExamResponse.Exam
-	(*SeminarListExamResponse_ExamGroup)(nil),                              // 597: client.api.SeminarListExamResponse.ExamGroup
-	(*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction)(nil), // 598: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
-	(*ShopTopResponse_Shop)(nil),                                           // 599: client.api.ShopTopResponse.Shop
-	(*StartupConfirmRequest_Notification)(nil),                             // 600: client.api.StartupConfirmRequest.Notification
-	(*StoryEventReceiveGuildMissionResponse_ReceiveResult)(nil),            // 601: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
-	(*StoryEventTopResponse_Motion)(nil),                                   // 602: client.api.StoryEventTopResponse.Motion
-	(*SupportCardExchangeRequest_Parameter)(nil),                           // 603: client.api.SupportCardExchangeRequest.Parameter
-	(*SupportCardListDeckRankingResponse_SupportCardRank)(nil),             // 604: client.api.SupportCardListDeckRankingResponse.SupportCardRank
-	(*SupportCardListDeckRankingResponse_Ranking)(nil),                     // 605: client.api.SupportCardListDeckRankingResponse.Ranking
-	(*SystemCheckResponse_MaintenanceInfo)(nil),                            // 606: client.api.SystemCheckResponse.MaintenanceInfo
-	(*SystemCheckResponse_ReviewInfo)(nil),                                 // 607: client.api.SystemCheckResponse.ReviewInfo
-	(*TowerGetLayerResponse_Exam)(nil),                                     // 608: client.api.TowerGetLayerResponse.Exam
-	(*TowerListLayersResponse_TowerLayerRank)(nil),                         // 609: client.api.TowerListLayersResponse.TowerLayerRank
-	(*TowerListLayersResponse_TowerLayer)(nil),                             // 610: client.api.TowerListLayersResponse.TowerLayer
-	(*TowerTopResponse_Tower)(nil),                                         // 611: client.api.TowerTopResponse.Tower
-	(*UserListMessageResponse_PersonalMessage)(nil),                        // 612: client.api.UserListMessageResponse.PersonalMessage
-	(penum.TermsType)(0),                                                   // 613: penum.TermsType
-	(*papicommon.Response)(nil),                                            // 614: papicommon.Response
-	(*pcommon.RewardResult)(nil),                                           // 615: pcommon.RewardResult
-	(*pcommon.CoinGasha)(nil),                                              // 616: pcommon.CoinGasha
-	(penum.ConsentType)(0),                                                 // 617: penum.ConsentType
-	(penum.ConsentAgreementType)(0),                                        // 618: penum.ConsentAgreementType
-	(penum.CostumeSetType)(0),                                              // 619: penum.CostumeSetType
-	(penum.ExchangeType)(0),                                                // 620: penum.ExchangeType
-	(penum.ResourceType)(0),                                                // 621: penum.ResourceType
-	(penum.ResetTimingType)(0),                                             // 622: penum.ResetTimingType
-	(*pcommon.Reward)(nil),                                                 // 623: pcommon.Reward
-	(*pcommon.SimpleProfile)(nil),                                          // 624: pcommon.SimpleProfile
-	(*pcommon.Memory)(nil),                                                 // 625: pcommon.Memory
-	(*pcommon.GashaButton)(nil),                                            // 626: pcommon.GashaButton
-	(*pcommon.GashaPoint)(nil),                                             // 627: pcommon.GashaPoint
-	(*pcommon.GashaStepUp)(nil),                                            // 628: pcommon.GashaStepUp
-	(*pcommon.Gasha)(nil),                                                  // 629: pcommon.Gasha
-	(penum.GiftFilterType)(0),                                              // 630: penum.GiftFilterType
-	(penum.GuildJoinRequestRouteType)(0),                                   // 631: penum.GuildJoinRequestRouteType
-	(penum.GuildActivityPolicyType)(0),                                     // 632: penum.GuildActivityPolicyType
-	(*pcommon.Achievement)(nil),                                            // 633: pcommon.Achievement
-	(penum.GuildSearchMemberCountRangeType)(0),                             // 634: penum.GuildSearchMemberCountRangeType
-	(penum.GuildRoleType)(0),                                               // 635: penum.GuildRoleType
-	(penum.GuildNotificationType)(0),                                       // 636: penum.GuildNotificationType
-	(*pcommon.GvgRaidSlot)(nil),                                            // 637: pcommon.GvgRaidSlot
-	(*pcommon.ExamBattleAutoStageResult)(nil),                              // 638: pcommon.ExamBattleAutoStageResult
-	(*pcommon.ExamBattleAutoRequest)(nil),                                  // 639: pcommon.ExamBattleAutoRequest
-	(penum.ProducePlanType)(0),                                             // 640: penum.ProducePlanType
-	(penum.GvgRaidStageIconSizeType)(0),                                    // 641: penum.GvgRaidStageIconSizeType
-	(*pcommon.GvgRaidGuild)(nil),                                           // 642: pcommon.GvgRaidGuild
-	(*pcommon.StartupNotification)(nil),                                    // 643: pcommon.StartupNotification
-	(*pcommon.GvgRaidSetUpDeck)(nil),                                       // 644: pcommon.GvgRaidSetUpDeck
-	(penum.DeckRecommendType)(0),                                           // 645: penum.DeckRecommendType
-	(penum.ServingStatus)(0),                                               // 646: penum.ServingStatus
-	(*pcommon.HomeBanner)(nil),                                             // 647: pcommon.HomeBanner
-	(*pcommon.HomeNavigation)(nil),                                         // 648: pcommon.HomeNavigation
-	(*papicommon.PvpRateSeasonTop)(nil),                                    // 649: papicommon.PvpRateSeasonTop
-	(*pcommon.Event)(nil),                                                  // 650: pcommon.Event
-	(penum.ShopItemLabelType)(0),                                           // 651: penum.ShopItemLabelType
-	(*pcommon.ProducerLevelUnlock)(nil),                                    // 652: pcommon.ProducerLevelUnlock
-	(penum.IdolCardRarity)(0),                                              // 653: penum.IdolCardRarity
-	(penum.IdolCardLevelLimitRank)(0),                                      // 654: penum.IdolCardLevelLimitRank
-	(penum.IdolCardPotentialRank)(0),                                       // 655: penum.IdolCardPotentialRank
-	(penum.FriendStatusType)(0),                                            // 656: penum.FriendStatusType
-	(*pcommon.Meishi)(nil),                                                 // 657: pcommon.Meishi
-	(*pmaster.Mission)(nil),                                                // 658: pmaster.Mission
-	(penum.NoticeCategory)(0),                                              // 659: penum.NoticeCategory
-	(penum.NoticeType)(0),                                                  // 660: penum.NoticeType
-	(penum.PhotoButtonExecuteType)(0),                                      // 661: penum.PhotoButtonExecuteType
-	(penum.PreferenceType)(0),                                              // 662: penum.PreferenceType
-	(*pcommon.ProduceEffectResult)(nil),                                    // 663: pcommon.ProduceEffectResult
-	(penum.ProduceHighScoreEventType)(0),                                   // 664: penum.ProduceHighScoreEventType
-	(*pcommon.ProduceHistory)(nil),                                         // 665: pcommon.ProduceHistory
-	(penum.ProduceStepType)(0),                                             // 666: penum.ProduceStepType
-	(penum.ResultGrade)(0),                                                 // 667: penum.ResultGrade
-	(*pcommon.GuildMission)(nil),                                           // 668: pcommon.GuildMission
-	(*pcommon.GuildMissionHistory)(nil),                                    // 669: pcommon.GuildMissionHistory
-	(*pcommon.StoryEventProduceResult)(nil),                                // 670: pcommon.StoryEventProduceResult
-	(*pcommon.ExamBattleResult)(nil),                                       // 671: pcommon.ExamBattleResult
-	(*pcommon.ExamTurnEndLog)(nil),                                         // 672: pcommon.ExamTurnEndLog
-	(*pcommon.ProduceRewardResult)(nil),                                    // 673: pcommon.ProduceRewardResult
-	(*pcommon.ProduceMemoryRewardResult)(nil),                              // 674: pcommon.ProduceMemoryRewardResult
-	(penum.ProduceStepBusinessType)(0),                                     // 675: penum.ProduceStepBusinessType
-	(*pcommon.ProduceConsumptionResult)(nil),                               // 676: pcommon.ProduceConsumptionResult
-	(*pcommon.ProduceExamEndResult)(nil),                                   // 677: pcommon.ProduceExamEndResult
-	(*pcommon.ProduceCampaign)(nil),                                        // 678: pcommon.ProduceCampaign
-	(penum.StoryEventType)(0),                                              // 679: penum.StoryEventType
-	(*pcommon.StoryEventBonus)(nil),                                        // 680: pcommon.StoryEventBonus
-	(penum.ProduceType)(0),                                                 // 681: penum.ProduceType
-	(penum.PvpRateGrade)(0),                                                // 682: penum.PvpRateGrade
-	(*pcommon.SupportCard)(nil),                                            // 683: pcommon.SupportCard
-	(*pcommon.PvpRateExamBattleResult)(nil),                                // 684: pcommon.PvpRateExamBattleResult
-	(penum.PvpRateRivalType)(0),                                            // 685: penum.PvpRateRivalType
-	(penum.PvpRateStageType)(0),                                            // 686: penum.PvpRateStageType
-	(*pcommon.PvpRateSetupUnitStageFormation)(nil),                         // 687: pcommon.PvpRateSetupUnitStageFormation
-	(penum.ProduceParameterType)(0),                                        // 688: penum.ProduceParameterType
-	(*pcommon.ProduceCard)(nil),                                            // 689: pcommon.ProduceCard
-	(*pmaster.ShopItem)(nil),                                               // 690: pmaster.ShopItem
-	(penum.StartupNotificationDisplayType)(0),                              // 691: penum.StartupNotificationDisplayType
-	(*pcommon.StoryEventPointReward)(nil),                                  // 692: pcommon.StoryEventPointReward
-	(penum.SupportCardRarity)(0),                                           // 693: penum.SupportCardRarity
-	(penum.SupportCardLevelLimitRank)(0),                                   // 694: penum.SupportCardLevelLimitRank
-	(*pcommon.TowerLayerHistory)(nil),                                      // 695: pcommon.TowerLayerHistory
-	(penum.TutorialType)(0),                                                // 696: penum.TutorialType
-	(*papicommon.UserData)(nil),                                            // 697: papicommon.UserData
-	(penum.WorkType)(0),                                                    // 698: penum.WorkType
-	(penum.FeatureMaintenanceType)(0),                                      // 699: penum.FeatureMaintenanceType
-	(penum.HomeType)(0),                                                    // 700: penum.HomeType
-	(penum.LoginBonusType)(0),                                              // 701: penum.LoginBonusType
-	(penum.MeishiObjectType)(0),                                            // 702: penum.MeishiObjectType
-	(penum.TutorialNavigationType)(0),                                      // 703: penum.TutorialNavigationType
-	(penum.ProduceExamTriggerCheckType)(0),                                 // 704: penum.ProduceExamTriggerCheckType
-	(penum.ProduceExamFieldStatusType)(0),                                  // 705: penum.ProduceExamFieldStatusType
-	(penum.PaymentPendingReceiptDialogTimingType)(0),                       // 706: penum.PaymentPendingReceiptDialogTimingType
-	(penum.StoryEventMotionType)(0),                                        // 707: penum.StoryEventMotionType
-	(penum.ProduceExamEffectType)(0),                                       // 708: penum.ProduceExamEffectType
-	(*pcommon.ExamTriggerCount)(nil),                                       // 709: pcommon.ExamTriggerCount
+	(*Empty)(nil),                                                       // 0: client.api.Empty
+	(*AuthAgreeTermsRequest)(nil),                                       // 1: client.api.AuthAgreeTermsRequest
+	(*AuthAgreeTermsResponse)(nil),                                      // 2: client.api.AuthAgreeTermsResponse
+	(*AuthCreateResponse)(nil),                                          // 3: client.api.AuthCreateResponse
+	(*AuthGetConsentResponse)(nil),                                      // 4: client.api.AuthGetConsentResponse
+	(*AuthLinkBandaiNamcoIdRequest)(nil),                                // 5: client.api.AuthLinkBandaiNamcoIdRequest
+	(*AuthLinkBandaiNamcoIdResponse)(nil),                               // 6: client.api.AuthLinkBandaiNamcoIdResponse
+	(*AuthLoginRequest)(nil),                                            // 7: client.api.AuthLoginRequest
+	(*AuthLoginResponse)(nil),                                           // 8: client.api.AuthLoginResponse
+	(*AuthMigrateDmmGamesIdResponse)(nil),                               // 9: client.api.AuthMigrateDmmGamesIdResponse
+	(*AuthMigrateRequest)(nil),                                          // 10: client.api.AuthMigrateRequest
+	(*AuthMigrateResponse)(nil),                                         // 11: client.api.AuthMigrateResponse
+	(*AuthPrepareMigrationBandaiNamcoIdRequest)(nil),                    // 12: client.api.AuthPrepareMigrationBandaiNamcoIdRequest
+	(*AuthPrepareMigrationBandaiNamcoIdResponse)(nil),                   // 13: client.api.AuthPrepareMigrationBandaiNamcoIdResponse
+	(*AuthSendConsentRequest)(nil),                                      // 14: client.api.AuthSendConsentRequest
+	(*AuthSendConsentResponse)(nil),                                     // 15: client.api.AuthSendConsentResponse
+	(*AuthUnlinkResponse)(nil),                                          // 16: client.api.AuthUnlinkResponse
+	(*CharacterCheckRosterRequest)(nil),                                 // 17: client.api.CharacterCheckRosterRequest
+	(*CharacterCheckRosterResponse)(nil),                                // 18: client.api.CharacterCheckRosterResponse
+	(*CoinGashaDrawRequest)(nil),                                        // 19: client.api.CoinGashaDrawRequest
+	(*CoinGashaDrawResponse)(nil),                                       // 20: client.api.CoinGashaDrawResponse
+	(*CoinGashaDrawResult)(nil),                                         // 21: client.api.CoinGashaDrawResult
+	(*CoinGashaGetRequest)(nil),                                         // 22: client.api.CoinGashaGetRequest
+	(*CoinGashaGetResponse)(nil),                                        // 23: client.api.CoinGashaGetResponse
+	(*CoinGashaListResponse)(nil),                                       // 24: client.api.CoinGashaListResponse
+	(*CoinGashaResetBoxRequest)(nil),                                    // 25: client.api.CoinGashaResetBoxRequest
+	(*CoinGashaResetBoxResponse)(nil),                                   // 26: client.api.CoinGashaResetBoxResponse
+	(*Consent)(nil),                                                     // 27: client.api.Consent
+	(*CostumeCheckRequest)(nil),                                         // 28: client.api.CostumeCheckRequest
+	(*CostumeCheckResponse)(nil),                                        // 29: client.api.CostumeCheckResponse
+	(*CostumeSetRequest)(nil),                                           // 30: client.api.CostumeSetRequest
+	(*CostumeSetResponse)(nil),                                          // 31: client.api.CostumeSetResponse
+	(*DefaultGashaProbability)(nil),                                     // 32: client.api.DefaultGashaProbability
+	(*DonationRequest)(nil),                                             // 33: client.api.DonationRequest
+	(*ExchangeExecuteRequest)(nil),                                      // 34: client.api.ExchangeExecuteRequest
+	(*ExchangeExecuteResponse)(nil),                                     // 35: client.api.ExchangeExecuteResponse
+	(*ExchangeGetRequest)(nil),                                          // 36: client.api.ExchangeGetRequest
+	(*ExchangeGetResponse)(nil),                                         // 37: client.api.ExchangeGetResponse
+	(*ExchangeInfo)(nil),                                                // 38: client.api.ExchangeInfo
+	(*ExchangeItem)(nil),                                                // 39: client.api.ExchangeItem
+	(*ExchangeListRequest)(nil),                                         // 40: client.api.ExchangeListRequest
+	(*ExchangeListResponse)(nil),                                        // 41: client.api.ExchangeListResponse
+	(*ExchangeResetRequest)(nil),                                        // 42: client.api.ExchangeResetRequest
+	(*ExchangeResetResponse)(nil),                                       // 43: client.api.ExchangeResetResponse
+	(*FriendDeleteFollowerRequest)(nil),                                 // 44: client.api.FriendDeleteFollowerRequest
+	(*FriendDeleteFollowerResponse)(nil),                                // 45: client.api.FriendDeleteFollowerResponse
+	(*FriendFollowRequest)(nil),                                         // 46: client.api.FriendFollowRequest
+	(*FriendFollowResponse)(nil),                                        // 47: client.api.FriendFollowResponse
+	(*FriendInfo)(nil),                                                  // 48: client.api.FriendInfo
+	(*FriendListResponse)(nil),                                          // 49: client.api.FriendListResponse
+	(*FriendListSuggestionResponse)(nil),                                // 50: client.api.FriendListSuggestionResponse
+	(*FriendUnFollowRequest)(nil),                                       // 51: client.api.FriendUnFollowRequest
+	(*FriendUnFollowResponse)(nil),                                      // 52: client.api.FriendUnFollowResponse
+	(*GashaDrawRequest)(nil),                                            // 53: client.api.GashaDrawRequest
+	(*GashaDrawResponse)(nil),                                           // 54: client.api.GashaDrawResponse
+	(*GashaDrawResult)(nil),                                             // 55: client.api.GashaDrawResult
+	(*GashaDrawSelectPickupRequest)(nil),                                // 56: client.api.GashaDrawSelectPickupRequest
+	(*GashaDrawSelectPickupResponse)(nil),                               // 57: client.api.GashaDrawSelectPickupResponse
+	(*GashaDrawStepUpRequest)(nil),                                      // 58: client.api.GashaDrawStepUpRequest
+	(*GashaDrawStepUpResponse)(nil),                                     // 59: client.api.GashaDrawStepUpResponse
+	(*GashaExchangePointRequest)(nil),                                   // 60: client.api.GashaExchangePointRequest
+	(*GashaExchangePointResponse)(nil),                                  // 61: client.api.GashaExchangePointResponse
+	(*GashaExpirePointResponse)(nil),                                    // 62: client.api.GashaExpirePointResponse
+	(*GashaGetPointExchangeRequest)(nil),                                // 63: client.api.GashaGetPointExchangeRequest
+	(*GashaGetPointExchangeResponse)(nil),                               // 64: client.api.GashaGetPointExchangeResponse
+	(*GashaGetPrecautionRequest)(nil),                                   // 65: client.api.GashaGetPrecautionRequest
+	(*GashaGetPrecautionResponse)(nil),                                  // 66: client.api.GashaGetPrecautionResponse
+	(*GashaGetProbabilityRequest)(nil),                                  // 67: client.api.GashaGetProbabilityRequest
+	(*GashaGetProbabilityResponse)(nil),                                 // 68: client.api.GashaGetProbabilityResponse
+	(*GashaGetSelectPickupProbabilityRequest)(nil),                      // 69: client.api.GashaGetSelectPickupProbabilityRequest
+	(*GashaGetSelectPickupProbabilityResponse)(nil),                     // 70: client.api.GashaGetSelectPickupProbabilityResponse
+	(*GashaGetStepUpProbabilityRequest)(nil),                            // 71: client.api.GashaGetStepUpProbabilityRequest
+	(*GashaGetStepUpProbabilityResponse)(nil),                           // 72: client.api.GashaGetStepUpProbabilityResponse
+	(*GashaListResponse)(nil),                                           // 73: client.api.GashaListResponse
+	(*GashaProbability)(nil),                                            // 74: client.api.GashaProbability
+	(*GashaRarityProbability)(nil),                                      // 75: client.api.GashaRarityProbability
+	(*GashaSelectPickupRequest)(nil),                                    // 76: client.api.GashaSelectPickupRequest
+	(*GashaSelectPickupResponse)(nil),                                   // 77: client.api.GashaSelectPickupResponse
+	(*GiftCountResponse)(nil),                                           // 78: client.api.GiftCountResponse
+	(*GiftListHistoryRequest)(nil),                                      // 79: client.api.GiftListHistoryRequest
+	(*GiftListHistoryResponse)(nil),                                     // 80: client.api.GiftListHistoryResponse
+	(*GiftListRequest)(nil),                                             // 81: client.api.GiftListRequest
+	(*GiftListResponse)(nil),                                            // 82: client.api.GiftListResponse
+	(*GiftOpenRequest)(nil),                                             // 83: client.api.GiftOpenRequest
+	(*GiftOpenResponse)(nil),                                            // 84: client.api.GiftOpenResponse
+	(*GuildApplyJoinRequestRequest)(nil),                                // 85: client.api.GuildApplyJoinRequestRequest
+	(*GuildApplyJoinRequestResponse)(nil),                               // 86: client.api.GuildApplyJoinRequestResponse
+	(*GuildApproveJoinRequestRequest)(nil),                              // 87: client.api.GuildApproveJoinRequestRequest
+	(*GuildApproveJoinRequestResponse)(nil),                             // 88: client.api.GuildApproveJoinRequestResponse
+	(*GuildCancelJoinRequestRequest)(nil),                               // 89: client.api.GuildCancelJoinRequestRequest
+	(*GuildCancelJoinRequestResponse)(nil),                              // 90: client.api.GuildCancelJoinRequestResponse
+	(*GuildChangeLeaderRequest)(nil),                                    // 91: client.api.GuildChangeLeaderRequest
+	(*GuildChangeLeaderResponse)(nil),                                   // 92: client.api.GuildChangeLeaderResponse
+	(*GuildDismissRequest)(nil),                                         // 93: client.api.GuildDismissRequest
+	(*GuildDismissResponse)(nil),                                        // 94: client.api.GuildDismissResponse
+	(*GuildDissolveResponse)(nil),                                       // 95: client.api.GuildDissolveResponse
+	(*GuildDonateRequest)(nil),                                          // 96: client.api.GuildDonateRequest
+	(*GuildDonateResponse)(nil),                                         // 97: client.api.GuildDonateResponse
+	(*GuildDonationInfo)(nil),                                           // 98: client.api.GuildDonationInfo
+	(*GuildEditDetailRequest)(nil),                                      // 99: client.api.GuildEditDetailRequest
+	(*GuildEditDetailResponse)(nil),                                     // 100: client.api.GuildEditDetailResponse
+	(*GuildEditLeaderMessageRequest)(nil),                               // 101: client.api.GuildEditLeaderMessageRequest
+	(*GuildEditLeaderMessageResponse)(nil),                              // 102: client.api.GuildEditLeaderMessageResponse
+	(*GuildEstablishRequest)(nil),                                       // 103: client.api.GuildEstablishRequest
+	(*GuildEstablishResponse)(nil),                                      // 104: client.api.GuildEstablishResponse
+	(*GuildGetRequest)(nil),                                             // 105: client.api.GuildGetRequest
+	(*GuildGetResponse)(nil),                                            // 106: client.api.GuildGetResponse
+	(*GuildInfo)(nil),                                                   // 107: client.api.GuildInfo
+	(*GuildLeaveResponse)(nil),                                          // 108: client.api.GuildLeaveResponse
+	(*GuildListDonationRequestResponse)(nil),                            // 109: client.api.GuildListDonationRequestResponse
+	(*GuildListJoinRequestResponse)(nil),                                // 110: client.api.GuildListJoinRequestResponse
+	(*GuildListMemberResponse)(nil),                                     // 111: client.api.GuildListMemberResponse
+	(*GuildMemberInfo)(nil),                                             // 112: client.api.GuildMemberInfo
+	(*GuildReactionInfo)(nil),                                           // 113: client.api.GuildReactionInfo
+	(*GuildReceiveDonationResponse)(nil),                                // 114: client.api.GuildReceiveDonationResponse
+	(*GuildRejectJoinRequestRequest)(nil),                               // 115: client.api.GuildRejectJoinRequestRequest
+	(*GuildRejectJoinRequestResponse)(nil),                              // 116: client.api.GuildRejectJoinRequestResponse
+	(*GuildRequestDonationRequest)(nil),                                 // 117: client.api.GuildRequestDonationRequest
+	(*GuildRequestDonationResponse)(nil),                                // 118: client.api.GuildRequestDonationResponse
+	(*GuildSearchRequest)(nil),                                          // 119: client.api.GuildSearchRequest
+	(*GuildSearchResponse)(nil),                                         // 120: client.api.GuildSearchResponse
+	(*GuildTopResponse)(nil),                                            // 121: client.api.GuildTopResponse
+	(*GuildUpdateLeaderMessageReactionRequest)(nil),                     // 122: client.api.GuildUpdateLeaderMessageReactionRequest
+	(*GuildUpdateLeaderMessageReactionResponse)(nil),                    // 123: client.api.GuildUpdateLeaderMessageReactionResponse
+	(*GvgRaidDeck)(nil),                                                 // 124: client.api.GvgRaidDeck
+	(*GvgRaidEndRequest)(nil),                                           // 125: client.api.GvgRaidEndRequest
+	(*GvgRaidEndResponse)(nil),                                          // 126: client.api.GvgRaidEndResponse
+	(*GvgRaidGetProgressResponse)(nil),                                  // 127: client.api.GvgRaidGetProgressResponse
+	(*GvgRaidGuildRankReward)(nil),                                      // 128: client.api.GvgRaidGuildRankReward
+	(*GvgRaidGuildRankingResponse)(nil),                                 // 129: client.api.GvgRaidGuildRankingResponse
+	(*GvgRaidPlayTestRequest)(nil),                                      // 130: client.api.GvgRaidPlayTestRequest
+	(*GvgRaidPlayTestResponse)(nil),                                     // 131: client.api.GvgRaidPlayTestResponse
+	(*GvgRaidPointReward)(nil),                                          // 132: client.api.GvgRaidPointReward
+	(*GvgRaidSlot)(nil),                                                 // 133: client.api.GvgRaidSlot
+	(*GvgRaidStageChallengeReward)(nil),                                 // 134: client.api.GvgRaidStageChallengeReward
+	(*GvgRaidStartRequest)(nil),                                         // 135: client.api.GvgRaidStartRequest
+	(*GvgRaidStartResponse)(nil),                                        // 136: client.api.GvgRaidStartResponse
+	(*GvgRaidTopResponse)(nil),                                          // 137: client.api.GvgRaidTopResponse
+	(*GvgRaidUpdateDeckRequest)(nil),                                    // 138: client.api.GvgRaidUpdateDeckRequest
+	(*GvgRaidUpdateDeckResponse)(nil),                                   // 139: client.api.GvgRaidUpdateDeckResponse
+	(*GvgRaidUser)(nil),                                                 // 140: client.api.GvgRaidUser
+	(*GvgRaidUserRankingResponse)(nil),                                  // 141: client.api.GvgRaidUserRankingResponse
+	(*HealthCheckRequest)(nil),                                          // 142: client.api.HealthCheckRequest
+	(*HealthCheckResponse)(nil),                                         // 143: client.api.HealthCheckResponse
+	(*HomeConfirmBanWarningResponse)(nil),                               // 144: client.api.HomeConfirmBanWarningResponse
+	(*HomeEnterResponse)(nil),                                           // 145: client.api.HomeEnterResponse
+	(*HomeListEventResponse)(nil),                                       // 146: client.api.HomeListEventResponse
+	(*HomeLoginResponse)(nil),                                           // 147: client.api.HomeLoginResponse
+	(*HomeSetCharactersRequest)(nil),                                    // 148: client.api.HomeSetCharactersRequest
+	(*HomeSetCharactersResponse)(nil),                                   // 149: client.api.HomeSetCharactersResponse
+	(*IdolCardChangeSkinRequest)(nil),                                   // 150: client.api.IdolCardChangeSkinRequest
+	(*IdolCardChangeSkinResponse)(nil),                                  // 151: client.api.IdolCardChangeSkinResponse
+	(*IdolCardProbability)(nil),                                         // 152: client.api.IdolCardProbability
+	(*IdolCardRarityProbability)(nil),                                   // 153: client.api.IdolCardRarityProbability
+	(*IdolCardReleaseRequest)(nil),                                      // 154: client.api.IdolCardReleaseRequest
+	(*IdolCardReleaseResponse)(nil),                                     // 155: client.api.IdolCardReleaseResponse
+	(*IdolCardUpgradeLevelLimitRankRequest)(nil),                        // 156: client.api.IdolCardUpgradeLevelLimitRankRequest
+	(*IdolCardUpgradeLevelLimitRankResponse)(nil),                       // 157: client.api.IdolCardUpgradeLevelLimitRankResponse
+	(*IdolCardUpgradePotentialRankRequest)(nil),                         // 158: client.api.IdolCardUpgradePotentialRankRequest
+	(*IdolCardUpgradePotentialRankResponse)(nil),                        // 159: client.api.IdolCardUpgradePotentialRankResponse
+	(*InvitationEnterInvitationCodeRequest)(nil),                        // 160: client.api.InvitationEnterInvitationCodeRequest
+	(*InvitationEnterInvitationCodeResponse)(nil),                       // 161: client.api.InvitationEnterInvitationCodeResponse
+	(*InvitationListInviteUserResponse)(nil),                            // 162: client.api.InvitationListInviteUserResponse
+	(*InvitationReceiveInvitationPointRequest)(nil),                     // 163: client.api.InvitationReceiveInvitationPointRequest
+	(*InvitationReceiveInvitationPointResponse)(nil),                    // 164: client.api.InvitationReceiveInvitationPointResponse
+	(*InviteUser)(nil),                                                  // 165: client.api.InviteUser
+	(*ItemExchangeIdolCardPieceRequest)(nil),                            // 166: client.api.ItemExchangeIdolCardPieceRequest
+	(*ItemExchangeIdolCardPieceResponse)(nil),                           // 167: client.api.ItemExchangeIdolCardPieceResponse
+	(*ItemSellRequest)(nil),                                             // 168: client.api.ItemSellRequest
+	(*ItemSellResponse)(nil),                                            // 169: client.api.ItemSellResponse
+	(*ItemUseActionPointRecoveryRequest)(nil),                           // 170: client.api.ItemUseActionPointRecoveryRequest
+	(*ItemUseActionPointRecoveryResponse)(nil),                          // 171: client.api.ItemUseActionPointRecoveryResponse
+	(*LoginBonusCheckResponse)(nil),                                     // 172: client.api.LoginBonusCheckResponse
+	(*LoginBonusConfirmResponse)(nil),                                   // 173: client.api.LoginBonusConfirmResponse
+	(*MasterGetResponse)(nil),                                           // 174: client.api.MasterGetResponse
+	(*MediaPlayRequest)(nil),                                            // 175: client.api.MediaPlayRequest
+	(*MediaPlayResponse)(nil),                                           // 176: client.api.MediaPlayResponse
+	(*MeishiDeleteRequest)(nil),                                         // 177: client.api.MeishiDeleteRequest
+	(*MeishiDeleteResponse)(nil),                                        // 178: client.api.MeishiDeleteResponse
+	(*MeishiFollowRequest)(nil),                                         // 179: client.api.MeishiFollowRequest
+	(*MeishiFollowResponse)(nil),                                        // 180: client.api.MeishiFollowResponse
+	(*MeishiGetDetailRequest)(nil),                                      // 181: client.api.MeishiGetDetailRequest
+	(*MeishiGetDetailResponse)(nil),                                     // 182: client.api.MeishiGetDetailResponse
+	(*MeishiGetRequest)(nil),                                            // 183: client.api.MeishiGetRequest
+	(*MeishiGetResponse)(nil),                                           // 184: client.api.MeishiGetResponse
+	(*MeishiListFollowResponse)(nil),                                    // 185: client.api.MeishiListFollowResponse
+	(*MeishiListResponse)(nil),                                          // 186: client.api.MeishiListResponse
+	(*MeishiReportXPostMissionRequest)(nil),                             // 187: client.api.MeishiReportXPostMissionRequest
+	(*MeishiReportXPostMissionResponse)(nil),                            // 188: client.api.MeishiReportXPostMissionResponse
+	(*MeishiSetRequest)(nil),                                            // 189: client.api.MeishiSetRequest
+	(*MeishiSetResponse)(nil),                                           // 190: client.api.MeishiSetResponse
+	(*MeishiUnfollowRequest)(nil),                                       // 191: client.api.MeishiUnfollowRequest
+	(*MeishiUnfollowResponse)(nil),                                      // 192: client.api.MeishiUnfollowResponse
+	(*MeishiUpdateRequest)(nil),                                         // 193: client.api.MeishiUpdateRequest
+	(*MeishiUpdateResponse)(nil),                                        // 194: client.api.MeishiUpdateResponse
+	(*MemoryExchangeRequest)(nil),                                       // 195: client.api.MemoryExchangeRequest
+	(*MemoryExchangeResponse)(nil),                                      // 196: client.api.MemoryExchangeResponse
+	(*MemoryFixInheritRequest)(nil),                                     // 197: client.api.MemoryFixInheritRequest
+	(*MemoryFixInheritResponse)(nil),                                    // 198: client.api.MemoryFixInheritResponse
+	(*MemoryInheritRequest)(nil),                                        // 199: client.api.MemoryInheritRequest
+	(*MemoryInheritResponse)(nil),                                       // 200: client.api.MemoryInheritResponse
+	(*MemoryReshootingRequest)(nil),                                     // 201: client.api.MemoryReshootingRequest
+	(*MemoryReshootingResponse)(nil),                                    // 202: client.api.MemoryReshootingResponse
+	(*MemoryUpdateProtectionRequest)(nil),                               // 203: client.api.MemoryUpdateProtectionRequest
+	(*MemoryUpdateProtectionResponse)(nil),                              // 204: client.api.MemoryUpdateProtectionResponse
+	(*MemoryUpdateTagSettingRequest)(nil),                               // 205: client.api.MemoryUpdateTagSettingRequest
+	(*MemoryUpdateTagSettingResponse)(nil),                              // 206: client.api.MemoryUpdateTagSettingResponse
+	(*MissionExchangePassPointRequest)(nil),                             // 207: client.api.MissionExchangePassPointRequest
+	(*MissionExchangePassPointResponse)(nil),                            // 208: client.api.MissionExchangePassPointResponse
+	(*MissionListEventResponse)(nil),                                    // 209: client.api.MissionListEventResponse
+	(*MissionReceiveGroupAllRequest)(nil),                               // 210: client.api.MissionReceiveGroupAllRequest
+	(*MissionReceiveGroupAllResponse)(nil),                              // 211: client.api.MissionReceiveGroupAllResponse
+	(*MissionReceiveGroupRequest)(nil),                                  // 212: client.api.MissionReceiveGroupRequest
+	(*MissionReceiveGroupResponse)(nil),                                 // 213: client.api.MissionReceiveGroupResponse
+	(*MissionReceivePassRequest)(nil),                                   // 214: client.api.MissionReceivePassRequest
+	(*MissionReceivePassResponse)(nil),                                  // 215: client.api.MissionReceivePassResponse
+	(*MissionReceiveRequest)(nil),                                       // 216: client.api.MissionReceiveRequest
+	(*MissionReceiveResponse)(nil),                                      // 217: client.api.MissionReceiveResponse
+	(*MissionUrlTransitionRequest)(nil),                                 // 218: client.api.MissionUrlTransitionRequest
+	(*MissionUrlTransitionResponse)(nil),                                // 219: client.api.MissionUrlTransitionResponse
+	(*MoneyReceiveResponse)(nil),                                        // 220: client.api.MoneyReceiveResponse
+	(*MovieCreateRequest)(nil),                                          // 221: client.api.MovieCreateRequest
+	(*MovieCreateResponse)(nil),                                         // 222: client.api.MovieCreateResponse
+	(*MovieDeleteRequest)(nil),                                          // 223: client.api.MovieDeleteRequest
+	(*MovieDeleteResponse)(nil),                                         // 224: client.api.MovieDeleteResponse
+	(*MovieRetakeRequest)(nil),                                          // 225: client.api.MovieRetakeRequest
+	(*MovieRetakeResponse)(nil),                                         // 226: client.api.MovieRetakeResponse
+	(*MusicSendActionLogRequest)(nil),                                   // 227: client.api.MusicSendActionLogRequest
+	(*MusicSendActionLogResponse)(nil),                                  // 228: client.api.MusicSendActionLogResponse
+	(*MusicSendBuyActionLogRequest)(nil),                                // 229: client.api.MusicSendBuyActionLogRequest
+	(*MusicSendBuyActionLogResponse)(nil),                               // 230: client.api.MusicSendBuyActionLogResponse
+	(*NoticeFetchListRequest)(nil),                                      // 231: client.api.NoticeFetchListRequest
+	(*NoticeFetchListResponse)(nil),                                     // 232: client.api.NoticeFetchListResponse
+	(*NoticeGetRequest)(nil),                                            // 233: client.api.NoticeGetRequest
+	(*NoticeGetResponse)(nil),                                           // 234: client.api.NoticeGetResponse
+	(*NoticeInfo)(nil),                                                  // 235: client.api.NoticeInfo
+	(*NoticeListAllResponse)(nil),                                       // 236: client.api.NoticeListAllResponse
+	(*NoticeUpdateCategoryTimeRequest)(nil),                             // 237: client.api.NoticeUpdateCategoryTimeRequest
+	(*NoticeUpdateCategoryTimeResponse)(nil),                            // 238: client.api.NoticeUpdateCategoryTimeResponse
+	(*NoticeUpdateDetailTimeRequest)(nil),                               // 239: client.api.NoticeUpdateDetailTimeRequest
+	(*NoticeUpdateDetailTimeResponse)(nil),                              // 240: client.api.NoticeUpdateDetailTimeResponse
+	(*PhotoCreateByMemoryRequest)(nil),                                  // 241: client.api.PhotoCreateByMemoryRequest
+	(*PhotoCreateByMemoryResponse)(nil),                                 // 242: client.api.PhotoCreateByMemoryResponse
+	(*PhotoCreateIdolRequest)(nil),                                      // 243: client.api.PhotoCreateIdolRequest
+	(*PhotoCreateIdolResponse)(nil),                                     // 244: client.api.PhotoCreateIdolResponse
+	(*PhotoCreateRequest)(nil),                                          // 245: client.api.PhotoCreateRequest
+	(*PhotoCreateResponse)(nil),                                         // 246: client.api.PhotoCreateResponse
+	(*PhotoDeleteRequest)(nil),                                          // 247: client.api.PhotoDeleteRequest
+	(*PhotoDeleteResponse)(nil),                                         // 248: client.api.PhotoDeleteResponse
+	(*PhotoUpdateNameRequest)(nil),                                      // 249: client.api.PhotoUpdateNameRequest
+	(*PhotoUpdateNameResponse)(nil),                                     // 250: client.api.PhotoUpdateNameResponse
+	(*PhotoUpdateProtectionRequest)(nil),                                // 251: client.api.PhotoUpdateProtectionRequest
+	(*PhotoUpdateProtectionResponse)(nil),                               // 252: client.api.PhotoUpdateProtectionResponse
+	(*PreferenceUpdateRequest)(nil),                                     // 253: client.api.PreferenceUpdateRequest
+	(*PreferenceUpdateResponse)(nil),                                    // 254: client.api.PreferenceUpdateResponse
+	(*ProduceActivateEffectRequest)(nil),                                // 255: client.api.ProduceActivateEffectRequest
+	(*ProduceActivateEffectResponse)(nil),                               // 256: client.api.ProduceActivateEffectResponse
+	(*ProduceChangeCostumeRequest)(nil),                                 // 257: client.api.ProduceChangeCostumeRequest
+	(*ProduceChangeCostumeResponse)(nil),                                // 258: client.api.ProduceChangeCostumeResponse
+	(*ProduceChangeForceLiveCommonRequest)(nil),                         // 259: client.api.ProduceChangeForceLiveCommonRequest
+	(*ProduceChangeForceLiveCommonResponse)(nil),                        // 260: client.api.ProduceChangeForceLiveCommonResponse
+	(*ProduceCheckProgressRequest)(nil),                                 // 261: client.api.ProduceCheckProgressRequest
+	(*ProduceCheckProgressResponse)(nil),                                // 262: client.api.ProduceCheckProgressResponse
+	(*ProduceContinueRequest)(nil),                                      // 263: client.api.ProduceContinueRequest
+	(*ProduceContinueResponse)(nil),                                     // 264: client.api.ProduceContinueResponse
+	(*ProduceDiscardDrinkRequest)(nil),                                  // 265: client.api.ProduceDiscardDrinkRequest
+	(*ProduceDiscardDrinkResponse)(nil),                                 // 266: client.api.ProduceDiscardDrinkResponse
+	(*ProduceEndBeforeLiveEvaluationRequest)(nil),                       // 267: client.api.ProduceEndBeforeLiveEvaluationRequest
+	(*ProduceEndBeforeLiveEvaluationResponse)(nil),                      // 268: client.api.ProduceEndBeforeLiveEvaluationResponse
+	(*ProduceEndRequest)(nil),                                           // 269: client.api.ProduceEndRequest
+	(*ProduceEndResponse)(nil),                                          // 270: client.api.ProduceEndResponse
+	(*ProduceExcludeProduceCardRequest)(nil),                            // 271: client.api.ProduceExcludeProduceCardRequest
+	(*ProduceExcludeProduceCardResponse)(nil),                           // 272: client.api.ProduceExcludeProduceCardResponse
+	(*ProduceGrowthResult)(nil),                                         // 273: client.api.ProduceGrowthResult
+	(*ProduceHighScoreCharacter)(nil),                                   // 274: client.api.ProduceHighScoreCharacter
+	(*ProduceHighScoreGetResponse)(nil),                                 // 275: client.api.ProduceHighScoreGetResponse
+	(*ProduceHighScoreListRankRewardResponse)(nil),                      // 276: client.api.ProduceHighScoreListRankRewardResponse
+	(*ProduceHighScoreRankReward)(nil),                                  // 277: client.api.ProduceHighScoreRankReward
+	(*ProduceHighScoreRankingRequest)(nil),                              // 278: client.api.ProduceHighScoreRankingRequest
+	(*ProduceHighScoreRankingResponse)(nil),                             // 279: client.api.ProduceHighScoreRankingResponse
+	(*ProduceHighScoreResult)(nil),                                      // 280: client.api.ProduceHighScoreResult
+	(*ProduceHighScoreReward)(nil),                                      // 281: client.api.ProduceHighScoreReward
+	(*ProduceHistoryRequest)(nil),                                       // 282: client.api.ProduceHistoryRequest
+	(*ProduceHistoryResponse)(nil),                                      // 283: client.api.ProduceHistoryResponse
+	(*ProduceListRentalMemoryRequest)(nil),                              // 284: client.api.ProduceListRentalMemoryRequest
+	(*ProduceListRentalMemoryResponse)(nil),                             // 285: client.api.ProduceListRentalMemoryResponse
+	(*ProduceListRentalSupportCardResponse)(nil),                        // 286: client.api.ProduceListRentalSupportCardResponse
+	(*ProduceNextIdolAuditionMasterListRankRewardRequest)(nil),          // 287: client.api.ProduceNextIdolAuditionMasterListRankRewardRequest
+	(*ProduceNextIdolAuditionMasterListRankRewardResponse)(nil),         // 288: client.api.ProduceNextIdolAuditionMasterListRankRewardResponse
+	(*ProduceNextIdolAuditionMasterRankingRequest)(nil),                 // 289: client.api.ProduceNextIdolAuditionMasterRankingRequest
+	(*ProduceNextIdolAuditionMasterRankingResponse)(nil),                // 290: client.api.ProduceNextIdolAuditionMasterRankingResponse
+	(*ProduceNextRequest)(nil),                                          // 291: client.api.ProduceNextRequest
+	(*ProduceNextResponse)(nil),                                         // 292: client.api.ProduceNextResponse
+	(*ProduceRank)(nil),                                                 // 293: client.api.ProduceRank
+	(*ProduceRankingRequest)(nil),                                       // 294: client.api.ProduceRankingRequest
+	(*ProduceRankingResponse)(nil),                                      // 295: client.api.ProduceRankingResponse
+	(*ProduceRankingTopRequest)(nil),                                    // 296: client.api.ProduceRankingTopRequest
+	(*ProduceRankingTopResponse)(nil),                                   // 297: client.api.ProduceRankingTopResponse
+	(*ProduceReadAdvRequest)(nil),                                       // 298: client.api.ProduceReadAdvRequest
+	(*ProduceReadAdvResponse)(nil),                                      // 299: client.api.ProduceReadAdvResponse
+	(*ProduceReadDearnessStoryRequest)(nil),                             // 300: client.api.ProduceReadDearnessStoryRequest
+	(*ProduceReadDearnessStoryResponse)(nil),                            // 301: client.api.ProduceReadDearnessStoryResponse
+	(*ProduceReportDearnessBoostEventRequest)(nil),                      // 302: client.api.ProduceReportDearnessBoostEventRequest
+	(*ProduceReportDearnessBoostEventResponse)(nil),                     // 303: client.api.ProduceReportDearnessBoostEventResponse
+	(*ProduceReportGuildMissionRequest)(nil),                            // 304: client.api.ProduceReportGuildMissionRequest
+	(*ProduceReportGuildMissionResponse)(nil),                           // 305: client.api.ProduceReportGuildMissionResponse
+	(*ProduceRerollMemoryRequest)(nil),                                  // 306: client.api.ProduceRerollMemoryRequest
+	(*ProduceRerollMemoryResponse)(nil),                                 // 307: client.api.ProduceRerollMemoryResponse
+	(*ProduceRerollSelectProduceCardRequest)(nil),                       // 308: client.api.ProduceRerollSelectProduceCardRequest
+	(*ProduceRerollSelectProduceCardResponse)(nil),                      // 309: client.api.ProduceRerollSelectProduceCardResponse
+	(*ProduceResultRequest)(nil),                                        // 310: client.api.ProduceResultRequest
+	(*ProduceResultResponse)(nil),                                       // 311: client.api.ProduceResultResponse
+	(*ProduceRetireResponse)(nil),                                       // 312: client.api.ProduceRetireResponse
+	(*ProduceStartBeforeLiveEvaluationRequest)(nil),                     // 313: client.api.ProduceStartBeforeLiveEvaluationRequest
+	(*ProduceStartBeforeLiveEvaluationResponse)(nil),                    // 314: client.api.ProduceStartBeforeLiveEvaluationResponse
+	(*ProduceStartRequest)(nil),                                         // 315: client.api.ProduceStartRequest
+	(*ProduceStartResponse)(nil),                                        // 316: client.api.ProduceStartResponse
+	(*ProduceStepAuditionEndExamBattleRequest)(nil),                     // 317: client.api.ProduceStepAuditionEndExamBattleRequest
+	(*ProduceStepAuditionEndExamBattleResponse)(nil),                    // 318: client.api.ProduceStepAuditionEndExamBattleResponse
+	(*ProduceStepAuditionEndRequest)(nil),                               // 319: client.api.ProduceStepAuditionEndRequest
+	(*ProduceStepAuditionEndResponse)(nil),                              // 320: client.api.ProduceStepAuditionEndResponse
+	(*ProduceStepAuditionRefreshRequest)(nil),                           // 321: client.api.ProduceStepAuditionRefreshRequest
+	(*ProduceStepAuditionRefreshResponse)(nil),                          // 322: client.api.ProduceStepAuditionRefreshResponse
+	(*ProduceStepAuditionStartRequest)(nil),                             // 323: client.api.ProduceStepAuditionStartRequest
+	(*ProduceStepAuditionStartResponse)(nil),                            // 324: client.api.ProduceStepAuditionStartResponse
+	(*ProduceStepBusinessSelectRequest)(nil),                            // 325: client.api.ProduceStepBusinessSelectRequest
+	(*ProduceStepBusinessSelectResponse)(nil),                           // 326: client.api.ProduceStepBusinessSelectResponse
+	(*ProduceStepBusinessStartRequest)(nil),                             // 327: client.api.ProduceStepBusinessStartRequest
+	(*ProduceStepBusinessStartResponse)(nil),                            // 328: client.api.ProduceStepBusinessStartResponse
+	(*ProduceStepCustomizeEndRequest)(nil),                              // 329: client.api.ProduceStepCustomizeEndRequest
+	(*ProduceStepCustomizeEndResponse)(nil),                             // 330: client.api.ProduceStepCustomizeEndResponse
+	(*ProduceStepCustomizeSelectRequest)(nil),                           // 331: client.api.ProduceStepCustomizeSelectRequest
+	(*ProduceStepCustomizeSelectResponse)(nil),                          // 332: client.api.ProduceStepCustomizeSelectResponse
+	(*ProduceStepCustomizeStartRequest)(nil),                            // 333: client.api.ProduceStepCustomizeStartRequest
+	(*ProduceStepCustomizeStartResponse)(nil),                           // 334: client.api.ProduceStepCustomizeStartResponse
+	(*ProduceStepEventRequest)(nil),                                     // 335: client.api.ProduceStepEventRequest
+	(*ProduceStepEventResponse)(nil),                                    // 336: client.api.ProduceStepEventResponse
+	(*ProduceStepLessonEndRequest)(nil),                                 // 337: client.api.ProduceStepLessonEndRequest
+	(*ProduceStepLessonEndResponse)(nil),                                // 338: client.api.ProduceStepLessonEndResponse
+	(*ProduceStepLessonStartRequest)(nil),                               // 339: client.api.ProduceStepLessonStartRequest
+	(*ProduceStepLessonStartResponse)(nil),                              // 340: client.api.ProduceStepLessonStartResponse
+	(*ProduceStepPresentEndRequest)(nil),                                // 341: client.api.ProduceStepPresentEndRequest
+	(*ProduceStepPresentEndResponse)(nil),                               // 342: client.api.ProduceStepPresentEndResponse
+	(*ProduceStepPresentReceiveRequest)(nil),                            // 343: client.api.ProduceStepPresentReceiveRequest
+	(*ProduceStepPresentReceiveResponse)(nil),                           // 344: client.api.ProduceStepPresentReceiveResponse
+	(*ProduceStepPresentStartRequest)(nil),                              // 345: client.api.ProduceStepPresentStartRequest
+	(*ProduceStepPresentStartResponse)(nil),                             // 346: client.api.ProduceStepPresentStartResponse
+	(*ProduceStepRefreshRequest)(nil),                                   // 347: client.api.ProduceStepRefreshRequest
+	(*ProduceStepRefreshResponse)(nil),                                  // 348: client.api.ProduceStepRefreshResponse
+	(*ProduceStepSelfLessonEndRequest)(nil),                             // 349: client.api.ProduceStepSelfLessonEndRequest
+	(*ProduceStepSelfLessonEndResponse)(nil),                            // 350: client.api.ProduceStepSelfLessonEndResponse
+	(*ProduceStepSelfLessonStartRequest)(nil),                           // 351: client.api.ProduceStepSelfLessonStartRequest
+	(*ProduceStepSelfLessonStartResponse)(nil),                          // 352: client.api.ProduceStepSelfLessonStartResponse
+	(*ProduceStepShopBuyRequest)(nil),                                   // 353: client.api.ProduceStepShopBuyRequest
+	(*ProduceStepShopBuyResponse)(nil),                                  // 354: client.api.ProduceStepShopBuyResponse
+	(*ProduceStepShopEndRequest)(nil),                                   // 355: client.api.ProduceStepShopEndRequest
+	(*ProduceStepShopEndResponse)(nil),                                  // 356: client.api.ProduceStepShopEndResponse
+	(*ProduceStepShopRerollRequest)(nil),                                // 357: client.api.ProduceStepShopRerollRequest
+	(*ProduceStepShopRerollResponse)(nil),                               // 358: client.api.ProduceStepShopRerollResponse
+	(*ProduceStepShopStartRequest)(nil),                                 // 359: client.api.ProduceStepShopStartRequest
+	(*ProduceStepShopStartResponse)(nil),                                // 360: client.api.ProduceStepShopStartResponse
+	(*ProduceStepSkipRequest)(nil),                                      // 361: client.api.ProduceStepSkipRequest
+	(*ProduceStepSkipResponse)(nil),                                     // 362: client.api.ProduceStepSkipResponse
+	(*ProduceTopResponse)(nil),                                          // 363: client.api.ProduceTopResponse
+	(*ProduceUnlockPictureBookLiveRequest)(nil),                         // 364: client.api.ProduceUnlockPictureBookLiveRequest
+	(*ProduceUnlockPictureBookLiveResponse)(nil),                        // 365: client.api.ProduceUnlockPictureBookLiveResponse
+	(*ProduceUpdateMemoryDeck)(nil),                                     // 366: client.api.ProduceUpdateMemoryDeck
+	(*ProduceUpdateMemoryDeckRequest)(nil),                              // 367: client.api.ProduceUpdateMemoryDeckRequest
+	(*ProduceUpdateMemoryDeckResponse)(nil),                             // 368: client.api.ProduceUpdateMemoryDeckResponse
+	(*ProduceUpdateSupportCardDeck)(nil),                                // 369: client.api.ProduceUpdateSupportCardDeck
+	(*ProduceUpdateSupportCardDeckRequest)(nil),                         // 370: client.api.ProduceUpdateSupportCardDeckRequest
+	(*ProduceUpdateSupportCardDeckResponse)(nil),                        // 371: client.api.ProduceUpdateSupportCardDeckResponse
+	(*ProduceUseDrinkResponse)(nil),                                     // 372: client.api.ProduceUseDrinkResponse
+	(*ProduceViewPictureBookLiveRequest)(nil),                           // 373: client.api.ProduceViewPictureBookLiveRequest
+	(*ProduceViewPictureBookLiveResponse)(nil),                          // 374: client.api.ProduceViewPictureBookLiveResponse
+	(*ProfileBirthday)(nil),                                             // 375: client.api.ProfileBirthday
+	(*ProfileGetRequest)(nil),                                           // 376: client.api.ProfileGetRequest
+	(*ProfileGetResponse)(nil),                                          // 377: client.api.ProfileGetResponse
+	(*ProfileUpdateBirthdayRequest)(nil),                                // 378: client.api.ProfileUpdateBirthdayRequest
+	(*ProfileUpdateBirthdayResponse)(nil),                               // 379: client.api.ProfileUpdateBirthdayResponse
+	(*ProfileUpdateCommentRequest)(nil),                                 // 380: client.api.ProfileUpdateCommentRequest
+	(*ProfileUpdateCommentResponse)(nil),                                // 381: client.api.ProfileUpdateCommentResponse
+	(*ProfileUpdateMemoryRequest)(nil),                                  // 382: client.api.ProfileUpdateMemoryRequest
+	(*ProfileUpdateMemoryResponse)(nil),                                 // 383: client.api.ProfileUpdateMemoryResponse
+	(*ProfileUpdateNameRequest)(nil),                                    // 384: client.api.ProfileUpdateNameRequest
+	(*ProfileUpdateNameResponse)(nil),                                   // 385: client.api.ProfileUpdateNameResponse
+	(*ProfileUpdateSupportCardRequest)(nil),                             // 386: client.api.ProfileUpdateSupportCardRequest
+	(*ProfileUpdateSupportCardResponse)(nil),                            // 387: client.api.ProfileUpdateSupportCardResponse
+	(*PvpRateEndRequest)(nil),                                           // 388: client.api.PvpRateEndRequest
+	(*PvpRateEndResponse)(nil),                                          // 389: client.api.PvpRateEndResponse
+	(*PvpRateGetHistoryRequest)(nil),                                    // 390: client.api.PvpRateGetHistoryRequest
+	(*PvpRateGetHistoryResponse)(nil),                                   // 391: client.api.PvpRateGetHistoryResponse
+	(*PvpRateGetResponse)(nil),                                          // 392: client.api.PvpRateGetResponse
+	(*PvpRateInitializeResponse)(nil),                                   // 393: client.api.PvpRateInitializeResponse
+	(*PvpRateListHistoryResponse)(nil),                                  // 394: client.api.PvpRateListHistoryResponse
+	(*PvpRateListRankingResponse)(nil),                                  // 395: client.api.PvpRateListRankingResponse
+	(*PvpRatePlayExamBattleResponse)(nil),                               // 396: client.api.PvpRatePlayExamBattleResponse
+	(*PvpRatePlayTestResponse)(nil),                                     // 397: client.api.PvpRatePlayTestResponse
+	(*PvpRateRankReward)(nil),                                           // 398: client.api.PvpRateRankReward
+	(*PvpRateRankingUser)(nil),                                          // 399: client.api.PvpRateRankingUser
+	(*PvpRateRateReward)(nil),                                           // 400: client.api.PvpRateRateReward
+	(*PvpRateRival)(nil),                                                // 401: client.api.PvpRateRival
+	(*PvpRateSeasonResult)(nil),                                         // 402: client.api.PvpRateSeasonResult
+	(*PvpRateStartRequest)(nil),                                         // 403: client.api.PvpRateStartRequest
+	(*PvpRateStartResponse)(nil),                                        // 404: client.api.PvpRateStartResponse
+	(*PvpRateUnitStageFormation)(nil),                                   // 405: client.api.PvpRateUnitStageFormation
+	(*PvpRateUpdateUserPvpRateUnitRequest)(nil),                         // 406: client.api.PvpRateUpdateUserPvpRateUnitRequest
+	(*PvpRateUpdateUserPvpRateUnitResponse)(nil),                        // 407: client.api.PvpRateUpdateUserPvpRateUnitResponse
+	(*SeminarEndExamRequest)(nil),                                       // 408: client.api.SeminarEndExamRequest
+	(*SeminarEndExamResponse)(nil),                                      // 409: client.api.SeminarEndExamResponse
+	(*SeminarGetExamRequest)(nil),                                       // 410: client.api.SeminarGetExamRequest
+	(*SeminarGetExamResponse)(nil),                                      // 411: client.api.SeminarGetExamResponse
+	(*SeminarListExamResponse)(nil),                                     // 412: client.api.SeminarListExamResponse
+	(*ShopCancelPurchaseTransactionRequest)(nil),                        // 413: client.api.ShopCancelPurchaseTransactionRequest
+	(*ShopCancelPurchaseTransactionResponse)(nil),                       // 414: client.api.ShopCancelPurchaseTransactionResponse
+	(*ShopCheckPurchaseJewelRequest)(nil),                               // 415: client.api.ShopCheckPurchaseJewelRequest
+	(*ShopCheckPurchaseJewelResponse)(nil),                              // 416: client.api.ShopCheckPurchaseJewelResponse
+	(*ShopGetPurchasePlatformTransactionRequest)(nil),                   // 417: client.api.ShopGetPurchasePlatformTransactionRequest
+	(*ShopGetPurchasePlatformTransactionResponse)(nil),                  // 418: client.api.ShopGetPurchasePlatformTransactionResponse
+	(*ShopItem)(nil),                                                    // 419: client.api.ShopItem
+	(*ShopListItemsRequest)(nil),                                        // 420: client.api.ShopListItemsRequest
+	(*ShopListItemsResponse)(nil),                                       // 421: client.api.ShopListItemsResponse
+	(*ShopPurchaseJewelRequest)(nil),                                    // 422: client.api.ShopPurchaseJewelRequest
+	(*ShopPurchaseJewelResponse)(nil),                                   // 423: client.api.ShopPurchaseJewelResponse
+	(*ShopPurchaseRequest)(nil),                                         // 424: client.api.ShopPurchaseRequest
+	(*ShopPurchaseResponse)(nil),                                        // 425: client.api.ShopPurchaseResponse
+	(*ShopRecoverPurchaseJewelRequest)(nil),                             // 426: client.api.ShopRecoverPurchaseJewelRequest
+	(*ShopRecoverPurchaseJewelResponse)(nil),                            // 427: client.api.ShopRecoverPurchaseJewelResponse
+	(*ShopRegisterBirthdayRequest)(nil),                                 // 428: client.api.ShopRegisterBirthdayRequest
+	(*ShopRegisterBirthdayResponse)(nil),                                // 429: client.api.ShopRegisterBirthdayResponse
+	(*ShopRegisterDelayPurchaseTransactionRequest)(nil),                 // 430: client.api.ShopRegisterDelayPurchaseTransactionRequest
+	(*ShopRegisterDelayPurchaseTransactionResponse)(nil),                // 431: client.api.ShopRegisterDelayPurchaseTransactionResponse
+	(*ShopRegisterPurchaseTransactionRequest)(nil),                      // 432: client.api.ShopRegisterPurchaseTransactionRequest
+	(*ShopRegisterPurchaseTransactionResponse)(nil),                     // 433: client.api.ShopRegisterPurchaseTransactionResponse
+	(*ShopTopResponse)(nil),                                             // 434: client.api.ShopTopResponse
+	(*StartupConfirmRequest)(nil),                                       // 435: client.api.StartupConfirmRequest
+	(*StartupConfirmResponse)(nil),                                      // 436: client.api.StartupConfirmResponse
+	(*StartupListNotificationsRequest)(nil),                             // 437: client.api.StartupListNotificationsRequest
+	(*StartupListNotificationsResponse)(nil),                            // 438: client.api.StartupListNotificationsResponse
+	(*StepUpGashaProbability)(nil),                                      // 439: client.api.StepUpGashaProbability
+	(*StoryEventListGuildMissionRequest)(nil),                           // 440: client.api.StoryEventListGuildMissionRequest
+	(*StoryEventListGuildMissionResponse)(nil),                          // 441: client.api.StoryEventListGuildMissionResponse
+	(*StoryEventReceiveGuildMissionRequest)(nil),                        // 442: client.api.StoryEventReceiveGuildMissionRequest
+	(*StoryEventReceiveGuildMissionResponse)(nil),                       // 443: client.api.StoryEventReceiveGuildMissionResponse
+	(*StoryEventTopRequest)(nil),                                        // 444: client.api.StoryEventTopRequest
+	(*StoryEventTopResponse)(nil),                                       // 445: client.api.StoryEventTopResponse
+	(*StoryReadDearnessStoryRequest)(nil),                               // 446: client.api.StoryReadDearnessStoryRequest
+	(*StoryReadDearnessStoryResponse)(nil),                              // 447: client.api.StoryReadDearnessStoryResponse
+	(*StoryReadProduceStoryRequest)(nil),                                // 448: client.api.StoryReadProduceStoryRequest
+	(*StoryReadProduceStoryResponse)(nil),                               // 449: client.api.StoryReadProduceStoryResponse
+	(*StoryReadRequest)(nil),                                            // 450: client.api.StoryReadRequest
+	(*StoryReadResponse)(nil),                                           // 451: client.api.StoryReadResponse
+	(*StoryUnlockDearnessStoryRequest)(nil),                             // 452: client.api.StoryUnlockDearnessStoryRequest
+	(*StoryUnlockDearnessStoryResponse)(nil),                            // 453: client.api.StoryUnlockDearnessStoryResponse
+	(*StoryUnlockProduceStoryRequest)(nil),                              // 454: client.api.StoryUnlockProduceStoryRequest
+	(*StoryUnlockProduceStoryResponse)(nil),                             // 455: client.api.StoryUnlockProduceStoryResponse
+	(*StoryUnlockRequest)(nil),                                          // 456: client.api.StoryUnlockRequest
+	(*StoryUnlockResponse)(nil),                                         // 457: client.api.StoryUnlockResponse
+	(*SupportCardEnhanceRequest)(nil),                                   // 458: client.api.SupportCardEnhanceRequest
+	(*SupportCardEnhanceResponse)(nil),                                  // 459: client.api.SupportCardEnhanceResponse
+	(*SupportCardExchangeRequest)(nil),                                  // 460: client.api.SupportCardExchangeRequest
+	(*SupportCardExchangeResponse)(nil),                                 // 461: client.api.SupportCardExchangeResponse
+	(*SupportCardListDeckRankingResponse)(nil),                          // 462: client.api.SupportCardListDeckRankingResponse
+	(*SupportCardProbability)(nil),                                      // 463: client.api.SupportCardProbability
+	(*SupportCardRarityProbability)(nil),                                // 464: client.api.SupportCardRarityProbability
+	(*SupportCardUpgradeLevelLimitRankRequest)(nil),                     // 465: client.api.SupportCardUpgradeLevelLimitRankRequest
+	(*SupportCardUpgradeLevelLimitRankResponse)(nil),                    // 466: client.api.SupportCardUpgradeLevelLimitRankResponse
+	(*SystemCheckRequest)(nil),                                          // 467: client.api.SystemCheckRequest
+	(*SystemCheckResponse)(nil),                                         // 468: client.api.SystemCheckResponse
+	(*TicketExchangeExecuteRequest)(nil),                                // 469: client.api.TicketExchangeExecuteRequest
+	(*TicketExchangeExecuteResponse)(nil),                               // 470: client.api.TicketExchangeExecuteResponse
+	(*TicketExchangeItem)(nil),                                          // 471: client.api.TicketExchangeItem
+	(*TicketExchangeListItemsRequest)(nil),                              // 472: client.api.TicketExchangeListItemsRequest
+	(*TicketExchangeListItemsResponse)(nil),                             // 473: client.api.TicketExchangeListItemsResponse
+	(*TowerCheckRequest)(nil),                                           // 474: client.api.TowerCheckRequest
+	(*TowerCheckResponse)(nil),                                          // 475: client.api.TowerCheckResponse
+	(*TowerEndRequest)(nil),                                             // 476: client.api.TowerEndRequest
+	(*TowerEndResponse)(nil),                                            // 477: client.api.TowerEndResponse
+	(*TowerGetLayerIdolCardRankingRequest)(nil),                         // 478: client.api.TowerGetLayerIdolCardRankingRequest
+	(*TowerGetLayerIdolCardRankingResponse)(nil),                        // 479: client.api.TowerGetLayerIdolCardRankingResponse
+	(*TowerGetLayerIdolCardRankingTopRequest)(nil),                      // 480: client.api.TowerGetLayerIdolCardRankingTopRequest
+	(*TowerGetLayerIdolCardRankingTopResponse)(nil),                     // 481: client.api.TowerGetLayerIdolCardRankingTopResponse
+	(*TowerGetLayerRequest)(nil),                                        // 482: client.api.TowerGetLayerRequest
+	(*TowerGetLayerResponse)(nil),                                       // 483: client.api.TowerGetLayerResponse
+	(*TowerGetPastSeasonLayerIdolCardRankingRequest)(nil),               // 484: client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
+	(*TowerGetPastSeasonLayerIdolCardRankingResponse)(nil),              // 485: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
+	(*TowerGetPastSeasonLayerIdolCardRankingTopRequest)(nil),            // 486: client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
+	(*TowerGetPastSeasonLayerIdolCardRankingTopResponse)(nil),           // 487: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
+	(*TowerGetPastSeasonRankingRequest)(nil),                            // 488: client.api.TowerGetPastSeasonRankingRequest
+	(*TowerGetPastSeasonRankingResponse)(nil),                           // 489: client.api.TowerGetPastSeasonRankingResponse
+	(*TowerGetRankingDeckRequest)(nil),                                  // 490: client.api.TowerGetRankingDeckRequest
+	(*TowerGetRankingDeckResponse)(nil),                                 // 491: client.api.TowerGetRankingDeckResponse
+	(*TowerGetRankingRequest)(nil),                                      // 492: client.api.TowerGetRankingRequest
+	(*TowerGetRankingResponse)(nil),                                     // 493: client.api.TowerGetRankingResponse
+	(*TowerListLayerPlayerHistoriesRequest)(nil),                        // 494: client.api.TowerListLayerPlayerHistoriesRequest
+	(*TowerListLayerPlayerHistoriesResponse)(nil),                       // 495: client.api.TowerListLayerPlayerHistoriesResponse
+	(*TowerListLayersRequest)(nil),                                      // 496: client.api.TowerListLayersRequest
+	(*TowerListLayersResponse)(nil),                                     // 497: client.api.TowerListLayersResponse
+	(*TowerRank)(nil),                                                   // 498: client.api.TowerRank
+	(*TowerRankingCache)(nil),                                           // 499: client.api.TowerRankingCache
+	(*TowerRankingResult)(nil),                                          // 500: client.api.TowerRankingResult
+	(*TowerRankingSeason)(nil),                                          // 501: client.api.TowerRankingSeason
+	(*TowerReceiveLayerCountRewardRequest)(nil),                         // 502: client.api.TowerReceiveLayerCountRewardRequest
+	(*TowerReceiveLayerCountRewardResponse)(nil),                        // 503: client.api.TowerReceiveLayerCountRewardResponse
+	(*TowerReceiveTotalClearRankRewardRequest)(nil),                     // 504: client.api.TowerReceiveTotalClearRankRewardRequest
+	(*TowerReceiveTotalClearRankRewardResponse)(nil),                    // 505: client.api.TowerReceiveTotalClearRankRewardResponse
+	(*TowerStartRequest)(nil),                                           // 506: client.api.TowerStartRequest
+	(*TowerStartResponse)(nil),                                          // 507: client.api.TowerStartResponse
+	(*TowerTopResponse)(nil),                                            // 508: client.api.TowerTopResponse
+	(*TowerUpdateMemoryDeckRequest)(nil),                                // 509: client.api.TowerUpdateMemoryDeckRequest
+	(*TowerUpdateMemoryDeckResponse)(nil),                               // 510: client.api.TowerUpdateMemoryDeckResponse
+	(*TutorialCheckBeforeLiveProduceEvaluationResponse)(nil),            // 511: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
+	(*TutorialProduceNextResponse)(nil),                                 // 512: client.api.TutorialProduceNextResponse
+	(*TutorialProduceResultRequest)(nil),                                // 513: client.api.TutorialProduceResultRequest
+	(*TutorialProduceResultResponse)(nil),                               // 514: client.api.TutorialProduceResultResponse
+	(*TutorialProduceStartRequest)(nil),                                 // 515: client.api.TutorialProduceStartRequest
+	(*TutorialProduceStartResponse)(nil),                                // 516: client.api.TutorialProduceStartResponse
+	(*TutorialProduceStepAuditionEndResponse)(nil),                      // 517: client.api.TutorialProduceStepAuditionEndResponse
+	(*TutorialProduceStepAuditionExamEndRequest)(nil),                   // 518: client.api.TutorialProduceStepAuditionExamEndRequest
+	(*TutorialProduceStepAuditionExamEndResponse)(nil),                  // 519: client.api.TutorialProduceStepAuditionExamEndResponse
+	(*TutorialProduceStepLessonEndRequest)(nil),                         // 520: client.api.TutorialProduceStepLessonEndRequest
+	(*TutorialProduceStepLessonEndResponse)(nil),                        // 521: client.api.TutorialProduceStepLessonEndResponse
+	(*TutorialProduceStepPresentReceiveRequest)(nil),                    // 522: client.api.TutorialProduceStepPresentReceiveRequest
+	(*TutorialProduceStepPresentReceiveResponse)(nil),                   // 523: client.api.TutorialProduceStepPresentReceiveResponse
+	(*TutorialProgressRequest)(nil),                                     // 524: client.api.TutorialProgressRequest
+	(*TutorialProgressResponse)(nil),                                    // 525: client.api.TutorialProgressResponse
+	(*TutorialReadDearnessStoryRequest)(nil),                            // 526: client.api.TutorialReadDearnessStoryRequest
+	(*TutorialReadDearnessStoryResponse)(nil),                           // 527: client.api.TutorialReadDearnessStoryResponse
+	(*TutorialReceiveIdolCardRequest)(nil),                              // 528: client.api.TutorialReceiveIdolCardRequest
+	(*TutorialReceiveIdolCardResponse)(nil),                             // 529: client.api.TutorialReceiveIdolCardResponse
+	(*TutorialSetNameRequest)(nil),                                      // 530: client.api.TutorialSetNameRequest
+	(*TutorialSetNameResponse)(nil),                                     // 531: client.api.TutorialSetNameResponse
+	(*TutorialSkipRequest)(nil),                                         // 532: client.api.TutorialSkipRequest
+	(*TutorialSkipResponse)(nil),                                        // 533: client.api.TutorialSkipResponse
+	(*TutorialUnlockFeatureRequest)(nil),                                // 534: client.api.TutorialUnlockFeatureRequest
+	(*TutorialUnlockFeatureResponse)(nil),                               // 535: client.api.TutorialUnlockFeatureResponse
+	(*UserGetResponse)(nil),                                             // 536: client.api.UserGetResponse
+	(*UserListMessageRequest)(nil),                                      // 537: client.api.UserListMessageRequest
+	(*UserListMessageResponse)(nil),                                     // 538: client.api.UserListMessageResponse
+	(*UserReadMessageRequest)(nil),                                      // 539: client.api.UserReadMessageRequest
+	(*UserReadMessageResponse)(nil),                                     // 540: client.api.UserReadMessageResponse
+	(*WorkFinishResponse)(nil),                                          // 541: client.api.WorkFinishResponse
+	(*WorkFinishResult)(nil),                                            // 542: client.api.WorkFinishResult
+	(*WorkSkipRequest)(nil),                                             // 543: client.api.WorkSkipRequest
+	(*WorkSkipResponse)(nil),                                            // 544: client.api.WorkSkipResponse
+	(*WorkStartRequest)(nil),                                            // 545: client.api.WorkStartRequest
+	(*WorkStartResponse)(nil),                                           // 546: client.api.WorkStartResponse
+	(*WorkStopRequest)(nil),                                             // 547: client.api.WorkStopRequest
+	(*WorkStopResponse)(nil),                                            // 548: client.api.WorkStopResponse
+	(*WorkTopResponse)(nil),                                             // 549: client.api.WorkTopResponse
+	(*AuthLoginResponse_Term)(nil),                                      // 550: client.api.AuthLoginResponse.Term
+	(*AuthSendConsentRequest_Consent)(nil),                              // 551: client.api.AuthSendConsentRequest.Consent
+	(*ExchangeItem_ConsumptionResource)(nil),                            // 552: client.api.ExchangeItem.ConsumptionResource
+	(*FriendInfo_SupportCard)(nil),                                      // 553: client.api.FriendInfo.SupportCard
+	(*GashaExpirePointResponse_GashaBanner)(nil),                        // 554: client.api.GashaExpirePointResponse.GashaBanner
+	(*GashaExpirePointResponse_GashaPoint)(nil),                         // 555: client.api.GashaExpirePointResponse.GashaPoint
+	(*GashaGetPointExchangeResponse_ExchangeResource)(nil),              // 556: client.api.GashaGetPointExchangeResponse.ExchangeResource
+	(*GiftListHistoryResponse_UserGiftHistory)(nil),                     // 557: client.api.GiftListHistoryResponse.UserGiftHistory
+	(*GiftListResponse_UserGift)(nil),                                   // 558: client.api.GiftListResponse.UserGift
+	(*GuildTopResponse_HomeInfo)(nil),                                   // 559: client.api.GuildTopResponse.HomeInfo
+	(*GuildTopResponse_HomeInfo_ReceivedDonationInfo)(nil),              // 560: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
+	(*GvgRaidTopResponse_Stage)(nil),                                    // 561: client.api.GvgRaidTopResponse.Stage
+	(*GvgRaidTopResponse_StageClearResult)(nil),                         // 562: client.api.GvgRaidTopResponse.StageClearResult
+	(*GvgRaidTopResponse_StageClearReward)(nil),                         // 563: client.api.GvgRaidTopResponse.StageClearReward
+	(*GvgRaidTopResponse_StageClearReward_ClearReward)(nil),             // 564: client.api.GvgRaidTopResponse.StageClearReward.ClearReward
+	(*GvgRaidUserRankingResponse_StageMvp)(nil),                         // 565: client.api.GvgRaidUserRankingResponse.StageMvp
+	(*GvgRaidUserRankingResponse_StageRanking)(nil),                     // 566: client.api.GvgRaidUserRankingResponse.StageRanking
+	(*GvgRaidUserRankingResponse_StageMvp_MvpUser)(nil),                 // 567: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
+	(*GvgRaidUserRankingResponse_StageRanking_Rank)(nil),                // 568: client.api.GvgRaidUserRankingResponse.StageRanking.Rank
+	(*HomeEnterResponse_FeatureMaintenance)(nil),                        // 569: client.api.HomeEnterResponse.FeatureMaintenance
+	(*HomeLoginResponse_FriendResult)(nil),                              // 570: client.api.HomeLoginResponse.FriendResult
+	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult)(nil), // 571: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
+	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult)(nil), // 572: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
+	(*HomeSetCharactersRequest_HomeCharacter)(nil),                                      // 573: client.api.HomeSetCharactersRequest.HomeCharacter
+	(*LoginBonusCheckResponse_Info)(nil),                                                // 574: client.api.LoginBonusCheckResponse.Info
+	(*LoginBonusCheckResponse_TotalInfo)(nil),                                           // 575: client.api.LoginBonusCheckResponse.TotalInfo
+	(*MasterGetResponse_MasterTagPack)(nil),                                             // 576: client.api.MasterGetResponse.MasterTagPack
+	(*MasterGetResponse_MasterTag)(nil),                                                 // 577: client.api.MasterGetResponse.MasterTag
+	(*MeishiListFollowResponse_Follow)(nil),                                             // 578: client.api.MeishiListFollowResponse.Follow
+	(*MeishiListResponse_MeishiInfo)(nil),                                               // 579: client.api.MeishiListResponse.MeishiInfo
+	(*MeishiUpdateRequest_MeishiBase)(nil),                                              // 580: client.api.MeishiUpdateRequest.MeishiBase
+	(*MeishiUpdateRequest_Object)(nil),                                                  // 581: client.api.MeishiUpdateRequest.Object
+	(*MissionReceiveRequest_Mission)(nil),                                               // 582: client.api.MissionReceiveRequest.Mission
+	(*MissionReceiveRequest_MissionPoint)(nil),                                          // 583: client.api.MissionReceiveRequest.MissionPoint
+	(*MissionReceiveResponse_MasterAchievementProgress)(nil),                            // 584: client.api.MissionReceiveResponse.MasterAchievementProgress
+	(*MissionReceiveResponse_MasterAchievementProgressResult)(nil),                      // 585: client.api.MissionReceiveResponse.MasterAchievementProgressResult
+	(*PhotoCreateIdolRequest_CharacterSetting)(nil),                                     // 586: client.api.PhotoCreateIdolRequest.CharacterSetting
+	(*PhotoCreateIdolRequest_Photo)(nil),                                                // 587: client.api.PhotoCreateIdolRequest.Photo
+	(*PhotoCreateIdolRequest_Photo_CharacterSetting)(nil),                               // 588: client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
+	(*PhotoCreateRequest_UnitCharacter)(nil),                                            // 589: client.api.PhotoCreateRequest.UnitCharacter
+	(*ProduceHighScoreRankingResponse_Rank)(nil),                                        // 590: client.api.ProduceHighScoreRankingResponse.Rank
+	(*ProduceListRentalMemoryResponse_RentalMemory)(nil),                                // 591: client.api.ProduceListRentalMemoryResponse.RentalMemory
+	(*ProduceListRentalSupportCardResponse_RentalSupportCard)(nil),                      // 592: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	(*ProduceNextIdolAuditionMasterListRankRewardResponse_Reward)(nil),                  // 593: client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.Reward
+	(*ProduceNextIdolAuditionMasterRankingResponse_Rank)(nil),                           // 594: client.api.ProduceNextIdolAuditionMasterRankingResponse.Rank
+	(*ProduceRankingTopResponse_Ranking)(nil),                                           // 595: client.api.ProduceRankingTopResponse.Ranking
+	(*ProduceResultResponse_HighScoreReward)(nil),                                       // 596: client.api.ProduceResultResponse.HighScoreReward
+	(*ProduceResultResponse_HighScoreUpdateResult)(nil),                                 // 597: client.api.ProduceResultResponse.HighScoreUpdateResult
+	(*ProduceStartRequest_Memory)(nil),                                                  // 598: client.api.ProduceStartRequest.Memory
+	(*ProduceStartRequest_SupportCard)(nil),                                             // 599: client.api.ProduceStartRequest.SupportCard
+	(*ProduceTopResponse_ProduceHighScore)(nil),                                         // 600: client.api.ProduceTopResponse.ProduceHighScore
+	(*ProfileGetResponse_ProduceRecord)(nil),                                            // 601: client.api.ProfileGetResponse.ProduceRecord
+	(*PvpRateListHistoryResponse_PvpRateHistory)(nil),                                   // 602: client.api.PvpRateListHistoryResponse.PvpRateHistory
+	(*PvpRateUnitStageFormation_Slot)(nil),                                              // 603: client.api.PvpRateUnitStageFormation.Slot
+	(*SeminarEndExamRequest_Turn)(nil),                                                  // 604: client.api.SeminarEndExamRequest.Turn
+	(*SeminarGetExamResponse_TurnNavigationStep)(nil),                                   // 605: client.api.SeminarGetExamResponse.TurnNavigationStep
+	(*SeminarGetExamResponse_FailureNavigation)(nil),                                    // 606: client.api.SeminarGetExamResponse.FailureNavigation
+	(*SeminarGetExamResponse_TurnNavigation)(nil),                                       // 607: client.api.SeminarGetExamResponse.TurnNavigation
+	(*SeminarListExamResponse_Exam)(nil),                                                // 608: client.api.SeminarListExamResponse.Exam
+	(*SeminarListExamResponse_ExamGroup)(nil),                                           // 609: client.api.SeminarListExamResponse.ExamGroup
+	(*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction)(nil),              // 610: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
+	(*ShopTopResponse_Shop)(nil),                                                        // 611: client.api.ShopTopResponse.Shop
+	(*StartupConfirmRequest_Notification)(nil),                                          // 612: client.api.StartupConfirmRequest.Notification
+	(*StoryEventReceiveGuildMissionResponse_ReceiveResult)(nil),                         // 613: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
+	(*StoryEventTopResponse_Motion)(nil),                                                // 614: client.api.StoryEventTopResponse.Motion
+	(*SupportCardExchangeRequest_Parameter)(nil),                                        // 615: client.api.SupportCardExchangeRequest.Parameter
+	(*SupportCardListDeckRankingResponse_SupportCardRank)(nil),                          // 616: client.api.SupportCardListDeckRankingResponse.SupportCardRank
+	(*SupportCardListDeckRankingResponse_Ranking)(nil),                                  // 617: client.api.SupportCardListDeckRankingResponse.Ranking
+	(*SystemCheckResponse_MaintenanceInfo)(nil),                                         // 618: client.api.SystemCheckResponse.MaintenanceInfo
+	(*SystemCheckResponse_ReviewInfo)(nil),                                              // 619: client.api.SystemCheckResponse.ReviewInfo
+	(*TowerGetLayerResponse_Exam)(nil),                                                  // 620: client.api.TowerGetLayerResponse.Exam
+	(*TowerListLayersResponse_TowerLayerRank)(nil),                                      // 621: client.api.TowerListLayersResponse.TowerLayerRank
+	(*TowerListLayersResponse_TowerLayer)(nil),                                          // 622: client.api.TowerListLayersResponse.TowerLayer
+	(*TowerTopResponse_Tower)(nil),                                                      // 623: client.api.TowerTopResponse.Tower
+	(*UserListMessageResponse_PersonalMessage)(nil),                                     // 624: client.api.UserListMessageResponse.PersonalMessage
+	(penum.TermsType)(0),                                                                // 625: penum.TermsType
+	(*papicommon.Response)(nil),                                                         // 626: papicommon.Response
+	(*pcommon.RewardResult)(nil),                                                        // 627: pcommon.RewardResult
+	(*pcommon.CoinGasha)(nil),                                                           // 628: pcommon.CoinGasha
+	(penum.ConsentType)(0),                                                              // 629: penum.ConsentType
+	(penum.ConsentAgreementType)(0),                                                     // 630: penum.ConsentAgreementType
+	(penum.CostumeSetType)(0),                                                           // 631: penum.CostumeSetType
+	(penum.ExchangeType)(0),                                                             // 632: penum.ExchangeType
+	(penum.ResourceType)(0),                                                             // 633: penum.ResourceType
+	(penum.ResetTimingType)(0),                                                          // 634: penum.ResetTimingType
+	(*pcommon.Reward)(nil),                                                              // 635: pcommon.Reward
+	(*pcommon.SimpleProfile)(nil),                                                       // 636: pcommon.SimpleProfile
+	(*pcommon.Memory)(nil),                                                              // 637: pcommon.Memory
+	(*pcommon.GashaButton)(nil),                                                         // 638: pcommon.GashaButton
+	(*pcommon.GashaPoint)(nil),                                                          // 639: pcommon.GashaPoint
+	(*pcommon.GashaStepUp)(nil),                                                         // 640: pcommon.GashaStepUp
+	(*pcommon.Gasha)(nil),                                                               // 641: pcommon.Gasha
+	(penum.GiftFilterType)(0),                                                           // 642: penum.GiftFilterType
+	(penum.GuildJoinRequestRouteType)(0),                                                // 643: penum.GuildJoinRequestRouteType
+	(penum.GuildActivityPolicyType)(0),                                                  // 644: penum.GuildActivityPolicyType
+	(*pcommon.Achievement)(nil),                                                         // 645: pcommon.Achievement
+	(penum.GuildSearchMemberCountRangeType)(0),                                          // 646: penum.GuildSearchMemberCountRangeType
+	(penum.GuildRoleType)(0),                                                            // 647: penum.GuildRoleType
+	(penum.GuildNotificationType)(0),                                                    // 648: penum.GuildNotificationType
+	(*pcommon.GvgRaidSlot)(nil),                                                         // 649: pcommon.GvgRaidSlot
+	(*pcommon.ExamBattleAutoStageResult)(nil),                                           // 650: pcommon.ExamBattleAutoStageResult
+	(*pcommon.ExamBattleAutoRequest)(nil),                                               // 651: pcommon.ExamBattleAutoRequest
+	(penum.ProducePlanType)(0),                                                          // 652: penum.ProducePlanType
+	(penum.GvgRaidStageIconSizeType)(0),                                                 // 653: penum.GvgRaidStageIconSizeType
+	(*pcommon.GvgRaidGuild)(nil),                                                        // 654: pcommon.GvgRaidGuild
+	(*pcommon.StartupNotification)(nil),                                                 // 655: pcommon.StartupNotification
+	(*pcommon.GvgRaidSetUpDeck)(nil),                                                    // 656: pcommon.GvgRaidSetUpDeck
+	(penum.DeckRecommendType)(0),                                                        // 657: penum.DeckRecommendType
+	(penum.ServingStatus)(0),                                                            // 658: penum.ServingStatus
+	(*pcommon.HomeBanner)(nil),                                                          // 659: pcommon.HomeBanner
+	(*pcommon.HomeNavigation)(nil),                                                      // 660: pcommon.HomeNavigation
+	(*papicommon.PvpRateSeasonTop)(nil),                                                 // 661: papicommon.PvpRateSeasonTop
+	(*pcommon.Event)(nil),                                                               // 662: pcommon.Event
+	(penum.ShopItemLabelType)(0),                                                        // 663: penum.ShopItemLabelType
+	(*pcommon.ProducerLevelUnlock)(nil),                                                 // 664: pcommon.ProducerLevelUnlock
+	(penum.IdolCardRarity)(0),                                                           // 665: penum.IdolCardRarity
+	(penum.IdolCardLevelLimitRank)(0),                                                   // 666: penum.IdolCardLevelLimitRank
+	(penum.IdolCardPotentialRank)(0),                                                    // 667: penum.IdolCardPotentialRank
+	(penum.FriendStatusType)(0),                                                         // 668: penum.FriendStatusType
+	(*pcommon.Meishi)(nil),                                                              // 669: pcommon.Meishi
+	(*pmaster.Mission)(nil),                                                             // 670: pmaster.Mission
+	(penum.NoticeCategory)(0),                                                           // 671: penum.NoticeCategory
+	(penum.NoticeType)(0),                                                               // 672: penum.NoticeType
+	(penum.PhotoButtonExecuteType)(0),                                                   // 673: penum.PhotoButtonExecuteType
+	(penum.PreferenceType)(0),                                                           // 674: penum.PreferenceType
+	(*pcommon.ProduceEffectResult)(nil),                                                 // 675: pcommon.ProduceEffectResult
+	(penum.ProduceHighScoreEventType)(0),                                                // 676: penum.ProduceHighScoreEventType
+	(*pcommon.ProduceHistory)(nil),                                                      // 677: pcommon.ProduceHistory
+	(penum.ProduceStepType)(0),                                                          // 678: penum.ProduceStepType
+	(penum.ResultGrade)(0),                                                              // 679: penum.ResultGrade
+	(*pcommon.GuildMission)(nil),                                                        // 680: pcommon.GuildMission
+	(*pcommon.GuildMissionHistory)(nil),                                                 // 681: pcommon.GuildMissionHistory
+	(*pcommon.StoryEventProduceResult)(nil),                                             // 682: pcommon.StoryEventProduceResult
+	(*pcommon.ExamBattleResult)(nil),                                                    // 683: pcommon.ExamBattleResult
+	(*pcommon.ExamTurnEndLog)(nil),                                                      // 684: pcommon.ExamTurnEndLog
+	(*pcommon.ProduceRewardResult)(nil),                                                 // 685: pcommon.ProduceRewardResult
+	(*pcommon.ProduceMemoryRewardResult)(nil),                                           // 686: pcommon.ProduceMemoryRewardResult
+	(penum.ProduceStepBusinessType)(0),                                                  // 687: penum.ProduceStepBusinessType
+	(*pcommon.ProduceConsumptionResult)(nil),                                            // 688: pcommon.ProduceConsumptionResult
+	(*pcommon.ProduceExamEndResult)(nil),                                                // 689: pcommon.ProduceExamEndResult
+	(*pcommon.ProduceCampaign)(nil),                                                     // 690: pcommon.ProduceCampaign
+	(penum.StoryEventType)(0),                                                           // 691: penum.StoryEventType
+	(*pcommon.StoryEventBonus)(nil),                                                     // 692: pcommon.StoryEventBonus
+	(penum.ProduceType)(0),                                                              // 693: penum.ProduceType
+	(penum.PvpRateGrade)(0),                                                             // 694: penum.PvpRateGrade
+	(*pcommon.SupportCard)(nil),                                                         // 695: pcommon.SupportCard
+	(*pcommon.PvpRateExamBattleResult)(nil),                                             // 696: pcommon.PvpRateExamBattleResult
+	(penum.PvpRateRivalType)(0),                                                         // 697: penum.PvpRateRivalType
+	(penum.PvpRateStageType)(0),                                                         // 698: penum.PvpRateStageType
+	(*pcommon.PvpRateSetupUnitStageFormation)(nil),                                      // 699: pcommon.PvpRateSetupUnitStageFormation
+	(penum.ProduceParameterType)(0),                                                     // 700: penum.ProduceParameterType
+	(*pcommon.ProduceCard)(nil),                                                         // 701: pcommon.ProduceCard
+	(*pmaster.ShopItem)(nil),                                                            // 702: pmaster.ShopItem
+	(penum.StartupNotificationDisplayType)(0),                                           // 703: penum.StartupNotificationDisplayType
+	(*pcommon.StoryEventPointReward)(nil),                                               // 704: pcommon.StoryEventPointReward
+	(penum.SupportCardRarity)(0),                                                        // 705: penum.SupportCardRarity
+	(penum.SupportCardLevelLimitRank)(0),                                                // 706: penum.SupportCardLevelLimitRank
+	(*pcommon.TowerLayerHistory)(nil),                                                   // 707: pcommon.TowerLayerHistory
+	(penum.TutorialType)(0),                                                             // 708: penum.TutorialType
+	(*papicommon.UserData)(nil),                                                         // 709: papicommon.UserData
+	(penum.WorkType)(0),                                                                 // 710: penum.WorkType
+	(penum.FeatureMaintenanceType)(0),                                                   // 711: penum.FeatureMaintenanceType
+	(penum.HomeType)(0),                                                                 // 712: penum.HomeType
+	(penum.LoginBonusType)(0),                                                           // 713: penum.LoginBonusType
+	(penum.MeishiObjectType)(0),                                                         // 714: penum.MeishiObjectType
+	(penum.TutorialNavigationType)(0),                                                   // 715: penum.TutorialNavigationType
+	(penum.ProduceExamTriggerCheckType)(0),                                              // 716: penum.ProduceExamTriggerCheckType
+	(penum.ProduceExamFieldStatusType)(0),                                               // 717: penum.ProduceExamFieldStatusType
+	(penum.PaymentPendingReceiptDialogTimingType)(0),                                    // 718: penum.PaymentPendingReceiptDialogTimingType
+	(penum.StoryEventMotionType)(0),                                                     // 719: penum.StoryEventMotionType
+	(penum.ProduceExamEffectType)(0),                                                    // 720: penum.ProduceExamEffectType
+	(*pcommon.ExamTriggerCount)(nil),                                                    // 721: pcommon.ExamTriggerCount
 }
 var file_papi_proto_depIdxs = []int32{
-	613,  // 0: client.api.AuthAgreeTermsRequest.types:type_name -> penum.TermsType
-	614,  // 1: client.api.AuthAgreeTermsResponse.commonResponse:type_name -> papicommon.Response
+	625,  // 0: client.api.AuthAgreeTermsRequest.types:type_name -> penum.TermsType
+	626,  // 1: client.api.AuthAgreeTermsResponse.commonResponse:type_name -> papicommon.Response
 	27,   // 2: client.api.AuthGetConsentResponse.consents:type_name -> client.api.Consent
-	614,  // 3: client.api.AuthGetConsentResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 4: client.api.AuthLinkBandaiNamcoIdResponse.commonResponse:type_name -> papicommon.Response
-	542,  // 5: client.api.AuthLoginResponse.terms:type_name -> client.api.AuthLoginResponse.Term
+	626,  // 3: client.api.AuthGetConsentResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 4: client.api.AuthLinkBandaiNamcoIdResponse.commonResponse:type_name -> papicommon.Response
+	550,  // 5: client.api.AuthLoginResponse.terms:type_name -> client.api.AuthLoginResponse.Term
 	27,   // 6: client.api.AuthLoginResponse.consents:type_name -> client.api.Consent
-	543,  // 7: client.api.AuthSendConsentRequest.consents:type_name -> client.api.AuthSendConsentRequest.Consent
-	614,  // 8: client.api.AuthSendConsentResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 9: client.api.AuthUnlinkResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 10: client.api.CharacterCheckRosterResponse.commonResponse:type_name -> papicommon.Response
+	551,  // 7: client.api.AuthSendConsentRequest.consents:type_name -> client.api.AuthSendConsentRequest.Consent
+	626,  // 8: client.api.AuthSendConsentResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 9: client.api.AuthUnlinkResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 10: client.api.CharacterCheckRosterResponse.commonResponse:type_name -> papicommon.Response
 	21,   // 11: client.api.CoinGashaDrawResponse.drawResults:type_name -> client.api.CoinGashaDrawResult
-	615,  // 12: client.api.CoinGashaDrawResponse.drawCountRewardResults:type_name -> pcommon.RewardResult
-	616,  // 13: client.api.CoinGashaDrawResponse.coinGasha:type_name -> pcommon.CoinGasha
-	614,  // 14: client.api.CoinGashaDrawResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 15: client.api.CoinGashaDrawResult.result:type_name -> pcommon.RewardResult
-	615,  // 16: client.api.CoinGashaDrawResult.providedResult:type_name -> pcommon.RewardResult
-	615,  // 17: client.api.CoinGashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
-	616,  // 18: client.api.CoinGashaGetResponse.coinGasha:type_name -> pcommon.CoinGasha
-	614,  // 19: client.api.CoinGashaGetResponse.commonResponse:type_name -> papicommon.Response
-	616,  // 20: client.api.CoinGashaListResponse.coinGashas:type_name -> pcommon.CoinGasha
-	614,  // 21: client.api.CoinGashaListResponse.commonResponse:type_name -> papicommon.Response
-	616,  // 22: client.api.CoinGashaResetBoxResponse.coinGasha:type_name -> pcommon.CoinGasha
-	614,  // 23: client.api.CoinGashaResetBoxResponse.commonResponse:type_name -> papicommon.Response
-	617,  // 24: client.api.Consent.consentType:type_name -> penum.ConsentType
-	618,  // 25: client.api.Consent.agreementType:type_name -> penum.ConsentAgreementType
-	614,  // 26: client.api.CostumeCheckResponse.commonResponse:type_name -> papicommon.Response
-	619,  // 27: client.api.CostumeSetRequest.setType:type_name -> penum.CostumeSetType
-	614,  // 28: client.api.CostumeSetResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 12: client.api.CoinGashaDrawResponse.drawCountRewardResults:type_name -> pcommon.RewardResult
+	628,  // 13: client.api.CoinGashaDrawResponse.coinGasha:type_name -> pcommon.CoinGasha
+	626,  // 14: client.api.CoinGashaDrawResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 15: client.api.CoinGashaDrawResult.result:type_name -> pcommon.RewardResult
+	627,  // 16: client.api.CoinGashaDrawResult.providedResult:type_name -> pcommon.RewardResult
+	627,  // 17: client.api.CoinGashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
+	628,  // 18: client.api.CoinGashaGetResponse.coinGasha:type_name -> pcommon.CoinGasha
+	626,  // 19: client.api.CoinGashaGetResponse.commonResponse:type_name -> papicommon.Response
+	628,  // 20: client.api.CoinGashaListResponse.coinGashas:type_name -> pcommon.CoinGasha
+	626,  // 21: client.api.CoinGashaListResponse.commonResponse:type_name -> papicommon.Response
+	628,  // 22: client.api.CoinGashaResetBoxResponse.coinGasha:type_name -> pcommon.CoinGasha
+	626,  // 23: client.api.CoinGashaResetBoxResponse.commonResponse:type_name -> papicommon.Response
+	629,  // 24: client.api.Consent.consentType:type_name -> penum.ConsentType
+	630,  // 25: client.api.Consent.agreementType:type_name -> penum.ConsentAgreementType
+	626,  // 26: client.api.CostumeCheckResponse.commonResponse:type_name -> papicommon.Response
+	631,  // 27: client.api.CostumeSetRequest.setType:type_name -> penum.CostumeSetType
+	626,  // 28: client.api.CostumeSetResponse.commonResponse:type_name -> papicommon.Response
 	74,   // 29: client.api.DefaultGashaProbability.probability:type_name -> client.api.GashaProbability
 	74,   // 30: client.api.DefaultGashaProbability.fixProbability:type_name -> client.api.GashaProbability
 	98,   // 31: client.api.DonationRequest.donationList:type_name -> client.api.GuildDonationInfo
 	39,   // 32: client.api.ExchangeExecuteResponse.exchangeItem:type_name -> client.api.ExchangeItem
-	615,  // 33: client.api.ExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 34: client.api.ExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 33: client.api.ExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 34: client.api.ExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
 	38,   // 35: client.api.ExchangeGetResponse.exchange:type_name -> client.api.ExchangeInfo
-	614,  // 36: client.api.ExchangeGetResponse.commonResponse:type_name -> papicommon.Response
-	620,  // 37: client.api.ExchangeInfo.exchangeType:type_name -> penum.ExchangeType
-	621,  // 38: client.api.ExchangeInfo.consumptionResourceType:type_name -> penum.ResourceType
-	622,  // 39: client.api.ExchangeInfo.resetTimingType:type_name -> penum.ResetTimingType
+	626,  // 36: client.api.ExchangeGetResponse.commonResponse:type_name -> papicommon.Response
+	632,  // 37: client.api.ExchangeInfo.exchangeType:type_name -> penum.ExchangeType
+	633,  // 38: client.api.ExchangeInfo.consumptionResourceType:type_name -> penum.ResourceType
+	634,  // 39: client.api.ExchangeInfo.resetTimingType:type_name -> penum.ResetTimingType
 	39,   // 40: client.api.ExchangeInfo.items:type_name -> client.api.ExchangeItem
-	622,  // 41: client.api.ExchangeItem.resetTimingType:type_name -> penum.ResetTimingType
-	623,  // 42: client.api.ExchangeItem.reward:type_name -> pcommon.Reward
-	544,  // 43: client.api.ExchangeItem.consumptionResources:type_name -> client.api.ExchangeItem.ConsumptionResource
+	634,  // 41: client.api.ExchangeItem.resetTimingType:type_name -> penum.ResetTimingType
+	635,  // 42: client.api.ExchangeItem.reward:type_name -> pcommon.Reward
+	552,  // 43: client.api.ExchangeItem.consumptionResources:type_name -> client.api.ExchangeItem.ConsumptionResource
 	38,   // 44: client.api.ExchangeListResponse.exchanges:type_name -> client.api.ExchangeInfo
-	614,  // 45: client.api.ExchangeListResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 45: client.api.ExchangeListResponse.commonResponse:type_name -> papicommon.Response
 	38,   // 46: client.api.ExchangeResetResponse.exchange:type_name -> client.api.ExchangeInfo
-	614,  // 47: client.api.ExchangeResetResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 48: client.api.FriendDeleteFollowerResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 49: client.api.FriendFollowResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 50: client.api.FriendInfo.profile:type_name -> pcommon.SimpleProfile
-	545,  // 51: client.api.FriendInfo.supportCard:type_name -> client.api.FriendInfo.SupportCard
-	625,  // 52: client.api.FriendInfo.memory:type_name -> pcommon.Memory
+	626,  // 47: client.api.ExchangeResetResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 48: client.api.FriendDeleteFollowerResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 49: client.api.FriendFollowResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 50: client.api.FriendInfo.profile:type_name -> pcommon.SimpleProfile
+	553,  // 51: client.api.FriendInfo.supportCard:type_name -> client.api.FriendInfo.SupportCard
+	637,  // 52: client.api.FriendInfo.memory:type_name -> pcommon.Memory
 	48,   // 53: client.api.FriendListResponse.friendList:type_name -> client.api.FriendInfo
 	48,   // 54: client.api.FriendListResponse.followerList:type_name -> client.api.FriendInfo
 	48,   // 55: client.api.FriendListResponse.suggestionList:type_name -> client.api.FriendInfo
-	614,  // 56: client.api.FriendListResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 56: client.api.FriendListResponse.commonResponse:type_name -> papicommon.Response
 	48,   // 57: client.api.FriendListSuggestionResponse.list:type_name -> client.api.FriendInfo
-	614,  // 58: client.api.FriendListSuggestionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 59: client.api.FriendUnFollowResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 58: client.api.FriendListSuggestionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 59: client.api.FriendUnFollowResponse.commonResponse:type_name -> papicommon.Response
 	55,   // 60: client.api.GashaDrawResponse.drawResults:type_name -> client.api.GashaDrawResult
-	626,  // 61: client.api.GashaDrawResponse.gashaButton:type_name -> pcommon.GashaButton
-	623,  // 62: client.api.GashaDrawResponse.bonusRewards:type_name -> pcommon.Reward
-	627,  // 63: client.api.GashaDrawResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	614,  // 64: client.api.GashaDrawResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 65: client.api.GashaDrawResult.result:type_name -> pcommon.RewardResult
-	615,  // 66: client.api.GashaDrawResult.providedResult:type_name -> pcommon.RewardResult
-	615,  // 67: client.api.GashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
+	638,  // 61: client.api.GashaDrawResponse.gashaButton:type_name -> pcommon.GashaButton
+	635,  // 62: client.api.GashaDrawResponse.bonusRewards:type_name -> pcommon.Reward
+	639,  // 63: client.api.GashaDrawResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	626,  // 64: client.api.GashaDrawResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 65: client.api.GashaDrawResult.result:type_name -> pcommon.RewardResult
+	627,  // 66: client.api.GashaDrawResult.providedResult:type_name -> pcommon.RewardResult
+	627,  // 67: client.api.GashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
 	55,   // 68: client.api.GashaDrawSelectPickupResponse.drawResults:type_name -> client.api.GashaDrawResult
-	626,  // 69: client.api.GashaDrawSelectPickupResponse.gashaButton:type_name -> pcommon.GashaButton
-	623,  // 70: client.api.GashaDrawSelectPickupResponse.bonusRewards:type_name -> pcommon.Reward
-	627,  // 71: client.api.GashaDrawSelectPickupResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	614,  // 72: client.api.GashaDrawSelectPickupResponse.commonResponse:type_name -> papicommon.Response
+	638,  // 69: client.api.GashaDrawSelectPickupResponse.gashaButton:type_name -> pcommon.GashaButton
+	635,  // 70: client.api.GashaDrawSelectPickupResponse.bonusRewards:type_name -> pcommon.Reward
+	639,  // 71: client.api.GashaDrawSelectPickupResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	626,  // 72: client.api.GashaDrawSelectPickupResponse.commonResponse:type_name -> papicommon.Response
 	55,   // 73: client.api.GashaDrawStepUpResponse.drawResults:type_name -> client.api.GashaDrawResult
-	626,  // 74: client.api.GashaDrawStepUpResponse.gashaButton:type_name -> pcommon.GashaButton
-	628,  // 75: client.api.GashaDrawStepUpResponse.nextGashaStepUp:type_name -> pcommon.GashaStepUp
-	623,  // 76: client.api.GashaDrawStepUpResponse.bonusRewards:type_name -> pcommon.Reward
-	627,  // 77: client.api.GashaDrawStepUpResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	614,  // 78: client.api.GashaDrawStepUpResponse.commonResponse:type_name -> papicommon.Response
-	627,  // 79: client.api.GashaExchangePointResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	614,  // 80: client.api.GashaExchangePointResponse.commonResponse:type_name -> papicommon.Response
-	547,  // 81: client.api.GashaExpirePointResponse.gashaPoints:type_name -> client.api.GashaExpirePointResponse.GashaPoint
-	615,  // 82: client.api.GashaExpirePointResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 83: client.api.GashaExpirePointResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 84: client.api.GashaGetPointExchangeResponse.expireReward:type_name -> pcommon.Reward
-	548,  // 85: client.api.GashaGetPointExchangeResponse.exchangeResources:type_name -> client.api.GashaGetPointExchangeResponse.ExchangeResource
-	614,  // 86: client.api.GashaGetPointExchangeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 87: client.api.GashaGetPrecautionResponse.commonResponse:type_name -> papicommon.Response
+	638,  // 74: client.api.GashaDrawStepUpResponse.gashaButton:type_name -> pcommon.GashaButton
+	640,  // 75: client.api.GashaDrawStepUpResponse.nextGashaStepUp:type_name -> pcommon.GashaStepUp
+	635,  // 76: client.api.GashaDrawStepUpResponse.bonusRewards:type_name -> pcommon.Reward
+	639,  // 77: client.api.GashaDrawStepUpResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	626,  // 78: client.api.GashaDrawStepUpResponse.commonResponse:type_name -> papicommon.Response
+	639,  // 79: client.api.GashaExchangePointResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	626,  // 80: client.api.GashaExchangePointResponse.commonResponse:type_name -> papicommon.Response
+	555,  // 81: client.api.GashaExpirePointResponse.gashaPoints:type_name -> client.api.GashaExpirePointResponse.GashaPoint
+	627,  // 82: client.api.GashaExpirePointResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 83: client.api.GashaExpirePointResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 84: client.api.GashaGetPointExchangeResponse.expireReward:type_name -> pcommon.Reward
+	556,  // 85: client.api.GashaGetPointExchangeResponse.exchangeResources:type_name -> client.api.GashaGetPointExchangeResponse.ExchangeResource
+	626,  // 86: client.api.GashaGetPointExchangeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 87: client.api.GashaGetPrecautionResponse.commonResponse:type_name -> papicommon.Response
 	32,   // 88: client.api.GashaGetProbabilityResponse.probability:type_name -> client.api.DefaultGashaProbability
-	614,  // 89: client.api.GashaGetProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 89: client.api.GashaGetProbabilityResponse.commonResponse:type_name -> papicommon.Response
 	32,   // 90: client.api.GashaGetSelectPickupProbabilityResponse.probability:type_name -> client.api.DefaultGashaProbability
-	614,  // 91: client.api.GashaGetSelectPickupProbabilityResponse.commonResponse:type_name -> papicommon.Response
-	433,  // 92: client.api.GashaGetStepUpProbabilityResponse.probabilities:type_name -> client.api.StepUpGashaProbability
-	614,  // 93: client.api.GashaGetStepUpProbabilityResponse.commonResponse:type_name -> papicommon.Response
-	629,  // 94: client.api.GashaListResponse.gashas:type_name -> pcommon.Gasha
-	614,  // 95: client.api.GashaListResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 91: client.api.GashaGetSelectPickupProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	439,  // 92: client.api.GashaGetStepUpProbabilityResponse.probabilities:type_name -> client.api.StepUpGashaProbability
+	626,  // 93: client.api.GashaGetStepUpProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	641,  // 94: client.api.GashaListResponse.gashas:type_name -> pcommon.Gasha
+	626,  // 95: client.api.GashaListResponse.commonResponse:type_name -> papicommon.Response
 	75,   // 96: client.api.GashaProbability.gashaRarityProbabilities:type_name -> client.api.GashaRarityProbability
 	153,  // 97: client.api.GashaProbability.idolCardRarityProbabilities:type_name -> client.api.IdolCardRarityProbability
-	456,  // 98: client.api.GashaProbability.supportCardRarityProbabilities:type_name -> client.api.SupportCardRarityProbability
-	623,  // 99: client.api.GashaSelectPickupRequest.pickupRewards:type_name -> pcommon.Reward
-	614,  // 100: client.api.GashaSelectPickupResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 101: client.api.GiftCountResponse.commonResponse:type_name -> papicommon.Response
-	630,  // 102: client.api.GiftListHistoryRequest.filters:type_name -> penum.GiftFilterType
-	549,  // 103: client.api.GiftListHistoryResponse.userGiftHistories:type_name -> client.api.GiftListHistoryResponse.UserGiftHistory
-	614,  // 104: client.api.GiftListHistoryResponse.commonResponse:type_name -> papicommon.Response
-	550,  // 105: client.api.GiftListResponse.userGifts:type_name -> client.api.GiftListResponse.UserGift
-	614,  // 106: client.api.GiftListResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 107: client.api.GiftOpenResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 108: client.api.GiftOpenResponse.commonResponse:type_name -> papicommon.Response
-	631,  // 109: client.api.GuildApplyJoinRequestRequest.routeType:type_name -> penum.GuildJoinRequestRouteType
-	614,  // 110: client.api.GuildApplyJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 111: client.api.GuildApproveJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 112: client.api.GuildCancelJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 113: client.api.GuildChangeLeaderResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 114: client.api.GuildDismissResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 115: client.api.GuildDissolveResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 116: client.api.GuildDonateResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 117: client.api.GuildDonateResponse.commonResponse:type_name -> papicommon.Response
-	632,  // 118: client.api.GuildEditDetailRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	614,  // 119: client.api.GuildEditDetailResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 120: client.api.GuildEditLeaderMessageResponse.commonResponse:type_name -> papicommon.Response
-	632,  // 121: client.api.GuildEstablishRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	614,  // 122: client.api.GuildEstablishResponse.commonResponse:type_name -> papicommon.Response
+	464,  // 98: client.api.GashaProbability.supportCardRarityProbabilities:type_name -> client.api.SupportCardRarityProbability
+	635,  // 99: client.api.GashaSelectPickupRequest.pickupRewards:type_name -> pcommon.Reward
+	626,  // 100: client.api.GashaSelectPickupResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 101: client.api.GiftCountResponse.commonResponse:type_name -> papicommon.Response
+	642,  // 102: client.api.GiftListHistoryRequest.filters:type_name -> penum.GiftFilterType
+	557,  // 103: client.api.GiftListHistoryResponse.userGiftHistories:type_name -> client.api.GiftListHistoryResponse.UserGiftHistory
+	626,  // 104: client.api.GiftListHistoryResponse.commonResponse:type_name -> papicommon.Response
+	558,  // 105: client.api.GiftListResponse.userGifts:type_name -> client.api.GiftListResponse.UserGift
+	626,  // 106: client.api.GiftListResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 107: client.api.GiftOpenResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 108: client.api.GiftOpenResponse.commonResponse:type_name -> papicommon.Response
+	643,  // 109: client.api.GuildApplyJoinRequestRequest.routeType:type_name -> penum.GuildJoinRequestRouteType
+	626,  // 110: client.api.GuildApplyJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 111: client.api.GuildApproveJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 112: client.api.GuildCancelJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 113: client.api.GuildChangeLeaderResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 114: client.api.GuildDismissResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 115: client.api.GuildDissolveResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 116: client.api.GuildDonateResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 117: client.api.GuildDonateResponse.commonResponse:type_name -> papicommon.Response
+	644,  // 118: client.api.GuildEditDetailRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	626,  // 119: client.api.GuildEditDetailResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 120: client.api.GuildEditLeaderMessageResponse.commonResponse:type_name -> papicommon.Response
+	644,  // 121: client.api.GuildEstablishRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	626,  // 122: client.api.GuildEstablishResponse.commonResponse:type_name -> papicommon.Response
 	107,  // 123: client.api.GuildGetResponse.info:type_name -> client.api.GuildInfo
-	614,  // 124: client.api.GuildGetResponse.commonResponse:type_name -> papicommon.Response
-	633,  // 125: client.api.GuildInfo.achievement:type_name -> pcommon.Achievement
-	632,  // 126: client.api.GuildInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	634,  // 127: client.api.GuildInfo.memberCountRangeType:type_name -> penum.GuildSearchMemberCountRangeType
-	614,  // 128: client.api.GuildLeaveResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 124: client.api.GuildGetResponse.commonResponse:type_name -> papicommon.Response
+	645,  // 125: client.api.GuildInfo.achievement:type_name -> pcommon.Achievement
+	644,  // 126: client.api.GuildInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	646,  // 127: client.api.GuildInfo.memberCountRangeType:type_name -> penum.GuildSearchMemberCountRangeType
+	626,  // 128: client.api.GuildLeaveResponse.commonResponse:type_name -> papicommon.Response
 	33,   // 129: client.api.GuildListDonationRequestResponse.requestList:type_name -> client.api.DonationRequest
 	112,  // 130: client.api.GuildListDonationRequestResponse.memberList:type_name -> client.api.GuildMemberInfo
-	614,  // 131: client.api.GuildListDonationRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 131: client.api.GuildListDonationRequestResponse.commonResponse:type_name -> papicommon.Response
 	107,  // 132: client.api.GuildListJoinRequestResponse.list:type_name -> client.api.GuildInfo
-	614,  // 133: client.api.GuildListJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 133: client.api.GuildListJoinRequestResponse.commonResponse:type_name -> papicommon.Response
 	112,  // 134: client.api.GuildListMemberResponse.list:type_name -> client.api.GuildMemberInfo
 	112,  // 135: client.api.GuildListMemberResponse.joinRequestList:type_name -> client.api.GuildMemberInfo
-	614,  // 136: client.api.GuildListMemberResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 137: client.api.GuildMemberInfo.profile:type_name -> pcommon.SimpleProfile
-	635,  // 138: client.api.GuildMemberInfo.roleType:type_name -> penum.GuildRoleType
+	626,  // 136: client.api.GuildListMemberResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 137: client.api.GuildMemberInfo.profile:type_name -> pcommon.SimpleProfile
+	647,  // 138: client.api.GuildMemberInfo.roleType:type_name -> penum.GuildRoleType
 	98,   // 139: client.api.GuildReceiveDonationResponse.list:type_name -> client.api.GuildDonationInfo
-	614,  // 140: client.api.GuildReceiveDonationResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 141: client.api.GuildRejectJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 142: client.api.GuildRequestDonationResponse.commonResponse:type_name -> papicommon.Response
-	632,  // 143: client.api.GuildSearchRequest.activityPolicyTypes:type_name -> penum.GuildActivityPolicyType
-	634,  // 144: client.api.GuildSearchRequest.memberCountRangeTypes:type_name -> penum.GuildSearchMemberCountRangeType
+	626,  // 140: client.api.GuildReceiveDonationResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 141: client.api.GuildRejectJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 142: client.api.GuildRequestDonationResponse.commonResponse:type_name -> papicommon.Response
+	644,  // 143: client.api.GuildSearchRequest.activityPolicyTypes:type_name -> penum.GuildActivityPolicyType
+	646,  // 144: client.api.GuildSearchRequest.memberCountRangeTypes:type_name -> penum.GuildSearchMemberCountRangeType
 	107,  // 145: client.api.GuildSearchResponse.list:type_name -> client.api.GuildInfo
-	614,  // 146: client.api.GuildSearchResponse.commonResponse:type_name -> papicommon.Response
-	551,  // 147: client.api.GuildTopResponse.homeInfo:type_name -> client.api.GuildTopResponse.HomeInfo
+	626,  // 146: client.api.GuildSearchResponse.commonResponse:type_name -> papicommon.Response
+	559,  // 147: client.api.GuildTopResponse.homeInfo:type_name -> client.api.GuildTopResponse.HomeInfo
 	107,  // 148: client.api.GuildTopResponse.list:type_name -> client.api.GuildInfo
 	107,  // 149: client.api.GuildTopResponse.joinRequestList:type_name -> client.api.GuildInfo
-	636,  // 150: client.api.GuildTopResponse.notificationType:type_name -> penum.GuildNotificationType
-	614,  // 151: client.api.GuildTopResponse.commonResponse:type_name -> papicommon.Response
+	648,  // 150: client.api.GuildTopResponse.notificationType:type_name -> penum.GuildNotificationType
+	626,  // 151: client.api.GuildTopResponse.commonResponse:type_name -> papicommon.Response
 	113,  // 152: client.api.GuildUpdateLeaderMessageReactionResponse.reactionList:type_name -> client.api.GuildReactionInfo
-	614,  // 153: client.api.GuildUpdateLeaderMessageReactionResponse.commonResponse:type_name -> papicommon.Response
-	637,  // 154: client.api.GvgRaidDeck.slots:type_name -> pcommon.GvgRaidSlot
-	638,  // 155: client.api.GvgRaidEndRequest.stage:type_name -> pcommon.ExamBattleAutoStageResult
+	626,  // 153: client.api.GuildUpdateLeaderMessageReactionResponse.commonResponse:type_name -> papicommon.Response
+	649,  // 154: client.api.GvgRaidDeck.slots:type_name -> pcommon.GvgRaidSlot
+	650,  // 155: client.api.GvgRaidEndRequest.stage:type_name -> pcommon.ExamBattleAutoStageResult
 	132,  // 156: client.api.GvgRaidEndResponse.totalPointRewards:type_name -> client.api.GvgRaidPointReward
-	623,  // 157: client.api.GvgRaidEndResponse.challengeResults:type_name -> pcommon.Reward
-	623,  // 158: client.api.GvgRaidEndResponse.clearResults:type_name -> pcommon.Reward
-	615,  // 159: client.api.GvgRaidEndResponse.totalPointResults:type_name -> pcommon.RewardResult
+	635,  // 157: client.api.GvgRaidEndResponse.challengeResults:type_name -> pcommon.Reward
+	635,  // 158: client.api.GvgRaidEndResponse.clearResults:type_name -> pcommon.Reward
+	627,  // 159: client.api.GvgRaidEndResponse.totalPointResults:type_name -> pcommon.RewardResult
 	140,  // 160: client.api.GvgRaidEndResponse.mvpUsers:type_name -> client.api.GvgRaidUser
-	614,  // 161: client.api.GvgRaidEndResponse.commonResponse:type_name -> papicommon.Response
-	639,  // 162: client.api.GvgRaidGetProgressResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	626,  // 161: client.api.GvgRaidEndResponse.commonResponse:type_name -> papicommon.Response
+	651,  // 162: client.api.GvgRaidGetProgressResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	124,  // 163: client.api.GvgRaidGetProgressResponse.deck:type_name -> client.api.GvgRaidDeck
-	640,  // 164: client.api.GvgRaidGetProgressResponse.planType:type_name -> penum.ProducePlanType
-	641,  // 165: client.api.GvgRaidGetProgressResponse.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
-	614,  // 166: client.api.GvgRaidGetProgressResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 167: client.api.GvgRaidGuildRankReward.rewards:type_name -> pcommon.Reward
-	642,  // 168: client.api.GvgRaidGuildRankingResponse.guildRanking:type_name -> pcommon.GvgRaidGuild
-	642,  // 169: client.api.GvgRaidGuildRankingResponse.selfGuildRank:type_name -> pcommon.GvgRaidGuild
-	614,  // 170: client.api.GvgRaidGuildRankingResponse.commonResponse:type_name -> papicommon.Response
-	639,  // 171: client.api.GvgRaidPlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	652,  // 164: client.api.GvgRaidGetProgressResponse.planType:type_name -> penum.ProducePlanType
+	653,  // 165: client.api.GvgRaidGetProgressResponse.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
+	626,  // 166: client.api.GvgRaidGetProgressResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 167: client.api.GvgRaidGuildRankReward.rewards:type_name -> pcommon.Reward
+	654,  // 168: client.api.GvgRaidGuildRankingResponse.guildRanking:type_name -> pcommon.GvgRaidGuild
+	654,  // 169: client.api.GvgRaidGuildRankingResponse.selfGuildRank:type_name -> pcommon.GvgRaidGuild
+	626,  // 170: client.api.GvgRaidGuildRankingResponse.commonResponse:type_name -> papicommon.Response
+	651,  // 171: client.api.GvgRaidPlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	124,  // 172: client.api.GvgRaidPlayTestResponse.deck:type_name -> client.api.GvgRaidDeck
-	614,  // 173: client.api.GvgRaidPlayTestResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 174: client.api.GvgRaidPointReward.rewards:type_name -> pcommon.Reward
-	625,  // 175: client.api.GvgRaidSlot.mainMemory:type_name -> pcommon.Memory
-	625,  // 176: client.api.GvgRaidSlot.subMemories:type_name -> pcommon.Memory
-	623,  // 177: client.api.GvgRaidStageChallengeReward.rewards:type_name -> pcommon.Reward
-	639,  // 178: client.api.GvgRaidStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	626,  // 173: client.api.GvgRaidPlayTestResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 174: client.api.GvgRaidPointReward.rewards:type_name -> pcommon.Reward
+	637,  // 175: client.api.GvgRaidSlot.mainMemory:type_name -> pcommon.Memory
+	637,  // 176: client.api.GvgRaidSlot.subMemories:type_name -> pcommon.Memory
+	635,  // 177: client.api.GvgRaidStageChallengeReward.rewards:type_name -> pcommon.Reward
+	651,  // 178: client.api.GvgRaidStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	124,  // 179: client.api.GvgRaidStartResponse.deck:type_name -> client.api.GvgRaidDeck
-	614,  // 180: client.api.GvgRaidStartResponse.commonResponse:type_name -> papicommon.Response
-	553,  // 181: client.api.GvgRaidTopResponse.stages:type_name -> client.api.GvgRaidTopResponse.Stage
-	642,  // 182: client.api.GvgRaidTopResponse.guild:type_name -> pcommon.GvgRaidGuild
+	626,  // 180: client.api.GvgRaidStartResponse.commonResponse:type_name -> papicommon.Response
+	561,  // 181: client.api.GvgRaidTopResponse.stages:type_name -> client.api.GvgRaidTopResponse.Stage
+	654,  // 182: client.api.GvgRaidTopResponse.guild:type_name -> pcommon.GvgRaidGuild
 	132,  // 183: client.api.GvgRaidTopResponse.userTotalPointRewards:type_name -> client.api.GvgRaidPointReward
-	555,  // 184: client.api.GvgRaidTopResponse.stageClearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward
+	563,  // 184: client.api.GvgRaidTopResponse.stageClearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward
 	128,  // 185: client.api.GvgRaidTopResponse.rankRewards:type_name -> client.api.GvgRaidGuildRankReward
-	623,  // 186: client.api.GvgRaidTopResponse.nextUserRewards:type_name -> pcommon.Reward
-	554,  // 187: client.api.GvgRaidTopResponse.stageResults:type_name -> client.api.GvgRaidTopResponse.StageClearResult
+	635,  // 186: client.api.GvgRaidTopResponse.nextUserRewards:type_name -> pcommon.Reward
+	562,  // 187: client.api.GvgRaidTopResponse.stageResults:type_name -> client.api.GvgRaidTopResponse.StageClearResult
 	128,  // 188: client.api.GvgRaidTopResponse.rankResult:type_name -> client.api.GvgRaidGuildRankReward
-	643,  // 189: client.api.GvgRaidTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 190: client.api.GvgRaidTopResponse.commonResponse:type_name -> papicommon.Response
-	644,  // 191: client.api.GvgRaidUpdateDeckRequest.deck:type_name -> pcommon.GvgRaidSetUpDeck
-	645,  // 192: client.api.GvgRaidUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	614,  // 193: client.api.GvgRaidUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 194: client.api.GvgRaidUser.profile:type_name -> pcommon.SimpleProfile
+	655,  // 189: client.api.GvgRaidTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	626,  // 190: client.api.GvgRaidTopResponse.commonResponse:type_name -> papicommon.Response
+	656,  // 191: client.api.GvgRaidUpdateDeckRequest.deck:type_name -> pcommon.GvgRaidSetUpDeck
+	657,  // 192: client.api.GvgRaidUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	626,  // 193: client.api.GvgRaidUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 194: client.api.GvgRaidUser.profile:type_name -> pcommon.SimpleProfile
 	124,  // 195: client.api.GvgRaidUser.deck:type_name -> client.api.GvgRaidDeck
-	558,  // 196: client.api.GvgRaidUserRankingResponse.userRankings:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking
-	557,  // 197: client.api.GvgRaidUserRankingResponse.stageMvps:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp
-	614,  // 198: client.api.GvgRaidUserRankingResponse.commonResponse:type_name -> papicommon.Response
-	646,  // 199: client.api.HealthCheckResponse.status:type_name -> penum.ServingStatus
-	614,  // 200: client.api.HomeConfirmBanWarningResponse.commonResponse:type_name -> papicommon.Response
-	647,  // 201: client.api.HomeEnterResponse.homeBanners:type_name -> pcommon.HomeBanner
-	648,  // 202: client.api.HomeEnterResponse.homeNavigations:type_name -> pcommon.HomeNavigation
-	561,  // 203: client.api.HomeEnterResponse.featureMaintenances:type_name -> client.api.HomeEnterResponse.FeatureMaintenance
-	629,  // 204: client.api.HomeEnterResponse.gashas:type_name -> pcommon.Gasha
-	649,  // 205: client.api.HomeEnterResponse.pvpRateSeasonTop:type_name -> papicommon.PvpRateSeasonTop
-	650,  // 206: client.api.HomeEnterResponse.events:type_name -> pcommon.Event
-	651,  // 207: client.api.HomeEnterResponse.shopItemLabelType:type_name -> penum.ShopItemLabelType
-	614,  // 208: client.api.HomeEnterResponse.commonResponse:type_name -> papicommon.Response
-	650,  // 209: client.api.HomeListEventResponse.events:type_name -> pcommon.Event
-	614,  // 210: client.api.HomeListEventResponse.commonResponse:type_name -> papicommon.Response
-	562,  // 211: client.api.HomeLoginResponse.friendResult:type_name -> client.api.HomeLoginResponse.FriendResult
-	652,  // 212: client.api.HomeLoginResponse.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
-	614,  // 213: client.api.HomeLoginResponse.commonResponse:type_name -> papicommon.Response
-	563,  // 214: client.api.HomeSetCharactersRequest.characters:type_name -> client.api.HomeSetCharactersRequest.HomeCharacter
-	614,  // 215: client.api.HomeSetCharactersResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 216: client.api.IdolCardChangeSkinResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 217: client.api.IdolCardProbability.rewards:type_name -> pcommon.Reward
-	653,  // 218: client.api.IdolCardRarityProbability.rarity:type_name -> penum.IdolCardRarity
-	152,  // 219: client.api.IdolCardRarityProbability.probabilities:type_name -> client.api.IdolCardProbability
-	614,  // 220: client.api.IdolCardReleaseResponse.commonResponse:type_name -> papicommon.Response
-	654,  // 221: client.api.IdolCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.IdolCardLevelLimitRank
-	614,  // 222: client.api.IdolCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
-	655,  // 223: client.api.IdolCardUpgradePotentialRankRequest.afterRank:type_name -> penum.IdolCardPotentialRank
-	614,  // 224: client.api.IdolCardUpgradePotentialRankResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 225: client.api.InvitationEnterInvitationCodeResponse.commonResponse:type_name -> papicommon.Response
-	165,  // 226: client.api.InvitationListInviteUserResponse.list:type_name -> client.api.InviteUser
-	614,  // 227: client.api.InvitationListInviteUserResponse.commonResponse:type_name -> papicommon.Response
-	165,  // 228: client.api.InvitationReceiveInvitationPointResponse.list:type_name -> client.api.InviteUser
-	615,  // 229: client.api.InvitationReceiveInvitationPointResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 230: client.api.InvitationReceiveInvitationPointResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 231: client.api.InviteUser.profile:type_name -> pcommon.SimpleProfile
-	656,  // 232: client.api.InviteUser.friendStatusType:type_name -> penum.FriendStatusType
-	615,  // 233: client.api.ItemExchangeIdolCardPieceResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 234: client.api.ItemExchangeIdolCardPieceResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 235: client.api.ItemSellResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 236: client.api.ItemUseActionPointRecoveryResponse.commonResponse:type_name -> papicommon.Response
-	564,  // 237: client.api.LoginBonusCheckResponse.list:type_name -> client.api.LoginBonusCheckResponse.Info
-	565,  // 238: client.api.LoginBonusCheckResponse.totalInfo:type_name -> client.api.LoginBonusCheckResponse.TotalInfo
-	643,  // 239: client.api.LoginBonusCheckResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 240: client.api.LoginBonusCheckResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 241: client.api.LoginBonusConfirmResponse.commonResponse:type_name -> papicommon.Response
-	567,  // 242: client.api.MasterGetResponse.masterTag:type_name -> client.api.MasterGetResponse.MasterTag
-	614,  // 243: client.api.MediaPlayResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 244: client.api.MeishiDeleteResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 245: client.api.MeishiFollowResponse.commonResponse:type_name -> papicommon.Response
-	657,  // 246: client.api.MeishiGetDetailResponse.meishi:type_name -> pcommon.Meishi
-	614,  // 247: client.api.MeishiGetDetailResponse.commonResponse:type_name -> papicommon.Response
-	657,  // 248: client.api.MeishiGetResponse.meishi:type_name -> pcommon.Meishi
-	614,  // 249: client.api.MeishiGetResponse.commonResponse:type_name -> papicommon.Response
-	568,  // 250: client.api.MeishiListFollowResponse.follows:type_name -> client.api.MeishiListFollowResponse.Follow
-	614,  // 251: client.api.MeishiListFollowResponse.commonResponse:type_name -> papicommon.Response
-	569,  // 252: client.api.MeishiListResponse.meishiList:type_name -> client.api.MeishiListResponse.MeishiInfo
-	614,  // 253: client.api.MeishiListResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 254: client.api.MeishiReportXPostMissionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 255: client.api.MeishiSetResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 256: client.api.MeishiUnfollowResponse.commonResponse:type_name -> papicommon.Response
-	570,  // 257: client.api.MeishiUpdateRequest.meishiBase:type_name -> client.api.MeishiUpdateRequest.MeishiBase
-	571,  // 258: client.api.MeishiUpdateRequest.objects:type_name -> client.api.MeishiUpdateRequest.Object
-	614,  // 259: client.api.MeishiUpdateResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 260: client.api.MemoryExchangeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 261: client.api.MemoryFixInheritResponse.commonResponse:type_name -> papicommon.Response
-	625,  // 262: client.api.MemoryInheritResponse.beforeMemory:type_name -> pcommon.Memory
-	625,  // 263: client.api.MemoryInheritResponse.afterMemory:type_name -> pcommon.Memory
-	614,  // 264: client.api.MemoryInheritResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 265: client.api.MemoryReshootingResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 266: client.api.MemoryUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 267: client.api.MemoryUpdateTagSettingResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 268: client.api.MissionExchangePassPointResponse.commonResponse:type_name -> papicommon.Response
-	650,  // 269: client.api.MissionListEventResponse.events:type_name -> pcommon.Event
-	614,  // 270: client.api.MissionListEventResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 271: client.api.MissionReceiveGroupAllResponse.groupResults:type_name -> pcommon.RewardResult
-	615,  // 272: client.api.MissionReceiveGroupAllResponse.results:type_name -> pcommon.RewardResult
-	614,  // 273: client.api.MissionReceiveGroupAllResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 274: client.api.MissionReceiveGroupResponse.results:type_name -> pcommon.RewardResult
-	614,  // 275: client.api.MissionReceiveGroupResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 276: client.api.MissionReceivePassResponse.commonResponse:type_name -> papicommon.Response
-	572,  // 277: client.api.MissionReceiveRequest.missions:type_name -> client.api.MissionReceiveRequest.Mission
-	573,  // 278: client.api.MissionReceiveRequest.missionPoints:type_name -> client.api.MissionReceiveRequest.MissionPoint
-	615,  // 279: client.api.MissionReceiveResponse.results:type_name -> pcommon.RewardResult
-	615,  // 280: client.api.MissionReceiveResponse.missionPointResults:type_name -> pcommon.RewardResult
-	575,  // 281: client.api.MissionReceiveResponse.masterAchievementProgressResults:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgressResult
-	658,  // 282: client.api.MissionReceiveResponse.mainTaskResults:type_name -> pmaster.Mission
-	614,  // 283: client.api.MissionReceiveResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 284: client.api.MissionUrlTransitionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 285: client.api.MoneyReceiveResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 286: client.api.MovieCreateResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 287: client.api.MovieDeleteResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 288: client.api.MovieRetakeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 289: client.api.MusicSendActionLogResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 290: client.api.MusicSendBuyActionLogResponse.commonResponse:type_name -> papicommon.Response
-	659,  // 291: client.api.NoticeFetchListRequest.category:type_name -> penum.NoticeCategory
-	235,  // 292: client.api.NoticeFetchListResponse.list:type_name -> client.api.NoticeInfo
-	614,  // 293: client.api.NoticeFetchListResponse.commonResponse:type_name -> papicommon.Response
-	235,  // 294: client.api.NoticeGetResponse.info:type_name -> client.api.NoticeInfo
-	614,  // 295: client.api.NoticeGetResponse.commonResponse:type_name -> papicommon.Response
-	659,  // 296: client.api.NoticeInfo.category:type_name -> penum.NoticeCategory
-	660,  // 297: client.api.NoticeInfo.type:type_name -> penum.NoticeType
-	235,  // 298: client.api.NoticeListAllResponse.infoList:type_name -> client.api.NoticeInfo
-	235,  // 299: client.api.NoticeListAllResponse.bugList:type_name -> client.api.NoticeInfo
-	235,  // 300: client.api.NoticeListAllResponse.prList:type_name -> client.api.NoticeInfo
-	614,  // 301: client.api.NoticeListAllResponse.commonResponse:type_name -> papicommon.Response
-	659,  // 302: client.api.NoticeUpdateCategoryTimeRequest.categories:type_name -> penum.NoticeCategory
-	614,  // 303: client.api.NoticeUpdateCategoryTimeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 304: client.api.NoticeUpdateDetailTimeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 305: client.api.PhotoCreateByMemoryResponse.commonResponse:type_name -> papicommon.Response
-	576,  // 306: client.api.PhotoCreateIdolRequest.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.CharacterSetting
-	577,  // 307: client.api.PhotoCreateIdolRequest.photos:type_name -> client.api.PhotoCreateIdolRequest.Photo
-	614,  // 308: client.api.PhotoCreateIdolResponse.commonResponse:type_name -> papicommon.Response
-	579,  // 309: client.api.PhotoCreateRequest.unitCharacters:type_name -> client.api.PhotoCreateRequest.UnitCharacter
-	614,  // 310: client.api.PhotoCreateResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 311: client.api.PhotoDeleteResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 312: client.api.PhotoUpdateNameResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 313: client.api.PhotoUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
-	661,  // 314: client.api.PreferenceUpdateRequest.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
-	662,  // 315: client.api.PreferenceUpdateRequest.preferenceTypes:type_name -> penum.PreferenceType
-	614,  // 316: client.api.PreferenceUpdateResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 317: client.api.ProduceActivateEffectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 318: client.api.ProduceActivateEffectResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 319: client.api.ProduceChangeCostumeResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 320: client.api.ProduceChangeForceLiveCommonResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 321: client.api.ProduceCheckProgressResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 322: client.api.ProduceContinueResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 323: client.api.ProduceDiscardDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 324: client.api.ProduceDiscardDrinkResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 325: client.api.ProduceEndBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	625,  // 326: client.api.ProduceEndResponse.memory:type_name -> pcommon.Memory
-	614,  // 327: client.api.ProduceEndResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 328: client.api.ProduceExcludeProduceCardResponse.commonResponse:type_name -> papicommon.Response
-	277,  // 329: client.api.ProduceHighScoreCharacter.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
-	281,  // 330: client.api.ProduceHighScoreCharacter.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
-	664,  // 331: client.api.ProduceHighScoreGetResponse.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
-	281,  // 332: client.api.ProduceHighScoreGetResponse.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
-	277,  // 333: client.api.ProduceHighScoreGetResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
-	274,  // 334: client.api.ProduceHighScoreGetResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
-	616,  // 335: client.api.ProduceHighScoreGetResponse.coinGasha:type_name -> pcommon.CoinGasha
-	280,  // 336: client.api.ProduceHighScoreGetResponse.result:type_name -> client.api.ProduceHighScoreResult
-	643,  // 337: client.api.ProduceHighScoreGetResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 338: client.api.ProduceHighScoreGetResponse.commonResponse:type_name -> papicommon.Response
-	277,  // 339: client.api.ProduceHighScoreListRankRewardResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
-	274,  // 340: client.api.ProduceHighScoreListRankRewardResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
-	614,  // 341: client.api.ProduceHighScoreListRankRewardResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 342: client.api.ProduceHighScoreRankReward.rewards:type_name -> pcommon.Reward
-	580,  // 343: client.api.ProduceHighScoreRankingResponse.selfRank:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
-	580,  // 344: client.api.ProduceHighScoreRankingResponse.ranks:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
-	614,  // 345: client.api.ProduceHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
-	277,  // 346: client.api.ProduceHighScoreResult.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
-	274,  // 347: client.api.ProduceHighScoreResult.characters:type_name -> client.api.ProduceHighScoreCharacter
-	615,  // 348: client.api.ProduceHighScoreResult.rewardResults:type_name -> pcommon.RewardResult
-	623,  // 349: client.api.ProduceHighScoreReward.reward:type_name -> pcommon.Reward
-	665,  // 350: client.api.ProduceHistoryResponse.produceHistory:type_name -> pcommon.ProduceHistory
-	614,  // 351: client.api.ProduceHistoryResponse.commonResponse:type_name -> papicommon.Response
-	581,  // 352: client.api.ProduceListRentalMemoryResponse.memories:type_name -> client.api.ProduceListRentalMemoryResponse.RentalMemory
-	614,  // 353: client.api.ProduceListRentalMemoryResponse.commonResponse:type_name -> papicommon.Response
-	582,  // 354: client.api.ProduceListRentalSupportCardResponse.supportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	582,  // 355: client.api.ProduceListRentalSupportCardResponse.suggestionSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	582,  // 356: client.api.ProduceListRentalSupportCardResponse.npcSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	614,  // 357: client.api.ProduceListRentalSupportCardResponse.commonResponse:type_name -> papicommon.Response
-	666,  // 358: client.api.ProduceNextRequest.stepType:type_name -> penum.ProduceStepType
-	663,  // 359: client.api.ProduceNextResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 360: client.api.ProduceNextResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 361: client.api.ProduceRank.profile:type_name -> pcommon.SimpleProfile
-	667,  // 362: client.api.ProduceRank.grade:type_name -> penum.ResultGrade
-	289,  // 363: client.api.ProduceRankingResponse.ranks:type_name -> client.api.ProduceRank
-	667,  // 364: client.api.ProduceRankingResponse.selfGrade:type_name -> penum.ResultGrade
-	614,  // 365: client.api.ProduceRankingResponse.commonResponse:type_name -> papicommon.Response
-	583,  // 366: client.api.ProduceRankingTopResponse.rankings:type_name -> client.api.ProduceRankingTopResponse.Ranking
-	614,  // 367: client.api.ProduceRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 368: client.api.ProduceReadAdvResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 369: client.api.ProduceReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
-	663,  // 370: client.api.ProduceReadDearnessStoryResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 371: client.api.ProduceReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	668,  // 372: client.api.ProduceReportGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
-	669,  // 373: client.api.ProduceReportGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
-	670,  // 374: client.api.ProduceReportGuildMissionResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
-	614,  // 375: client.api.ProduceReportGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 376: client.api.ProduceRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 377: client.api.ProduceRerollSelectProduceCardResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 378: client.api.ProduceResultResponse.rewardResults:type_name -> pcommon.RewardResult
-	670,  // 379: client.api.ProduceResultResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
-	585,  // 380: client.api.ProduceResultResponse.highScoreUpdateResult:type_name -> client.api.ProduceResultResponse.HighScoreUpdateResult
-	614,  // 381: client.api.ProduceResultResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 382: client.api.ProduceRetireResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 383: client.api.ProduceStartBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	587,  // 384: client.api.ProduceStartRequest.supportCards:type_name -> client.api.ProduceStartRequest.SupportCard
-	586,  // 385: client.api.ProduceStartRequest.memories:type_name -> client.api.ProduceStartRequest.Memory
-	663,  // 386: client.api.ProduceStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 387: client.api.ProduceStartResponse.commonResponse:type_name -> papicommon.Response
-	671,  // 388: client.api.ProduceStepAuditionEndExamBattleRequest.result:type_name -> pcommon.ExamBattleResult
-	672,  // 389: client.api.ProduceStepAuditionEndExamBattleRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	614,  // 390: client.api.ProduceStepAuditionEndExamBattleResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 391: client.api.ProduceStepAuditionEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	674,  // 392: client.api.ProduceStepAuditionEndResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
-	663,  // 393: client.api.ProduceStepAuditionEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 394: client.api.ProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 395: client.api.ProduceStepAuditionRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 396: client.api.ProduceStepAuditionRefreshResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 397: client.api.ProduceStepAuditionStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 398: client.api.ProduceStepAuditionStartResponse.commonResponse:type_name -> papicommon.Response
-	675,  // 399: client.api.ProduceStepBusinessSelectRequest.businessType:type_name -> penum.ProduceStepBusinessType
-	676,  // 400: client.api.ProduceStepBusinessSelectResponse.consumptionResults:type_name -> pcommon.ProduceConsumptionResult
-	663,  // 401: client.api.ProduceStepBusinessSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 402: client.api.ProduceStepBusinessSelectResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 403: client.api.ProduceStepBusinessStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 404: client.api.ProduceStepBusinessStartResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 405: client.api.ProduceStepCustomizeEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 406: client.api.ProduceStepCustomizeEndResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 407: client.api.ProduceStepCustomizeSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 408: client.api.ProduceStepCustomizeSelectResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 409: client.api.ProduceStepCustomizeStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 410: client.api.ProduceStepCustomizeStartResponse.commonResponse:type_name -> papicommon.Response
-	674,  // 411: client.api.ProduceStepEventResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
-	663,  // 412: client.api.ProduceStepEventResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 413: client.api.ProduceStepEventResponse.commonResponse:type_name -> papicommon.Response
-	677,  // 414: client.api.ProduceStepLessonEndRequest.examEndResult:type_name -> pcommon.ProduceExamEndResult
-	672,  // 415: client.api.ProduceStepLessonEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	663,  // 416: client.api.ProduceStepLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 417: client.api.ProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 418: client.api.ProduceStepLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 419: client.api.ProduceStepLessonStartResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 420: client.api.ProduceStepPresentEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	663,  // 421: client.api.ProduceStepPresentEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 422: client.api.ProduceStepPresentEndResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 423: client.api.ProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	663,  // 424: client.api.ProduceStepPresentReceiveResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 425: client.api.ProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 426: client.api.ProduceStepPresentStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 427: client.api.ProduceStepPresentStartResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 428: client.api.ProduceStepRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 429: client.api.ProduceStepRefreshResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 430: client.api.ProduceStepSelfLessonEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	663,  // 431: client.api.ProduceStepSelfLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 432: client.api.ProduceStepSelfLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 433: client.api.ProduceStepSelfLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 434: client.api.ProduceStepSelfLessonStartResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 435: client.api.ProduceStepShopBuyResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	663,  // 436: client.api.ProduceStepShopBuyResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 437: client.api.ProduceStepShopBuyResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 438: client.api.ProduceStepShopEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 439: client.api.ProduceStepShopEndResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 440: client.api.ProduceStepShopRerollResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 441: client.api.ProduceStepShopStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 442: client.api.ProduceStepShopStartResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 443: client.api.ProduceStepSkipResponse.commonResponse:type_name -> papicommon.Response
-	678,  // 444: client.api.ProduceTopResponse.campaigns:type_name -> pcommon.ProduceCampaign
-	679,  // 445: client.api.ProduceTopResponse.storyEventType:type_name -> penum.StoryEventType
-	680,  // 446: client.api.ProduceTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
-	588,  // 447: client.api.ProduceTopResponse.produceHighScore:type_name -> client.api.ProduceTopResponse.ProduceHighScore
-	614,  // 448: client.api.ProduceTopResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 449: client.api.ProduceUnlockPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
-	681,  // 450: client.api.ProduceUpdateMemoryDeck.produceType:type_name -> penum.ProduceType
-	645,  // 451: client.api.ProduceUpdateMemoryDeck.recommendType:type_name -> penum.DeckRecommendType
-	360,  // 452: client.api.ProduceUpdateMemoryDeckRequest.decks:type_name -> client.api.ProduceUpdateMemoryDeck
-	614,  // 453: client.api.ProduceUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
-	681,  // 454: client.api.ProduceUpdateSupportCardDeck.produceType:type_name -> penum.ProduceType
-	645,  // 455: client.api.ProduceUpdateSupportCardDeck.recommendType:type_name -> penum.DeckRecommendType
-	363,  // 456: client.api.ProduceUpdateSupportCardDeckRequest.decks:type_name -> client.api.ProduceUpdateSupportCardDeck
-	614,  // 457: client.api.ProduceUpdateSupportCardDeckResponse.commonResponse:type_name -> papicommon.Response
-	663,  // 458: client.api.ProduceUseDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	614,  // 459: client.api.ProduceViewPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
-	369,  // 460: client.api.ProfileGetResponse.birthday:type_name -> client.api.ProfileBirthday
-	656,  // 461: client.api.ProfileGetResponse.friendStatus:type_name -> penum.FriendStatusType
-	589,  // 462: client.api.ProfileGetResponse.produceRecords:type_name -> client.api.ProfileGetResponse.ProduceRecord
-	682,  // 463: client.api.ProfileGetResponse.pvpRateGrade:type_name -> penum.PvpRateGrade
-	683,  // 464: client.api.ProfileGetResponse.supportCard:type_name -> pcommon.SupportCard
-	625,  // 465: client.api.ProfileGetResponse.memory:type_name -> pcommon.Memory
-	657,  // 466: client.api.ProfileGetResponse.meishi:type_name -> pcommon.Meishi
-	614,  // 467: client.api.ProfileGetResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 468: client.api.ProfileUpdateBirthdayResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 469: client.api.ProfileUpdateCommentResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 470: client.api.ProfileUpdateMemoryResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 471: client.api.ProfileUpdateNameResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 472: client.api.ProfileUpdateSupportCardResponse.commonResponse:type_name -> papicommon.Response
-	638,  // 473: client.api.PvpRateEndRequest.stages:type_name -> pcommon.ExamBattleAutoStageResult
-	615,  // 474: client.api.PvpRateEndResponse.playReward:type_name -> pcommon.RewardResult
-	394,  // 475: client.api.PvpRateEndResponse.rateRewards:type_name -> client.api.PvpRateRateReward
-	614,  // 476: client.api.PvpRateEndResponse.commonResponse:type_name -> papicommon.Response
-	684,  // 477: client.api.PvpRateGetHistoryResponse.examBattleResult:type_name -> pcommon.PvpRateExamBattleResult
-	614,  // 478: client.api.PvpRateGetHistoryResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 479: client.api.PvpRateGetResponse.playReward:type_name -> pcommon.Reward
-	394,  // 480: client.api.PvpRateGetResponse.rateRewards:type_name -> client.api.PvpRateRateReward
-	392,  // 481: client.api.PvpRateGetResponse.rankRewards:type_name -> client.api.PvpRateRankReward
-	682,  // 482: client.api.PvpRateGetResponse.grade:type_name -> penum.PvpRateGrade
-	657,  // 483: client.api.PvpRateGetResponse.meishi:type_name -> pcommon.Meishi
-	395,  // 484: client.api.PvpRateGetResponse.rivals:type_name -> client.api.PvpRateRival
-	639,  // 485: client.api.PvpRateGetResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	399,  // 486: client.api.PvpRateGetResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	395,  // 487: client.api.PvpRateGetResponse.currentRival:type_name -> client.api.PvpRateRival
-	614,  // 488: client.api.PvpRateGetResponse.commonResponse:type_name -> papicommon.Response
-	396,  // 489: client.api.PvpRateInitializeResponse.previousSeasonResult:type_name -> client.api.PvpRateSeasonResult
-	614,  // 490: client.api.PvpRateInitializeResponse.commonResponse:type_name -> papicommon.Response
-	590,  // 491: client.api.PvpRateListHistoryResponse.histories:type_name -> client.api.PvpRateListHistoryResponse.PvpRateHistory
-	614,  // 492: client.api.PvpRateListHistoryResponse.commonResponse:type_name -> papicommon.Response
-	393,  // 493: client.api.PvpRateListRankingResponse.users:type_name -> client.api.PvpRateRankingUser
-	393,  // 494: client.api.PvpRateListRankingResponse.self:type_name -> client.api.PvpRateRankingUser
-	614,  // 495: client.api.PvpRateListRankingResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 496: client.api.PvpRatePlayExamBattleResponse.commonResponse:type_name -> papicommon.Response
-	639,  // 497: client.api.PvpRatePlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	399,  // 498: client.api.PvpRatePlayTestResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	614,  // 499: client.api.PvpRatePlayTestResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 500: client.api.PvpRateRankReward.rewards:type_name -> pcommon.Reward
-	624,  // 501: client.api.PvpRateRankingUser.profile:type_name -> pcommon.SimpleProfile
-	399,  // 502: client.api.PvpRateRankingUser.formations:type_name -> client.api.PvpRateUnitStageFormation
-	623,  // 503: client.api.PvpRateRateReward.reward:type_name -> pcommon.Reward
-	624,  // 504: client.api.PvpRateRival.profile:type_name -> pcommon.SimpleProfile
-	685,  // 505: client.api.PvpRateRival.rivalType:type_name -> penum.PvpRateRivalType
-	399,  // 506: client.api.PvpRateRival.formations:type_name -> client.api.PvpRateUnitStageFormation
-	682,  // 507: client.api.PvpRateSeasonResult.beforeGrade:type_name -> penum.PvpRateGrade
-	682,  // 508: client.api.PvpRateSeasonResult.afterGrade:type_name -> penum.PvpRateGrade
-	623,  // 509: client.api.PvpRateSeasonResult.rewards:type_name -> pcommon.Reward
-	682,  // 510: client.api.PvpRateSeasonResult.prevSeasonGrade:type_name -> penum.PvpRateGrade
-	685,  // 511: client.api.PvpRateStartRequest.rivalType:type_name -> penum.PvpRateRivalType
-	639,  // 512: client.api.PvpRateStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	399,  // 513: client.api.PvpRateStartResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	395,  // 514: client.api.PvpRateStartResponse.rival:type_name -> client.api.PvpRateRival
-	614,  // 515: client.api.PvpRateStartResponse.commonResponse:type_name -> papicommon.Response
-	686,  // 516: client.api.PvpRateUnitStageFormation.stage:type_name -> penum.PvpRateStageType
-	591,  // 517: client.api.PvpRateUnitStageFormation.slots:type_name -> client.api.PvpRateUnitStageFormation.Slot
-	687,  // 518: client.api.PvpRateUpdateUserPvpRateUnitRequest.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
-	645,  // 519: client.api.PvpRateUpdateUserPvpRateUnitRequest.recommendType:type_name -> penum.DeckRecommendType
-	614,  // 520: client.api.PvpRateUpdateUserPvpRateUnitResponse.commonResponse:type_name -> papicommon.Response
-	592,  // 521: client.api.SeminarEndExamRequest.turns:type_name -> client.api.SeminarEndExamRequest.Turn
-	614,  // 522: client.api.SeminarEndExamResponse.commonResponse:type_name -> papicommon.Response
-	666,  // 523: client.api.SeminarGetExamResponse.stepType:type_name -> penum.ProduceStepType
-	688,  // 524: client.api.SeminarGetExamResponse.examBattleParameterTypes:type_name -> penum.ProduceParameterType
-	689,  // 525: client.api.SeminarGetExamResponse.produceCards:type_name -> pcommon.ProduceCard
-	595,  // 526: client.api.SeminarGetExamResponse.turnNavigations:type_name -> client.api.SeminarGetExamResponse.TurnNavigation
-	594,  // 527: client.api.SeminarGetExamResponse.failureNavigations:type_name -> client.api.SeminarGetExamResponse.FailureNavigation
-	614,  // 528: client.api.SeminarGetExamResponse.commonResponse:type_name -> papicommon.Response
-	597,  // 529: client.api.SeminarListExamResponse.groups:type_name -> client.api.SeminarListExamResponse.ExamGroup
-	614,  // 530: client.api.SeminarListExamResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 531: client.api.ShopCancelPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 532: client.api.ShopCheckPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	598,  // 533: client.api.ShopGetPurchasePlatformTransactionResponse.platformTransactions:type_name -> client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
-	614,  // 534: client.api.ShopGetPurchasePlatformTransactionResponse.commonResponse:type_name -> papicommon.Response
-	651,  // 535: client.api.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
-	690,  // 536: client.api.ShopListItemsResponse.list:type_name -> pmaster.ShopItem
-	614,  // 537: client.api.ShopListItemsResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 538: client.api.ShopPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 539: client.api.ShopPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 540: client.api.ShopPurchaseResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 541: client.api.ShopPurchaseResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 542: client.api.ShopRecoverPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 543: client.api.ShopRecoverPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 544: client.api.ShopRegisterBirthdayResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 545: client.api.ShopRegisterDelayPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 546: client.api.ShopRegisterPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	599,  // 547: client.api.ShopTopResponse.shopList:type_name -> client.api.ShopTopResponse.Shop
-	690,  // 548: client.api.ShopTopResponse.shopItemList:type_name -> pmaster.ShopItem
-	643,  // 549: client.api.ShopTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 550: client.api.ShopTopResponse.commonResponse:type_name -> papicommon.Response
-	600,  // 551: client.api.StartupConfirmRequest.notifications:type_name -> client.api.StartupConfirmRequest.Notification
-	615,  // 552: client.api.StartupConfirmResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 553: client.api.StartupConfirmResponse.commonResponse:type_name -> papicommon.Response
-	691,  // 554: client.api.StartupListNotificationsRequest.displayType:type_name -> penum.StartupNotificationDisplayType
-	643,  // 555: client.api.StartupListNotificationsResponse.notifications:type_name -> pcommon.StartupNotification
-	614,  // 556: client.api.StartupListNotificationsResponse.commonResponse:type_name -> papicommon.Response
-	32,   // 557: client.api.StepUpGashaProbability.defaultGashaProbability:type_name -> client.api.DefaultGashaProbability
-	668,  // 558: client.api.StoryEventListGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
-	669,  // 559: client.api.StoryEventListGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
-	614,  // 560: client.api.StoryEventListGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	601,  // 561: client.api.StoryEventReceiveGuildMissionResponse.receiveResults:type_name -> client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
-	614,  // 562: client.api.StoryEventReceiveGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	602,  // 563: client.api.StoryEventTopResponse.motions:type_name -> client.api.StoryEventTopResponse.Motion
-	679,  // 564: client.api.StoryEventTopResponse.storyEventType:type_name -> penum.StoryEventType
-	680,  // 565: client.api.StoryEventTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
-	616,  // 566: client.api.StoryEventTopResponse.boxGasha:type_name -> pcommon.CoinGasha
-	655,  // 567: client.api.StoryEventTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
-	692,  // 568: client.api.StoryEventTopResponse.storyEventPointRewards:type_name -> pcommon.StoryEventPointReward
-	643,  // 569: client.api.StoryEventTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 570: client.api.StoryEventTopResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 571: client.api.StoryReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 572: client.api.StoryReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 573: client.api.StoryReadProduceStoryResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 574: client.api.StoryReadResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 575: client.api.StoryReadResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 576: client.api.StoryUnlockProduceStoryResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 577: client.api.StoryUnlockResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 578: client.api.SupportCardEnhanceResponse.commonResponse:type_name -> papicommon.Response
-	603,  // 579: client.api.SupportCardExchangeRequest.parameters:type_name -> client.api.SupportCardExchangeRequest.Parameter
-	614,  // 580: client.api.SupportCardExchangeResponse.commonResponse:type_name -> papicommon.Response
-	605,  // 581: client.api.SupportCardListDeckRankingResponse.rankings:type_name -> client.api.SupportCardListDeckRankingResponse.Ranking
-	614,  // 582: client.api.SupportCardListDeckRankingResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 583: client.api.SupportCardProbability.rewards:type_name -> pcommon.Reward
-	693,  // 584: client.api.SupportCardRarityProbability.rarity:type_name -> penum.SupportCardRarity
-	455,  // 585: client.api.SupportCardRarityProbability.probabilities:type_name -> client.api.SupportCardProbability
-	694,  // 586: client.api.SupportCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.SupportCardLevelLimitRank
-	614,  // 587: client.api.SupportCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
-	606,  // 588: client.api.SystemCheckResponse.maintenanceInfo:type_name -> client.api.SystemCheckResponse.MaintenanceInfo
-	607,  // 589: client.api.SystemCheckResponse.reviewInfo:type_name -> client.api.SystemCheckResponse.ReviewInfo
-	463,  // 590: client.api.TicketExchangeExecuteResponse.item:type_name -> client.api.TicketExchangeItem
-	615,  // 591: client.api.TicketExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
-	614,  // 592: client.api.TicketExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
-	623,  // 593: client.api.TicketExchangeItem.rewards:type_name -> pcommon.Reward
-	463,  // 594: client.api.TicketExchangeListItemsResponse.items:type_name -> client.api.TicketExchangeItem
-	614,  // 595: client.api.TicketExchangeListItemsResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 596: client.api.TowerCheckResponse.commonResponse:type_name -> papicommon.Response
-	671,  // 597: client.api.TowerEndRequest.result:type_name -> pcommon.ExamBattleResult
-	672,  // 598: client.api.TowerEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	615,  // 599: client.api.TowerEndResponse.results:type_name -> pcommon.RewardResult
-	614,  // 600: client.api.TowerEndResponse.commonResponse:type_name -> papicommon.Response
-	492,  // 601: client.api.TowerGetLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	614,  // 602: client.api.TowerGetLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
-	491,  // 603: client.api.TowerGetLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
-	614,  // 604: client.api.TowerGetLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	608,  // 605: client.api.TowerGetLayerResponse.exams:type_name -> client.api.TowerGetLayerResponse.Exam
-	614,  // 606: client.api.TowerGetLayerResponse.commonResponse:type_name -> papicommon.Response
-	492,  // 607: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	614,  // 608: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
-	491,  // 609: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
-	614,  // 610: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	492,  // 611: client.api.TowerGetPastSeasonRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	614,  // 612: client.api.TowerGetPastSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
-	625,  // 613: client.api.TowerGetRankingDeckResponse.memories:type_name -> pcommon.Memory
-	614,  // 614: client.api.TowerGetRankingDeckResponse.commonResponse:type_name -> papicommon.Response
-	492,  // 615: client.api.TowerGetRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	614,  // 616: client.api.TowerGetRankingResponse.commonResponse:type_name -> papicommon.Response
-	695,  // 617: client.api.TowerListLayerPlayerHistoriesResponse.histories:type_name -> pcommon.TowerLayerHistory
-	614,  // 618: client.api.TowerListLayerPlayerHistoriesResponse.commonResponse:type_name -> papicommon.Response
-	610,  // 619: client.api.TowerListLayersResponse.layers:type_name -> client.api.TowerListLayersResponse.TowerLayer
-	493,  // 620: client.api.TowerListLayersResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
-	614,  // 621: client.api.TowerListLayersResponse.commonResponse:type_name -> papicommon.Response
-	624,  // 622: client.api.TowerRank.profile:type_name -> pcommon.SimpleProfile
-	490,  // 623: client.api.TowerRankingCache.ranks:type_name -> client.api.TowerRank
-	490,  // 624: client.api.TowerRankingResult.towerRanks:type_name -> client.api.TowerRank
-	615,  // 625: client.api.TowerReceiveLayerCountRewardResponse.result:type_name -> pcommon.RewardResult
-	614,  // 626: client.api.TowerReceiveLayerCountRewardResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 627: client.api.TowerReceiveTotalClearRankRewardResponse.result:type_name -> pcommon.RewardResult
-	614,  // 628: client.api.TowerReceiveTotalClearRankRewardResponse.commonResponse:type_name -> papicommon.Response
-	689,  // 629: client.api.TowerStartResponse.produceCards:type_name -> pcommon.ProduceCard
-	614,  // 630: client.api.TowerStartResponse.commonResponse:type_name -> papicommon.Response
-	611,  // 631: client.api.TowerTopResponse.towers:type_name -> client.api.TowerTopResponse.Tower
-	623,  // 632: client.api.TowerTopResponse.nextReward:type_name -> pcommon.Reward
-	643,  // 633: client.api.TowerTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	493,  // 634: client.api.TowerTopResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
-	614,  // 635: client.api.TowerTopResponse.commonResponse:type_name -> papicommon.Response
-	645,  // 636: client.api.TowerUpdateMemoryDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	614,  // 637: client.api.TowerUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 638: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 639: client.api.TutorialProduceNextResponse.commonResponse:type_name -> papicommon.Response
-	625,  // 640: client.api.TutorialProduceResultResponse.memory:type_name -> pcommon.Memory
-	614,  // 641: client.api.TutorialProduceResultResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 642: client.api.TutorialProduceStartResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 643: client.api.TutorialProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 644: client.api.TutorialProduceStepAuditionExamEndResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 645: client.api.TutorialProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 646: client.api.TutorialProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	614,  // 647: client.api.TutorialProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
-	696,  // 648: client.api.TutorialProgressRequest.type:type_name -> penum.TutorialType
-	614,  // 649: client.api.TutorialProgressResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 650: client.api.TutorialReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	615,  // 651: client.api.TutorialReceiveIdolCardResponse.results:type_name -> pcommon.RewardResult
-	614,  // 652: client.api.TutorialReceiveIdolCardResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 653: client.api.TutorialSetNameResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 654: client.api.TutorialSkipResponse.commonResponse:type_name -> papicommon.Response
-	696,  // 655: client.api.TutorialUnlockFeatureRequest.type:type_name -> penum.TutorialType
-	614,  // 656: client.api.TutorialUnlockFeatureResponse.commonResponse:type_name -> papicommon.Response
-	697,  // 657: client.api.UserGetResponse.userData:type_name -> papicommon.UserData
-	612,  // 658: client.api.UserListMessageResponse.personalMessages:type_name -> client.api.UserListMessageResponse.PersonalMessage
-	614,  // 659: client.api.UserListMessageResponse.commonResponse:type_name -> papicommon.Response
-	614,  // 660: client.api.UserReadMessageResponse.commonResponse:type_name -> papicommon.Response
-	534,  // 661: client.api.WorkFinishResponse.finishResults:type_name -> client.api.WorkFinishResult
-	614,  // 662: client.api.WorkFinishResponse.commonResponse:type_name -> papicommon.Response
-	698,  // 663: client.api.WorkFinishResult.type:type_name -> penum.WorkType
-	615,  // 664: client.api.WorkFinishResult.rewardResults:type_name -> pcommon.RewardResult
-	698,  // 665: client.api.WorkSkipRequest.type:type_name -> penum.WorkType
-	534,  // 666: client.api.WorkSkipResponse.finishResult:type_name -> client.api.WorkFinishResult
-	614,  // 667: client.api.WorkSkipResponse.commonResponse:type_name -> papicommon.Response
-	698,  // 668: client.api.WorkStartRequest.type:type_name -> penum.WorkType
-	614,  // 669: client.api.WorkStartResponse.commonResponse:type_name -> papicommon.Response
-	698,  // 670: client.api.WorkStopRequest.type:type_name -> penum.WorkType
-	614,  // 671: client.api.WorkStopResponse.commonResponse:type_name -> papicommon.Response
-	534,  // 672: client.api.WorkTopResponse.finishResults:type_name -> client.api.WorkFinishResult
-	614,  // 673: client.api.WorkTopResponse.commonResponse:type_name -> papicommon.Response
-	613,  // 674: client.api.AuthLoginResponse.Term.type:type_name -> penum.TermsType
-	617,  // 675: client.api.AuthSendConsentRequest.Consent.consentType:type_name -> penum.ConsentType
-	618,  // 676: client.api.AuthSendConsentRequest.Consent.agreementType:type_name -> penum.ConsentAgreementType
-	694,  // 677: client.api.FriendInfo.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	623,  // 678: client.api.GashaExpirePointResponse.GashaPoint.reward:type_name -> pcommon.Reward
-	546,  // 679: client.api.GashaExpirePointResponse.GashaPoint.gashaBanners:type_name -> client.api.GashaExpirePointResponse.GashaBanner
-	623,  // 680: client.api.GashaGetPointExchangeResponse.ExchangeResource.rewards:type_name -> pcommon.Reward
-	621,  // 681: client.api.GiftListHistoryResponse.UserGiftHistory.resourceType:type_name -> penum.ResourceType
-	621,  // 682: client.api.GiftListResponse.UserGift.resourceType:type_name -> penum.ResourceType
-	633,  // 683: client.api.GuildTopResponse.HomeInfo.achievement:type_name -> pcommon.Achievement
-	632,  // 684: client.api.GuildTopResponse.HomeInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	113,  // 685: client.api.GuildTopResponse.HomeInfo.leaderMessageReactionList:type_name -> client.api.GuildReactionInfo
-	112,  // 686: client.api.GuildTopResponse.HomeInfo.memberList:type_name -> client.api.GuildMemberInfo
-	112,  // 687: client.api.GuildTopResponse.HomeInfo.joinRequestList:type_name -> client.api.GuildMemberInfo
-	33,   // 688: client.api.GuildTopResponse.HomeInfo.donationRequestList:type_name -> client.api.DonationRequest
-	552,  // 689: client.api.GuildTopResponse.HomeInfo.receivedDonationInfo:type_name -> client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
-	98,   // 690: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo.donationList:type_name -> client.api.GuildDonationInfo
-	640,  // 691: client.api.GvgRaidTopResponse.Stage.planType:type_name -> penum.ProducePlanType
-	624,  // 692: client.api.GvgRaidTopResponse.Stage.mvpProfile:type_name -> pcommon.SimpleProfile
-	124,  // 693: client.api.GvgRaidTopResponse.Stage.mvpDeck:type_name -> client.api.GvgRaidDeck
-	644,  // 694: client.api.GvgRaidTopResponse.Stage.deck:type_name -> pcommon.GvgRaidSetUpDeck
-	134,  // 695: client.api.GvgRaidTopResponse.Stage.challengeRewards:type_name -> client.api.GvgRaidStageChallengeReward
-	623,  // 696: client.api.GvgRaidTopResponse.Stage.clearRewards:type_name -> pcommon.Reward
-	641,  // 697: client.api.GvgRaidTopResponse.Stage.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
-	623,  // 698: client.api.GvgRaidTopResponse.StageClearResult.rewards:type_name -> pcommon.Reward
-	556,  // 699: client.api.GvgRaidTopResponse.StageClearReward.clearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward.ClearReward
-	623,  // 700: client.api.GvgRaidTopResponse.StageClearReward.ClearReward.rewards:type_name -> pcommon.Reward
-	559,  // 701: client.api.GvgRaidUserRankingResponse.StageMvp.mvpUsers:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
-	560,  // 702: client.api.GvgRaidUserRankingResponse.StageRanking.ranks:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking.Rank
-	140,  // 703: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser.user:type_name -> client.api.GvgRaidUser
-	140,  // 704: client.api.GvgRaidUserRankingResponse.StageRanking.Rank.user:type_name -> client.api.GvgRaidUser
-	699,  // 705: client.api.HomeEnterResponse.FeatureMaintenance.type:type_name -> penum.FeatureMaintenanceType
-	700,  // 706: client.api.HomeSetCharactersRequest.HomeCharacter.homeType:type_name -> penum.HomeType
-	701,  // 707: client.api.LoginBonusCheckResponse.Info.type:type_name -> penum.LoginBonusType
-	623,  // 708: client.api.LoginBonusCheckResponse.Info.rewards:type_name -> pcommon.Reward
-	623,  // 709: client.api.LoginBonusCheckResponse.TotalInfo.reward:type_name -> pcommon.Reward
-	623,  // 710: client.api.LoginBonusCheckResponse.TotalInfo.nextReward:type_name -> pcommon.Reward
-	566,  // 711: client.api.MasterGetResponse.MasterTag.masterTagPacks:type_name -> client.api.MasterGetResponse.MasterTagPack
-	657,  // 712: client.api.MeishiListFollowResponse.Follow.meishi:type_name -> pcommon.Meishi
-	657,  // 713: client.api.MeishiListResponse.MeishiInfo.meishi:type_name -> pcommon.Meishi
-	702,  // 714: client.api.MeishiUpdateRequest.Object.objectType:type_name -> penum.MeishiObjectType
-	574,  // 715: client.api.MissionReceiveResponse.MasterAchievementProgressResult.masterAchievementProgresses:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgress
-	578,  // 716: client.api.PhotoCreateIdolRequest.Photo.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
-	667,  // 717: client.api.ProduceHighScoreRankingResponse.Rank.grade:type_name -> penum.ResultGrade
-	624,  // 718: client.api.ProduceHighScoreRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
-	624,  // 719: client.api.ProduceListRentalMemoryResponse.RentalMemory.profile:type_name -> pcommon.SimpleProfile
-	625,  // 720: client.api.ProduceListRentalMemoryResponse.RentalMemory.memory:type_name -> pcommon.Memory
-	624,  // 721: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.profile:type_name -> pcommon.SimpleProfile
-	694,  // 722: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	289,  // 723: client.api.ProduceRankingTopResponse.Ranking.topRanks:type_name -> client.api.ProduceRank
-	667,  // 724: client.api.ProduceRankingTopResponse.Ranking.selfHighestGrade:type_name -> penum.ResultGrade
-	623,  // 725: client.api.ProduceResultResponse.HighScoreReward.reward:type_name -> pcommon.Reward
-	584,  // 726: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
-	584,  // 727: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
-	615,  // 728: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewardResults:type_name -> pcommon.RewardResult
-	615,  // 729: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewardResults:type_name -> pcommon.RewardResult
-	615,  // 730: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRushGoldRewardResults:type_name -> pcommon.RewardResult
-	664,  // 731: client.api.ProduceTopResponse.ProduceHighScore.eventType:type_name -> penum.ProduceHighScoreEventType
-	681,  // 732: client.api.ProfileGetResponse.ProduceRecord.produceType:type_name -> penum.ProduceType
-	399,  // 733: client.api.PvpRateListHistoryResponse.PvpRateHistory.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	399,  // 734: client.api.PvpRateListHistoryResponse.PvpRateHistory.rivalFormations:type_name -> client.api.PvpRateUnitStageFormation
-	625,  // 735: client.api.PvpRateUnitStageFormation.Slot.mainMemory:type_name -> pcommon.Memory
-	625,  // 736: client.api.PvpRateUnitStageFormation.Slot.subMemory:type_name -> pcommon.Memory
-	703,  // 737: client.api.SeminarGetExamResponse.TurnNavigationStep.navigationType:type_name -> penum.TutorialNavigationType
-	689,  // 738: client.api.SeminarGetExamResponse.FailureNavigation.produceCards1:type_name -> pcommon.ProduceCard
-	689,  // 739: client.api.SeminarGetExamResponse.FailureNavigation.produceCards2:type_name -> pcommon.ProduceCard
-	704,  // 740: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
-	705,  // 741: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
-	593,  // 742: client.api.SeminarGetExamResponse.TurnNavigation.steps:type_name -> client.api.SeminarGetExamResponse.TurnNavigationStep
-	623,  // 743: client.api.SeminarListExamResponse.Exam.rewards:type_name -> pcommon.Reward
-	596,  // 744: client.api.SeminarListExamResponse.ExamGroup.exams:type_name -> client.api.SeminarListExamResponse.Exam
-	706,  // 745: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction.paymentPendingReceiptDialogTimingType:type_name -> penum.PaymentPendingReceiptDialogTimingType
-	690,  // 746: client.api.ShopTopResponse.Shop.shopItems:type_name -> pmaster.ShopItem
-	669,  // 747: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.guildMissionHistory:type_name -> pcommon.GuildMissionHistory
-	615,  // 748: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.rewardResult:type_name -> pcommon.RewardResult
-	707,  // 749: client.api.StoryEventTopResponse.Motion.motionType:type_name -> penum.StoryEventMotionType
-	604,  // 750: client.api.SupportCardListDeckRankingResponse.Ranking.supportCardRanks:type_name -> client.api.SupportCardListDeckRankingResponse.SupportCardRank
-	708,  // 751: client.api.TowerGetLayerResponse.Exam.examEffectType:type_name -> penum.ProduceExamEffectType
-	709,  // 752: client.api.TowerListLayersResponse.TowerLayerRank.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
-	623,  // 753: client.api.TowerListLayersResponse.TowerLayerRank.reward:type_name -> pcommon.Reward
-	609,  // 754: client.api.TowerListLayersResponse.TowerLayer.ranks:type_name -> client.api.TowerListLayersResponse.TowerLayerRank
-	623,  // 755: client.api.TowerListLayersResponse.TowerLayer.rewards:type_name -> pcommon.Reward
-	0,    // 756: client.api.Auth.Create:input_type -> client.api.Empty
-	7,    // 757: client.api.Auth.Login:input_type -> client.api.AuthLoginRequest
-	5,    // 758: client.api.Auth.LinkBandaiNamcoId:input_type -> client.api.AuthLinkBandaiNamcoIdRequest
-	0,    // 759: client.api.Auth.Unlink:input_type -> client.api.Empty
-	12,   // 760: client.api.Auth.PrepareMigrationBandaiNamcoId:input_type -> client.api.AuthPrepareMigrationBandaiNamcoIdRequest
-	10,   // 761: client.api.Auth.Migrate:input_type -> client.api.AuthMigrateRequest
-	0,    // 762: client.api.Auth.MigrateDmmGamesId:input_type -> client.api.Empty
-	1,    // 763: client.api.Auth.AgreeTerms:input_type -> client.api.AuthAgreeTermsRequest
-	0,    // 764: client.api.Auth.GetConsent:input_type -> client.api.Empty
-	14,   // 765: client.api.Auth.SendConsent:input_type -> client.api.AuthSendConsentRequest
-	17,   // 766: client.api.Character.CheckRoster:input_type -> client.api.CharacterCheckRosterRequest
-	22,   // 767: client.api.CoinGasha.Get:input_type -> client.api.CoinGashaGetRequest
-	0,    // 768: client.api.CoinGasha.List:input_type -> client.api.Empty
-	19,   // 769: client.api.CoinGasha.Draw:input_type -> client.api.CoinGashaDrawRequest
-	25,   // 770: client.api.CoinGasha.ResetBox:input_type -> client.api.CoinGashaResetBoxRequest
-	30,   // 771: client.api.Costume.Set:input_type -> client.api.CostumeSetRequest
-	28,   // 772: client.api.Costume.Check:input_type -> client.api.CostumeCheckRequest
-	36,   // 773: client.api.Exchange.Get:input_type -> client.api.ExchangeGetRequest
-	40,   // 774: client.api.Exchange.List:input_type -> client.api.ExchangeListRequest
-	34,   // 775: client.api.Exchange.Execute:input_type -> client.api.ExchangeExecuteRequest
-	42,   // 776: client.api.Exchange.Reset:input_type -> client.api.ExchangeResetRequest
-	0,    // 777: client.api.Friend.List:input_type -> client.api.Empty
-	0,    // 778: client.api.Friend.ListSuggestion:input_type -> client.api.Empty
-	46,   // 779: client.api.Friend.Follow:input_type -> client.api.FriendFollowRequest
-	51,   // 780: client.api.Friend.UnFollow:input_type -> client.api.FriendUnFollowRequest
-	44,   // 781: client.api.Friend.DeleteFollower:input_type -> client.api.FriendDeleteFollowerRequest
-	0,    // 782: client.api.Gasha.List:input_type -> client.api.Empty
-	53,   // 783: client.api.Gasha.Draw:input_type -> client.api.GashaDrawRequest
-	67,   // 784: client.api.Gasha.GetProbability:input_type -> client.api.GashaGetProbabilityRequest
-	76,   // 785: client.api.Gasha.SelectPickup:input_type -> client.api.GashaSelectPickupRequest
-	56,   // 786: client.api.Gasha.DrawSelectPickup:input_type -> client.api.GashaDrawSelectPickupRequest
-	69,   // 787: client.api.Gasha.GetSelectPickupProbability:input_type -> client.api.GashaGetSelectPickupProbabilityRequest
-	58,   // 788: client.api.Gasha.DrawStepUp:input_type -> client.api.GashaDrawStepUpRequest
-	71,   // 789: client.api.Gasha.GetStepUpProbability:input_type -> client.api.GashaGetStepUpProbabilityRequest
-	63,   // 790: client.api.Gasha.GetPointExchange:input_type -> client.api.GashaGetPointExchangeRequest
-	60,   // 791: client.api.Gasha.ExchangePoint:input_type -> client.api.GashaExchangePointRequest
-	0,    // 792: client.api.Gasha.ExpirePoint:input_type -> client.api.Empty
-	65,   // 793: client.api.Gasha.GetPrecaution:input_type -> client.api.GashaGetPrecautionRequest
-	81,   // 794: client.api.Gift.List:input_type -> client.api.GiftListRequest
-	0,    // 795: client.api.Gift.Count:input_type -> client.api.Empty
-	79,   // 796: client.api.Gift.ListHistory:input_type -> client.api.GiftListHistoryRequest
-	83,   // 797: client.api.Gift.Open:input_type -> client.api.GiftOpenRequest
-	0,    // 798: client.api.Guild.Top:input_type -> client.api.Empty
-	119,  // 799: client.api.Guild.Search:input_type -> client.api.GuildSearchRequest
-	105,  // 800: client.api.Guild.Get:input_type -> client.api.GuildGetRequest
-	103,  // 801: client.api.Guild.Establish:input_type -> client.api.GuildEstablishRequest
-	99,   // 802: client.api.Guild.EditDetail:input_type -> client.api.GuildEditDetailRequest
-	101,  // 803: client.api.Guild.EditLeaderMessage:input_type -> client.api.GuildEditLeaderMessageRequest
-	85,   // 804: client.api.Guild.ApplyJoinRequest:input_type -> client.api.GuildApplyJoinRequestRequest
-	89,   // 805: client.api.Guild.CancelJoinRequest:input_type -> client.api.GuildCancelJoinRequestRequest
-	0,    // 806: client.api.Guild.ListJoinRequest:input_type -> client.api.Empty
-	87,   // 807: client.api.Guild.ApproveJoinRequest:input_type -> client.api.GuildApproveJoinRequestRequest
-	115,  // 808: client.api.Guild.RejectJoinRequest:input_type -> client.api.GuildRejectJoinRequestRequest
-	0,    // 809: client.api.Guild.Leave:input_type -> client.api.Empty
-	93,   // 810: client.api.Guild.Dismiss:input_type -> client.api.GuildDismissRequest
-	91,   // 811: client.api.Guild.ChangeLeader:input_type -> client.api.GuildChangeLeaderRequest
-	0,    // 812: client.api.Guild.ListMember:input_type -> client.api.Empty
-	0,    // 813: client.api.Guild.Dissolve:input_type -> client.api.Empty
-	0,    // 814: client.api.Guild.ListDonationRequest:input_type -> client.api.Empty
-	117,  // 815: client.api.Guild.RequestDonation:input_type -> client.api.GuildRequestDonationRequest
-	96,   // 816: client.api.Guild.Donate:input_type -> client.api.GuildDonateRequest
-	0,    // 817: client.api.Guild.ReceiveDonation:input_type -> client.api.Empty
-	122,  // 818: client.api.Guild.UpdateLeaderMessageReaction:input_type -> client.api.GuildUpdateLeaderMessageReactionRequest
-	0,    // 819: client.api.GvgRaid.Top:input_type -> client.api.Empty
-	0,    // 820: client.api.GvgRaid.GetProgress:input_type -> client.api.Empty
-	135,  // 821: client.api.GvgRaid.Start:input_type -> client.api.GvgRaidStartRequest
-	125,  // 822: client.api.GvgRaid.End:input_type -> client.api.GvgRaidEndRequest
-	130,  // 823: client.api.GvgRaid.PlayTest:input_type -> client.api.GvgRaidPlayTestRequest
-	0,    // 824: client.api.GvgRaid.GuildRanking:input_type -> client.api.Empty
-	0,    // 825: client.api.GvgRaid.UserRanking:input_type -> client.api.Empty
-	138,  // 826: client.api.GvgRaid.UpdateDeck:input_type -> client.api.GvgRaidUpdateDeckRequest
-	142,  // 827: client.api.Health.Check:input_type -> client.api.HealthCheckRequest
-	0,    // 828: client.api.Home.Login:input_type -> client.api.Empty
-	0,    // 829: client.api.Home.Enter:input_type -> client.api.Empty
-	0,    // 830: client.api.Home.ListEvent:input_type -> client.api.Empty
-	0,    // 831: client.api.Home.ConfirmBanWarning:input_type -> client.api.Empty
-	148,  // 832: client.api.Home.SetCharacters:input_type -> client.api.HomeSetCharactersRequest
-	156,  // 833: client.api.IdolCard.UpgradeLevelLimitRank:input_type -> client.api.IdolCardUpgradeLevelLimitRankRequest
-	158,  // 834: client.api.IdolCard.UpgradePotentialRank:input_type -> client.api.IdolCardUpgradePotentialRankRequest
-	154,  // 835: client.api.IdolCard.Release:input_type -> client.api.IdolCardReleaseRequest
-	150,  // 836: client.api.IdolCard.ChangeSkin:input_type -> client.api.IdolCardChangeSkinRequest
-	160,  // 837: client.api.Invitation.EnterInvitationCode:input_type -> client.api.InvitationEnterInvitationCodeRequest
-	0,    // 838: client.api.Invitation.ListInviteUser:input_type -> client.api.Empty
-	163,  // 839: client.api.Invitation.ReceiveInvitationPoint:input_type -> client.api.InvitationReceiveInvitationPointRequest
-	168,  // 840: client.api.Item.Sell:input_type -> client.api.ItemSellRequest
-	166,  // 841: client.api.Item.ExchangeIdolCardPiece:input_type -> client.api.ItemExchangeIdolCardPieceRequest
-	170,  // 842: client.api.Item.UseActionPointRecovery:input_type -> client.api.ItemUseActionPointRecoveryRequest
-	0,    // 843: client.api.LoginBonus.Check:input_type -> client.api.Empty
-	0,    // 844: client.api.LoginBonus.Confirm:input_type -> client.api.Empty
-	0,    // 845: client.api.Master.Get:input_type -> client.api.Empty
-	175,  // 846: client.api.Media.Play:input_type -> client.api.MediaPlayRequest
-	183,  // 847: client.api.Meishi.Get:input_type -> client.api.MeishiGetRequest
-	181,  // 848: client.api.Meishi.GetDetail:input_type -> client.api.MeishiGetDetailRequest
-	0,    // 849: client.api.Meishi.List:input_type -> client.api.Empty
-	0,    // 850: client.api.Meishi.ListFollow:input_type -> client.api.Empty
-	189,  // 851: client.api.Meishi.Set:input_type -> client.api.MeishiSetRequest
-	193,  // 852: client.api.Meishi.Update:input_type -> client.api.MeishiUpdateRequest
-	177,  // 853: client.api.Meishi.Delete:input_type -> client.api.MeishiDeleteRequest
-	179,  // 854: client.api.Meishi.Follow:input_type -> client.api.MeishiFollowRequest
-	191,  // 855: client.api.Meishi.Unfollow:input_type -> client.api.MeishiUnfollowRequest
-	187,  // 856: client.api.Meishi.ReportXPostMission:input_type -> client.api.MeishiReportXPostMissionRequest
-	199,  // 857: client.api.Memory.Inherit:input_type -> client.api.MemoryInheritRequest
-	197,  // 858: client.api.Memory.FixInherit:input_type -> client.api.MemoryFixInheritRequest
-	195,  // 859: client.api.Memory.Exchange:input_type -> client.api.MemoryExchangeRequest
-	203,  // 860: client.api.Memory.UpdateProtection:input_type -> client.api.MemoryUpdateProtectionRequest
-	205,  // 861: client.api.Memory.UpdateTagSetting:input_type -> client.api.MemoryUpdateTagSettingRequest
-	201,  // 862: client.api.Memory.Reshooting:input_type -> client.api.MemoryReshootingRequest
-	0,    // 863: client.api.Mission.ListEvent:input_type -> client.api.Empty
-	216,  // 864: client.api.Mission.Receive:input_type -> client.api.MissionReceiveRequest
-	212,  // 865: client.api.Mission.ReceiveGroup:input_type -> client.api.MissionReceiveGroupRequest
-	210,  // 866: client.api.Mission.ReceiveGroupAll:input_type -> client.api.MissionReceiveGroupAllRequest
-	214,  // 867: client.api.Mission.ReceivePass:input_type -> client.api.MissionReceivePassRequest
-	207,  // 868: client.api.Mission.ExchangePassPoint:input_type -> client.api.MissionExchangePassPointRequest
-	218,  // 869: client.api.Mission.UrlTransition:input_type -> client.api.MissionUrlTransitionRequest
-	0,    // 870: client.api.Money.Receive:input_type -> client.api.Empty
-	221,  // 871: client.api.Movie.Create:input_type -> client.api.MovieCreateRequest
-	223,  // 872: client.api.Movie.Delete:input_type -> client.api.MovieDeleteRequest
-	225,  // 873: client.api.Movie.Retake:input_type -> client.api.MovieRetakeRequest
-	227,  // 874: client.api.Music.SendActionLog:input_type -> client.api.MusicSendActionLogRequest
-	229,  // 875: client.api.Music.SendBuyActionLog:input_type -> client.api.MusicSendBuyActionLogRequest
-	0,    // 876: client.api.Notice.ListAll:input_type -> client.api.Empty
-	231,  // 877: client.api.Notice.FetchList:input_type -> client.api.NoticeFetchListRequest
-	233,  // 878: client.api.Notice.Get:input_type -> client.api.NoticeGetRequest
-	237,  // 879: client.api.Notice.UpdateCategoryTime:input_type -> client.api.NoticeUpdateCategoryTimeRequest
-	239,  // 880: client.api.Notice.UpdateDetailTime:input_type -> client.api.NoticeUpdateDetailTimeRequest
-	245,  // 881: client.api.Photo.Create:input_type -> client.api.PhotoCreateRequest
-	243,  // 882: client.api.Photo.CreateIdol:input_type -> client.api.PhotoCreateIdolRequest
-	241,  // 883: client.api.Photo.CreateByMemory:input_type -> client.api.PhotoCreateByMemoryRequest
-	249,  // 884: client.api.Photo.UpdateName:input_type -> client.api.PhotoUpdateNameRequest
-	251,  // 885: client.api.Photo.UpdateProtection:input_type -> client.api.PhotoUpdateProtectionRequest
-	247,  // 886: client.api.Photo.Delete:input_type -> client.api.PhotoDeleteRequest
-	253,  // 887: client.api.Preference.Update:input_type -> client.api.PreferenceUpdateRequest
-	0,    // 888: client.api.Produce.Top:input_type -> client.api.Empty
-	259,  // 889: client.api.Produce.ChangeForceLiveCommon:input_type -> client.api.ProduceChangeForceLiveCommonRequest
-	364,  // 890: client.api.Produce.UpdateSupportCardDeck:input_type -> client.api.ProduceUpdateSupportCardDeckRequest
-	361,  // 891: client.api.Produce.UpdateMemoryDeck:input_type -> client.api.ProduceUpdateMemoryDeckRequest
-	0,    // 892: client.api.Produce.ListRentalSupportCard:input_type -> client.api.Empty
-	284,  // 893: client.api.Produce.ListRentalMemory:input_type -> client.api.ProduceListRentalMemoryRequest
-	261,  // 894: client.api.Produce.CheckProgress:input_type -> client.api.ProduceCheckProgressRequest
-	309,  // 895: client.api.Produce.Start:input_type -> client.api.ProduceStartRequest
-	287,  // 896: client.api.Produce.Next:input_type -> client.api.ProduceNextRequest
-	355,  // 897: client.api.Produce.StepSkip:input_type -> client.api.ProduceStepSkipRequest
-	329,  // 898: client.api.Produce.StepEvent:input_type -> client.api.ProduceStepEventRequest
-	321,  // 899: client.api.Produce.StepBusinessStart:input_type -> client.api.ProduceStepBusinessStartRequest
-	319,  // 900: client.api.Produce.StepBusinessSelect:input_type -> client.api.ProduceStepBusinessSelectRequest
-	327,  // 901: client.api.Produce.StepCustomizeStart:input_type -> client.api.ProduceStepCustomizeStartRequest
-	325,  // 902: client.api.Produce.StepCustomizeSelect:input_type -> client.api.ProduceStepCustomizeSelectRequest
-	323,  // 903: client.api.Produce.StepCustomizeEnd:input_type -> client.api.ProduceStepCustomizeEndRequest
-	341,  // 904: client.api.Produce.StepRefresh:input_type -> client.api.ProduceStepRefreshRequest
-	353,  // 905: client.api.Produce.StepShopStart:input_type -> client.api.ProduceStepShopStartRequest
-	351,  // 906: client.api.Produce.StepShopReroll:input_type -> client.api.ProduceStepShopRerollRequest
-	347,  // 907: client.api.Produce.StepShopBuy:input_type -> client.api.ProduceStepShopBuyRequest
-	349,  // 908: client.api.Produce.StepShopEnd:input_type -> client.api.ProduceStepShopEndRequest
-	339,  // 909: client.api.Produce.StepPresentStart:input_type -> client.api.ProduceStepPresentStartRequest
-	337,  // 910: client.api.Produce.StepPresentReceive:input_type -> client.api.ProduceStepPresentReceiveRequest
-	335,  // 911: client.api.Produce.StepPresentEnd:input_type -> client.api.ProduceStepPresentEndRequest
-	333,  // 912: client.api.Produce.StepLessonStart:input_type -> client.api.ProduceStepLessonStartRequest
-	331,  // 913: client.api.Produce.StepLessonEnd:input_type -> client.api.ProduceStepLessonEndRequest
-	345,  // 914: client.api.Produce.StepSelfLessonStart:input_type -> client.api.ProduceStepSelfLessonStartRequest
-	343,  // 915: client.api.Produce.StepSelfLessonEnd:input_type -> client.api.ProduceStepSelfLessonEndRequest
-	315,  // 916: client.api.Produce.StepAuditionRefresh:input_type -> client.api.ProduceStepAuditionRefreshRequest
-	317,  // 917: client.api.Produce.StepAuditionStart:input_type -> client.api.ProduceStepAuditionStartRequest
-	311,  // 918: client.api.Produce.StepAuditionEndExamBattle:input_type -> client.api.ProduceStepAuditionEndExamBattleRequest
-	313,  // 919: client.api.Produce.StepAuditionEnd:input_type -> client.api.ProduceStepAuditionEndRequest
-	265,  // 920: client.api.Produce.DiscardDrink:input_type -> client.api.ProduceDiscardDrinkRequest
-	302,  // 921: client.api.Produce.RerollSelectProduceCard:input_type -> client.api.ProduceRerollSelectProduceCardRequest
-	271,  // 922: client.api.Produce.ExcludeProduceCard:input_type -> client.api.ProduceExcludeProduceCardRequest
-	255,  // 923: client.api.Produce.ActivateEffect:input_type -> client.api.ProduceActivateEffectRequest
-	296,  // 924: client.api.Produce.ReadDearnessStory:input_type -> client.api.ProduceReadDearnessStoryRequest
-	294,  // 925: client.api.Produce.ReadAdv:input_type -> client.api.ProduceReadAdvRequest
-	307,  // 926: client.api.Produce.StartBeforeLiveEvaluation:input_type -> client.api.ProduceStartBeforeLiveEvaluationRequest
-	267,  // 927: client.api.Produce.EndBeforeLiveEvaluation:input_type -> client.api.ProduceEndBeforeLiveEvaluationRequest
-	300,  // 928: client.api.Produce.RerollMemory:input_type -> client.api.ProduceRerollMemoryRequest
-	269,  // 929: client.api.Produce.End:input_type -> client.api.ProduceEndRequest
-	304,  // 930: client.api.Produce.Result:input_type -> client.api.ProduceResultRequest
-	298,  // 931: client.api.Produce.ReportGuildMission:input_type -> client.api.ProduceReportGuildMissionRequest
-	263,  // 932: client.api.Produce.Continue:input_type -> client.api.ProduceContinueRequest
-	0,    // 933: client.api.Produce.Retire:input_type -> client.api.Empty
-	282,  // 934: client.api.Produce.History:input_type -> client.api.ProduceHistoryRequest
-	292,  // 935: client.api.Produce.RankingTop:input_type -> client.api.ProduceRankingTopRequest
-	290,  // 936: client.api.Produce.Ranking:input_type -> client.api.ProduceRankingRequest
-	257,  // 937: client.api.Produce.ChangeCostume:input_type -> client.api.ProduceChangeCostumeRequest
-	367,  // 938: client.api.Produce.ViewPictureBookLive:input_type -> client.api.ProduceViewPictureBookLiveRequest
-	358,  // 939: client.api.Produce.UnlockPictureBookLive:input_type -> client.api.ProduceUnlockPictureBookLiveRequest
-	0,    // 940: client.api.ProduceHighScore.Get:input_type -> client.api.Empty
-	278,  // 941: client.api.ProduceHighScore.Ranking:input_type -> client.api.ProduceHighScoreRankingRequest
-	0,    // 942: client.api.ProduceHighScore.ListRankReward:input_type -> client.api.Empty
-	370,  // 943: client.api.Profile.Get:input_type -> client.api.ProfileGetRequest
-	378,  // 944: client.api.Profile.UpdateName:input_type -> client.api.ProfileUpdateNameRequest
-	374,  // 945: client.api.Profile.UpdateComment:input_type -> client.api.ProfileUpdateCommentRequest
-	372,  // 946: client.api.Profile.UpdateBirthday:input_type -> client.api.ProfileUpdateBirthdayRequest
-	380,  // 947: client.api.Profile.UpdateSupportCard:input_type -> client.api.ProfileUpdateSupportCardRequest
-	376,  // 948: client.api.Profile.UpdateMemory:input_type -> client.api.ProfileUpdateMemoryRequest
-	0,    // 949: client.api.PvpRate.Initialize:input_type -> client.api.Empty
-	0,    // 950: client.api.PvpRate.Get:input_type -> client.api.Empty
-	397,  // 951: client.api.PvpRate.Start:input_type -> client.api.PvpRateStartRequest
-	0,    // 952: client.api.PvpRate.PlayExamBattle:input_type -> client.api.Empty
-	382,  // 953: client.api.PvpRate.End:input_type -> client.api.PvpRateEndRequest
-	0,    // 954: client.api.PvpRate.PlayTest:input_type -> client.api.Empty
-	0,    // 955: client.api.PvpRate.ListRanking:input_type -> client.api.Empty
-	0,    // 956: client.api.PvpRate.ListHistory:input_type -> client.api.Empty
-	384,  // 957: client.api.PvpRate.GetHistory:input_type -> client.api.PvpRateGetHistoryRequest
-	400,  // 958: client.api.PvpRate.UpdateUserPvpRateUnit:input_type -> client.api.PvpRateUpdateUserPvpRateUnitRequest
-	0,    // 959: client.api.Seminar.ListExam:input_type -> client.api.Empty
-	404,  // 960: client.api.Seminar.GetExam:input_type -> client.api.SeminarGetExamRequest
-	402,  // 961: client.api.Seminar.EndExam:input_type -> client.api.SeminarEndExamRequest
-	0,    // 962: client.api.Shop.Top:input_type -> client.api.Empty
-	414,  // 963: client.api.Shop.ListItems:input_type -> client.api.ShopListItemsRequest
-	418,  // 964: client.api.Shop.Purchase:input_type -> client.api.ShopPurchaseRequest
-	409,  // 965: client.api.Shop.CheckPurchaseJewel:input_type -> client.api.ShopCheckPurchaseJewelRequest
-	422,  // 966: client.api.Shop.RegisterBirthday:input_type -> client.api.ShopRegisterBirthdayRequest
-	426,  // 967: client.api.Shop.RegisterPurchaseTransaction:input_type -> client.api.ShopRegisterPurchaseTransactionRequest
-	407,  // 968: client.api.Shop.CancelPurchaseTransaction:input_type -> client.api.ShopCancelPurchaseTransactionRequest
-	416,  // 969: client.api.Shop.PurchaseJewel:input_type -> client.api.ShopPurchaseJewelRequest
-	420,  // 970: client.api.Shop.RecoverPurchaseJewel:input_type -> client.api.ShopRecoverPurchaseJewelRequest
-	424,  // 971: client.api.Shop.RegisterDelayPurchaseTransaction:input_type -> client.api.ShopRegisterDelayPurchaseTransactionRequest
-	411,  // 972: client.api.Shop.GetPurchasePlatformTransaction:input_type -> client.api.ShopGetPurchasePlatformTransactionRequest
-	431,  // 973: client.api.Startup.ListNotifications:input_type -> client.api.StartupListNotificationsRequest
-	429,  // 974: client.api.Startup.Confirm:input_type -> client.api.StartupConfirmRequest
-	438,  // 975: client.api.StoryEvent.Top:input_type -> client.api.StoryEventTopRequest
-	434,  // 976: client.api.StoryEvent.ListGuildMission:input_type -> client.api.StoryEventListGuildMissionRequest
-	436,  // 977: client.api.StoryEvent.ReceiveGuildMission:input_type -> client.api.StoryEventReceiveGuildMissionRequest
-	444,  // 978: client.api.Story.Read:input_type -> client.api.StoryReadRequest
-	442,  // 979: client.api.Story.ReadProduceStory:input_type -> client.api.StoryReadProduceStoryRequest
-	440,  // 980: client.api.Story.ReadDearnessStory:input_type -> client.api.StoryReadDearnessStoryRequest
-	448,  // 981: client.api.Story.Unlock:input_type -> client.api.StoryUnlockRequest
-	446,  // 982: client.api.Story.UnlockProduceStory:input_type -> client.api.StoryUnlockProduceStoryRequest
-	450,  // 983: client.api.SupportCard.Enhance:input_type -> client.api.SupportCardEnhanceRequest
-	457,  // 984: client.api.SupportCard.UpgradeLevelLimitRank:input_type -> client.api.SupportCardUpgradeLevelLimitRankRequest
-	452,  // 985: client.api.SupportCard.Exchange:input_type -> client.api.SupportCardExchangeRequest
-	0,    // 986: client.api.SupportCard.ListDeckRanking:input_type -> client.api.Empty
-	459,  // 987: client.api.System.Check:input_type -> client.api.SystemCheckRequest
-	464,  // 988: client.api.TicketExchange.ListItems:input_type -> client.api.TicketExchangeListItemsRequest
-	461,  // 989: client.api.TicketExchange.Execute:input_type -> client.api.TicketExchangeExecuteRequest
-	0,    // 990: client.api.Tower.Top:input_type -> client.api.Empty
-	488,  // 991: client.api.Tower.ListLayers:input_type -> client.api.TowerListLayersRequest
-	474,  // 992: client.api.Tower.GetLayer:input_type -> client.api.TowerGetLayerRequest
-	498,  // 993: client.api.Tower.Start:input_type -> client.api.TowerStartRequest
-	468,  // 994: client.api.Tower.End:input_type -> client.api.TowerEndRequest
-	466,  // 995: client.api.Tower.Check:input_type -> client.api.TowerCheckRequest
-	501,  // 996: client.api.Tower.UpdateMemoryDeck:input_type -> client.api.TowerUpdateMemoryDeckRequest
-	494,  // 997: client.api.Tower.ReceiveLayerCountReward:input_type -> client.api.TowerReceiveLayerCountRewardRequest
-	496,  // 998: client.api.Tower.ReceiveTotalClearRankReward:input_type -> client.api.TowerReceiveTotalClearRankRewardRequest
-	486,  // 999: client.api.Tower.ListLayerPlayerHistories:input_type -> client.api.TowerListLayerPlayerHistoriesRequest
-	484,  // 1000: client.api.Tower.GetRanking:input_type -> client.api.TowerGetRankingRequest
-	480,  // 1001: client.api.Tower.GetPastSeasonRanking:input_type -> client.api.TowerGetPastSeasonRankingRequest
-	470,  // 1002: client.api.Tower.GetLayerIdolCardRanking:input_type -> client.api.TowerGetLayerIdolCardRankingRequest
-	476,  // 1003: client.api.Tower.GetPastSeasonLayerIdolCardRanking:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
-	472,  // 1004: client.api.Tower.GetLayerIdolCardRankingTop:input_type -> client.api.TowerGetLayerIdolCardRankingTopRequest
-	478,  // 1005: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
-	482,  // 1006: client.api.Tower.GetRankingDeck:input_type -> client.api.TowerGetRankingDeckRequest
-	526,  // 1007: client.api.Tutorial.UnlockFeature:input_type -> client.api.TutorialUnlockFeatureRequest
-	522,  // 1008: client.api.Tutorial.SetName:input_type -> client.api.TutorialSetNameRequest
-	516,  // 1009: client.api.Tutorial.Progress:input_type -> client.api.TutorialProgressRequest
-	524,  // 1010: client.api.Tutorial.Skip:input_type -> client.api.TutorialSkipRequest
-	518,  // 1011: client.api.Tutorial.ReadDearnessStory:input_type -> client.api.TutorialReadDearnessStoryRequest
-	520,  // 1012: client.api.Tutorial.ReceiveIdolCard:input_type -> client.api.TutorialReceiveIdolCardRequest
-	507,  // 1013: client.api.Tutorial.ProduceStart:input_type -> client.api.TutorialProduceStartRequest
-	0,    // 1014: client.api.Tutorial.ProduceNext:input_type -> client.api.Empty
-	512,  // 1015: client.api.Tutorial.ProduceStepLessonEnd:input_type -> client.api.TutorialProduceStepLessonEndRequest
-	514,  // 1016: client.api.Tutorial.ProduceStepPresentReceive:input_type -> client.api.TutorialProduceStepPresentReceiveRequest
-	510,  // 1017: client.api.Tutorial.ProduceStepAuditionExamEnd:input_type -> client.api.TutorialProduceStepAuditionExamEndRequest
-	0,    // 1018: client.api.Tutorial.ProduceStepAuditionEnd:input_type -> client.api.Empty
-	0,    // 1019: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:input_type -> client.api.Empty
-	505,  // 1020: client.api.Tutorial.ProduceResult:input_type -> client.api.TutorialProduceResultRequest
-	0,    // 1021: client.api.User.Get:input_type -> client.api.Empty
-	529,  // 1022: client.api.User.ListMessage:input_type -> client.api.UserListMessageRequest
-	531,  // 1023: client.api.User.ReadMessage:input_type -> client.api.UserReadMessageRequest
-	0,    // 1024: client.api.Work.Top:input_type -> client.api.Empty
-	537,  // 1025: client.api.Work.Start:input_type -> client.api.WorkStartRequest
-	539,  // 1026: client.api.Work.Stop:input_type -> client.api.WorkStopRequest
-	535,  // 1027: client.api.Work.Skip:input_type -> client.api.WorkSkipRequest
-	0,    // 1028: client.api.Work.Finish:input_type -> client.api.Empty
-	3,    // 1029: client.api.Auth.Create:output_type -> client.api.AuthCreateResponse
-	8,    // 1030: client.api.Auth.Login:output_type -> client.api.AuthLoginResponse
-	6,    // 1031: client.api.Auth.LinkBandaiNamcoId:output_type -> client.api.AuthLinkBandaiNamcoIdResponse
-	16,   // 1032: client.api.Auth.Unlink:output_type -> client.api.AuthUnlinkResponse
-	13,   // 1033: client.api.Auth.PrepareMigrationBandaiNamcoId:output_type -> client.api.AuthPrepareMigrationBandaiNamcoIdResponse
-	11,   // 1034: client.api.Auth.Migrate:output_type -> client.api.AuthMigrateResponse
-	9,    // 1035: client.api.Auth.MigrateDmmGamesId:output_type -> client.api.AuthMigrateDmmGamesIdResponse
-	2,    // 1036: client.api.Auth.AgreeTerms:output_type -> client.api.AuthAgreeTermsResponse
-	4,    // 1037: client.api.Auth.GetConsent:output_type -> client.api.AuthGetConsentResponse
-	15,   // 1038: client.api.Auth.SendConsent:output_type -> client.api.AuthSendConsentResponse
-	18,   // 1039: client.api.Character.CheckRoster:output_type -> client.api.CharacterCheckRosterResponse
-	23,   // 1040: client.api.CoinGasha.Get:output_type -> client.api.CoinGashaGetResponse
-	24,   // 1041: client.api.CoinGasha.List:output_type -> client.api.CoinGashaListResponse
-	20,   // 1042: client.api.CoinGasha.Draw:output_type -> client.api.CoinGashaDrawResponse
-	26,   // 1043: client.api.CoinGasha.ResetBox:output_type -> client.api.CoinGashaResetBoxResponse
-	31,   // 1044: client.api.Costume.Set:output_type -> client.api.CostumeSetResponse
-	29,   // 1045: client.api.Costume.Check:output_type -> client.api.CostumeCheckResponse
-	37,   // 1046: client.api.Exchange.Get:output_type -> client.api.ExchangeGetResponse
-	41,   // 1047: client.api.Exchange.List:output_type -> client.api.ExchangeListResponse
-	35,   // 1048: client.api.Exchange.Execute:output_type -> client.api.ExchangeExecuteResponse
-	43,   // 1049: client.api.Exchange.Reset:output_type -> client.api.ExchangeResetResponse
-	49,   // 1050: client.api.Friend.List:output_type -> client.api.FriendListResponse
-	50,   // 1051: client.api.Friend.ListSuggestion:output_type -> client.api.FriendListSuggestionResponse
-	47,   // 1052: client.api.Friend.Follow:output_type -> client.api.FriendFollowResponse
-	52,   // 1053: client.api.Friend.UnFollow:output_type -> client.api.FriendUnFollowResponse
-	45,   // 1054: client.api.Friend.DeleteFollower:output_type -> client.api.FriendDeleteFollowerResponse
-	73,   // 1055: client.api.Gasha.List:output_type -> client.api.GashaListResponse
-	54,   // 1056: client.api.Gasha.Draw:output_type -> client.api.GashaDrawResponse
-	68,   // 1057: client.api.Gasha.GetProbability:output_type -> client.api.GashaGetProbabilityResponse
-	77,   // 1058: client.api.Gasha.SelectPickup:output_type -> client.api.GashaSelectPickupResponse
-	57,   // 1059: client.api.Gasha.DrawSelectPickup:output_type -> client.api.GashaDrawSelectPickupResponse
-	70,   // 1060: client.api.Gasha.GetSelectPickupProbability:output_type -> client.api.GashaGetSelectPickupProbabilityResponse
-	59,   // 1061: client.api.Gasha.DrawStepUp:output_type -> client.api.GashaDrawStepUpResponse
-	72,   // 1062: client.api.Gasha.GetStepUpProbability:output_type -> client.api.GashaGetStepUpProbabilityResponse
-	64,   // 1063: client.api.Gasha.GetPointExchange:output_type -> client.api.GashaGetPointExchangeResponse
-	61,   // 1064: client.api.Gasha.ExchangePoint:output_type -> client.api.GashaExchangePointResponse
-	62,   // 1065: client.api.Gasha.ExpirePoint:output_type -> client.api.GashaExpirePointResponse
-	66,   // 1066: client.api.Gasha.GetPrecaution:output_type -> client.api.GashaGetPrecautionResponse
-	82,   // 1067: client.api.Gift.List:output_type -> client.api.GiftListResponse
-	78,   // 1068: client.api.Gift.Count:output_type -> client.api.GiftCountResponse
-	80,   // 1069: client.api.Gift.ListHistory:output_type -> client.api.GiftListHistoryResponse
-	84,   // 1070: client.api.Gift.Open:output_type -> client.api.GiftOpenResponse
-	121,  // 1071: client.api.Guild.Top:output_type -> client.api.GuildTopResponse
-	120,  // 1072: client.api.Guild.Search:output_type -> client.api.GuildSearchResponse
-	106,  // 1073: client.api.Guild.Get:output_type -> client.api.GuildGetResponse
-	104,  // 1074: client.api.Guild.Establish:output_type -> client.api.GuildEstablishResponse
-	100,  // 1075: client.api.Guild.EditDetail:output_type -> client.api.GuildEditDetailResponse
-	102,  // 1076: client.api.Guild.EditLeaderMessage:output_type -> client.api.GuildEditLeaderMessageResponse
-	86,   // 1077: client.api.Guild.ApplyJoinRequest:output_type -> client.api.GuildApplyJoinRequestResponse
-	90,   // 1078: client.api.Guild.CancelJoinRequest:output_type -> client.api.GuildCancelJoinRequestResponse
-	110,  // 1079: client.api.Guild.ListJoinRequest:output_type -> client.api.GuildListJoinRequestResponse
-	88,   // 1080: client.api.Guild.ApproveJoinRequest:output_type -> client.api.GuildApproveJoinRequestResponse
-	116,  // 1081: client.api.Guild.RejectJoinRequest:output_type -> client.api.GuildRejectJoinRequestResponse
-	108,  // 1082: client.api.Guild.Leave:output_type -> client.api.GuildLeaveResponse
-	94,   // 1083: client.api.Guild.Dismiss:output_type -> client.api.GuildDismissResponse
-	92,   // 1084: client.api.Guild.ChangeLeader:output_type -> client.api.GuildChangeLeaderResponse
-	111,  // 1085: client.api.Guild.ListMember:output_type -> client.api.GuildListMemberResponse
-	95,   // 1086: client.api.Guild.Dissolve:output_type -> client.api.GuildDissolveResponse
-	109,  // 1087: client.api.Guild.ListDonationRequest:output_type -> client.api.GuildListDonationRequestResponse
-	118,  // 1088: client.api.Guild.RequestDonation:output_type -> client.api.GuildRequestDonationResponse
-	97,   // 1089: client.api.Guild.Donate:output_type -> client.api.GuildDonateResponse
-	114,  // 1090: client.api.Guild.ReceiveDonation:output_type -> client.api.GuildReceiveDonationResponse
-	123,  // 1091: client.api.Guild.UpdateLeaderMessageReaction:output_type -> client.api.GuildUpdateLeaderMessageReactionResponse
-	137,  // 1092: client.api.GvgRaid.Top:output_type -> client.api.GvgRaidTopResponse
-	127,  // 1093: client.api.GvgRaid.GetProgress:output_type -> client.api.GvgRaidGetProgressResponse
-	136,  // 1094: client.api.GvgRaid.Start:output_type -> client.api.GvgRaidStartResponse
-	126,  // 1095: client.api.GvgRaid.End:output_type -> client.api.GvgRaidEndResponse
-	131,  // 1096: client.api.GvgRaid.PlayTest:output_type -> client.api.GvgRaidPlayTestResponse
-	129,  // 1097: client.api.GvgRaid.GuildRanking:output_type -> client.api.GvgRaidGuildRankingResponse
-	141,  // 1098: client.api.GvgRaid.UserRanking:output_type -> client.api.GvgRaidUserRankingResponse
-	139,  // 1099: client.api.GvgRaid.UpdateDeck:output_type -> client.api.GvgRaidUpdateDeckResponse
-	143,  // 1100: client.api.Health.Check:output_type -> client.api.HealthCheckResponse
-	147,  // 1101: client.api.Home.Login:output_type -> client.api.HomeLoginResponse
-	145,  // 1102: client.api.Home.Enter:output_type -> client.api.HomeEnterResponse
-	146,  // 1103: client.api.Home.ListEvent:output_type -> client.api.HomeListEventResponse
-	144,  // 1104: client.api.Home.ConfirmBanWarning:output_type -> client.api.HomeConfirmBanWarningResponse
-	149,  // 1105: client.api.Home.SetCharacters:output_type -> client.api.HomeSetCharactersResponse
-	157,  // 1106: client.api.IdolCard.UpgradeLevelLimitRank:output_type -> client.api.IdolCardUpgradeLevelLimitRankResponse
-	159,  // 1107: client.api.IdolCard.UpgradePotentialRank:output_type -> client.api.IdolCardUpgradePotentialRankResponse
-	155,  // 1108: client.api.IdolCard.Release:output_type -> client.api.IdolCardReleaseResponse
-	151,  // 1109: client.api.IdolCard.ChangeSkin:output_type -> client.api.IdolCardChangeSkinResponse
-	161,  // 1110: client.api.Invitation.EnterInvitationCode:output_type -> client.api.InvitationEnterInvitationCodeResponse
-	162,  // 1111: client.api.Invitation.ListInviteUser:output_type -> client.api.InvitationListInviteUserResponse
-	164,  // 1112: client.api.Invitation.ReceiveInvitationPoint:output_type -> client.api.InvitationReceiveInvitationPointResponse
-	169,  // 1113: client.api.Item.Sell:output_type -> client.api.ItemSellResponse
-	167,  // 1114: client.api.Item.ExchangeIdolCardPiece:output_type -> client.api.ItemExchangeIdolCardPieceResponse
-	171,  // 1115: client.api.Item.UseActionPointRecovery:output_type -> client.api.ItemUseActionPointRecoveryResponse
-	172,  // 1116: client.api.LoginBonus.Check:output_type -> client.api.LoginBonusCheckResponse
-	173,  // 1117: client.api.LoginBonus.Confirm:output_type -> client.api.LoginBonusConfirmResponse
-	174,  // 1118: client.api.Master.Get:output_type -> client.api.MasterGetResponse
-	176,  // 1119: client.api.Media.Play:output_type -> client.api.MediaPlayResponse
-	184,  // 1120: client.api.Meishi.Get:output_type -> client.api.MeishiGetResponse
-	182,  // 1121: client.api.Meishi.GetDetail:output_type -> client.api.MeishiGetDetailResponse
-	186,  // 1122: client.api.Meishi.List:output_type -> client.api.MeishiListResponse
-	185,  // 1123: client.api.Meishi.ListFollow:output_type -> client.api.MeishiListFollowResponse
-	190,  // 1124: client.api.Meishi.Set:output_type -> client.api.MeishiSetResponse
-	194,  // 1125: client.api.Meishi.Update:output_type -> client.api.MeishiUpdateResponse
-	178,  // 1126: client.api.Meishi.Delete:output_type -> client.api.MeishiDeleteResponse
-	180,  // 1127: client.api.Meishi.Follow:output_type -> client.api.MeishiFollowResponse
-	192,  // 1128: client.api.Meishi.Unfollow:output_type -> client.api.MeishiUnfollowResponse
-	188,  // 1129: client.api.Meishi.ReportXPostMission:output_type -> client.api.MeishiReportXPostMissionResponse
-	200,  // 1130: client.api.Memory.Inherit:output_type -> client.api.MemoryInheritResponse
-	198,  // 1131: client.api.Memory.FixInherit:output_type -> client.api.MemoryFixInheritResponse
-	196,  // 1132: client.api.Memory.Exchange:output_type -> client.api.MemoryExchangeResponse
-	204,  // 1133: client.api.Memory.UpdateProtection:output_type -> client.api.MemoryUpdateProtectionResponse
-	206,  // 1134: client.api.Memory.UpdateTagSetting:output_type -> client.api.MemoryUpdateTagSettingResponse
-	202,  // 1135: client.api.Memory.Reshooting:output_type -> client.api.MemoryReshootingResponse
-	209,  // 1136: client.api.Mission.ListEvent:output_type -> client.api.MissionListEventResponse
-	217,  // 1137: client.api.Mission.Receive:output_type -> client.api.MissionReceiveResponse
-	213,  // 1138: client.api.Mission.ReceiveGroup:output_type -> client.api.MissionReceiveGroupResponse
-	211,  // 1139: client.api.Mission.ReceiveGroupAll:output_type -> client.api.MissionReceiveGroupAllResponse
-	215,  // 1140: client.api.Mission.ReceivePass:output_type -> client.api.MissionReceivePassResponse
-	208,  // 1141: client.api.Mission.ExchangePassPoint:output_type -> client.api.MissionExchangePassPointResponse
-	219,  // 1142: client.api.Mission.UrlTransition:output_type -> client.api.MissionUrlTransitionResponse
-	220,  // 1143: client.api.Money.Receive:output_type -> client.api.MoneyReceiveResponse
-	222,  // 1144: client.api.Movie.Create:output_type -> client.api.MovieCreateResponse
-	224,  // 1145: client.api.Movie.Delete:output_type -> client.api.MovieDeleteResponse
-	226,  // 1146: client.api.Movie.Retake:output_type -> client.api.MovieRetakeResponse
-	228,  // 1147: client.api.Music.SendActionLog:output_type -> client.api.MusicSendActionLogResponse
-	230,  // 1148: client.api.Music.SendBuyActionLog:output_type -> client.api.MusicSendBuyActionLogResponse
-	236,  // 1149: client.api.Notice.ListAll:output_type -> client.api.NoticeListAllResponse
-	232,  // 1150: client.api.Notice.FetchList:output_type -> client.api.NoticeFetchListResponse
-	234,  // 1151: client.api.Notice.Get:output_type -> client.api.NoticeGetResponse
-	238,  // 1152: client.api.Notice.UpdateCategoryTime:output_type -> client.api.NoticeUpdateCategoryTimeResponse
-	240,  // 1153: client.api.Notice.UpdateDetailTime:output_type -> client.api.NoticeUpdateDetailTimeResponse
-	246,  // 1154: client.api.Photo.Create:output_type -> client.api.PhotoCreateResponse
-	244,  // 1155: client.api.Photo.CreateIdol:output_type -> client.api.PhotoCreateIdolResponse
-	242,  // 1156: client.api.Photo.CreateByMemory:output_type -> client.api.PhotoCreateByMemoryResponse
-	250,  // 1157: client.api.Photo.UpdateName:output_type -> client.api.PhotoUpdateNameResponse
-	252,  // 1158: client.api.Photo.UpdateProtection:output_type -> client.api.PhotoUpdateProtectionResponse
-	248,  // 1159: client.api.Photo.Delete:output_type -> client.api.PhotoDeleteResponse
-	254,  // 1160: client.api.Preference.Update:output_type -> client.api.PreferenceUpdateResponse
-	357,  // 1161: client.api.Produce.Top:output_type -> client.api.ProduceTopResponse
-	260,  // 1162: client.api.Produce.ChangeForceLiveCommon:output_type -> client.api.ProduceChangeForceLiveCommonResponse
-	365,  // 1163: client.api.Produce.UpdateSupportCardDeck:output_type -> client.api.ProduceUpdateSupportCardDeckResponse
-	362,  // 1164: client.api.Produce.UpdateMemoryDeck:output_type -> client.api.ProduceUpdateMemoryDeckResponse
-	286,  // 1165: client.api.Produce.ListRentalSupportCard:output_type -> client.api.ProduceListRentalSupportCardResponse
-	285,  // 1166: client.api.Produce.ListRentalMemory:output_type -> client.api.ProduceListRentalMemoryResponse
-	262,  // 1167: client.api.Produce.CheckProgress:output_type -> client.api.ProduceCheckProgressResponse
-	310,  // 1168: client.api.Produce.Start:output_type -> client.api.ProduceStartResponse
-	288,  // 1169: client.api.Produce.Next:output_type -> client.api.ProduceNextResponse
-	356,  // 1170: client.api.Produce.StepSkip:output_type -> client.api.ProduceStepSkipResponse
-	330,  // 1171: client.api.Produce.StepEvent:output_type -> client.api.ProduceStepEventResponse
-	322,  // 1172: client.api.Produce.StepBusinessStart:output_type -> client.api.ProduceStepBusinessStartResponse
-	320,  // 1173: client.api.Produce.StepBusinessSelect:output_type -> client.api.ProduceStepBusinessSelectResponse
-	328,  // 1174: client.api.Produce.StepCustomizeStart:output_type -> client.api.ProduceStepCustomizeStartResponse
-	326,  // 1175: client.api.Produce.StepCustomizeSelect:output_type -> client.api.ProduceStepCustomizeSelectResponse
-	324,  // 1176: client.api.Produce.StepCustomizeEnd:output_type -> client.api.ProduceStepCustomizeEndResponse
-	342,  // 1177: client.api.Produce.StepRefresh:output_type -> client.api.ProduceStepRefreshResponse
-	354,  // 1178: client.api.Produce.StepShopStart:output_type -> client.api.ProduceStepShopStartResponse
-	352,  // 1179: client.api.Produce.StepShopReroll:output_type -> client.api.ProduceStepShopRerollResponse
-	348,  // 1180: client.api.Produce.StepShopBuy:output_type -> client.api.ProduceStepShopBuyResponse
-	350,  // 1181: client.api.Produce.StepShopEnd:output_type -> client.api.ProduceStepShopEndResponse
-	340,  // 1182: client.api.Produce.StepPresentStart:output_type -> client.api.ProduceStepPresentStartResponse
-	338,  // 1183: client.api.Produce.StepPresentReceive:output_type -> client.api.ProduceStepPresentReceiveResponse
-	336,  // 1184: client.api.Produce.StepPresentEnd:output_type -> client.api.ProduceStepPresentEndResponse
-	334,  // 1185: client.api.Produce.StepLessonStart:output_type -> client.api.ProduceStepLessonStartResponse
-	332,  // 1186: client.api.Produce.StepLessonEnd:output_type -> client.api.ProduceStepLessonEndResponse
-	346,  // 1187: client.api.Produce.StepSelfLessonStart:output_type -> client.api.ProduceStepSelfLessonStartResponse
-	344,  // 1188: client.api.Produce.StepSelfLessonEnd:output_type -> client.api.ProduceStepSelfLessonEndResponse
-	316,  // 1189: client.api.Produce.StepAuditionRefresh:output_type -> client.api.ProduceStepAuditionRefreshResponse
-	318,  // 1190: client.api.Produce.StepAuditionStart:output_type -> client.api.ProduceStepAuditionStartResponse
-	312,  // 1191: client.api.Produce.StepAuditionEndExamBattle:output_type -> client.api.ProduceStepAuditionEndExamBattleResponse
-	314,  // 1192: client.api.Produce.StepAuditionEnd:output_type -> client.api.ProduceStepAuditionEndResponse
-	266,  // 1193: client.api.Produce.DiscardDrink:output_type -> client.api.ProduceDiscardDrinkResponse
-	303,  // 1194: client.api.Produce.RerollSelectProduceCard:output_type -> client.api.ProduceRerollSelectProduceCardResponse
-	272,  // 1195: client.api.Produce.ExcludeProduceCard:output_type -> client.api.ProduceExcludeProduceCardResponse
-	256,  // 1196: client.api.Produce.ActivateEffect:output_type -> client.api.ProduceActivateEffectResponse
-	297,  // 1197: client.api.Produce.ReadDearnessStory:output_type -> client.api.ProduceReadDearnessStoryResponse
-	295,  // 1198: client.api.Produce.ReadAdv:output_type -> client.api.ProduceReadAdvResponse
-	308,  // 1199: client.api.Produce.StartBeforeLiveEvaluation:output_type -> client.api.ProduceStartBeforeLiveEvaluationResponse
-	268,  // 1200: client.api.Produce.EndBeforeLiveEvaluation:output_type -> client.api.ProduceEndBeforeLiveEvaluationResponse
-	301,  // 1201: client.api.Produce.RerollMemory:output_type -> client.api.ProduceRerollMemoryResponse
-	270,  // 1202: client.api.Produce.End:output_type -> client.api.ProduceEndResponse
-	305,  // 1203: client.api.Produce.Result:output_type -> client.api.ProduceResultResponse
-	299,  // 1204: client.api.Produce.ReportGuildMission:output_type -> client.api.ProduceReportGuildMissionResponse
-	264,  // 1205: client.api.Produce.Continue:output_type -> client.api.ProduceContinueResponse
-	306,  // 1206: client.api.Produce.Retire:output_type -> client.api.ProduceRetireResponse
-	283,  // 1207: client.api.Produce.History:output_type -> client.api.ProduceHistoryResponse
-	293,  // 1208: client.api.Produce.RankingTop:output_type -> client.api.ProduceRankingTopResponse
-	291,  // 1209: client.api.Produce.Ranking:output_type -> client.api.ProduceRankingResponse
-	258,  // 1210: client.api.Produce.ChangeCostume:output_type -> client.api.ProduceChangeCostumeResponse
-	368,  // 1211: client.api.Produce.ViewPictureBookLive:output_type -> client.api.ProduceViewPictureBookLiveResponse
-	359,  // 1212: client.api.Produce.UnlockPictureBookLive:output_type -> client.api.ProduceUnlockPictureBookLiveResponse
-	275,  // 1213: client.api.ProduceHighScore.Get:output_type -> client.api.ProduceHighScoreGetResponse
-	279,  // 1214: client.api.ProduceHighScore.Ranking:output_type -> client.api.ProduceHighScoreRankingResponse
-	276,  // 1215: client.api.ProduceHighScore.ListRankReward:output_type -> client.api.ProduceHighScoreListRankRewardResponse
-	371,  // 1216: client.api.Profile.Get:output_type -> client.api.ProfileGetResponse
-	379,  // 1217: client.api.Profile.UpdateName:output_type -> client.api.ProfileUpdateNameResponse
-	375,  // 1218: client.api.Profile.UpdateComment:output_type -> client.api.ProfileUpdateCommentResponse
-	373,  // 1219: client.api.Profile.UpdateBirthday:output_type -> client.api.ProfileUpdateBirthdayResponse
-	381,  // 1220: client.api.Profile.UpdateSupportCard:output_type -> client.api.ProfileUpdateSupportCardResponse
-	377,  // 1221: client.api.Profile.UpdateMemory:output_type -> client.api.ProfileUpdateMemoryResponse
-	387,  // 1222: client.api.PvpRate.Initialize:output_type -> client.api.PvpRateInitializeResponse
-	386,  // 1223: client.api.PvpRate.Get:output_type -> client.api.PvpRateGetResponse
-	398,  // 1224: client.api.PvpRate.Start:output_type -> client.api.PvpRateStartResponse
-	390,  // 1225: client.api.PvpRate.PlayExamBattle:output_type -> client.api.PvpRatePlayExamBattleResponse
-	383,  // 1226: client.api.PvpRate.End:output_type -> client.api.PvpRateEndResponse
-	391,  // 1227: client.api.PvpRate.PlayTest:output_type -> client.api.PvpRatePlayTestResponse
-	389,  // 1228: client.api.PvpRate.ListRanking:output_type -> client.api.PvpRateListRankingResponse
-	388,  // 1229: client.api.PvpRate.ListHistory:output_type -> client.api.PvpRateListHistoryResponse
-	385,  // 1230: client.api.PvpRate.GetHistory:output_type -> client.api.PvpRateGetHistoryResponse
-	401,  // 1231: client.api.PvpRate.UpdateUserPvpRateUnit:output_type -> client.api.PvpRateUpdateUserPvpRateUnitResponse
-	406,  // 1232: client.api.Seminar.ListExam:output_type -> client.api.SeminarListExamResponse
-	405,  // 1233: client.api.Seminar.GetExam:output_type -> client.api.SeminarGetExamResponse
-	403,  // 1234: client.api.Seminar.EndExam:output_type -> client.api.SeminarEndExamResponse
-	428,  // 1235: client.api.Shop.Top:output_type -> client.api.ShopTopResponse
-	415,  // 1236: client.api.Shop.ListItems:output_type -> client.api.ShopListItemsResponse
-	419,  // 1237: client.api.Shop.Purchase:output_type -> client.api.ShopPurchaseResponse
-	410,  // 1238: client.api.Shop.CheckPurchaseJewel:output_type -> client.api.ShopCheckPurchaseJewelResponse
-	423,  // 1239: client.api.Shop.RegisterBirthday:output_type -> client.api.ShopRegisterBirthdayResponse
-	427,  // 1240: client.api.Shop.RegisterPurchaseTransaction:output_type -> client.api.ShopRegisterPurchaseTransactionResponse
-	408,  // 1241: client.api.Shop.CancelPurchaseTransaction:output_type -> client.api.ShopCancelPurchaseTransactionResponse
-	417,  // 1242: client.api.Shop.PurchaseJewel:output_type -> client.api.ShopPurchaseJewelResponse
-	421,  // 1243: client.api.Shop.RecoverPurchaseJewel:output_type -> client.api.ShopRecoverPurchaseJewelResponse
-	425,  // 1244: client.api.Shop.RegisterDelayPurchaseTransaction:output_type -> client.api.ShopRegisterDelayPurchaseTransactionResponse
-	412,  // 1245: client.api.Shop.GetPurchasePlatformTransaction:output_type -> client.api.ShopGetPurchasePlatformTransactionResponse
-	432,  // 1246: client.api.Startup.ListNotifications:output_type -> client.api.StartupListNotificationsResponse
-	430,  // 1247: client.api.Startup.Confirm:output_type -> client.api.StartupConfirmResponse
-	439,  // 1248: client.api.StoryEvent.Top:output_type -> client.api.StoryEventTopResponse
-	435,  // 1249: client.api.StoryEvent.ListGuildMission:output_type -> client.api.StoryEventListGuildMissionResponse
-	437,  // 1250: client.api.StoryEvent.ReceiveGuildMission:output_type -> client.api.StoryEventReceiveGuildMissionResponse
-	445,  // 1251: client.api.Story.Read:output_type -> client.api.StoryReadResponse
-	443,  // 1252: client.api.Story.ReadProduceStory:output_type -> client.api.StoryReadProduceStoryResponse
-	441,  // 1253: client.api.Story.ReadDearnessStory:output_type -> client.api.StoryReadDearnessStoryResponse
-	449,  // 1254: client.api.Story.Unlock:output_type -> client.api.StoryUnlockResponse
-	447,  // 1255: client.api.Story.UnlockProduceStory:output_type -> client.api.StoryUnlockProduceStoryResponse
-	451,  // 1256: client.api.SupportCard.Enhance:output_type -> client.api.SupportCardEnhanceResponse
-	458,  // 1257: client.api.SupportCard.UpgradeLevelLimitRank:output_type -> client.api.SupportCardUpgradeLevelLimitRankResponse
-	453,  // 1258: client.api.SupportCard.Exchange:output_type -> client.api.SupportCardExchangeResponse
-	454,  // 1259: client.api.SupportCard.ListDeckRanking:output_type -> client.api.SupportCardListDeckRankingResponse
-	460,  // 1260: client.api.System.Check:output_type -> client.api.SystemCheckResponse
-	465,  // 1261: client.api.TicketExchange.ListItems:output_type -> client.api.TicketExchangeListItemsResponse
-	462,  // 1262: client.api.TicketExchange.Execute:output_type -> client.api.TicketExchangeExecuteResponse
-	500,  // 1263: client.api.Tower.Top:output_type -> client.api.TowerTopResponse
-	489,  // 1264: client.api.Tower.ListLayers:output_type -> client.api.TowerListLayersResponse
-	475,  // 1265: client.api.Tower.GetLayer:output_type -> client.api.TowerGetLayerResponse
-	499,  // 1266: client.api.Tower.Start:output_type -> client.api.TowerStartResponse
-	469,  // 1267: client.api.Tower.End:output_type -> client.api.TowerEndResponse
-	467,  // 1268: client.api.Tower.Check:output_type -> client.api.TowerCheckResponse
-	502,  // 1269: client.api.Tower.UpdateMemoryDeck:output_type -> client.api.TowerUpdateMemoryDeckResponse
-	495,  // 1270: client.api.Tower.ReceiveLayerCountReward:output_type -> client.api.TowerReceiveLayerCountRewardResponse
-	497,  // 1271: client.api.Tower.ReceiveTotalClearRankReward:output_type -> client.api.TowerReceiveTotalClearRankRewardResponse
-	487,  // 1272: client.api.Tower.ListLayerPlayerHistories:output_type -> client.api.TowerListLayerPlayerHistoriesResponse
-	485,  // 1273: client.api.Tower.GetRanking:output_type -> client.api.TowerGetRankingResponse
-	481,  // 1274: client.api.Tower.GetPastSeasonRanking:output_type -> client.api.TowerGetPastSeasonRankingResponse
-	471,  // 1275: client.api.Tower.GetLayerIdolCardRanking:output_type -> client.api.TowerGetLayerIdolCardRankingResponse
-	477,  // 1276: client.api.Tower.GetPastSeasonLayerIdolCardRanking:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
-	473,  // 1277: client.api.Tower.GetLayerIdolCardRankingTop:output_type -> client.api.TowerGetLayerIdolCardRankingTopResponse
-	479,  // 1278: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
-	483,  // 1279: client.api.Tower.GetRankingDeck:output_type -> client.api.TowerGetRankingDeckResponse
-	527,  // 1280: client.api.Tutorial.UnlockFeature:output_type -> client.api.TutorialUnlockFeatureResponse
-	523,  // 1281: client.api.Tutorial.SetName:output_type -> client.api.TutorialSetNameResponse
-	517,  // 1282: client.api.Tutorial.Progress:output_type -> client.api.TutorialProgressResponse
-	525,  // 1283: client.api.Tutorial.Skip:output_type -> client.api.TutorialSkipResponse
-	519,  // 1284: client.api.Tutorial.ReadDearnessStory:output_type -> client.api.TutorialReadDearnessStoryResponse
-	521,  // 1285: client.api.Tutorial.ReceiveIdolCard:output_type -> client.api.TutorialReceiveIdolCardResponse
-	508,  // 1286: client.api.Tutorial.ProduceStart:output_type -> client.api.TutorialProduceStartResponse
-	504,  // 1287: client.api.Tutorial.ProduceNext:output_type -> client.api.TutorialProduceNextResponse
-	513,  // 1288: client.api.Tutorial.ProduceStepLessonEnd:output_type -> client.api.TutorialProduceStepLessonEndResponse
-	515,  // 1289: client.api.Tutorial.ProduceStepPresentReceive:output_type -> client.api.TutorialProduceStepPresentReceiveResponse
-	511,  // 1290: client.api.Tutorial.ProduceStepAuditionExamEnd:output_type -> client.api.TutorialProduceStepAuditionExamEndResponse
-	509,  // 1291: client.api.Tutorial.ProduceStepAuditionEnd:output_type -> client.api.TutorialProduceStepAuditionEndResponse
-	503,  // 1292: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:output_type -> client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
-	506,  // 1293: client.api.Tutorial.ProduceResult:output_type -> client.api.TutorialProduceResultResponse
-	528,  // 1294: client.api.User.Get:output_type -> client.api.UserGetResponse
-	530,  // 1295: client.api.User.ListMessage:output_type -> client.api.UserListMessageResponse
-	532,  // 1296: client.api.User.ReadMessage:output_type -> client.api.UserReadMessageResponse
-	541,  // 1297: client.api.Work.Top:output_type -> client.api.WorkTopResponse
-	538,  // 1298: client.api.Work.Start:output_type -> client.api.WorkStartResponse
-	540,  // 1299: client.api.Work.Stop:output_type -> client.api.WorkStopResponse
-	536,  // 1300: client.api.Work.Skip:output_type -> client.api.WorkSkipResponse
-	533,  // 1301: client.api.Work.Finish:output_type -> client.api.WorkFinishResponse
-	1029, // [1029:1302] is the sub-list for method output_type
-	756,  // [756:1029] is the sub-list for method input_type
-	756,  // [756:756] is the sub-list for extension type_name
-	756,  // [756:756] is the sub-list for extension extendee
-	0,    // [0:756] is the sub-list for field type_name
+	566,  // 196: client.api.GvgRaidUserRankingResponse.userRankings:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking
+	565,  // 197: client.api.GvgRaidUserRankingResponse.stageMvps:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp
+	626,  // 198: client.api.GvgRaidUserRankingResponse.commonResponse:type_name -> papicommon.Response
+	658,  // 199: client.api.HealthCheckResponse.status:type_name -> penum.ServingStatus
+	626,  // 200: client.api.HomeConfirmBanWarningResponse.commonResponse:type_name -> papicommon.Response
+	659,  // 201: client.api.HomeEnterResponse.homeBanners:type_name -> pcommon.HomeBanner
+	660,  // 202: client.api.HomeEnterResponse.homeNavigations:type_name -> pcommon.HomeNavigation
+	569,  // 203: client.api.HomeEnterResponse.featureMaintenances:type_name -> client.api.HomeEnterResponse.FeatureMaintenance
+	641,  // 204: client.api.HomeEnterResponse.gashas:type_name -> pcommon.Gasha
+	661,  // 205: client.api.HomeEnterResponse.pvpRateSeasonTop:type_name -> papicommon.PvpRateSeasonTop
+	662,  // 206: client.api.HomeEnterResponse.events:type_name -> pcommon.Event
+	663,  // 207: client.api.HomeEnterResponse.shopItemLabelType:type_name -> penum.ShopItemLabelType
+	626,  // 208: client.api.HomeEnterResponse.commonResponse:type_name -> papicommon.Response
+	662,  // 209: client.api.HomeListEventResponse.events:type_name -> pcommon.Event
+	626,  // 210: client.api.HomeListEventResponse.commonResponse:type_name -> papicommon.Response
+	570,  // 211: client.api.HomeLoginResponse.friendResult:type_name -> client.api.HomeLoginResponse.FriendResult
+	664,  // 212: client.api.HomeLoginResponse.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
+	571,  // 213: client.api.HomeLoginResponse.produceNextIdolAuditionMasterSeasonResult:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
+	626,  // 214: client.api.HomeLoginResponse.commonResponse:type_name -> papicommon.Response
+	573,  // 215: client.api.HomeSetCharactersRequest.characters:type_name -> client.api.HomeSetCharactersRequest.HomeCharacter
+	626,  // 216: client.api.HomeSetCharactersResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 217: client.api.IdolCardChangeSkinResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 218: client.api.IdolCardProbability.rewards:type_name -> pcommon.Reward
+	665,  // 219: client.api.IdolCardRarityProbability.rarity:type_name -> penum.IdolCardRarity
+	152,  // 220: client.api.IdolCardRarityProbability.probabilities:type_name -> client.api.IdolCardProbability
+	626,  // 221: client.api.IdolCardReleaseResponse.commonResponse:type_name -> papicommon.Response
+	666,  // 222: client.api.IdolCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.IdolCardLevelLimitRank
+	626,  // 223: client.api.IdolCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
+	667,  // 224: client.api.IdolCardUpgradePotentialRankRequest.afterRank:type_name -> penum.IdolCardPotentialRank
+	626,  // 225: client.api.IdolCardUpgradePotentialRankResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 226: client.api.InvitationEnterInvitationCodeResponse.commonResponse:type_name -> papicommon.Response
+	165,  // 227: client.api.InvitationListInviteUserResponse.list:type_name -> client.api.InviteUser
+	626,  // 228: client.api.InvitationListInviteUserResponse.commonResponse:type_name -> papicommon.Response
+	165,  // 229: client.api.InvitationReceiveInvitationPointResponse.list:type_name -> client.api.InviteUser
+	627,  // 230: client.api.InvitationReceiveInvitationPointResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 231: client.api.InvitationReceiveInvitationPointResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 232: client.api.InviteUser.profile:type_name -> pcommon.SimpleProfile
+	668,  // 233: client.api.InviteUser.friendStatusType:type_name -> penum.FriendStatusType
+	627,  // 234: client.api.ItemExchangeIdolCardPieceResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 235: client.api.ItemExchangeIdolCardPieceResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 236: client.api.ItemSellResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 237: client.api.ItemUseActionPointRecoveryResponse.commonResponse:type_name -> papicommon.Response
+	574,  // 238: client.api.LoginBonusCheckResponse.list:type_name -> client.api.LoginBonusCheckResponse.Info
+	575,  // 239: client.api.LoginBonusCheckResponse.totalInfo:type_name -> client.api.LoginBonusCheckResponse.TotalInfo
+	655,  // 240: client.api.LoginBonusCheckResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	626,  // 241: client.api.LoginBonusCheckResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 242: client.api.LoginBonusConfirmResponse.commonResponse:type_name -> papicommon.Response
+	577,  // 243: client.api.MasterGetResponse.masterTag:type_name -> client.api.MasterGetResponse.MasterTag
+	626,  // 244: client.api.MediaPlayResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 245: client.api.MeishiDeleteResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 246: client.api.MeishiFollowResponse.commonResponse:type_name -> papicommon.Response
+	669,  // 247: client.api.MeishiGetDetailResponse.meishi:type_name -> pcommon.Meishi
+	626,  // 248: client.api.MeishiGetDetailResponse.commonResponse:type_name -> papicommon.Response
+	669,  // 249: client.api.MeishiGetResponse.meishi:type_name -> pcommon.Meishi
+	626,  // 250: client.api.MeishiGetResponse.commonResponse:type_name -> papicommon.Response
+	578,  // 251: client.api.MeishiListFollowResponse.follows:type_name -> client.api.MeishiListFollowResponse.Follow
+	626,  // 252: client.api.MeishiListFollowResponse.commonResponse:type_name -> papicommon.Response
+	579,  // 253: client.api.MeishiListResponse.meishiList:type_name -> client.api.MeishiListResponse.MeishiInfo
+	626,  // 254: client.api.MeishiListResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 255: client.api.MeishiReportXPostMissionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 256: client.api.MeishiSetResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 257: client.api.MeishiUnfollowResponse.commonResponse:type_name -> papicommon.Response
+	580,  // 258: client.api.MeishiUpdateRequest.meishiBase:type_name -> client.api.MeishiUpdateRequest.MeishiBase
+	581,  // 259: client.api.MeishiUpdateRequest.objects:type_name -> client.api.MeishiUpdateRequest.Object
+	626,  // 260: client.api.MeishiUpdateResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 261: client.api.MemoryExchangeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 262: client.api.MemoryFixInheritResponse.commonResponse:type_name -> papicommon.Response
+	637,  // 263: client.api.MemoryInheritResponse.beforeMemory:type_name -> pcommon.Memory
+	637,  // 264: client.api.MemoryInheritResponse.afterMemory:type_name -> pcommon.Memory
+	626,  // 265: client.api.MemoryInheritResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 266: client.api.MemoryReshootingResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 267: client.api.MemoryUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 268: client.api.MemoryUpdateTagSettingResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 269: client.api.MissionExchangePassPointResponse.commonResponse:type_name -> papicommon.Response
+	662,  // 270: client.api.MissionListEventResponse.events:type_name -> pcommon.Event
+	626,  // 271: client.api.MissionListEventResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 272: client.api.MissionReceiveGroupAllResponse.groupResults:type_name -> pcommon.RewardResult
+	627,  // 273: client.api.MissionReceiveGroupAllResponse.results:type_name -> pcommon.RewardResult
+	626,  // 274: client.api.MissionReceiveGroupAllResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 275: client.api.MissionReceiveGroupResponse.results:type_name -> pcommon.RewardResult
+	626,  // 276: client.api.MissionReceiveGroupResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 277: client.api.MissionReceivePassResponse.commonResponse:type_name -> papicommon.Response
+	582,  // 278: client.api.MissionReceiveRequest.missions:type_name -> client.api.MissionReceiveRequest.Mission
+	583,  // 279: client.api.MissionReceiveRequest.missionPoints:type_name -> client.api.MissionReceiveRequest.MissionPoint
+	627,  // 280: client.api.MissionReceiveResponse.results:type_name -> pcommon.RewardResult
+	627,  // 281: client.api.MissionReceiveResponse.missionPointResults:type_name -> pcommon.RewardResult
+	585,  // 282: client.api.MissionReceiveResponse.masterAchievementProgressResults:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgressResult
+	670,  // 283: client.api.MissionReceiveResponse.mainTaskResults:type_name -> pmaster.Mission
+	626,  // 284: client.api.MissionReceiveResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 285: client.api.MissionUrlTransitionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 286: client.api.MoneyReceiveResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 287: client.api.MovieCreateResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 288: client.api.MovieDeleteResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 289: client.api.MovieRetakeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 290: client.api.MusicSendActionLogResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 291: client.api.MusicSendBuyActionLogResponse.commonResponse:type_name -> papicommon.Response
+	671,  // 292: client.api.NoticeFetchListRequest.category:type_name -> penum.NoticeCategory
+	235,  // 293: client.api.NoticeFetchListResponse.list:type_name -> client.api.NoticeInfo
+	626,  // 294: client.api.NoticeFetchListResponse.commonResponse:type_name -> papicommon.Response
+	235,  // 295: client.api.NoticeGetResponse.info:type_name -> client.api.NoticeInfo
+	626,  // 296: client.api.NoticeGetResponse.commonResponse:type_name -> papicommon.Response
+	671,  // 297: client.api.NoticeInfo.category:type_name -> penum.NoticeCategory
+	672,  // 298: client.api.NoticeInfo.type:type_name -> penum.NoticeType
+	235,  // 299: client.api.NoticeListAllResponse.infoList:type_name -> client.api.NoticeInfo
+	235,  // 300: client.api.NoticeListAllResponse.bugList:type_name -> client.api.NoticeInfo
+	235,  // 301: client.api.NoticeListAllResponse.prList:type_name -> client.api.NoticeInfo
+	626,  // 302: client.api.NoticeListAllResponse.commonResponse:type_name -> papicommon.Response
+	671,  // 303: client.api.NoticeUpdateCategoryTimeRequest.categories:type_name -> penum.NoticeCategory
+	626,  // 304: client.api.NoticeUpdateCategoryTimeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 305: client.api.NoticeUpdateDetailTimeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 306: client.api.PhotoCreateByMemoryResponse.commonResponse:type_name -> papicommon.Response
+	586,  // 307: client.api.PhotoCreateIdolRequest.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.CharacterSetting
+	587,  // 308: client.api.PhotoCreateIdolRequest.photos:type_name -> client.api.PhotoCreateIdolRequest.Photo
+	626,  // 309: client.api.PhotoCreateIdolResponse.commonResponse:type_name -> papicommon.Response
+	589,  // 310: client.api.PhotoCreateRequest.unitCharacters:type_name -> client.api.PhotoCreateRequest.UnitCharacter
+	626,  // 311: client.api.PhotoCreateResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 312: client.api.PhotoDeleteResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 313: client.api.PhotoUpdateNameResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 314: client.api.PhotoUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
+	673,  // 315: client.api.PreferenceUpdateRequest.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
+	674,  // 316: client.api.PreferenceUpdateRequest.preferenceTypes:type_name -> penum.PreferenceType
+	626,  // 317: client.api.PreferenceUpdateResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 318: client.api.ProduceActivateEffectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 319: client.api.ProduceActivateEffectResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 320: client.api.ProduceChangeCostumeResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 321: client.api.ProduceChangeForceLiveCommonResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 322: client.api.ProduceCheckProgressResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 323: client.api.ProduceContinueResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 324: client.api.ProduceDiscardDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 325: client.api.ProduceDiscardDrinkResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 326: client.api.ProduceEndBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	637,  // 327: client.api.ProduceEndResponse.memory:type_name -> pcommon.Memory
+	626,  // 328: client.api.ProduceEndResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 329: client.api.ProduceExcludeProduceCardResponse.commonResponse:type_name -> papicommon.Response
+	277,  // 330: client.api.ProduceHighScoreCharacter.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
+	281,  // 331: client.api.ProduceHighScoreCharacter.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
+	676,  // 332: client.api.ProduceHighScoreGetResponse.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
+	281,  // 333: client.api.ProduceHighScoreGetResponse.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
+	277,  // 334: client.api.ProduceHighScoreGetResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
+	274,  // 335: client.api.ProduceHighScoreGetResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
+	628,  // 336: client.api.ProduceHighScoreGetResponse.coinGasha:type_name -> pcommon.CoinGasha
+	280,  // 337: client.api.ProduceHighScoreGetResponse.result:type_name -> client.api.ProduceHighScoreResult
+	655,  // 338: client.api.ProduceHighScoreGetResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	626,  // 339: client.api.ProduceHighScoreGetResponse.commonResponse:type_name -> papicommon.Response
+	277,  // 340: client.api.ProduceHighScoreListRankRewardResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
+	274,  // 341: client.api.ProduceHighScoreListRankRewardResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
+	626,  // 342: client.api.ProduceHighScoreListRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 343: client.api.ProduceHighScoreRankReward.rewards:type_name -> pcommon.Reward
+	590,  // 344: client.api.ProduceHighScoreRankingResponse.selfRank:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
+	590,  // 345: client.api.ProduceHighScoreRankingResponse.ranks:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
+	626,  // 346: client.api.ProduceHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
+	277,  // 347: client.api.ProduceHighScoreResult.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
+	274,  // 348: client.api.ProduceHighScoreResult.characters:type_name -> client.api.ProduceHighScoreCharacter
+	627,  // 349: client.api.ProduceHighScoreResult.rewardResults:type_name -> pcommon.RewardResult
+	635,  // 350: client.api.ProduceHighScoreReward.reward:type_name -> pcommon.Reward
+	677,  // 351: client.api.ProduceHistoryResponse.produceHistory:type_name -> pcommon.ProduceHistory
+	626,  // 352: client.api.ProduceHistoryResponse.commonResponse:type_name -> papicommon.Response
+	591,  // 353: client.api.ProduceListRentalMemoryResponse.memories:type_name -> client.api.ProduceListRentalMemoryResponse.RentalMemory
+	626,  // 354: client.api.ProduceListRentalMemoryResponse.commonResponse:type_name -> papicommon.Response
+	592,  // 355: client.api.ProduceListRentalSupportCardResponse.supportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	592,  // 356: client.api.ProduceListRentalSupportCardResponse.suggestionSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	592,  // 357: client.api.ProduceListRentalSupportCardResponse.npcSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	626,  // 358: client.api.ProduceListRentalSupportCardResponse.commonResponse:type_name -> papicommon.Response
+	593,  // 359: client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.rankRewards:type_name -> client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.Reward
+	626,  // 360: client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	594,  // 361: client.api.ProduceNextIdolAuditionMasterRankingResponse.selfRank:type_name -> client.api.ProduceNextIdolAuditionMasterRankingResponse.Rank
+	594,  // 362: client.api.ProduceNextIdolAuditionMasterRankingResponse.ranks:type_name -> client.api.ProduceNextIdolAuditionMasterRankingResponse.Rank
+	626,  // 363: client.api.ProduceNextIdolAuditionMasterRankingResponse.commonResponse:type_name -> papicommon.Response
+	678,  // 364: client.api.ProduceNextRequest.stepType:type_name -> penum.ProduceStepType
+	675,  // 365: client.api.ProduceNextResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 366: client.api.ProduceNextResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 367: client.api.ProduceRank.profile:type_name -> pcommon.SimpleProfile
+	679,  // 368: client.api.ProduceRank.grade:type_name -> penum.ResultGrade
+	293,  // 369: client.api.ProduceRankingResponse.ranks:type_name -> client.api.ProduceRank
+	679,  // 370: client.api.ProduceRankingResponse.selfGrade:type_name -> penum.ResultGrade
+	626,  // 371: client.api.ProduceRankingResponse.commonResponse:type_name -> papicommon.Response
+	595,  // 372: client.api.ProduceRankingTopResponse.rankings:type_name -> client.api.ProduceRankingTopResponse.Ranking
+	626,  // 373: client.api.ProduceRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 374: client.api.ProduceReadAdvResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 375: client.api.ProduceReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
+	675,  // 376: client.api.ProduceReadDearnessStoryResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 377: client.api.ProduceReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	670,  // 378: client.api.ProduceReportDearnessBoostEventResponse.missions:type_name -> pmaster.Mission
+	627,  // 379: client.api.ProduceReportDearnessBoostEventResponse.groupRewardResults:type_name -> pcommon.RewardResult
+	627,  // 380: client.api.ProduceReportDearnessBoostEventResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 381: client.api.ProduceReportDearnessBoostEventResponse.commonResponse:type_name -> papicommon.Response
+	680,  // 382: client.api.ProduceReportGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
+	681,  // 383: client.api.ProduceReportGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
+	682,  // 384: client.api.ProduceReportGuildMissionResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
+	626,  // 385: client.api.ProduceReportGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 386: client.api.ProduceRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 387: client.api.ProduceRerollSelectProduceCardResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 388: client.api.ProduceResultResponse.rewardResults:type_name -> pcommon.RewardResult
+	682,  // 389: client.api.ProduceResultResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
+	597,  // 390: client.api.ProduceResultResponse.highScoreUpdateResult:type_name -> client.api.ProduceResultResponse.HighScoreUpdateResult
+	626,  // 391: client.api.ProduceResultResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 392: client.api.ProduceRetireResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 393: client.api.ProduceStartBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	599,  // 394: client.api.ProduceStartRequest.supportCards:type_name -> client.api.ProduceStartRequest.SupportCard
+	598,  // 395: client.api.ProduceStartRequest.memories:type_name -> client.api.ProduceStartRequest.Memory
+	675,  // 396: client.api.ProduceStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 397: client.api.ProduceStartResponse.commonResponse:type_name -> papicommon.Response
+	683,  // 398: client.api.ProduceStepAuditionEndExamBattleRequest.result:type_name -> pcommon.ExamBattleResult
+	684,  // 399: client.api.ProduceStepAuditionEndExamBattleRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	626,  // 400: client.api.ProduceStepAuditionEndExamBattleResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 401: client.api.ProduceStepAuditionEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	686,  // 402: client.api.ProduceStepAuditionEndResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
+	675,  // 403: client.api.ProduceStepAuditionEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 404: client.api.ProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 405: client.api.ProduceStepAuditionRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 406: client.api.ProduceStepAuditionRefreshResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 407: client.api.ProduceStepAuditionStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 408: client.api.ProduceStepAuditionStartResponse.commonResponse:type_name -> papicommon.Response
+	687,  // 409: client.api.ProduceStepBusinessSelectRequest.businessType:type_name -> penum.ProduceStepBusinessType
+	688,  // 410: client.api.ProduceStepBusinessSelectResponse.consumptionResults:type_name -> pcommon.ProduceConsumptionResult
+	675,  // 411: client.api.ProduceStepBusinessSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 412: client.api.ProduceStepBusinessSelectResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 413: client.api.ProduceStepBusinessStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 414: client.api.ProduceStepBusinessStartResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 415: client.api.ProduceStepCustomizeEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 416: client.api.ProduceStepCustomizeEndResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 417: client.api.ProduceStepCustomizeSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 418: client.api.ProduceStepCustomizeSelectResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 419: client.api.ProduceStepCustomizeStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 420: client.api.ProduceStepCustomizeStartResponse.commonResponse:type_name -> papicommon.Response
+	686,  // 421: client.api.ProduceStepEventResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
+	675,  // 422: client.api.ProduceStepEventResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 423: client.api.ProduceStepEventResponse.commonResponse:type_name -> papicommon.Response
+	689,  // 424: client.api.ProduceStepLessonEndRequest.examEndResult:type_name -> pcommon.ProduceExamEndResult
+	684,  // 425: client.api.ProduceStepLessonEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	675,  // 426: client.api.ProduceStepLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 427: client.api.ProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 428: client.api.ProduceStepLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 429: client.api.ProduceStepLessonStartResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 430: client.api.ProduceStepPresentEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	675,  // 431: client.api.ProduceStepPresentEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 432: client.api.ProduceStepPresentEndResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 433: client.api.ProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	675,  // 434: client.api.ProduceStepPresentReceiveResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 435: client.api.ProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 436: client.api.ProduceStepPresentStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 437: client.api.ProduceStepPresentStartResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 438: client.api.ProduceStepRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 439: client.api.ProduceStepRefreshResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 440: client.api.ProduceStepSelfLessonEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	675,  // 441: client.api.ProduceStepSelfLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 442: client.api.ProduceStepSelfLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 443: client.api.ProduceStepSelfLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 444: client.api.ProduceStepSelfLessonStartResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 445: client.api.ProduceStepShopBuyResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	675,  // 446: client.api.ProduceStepShopBuyResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 447: client.api.ProduceStepShopBuyResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 448: client.api.ProduceStepShopEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 449: client.api.ProduceStepShopEndResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 450: client.api.ProduceStepShopRerollResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 451: client.api.ProduceStepShopStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 452: client.api.ProduceStepShopStartResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 453: client.api.ProduceStepSkipResponse.commonResponse:type_name -> papicommon.Response
+	690,  // 454: client.api.ProduceTopResponse.campaigns:type_name -> pcommon.ProduceCampaign
+	691,  // 455: client.api.ProduceTopResponse.storyEventType:type_name -> penum.StoryEventType
+	692,  // 456: client.api.ProduceTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
+	600,  // 457: client.api.ProduceTopResponse.produceHighScore:type_name -> client.api.ProduceTopResponse.ProduceHighScore
+	626,  // 458: client.api.ProduceTopResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 459: client.api.ProduceUnlockPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
+	693,  // 460: client.api.ProduceUpdateMemoryDeck.produceType:type_name -> penum.ProduceType
+	657,  // 461: client.api.ProduceUpdateMemoryDeck.recommendType:type_name -> penum.DeckRecommendType
+	366,  // 462: client.api.ProduceUpdateMemoryDeckRequest.decks:type_name -> client.api.ProduceUpdateMemoryDeck
+	626,  // 463: client.api.ProduceUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
+	693,  // 464: client.api.ProduceUpdateSupportCardDeck.produceType:type_name -> penum.ProduceType
+	657,  // 465: client.api.ProduceUpdateSupportCardDeck.recommendType:type_name -> penum.DeckRecommendType
+	369,  // 466: client.api.ProduceUpdateSupportCardDeckRequest.decks:type_name -> client.api.ProduceUpdateSupportCardDeck
+	626,  // 467: client.api.ProduceUpdateSupportCardDeckResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 468: client.api.ProduceUseDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	626,  // 469: client.api.ProduceViewPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
+	375,  // 470: client.api.ProfileGetResponse.birthday:type_name -> client.api.ProfileBirthday
+	668,  // 471: client.api.ProfileGetResponse.friendStatus:type_name -> penum.FriendStatusType
+	601,  // 472: client.api.ProfileGetResponse.produceRecords:type_name -> client.api.ProfileGetResponse.ProduceRecord
+	694,  // 473: client.api.ProfileGetResponse.pvpRateGrade:type_name -> penum.PvpRateGrade
+	695,  // 474: client.api.ProfileGetResponse.supportCard:type_name -> pcommon.SupportCard
+	637,  // 475: client.api.ProfileGetResponse.memory:type_name -> pcommon.Memory
+	669,  // 476: client.api.ProfileGetResponse.meishi:type_name -> pcommon.Meishi
+	626,  // 477: client.api.ProfileGetResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 478: client.api.ProfileUpdateBirthdayResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 479: client.api.ProfileUpdateCommentResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 480: client.api.ProfileUpdateMemoryResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 481: client.api.ProfileUpdateNameResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 482: client.api.ProfileUpdateSupportCardResponse.commonResponse:type_name -> papicommon.Response
+	650,  // 483: client.api.PvpRateEndRequest.stages:type_name -> pcommon.ExamBattleAutoStageResult
+	627,  // 484: client.api.PvpRateEndResponse.playReward:type_name -> pcommon.RewardResult
+	400,  // 485: client.api.PvpRateEndResponse.rateRewards:type_name -> client.api.PvpRateRateReward
+	626,  // 486: client.api.PvpRateEndResponse.commonResponse:type_name -> papicommon.Response
+	696,  // 487: client.api.PvpRateGetHistoryResponse.examBattleResult:type_name -> pcommon.PvpRateExamBattleResult
+	626,  // 488: client.api.PvpRateGetHistoryResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 489: client.api.PvpRateGetResponse.playReward:type_name -> pcommon.Reward
+	400,  // 490: client.api.PvpRateGetResponse.rateRewards:type_name -> client.api.PvpRateRateReward
+	398,  // 491: client.api.PvpRateGetResponse.rankRewards:type_name -> client.api.PvpRateRankReward
+	694,  // 492: client.api.PvpRateGetResponse.grade:type_name -> penum.PvpRateGrade
+	669,  // 493: client.api.PvpRateGetResponse.meishi:type_name -> pcommon.Meishi
+	401,  // 494: client.api.PvpRateGetResponse.rivals:type_name -> client.api.PvpRateRival
+	651,  // 495: client.api.PvpRateGetResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	405,  // 496: client.api.PvpRateGetResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	401,  // 497: client.api.PvpRateGetResponse.currentRival:type_name -> client.api.PvpRateRival
+	626,  // 498: client.api.PvpRateGetResponse.commonResponse:type_name -> papicommon.Response
+	402,  // 499: client.api.PvpRateInitializeResponse.previousSeasonResult:type_name -> client.api.PvpRateSeasonResult
+	626,  // 500: client.api.PvpRateInitializeResponse.commonResponse:type_name -> papicommon.Response
+	602,  // 501: client.api.PvpRateListHistoryResponse.histories:type_name -> client.api.PvpRateListHistoryResponse.PvpRateHistory
+	626,  // 502: client.api.PvpRateListHistoryResponse.commonResponse:type_name -> papicommon.Response
+	399,  // 503: client.api.PvpRateListRankingResponse.users:type_name -> client.api.PvpRateRankingUser
+	399,  // 504: client.api.PvpRateListRankingResponse.self:type_name -> client.api.PvpRateRankingUser
+	626,  // 505: client.api.PvpRateListRankingResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 506: client.api.PvpRatePlayExamBattleResponse.commonResponse:type_name -> papicommon.Response
+	651,  // 507: client.api.PvpRatePlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	405,  // 508: client.api.PvpRatePlayTestResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	626,  // 509: client.api.PvpRatePlayTestResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 510: client.api.PvpRateRankReward.rewards:type_name -> pcommon.Reward
+	636,  // 511: client.api.PvpRateRankingUser.profile:type_name -> pcommon.SimpleProfile
+	405,  // 512: client.api.PvpRateRankingUser.formations:type_name -> client.api.PvpRateUnitStageFormation
+	635,  // 513: client.api.PvpRateRateReward.reward:type_name -> pcommon.Reward
+	636,  // 514: client.api.PvpRateRival.profile:type_name -> pcommon.SimpleProfile
+	697,  // 515: client.api.PvpRateRival.rivalType:type_name -> penum.PvpRateRivalType
+	405,  // 516: client.api.PvpRateRival.formations:type_name -> client.api.PvpRateUnitStageFormation
+	694,  // 517: client.api.PvpRateSeasonResult.beforeGrade:type_name -> penum.PvpRateGrade
+	694,  // 518: client.api.PvpRateSeasonResult.afterGrade:type_name -> penum.PvpRateGrade
+	635,  // 519: client.api.PvpRateSeasonResult.rewards:type_name -> pcommon.Reward
+	694,  // 520: client.api.PvpRateSeasonResult.prevSeasonGrade:type_name -> penum.PvpRateGrade
+	697,  // 521: client.api.PvpRateStartRequest.rivalType:type_name -> penum.PvpRateRivalType
+	651,  // 522: client.api.PvpRateStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	405,  // 523: client.api.PvpRateStartResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	401,  // 524: client.api.PvpRateStartResponse.rival:type_name -> client.api.PvpRateRival
+	626,  // 525: client.api.PvpRateStartResponse.commonResponse:type_name -> papicommon.Response
+	698,  // 526: client.api.PvpRateUnitStageFormation.stage:type_name -> penum.PvpRateStageType
+	603,  // 527: client.api.PvpRateUnitStageFormation.slots:type_name -> client.api.PvpRateUnitStageFormation.Slot
+	699,  // 528: client.api.PvpRateUpdateUserPvpRateUnitRequest.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
+	657,  // 529: client.api.PvpRateUpdateUserPvpRateUnitRequest.recommendType:type_name -> penum.DeckRecommendType
+	626,  // 530: client.api.PvpRateUpdateUserPvpRateUnitResponse.commonResponse:type_name -> papicommon.Response
+	604,  // 531: client.api.SeminarEndExamRequest.turns:type_name -> client.api.SeminarEndExamRequest.Turn
+	626,  // 532: client.api.SeminarEndExamResponse.commonResponse:type_name -> papicommon.Response
+	678,  // 533: client.api.SeminarGetExamResponse.stepType:type_name -> penum.ProduceStepType
+	700,  // 534: client.api.SeminarGetExamResponse.examBattleParameterTypes:type_name -> penum.ProduceParameterType
+	701,  // 535: client.api.SeminarGetExamResponse.produceCards:type_name -> pcommon.ProduceCard
+	607,  // 536: client.api.SeminarGetExamResponse.turnNavigations:type_name -> client.api.SeminarGetExamResponse.TurnNavigation
+	606,  // 537: client.api.SeminarGetExamResponse.failureNavigations:type_name -> client.api.SeminarGetExamResponse.FailureNavigation
+	626,  // 538: client.api.SeminarGetExamResponse.commonResponse:type_name -> papicommon.Response
+	609,  // 539: client.api.SeminarListExamResponse.groups:type_name -> client.api.SeminarListExamResponse.ExamGroup
+	626,  // 540: client.api.SeminarListExamResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 541: client.api.ShopCancelPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 542: client.api.ShopCheckPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	610,  // 543: client.api.ShopGetPurchasePlatformTransactionResponse.platformTransactions:type_name -> client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
+	626,  // 544: client.api.ShopGetPurchasePlatformTransactionResponse.commonResponse:type_name -> papicommon.Response
+	663,  // 545: client.api.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
+	702,  // 546: client.api.ShopListItemsResponse.list:type_name -> pmaster.ShopItem
+	626,  // 547: client.api.ShopListItemsResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 548: client.api.ShopPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 549: client.api.ShopPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 550: client.api.ShopPurchaseResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 551: client.api.ShopPurchaseResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 552: client.api.ShopRecoverPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 553: client.api.ShopRecoverPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 554: client.api.ShopRegisterBirthdayResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 555: client.api.ShopRegisterDelayPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 556: client.api.ShopRegisterPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	611,  // 557: client.api.ShopTopResponse.shopList:type_name -> client.api.ShopTopResponse.Shop
+	702,  // 558: client.api.ShopTopResponse.shopItemList:type_name -> pmaster.ShopItem
+	655,  // 559: client.api.ShopTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	626,  // 560: client.api.ShopTopResponse.commonResponse:type_name -> papicommon.Response
+	612,  // 561: client.api.StartupConfirmRequest.notifications:type_name -> client.api.StartupConfirmRequest.Notification
+	627,  // 562: client.api.StartupConfirmResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 563: client.api.StartupConfirmResponse.commonResponse:type_name -> papicommon.Response
+	703,  // 564: client.api.StartupListNotificationsRequest.displayType:type_name -> penum.StartupNotificationDisplayType
+	655,  // 565: client.api.StartupListNotificationsResponse.notifications:type_name -> pcommon.StartupNotification
+	626,  // 566: client.api.StartupListNotificationsResponse.commonResponse:type_name -> papicommon.Response
+	32,   // 567: client.api.StepUpGashaProbability.defaultGashaProbability:type_name -> client.api.DefaultGashaProbability
+	680,  // 568: client.api.StoryEventListGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
+	681,  // 569: client.api.StoryEventListGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
+	626,  // 570: client.api.StoryEventListGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	613,  // 571: client.api.StoryEventReceiveGuildMissionResponse.receiveResults:type_name -> client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
+	626,  // 572: client.api.StoryEventReceiveGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	614,  // 573: client.api.StoryEventTopResponse.motions:type_name -> client.api.StoryEventTopResponse.Motion
+	691,  // 574: client.api.StoryEventTopResponse.storyEventType:type_name -> penum.StoryEventType
+	692,  // 575: client.api.StoryEventTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
+	628,  // 576: client.api.StoryEventTopResponse.boxGasha:type_name -> pcommon.CoinGasha
+	667,  // 577: client.api.StoryEventTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	704,  // 578: client.api.StoryEventTopResponse.storyEventPointRewards:type_name -> pcommon.StoryEventPointReward
+	655,  // 579: client.api.StoryEventTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	626,  // 580: client.api.StoryEventTopResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 581: client.api.StoryReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 582: client.api.StoryReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 583: client.api.StoryReadProduceStoryResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 584: client.api.StoryReadResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 585: client.api.StoryReadResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 586: client.api.StoryUnlockDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 587: client.api.StoryUnlockProduceStoryResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 588: client.api.StoryUnlockResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 589: client.api.SupportCardEnhanceResponse.commonResponse:type_name -> papicommon.Response
+	615,  // 590: client.api.SupportCardExchangeRequest.parameters:type_name -> client.api.SupportCardExchangeRequest.Parameter
+	626,  // 591: client.api.SupportCardExchangeResponse.commonResponse:type_name -> papicommon.Response
+	617,  // 592: client.api.SupportCardListDeckRankingResponse.rankings:type_name -> client.api.SupportCardListDeckRankingResponse.Ranking
+	626,  // 593: client.api.SupportCardListDeckRankingResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 594: client.api.SupportCardProbability.rewards:type_name -> pcommon.Reward
+	705,  // 595: client.api.SupportCardRarityProbability.rarity:type_name -> penum.SupportCardRarity
+	463,  // 596: client.api.SupportCardRarityProbability.probabilities:type_name -> client.api.SupportCardProbability
+	706,  // 597: client.api.SupportCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.SupportCardLevelLimitRank
+	626,  // 598: client.api.SupportCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
+	618,  // 599: client.api.SystemCheckResponse.maintenanceInfo:type_name -> client.api.SystemCheckResponse.MaintenanceInfo
+	619,  // 600: client.api.SystemCheckResponse.reviewInfo:type_name -> client.api.SystemCheckResponse.ReviewInfo
+	471,  // 601: client.api.TicketExchangeExecuteResponse.item:type_name -> client.api.TicketExchangeItem
+	627,  // 602: client.api.TicketExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
+	626,  // 603: client.api.TicketExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
+	635,  // 604: client.api.TicketExchangeItem.rewards:type_name -> pcommon.Reward
+	471,  // 605: client.api.TicketExchangeListItemsResponse.items:type_name -> client.api.TicketExchangeItem
+	626,  // 606: client.api.TicketExchangeListItemsResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 607: client.api.TowerCheckResponse.commonResponse:type_name -> papicommon.Response
+	683,  // 608: client.api.TowerEndRequest.result:type_name -> pcommon.ExamBattleResult
+	684,  // 609: client.api.TowerEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	627,  // 610: client.api.TowerEndResponse.results:type_name -> pcommon.RewardResult
+	626,  // 611: client.api.TowerEndResponse.commonResponse:type_name -> papicommon.Response
+	500,  // 612: client.api.TowerGetLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	626,  // 613: client.api.TowerGetLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
+	499,  // 614: client.api.TowerGetLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
+	626,  // 615: client.api.TowerGetLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	620,  // 616: client.api.TowerGetLayerResponse.exams:type_name -> client.api.TowerGetLayerResponse.Exam
+	626,  // 617: client.api.TowerGetLayerResponse.commonResponse:type_name -> papicommon.Response
+	500,  // 618: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	626,  // 619: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
+	499,  // 620: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
+	626,  // 621: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	500,  // 622: client.api.TowerGetPastSeasonRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	626,  // 623: client.api.TowerGetPastSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
+	637,  // 624: client.api.TowerGetRankingDeckResponse.memories:type_name -> pcommon.Memory
+	626,  // 625: client.api.TowerGetRankingDeckResponse.commonResponse:type_name -> papicommon.Response
+	500,  // 626: client.api.TowerGetRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	626,  // 627: client.api.TowerGetRankingResponse.commonResponse:type_name -> papicommon.Response
+	707,  // 628: client.api.TowerListLayerPlayerHistoriesResponse.histories:type_name -> pcommon.TowerLayerHistory
+	626,  // 629: client.api.TowerListLayerPlayerHistoriesResponse.commonResponse:type_name -> papicommon.Response
+	622,  // 630: client.api.TowerListLayersResponse.layers:type_name -> client.api.TowerListLayersResponse.TowerLayer
+	501,  // 631: client.api.TowerListLayersResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
+	626,  // 632: client.api.TowerListLayersResponse.commonResponse:type_name -> papicommon.Response
+	636,  // 633: client.api.TowerRank.profile:type_name -> pcommon.SimpleProfile
+	498,  // 634: client.api.TowerRankingCache.ranks:type_name -> client.api.TowerRank
+	498,  // 635: client.api.TowerRankingResult.towerRanks:type_name -> client.api.TowerRank
+	627,  // 636: client.api.TowerReceiveLayerCountRewardResponse.result:type_name -> pcommon.RewardResult
+	626,  // 637: client.api.TowerReceiveLayerCountRewardResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 638: client.api.TowerReceiveTotalClearRankRewardResponse.result:type_name -> pcommon.RewardResult
+	626,  // 639: client.api.TowerReceiveTotalClearRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	701,  // 640: client.api.TowerStartResponse.produceCards:type_name -> pcommon.ProduceCard
+	626,  // 641: client.api.TowerStartResponse.commonResponse:type_name -> papicommon.Response
+	623,  // 642: client.api.TowerTopResponse.towers:type_name -> client.api.TowerTopResponse.Tower
+	635,  // 643: client.api.TowerTopResponse.nextReward:type_name -> pcommon.Reward
+	655,  // 644: client.api.TowerTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	501,  // 645: client.api.TowerTopResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
+	626,  // 646: client.api.TowerTopResponse.commonResponse:type_name -> papicommon.Response
+	657,  // 647: client.api.TowerUpdateMemoryDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	626,  // 648: client.api.TowerUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 649: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 650: client.api.TutorialProduceNextResponse.commonResponse:type_name -> papicommon.Response
+	637,  // 651: client.api.TutorialProduceResultResponse.memory:type_name -> pcommon.Memory
+	626,  // 652: client.api.TutorialProduceResultResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 653: client.api.TutorialProduceStartResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 654: client.api.TutorialProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 655: client.api.TutorialProduceStepAuditionExamEndResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 656: client.api.TutorialProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	685,  // 657: client.api.TutorialProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	626,  // 658: client.api.TutorialProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
+	708,  // 659: client.api.TutorialProgressRequest.type:type_name -> penum.TutorialType
+	626,  // 660: client.api.TutorialProgressResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 661: client.api.TutorialReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	627,  // 662: client.api.TutorialReceiveIdolCardResponse.results:type_name -> pcommon.RewardResult
+	626,  // 663: client.api.TutorialReceiveIdolCardResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 664: client.api.TutorialSetNameResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 665: client.api.TutorialSkipResponse.commonResponse:type_name -> papicommon.Response
+	708,  // 666: client.api.TutorialUnlockFeatureRequest.type:type_name -> penum.TutorialType
+	626,  // 667: client.api.TutorialUnlockFeatureResponse.commonResponse:type_name -> papicommon.Response
+	709,  // 668: client.api.UserGetResponse.userData:type_name -> papicommon.UserData
+	624,  // 669: client.api.UserListMessageResponse.personalMessages:type_name -> client.api.UserListMessageResponse.PersonalMessage
+	626,  // 670: client.api.UserListMessageResponse.commonResponse:type_name -> papicommon.Response
+	626,  // 671: client.api.UserReadMessageResponse.commonResponse:type_name -> papicommon.Response
+	542,  // 672: client.api.WorkFinishResponse.finishResults:type_name -> client.api.WorkFinishResult
+	626,  // 673: client.api.WorkFinishResponse.commonResponse:type_name -> papicommon.Response
+	710,  // 674: client.api.WorkFinishResult.type:type_name -> penum.WorkType
+	627,  // 675: client.api.WorkFinishResult.rewardResults:type_name -> pcommon.RewardResult
+	710,  // 676: client.api.WorkSkipRequest.type:type_name -> penum.WorkType
+	542,  // 677: client.api.WorkSkipResponse.finishResult:type_name -> client.api.WorkFinishResult
+	626,  // 678: client.api.WorkSkipResponse.commonResponse:type_name -> papicommon.Response
+	710,  // 679: client.api.WorkStartRequest.type:type_name -> penum.WorkType
+	626,  // 680: client.api.WorkStartResponse.commonResponse:type_name -> papicommon.Response
+	710,  // 681: client.api.WorkStopRequest.type:type_name -> penum.WorkType
+	626,  // 682: client.api.WorkStopResponse.commonResponse:type_name -> papicommon.Response
+	542,  // 683: client.api.WorkTopResponse.finishResults:type_name -> client.api.WorkFinishResult
+	626,  // 684: client.api.WorkTopResponse.commonResponse:type_name -> papicommon.Response
+	625,  // 685: client.api.AuthLoginResponse.Term.type:type_name -> penum.TermsType
+	629,  // 686: client.api.AuthSendConsentRequest.Consent.consentType:type_name -> penum.ConsentType
+	630,  // 687: client.api.AuthSendConsentRequest.Consent.agreementType:type_name -> penum.ConsentAgreementType
+	706,  // 688: client.api.FriendInfo.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	635,  // 689: client.api.GashaExpirePointResponse.GashaPoint.reward:type_name -> pcommon.Reward
+	554,  // 690: client.api.GashaExpirePointResponse.GashaPoint.gashaBanners:type_name -> client.api.GashaExpirePointResponse.GashaBanner
+	635,  // 691: client.api.GashaGetPointExchangeResponse.ExchangeResource.rewards:type_name -> pcommon.Reward
+	633,  // 692: client.api.GiftListHistoryResponse.UserGiftHistory.resourceType:type_name -> penum.ResourceType
+	633,  // 693: client.api.GiftListResponse.UserGift.resourceType:type_name -> penum.ResourceType
+	645,  // 694: client.api.GuildTopResponse.HomeInfo.achievement:type_name -> pcommon.Achievement
+	644,  // 695: client.api.GuildTopResponse.HomeInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	113,  // 696: client.api.GuildTopResponse.HomeInfo.leaderMessageReactionList:type_name -> client.api.GuildReactionInfo
+	112,  // 697: client.api.GuildTopResponse.HomeInfo.memberList:type_name -> client.api.GuildMemberInfo
+	112,  // 698: client.api.GuildTopResponse.HomeInfo.joinRequestList:type_name -> client.api.GuildMemberInfo
+	33,   // 699: client.api.GuildTopResponse.HomeInfo.donationRequestList:type_name -> client.api.DonationRequest
+	560,  // 700: client.api.GuildTopResponse.HomeInfo.receivedDonationInfo:type_name -> client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
+	98,   // 701: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo.donationList:type_name -> client.api.GuildDonationInfo
+	652,  // 702: client.api.GvgRaidTopResponse.Stage.planType:type_name -> penum.ProducePlanType
+	636,  // 703: client.api.GvgRaidTopResponse.Stage.mvpProfile:type_name -> pcommon.SimpleProfile
+	124,  // 704: client.api.GvgRaidTopResponse.Stage.mvpDeck:type_name -> client.api.GvgRaidDeck
+	656,  // 705: client.api.GvgRaidTopResponse.Stage.deck:type_name -> pcommon.GvgRaidSetUpDeck
+	134,  // 706: client.api.GvgRaidTopResponse.Stage.challengeRewards:type_name -> client.api.GvgRaidStageChallengeReward
+	635,  // 707: client.api.GvgRaidTopResponse.Stage.clearRewards:type_name -> pcommon.Reward
+	653,  // 708: client.api.GvgRaidTopResponse.Stage.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
+	635,  // 709: client.api.GvgRaidTopResponse.StageClearResult.rewards:type_name -> pcommon.Reward
+	564,  // 710: client.api.GvgRaidTopResponse.StageClearReward.clearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward.ClearReward
+	635,  // 711: client.api.GvgRaidTopResponse.StageClearReward.ClearReward.rewards:type_name -> pcommon.Reward
+	567,  // 712: client.api.GvgRaidUserRankingResponse.StageMvp.mvpUsers:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
+	568,  // 713: client.api.GvgRaidUserRankingResponse.StageRanking.ranks:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking.Rank
+	140,  // 714: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser.user:type_name -> client.api.GvgRaidUser
+	140,  // 715: client.api.GvgRaidUserRankingResponse.StageRanking.Rank.user:type_name -> client.api.GvgRaidUser
+	711,  // 716: client.api.HomeEnterResponse.FeatureMaintenance.type:type_name -> penum.FeatureMaintenanceType
+	572,  // 717: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.characterResults:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
+	635,  // 718: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult.rewards:type_name -> pcommon.Reward
+	712,  // 719: client.api.HomeSetCharactersRequest.HomeCharacter.homeType:type_name -> penum.HomeType
+	713,  // 720: client.api.LoginBonusCheckResponse.Info.type:type_name -> penum.LoginBonusType
+	635,  // 721: client.api.LoginBonusCheckResponse.Info.rewards:type_name -> pcommon.Reward
+	635,  // 722: client.api.LoginBonusCheckResponse.TotalInfo.reward:type_name -> pcommon.Reward
+	635,  // 723: client.api.LoginBonusCheckResponse.TotalInfo.nextReward:type_name -> pcommon.Reward
+	576,  // 724: client.api.MasterGetResponse.MasterTag.masterTagPacks:type_name -> client.api.MasterGetResponse.MasterTagPack
+	669,  // 725: client.api.MeishiListFollowResponse.Follow.meishi:type_name -> pcommon.Meishi
+	669,  // 726: client.api.MeishiListResponse.MeishiInfo.meishi:type_name -> pcommon.Meishi
+	714,  // 727: client.api.MeishiUpdateRequest.Object.objectType:type_name -> penum.MeishiObjectType
+	584,  // 728: client.api.MissionReceiveResponse.MasterAchievementProgressResult.masterAchievementProgresses:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgress
+	588,  // 729: client.api.PhotoCreateIdolRequest.Photo.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
+	679,  // 730: client.api.ProduceHighScoreRankingResponse.Rank.grade:type_name -> penum.ResultGrade
+	636,  // 731: client.api.ProduceHighScoreRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
+	636,  // 732: client.api.ProduceListRentalMemoryResponse.RentalMemory.profile:type_name -> pcommon.SimpleProfile
+	637,  // 733: client.api.ProduceListRentalMemoryResponse.RentalMemory.memory:type_name -> pcommon.Memory
+	636,  // 734: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.profile:type_name -> pcommon.SimpleProfile
+	706,  // 735: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	635,  // 736: client.api.ProduceNextIdolAuditionMasterListRankRewardResponse.Reward.rewards:type_name -> pcommon.Reward
+	679,  // 737: client.api.ProduceNextIdolAuditionMasterRankingResponse.Rank.grade:type_name -> penum.ResultGrade
+	636,  // 738: client.api.ProduceNextIdolAuditionMasterRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
+	293,  // 739: client.api.ProduceRankingTopResponse.Ranking.topRanks:type_name -> client.api.ProduceRank
+	679,  // 740: client.api.ProduceRankingTopResponse.Ranking.selfHighestGrade:type_name -> penum.ResultGrade
+	635,  // 741: client.api.ProduceResultResponse.HighScoreReward.reward:type_name -> pcommon.Reward
+	596,  // 742: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
+	596,  // 743: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
+	627,  // 744: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewardResults:type_name -> pcommon.RewardResult
+	627,  // 745: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewardResults:type_name -> pcommon.RewardResult
+	627,  // 746: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRushGoldRewardResults:type_name -> pcommon.RewardResult
+	676,  // 747: client.api.ProduceTopResponse.ProduceHighScore.eventType:type_name -> penum.ProduceHighScoreEventType
+	693,  // 748: client.api.ProfileGetResponse.ProduceRecord.produceType:type_name -> penum.ProduceType
+	405,  // 749: client.api.PvpRateListHistoryResponse.PvpRateHistory.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	405,  // 750: client.api.PvpRateListHistoryResponse.PvpRateHistory.rivalFormations:type_name -> client.api.PvpRateUnitStageFormation
+	637,  // 751: client.api.PvpRateUnitStageFormation.Slot.mainMemory:type_name -> pcommon.Memory
+	637,  // 752: client.api.PvpRateUnitStageFormation.Slot.subMemory:type_name -> pcommon.Memory
+	715,  // 753: client.api.SeminarGetExamResponse.TurnNavigationStep.navigationType:type_name -> penum.TutorialNavigationType
+	701,  // 754: client.api.SeminarGetExamResponse.FailureNavigation.produceCards1:type_name -> pcommon.ProduceCard
+	701,  // 755: client.api.SeminarGetExamResponse.FailureNavigation.produceCards2:type_name -> pcommon.ProduceCard
+	716,  // 756: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
+	717,  // 757: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
+	605,  // 758: client.api.SeminarGetExamResponse.TurnNavigation.steps:type_name -> client.api.SeminarGetExamResponse.TurnNavigationStep
+	635,  // 759: client.api.SeminarListExamResponse.Exam.rewards:type_name -> pcommon.Reward
+	608,  // 760: client.api.SeminarListExamResponse.ExamGroup.exams:type_name -> client.api.SeminarListExamResponse.Exam
+	718,  // 761: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction.paymentPendingReceiptDialogTimingType:type_name -> penum.PaymentPendingReceiptDialogTimingType
+	702,  // 762: client.api.ShopTopResponse.Shop.shopItems:type_name -> pmaster.ShopItem
+	681,  // 763: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.guildMissionHistory:type_name -> pcommon.GuildMissionHistory
+	627,  // 764: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.rewardResult:type_name -> pcommon.RewardResult
+	719,  // 765: client.api.StoryEventTopResponse.Motion.motionType:type_name -> penum.StoryEventMotionType
+	616,  // 766: client.api.SupportCardListDeckRankingResponse.Ranking.supportCardRanks:type_name -> client.api.SupportCardListDeckRankingResponse.SupportCardRank
+	720,  // 767: client.api.TowerGetLayerResponse.Exam.examEffectType:type_name -> penum.ProduceExamEffectType
+	721,  // 768: client.api.TowerListLayersResponse.TowerLayerRank.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
+	635,  // 769: client.api.TowerListLayersResponse.TowerLayerRank.reward:type_name -> pcommon.Reward
+	621,  // 770: client.api.TowerListLayersResponse.TowerLayer.ranks:type_name -> client.api.TowerListLayersResponse.TowerLayerRank
+	635,  // 771: client.api.TowerListLayersResponse.TowerLayer.rewards:type_name -> pcommon.Reward
+	0,    // 772: client.api.Auth.Create:input_type -> client.api.Empty
+	7,    // 773: client.api.Auth.Login:input_type -> client.api.AuthLoginRequest
+	5,    // 774: client.api.Auth.LinkBandaiNamcoId:input_type -> client.api.AuthLinkBandaiNamcoIdRequest
+	0,    // 775: client.api.Auth.Unlink:input_type -> client.api.Empty
+	12,   // 776: client.api.Auth.PrepareMigrationBandaiNamcoId:input_type -> client.api.AuthPrepareMigrationBandaiNamcoIdRequest
+	10,   // 777: client.api.Auth.Migrate:input_type -> client.api.AuthMigrateRequest
+	0,    // 778: client.api.Auth.MigrateDmmGamesId:input_type -> client.api.Empty
+	1,    // 779: client.api.Auth.AgreeTerms:input_type -> client.api.AuthAgreeTermsRequest
+	0,    // 780: client.api.Auth.GetConsent:input_type -> client.api.Empty
+	14,   // 781: client.api.Auth.SendConsent:input_type -> client.api.AuthSendConsentRequest
+	17,   // 782: client.api.Character.CheckRoster:input_type -> client.api.CharacterCheckRosterRequest
+	22,   // 783: client.api.CoinGasha.Get:input_type -> client.api.CoinGashaGetRequest
+	0,    // 784: client.api.CoinGasha.List:input_type -> client.api.Empty
+	19,   // 785: client.api.CoinGasha.Draw:input_type -> client.api.CoinGashaDrawRequest
+	25,   // 786: client.api.CoinGasha.ResetBox:input_type -> client.api.CoinGashaResetBoxRequest
+	30,   // 787: client.api.Costume.Set:input_type -> client.api.CostumeSetRequest
+	28,   // 788: client.api.Costume.Check:input_type -> client.api.CostumeCheckRequest
+	36,   // 789: client.api.Exchange.Get:input_type -> client.api.ExchangeGetRequest
+	40,   // 790: client.api.Exchange.List:input_type -> client.api.ExchangeListRequest
+	34,   // 791: client.api.Exchange.Execute:input_type -> client.api.ExchangeExecuteRequest
+	42,   // 792: client.api.Exchange.Reset:input_type -> client.api.ExchangeResetRequest
+	0,    // 793: client.api.Friend.List:input_type -> client.api.Empty
+	0,    // 794: client.api.Friend.ListSuggestion:input_type -> client.api.Empty
+	46,   // 795: client.api.Friend.Follow:input_type -> client.api.FriendFollowRequest
+	51,   // 796: client.api.Friend.UnFollow:input_type -> client.api.FriendUnFollowRequest
+	44,   // 797: client.api.Friend.DeleteFollower:input_type -> client.api.FriendDeleteFollowerRequest
+	0,    // 798: client.api.Gasha.List:input_type -> client.api.Empty
+	53,   // 799: client.api.Gasha.Draw:input_type -> client.api.GashaDrawRequest
+	67,   // 800: client.api.Gasha.GetProbability:input_type -> client.api.GashaGetProbabilityRequest
+	76,   // 801: client.api.Gasha.SelectPickup:input_type -> client.api.GashaSelectPickupRequest
+	56,   // 802: client.api.Gasha.DrawSelectPickup:input_type -> client.api.GashaDrawSelectPickupRequest
+	69,   // 803: client.api.Gasha.GetSelectPickupProbability:input_type -> client.api.GashaGetSelectPickupProbabilityRequest
+	58,   // 804: client.api.Gasha.DrawStepUp:input_type -> client.api.GashaDrawStepUpRequest
+	71,   // 805: client.api.Gasha.GetStepUpProbability:input_type -> client.api.GashaGetStepUpProbabilityRequest
+	63,   // 806: client.api.Gasha.GetPointExchange:input_type -> client.api.GashaGetPointExchangeRequest
+	60,   // 807: client.api.Gasha.ExchangePoint:input_type -> client.api.GashaExchangePointRequest
+	0,    // 808: client.api.Gasha.ExpirePoint:input_type -> client.api.Empty
+	65,   // 809: client.api.Gasha.GetPrecaution:input_type -> client.api.GashaGetPrecautionRequest
+	81,   // 810: client.api.Gift.List:input_type -> client.api.GiftListRequest
+	0,    // 811: client.api.Gift.Count:input_type -> client.api.Empty
+	79,   // 812: client.api.Gift.ListHistory:input_type -> client.api.GiftListHistoryRequest
+	83,   // 813: client.api.Gift.Open:input_type -> client.api.GiftOpenRequest
+	0,    // 814: client.api.Guild.Top:input_type -> client.api.Empty
+	119,  // 815: client.api.Guild.Search:input_type -> client.api.GuildSearchRequest
+	105,  // 816: client.api.Guild.Get:input_type -> client.api.GuildGetRequest
+	103,  // 817: client.api.Guild.Establish:input_type -> client.api.GuildEstablishRequest
+	99,   // 818: client.api.Guild.EditDetail:input_type -> client.api.GuildEditDetailRequest
+	101,  // 819: client.api.Guild.EditLeaderMessage:input_type -> client.api.GuildEditLeaderMessageRequest
+	85,   // 820: client.api.Guild.ApplyJoinRequest:input_type -> client.api.GuildApplyJoinRequestRequest
+	89,   // 821: client.api.Guild.CancelJoinRequest:input_type -> client.api.GuildCancelJoinRequestRequest
+	0,    // 822: client.api.Guild.ListJoinRequest:input_type -> client.api.Empty
+	87,   // 823: client.api.Guild.ApproveJoinRequest:input_type -> client.api.GuildApproveJoinRequestRequest
+	115,  // 824: client.api.Guild.RejectJoinRequest:input_type -> client.api.GuildRejectJoinRequestRequest
+	0,    // 825: client.api.Guild.Leave:input_type -> client.api.Empty
+	93,   // 826: client.api.Guild.Dismiss:input_type -> client.api.GuildDismissRequest
+	91,   // 827: client.api.Guild.ChangeLeader:input_type -> client.api.GuildChangeLeaderRequest
+	0,    // 828: client.api.Guild.ListMember:input_type -> client.api.Empty
+	0,    // 829: client.api.Guild.Dissolve:input_type -> client.api.Empty
+	0,    // 830: client.api.Guild.ListDonationRequest:input_type -> client.api.Empty
+	117,  // 831: client.api.Guild.RequestDonation:input_type -> client.api.GuildRequestDonationRequest
+	96,   // 832: client.api.Guild.Donate:input_type -> client.api.GuildDonateRequest
+	0,    // 833: client.api.Guild.ReceiveDonation:input_type -> client.api.Empty
+	122,  // 834: client.api.Guild.UpdateLeaderMessageReaction:input_type -> client.api.GuildUpdateLeaderMessageReactionRequest
+	0,    // 835: client.api.GvgRaid.Top:input_type -> client.api.Empty
+	0,    // 836: client.api.GvgRaid.GetProgress:input_type -> client.api.Empty
+	135,  // 837: client.api.GvgRaid.Start:input_type -> client.api.GvgRaidStartRequest
+	125,  // 838: client.api.GvgRaid.End:input_type -> client.api.GvgRaidEndRequest
+	130,  // 839: client.api.GvgRaid.PlayTest:input_type -> client.api.GvgRaidPlayTestRequest
+	0,    // 840: client.api.GvgRaid.GuildRanking:input_type -> client.api.Empty
+	0,    // 841: client.api.GvgRaid.UserRanking:input_type -> client.api.Empty
+	138,  // 842: client.api.GvgRaid.UpdateDeck:input_type -> client.api.GvgRaidUpdateDeckRequest
+	142,  // 843: client.api.Health.Check:input_type -> client.api.HealthCheckRequest
+	0,    // 844: client.api.Home.Login:input_type -> client.api.Empty
+	0,    // 845: client.api.Home.Enter:input_type -> client.api.Empty
+	0,    // 846: client.api.Home.ListEvent:input_type -> client.api.Empty
+	0,    // 847: client.api.Home.ConfirmBanWarning:input_type -> client.api.Empty
+	148,  // 848: client.api.Home.SetCharacters:input_type -> client.api.HomeSetCharactersRequest
+	156,  // 849: client.api.IdolCard.UpgradeLevelLimitRank:input_type -> client.api.IdolCardUpgradeLevelLimitRankRequest
+	158,  // 850: client.api.IdolCard.UpgradePotentialRank:input_type -> client.api.IdolCardUpgradePotentialRankRequest
+	154,  // 851: client.api.IdolCard.Release:input_type -> client.api.IdolCardReleaseRequest
+	150,  // 852: client.api.IdolCard.ChangeSkin:input_type -> client.api.IdolCardChangeSkinRequest
+	160,  // 853: client.api.Invitation.EnterInvitationCode:input_type -> client.api.InvitationEnterInvitationCodeRequest
+	0,    // 854: client.api.Invitation.ListInviteUser:input_type -> client.api.Empty
+	163,  // 855: client.api.Invitation.ReceiveInvitationPoint:input_type -> client.api.InvitationReceiveInvitationPointRequest
+	168,  // 856: client.api.Item.Sell:input_type -> client.api.ItemSellRequest
+	166,  // 857: client.api.Item.ExchangeIdolCardPiece:input_type -> client.api.ItemExchangeIdolCardPieceRequest
+	170,  // 858: client.api.Item.UseActionPointRecovery:input_type -> client.api.ItemUseActionPointRecoveryRequest
+	0,    // 859: client.api.LoginBonus.Check:input_type -> client.api.Empty
+	0,    // 860: client.api.LoginBonus.Confirm:input_type -> client.api.Empty
+	0,    // 861: client.api.Master.Get:input_type -> client.api.Empty
+	175,  // 862: client.api.Media.Play:input_type -> client.api.MediaPlayRequest
+	183,  // 863: client.api.Meishi.Get:input_type -> client.api.MeishiGetRequest
+	181,  // 864: client.api.Meishi.GetDetail:input_type -> client.api.MeishiGetDetailRequest
+	0,    // 865: client.api.Meishi.List:input_type -> client.api.Empty
+	0,    // 866: client.api.Meishi.ListFollow:input_type -> client.api.Empty
+	189,  // 867: client.api.Meishi.Set:input_type -> client.api.MeishiSetRequest
+	193,  // 868: client.api.Meishi.Update:input_type -> client.api.MeishiUpdateRequest
+	177,  // 869: client.api.Meishi.Delete:input_type -> client.api.MeishiDeleteRequest
+	179,  // 870: client.api.Meishi.Follow:input_type -> client.api.MeishiFollowRequest
+	191,  // 871: client.api.Meishi.Unfollow:input_type -> client.api.MeishiUnfollowRequest
+	187,  // 872: client.api.Meishi.ReportXPostMission:input_type -> client.api.MeishiReportXPostMissionRequest
+	199,  // 873: client.api.Memory.Inherit:input_type -> client.api.MemoryInheritRequest
+	197,  // 874: client.api.Memory.FixInherit:input_type -> client.api.MemoryFixInheritRequest
+	195,  // 875: client.api.Memory.Exchange:input_type -> client.api.MemoryExchangeRequest
+	203,  // 876: client.api.Memory.UpdateProtection:input_type -> client.api.MemoryUpdateProtectionRequest
+	205,  // 877: client.api.Memory.UpdateTagSetting:input_type -> client.api.MemoryUpdateTagSettingRequest
+	201,  // 878: client.api.Memory.Reshooting:input_type -> client.api.MemoryReshootingRequest
+	0,    // 879: client.api.Mission.ListEvent:input_type -> client.api.Empty
+	216,  // 880: client.api.Mission.Receive:input_type -> client.api.MissionReceiveRequest
+	212,  // 881: client.api.Mission.ReceiveGroup:input_type -> client.api.MissionReceiveGroupRequest
+	210,  // 882: client.api.Mission.ReceiveGroupAll:input_type -> client.api.MissionReceiveGroupAllRequest
+	214,  // 883: client.api.Mission.ReceivePass:input_type -> client.api.MissionReceivePassRequest
+	207,  // 884: client.api.Mission.ExchangePassPoint:input_type -> client.api.MissionExchangePassPointRequest
+	218,  // 885: client.api.Mission.UrlTransition:input_type -> client.api.MissionUrlTransitionRequest
+	0,    // 886: client.api.Money.Receive:input_type -> client.api.Empty
+	221,  // 887: client.api.Movie.Create:input_type -> client.api.MovieCreateRequest
+	223,  // 888: client.api.Movie.Delete:input_type -> client.api.MovieDeleteRequest
+	225,  // 889: client.api.Movie.Retake:input_type -> client.api.MovieRetakeRequest
+	227,  // 890: client.api.Music.SendActionLog:input_type -> client.api.MusicSendActionLogRequest
+	229,  // 891: client.api.Music.SendBuyActionLog:input_type -> client.api.MusicSendBuyActionLogRequest
+	0,    // 892: client.api.Notice.ListAll:input_type -> client.api.Empty
+	231,  // 893: client.api.Notice.FetchList:input_type -> client.api.NoticeFetchListRequest
+	233,  // 894: client.api.Notice.Get:input_type -> client.api.NoticeGetRequest
+	237,  // 895: client.api.Notice.UpdateCategoryTime:input_type -> client.api.NoticeUpdateCategoryTimeRequest
+	239,  // 896: client.api.Notice.UpdateDetailTime:input_type -> client.api.NoticeUpdateDetailTimeRequest
+	245,  // 897: client.api.Photo.Create:input_type -> client.api.PhotoCreateRequest
+	243,  // 898: client.api.Photo.CreateIdol:input_type -> client.api.PhotoCreateIdolRequest
+	241,  // 899: client.api.Photo.CreateByMemory:input_type -> client.api.PhotoCreateByMemoryRequest
+	249,  // 900: client.api.Photo.UpdateName:input_type -> client.api.PhotoUpdateNameRequest
+	251,  // 901: client.api.Photo.UpdateProtection:input_type -> client.api.PhotoUpdateProtectionRequest
+	247,  // 902: client.api.Photo.Delete:input_type -> client.api.PhotoDeleteRequest
+	253,  // 903: client.api.Preference.Update:input_type -> client.api.PreferenceUpdateRequest
+	0,    // 904: client.api.Produce.Top:input_type -> client.api.Empty
+	259,  // 905: client.api.Produce.ChangeForceLiveCommon:input_type -> client.api.ProduceChangeForceLiveCommonRequest
+	370,  // 906: client.api.Produce.UpdateSupportCardDeck:input_type -> client.api.ProduceUpdateSupportCardDeckRequest
+	367,  // 907: client.api.Produce.UpdateMemoryDeck:input_type -> client.api.ProduceUpdateMemoryDeckRequest
+	0,    // 908: client.api.Produce.ListRentalSupportCard:input_type -> client.api.Empty
+	284,  // 909: client.api.Produce.ListRentalMemory:input_type -> client.api.ProduceListRentalMemoryRequest
+	261,  // 910: client.api.Produce.CheckProgress:input_type -> client.api.ProduceCheckProgressRequest
+	315,  // 911: client.api.Produce.Start:input_type -> client.api.ProduceStartRequest
+	291,  // 912: client.api.Produce.Next:input_type -> client.api.ProduceNextRequest
+	361,  // 913: client.api.Produce.StepSkip:input_type -> client.api.ProduceStepSkipRequest
+	335,  // 914: client.api.Produce.StepEvent:input_type -> client.api.ProduceStepEventRequest
+	327,  // 915: client.api.Produce.StepBusinessStart:input_type -> client.api.ProduceStepBusinessStartRequest
+	325,  // 916: client.api.Produce.StepBusinessSelect:input_type -> client.api.ProduceStepBusinessSelectRequest
+	333,  // 917: client.api.Produce.StepCustomizeStart:input_type -> client.api.ProduceStepCustomizeStartRequest
+	331,  // 918: client.api.Produce.StepCustomizeSelect:input_type -> client.api.ProduceStepCustomizeSelectRequest
+	329,  // 919: client.api.Produce.StepCustomizeEnd:input_type -> client.api.ProduceStepCustomizeEndRequest
+	347,  // 920: client.api.Produce.StepRefresh:input_type -> client.api.ProduceStepRefreshRequest
+	359,  // 921: client.api.Produce.StepShopStart:input_type -> client.api.ProduceStepShopStartRequest
+	357,  // 922: client.api.Produce.StepShopReroll:input_type -> client.api.ProduceStepShopRerollRequest
+	353,  // 923: client.api.Produce.StepShopBuy:input_type -> client.api.ProduceStepShopBuyRequest
+	355,  // 924: client.api.Produce.StepShopEnd:input_type -> client.api.ProduceStepShopEndRequest
+	345,  // 925: client.api.Produce.StepPresentStart:input_type -> client.api.ProduceStepPresentStartRequest
+	343,  // 926: client.api.Produce.StepPresentReceive:input_type -> client.api.ProduceStepPresentReceiveRequest
+	341,  // 927: client.api.Produce.StepPresentEnd:input_type -> client.api.ProduceStepPresentEndRequest
+	339,  // 928: client.api.Produce.StepLessonStart:input_type -> client.api.ProduceStepLessonStartRequest
+	337,  // 929: client.api.Produce.StepLessonEnd:input_type -> client.api.ProduceStepLessonEndRequest
+	351,  // 930: client.api.Produce.StepSelfLessonStart:input_type -> client.api.ProduceStepSelfLessonStartRequest
+	349,  // 931: client.api.Produce.StepSelfLessonEnd:input_type -> client.api.ProduceStepSelfLessonEndRequest
+	321,  // 932: client.api.Produce.StepAuditionRefresh:input_type -> client.api.ProduceStepAuditionRefreshRequest
+	323,  // 933: client.api.Produce.StepAuditionStart:input_type -> client.api.ProduceStepAuditionStartRequest
+	317,  // 934: client.api.Produce.StepAuditionEndExamBattle:input_type -> client.api.ProduceStepAuditionEndExamBattleRequest
+	319,  // 935: client.api.Produce.StepAuditionEnd:input_type -> client.api.ProduceStepAuditionEndRequest
+	265,  // 936: client.api.Produce.DiscardDrink:input_type -> client.api.ProduceDiscardDrinkRequest
+	308,  // 937: client.api.Produce.RerollSelectProduceCard:input_type -> client.api.ProduceRerollSelectProduceCardRequest
+	271,  // 938: client.api.Produce.ExcludeProduceCard:input_type -> client.api.ProduceExcludeProduceCardRequest
+	255,  // 939: client.api.Produce.ActivateEffect:input_type -> client.api.ProduceActivateEffectRequest
+	300,  // 940: client.api.Produce.ReadDearnessStory:input_type -> client.api.ProduceReadDearnessStoryRequest
+	298,  // 941: client.api.Produce.ReadAdv:input_type -> client.api.ProduceReadAdvRequest
+	313,  // 942: client.api.Produce.StartBeforeLiveEvaluation:input_type -> client.api.ProduceStartBeforeLiveEvaluationRequest
+	267,  // 943: client.api.Produce.EndBeforeLiveEvaluation:input_type -> client.api.ProduceEndBeforeLiveEvaluationRequest
+	306,  // 944: client.api.Produce.RerollMemory:input_type -> client.api.ProduceRerollMemoryRequest
+	269,  // 945: client.api.Produce.End:input_type -> client.api.ProduceEndRequest
+	310,  // 946: client.api.Produce.Result:input_type -> client.api.ProduceResultRequest
+	304,  // 947: client.api.Produce.ReportGuildMission:input_type -> client.api.ProduceReportGuildMissionRequest
+	302,  // 948: client.api.Produce.ReportDearnessBoostEvent:input_type -> client.api.ProduceReportDearnessBoostEventRequest
+	263,  // 949: client.api.Produce.Continue:input_type -> client.api.ProduceContinueRequest
+	0,    // 950: client.api.Produce.Retire:input_type -> client.api.Empty
+	282,  // 951: client.api.Produce.History:input_type -> client.api.ProduceHistoryRequest
+	296,  // 952: client.api.Produce.RankingTop:input_type -> client.api.ProduceRankingTopRequest
+	294,  // 953: client.api.Produce.Ranking:input_type -> client.api.ProduceRankingRequest
+	257,  // 954: client.api.Produce.ChangeCostume:input_type -> client.api.ProduceChangeCostumeRequest
+	373,  // 955: client.api.Produce.ViewPictureBookLive:input_type -> client.api.ProduceViewPictureBookLiveRequest
+	364,  // 956: client.api.Produce.UnlockPictureBookLive:input_type -> client.api.ProduceUnlockPictureBookLiveRequest
+	0,    // 957: client.api.ProduceHighScore.Get:input_type -> client.api.Empty
+	278,  // 958: client.api.ProduceHighScore.Ranking:input_type -> client.api.ProduceHighScoreRankingRequest
+	0,    // 959: client.api.ProduceHighScore.ListRankReward:input_type -> client.api.Empty
+	289,  // 960: client.api.ProduceNextIdolAuditionMaster.Ranking:input_type -> client.api.ProduceNextIdolAuditionMasterRankingRequest
+	287,  // 961: client.api.ProduceNextIdolAuditionMaster.ListRankReward:input_type -> client.api.ProduceNextIdolAuditionMasterListRankRewardRequest
+	376,  // 962: client.api.Profile.Get:input_type -> client.api.ProfileGetRequest
+	384,  // 963: client.api.Profile.UpdateName:input_type -> client.api.ProfileUpdateNameRequest
+	380,  // 964: client.api.Profile.UpdateComment:input_type -> client.api.ProfileUpdateCommentRequest
+	378,  // 965: client.api.Profile.UpdateBirthday:input_type -> client.api.ProfileUpdateBirthdayRequest
+	386,  // 966: client.api.Profile.UpdateSupportCard:input_type -> client.api.ProfileUpdateSupportCardRequest
+	382,  // 967: client.api.Profile.UpdateMemory:input_type -> client.api.ProfileUpdateMemoryRequest
+	0,    // 968: client.api.PvpRate.Initialize:input_type -> client.api.Empty
+	0,    // 969: client.api.PvpRate.Get:input_type -> client.api.Empty
+	403,  // 970: client.api.PvpRate.Start:input_type -> client.api.PvpRateStartRequest
+	0,    // 971: client.api.PvpRate.PlayExamBattle:input_type -> client.api.Empty
+	388,  // 972: client.api.PvpRate.End:input_type -> client.api.PvpRateEndRequest
+	0,    // 973: client.api.PvpRate.PlayTest:input_type -> client.api.Empty
+	0,    // 974: client.api.PvpRate.ListRanking:input_type -> client.api.Empty
+	0,    // 975: client.api.PvpRate.ListHistory:input_type -> client.api.Empty
+	390,  // 976: client.api.PvpRate.GetHistory:input_type -> client.api.PvpRateGetHistoryRequest
+	406,  // 977: client.api.PvpRate.UpdateUserPvpRateUnit:input_type -> client.api.PvpRateUpdateUserPvpRateUnitRequest
+	0,    // 978: client.api.Seminar.ListExam:input_type -> client.api.Empty
+	410,  // 979: client.api.Seminar.GetExam:input_type -> client.api.SeminarGetExamRequest
+	408,  // 980: client.api.Seminar.EndExam:input_type -> client.api.SeminarEndExamRequest
+	0,    // 981: client.api.Shop.Top:input_type -> client.api.Empty
+	420,  // 982: client.api.Shop.ListItems:input_type -> client.api.ShopListItemsRequest
+	424,  // 983: client.api.Shop.Purchase:input_type -> client.api.ShopPurchaseRequest
+	415,  // 984: client.api.Shop.CheckPurchaseJewel:input_type -> client.api.ShopCheckPurchaseJewelRequest
+	428,  // 985: client.api.Shop.RegisterBirthday:input_type -> client.api.ShopRegisterBirthdayRequest
+	432,  // 986: client.api.Shop.RegisterPurchaseTransaction:input_type -> client.api.ShopRegisterPurchaseTransactionRequest
+	413,  // 987: client.api.Shop.CancelPurchaseTransaction:input_type -> client.api.ShopCancelPurchaseTransactionRequest
+	422,  // 988: client.api.Shop.PurchaseJewel:input_type -> client.api.ShopPurchaseJewelRequest
+	426,  // 989: client.api.Shop.RecoverPurchaseJewel:input_type -> client.api.ShopRecoverPurchaseJewelRequest
+	430,  // 990: client.api.Shop.RegisterDelayPurchaseTransaction:input_type -> client.api.ShopRegisterDelayPurchaseTransactionRequest
+	417,  // 991: client.api.Shop.GetPurchasePlatformTransaction:input_type -> client.api.ShopGetPurchasePlatformTransactionRequest
+	437,  // 992: client.api.Startup.ListNotifications:input_type -> client.api.StartupListNotificationsRequest
+	435,  // 993: client.api.Startup.Confirm:input_type -> client.api.StartupConfirmRequest
+	444,  // 994: client.api.StoryEvent.Top:input_type -> client.api.StoryEventTopRequest
+	440,  // 995: client.api.StoryEvent.ListGuildMission:input_type -> client.api.StoryEventListGuildMissionRequest
+	442,  // 996: client.api.StoryEvent.ReceiveGuildMission:input_type -> client.api.StoryEventReceiveGuildMissionRequest
+	450,  // 997: client.api.Story.Read:input_type -> client.api.StoryReadRequest
+	448,  // 998: client.api.Story.ReadProduceStory:input_type -> client.api.StoryReadProduceStoryRequest
+	446,  // 999: client.api.Story.ReadDearnessStory:input_type -> client.api.StoryReadDearnessStoryRequest
+	456,  // 1000: client.api.Story.Unlock:input_type -> client.api.StoryUnlockRequest
+	454,  // 1001: client.api.Story.UnlockProduceStory:input_type -> client.api.StoryUnlockProduceStoryRequest
+	452,  // 1002: client.api.Story.UnlockDearnessStory:input_type -> client.api.StoryUnlockDearnessStoryRequest
+	458,  // 1003: client.api.SupportCard.Enhance:input_type -> client.api.SupportCardEnhanceRequest
+	465,  // 1004: client.api.SupportCard.UpgradeLevelLimitRank:input_type -> client.api.SupportCardUpgradeLevelLimitRankRequest
+	460,  // 1005: client.api.SupportCard.Exchange:input_type -> client.api.SupportCardExchangeRequest
+	0,    // 1006: client.api.SupportCard.ListDeckRanking:input_type -> client.api.Empty
+	467,  // 1007: client.api.System.Check:input_type -> client.api.SystemCheckRequest
+	472,  // 1008: client.api.TicketExchange.ListItems:input_type -> client.api.TicketExchangeListItemsRequest
+	469,  // 1009: client.api.TicketExchange.Execute:input_type -> client.api.TicketExchangeExecuteRequest
+	0,    // 1010: client.api.Tower.Top:input_type -> client.api.Empty
+	496,  // 1011: client.api.Tower.ListLayers:input_type -> client.api.TowerListLayersRequest
+	482,  // 1012: client.api.Tower.GetLayer:input_type -> client.api.TowerGetLayerRequest
+	506,  // 1013: client.api.Tower.Start:input_type -> client.api.TowerStartRequest
+	476,  // 1014: client.api.Tower.End:input_type -> client.api.TowerEndRequest
+	474,  // 1015: client.api.Tower.Check:input_type -> client.api.TowerCheckRequest
+	509,  // 1016: client.api.Tower.UpdateMemoryDeck:input_type -> client.api.TowerUpdateMemoryDeckRequest
+	502,  // 1017: client.api.Tower.ReceiveLayerCountReward:input_type -> client.api.TowerReceiveLayerCountRewardRequest
+	504,  // 1018: client.api.Tower.ReceiveTotalClearRankReward:input_type -> client.api.TowerReceiveTotalClearRankRewardRequest
+	494,  // 1019: client.api.Tower.ListLayerPlayerHistories:input_type -> client.api.TowerListLayerPlayerHistoriesRequest
+	492,  // 1020: client.api.Tower.GetRanking:input_type -> client.api.TowerGetRankingRequest
+	488,  // 1021: client.api.Tower.GetPastSeasonRanking:input_type -> client.api.TowerGetPastSeasonRankingRequest
+	478,  // 1022: client.api.Tower.GetLayerIdolCardRanking:input_type -> client.api.TowerGetLayerIdolCardRankingRequest
+	484,  // 1023: client.api.Tower.GetPastSeasonLayerIdolCardRanking:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
+	480,  // 1024: client.api.Tower.GetLayerIdolCardRankingTop:input_type -> client.api.TowerGetLayerIdolCardRankingTopRequest
+	486,  // 1025: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
+	490,  // 1026: client.api.Tower.GetRankingDeck:input_type -> client.api.TowerGetRankingDeckRequest
+	534,  // 1027: client.api.Tutorial.UnlockFeature:input_type -> client.api.TutorialUnlockFeatureRequest
+	530,  // 1028: client.api.Tutorial.SetName:input_type -> client.api.TutorialSetNameRequest
+	524,  // 1029: client.api.Tutorial.Progress:input_type -> client.api.TutorialProgressRequest
+	532,  // 1030: client.api.Tutorial.Skip:input_type -> client.api.TutorialSkipRequest
+	526,  // 1031: client.api.Tutorial.ReadDearnessStory:input_type -> client.api.TutorialReadDearnessStoryRequest
+	528,  // 1032: client.api.Tutorial.ReceiveIdolCard:input_type -> client.api.TutorialReceiveIdolCardRequest
+	515,  // 1033: client.api.Tutorial.ProduceStart:input_type -> client.api.TutorialProduceStartRequest
+	0,    // 1034: client.api.Tutorial.ProduceNext:input_type -> client.api.Empty
+	520,  // 1035: client.api.Tutorial.ProduceStepLessonEnd:input_type -> client.api.TutorialProduceStepLessonEndRequest
+	522,  // 1036: client.api.Tutorial.ProduceStepPresentReceive:input_type -> client.api.TutorialProduceStepPresentReceiveRequest
+	518,  // 1037: client.api.Tutorial.ProduceStepAuditionExamEnd:input_type -> client.api.TutorialProduceStepAuditionExamEndRequest
+	0,    // 1038: client.api.Tutorial.ProduceStepAuditionEnd:input_type -> client.api.Empty
+	0,    // 1039: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:input_type -> client.api.Empty
+	513,  // 1040: client.api.Tutorial.ProduceResult:input_type -> client.api.TutorialProduceResultRequest
+	0,    // 1041: client.api.User.Get:input_type -> client.api.Empty
+	537,  // 1042: client.api.User.ListMessage:input_type -> client.api.UserListMessageRequest
+	539,  // 1043: client.api.User.ReadMessage:input_type -> client.api.UserReadMessageRequest
+	0,    // 1044: client.api.Work.Top:input_type -> client.api.Empty
+	545,  // 1045: client.api.Work.Start:input_type -> client.api.WorkStartRequest
+	547,  // 1046: client.api.Work.Stop:input_type -> client.api.WorkStopRequest
+	543,  // 1047: client.api.Work.Skip:input_type -> client.api.WorkSkipRequest
+	0,    // 1048: client.api.Work.Finish:input_type -> client.api.Empty
+	3,    // 1049: client.api.Auth.Create:output_type -> client.api.AuthCreateResponse
+	8,    // 1050: client.api.Auth.Login:output_type -> client.api.AuthLoginResponse
+	6,    // 1051: client.api.Auth.LinkBandaiNamcoId:output_type -> client.api.AuthLinkBandaiNamcoIdResponse
+	16,   // 1052: client.api.Auth.Unlink:output_type -> client.api.AuthUnlinkResponse
+	13,   // 1053: client.api.Auth.PrepareMigrationBandaiNamcoId:output_type -> client.api.AuthPrepareMigrationBandaiNamcoIdResponse
+	11,   // 1054: client.api.Auth.Migrate:output_type -> client.api.AuthMigrateResponse
+	9,    // 1055: client.api.Auth.MigrateDmmGamesId:output_type -> client.api.AuthMigrateDmmGamesIdResponse
+	2,    // 1056: client.api.Auth.AgreeTerms:output_type -> client.api.AuthAgreeTermsResponse
+	4,    // 1057: client.api.Auth.GetConsent:output_type -> client.api.AuthGetConsentResponse
+	15,   // 1058: client.api.Auth.SendConsent:output_type -> client.api.AuthSendConsentResponse
+	18,   // 1059: client.api.Character.CheckRoster:output_type -> client.api.CharacterCheckRosterResponse
+	23,   // 1060: client.api.CoinGasha.Get:output_type -> client.api.CoinGashaGetResponse
+	24,   // 1061: client.api.CoinGasha.List:output_type -> client.api.CoinGashaListResponse
+	20,   // 1062: client.api.CoinGasha.Draw:output_type -> client.api.CoinGashaDrawResponse
+	26,   // 1063: client.api.CoinGasha.ResetBox:output_type -> client.api.CoinGashaResetBoxResponse
+	31,   // 1064: client.api.Costume.Set:output_type -> client.api.CostumeSetResponse
+	29,   // 1065: client.api.Costume.Check:output_type -> client.api.CostumeCheckResponse
+	37,   // 1066: client.api.Exchange.Get:output_type -> client.api.ExchangeGetResponse
+	41,   // 1067: client.api.Exchange.List:output_type -> client.api.ExchangeListResponse
+	35,   // 1068: client.api.Exchange.Execute:output_type -> client.api.ExchangeExecuteResponse
+	43,   // 1069: client.api.Exchange.Reset:output_type -> client.api.ExchangeResetResponse
+	49,   // 1070: client.api.Friend.List:output_type -> client.api.FriendListResponse
+	50,   // 1071: client.api.Friend.ListSuggestion:output_type -> client.api.FriendListSuggestionResponse
+	47,   // 1072: client.api.Friend.Follow:output_type -> client.api.FriendFollowResponse
+	52,   // 1073: client.api.Friend.UnFollow:output_type -> client.api.FriendUnFollowResponse
+	45,   // 1074: client.api.Friend.DeleteFollower:output_type -> client.api.FriendDeleteFollowerResponse
+	73,   // 1075: client.api.Gasha.List:output_type -> client.api.GashaListResponse
+	54,   // 1076: client.api.Gasha.Draw:output_type -> client.api.GashaDrawResponse
+	68,   // 1077: client.api.Gasha.GetProbability:output_type -> client.api.GashaGetProbabilityResponse
+	77,   // 1078: client.api.Gasha.SelectPickup:output_type -> client.api.GashaSelectPickupResponse
+	57,   // 1079: client.api.Gasha.DrawSelectPickup:output_type -> client.api.GashaDrawSelectPickupResponse
+	70,   // 1080: client.api.Gasha.GetSelectPickupProbability:output_type -> client.api.GashaGetSelectPickupProbabilityResponse
+	59,   // 1081: client.api.Gasha.DrawStepUp:output_type -> client.api.GashaDrawStepUpResponse
+	72,   // 1082: client.api.Gasha.GetStepUpProbability:output_type -> client.api.GashaGetStepUpProbabilityResponse
+	64,   // 1083: client.api.Gasha.GetPointExchange:output_type -> client.api.GashaGetPointExchangeResponse
+	61,   // 1084: client.api.Gasha.ExchangePoint:output_type -> client.api.GashaExchangePointResponse
+	62,   // 1085: client.api.Gasha.ExpirePoint:output_type -> client.api.GashaExpirePointResponse
+	66,   // 1086: client.api.Gasha.GetPrecaution:output_type -> client.api.GashaGetPrecautionResponse
+	82,   // 1087: client.api.Gift.List:output_type -> client.api.GiftListResponse
+	78,   // 1088: client.api.Gift.Count:output_type -> client.api.GiftCountResponse
+	80,   // 1089: client.api.Gift.ListHistory:output_type -> client.api.GiftListHistoryResponse
+	84,   // 1090: client.api.Gift.Open:output_type -> client.api.GiftOpenResponse
+	121,  // 1091: client.api.Guild.Top:output_type -> client.api.GuildTopResponse
+	120,  // 1092: client.api.Guild.Search:output_type -> client.api.GuildSearchResponse
+	106,  // 1093: client.api.Guild.Get:output_type -> client.api.GuildGetResponse
+	104,  // 1094: client.api.Guild.Establish:output_type -> client.api.GuildEstablishResponse
+	100,  // 1095: client.api.Guild.EditDetail:output_type -> client.api.GuildEditDetailResponse
+	102,  // 1096: client.api.Guild.EditLeaderMessage:output_type -> client.api.GuildEditLeaderMessageResponse
+	86,   // 1097: client.api.Guild.ApplyJoinRequest:output_type -> client.api.GuildApplyJoinRequestResponse
+	90,   // 1098: client.api.Guild.CancelJoinRequest:output_type -> client.api.GuildCancelJoinRequestResponse
+	110,  // 1099: client.api.Guild.ListJoinRequest:output_type -> client.api.GuildListJoinRequestResponse
+	88,   // 1100: client.api.Guild.ApproveJoinRequest:output_type -> client.api.GuildApproveJoinRequestResponse
+	116,  // 1101: client.api.Guild.RejectJoinRequest:output_type -> client.api.GuildRejectJoinRequestResponse
+	108,  // 1102: client.api.Guild.Leave:output_type -> client.api.GuildLeaveResponse
+	94,   // 1103: client.api.Guild.Dismiss:output_type -> client.api.GuildDismissResponse
+	92,   // 1104: client.api.Guild.ChangeLeader:output_type -> client.api.GuildChangeLeaderResponse
+	111,  // 1105: client.api.Guild.ListMember:output_type -> client.api.GuildListMemberResponse
+	95,   // 1106: client.api.Guild.Dissolve:output_type -> client.api.GuildDissolveResponse
+	109,  // 1107: client.api.Guild.ListDonationRequest:output_type -> client.api.GuildListDonationRequestResponse
+	118,  // 1108: client.api.Guild.RequestDonation:output_type -> client.api.GuildRequestDonationResponse
+	97,   // 1109: client.api.Guild.Donate:output_type -> client.api.GuildDonateResponse
+	114,  // 1110: client.api.Guild.ReceiveDonation:output_type -> client.api.GuildReceiveDonationResponse
+	123,  // 1111: client.api.Guild.UpdateLeaderMessageReaction:output_type -> client.api.GuildUpdateLeaderMessageReactionResponse
+	137,  // 1112: client.api.GvgRaid.Top:output_type -> client.api.GvgRaidTopResponse
+	127,  // 1113: client.api.GvgRaid.GetProgress:output_type -> client.api.GvgRaidGetProgressResponse
+	136,  // 1114: client.api.GvgRaid.Start:output_type -> client.api.GvgRaidStartResponse
+	126,  // 1115: client.api.GvgRaid.End:output_type -> client.api.GvgRaidEndResponse
+	131,  // 1116: client.api.GvgRaid.PlayTest:output_type -> client.api.GvgRaidPlayTestResponse
+	129,  // 1117: client.api.GvgRaid.GuildRanking:output_type -> client.api.GvgRaidGuildRankingResponse
+	141,  // 1118: client.api.GvgRaid.UserRanking:output_type -> client.api.GvgRaidUserRankingResponse
+	139,  // 1119: client.api.GvgRaid.UpdateDeck:output_type -> client.api.GvgRaidUpdateDeckResponse
+	143,  // 1120: client.api.Health.Check:output_type -> client.api.HealthCheckResponse
+	147,  // 1121: client.api.Home.Login:output_type -> client.api.HomeLoginResponse
+	145,  // 1122: client.api.Home.Enter:output_type -> client.api.HomeEnterResponse
+	146,  // 1123: client.api.Home.ListEvent:output_type -> client.api.HomeListEventResponse
+	144,  // 1124: client.api.Home.ConfirmBanWarning:output_type -> client.api.HomeConfirmBanWarningResponse
+	149,  // 1125: client.api.Home.SetCharacters:output_type -> client.api.HomeSetCharactersResponse
+	157,  // 1126: client.api.IdolCard.UpgradeLevelLimitRank:output_type -> client.api.IdolCardUpgradeLevelLimitRankResponse
+	159,  // 1127: client.api.IdolCard.UpgradePotentialRank:output_type -> client.api.IdolCardUpgradePotentialRankResponse
+	155,  // 1128: client.api.IdolCard.Release:output_type -> client.api.IdolCardReleaseResponse
+	151,  // 1129: client.api.IdolCard.ChangeSkin:output_type -> client.api.IdolCardChangeSkinResponse
+	161,  // 1130: client.api.Invitation.EnterInvitationCode:output_type -> client.api.InvitationEnterInvitationCodeResponse
+	162,  // 1131: client.api.Invitation.ListInviteUser:output_type -> client.api.InvitationListInviteUserResponse
+	164,  // 1132: client.api.Invitation.ReceiveInvitationPoint:output_type -> client.api.InvitationReceiveInvitationPointResponse
+	169,  // 1133: client.api.Item.Sell:output_type -> client.api.ItemSellResponse
+	167,  // 1134: client.api.Item.ExchangeIdolCardPiece:output_type -> client.api.ItemExchangeIdolCardPieceResponse
+	171,  // 1135: client.api.Item.UseActionPointRecovery:output_type -> client.api.ItemUseActionPointRecoveryResponse
+	172,  // 1136: client.api.LoginBonus.Check:output_type -> client.api.LoginBonusCheckResponse
+	173,  // 1137: client.api.LoginBonus.Confirm:output_type -> client.api.LoginBonusConfirmResponse
+	174,  // 1138: client.api.Master.Get:output_type -> client.api.MasterGetResponse
+	176,  // 1139: client.api.Media.Play:output_type -> client.api.MediaPlayResponse
+	184,  // 1140: client.api.Meishi.Get:output_type -> client.api.MeishiGetResponse
+	182,  // 1141: client.api.Meishi.GetDetail:output_type -> client.api.MeishiGetDetailResponse
+	186,  // 1142: client.api.Meishi.List:output_type -> client.api.MeishiListResponse
+	185,  // 1143: client.api.Meishi.ListFollow:output_type -> client.api.MeishiListFollowResponse
+	190,  // 1144: client.api.Meishi.Set:output_type -> client.api.MeishiSetResponse
+	194,  // 1145: client.api.Meishi.Update:output_type -> client.api.MeishiUpdateResponse
+	178,  // 1146: client.api.Meishi.Delete:output_type -> client.api.MeishiDeleteResponse
+	180,  // 1147: client.api.Meishi.Follow:output_type -> client.api.MeishiFollowResponse
+	192,  // 1148: client.api.Meishi.Unfollow:output_type -> client.api.MeishiUnfollowResponse
+	188,  // 1149: client.api.Meishi.ReportXPostMission:output_type -> client.api.MeishiReportXPostMissionResponse
+	200,  // 1150: client.api.Memory.Inherit:output_type -> client.api.MemoryInheritResponse
+	198,  // 1151: client.api.Memory.FixInherit:output_type -> client.api.MemoryFixInheritResponse
+	196,  // 1152: client.api.Memory.Exchange:output_type -> client.api.MemoryExchangeResponse
+	204,  // 1153: client.api.Memory.UpdateProtection:output_type -> client.api.MemoryUpdateProtectionResponse
+	206,  // 1154: client.api.Memory.UpdateTagSetting:output_type -> client.api.MemoryUpdateTagSettingResponse
+	202,  // 1155: client.api.Memory.Reshooting:output_type -> client.api.MemoryReshootingResponse
+	209,  // 1156: client.api.Mission.ListEvent:output_type -> client.api.MissionListEventResponse
+	217,  // 1157: client.api.Mission.Receive:output_type -> client.api.MissionReceiveResponse
+	213,  // 1158: client.api.Mission.ReceiveGroup:output_type -> client.api.MissionReceiveGroupResponse
+	211,  // 1159: client.api.Mission.ReceiveGroupAll:output_type -> client.api.MissionReceiveGroupAllResponse
+	215,  // 1160: client.api.Mission.ReceivePass:output_type -> client.api.MissionReceivePassResponse
+	208,  // 1161: client.api.Mission.ExchangePassPoint:output_type -> client.api.MissionExchangePassPointResponse
+	219,  // 1162: client.api.Mission.UrlTransition:output_type -> client.api.MissionUrlTransitionResponse
+	220,  // 1163: client.api.Money.Receive:output_type -> client.api.MoneyReceiveResponse
+	222,  // 1164: client.api.Movie.Create:output_type -> client.api.MovieCreateResponse
+	224,  // 1165: client.api.Movie.Delete:output_type -> client.api.MovieDeleteResponse
+	226,  // 1166: client.api.Movie.Retake:output_type -> client.api.MovieRetakeResponse
+	228,  // 1167: client.api.Music.SendActionLog:output_type -> client.api.MusicSendActionLogResponse
+	230,  // 1168: client.api.Music.SendBuyActionLog:output_type -> client.api.MusicSendBuyActionLogResponse
+	236,  // 1169: client.api.Notice.ListAll:output_type -> client.api.NoticeListAllResponse
+	232,  // 1170: client.api.Notice.FetchList:output_type -> client.api.NoticeFetchListResponse
+	234,  // 1171: client.api.Notice.Get:output_type -> client.api.NoticeGetResponse
+	238,  // 1172: client.api.Notice.UpdateCategoryTime:output_type -> client.api.NoticeUpdateCategoryTimeResponse
+	240,  // 1173: client.api.Notice.UpdateDetailTime:output_type -> client.api.NoticeUpdateDetailTimeResponse
+	246,  // 1174: client.api.Photo.Create:output_type -> client.api.PhotoCreateResponse
+	244,  // 1175: client.api.Photo.CreateIdol:output_type -> client.api.PhotoCreateIdolResponse
+	242,  // 1176: client.api.Photo.CreateByMemory:output_type -> client.api.PhotoCreateByMemoryResponse
+	250,  // 1177: client.api.Photo.UpdateName:output_type -> client.api.PhotoUpdateNameResponse
+	252,  // 1178: client.api.Photo.UpdateProtection:output_type -> client.api.PhotoUpdateProtectionResponse
+	248,  // 1179: client.api.Photo.Delete:output_type -> client.api.PhotoDeleteResponse
+	254,  // 1180: client.api.Preference.Update:output_type -> client.api.PreferenceUpdateResponse
+	363,  // 1181: client.api.Produce.Top:output_type -> client.api.ProduceTopResponse
+	260,  // 1182: client.api.Produce.ChangeForceLiveCommon:output_type -> client.api.ProduceChangeForceLiveCommonResponse
+	371,  // 1183: client.api.Produce.UpdateSupportCardDeck:output_type -> client.api.ProduceUpdateSupportCardDeckResponse
+	368,  // 1184: client.api.Produce.UpdateMemoryDeck:output_type -> client.api.ProduceUpdateMemoryDeckResponse
+	286,  // 1185: client.api.Produce.ListRentalSupportCard:output_type -> client.api.ProduceListRentalSupportCardResponse
+	285,  // 1186: client.api.Produce.ListRentalMemory:output_type -> client.api.ProduceListRentalMemoryResponse
+	262,  // 1187: client.api.Produce.CheckProgress:output_type -> client.api.ProduceCheckProgressResponse
+	316,  // 1188: client.api.Produce.Start:output_type -> client.api.ProduceStartResponse
+	292,  // 1189: client.api.Produce.Next:output_type -> client.api.ProduceNextResponse
+	362,  // 1190: client.api.Produce.StepSkip:output_type -> client.api.ProduceStepSkipResponse
+	336,  // 1191: client.api.Produce.StepEvent:output_type -> client.api.ProduceStepEventResponse
+	328,  // 1192: client.api.Produce.StepBusinessStart:output_type -> client.api.ProduceStepBusinessStartResponse
+	326,  // 1193: client.api.Produce.StepBusinessSelect:output_type -> client.api.ProduceStepBusinessSelectResponse
+	334,  // 1194: client.api.Produce.StepCustomizeStart:output_type -> client.api.ProduceStepCustomizeStartResponse
+	332,  // 1195: client.api.Produce.StepCustomizeSelect:output_type -> client.api.ProduceStepCustomizeSelectResponse
+	330,  // 1196: client.api.Produce.StepCustomizeEnd:output_type -> client.api.ProduceStepCustomizeEndResponse
+	348,  // 1197: client.api.Produce.StepRefresh:output_type -> client.api.ProduceStepRefreshResponse
+	360,  // 1198: client.api.Produce.StepShopStart:output_type -> client.api.ProduceStepShopStartResponse
+	358,  // 1199: client.api.Produce.StepShopReroll:output_type -> client.api.ProduceStepShopRerollResponse
+	354,  // 1200: client.api.Produce.StepShopBuy:output_type -> client.api.ProduceStepShopBuyResponse
+	356,  // 1201: client.api.Produce.StepShopEnd:output_type -> client.api.ProduceStepShopEndResponse
+	346,  // 1202: client.api.Produce.StepPresentStart:output_type -> client.api.ProduceStepPresentStartResponse
+	344,  // 1203: client.api.Produce.StepPresentReceive:output_type -> client.api.ProduceStepPresentReceiveResponse
+	342,  // 1204: client.api.Produce.StepPresentEnd:output_type -> client.api.ProduceStepPresentEndResponse
+	340,  // 1205: client.api.Produce.StepLessonStart:output_type -> client.api.ProduceStepLessonStartResponse
+	338,  // 1206: client.api.Produce.StepLessonEnd:output_type -> client.api.ProduceStepLessonEndResponse
+	352,  // 1207: client.api.Produce.StepSelfLessonStart:output_type -> client.api.ProduceStepSelfLessonStartResponse
+	350,  // 1208: client.api.Produce.StepSelfLessonEnd:output_type -> client.api.ProduceStepSelfLessonEndResponse
+	322,  // 1209: client.api.Produce.StepAuditionRefresh:output_type -> client.api.ProduceStepAuditionRefreshResponse
+	324,  // 1210: client.api.Produce.StepAuditionStart:output_type -> client.api.ProduceStepAuditionStartResponse
+	318,  // 1211: client.api.Produce.StepAuditionEndExamBattle:output_type -> client.api.ProduceStepAuditionEndExamBattleResponse
+	320,  // 1212: client.api.Produce.StepAuditionEnd:output_type -> client.api.ProduceStepAuditionEndResponse
+	266,  // 1213: client.api.Produce.DiscardDrink:output_type -> client.api.ProduceDiscardDrinkResponse
+	309,  // 1214: client.api.Produce.RerollSelectProduceCard:output_type -> client.api.ProduceRerollSelectProduceCardResponse
+	272,  // 1215: client.api.Produce.ExcludeProduceCard:output_type -> client.api.ProduceExcludeProduceCardResponse
+	256,  // 1216: client.api.Produce.ActivateEffect:output_type -> client.api.ProduceActivateEffectResponse
+	301,  // 1217: client.api.Produce.ReadDearnessStory:output_type -> client.api.ProduceReadDearnessStoryResponse
+	299,  // 1218: client.api.Produce.ReadAdv:output_type -> client.api.ProduceReadAdvResponse
+	314,  // 1219: client.api.Produce.StartBeforeLiveEvaluation:output_type -> client.api.ProduceStartBeforeLiveEvaluationResponse
+	268,  // 1220: client.api.Produce.EndBeforeLiveEvaluation:output_type -> client.api.ProduceEndBeforeLiveEvaluationResponse
+	307,  // 1221: client.api.Produce.RerollMemory:output_type -> client.api.ProduceRerollMemoryResponse
+	270,  // 1222: client.api.Produce.End:output_type -> client.api.ProduceEndResponse
+	311,  // 1223: client.api.Produce.Result:output_type -> client.api.ProduceResultResponse
+	305,  // 1224: client.api.Produce.ReportGuildMission:output_type -> client.api.ProduceReportGuildMissionResponse
+	303,  // 1225: client.api.Produce.ReportDearnessBoostEvent:output_type -> client.api.ProduceReportDearnessBoostEventResponse
+	264,  // 1226: client.api.Produce.Continue:output_type -> client.api.ProduceContinueResponse
+	312,  // 1227: client.api.Produce.Retire:output_type -> client.api.ProduceRetireResponse
+	283,  // 1228: client.api.Produce.History:output_type -> client.api.ProduceHistoryResponse
+	297,  // 1229: client.api.Produce.RankingTop:output_type -> client.api.ProduceRankingTopResponse
+	295,  // 1230: client.api.Produce.Ranking:output_type -> client.api.ProduceRankingResponse
+	258,  // 1231: client.api.Produce.ChangeCostume:output_type -> client.api.ProduceChangeCostumeResponse
+	374,  // 1232: client.api.Produce.ViewPictureBookLive:output_type -> client.api.ProduceViewPictureBookLiveResponse
+	365,  // 1233: client.api.Produce.UnlockPictureBookLive:output_type -> client.api.ProduceUnlockPictureBookLiveResponse
+	275,  // 1234: client.api.ProduceHighScore.Get:output_type -> client.api.ProduceHighScoreGetResponse
+	279,  // 1235: client.api.ProduceHighScore.Ranking:output_type -> client.api.ProduceHighScoreRankingResponse
+	276,  // 1236: client.api.ProduceHighScore.ListRankReward:output_type -> client.api.ProduceHighScoreListRankRewardResponse
+	290,  // 1237: client.api.ProduceNextIdolAuditionMaster.Ranking:output_type -> client.api.ProduceNextIdolAuditionMasterRankingResponse
+	288,  // 1238: client.api.ProduceNextIdolAuditionMaster.ListRankReward:output_type -> client.api.ProduceNextIdolAuditionMasterListRankRewardResponse
+	377,  // 1239: client.api.Profile.Get:output_type -> client.api.ProfileGetResponse
+	385,  // 1240: client.api.Profile.UpdateName:output_type -> client.api.ProfileUpdateNameResponse
+	381,  // 1241: client.api.Profile.UpdateComment:output_type -> client.api.ProfileUpdateCommentResponse
+	379,  // 1242: client.api.Profile.UpdateBirthday:output_type -> client.api.ProfileUpdateBirthdayResponse
+	387,  // 1243: client.api.Profile.UpdateSupportCard:output_type -> client.api.ProfileUpdateSupportCardResponse
+	383,  // 1244: client.api.Profile.UpdateMemory:output_type -> client.api.ProfileUpdateMemoryResponse
+	393,  // 1245: client.api.PvpRate.Initialize:output_type -> client.api.PvpRateInitializeResponse
+	392,  // 1246: client.api.PvpRate.Get:output_type -> client.api.PvpRateGetResponse
+	404,  // 1247: client.api.PvpRate.Start:output_type -> client.api.PvpRateStartResponse
+	396,  // 1248: client.api.PvpRate.PlayExamBattle:output_type -> client.api.PvpRatePlayExamBattleResponse
+	389,  // 1249: client.api.PvpRate.End:output_type -> client.api.PvpRateEndResponse
+	397,  // 1250: client.api.PvpRate.PlayTest:output_type -> client.api.PvpRatePlayTestResponse
+	395,  // 1251: client.api.PvpRate.ListRanking:output_type -> client.api.PvpRateListRankingResponse
+	394,  // 1252: client.api.PvpRate.ListHistory:output_type -> client.api.PvpRateListHistoryResponse
+	391,  // 1253: client.api.PvpRate.GetHistory:output_type -> client.api.PvpRateGetHistoryResponse
+	407,  // 1254: client.api.PvpRate.UpdateUserPvpRateUnit:output_type -> client.api.PvpRateUpdateUserPvpRateUnitResponse
+	412,  // 1255: client.api.Seminar.ListExam:output_type -> client.api.SeminarListExamResponse
+	411,  // 1256: client.api.Seminar.GetExam:output_type -> client.api.SeminarGetExamResponse
+	409,  // 1257: client.api.Seminar.EndExam:output_type -> client.api.SeminarEndExamResponse
+	434,  // 1258: client.api.Shop.Top:output_type -> client.api.ShopTopResponse
+	421,  // 1259: client.api.Shop.ListItems:output_type -> client.api.ShopListItemsResponse
+	425,  // 1260: client.api.Shop.Purchase:output_type -> client.api.ShopPurchaseResponse
+	416,  // 1261: client.api.Shop.CheckPurchaseJewel:output_type -> client.api.ShopCheckPurchaseJewelResponse
+	429,  // 1262: client.api.Shop.RegisterBirthday:output_type -> client.api.ShopRegisterBirthdayResponse
+	433,  // 1263: client.api.Shop.RegisterPurchaseTransaction:output_type -> client.api.ShopRegisterPurchaseTransactionResponse
+	414,  // 1264: client.api.Shop.CancelPurchaseTransaction:output_type -> client.api.ShopCancelPurchaseTransactionResponse
+	423,  // 1265: client.api.Shop.PurchaseJewel:output_type -> client.api.ShopPurchaseJewelResponse
+	427,  // 1266: client.api.Shop.RecoverPurchaseJewel:output_type -> client.api.ShopRecoverPurchaseJewelResponse
+	431,  // 1267: client.api.Shop.RegisterDelayPurchaseTransaction:output_type -> client.api.ShopRegisterDelayPurchaseTransactionResponse
+	418,  // 1268: client.api.Shop.GetPurchasePlatformTransaction:output_type -> client.api.ShopGetPurchasePlatformTransactionResponse
+	438,  // 1269: client.api.Startup.ListNotifications:output_type -> client.api.StartupListNotificationsResponse
+	436,  // 1270: client.api.Startup.Confirm:output_type -> client.api.StartupConfirmResponse
+	445,  // 1271: client.api.StoryEvent.Top:output_type -> client.api.StoryEventTopResponse
+	441,  // 1272: client.api.StoryEvent.ListGuildMission:output_type -> client.api.StoryEventListGuildMissionResponse
+	443,  // 1273: client.api.StoryEvent.ReceiveGuildMission:output_type -> client.api.StoryEventReceiveGuildMissionResponse
+	451,  // 1274: client.api.Story.Read:output_type -> client.api.StoryReadResponse
+	449,  // 1275: client.api.Story.ReadProduceStory:output_type -> client.api.StoryReadProduceStoryResponse
+	447,  // 1276: client.api.Story.ReadDearnessStory:output_type -> client.api.StoryReadDearnessStoryResponse
+	457,  // 1277: client.api.Story.Unlock:output_type -> client.api.StoryUnlockResponse
+	455,  // 1278: client.api.Story.UnlockProduceStory:output_type -> client.api.StoryUnlockProduceStoryResponse
+	453,  // 1279: client.api.Story.UnlockDearnessStory:output_type -> client.api.StoryUnlockDearnessStoryResponse
+	459,  // 1280: client.api.SupportCard.Enhance:output_type -> client.api.SupportCardEnhanceResponse
+	466,  // 1281: client.api.SupportCard.UpgradeLevelLimitRank:output_type -> client.api.SupportCardUpgradeLevelLimitRankResponse
+	461,  // 1282: client.api.SupportCard.Exchange:output_type -> client.api.SupportCardExchangeResponse
+	462,  // 1283: client.api.SupportCard.ListDeckRanking:output_type -> client.api.SupportCardListDeckRankingResponse
+	468,  // 1284: client.api.System.Check:output_type -> client.api.SystemCheckResponse
+	473,  // 1285: client.api.TicketExchange.ListItems:output_type -> client.api.TicketExchangeListItemsResponse
+	470,  // 1286: client.api.TicketExchange.Execute:output_type -> client.api.TicketExchangeExecuteResponse
+	508,  // 1287: client.api.Tower.Top:output_type -> client.api.TowerTopResponse
+	497,  // 1288: client.api.Tower.ListLayers:output_type -> client.api.TowerListLayersResponse
+	483,  // 1289: client.api.Tower.GetLayer:output_type -> client.api.TowerGetLayerResponse
+	507,  // 1290: client.api.Tower.Start:output_type -> client.api.TowerStartResponse
+	477,  // 1291: client.api.Tower.End:output_type -> client.api.TowerEndResponse
+	475,  // 1292: client.api.Tower.Check:output_type -> client.api.TowerCheckResponse
+	510,  // 1293: client.api.Tower.UpdateMemoryDeck:output_type -> client.api.TowerUpdateMemoryDeckResponse
+	503,  // 1294: client.api.Tower.ReceiveLayerCountReward:output_type -> client.api.TowerReceiveLayerCountRewardResponse
+	505,  // 1295: client.api.Tower.ReceiveTotalClearRankReward:output_type -> client.api.TowerReceiveTotalClearRankRewardResponse
+	495,  // 1296: client.api.Tower.ListLayerPlayerHistories:output_type -> client.api.TowerListLayerPlayerHistoriesResponse
+	493,  // 1297: client.api.Tower.GetRanking:output_type -> client.api.TowerGetRankingResponse
+	489,  // 1298: client.api.Tower.GetPastSeasonRanking:output_type -> client.api.TowerGetPastSeasonRankingResponse
+	479,  // 1299: client.api.Tower.GetLayerIdolCardRanking:output_type -> client.api.TowerGetLayerIdolCardRankingResponse
+	485,  // 1300: client.api.Tower.GetPastSeasonLayerIdolCardRanking:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
+	481,  // 1301: client.api.Tower.GetLayerIdolCardRankingTop:output_type -> client.api.TowerGetLayerIdolCardRankingTopResponse
+	487,  // 1302: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
+	491,  // 1303: client.api.Tower.GetRankingDeck:output_type -> client.api.TowerGetRankingDeckResponse
+	535,  // 1304: client.api.Tutorial.UnlockFeature:output_type -> client.api.TutorialUnlockFeatureResponse
+	531,  // 1305: client.api.Tutorial.SetName:output_type -> client.api.TutorialSetNameResponse
+	525,  // 1306: client.api.Tutorial.Progress:output_type -> client.api.TutorialProgressResponse
+	533,  // 1307: client.api.Tutorial.Skip:output_type -> client.api.TutorialSkipResponse
+	527,  // 1308: client.api.Tutorial.ReadDearnessStory:output_type -> client.api.TutorialReadDearnessStoryResponse
+	529,  // 1309: client.api.Tutorial.ReceiveIdolCard:output_type -> client.api.TutorialReceiveIdolCardResponse
+	516,  // 1310: client.api.Tutorial.ProduceStart:output_type -> client.api.TutorialProduceStartResponse
+	512,  // 1311: client.api.Tutorial.ProduceNext:output_type -> client.api.TutorialProduceNextResponse
+	521,  // 1312: client.api.Tutorial.ProduceStepLessonEnd:output_type -> client.api.TutorialProduceStepLessonEndResponse
+	523,  // 1313: client.api.Tutorial.ProduceStepPresentReceive:output_type -> client.api.TutorialProduceStepPresentReceiveResponse
+	519,  // 1314: client.api.Tutorial.ProduceStepAuditionExamEnd:output_type -> client.api.TutorialProduceStepAuditionExamEndResponse
+	517,  // 1315: client.api.Tutorial.ProduceStepAuditionEnd:output_type -> client.api.TutorialProduceStepAuditionEndResponse
+	511,  // 1316: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:output_type -> client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
+	514,  // 1317: client.api.Tutorial.ProduceResult:output_type -> client.api.TutorialProduceResultResponse
+	536,  // 1318: client.api.User.Get:output_type -> client.api.UserGetResponse
+	538,  // 1319: client.api.User.ListMessage:output_type -> client.api.UserListMessageResponse
+	540,  // 1320: client.api.User.ReadMessage:output_type -> client.api.UserReadMessageResponse
+	549,  // 1321: client.api.Work.Top:output_type -> client.api.WorkTopResponse
+	546,  // 1322: client.api.Work.Start:output_type -> client.api.WorkStartResponse
+	548,  // 1323: client.api.Work.Stop:output_type -> client.api.WorkStopResponse
+	544,  // 1324: client.api.Work.Skip:output_type -> client.api.WorkSkipResponse
+	541,  // 1325: client.api.Work.Finish:output_type -> client.api.WorkFinishResponse
+	1049, // [1049:1326] is the sub-list for method output_type
+	772,  // [772:1049] is the sub-list for method input_type
+	772,  // [772:772] is the sub-list for extension type_name
+	772,  // [772:772] is the sub-list for extension extendee
+	0,    // [0:772] is the sub-list for field type_name
 }
 
 func init() { file_papi_proto_init() }
@@ -41498,9 +42307,9 @@ func file_papi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_papi_proto_rawDesc), len(file_papi_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   613,
+			NumMessages:   625,
 			NumExtensions: 0,
-			NumServices:   43,
+			NumServices:   44,
 		},
 		GoTypes:           file_papi_proto_goTypes,
 		DependencyIndexes: file_papi_proto_depIdxs,

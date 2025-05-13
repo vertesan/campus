@@ -631,25 +631,27 @@ func (x *ConsumptionResult) GetAfterQuantity() int64 {
 }
 
 type Event struct {
-	state                      protoimpl.MessageState `protogen:"open.v1"`
-	EventType                  penum.EventType        `protobuf:"varint,1,opt,name=eventType,proto3,enum=penum.EventType" json:"eventType,omitempty"`
-	EventId                    string                 `protobuf:"bytes,2,opt,name=eventId,proto3" json:"eventId,omitempty"`
-	HomeIconAssetId            string                 `protobuf:"bytes,3,opt,name=homeIconAssetId,proto3" json:"homeIconAssetId,omitempty"`
-	BannerAssetId              string                 `protobuf:"bytes,4,opt,name=bannerAssetId,proto3" json:"bannerAssetId,omitempty"`
-	Noti                       bool                   `protobuf:"varint,5,opt,name=noti,proto3" json:"noti,omitempty"`
-	DailyMissionGroupId        string                 `protobuf:"bytes,6,opt,name=dailyMissionGroupId,proto3" json:"dailyMissionGroupId,omitempty"`
-	MissionGroupId             string                 `protobuf:"bytes,7,opt,name=missionGroupId,proto3" json:"missionGroupId,omitempty"`
-	MissionDailyReleaseGroupId string                 `protobuf:"bytes,8,opt,name=missionDailyReleaseGroupId,proto3" json:"missionDailyReleaseGroupId,omitempty"`
-	MissionPanelSheetGroupId   string                 `protobuf:"bytes,9,opt,name=missionPanelSheetGroupId,proto3" json:"missionPanelSheetGroupId,omitempty"`
-	StoryGroupId               string                 `protobuf:"bytes,10,opt,name=storyGroupId,proto3" json:"storyGroupId,omitempty"`
-	ItemId                     string                 `protobuf:"bytes,11,opt,name=itemId,proto3" json:"itemId,omitempty"`
-	StartTime                  int64                  `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
-	EndTime                    int64                  `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
-	FixRankTime                int64                  `protobuf:"varint,99,opt,name=fixRankTime,proto3" json:"fixRankTime,omitempty"`
-	CloseTime                  int64                  `protobuf:"varint,102,opt,name=closeTime,proto3" json:"closeTime,omitempty"`
-	Priority                   int32                  `protobuf:"varint,103,opt,name=priority,proto3" json:"priority,omitempty"`
-	unknownFields              protoimpl.UnknownFields
-	sizeCache                  protoimpl.SizeCache
+	state                             protoimpl.MessageState `protogen:"open.v1"`
+	EventType                         penum.EventType        `protobuf:"varint,1,opt,name=eventType,proto3,enum=penum.EventType" json:"eventType,omitempty"`
+	EventId                           string                 `protobuf:"bytes,2,opt,name=eventId,proto3" json:"eventId,omitempty"`
+	HomeIconAssetId                   string                 `protobuf:"bytes,3,opt,name=homeIconAssetId,proto3" json:"homeIconAssetId,omitempty"`
+	BannerAssetId                     string                 `protobuf:"bytes,4,opt,name=bannerAssetId,proto3" json:"bannerAssetId,omitempty"`
+	Noti                              bool                   `protobuf:"varint,5,opt,name=noti,proto3" json:"noti,omitempty"`
+	DailyMissionGroupId               string                 `protobuf:"bytes,6,opt,name=dailyMissionGroupId,proto3" json:"dailyMissionGroupId,omitempty"`
+	MissionGroupId                    string                 `protobuf:"bytes,7,opt,name=missionGroupId,proto3" json:"missionGroupId,omitempty"`
+	MissionDailyReleaseGroupId        string                 `protobuf:"bytes,8,opt,name=missionDailyReleaseGroupId,proto3" json:"missionDailyReleaseGroupId,omitempty"`
+	MissionPanelSheetGroupId          string                 `protobuf:"bytes,9,opt,name=missionPanelSheetGroupId,proto3" json:"missionPanelSheetGroupId,omitempty"`
+	StoryGroupId                      string                 `protobuf:"bytes,10,opt,name=storyGroupId,proto3" json:"storyGroupId,omitempty"`
+	ItemId                            string                 `protobuf:"bytes,11,opt,name=itemId,proto3" json:"itemId,omitempty"`
+	CharacterIds                      []string               `protobuf:"bytes,12,rep,name=characterIds,proto3" json:"characterIds,omitempty"`
+	DearnessMissionPanelSheetGroupIds []string               `protobuf:"bytes,13,rep,name=dearnessMissionPanelSheetGroupIds,proto3" json:"dearnessMissionPanelSheetGroupIds,omitempty"`
+	StartTime                         int64                  `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	EndTime                           int64                  `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
+	FixRankTime                       int64                  `protobuf:"varint,99,opt,name=fixRankTime,proto3" json:"fixRankTime,omitempty"`
+	CloseTime                         int64                  `protobuf:"varint,102,opt,name=closeTime,proto3" json:"closeTime,omitempty"`
+	Priority                          int32                  `protobuf:"varint,103,opt,name=priority,proto3" json:"priority,omitempty"`
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *Event) Reset() {
@@ -757,6 +759,20 @@ func (x *Event) GetItemId() string {
 		return x.ItemId
 	}
 	return ""
+}
+
+func (x *Event) GetCharacterIds() []string {
+	if x != nil {
+		return x.CharacterIds
+	}
+	return nil
+}
+
+func (x *Event) GetDearnessMissionPanelSheetGroupIds() []string {
+	if x != nil {
+		return x.DearnessMissionPanelSheetGroupIds
+	}
+	return nil
 }
 
 func (x *Event) GetStartTime() int64 {
@@ -5215,18 +5231,21 @@ func (x *ProduceItem) GetFireCount() int32 {
 }
 
 type ProduceLessonGrowthResult struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Vocal                 int32                  `protobuf:"varint,1,opt,name=vocal,proto3" json:"vocal,omitempty"`
-	Dance                 int32                  `protobuf:"varint,2,opt,name=dance,proto3" json:"dance,omitempty"`
-	Visual                int32                  `protobuf:"varint,3,opt,name=visual,proto3" json:"visual,omitempty"`
-	HardBonusVocal        int32                  `protobuf:"varint,4,opt,name=hardBonusVocal,proto3" json:"hardBonusVocal,omitempty"`
-	HardBonusDance        int32                  `protobuf:"varint,5,opt,name=hardBonusDance,proto3" json:"hardBonusDance,omitempty"`
-	HardBonusVisual       int32                  `protobuf:"varint,6,opt,name=hardBonusVisual,proto3" json:"hardBonusVisual,omitempty"`
-	GrowthRateBonusVocal  int32                  `protobuf:"varint,7,opt,name=growthRateBonusVocal,proto3" json:"growthRateBonusVocal,omitempty"`
-	GrowthRateBonusDance  int32                  `protobuf:"varint,8,opt,name=growthRateBonusDance,proto3" json:"growthRateBonusDance,omitempty"`
-	GrowthRateBonusVisual int32                  `protobuf:"varint,9,opt,name=growthRateBonusVisual,proto3" json:"growthRateBonusVisual,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state                             protoimpl.MessageState `protogen:"open.v1"`
+	Vocal                             int32                  `protobuf:"varint,1,opt,name=vocal,proto3" json:"vocal,omitempty"`
+	Dance                             int32                  `protobuf:"varint,2,opt,name=dance,proto3" json:"dance,omitempty"`
+	Visual                            int32                  `protobuf:"varint,3,opt,name=visual,proto3" json:"visual,omitempty"`
+	HardBonusVocal                    int32                  `protobuf:"varint,4,opt,name=hardBonusVocal,proto3" json:"hardBonusVocal,omitempty"`
+	HardBonusDance                    int32                  `protobuf:"varint,5,opt,name=hardBonusDance,proto3" json:"hardBonusDance,omitempty"`
+	HardBonusVisual                   int32                  `protobuf:"varint,6,opt,name=hardBonusVisual,proto3" json:"hardBonusVisual,omitempty"`
+	GrowthRateBonusVocal              int32                  `protobuf:"varint,7,opt,name=growthRateBonusVocal,proto3" json:"growthRateBonusVocal,omitempty"`
+	GrowthRateBonusDance              int32                  `protobuf:"varint,8,opt,name=growthRateBonusDance,proto3" json:"growthRateBonusDance,omitempty"`
+	GrowthRateBonusVisual             int32                  `protobuf:"varint,9,opt,name=growthRateBonusVisual,proto3" json:"growthRateBonusVisual,omitempty"`
+	AuditionParameterGrowthRateVocal  int32                  `protobuf:"varint,10,opt,name=auditionParameterGrowthRateVocal,proto3" json:"auditionParameterGrowthRateVocal,omitempty"`
+	AuditionParameterGrowthRateDance  int32                  `protobuf:"varint,11,opt,name=auditionParameterGrowthRateDance,proto3" json:"auditionParameterGrowthRateDance,omitempty"`
+	AuditionParameterGrowthRateVisual int32                  `protobuf:"varint,12,opt,name=auditionParameterGrowthRateVisual,proto3" json:"auditionParameterGrowthRateVisual,omitempty"`
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *ProduceLessonGrowthResult) Reset() {
@@ -5318,6 +5337,27 @@ func (x *ProduceLessonGrowthResult) GetGrowthRateBonusDance() int32 {
 func (x *ProduceLessonGrowthResult) GetGrowthRateBonusVisual() int32 {
 	if x != nil {
 		return x.GrowthRateBonusVisual
+	}
+	return 0
+}
+
+func (x *ProduceLessonGrowthResult) GetAuditionParameterGrowthRateVocal() int32 {
+	if x != nil {
+		return x.AuditionParameterGrowthRateVocal
+	}
+	return 0
+}
+
+func (x *ProduceLessonGrowthResult) GetAuditionParameterGrowthRateDance() int32 {
+	if x != nil {
+		return x.AuditionParameterGrowthRateDance
+	}
+	return 0
+}
+
+func (x *ProduceLessonGrowthResult) GetAuditionParameterGrowthRateVisual() int32 {
+	if x != nil {
+		return x.AuditionParameterGrowthRateVisual
 	}
 	return 0
 }
@@ -7792,7 +7832,7 @@ const file_pcommon_proto_rawDesc = "" +
 	"resourceId\x12\x1a\n" +
 	"\bquantity\x18\x03 \x01(\x03R\bquantity\x12&\n" +
 	"\x0ebeforeQuantity\x18\x04 \x01(\x03R\x0ebeforeQuantity\x12$\n" +
-	"\rafterQuantity\x18\x05 \x01(\x03R\rafterQuantity\"\xdb\x04\n" +
+	"\rafterQuantity\x18\x05 \x01(\x03R\rafterQuantity\"\xcd\x05\n" +
 	"\x05Event\x12.\n" +
 	"\teventType\x18\x01 \x01(\x0e2\x10.penum.EventTypeR\teventType\x12\x18\n" +
 	"\aeventId\x18\x02 \x01(\tR\aeventId\x12(\n" +
@@ -7805,7 +7845,9 @@ const file_pcommon_proto_rawDesc = "" +
 	"\x18missionPanelSheetGroupId\x18\t \x01(\tR\x18missionPanelSheetGroupId\x12\"\n" +
 	"\fstoryGroupId\x18\n" +
 	" \x01(\tR\fstoryGroupId\x12\x16\n" +
-	"\x06itemId\x18\v \x01(\tR\x06itemId\x12\x1c\n" +
+	"\x06itemId\x18\v \x01(\tR\x06itemId\x12\"\n" +
+	"\fcharacterIds\x18\f \x03(\tR\fcharacterIds\x12L\n" +
+	"!dearnessMissionPanelSheetGroupIds\x18\r \x03(\tR!dearnessMissionPanelSheetGroupIds\x12\x1c\n" +
 	"\tstartTime\x18d \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18e \x01(\x03R\aendTime\x12 \n" +
 	"\vfixRankTime\x18c \x01(\x03R\vfixRankTime\x12\x1c\n" +
@@ -8321,7 +8363,7 @@ const file_pcommon_proto_rawDesc = "" +
 	"\bisRental\x18\x04 \x01(\bR\bisRental\"Q\n" +
 	"\vProduceItem\x12$\n" +
 	"\rproduceItemId\x18\x01 \x01(\tR\rproduceItemId\x12\x1c\n" +
-	"\tfireCount\x18\x02 \x01(\x05R\tfireCount\"\xf7\x02\n" +
+	"\tfireCount\x18\x02 \x01(\x05R\tfireCount\"\xdd\x04\n" +
 	"\x19ProduceLessonGrowthResult\x12\x14\n" +
 	"\x05vocal\x18\x01 \x01(\x05R\x05vocal\x12\x14\n" +
 	"\x05dance\x18\x02 \x01(\x05R\x05dance\x12\x16\n" +
@@ -8331,7 +8373,11 @@ const file_pcommon_proto_rawDesc = "" +
 	"\x0fhardBonusVisual\x18\x06 \x01(\x05R\x0fhardBonusVisual\x122\n" +
 	"\x14growthRateBonusVocal\x18\a \x01(\x05R\x14growthRateBonusVocal\x122\n" +
 	"\x14growthRateBonusDance\x18\b \x01(\x05R\x14growthRateBonusDance\x124\n" +
-	"\x15growthRateBonusVisual\x18\t \x01(\x05R\x15growthRateBonusVisual\"\x9a\x01\n" +
+	"\x15growthRateBonusVisual\x18\t \x01(\x05R\x15growthRateBonusVisual\x12J\n" +
+	" auditionParameterGrowthRateVocal\x18\n" +
+	" \x01(\x05R auditionParameterGrowthRateVocal\x12J\n" +
+	" auditionParameterGrowthRateDance\x18\v \x01(\x05R auditionParameterGrowthRateDance\x12L\n" +
+	"!auditionParameterGrowthRateVisual\x18\f \x01(\x05R!auditionParameterGrowthRateVisual\"\x9a\x01\n" +
 	"\x19ProduceMemoryRewardResult\x12F\n" +
 	"\x0fprovidedRewards\x18\x01 \x03(\v2\x1c.pcommon.ProduceRewardResultR\x0fprovidedRewards\x125\n" +
 	"\x06origin\x18d \x01(\v2\x1d.pcommon.ProduceTriggerOriginR\x06origin\"\xf6\x01\n" +

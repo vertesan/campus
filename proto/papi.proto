@@ -239,6 +239,7 @@ service Produce {
   rpc End(ProduceEndRequest) returns (ProduceEndResponse);
   rpc Result(ProduceResultRequest) returns (ProduceResultResponse);
   rpc ReportGuildMission(ProduceReportGuildMissionRequest) returns (ProduceReportGuildMissionResponse);
+  rpc ReportDearnessBoostEvent(ProduceReportDearnessBoostEventRequest) returns (ProduceReportDearnessBoostEventResponse);
   rpc Continue(ProduceContinueRequest) returns (ProduceContinueResponse);
   rpc Retire(Empty) returns (ProduceRetireResponse);
   rpc History(ProduceHistoryRequest) returns (ProduceHistoryResponse);
@@ -252,6 +253,10 @@ service ProduceHighScore {
   rpc Get(Empty) returns (ProduceHighScoreGetResponse);
   rpc Ranking(ProduceHighScoreRankingRequest) returns (ProduceHighScoreRankingResponse);
   rpc ListRankReward(Empty) returns (ProduceHighScoreListRankRewardResponse);
+}
+service ProduceNextIdolAuditionMaster {
+  rpc Ranking(ProduceNextIdolAuditionMasterRankingRequest) returns (ProduceNextIdolAuditionMasterRankingResponse);
+  rpc ListRankReward(ProduceNextIdolAuditionMasterListRankRewardRequest) returns (ProduceNextIdolAuditionMasterListRankRewardResponse);
 }
 service Profile {
   rpc Get(ProfileGetRequest) returns (ProfileGetResponse);
@@ -306,6 +311,7 @@ service Story {
   rpc ReadDearnessStory(StoryReadDearnessStoryRequest) returns (StoryReadDearnessStoryResponse);
   rpc Unlock(StoryUnlockRequest) returns (StoryUnlockResponse);
   rpc UnlockProduceStory(StoryUnlockProduceStoryRequest) returns (StoryUnlockProduceStoryResponse);
+  rpc UnlockDearnessStory(StoryUnlockDearnessStoryRequest) returns (StoryUnlockDearnessStoryResponse);
 }
 service SupportCard {
   rpc Enhance(SupportCardEnhanceRequest) returns (SupportCardEnhanceResponse);
@@ -1244,11 +1250,22 @@ message HomeListEventResponse {
 message HomeLoginResponse {
   HomeLoginResponse.FriendResult friendResult = 1;
   repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 2;
+  HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult produceNextIdolAuditionMasterSeasonResult = 100;
   papicommon.Response commonResponse = 9999;
   message FriendResult {
     int32 receivedFriendCoinQuantity = 1;
     int32 supportCardRentalCount = 2;
     int32 memoryRentalCount = 3;
+  }
+  message ProduceNextIdolAuditionMasterSeasonResult {
+    string produceNextIdolAuditionMasterRankingSeasonId = 1;
+    repeated HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult characterResults = 2;
+    message CharacterResult {
+      string characterId = 1;
+      int32 rank = 2;
+      int32 score = 3;
+      repeated pcommon.Reward rewards = 4;
+    }
   }
 }
 message HomeSetCharactersRequest {
@@ -1875,6 +1892,7 @@ message ProduceHighScoreCharacter {
   string characterId = 1;
   int32 rank = 2;
   int32 highScore = 3;
+  int32 receivedRewardScore = 6;
   repeated ProduceHighScoreRankReward rankRewards = 4;
   repeated ProduceHighScoreReward highScoreRewards = 5;
 }
@@ -1883,6 +1901,7 @@ message ProduceHighScoreGetResponse {
   string titleAssetId = 1;
   int32 rank = 2;
   int32 highScore = 3;
+  int32 receivedRewardScore = 13;
   repeated ProduceHighScoreReward highScoreRewards = 4;
   repeated ProduceHighScoreRankReward rankRewards = 5;
   repeated ProduceHighScoreCharacter characters = 6;
@@ -1978,6 +1997,36 @@ message ProduceListRentalSupportCardResponse {
     bool isGuildMember = 7;
   }
 }
+message ProduceNextIdolAuditionMasterListRankRewardRequest {
+  string characterId = 1;
+}
+message ProduceNextIdolAuditionMasterListRankRewardResponse {
+  int32 rank = 1;
+  repeated ProduceNextIdolAuditionMasterListRankRewardResponse.Reward rankRewards = 2;
+  papicommon.Response commonResponse = 9999;
+  message Reward {
+    int32 upperRank = 1;
+    int32 lowerRank = 2;
+    int32 borderScore = 3;
+    repeated pcommon.Reward rewards = 4;
+  }
+}
+message ProduceNextIdolAuditionMasterRankingRequest {
+  string characterId = 1;
+}
+message ProduceNextIdolAuditionMasterRankingResponse {
+  ProduceNextIdolAuditionMasterRankingResponse.Rank selfRank = 1;
+  repeated ProduceNextIdolAuditionMasterRankingResponse.Rank ranks = 2;
+  papicommon.Response commonResponse = 9999;
+  message Rank {
+    int32 rank = 1;
+    int32 score = 2;
+    penum.ResultGrade grade = 4;
+    string idolCardSkinId = 6;
+    string userMemoryId = 7;
+    pcommon.SimpleProfile profile = 99;
+  }
+}
 message ProduceNextRequest {
   string produceUuid = 1;
   penum.ProduceStepType stepType = 2;
@@ -2038,6 +2087,16 @@ message ProduceReadDearnessStoryResponse {
   bool isFirst = 1;
   repeated pcommon.RewardResult rewardResults = 2;
   repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceReportDearnessBoostEventRequest {
+  string produceUuid = 1;
+}
+message ProduceReportDearnessBoostEventResponse {
+  string missionPanelSheetGroupId = 1;
+  repeated pmaster.Mission missions = 2;
+  repeated pcommon.RewardResult groupRewardResults = 3;
+  repeated pcommon.RewardResult rewardResults = 4;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceReportGuildMissionRequest {
@@ -2915,6 +2974,13 @@ message StoryReadRequest {
 }
 message StoryReadResponse {
   repeated pcommon.RewardResult rewardResults = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message StoryUnlockDearnessStoryRequest {
+  string characterId = 1;
+  int32 dearnessLevel = 2;
+}
+message StoryUnlockDearnessStoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message StoryUnlockProduceStoryRequest {

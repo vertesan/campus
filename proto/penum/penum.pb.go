@@ -1413,6 +1413,76 @@ func (CountType) EnumDescriptor() ([]byte, []int) {
 	return file_penum_proto_rawDescGZIP(), []int{20}
 }
 
+type DearnessMotionType int32
+
+const (
+	DearnessMotionType_DearnessMotionType_Unknown        DearnessMotionType = 0
+	DearnessMotionType_DearnessMotionType_Wait1          DearnessMotionType = 1
+	DearnessMotionType_DearnessMotionType_Wait2          DearnessMotionType = 2
+	DearnessMotionType_DearnessMotionType_Reaction       DearnessMotionType = 3
+	DearnessMotionType_DearnessMotionType_ReactionOnce   DearnessMotionType = 4
+	DearnessMotionType_DearnessMotionType_WaitLookAround DearnessMotionType = 5
+	DearnessMotionType_DearnessMotionType_MultipleTaps   DearnessMotionType = 6
+	DearnessMotionType_DearnessMotionType_Transition     DearnessMotionType = 7
+	DearnessMotionType_DearnessMotionType_WaitOnce       DearnessMotionType = 8
+	DearnessMotionType_DearnessMotionType_WaitLoop       DearnessMotionType = 9
+)
+
+// Enum value maps for DearnessMotionType.
+var (
+	DearnessMotionType_name = map[int32]string{
+		0: "DearnessMotionType_Unknown",
+		1: "DearnessMotionType_Wait1",
+		2: "DearnessMotionType_Wait2",
+		3: "DearnessMotionType_Reaction",
+		4: "DearnessMotionType_ReactionOnce",
+		5: "DearnessMotionType_WaitLookAround",
+		6: "DearnessMotionType_MultipleTaps",
+		7: "DearnessMotionType_Transition",
+		8: "DearnessMotionType_WaitOnce",
+		9: "DearnessMotionType_WaitLoop",
+	}
+	DearnessMotionType_value = map[string]int32{
+		"DearnessMotionType_Unknown":        0,
+		"DearnessMotionType_Wait1":          1,
+		"DearnessMotionType_Wait2":          2,
+		"DearnessMotionType_Reaction":       3,
+		"DearnessMotionType_ReactionOnce":   4,
+		"DearnessMotionType_WaitLookAround": 5,
+		"DearnessMotionType_MultipleTaps":   6,
+		"DearnessMotionType_Transition":     7,
+		"DearnessMotionType_WaitOnce":       8,
+		"DearnessMotionType_WaitLoop":       9,
+	}
+)
+
+func (x DearnessMotionType) Enum() *DearnessMotionType {
+	p := new(DearnessMotionType)
+	*p = x
+	return p
+}
+
+func (x DearnessMotionType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DearnessMotionType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[21].Descriptor()
+}
+
+func (DearnessMotionType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[21]
+}
+
+func (x DearnessMotionType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DearnessMotionType.Descriptor instead.
+func (DearnessMotionType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{21}
+}
+
 type DeckRecommendType int32
 
 const (
@@ -1452,11 +1522,11 @@ func (x DeckRecommendType) String() string {
 }
 
 func (DeckRecommendType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[21].Descriptor()
+	return file_penum_proto_enumTypes[22].Descriptor()
 }
 
 func (DeckRecommendType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[21]
+	return &file_penum_proto_enumTypes[22]
 }
 
 func (x DeckRecommendType) Number() protoreflect.EnumNumber {
@@ -1465,7 +1535,7 @@ func (x DeckRecommendType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DeckRecommendType.Descriptor instead.
 func (DeckRecommendType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{21}
+	return file_penum_proto_rawDescGZIP(), []int{22}
 }
 
 type ErrorCode int32
@@ -1660,11 +1730,11 @@ func (x ErrorCode) String() string {
 }
 
 func (ErrorCode) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[22].Descriptor()
+	return file_penum_proto_enumTypes[23].Descriptor()
 }
 
 func (ErrorCode) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[22]
+	return &file_penum_proto_enumTypes[23]
 }
 
 func (x ErrorCode) Number() protoreflect.EnumNumber {
@@ -1673,7 +1743,7 @@ func (x ErrorCode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ErrorCode.Descriptor instead.
 func (ErrorCode) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{22}
+	return file_penum_proto_rawDescGZIP(), []int{23}
 }
 
 type EventStoryFilterType int32
@@ -1712,11 +1782,11 @@ func (x EventStoryFilterType) String() string {
 }
 
 func (EventStoryFilterType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[23].Descriptor()
+	return file_penum_proto_enumTypes[24].Descriptor()
 }
 
 func (EventStoryFilterType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[23]
+	return &file_penum_proto_enumTypes[24]
 }
 
 func (x EventStoryFilterType) Number() protoreflect.EnumNumber {
@@ -1725,7 +1795,7 @@ func (x EventStoryFilterType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EventStoryFilterType.Descriptor instead.
 func (EventStoryFilterType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{23}
+	return file_penum_proto_rawDescGZIP(), []int{24}
 }
 
 type EventType int32
@@ -1741,21 +1811,23 @@ const (
 	EventType_EventType_StoryEventBoxGasha     EventType = 7
 	EventType_EventType_StoryEventGuildMission EventType = 8
 	EventType_EventType_GvgRaid                EventType = 9
+	EventType_EventType_DearnessBoost          EventType = 10
 )
 
 // Enum value maps for EventType.
 var (
 	EventType_name = map[int32]string{
-		0: "EventType_Unknown",
-		1: "EventType_MissionDailyRelease",
-		2: "EventType_MissionPanel",
-		3: "EventType_ProduceHighScore",
-		4: "EventType_StoryCampaign",
-		5: "EventType_StoryEvent",
-		6: "EventType_StoryEventMainStory",
-		7: "EventType_StoryEventBoxGasha",
-		8: "EventType_StoryEventGuildMission",
-		9: "EventType_GvgRaid",
+		0:  "EventType_Unknown",
+		1:  "EventType_MissionDailyRelease",
+		2:  "EventType_MissionPanel",
+		3:  "EventType_ProduceHighScore",
+		4:  "EventType_StoryCampaign",
+		5:  "EventType_StoryEvent",
+		6:  "EventType_StoryEventMainStory",
+		7:  "EventType_StoryEventBoxGasha",
+		8:  "EventType_StoryEventGuildMission",
+		9:  "EventType_GvgRaid",
+		10: "EventType_DearnessBoost",
 	}
 	EventType_value = map[string]int32{
 		"EventType_Unknown":                0,
@@ -1768,6 +1840,7 @@ var (
 		"EventType_StoryEventBoxGasha":     7,
 		"EventType_StoryEventGuildMission": 8,
 		"EventType_GvgRaid":                9,
+		"EventType_DearnessBoost":          10,
 	}
 )
 
@@ -1782,11 +1855,11 @@ func (x EventType) String() string {
 }
 
 func (EventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[24].Descriptor()
+	return file_penum_proto_enumTypes[25].Descriptor()
 }
 
 func (EventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[24]
+	return &file_penum_proto_enumTypes[25]
 }
 
 func (x EventType) Number() protoreflect.EnumNumber {
@@ -1795,7 +1868,7 @@ func (x EventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EventType.Descriptor instead.
 func (EventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{24}
+	return file_penum_proto_rawDescGZIP(), []int{25}
 }
 
 type ExamCommandType int32
@@ -1873,11 +1946,11 @@ func (x ExamCommandType) String() string {
 }
 
 func (ExamCommandType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[25].Descriptor()
+	return file_penum_proto_enumTypes[26].Descriptor()
 }
 
 func (ExamCommandType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[25]
+	return &file_penum_proto_enumTypes[26]
 }
 
 func (x ExamCommandType) Number() protoreflect.EnumNumber {
@@ -1886,7 +1959,7 @@ func (x ExamCommandType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamCommandType.Descriptor instead.
 func (ExamCommandType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{25}
+	return file_penum_proto_rawDescGZIP(), []int{26}
 }
 
 type ExamCostType int32
@@ -1934,11 +2007,11 @@ func (x ExamCostType) String() string {
 }
 
 func (ExamCostType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[26].Descriptor()
+	return file_penum_proto_enumTypes[27].Descriptor()
 }
 
 func (ExamCostType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[26]
+	return &file_penum_proto_enumTypes[27]
 }
 
 func (x ExamCostType) Number() protoreflect.EnumNumber {
@@ -1947,7 +2020,7 @@ func (x ExamCostType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamCostType.Descriptor instead.
 func (ExamCostType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{26}
+	return file_penum_proto_rawDescGZIP(), []int{27}
 }
 
 type ExamDescriptionType int32
@@ -2034,11 +2107,11 @@ func (x ExamDescriptionType) String() string {
 }
 
 func (ExamDescriptionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[27].Descriptor()
+	return file_penum_proto_enumTypes[28].Descriptor()
 }
 
 func (ExamDescriptionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[27]
+	return &file_penum_proto_enumTypes[28]
 }
 
 func (x ExamDescriptionType) Number() protoreflect.EnumNumber {
@@ -2047,7 +2120,7 @@ func (x ExamDescriptionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamDescriptionType.Descriptor instead.
 func (ExamDescriptionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{27}
+	return file_penum_proto_rawDescGZIP(), []int{28}
 }
 
 type ExamGameType int32
@@ -2092,11 +2165,11 @@ func (x ExamGameType) String() string {
 }
 
 func (ExamGameType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[28].Descriptor()
+	return file_penum_proto_enumTypes[29].Descriptor()
 }
 
 func (ExamGameType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[28]
+	return &file_penum_proto_enumTypes[29]
 }
 
 func (x ExamGameType) Number() protoreflect.EnumNumber {
@@ -2105,7 +2178,7 @@ func (x ExamGameType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamGameType.Descriptor instead.
 func (ExamGameType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{28}
+	return file_penum_proto_rawDescGZIP(), []int{29}
 }
 
 type ExamIdolStatusType int32
@@ -2147,11 +2220,11 @@ func (x ExamIdolStatusType) String() string {
 }
 
 func (ExamIdolStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[29].Descriptor()
+	return file_penum_proto_enumTypes[30].Descriptor()
 }
 
 func (ExamIdolStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[29]
+	return &file_penum_proto_enumTypes[30]
 }
 
 func (x ExamIdolStatusType) Number() protoreflect.EnumNumber {
@@ -2160,7 +2233,7 @@ func (x ExamIdolStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamIdolStatusType.Descriptor instead.
 func (ExamIdolStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{29}
+	return file_penum_proto_rawDescGZIP(), []int{30}
 }
 
 type ExamMotionTargetType int32
@@ -2214,11 +2287,11 @@ func (x ExamMotionTargetType) String() string {
 }
 
 func (ExamMotionTargetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[30].Descriptor()
+	return file_penum_proto_enumTypes[31].Descriptor()
 }
 
 func (ExamMotionTargetType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[30]
+	return &file_penum_proto_enumTypes[31]
 }
 
 func (x ExamMotionTargetType) Number() protoreflect.EnumNumber {
@@ -2227,7 +2300,7 @@ func (x ExamMotionTargetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamMotionTargetType.Descriptor instead.
 func (ExamMotionTargetType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{30}
+	return file_penum_proto_rawDescGZIP(), []int{31}
 }
 
 type ExamMotionType int32
@@ -2281,11 +2354,11 @@ func (x ExamMotionType) String() string {
 }
 
 func (ExamMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[31].Descriptor()
+	return file_penum_proto_enumTypes[32].Descriptor()
 }
 
 func (ExamMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[31]
+	return &file_penum_proto_enumTypes[32]
 }
 
 func (x ExamMotionType) Number() protoreflect.EnumNumber {
@@ -2294,7 +2367,7 @@ func (x ExamMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamMotionType.Descriptor instead.
 func (ExamMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{31}
+	return file_penum_proto_rawDescGZIP(), []int{32}
 }
 
 type ExamOutGameMotionType int32
@@ -2342,11 +2415,11 @@ func (x ExamOutGameMotionType) String() string {
 }
 
 func (ExamOutGameMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[32].Descriptor()
+	return file_penum_proto_enumTypes[33].Descriptor()
 }
 
 func (ExamOutGameMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[32]
+	return &file_penum_proto_enumTypes[33]
 }
 
 func (x ExamOutGameMotionType) Number() protoreflect.EnumNumber {
@@ -2355,7 +2428,7 @@ func (x ExamOutGameMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamOutGameMotionType.Descriptor instead.
 func (ExamOutGameMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{32}
+	return file_penum_proto_rawDescGZIP(), []int{33}
 }
 
 type ExamPhaseType int32
@@ -2406,11 +2479,11 @@ func (x ExamPhaseType) String() string {
 }
 
 func (ExamPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[33].Descriptor()
+	return file_penum_proto_enumTypes[34].Descriptor()
 }
 
 func (ExamPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[33]
+	return &file_penum_proto_enumTypes[34]
 }
 
 func (x ExamPhaseType) Number() protoreflect.EnumNumber {
@@ -2419,7 +2492,7 @@ func (x ExamPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamPhaseType.Descriptor instead.
 func (ExamPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{33}
+	return file_penum_proto_rawDescGZIP(), []int{34}
 }
 
 type ExamPlayType int32
@@ -2461,11 +2534,11 @@ func (x ExamPlayType) String() string {
 }
 
 func (ExamPlayType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[34].Descriptor()
+	return file_penum_proto_enumTypes[35].Descriptor()
 }
 
 func (ExamPlayType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[34]
+	return &file_penum_proto_enumTypes[35]
 }
 
 func (x ExamPlayType) Number() protoreflect.EnumNumber {
@@ -2474,7 +2547,62 @@ func (x ExamPlayType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExamPlayType.Descriptor instead.
 func (ExamPlayType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{34}
+	return file_penum_proto_rawDescGZIP(), []int{35}
+}
+
+type ExchangeItemCategoryType int32
+
+const (
+	ExchangeItemCategoryType_ExchangeItemCategoryType_Unknown      ExchangeItemCategoryType = 0
+	ExchangeItemCategoryType_ExchangeItemCategoryType_All          ExchangeItemCategoryType = 1
+	ExchangeItemCategoryType_ExchangeItemCategoryType_ResourceType ExchangeItemCategoryType = 2
+	ExchangeItemCategoryType_ExchangeItemCategoryType_ItemType     ExchangeItemCategoryType = 3
+	ExchangeItemCategoryType_ExchangeItemCategoryType_Other        ExchangeItemCategoryType = 999
+)
+
+// Enum value maps for ExchangeItemCategoryType.
+var (
+	ExchangeItemCategoryType_name = map[int32]string{
+		0:   "ExchangeItemCategoryType_Unknown",
+		1:   "ExchangeItemCategoryType_All",
+		2:   "ExchangeItemCategoryType_ResourceType",
+		3:   "ExchangeItemCategoryType_ItemType",
+		999: "ExchangeItemCategoryType_Other",
+	}
+	ExchangeItemCategoryType_value = map[string]int32{
+		"ExchangeItemCategoryType_Unknown":      0,
+		"ExchangeItemCategoryType_All":          1,
+		"ExchangeItemCategoryType_ResourceType": 2,
+		"ExchangeItemCategoryType_ItemType":     3,
+		"ExchangeItemCategoryType_Other":        999,
+	}
+)
+
+func (x ExchangeItemCategoryType) Enum() *ExchangeItemCategoryType {
+	p := new(ExchangeItemCategoryType)
+	*p = x
+	return p
+}
+
+func (x ExchangeItemCategoryType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExchangeItemCategoryType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[36].Descriptor()
+}
+
+func (ExchangeItemCategoryType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[36]
+}
+
+func (x ExchangeItemCategoryType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExchangeItemCategoryType.Descriptor instead.
+func (ExchangeItemCategoryType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{36}
 }
 
 type ExchangeItemResetCheckStatus int32
@@ -2510,11 +2638,11 @@ func (x ExchangeItemResetCheckStatus) String() string {
 }
 
 func (ExchangeItemResetCheckStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[35].Descriptor()
+	return file_penum_proto_enumTypes[37].Descriptor()
 }
 
 func (ExchangeItemResetCheckStatus) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[35]
+	return &file_penum_proto_enumTypes[37]
 }
 
 func (x ExchangeItemResetCheckStatus) Number() protoreflect.EnumNumber {
@@ -2523,7 +2651,7 @@ func (x ExchangeItemResetCheckStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExchangeItemResetCheckStatus.Descriptor instead.
 func (ExchangeItemResetCheckStatus) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{35}
+	return file_penum_proto_rawDescGZIP(), []int{37}
 }
 
 type ExchangeType int32
@@ -2562,11 +2690,11 @@ func (x ExchangeType) String() string {
 }
 
 func (ExchangeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[36].Descriptor()
+	return file_penum_proto_enumTypes[38].Descriptor()
 }
 
 func (ExchangeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[36]
+	return &file_penum_proto_enumTypes[38]
 }
 
 func (x ExchangeType) Number() protoreflect.EnumNumber {
@@ -2575,7 +2703,7 @@ func (x ExchangeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExchangeType.Descriptor instead.
 func (ExchangeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{36}
+	return file_penum_proto_rawDescGZIP(), []int{38}
 }
 
 type FeatureMaintenanceType int32
@@ -2601,6 +2729,7 @@ const (
 	FeatureMaintenanceType_FeatureMaintenanceType_MissionDailyRelease FeatureMaintenanceType = 17
 	FeatureMaintenanceType_FeatureMaintenanceType_StoryCampaign       FeatureMaintenanceType = 18
 	FeatureMaintenanceType_FeatureMaintenanceType_GvgRaid             FeatureMaintenanceType = 19
+	FeatureMaintenanceType_FeatureMaintenanceType_Dearness            FeatureMaintenanceType = 20
 )
 
 // Enum value maps for FeatureMaintenanceType.
@@ -2626,6 +2755,7 @@ var (
 		17: "FeatureMaintenanceType_MissionDailyRelease",
 		18: "FeatureMaintenanceType_StoryCampaign",
 		19: "FeatureMaintenanceType_GvgRaid",
+		20: "FeatureMaintenanceType_Dearness",
 	}
 	FeatureMaintenanceType_value = map[string]int32{
 		"FeatureMaintenanceType_Unknown":             0,
@@ -2648,6 +2778,7 @@ var (
 		"FeatureMaintenanceType_MissionDailyRelease": 17,
 		"FeatureMaintenanceType_StoryCampaign":       18,
 		"FeatureMaintenanceType_GvgRaid":             19,
+		"FeatureMaintenanceType_Dearness":            20,
 	}
 )
 
@@ -2662,11 +2793,11 @@ func (x FeatureMaintenanceType) String() string {
 }
 
 func (FeatureMaintenanceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[37].Descriptor()
+	return file_penum_proto_enumTypes[39].Descriptor()
 }
 
 func (FeatureMaintenanceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[37]
+	return &file_penum_proto_enumTypes[39]
 }
 
 func (x FeatureMaintenanceType) Number() protoreflect.EnumNumber {
@@ -2675,7 +2806,7 @@ func (x FeatureMaintenanceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FeatureMaintenanceType.Descriptor instead.
 func (FeatureMaintenanceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{37}
+	return file_penum_proto_rawDescGZIP(), []int{39}
 }
 
 type FriendStatusType int32
@@ -2717,11 +2848,11 @@ func (x FriendStatusType) String() string {
 }
 
 func (FriendStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[38].Descriptor()
+	return file_penum_proto_enumTypes[40].Descriptor()
 }
 
 func (FriendStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[38]
+	return &file_penum_proto_enumTypes[40]
 }
 
 func (x FriendStatusType) Number() protoreflect.EnumNumber {
@@ -2730,7 +2861,7 @@ func (x FriendStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FriendStatusType.Descriptor instead.
 func (FriendStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{38}
+	return file_penum_proto_rawDescGZIP(), []int{40}
 }
 
 type GashaAnimationRarity int32
@@ -2772,11 +2903,11 @@ func (x GashaAnimationRarity) String() string {
 }
 
 func (GashaAnimationRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[39].Descriptor()
+	return file_penum_proto_enumTypes[41].Descriptor()
 }
 
 func (GashaAnimationRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[39]
+	return &file_penum_proto_enumTypes[41]
 }
 
 func (x GashaAnimationRarity) Number() protoreflect.EnumNumber {
@@ -2785,7 +2916,7 @@ func (x GashaAnimationRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaAnimationRarity.Descriptor instead.
 func (GashaAnimationRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{39}
+	return file_penum_proto_rawDescGZIP(), []int{41}
 }
 
 type GashaAnimationStepType int32
@@ -2848,11 +2979,11 @@ func (x GashaAnimationStepType) String() string {
 }
 
 func (GashaAnimationStepType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[40].Descriptor()
+	return file_penum_proto_enumTypes[42].Descriptor()
 }
 
 func (GashaAnimationStepType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[40]
+	return &file_penum_proto_enumTypes[42]
 }
 
 func (x GashaAnimationStepType) Number() protoreflect.EnumNumber {
@@ -2861,17 +2992,18 @@ func (x GashaAnimationStepType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaAnimationStepType.Descriptor instead.
 func (GashaAnimationStepType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{40}
+	return file_penum_proto_rawDescGZIP(), []int{42}
 }
 
 type GashaButtonAppealType int32
 
 const (
-	GashaButtonAppealType_GashaButtonAppealType_Unknown       GashaButtonAppealType = 0
-	GashaButtonAppealType_GashaButtonAppealType_AppealText    GashaButtonAppealType = 1
-	GashaButtonAppealType_GashaButtonAppealType_DrawableCount GashaButtonAppealType = 2
-	GashaButtonAppealType_GashaButtonAppealType_CurrentStep   GashaButtonAppealType = 3
-	GashaButtonAppealType_GashaButtonAppealType_FixSsr        GashaButtonAppealType = 4
+	GashaButtonAppealType_GashaButtonAppealType_Unknown               GashaButtonAppealType = 0
+	GashaButtonAppealType_GashaButtonAppealType_AppealText            GashaButtonAppealType = 1
+	GashaButtonAppealType_GashaButtonAppealType_DrawableCount         GashaButtonAppealType = 2
+	GashaButtonAppealType_GashaButtonAppealType_CurrentStep           GashaButtonAppealType = 3
+	GashaButtonAppealType_GashaButtonAppealType_FixSsr                GashaButtonAppealType = 4
+	GashaButtonAppealType_GashaButtonAppealType_DiscountDrawableCount GashaButtonAppealType = 5
 )
 
 // Enum value maps for GashaButtonAppealType.
@@ -2882,13 +3014,15 @@ var (
 		2: "GashaButtonAppealType_DrawableCount",
 		3: "GashaButtonAppealType_CurrentStep",
 		4: "GashaButtonAppealType_FixSsr",
+		5: "GashaButtonAppealType_DiscountDrawableCount",
 	}
 	GashaButtonAppealType_value = map[string]int32{
-		"GashaButtonAppealType_Unknown":       0,
-		"GashaButtonAppealType_AppealText":    1,
-		"GashaButtonAppealType_DrawableCount": 2,
-		"GashaButtonAppealType_CurrentStep":   3,
-		"GashaButtonAppealType_FixSsr":        4,
+		"GashaButtonAppealType_Unknown":               0,
+		"GashaButtonAppealType_AppealText":            1,
+		"GashaButtonAppealType_DrawableCount":         2,
+		"GashaButtonAppealType_CurrentStep":           3,
+		"GashaButtonAppealType_FixSsr":                4,
+		"GashaButtonAppealType_DiscountDrawableCount": 5,
 	}
 )
 
@@ -2903,11 +3037,11 @@ func (x GashaButtonAppealType) String() string {
 }
 
 func (GashaButtonAppealType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[41].Descriptor()
+	return file_penum_proto_enumTypes[43].Descriptor()
 }
 
 func (GashaButtonAppealType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[41]
+	return &file_penum_proto_enumTypes[43]
 }
 
 func (x GashaButtonAppealType) Number() protoreflect.EnumNumber {
@@ -2916,7 +3050,7 @@ func (x GashaButtonAppealType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaButtonAppealType.Descriptor instead.
 func (GashaButtonAppealType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{41}
+	return file_penum_proto_rawDescGZIP(), []int{43}
 }
 
 type GashaButtonType int32
@@ -2952,11 +3086,11 @@ func (x GashaButtonType) String() string {
 }
 
 func (GashaButtonType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[42].Descriptor()
+	return file_penum_proto_enumTypes[44].Descriptor()
 }
 
 func (GashaButtonType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[42]
+	return &file_penum_proto_enumTypes[44]
 }
 
 func (x GashaButtonType) Number() protoreflect.EnumNumber {
@@ -2965,7 +3099,7 @@ func (x GashaButtonType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaButtonType.Descriptor instead.
 func (GashaButtonType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{42}
+	return file_penum_proto_rawDescGZIP(), []int{44}
 }
 
 type GashaCardBonusType int32
@@ -3010,11 +3144,11 @@ func (x GashaCardBonusType) String() string {
 }
 
 func (GashaCardBonusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[43].Descriptor()
+	return file_penum_proto_enumTypes[45].Descriptor()
 }
 
 func (GashaCardBonusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[43]
+	return &file_penum_proto_enumTypes[45]
 }
 
 func (x GashaCardBonusType) Number() protoreflect.EnumNumber {
@@ -3023,17 +3157,18 @@ func (x GashaCardBonusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaCardBonusType.Descriptor instead.
 func (GashaCardBonusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{43}
+	return file_penum_proto_rawDescGZIP(), []int{45}
 }
 
 type GashaLimitType int32
 
 const (
-	GashaLimitType_GashaLimitType_Unknown           GashaLimitType = 0
-	GashaLimitType_GashaLimitType_None              GashaLimitType = 1
-	GashaLimitType_GashaLimitType_Total             GashaLimitType = 2
-	GashaLimitType_GashaLimitType_Daily             GashaLimitType = 3
-	GashaLimitType_GashaLimitType_DailyAccumulation GashaLimitType = 4
+	GashaLimitType_GashaLimitType_Unknown                GashaLimitType = 0
+	GashaLimitType_GashaLimitType_None                   GashaLimitType = 1
+	GashaLimitType_GashaLimitType_Total                  GashaLimitType = 2
+	GashaLimitType_GashaLimitType_Daily                  GashaLimitType = 3
+	GashaLimitType_GashaLimitType_DailyAccumulation      GashaLimitType = 4
+	GashaLimitType_GashaLimitType_DailyLoginAccumulation GashaLimitType = 5
 )
 
 // Enum value maps for GashaLimitType.
@@ -3044,13 +3179,15 @@ var (
 		2: "GashaLimitType_Total",
 		3: "GashaLimitType_Daily",
 		4: "GashaLimitType_DailyAccumulation",
+		5: "GashaLimitType_DailyLoginAccumulation",
 	}
 	GashaLimitType_value = map[string]int32{
-		"GashaLimitType_Unknown":           0,
-		"GashaLimitType_None":              1,
-		"GashaLimitType_Total":             2,
-		"GashaLimitType_Daily":             3,
-		"GashaLimitType_DailyAccumulation": 4,
+		"GashaLimitType_Unknown":                0,
+		"GashaLimitType_None":                   1,
+		"GashaLimitType_Total":                  2,
+		"GashaLimitType_Daily":                  3,
+		"GashaLimitType_DailyAccumulation":      4,
+		"GashaLimitType_DailyLoginAccumulation": 5,
 	}
 )
 
@@ -3065,11 +3202,11 @@ func (x GashaLimitType) String() string {
 }
 
 func (GashaLimitType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[44].Descriptor()
+	return file_penum_proto_enumTypes[46].Descriptor()
 }
 
 func (GashaLimitType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[44]
+	return &file_penum_proto_enumTypes[46]
 }
 
 func (x GashaLimitType) Number() protoreflect.EnumNumber {
@@ -3078,7 +3215,7 @@ func (x GashaLimitType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaLimitType.Descriptor instead.
 func (GashaLimitType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{44}
+	return file_penum_proto_rawDescGZIP(), []int{46}
 }
 
 type GashaType int32
@@ -3117,11 +3254,11 @@ func (x GashaType) String() string {
 }
 
 func (GashaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[45].Descriptor()
+	return file_penum_proto_enumTypes[47].Descriptor()
 }
 
 func (GashaType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[45]
+	return &file_penum_proto_enumTypes[47]
 }
 
 func (x GashaType) Number() protoreflect.EnumNumber {
@@ -3130,7 +3267,7 @@ func (x GashaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GashaType.Descriptor instead.
 func (GashaType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{45}
+	return file_penum_proto_rawDescGZIP(), []int{47}
 }
 
 type GiftFilterType int32
@@ -3181,11 +3318,11 @@ func (x GiftFilterType) String() string {
 }
 
 func (GiftFilterType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[46].Descriptor()
+	return file_penum_proto_enumTypes[48].Descriptor()
 }
 
 func (GiftFilterType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[46]
+	return &file_penum_proto_enumTypes[48]
 }
 
 func (x GiftFilterType) Number() protoreflect.EnumNumber {
@@ -3194,7 +3331,7 @@ func (x GiftFilterType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GiftFilterType.Descriptor instead.
 func (GiftFilterType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{46}
+	return file_penum_proto_rawDescGZIP(), []int{48}
 }
 
 type GuildActivityPolicyType int32
@@ -3242,11 +3379,11 @@ func (x GuildActivityPolicyType) String() string {
 }
 
 func (GuildActivityPolicyType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[47].Descriptor()
+	return file_penum_proto_enumTypes[49].Descriptor()
 }
 
 func (GuildActivityPolicyType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[47]
+	return &file_penum_proto_enumTypes[49]
 }
 
 func (x GuildActivityPolicyType) Number() protoreflect.EnumNumber {
@@ -3255,7 +3392,7 @@ func (x GuildActivityPolicyType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildActivityPolicyType.Descriptor instead.
 func (GuildActivityPolicyType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{47}
+	return file_penum_proto_rawDescGZIP(), []int{49}
 }
 
 type GuildJoinRequestRouteType int32
@@ -3294,11 +3431,11 @@ func (x GuildJoinRequestRouteType) String() string {
 }
 
 func (GuildJoinRequestRouteType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[48].Descriptor()
+	return file_penum_proto_enumTypes[50].Descriptor()
 }
 
 func (GuildJoinRequestRouteType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[48]
+	return &file_penum_proto_enumTypes[50]
 }
 
 func (x GuildJoinRequestRouteType) Number() protoreflect.EnumNumber {
@@ -3307,7 +3444,7 @@ func (x GuildJoinRequestRouteType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildJoinRequestRouteType.Descriptor instead.
 func (GuildJoinRequestRouteType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{48}
+	return file_penum_proto_rawDescGZIP(), []int{50}
 }
 
 type GuildJoinType int32
@@ -3343,11 +3480,11 @@ func (x GuildJoinType) String() string {
 }
 
 func (GuildJoinType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[49].Descriptor()
+	return file_penum_proto_enumTypes[51].Descriptor()
 }
 
 func (GuildJoinType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[49]
+	return &file_penum_proto_enumTypes[51]
 }
 
 func (x GuildJoinType) Number() protoreflect.EnumNumber {
@@ -3356,7 +3493,7 @@ func (x GuildJoinType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildJoinType.Descriptor instead.
 func (GuildJoinType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{49}
+	return file_penum_proto_rawDescGZIP(), []int{51}
 }
 
 type GuildMissionPhaseType int32
@@ -3398,11 +3535,11 @@ func (x GuildMissionPhaseType) String() string {
 }
 
 func (GuildMissionPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[50].Descriptor()
+	return file_penum_proto_enumTypes[52].Descriptor()
 }
 
 func (GuildMissionPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[50]
+	return &file_penum_proto_enumTypes[52]
 }
 
 func (x GuildMissionPhaseType) Number() protoreflect.EnumNumber {
@@ -3411,7 +3548,7 @@ func (x GuildMissionPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildMissionPhaseType.Descriptor instead.
 func (GuildMissionPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{50}
+	return file_penum_proto_rawDescGZIP(), []int{52}
 }
 
 type GuildNotificationType int32
@@ -3447,11 +3584,11 @@ func (x GuildNotificationType) String() string {
 }
 
 func (GuildNotificationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[51].Descriptor()
+	return file_penum_proto_enumTypes[53].Descriptor()
 }
 
 func (GuildNotificationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[51]
+	return &file_penum_proto_enumTypes[53]
 }
 
 func (x GuildNotificationType) Number() protoreflect.EnumNumber {
@@ -3460,7 +3597,7 @@ func (x GuildNotificationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildNotificationType.Descriptor instead.
 func (GuildNotificationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{51}
+	return file_penum_proto_rawDescGZIP(), []int{53}
 }
 
 type GuildRoleType int32
@@ -3499,11 +3636,11 @@ func (x GuildRoleType) String() string {
 }
 
 func (GuildRoleType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[52].Descriptor()
+	return file_penum_proto_enumTypes[54].Descriptor()
 }
 
 func (GuildRoleType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[52]
+	return &file_penum_proto_enumTypes[54]
 }
 
 func (x GuildRoleType) Number() protoreflect.EnumNumber {
@@ -3512,7 +3649,7 @@ func (x GuildRoleType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildRoleType.Descriptor instead.
 func (GuildRoleType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{52}
+	return file_penum_proto_rawDescGZIP(), []int{54}
 }
 
 type GuildSearchMemberCountRangeType int32
@@ -3551,11 +3688,11 @@ func (x GuildSearchMemberCountRangeType) String() string {
 }
 
 func (GuildSearchMemberCountRangeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[53].Descriptor()
+	return file_penum_proto_enumTypes[55].Descriptor()
 }
 
 func (GuildSearchMemberCountRangeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[53]
+	return &file_penum_proto_enumTypes[55]
 }
 
 func (x GuildSearchMemberCountRangeType) Number() protoreflect.EnumNumber {
@@ -3564,7 +3701,7 @@ func (x GuildSearchMemberCountRangeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GuildSearchMemberCountRangeType.Descriptor instead.
 func (GuildSearchMemberCountRangeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{53}
+	return file_penum_proto_rawDescGZIP(), []int{55}
 }
 
 type GvgRaidStageIconSizeType int32
@@ -3603,11 +3740,11 @@ func (x GvgRaidStageIconSizeType) String() string {
 }
 
 func (GvgRaidStageIconSizeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[54].Descriptor()
+	return file_penum_proto_enumTypes[56].Descriptor()
 }
 
 func (GvgRaidStageIconSizeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[54]
+	return &file_penum_proto_enumTypes[56]
 }
 
 func (x GvgRaidStageIconSizeType) Number() protoreflect.EnumNumber {
@@ -3616,7 +3753,7 @@ func (x GvgRaidStageIconSizeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GvgRaidStageIconSizeType.Descriptor instead.
 func (GvgRaidStageIconSizeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{54}
+	return file_penum_proto_rawDescGZIP(), []int{56}
 }
 
 type HomeLocationType int32
@@ -3661,11 +3798,11 @@ func (x HomeLocationType) String() string {
 }
 
 func (HomeLocationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[55].Descriptor()
+	return file_penum_proto_enumTypes[57].Descriptor()
 }
 
 func (HomeLocationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[55]
+	return &file_penum_proto_enumTypes[57]
 }
 
 func (x HomeLocationType) Number() protoreflect.EnumNumber {
@@ -3674,7 +3811,7 @@ func (x HomeLocationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HomeLocationType.Descriptor instead.
 func (HomeLocationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{55}
+	return file_penum_proto_rawDescGZIP(), []int{57}
 }
 
 type HomeMotionType int32
@@ -3728,11 +3865,11 @@ func (x HomeMotionType) String() string {
 }
 
 func (HomeMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[56].Descriptor()
+	return file_penum_proto_enumTypes[58].Descriptor()
 }
 
 func (HomeMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[56]
+	return &file_penum_proto_enumTypes[58]
 }
 
 func (x HomeMotionType) Number() protoreflect.EnumNumber {
@@ -3741,7 +3878,7 @@ func (x HomeMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HomeMotionType.Descriptor instead.
 func (HomeMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{56}
+	return file_penum_proto_rawDescGZIP(), []int{58}
 }
 
 type HomeTimeType int32
@@ -3783,11 +3920,11 @@ func (x HomeTimeType) String() string {
 }
 
 func (HomeTimeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[57].Descriptor()
+	return file_penum_proto_enumTypes[59].Descriptor()
 }
 
 func (HomeTimeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[57]
+	return &file_penum_proto_enumTypes[59]
 }
 
 func (x HomeTimeType) Number() protoreflect.EnumNumber {
@@ -3796,7 +3933,7 @@ func (x HomeTimeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HomeTimeType.Descriptor instead.
 func (HomeTimeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{57}
+	return file_penum_proto_rawDescGZIP(), []int{59}
 }
 
 type HomeType int32
@@ -3838,11 +3975,11 @@ func (x HomeType) String() string {
 }
 
 func (HomeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[58].Descriptor()
+	return file_penum_proto_enumTypes[60].Descriptor()
 }
 
 func (HomeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[58]
+	return &file_penum_proto_enumTypes[60]
 }
 
 func (x HomeType) Number() protoreflect.EnumNumber {
@@ -3851,7 +3988,7 @@ func (x HomeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HomeType.Descriptor instead.
 func (HomeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{58}
+	return file_penum_proto_rawDescGZIP(), []int{60}
 }
 
 type IdolCardDifficultyType int32
@@ -3890,11 +4027,11 @@ func (x IdolCardDifficultyType) String() string {
 }
 
 func (IdolCardDifficultyType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[59].Descriptor()
+	return file_penum_proto_enumTypes[61].Descriptor()
 }
 
 func (IdolCardDifficultyType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[59]
+	return &file_penum_proto_enumTypes[61]
 }
 
 func (x IdolCardDifficultyType) Number() protoreflect.EnumNumber {
@@ -3903,7 +4040,7 @@ func (x IdolCardDifficultyType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardDifficultyType.Descriptor instead.
 func (IdolCardDifficultyType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{59}
+	return file_penum_proto_rawDescGZIP(), []int{61}
 }
 
 type IdolCardLevelLimitEffectType int32
@@ -3945,11 +4082,11 @@ func (x IdolCardLevelLimitEffectType) String() string {
 }
 
 func (IdolCardLevelLimitEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[60].Descriptor()
+	return file_penum_proto_enumTypes[62].Descriptor()
 }
 
 func (IdolCardLevelLimitEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[60]
+	return &file_penum_proto_enumTypes[62]
 }
 
 func (x IdolCardLevelLimitEffectType) Number() protoreflect.EnumNumber {
@@ -3958,7 +4095,7 @@ func (x IdolCardLevelLimitEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardLevelLimitEffectType.Descriptor instead.
 func (IdolCardLevelLimitEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{60}
+	return file_penum_proto_rawDescGZIP(), []int{62}
 }
 
 type IdolCardLevelLimitRank int32
@@ -4015,11 +4152,11 @@ func (x IdolCardLevelLimitRank) String() string {
 }
 
 func (IdolCardLevelLimitRank) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[61].Descriptor()
+	return file_penum_proto_enumTypes[63].Descriptor()
 }
 
 func (IdolCardLevelLimitRank) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[61]
+	return &file_penum_proto_enumTypes[63]
 }
 
 func (x IdolCardLevelLimitRank) Number() protoreflect.EnumNumber {
@@ -4028,7 +4165,7 @@ func (x IdolCardLevelLimitRank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardLevelLimitRank.Descriptor instead.
 func (IdolCardLevelLimitRank) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{61}
+	return file_penum_proto_rawDescGZIP(), []int{63}
 }
 
 type IdolCardPotentialEffectType int32
@@ -4070,11 +4207,11 @@ func (x IdolCardPotentialEffectType) String() string {
 }
 
 func (IdolCardPotentialEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[62].Descriptor()
+	return file_penum_proto_enumTypes[64].Descriptor()
 }
 
 func (IdolCardPotentialEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[62]
+	return &file_penum_proto_enumTypes[64]
 }
 
 func (x IdolCardPotentialEffectType) Number() protoreflect.EnumNumber {
@@ -4083,7 +4220,7 @@ func (x IdolCardPotentialEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardPotentialEffectType.Descriptor instead.
 func (IdolCardPotentialEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{62}
+	return file_penum_proto_rawDescGZIP(), []int{64}
 }
 
 type IdolCardPotentialRank int32
@@ -4125,11 +4262,11 @@ func (x IdolCardPotentialRank) String() string {
 }
 
 func (IdolCardPotentialRank) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[63].Descriptor()
+	return file_penum_proto_enumTypes[65].Descriptor()
 }
 
 func (IdolCardPotentialRank) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[63]
+	return &file_penum_proto_enumTypes[65]
 }
 
 func (x IdolCardPotentialRank) Number() protoreflect.EnumNumber {
@@ -4138,7 +4275,7 @@ func (x IdolCardPotentialRank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardPotentialRank.Descriptor instead.
 func (IdolCardPotentialRank) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{63}
+	return file_penum_proto_rawDescGZIP(), []int{65}
 }
 
 type IdolCardRarity int32
@@ -4177,11 +4314,11 @@ func (x IdolCardRarity) String() string {
 }
 
 func (IdolCardRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[64].Descriptor()
+	return file_penum_proto_enumTypes[66].Descriptor()
 }
 
 func (IdolCardRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[64]
+	return &file_penum_proto_enumTypes[66]
 }
 
 func (x IdolCardRarity) Number() protoreflect.EnumNumber {
@@ -4190,7 +4327,7 @@ func (x IdolCardRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolCardRarity.Descriptor instead.
 func (IdolCardRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{64}
+	return file_penum_proto_rawDescGZIP(), []int{66}
 }
 
 type IdolSkillPossessionType int32
@@ -4229,11 +4366,11 @@ func (x IdolSkillPossessionType) String() string {
 }
 
 func (IdolSkillPossessionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[65].Descriptor()
+	return file_penum_proto_enumTypes[67].Descriptor()
 }
 
 func (IdolSkillPossessionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[65]
+	return &file_penum_proto_enumTypes[67]
 }
 
 func (x IdolSkillPossessionType) Number() protoreflect.EnumNumber {
@@ -4242,7 +4379,7 @@ func (x IdolSkillPossessionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use IdolSkillPossessionType.Descriptor instead.
 func (IdolSkillPossessionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{65}
+	return file_penum_proto_rawDescGZIP(), []int{67}
 }
 
 type ItemRarity int32
@@ -4284,11 +4421,11 @@ func (x ItemRarity) String() string {
 }
 
 func (ItemRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[66].Descriptor()
+	return file_penum_proto_enumTypes[68].Descriptor()
 }
 
 func (ItemRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[66]
+	return &file_penum_proto_enumTypes[68]
 }
 
 func (x ItemRarity) Number() protoreflect.EnumNumber {
@@ -4297,7 +4434,7 @@ func (x ItemRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ItemRarity.Descriptor instead.
 func (ItemRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{66}
+	return file_penum_proto_rawDescGZIP(), []int{68}
 }
 
 type ItemType int32
@@ -4323,6 +4460,7 @@ const (
 	ItemType_ItemType_IdolCardPotentialRankUpgrade                 ItemType = 17
 	ItemType_ItemType_SupportCardLevelLimitRankUpgrade             ItemType = 18
 	ItemType_ItemType_MemoryInherit                                ItemType = 19
+	ItemType_ItemType_DearnessStoryUnlock                          ItemType = 20
 	ItemType_ItemType_ProduceBoostRewardSupportCardEnhancePoint    ItemType = 102
 	ItemType_ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial ItemType = 103
 )
@@ -4350,6 +4488,7 @@ var (
 		17:  "ItemType_IdolCardPotentialRankUpgrade",
 		18:  "ItemType_SupportCardLevelLimitRankUpgrade",
 		19:  "ItemType_MemoryInherit",
+		20:  "ItemType_DearnessStoryUnlock",
 		102: "ItemType_ProduceBoostRewardSupportCardEnhancePoint",
 		103: "ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial",
 	}
@@ -4374,6 +4513,7 @@ var (
 		"ItemType_IdolCardPotentialRankUpgrade":                 17,
 		"ItemType_SupportCardLevelLimitRankUpgrade":             18,
 		"ItemType_MemoryInherit":                                19,
+		"ItemType_DearnessStoryUnlock":                          20,
 		"ItemType_ProduceBoostRewardSupportCardEnhancePoint":    102,
 		"ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial": 103,
 	}
@@ -4390,11 +4530,11 @@ func (x ItemType) String() string {
 }
 
 func (ItemType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[67].Descriptor()
+	return file_penum_proto_enumTypes[69].Descriptor()
 }
 
 func (ItemType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[67]
+	return &file_penum_proto_enumTypes[69]
 }
 
 func (x ItemType) Number() protoreflect.EnumNumber {
@@ -4403,7 +4543,7 @@ func (x ItemType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ItemType.Descriptor instead.
 func (ItemType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{67}
+	return file_penum_proto_rawDescGZIP(), []int{69}
 }
 
 type LangType int32
@@ -4442,11 +4582,11 @@ func (x LangType) String() string {
 }
 
 func (LangType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[68].Descriptor()
+	return file_penum_proto_enumTypes[70].Descriptor()
 }
 
 func (LangType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[68]
+	return &file_penum_proto_enumTypes[70]
 }
 
 func (x LangType) Number() protoreflect.EnumNumber {
@@ -4455,7 +4595,7 @@ func (x LangType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LangType.Descriptor instead.
 func (LangType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{68}
+	return file_penum_proto_rawDescGZIP(), []int{70}
 }
 
 type LinkType int32
@@ -4590,11 +4730,11 @@ func (x LinkType) String() string {
 }
 
 func (LinkType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[69].Descriptor()
+	return file_penum_proto_enumTypes[71].Descriptor()
 }
 
 func (LinkType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[69]
+	return &file_penum_proto_enumTypes[71]
 }
 
 func (x LinkType) Number() protoreflect.EnumNumber {
@@ -4603,7 +4743,7 @@ func (x LinkType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LinkType.Descriptor instead.
 func (LinkType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{69}
+	return file_penum_proto_rawDescGZIP(), []int{71}
 }
 
 type LoginBonusType int32
@@ -4642,11 +4782,11 @@ func (x LoginBonusType) String() string {
 }
 
 func (LoginBonusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[70].Descriptor()
+	return file_penum_proto_enumTypes[72].Descriptor()
 }
 
 func (LoginBonusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[70]
+	return &file_penum_proto_enumTypes[72]
 }
 
 func (x LoginBonusType) Number() protoreflect.EnumNumber {
@@ -4655,7 +4795,7 @@ func (x LoginBonusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LoginBonusType.Descriptor instead.
 func (LoginBonusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{70}
+	return file_penum_proto_rawDescGZIP(), []int{72}
 }
 
 type MainTaskType int32
@@ -4700,11 +4840,11 @@ func (x MainTaskType) String() string {
 }
 
 func (MainTaskType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[71].Descriptor()
+	return file_penum_proto_enumTypes[73].Descriptor()
 }
 
 func (MainTaskType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[71]
+	return &file_penum_proto_enumTypes[73]
 }
 
 func (x MainTaskType) Number() protoreflect.EnumNumber {
@@ -4713,7 +4853,7 @@ func (x MainTaskType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MainTaskType.Descriptor instead.
 func (MainTaskType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{71}
+	return file_penum_proto_rawDescGZIP(), []int{73}
 }
 
 type MediaType int32
@@ -4755,11 +4895,11 @@ func (x MediaType) String() string {
 }
 
 func (MediaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[72].Descriptor()
+	return file_penum_proto_enumTypes[74].Descriptor()
 }
 
 func (MediaType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[72]
+	return &file_penum_proto_enumTypes[74]
 }
 
 func (x MediaType) Number() protoreflect.EnumNumber {
@@ -4768,7 +4908,7 @@ func (x MediaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MediaType.Descriptor instead.
 func (MediaType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{72}
+	return file_penum_proto_rawDescGZIP(), []int{74}
 }
 
 type MeishiBaseAssetType int32
@@ -4810,11 +4950,11 @@ func (x MeishiBaseAssetType) String() string {
 }
 
 func (MeishiBaseAssetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[73].Descriptor()
+	return file_penum_proto_enumTypes[75].Descriptor()
 }
 
 func (MeishiBaseAssetType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[73]
+	return &file_penum_proto_enumTypes[75]
 }
 
 func (x MeishiBaseAssetType) Number() protoreflect.EnumNumber {
@@ -4823,7 +4963,7 @@ func (x MeishiBaseAssetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MeishiBaseAssetType.Descriptor instead.
 func (MeishiBaseAssetType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{73}
+	return file_penum_proto_rawDescGZIP(), []int{75}
 }
 
 type MeishiIllustrationType int32
@@ -4871,11 +5011,11 @@ func (x MeishiIllustrationType) String() string {
 }
 
 func (MeishiIllustrationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[74].Descriptor()
+	return file_penum_proto_enumTypes[76].Descriptor()
 }
 
 func (MeishiIllustrationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[74]
+	return &file_penum_proto_enumTypes[76]
 }
 
 func (x MeishiIllustrationType) Number() protoreflect.EnumNumber {
@@ -4884,7 +5024,7 @@ func (x MeishiIllustrationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MeishiIllustrationType.Descriptor instead.
 func (MeishiIllustrationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{74}
+	return file_penum_proto_rawDescGZIP(), []int{76}
 }
 
 type MeishiObjectType int32
@@ -4968,11 +5108,11 @@ func (x MeishiObjectType) String() string {
 }
 
 func (MeishiObjectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[75].Descriptor()
+	return file_penum_proto_enumTypes[77].Descriptor()
 }
 
 func (MeishiObjectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[75]
+	return &file_penum_proto_enumTypes[77]
 }
 
 func (x MeishiObjectType) Number() protoreflect.EnumNumber {
@@ -4981,7 +5121,7 @@ func (x MeishiObjectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MeishiObjectType.Descriptor instead.
 func (MeishiObjectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{75}
+	return file_penum_proto_rawDescGZIP(), []int{77}
 }
 
 type MissionCategory int32
@@ -5032,11 +5172,11 @@ func (x MissionCategory) String() string {
 }
 
 func (MissionCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[76].Descriptor()
+	return file_penum_proto_enumTypes[78].Descriptor()
 }
 
 func (MissionCategory) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[76]
+	return &file_penum_proto_enumTypes[78]
 }
 
 func (x MissionCategory) Number() protoreflect.EnumNumber {
@@ -5045,7 +5185,7 @@ func (x MissionCategory) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MissionCategory.Descriptor instead.
 func (MissionCategory) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{76}
+	return file_penum_proto_rawDescGZIP(), []int{78}
 }
 
 type MissionType int32
@@ -5414,11 +5554,11 @@ func (x MissionType) String() string {
 }
 
 func (MissionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[77].Descriptor()
+	return file_penum_proto_enumTypes[79].Descriptor()
 }
 
 func (MissionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[77]
+	return &file_penum_proto_enumTypes[79]
 }
 
 func (x MissionType) Number() protoreflect.EnumNumber {
@@ -5427,7 +5567,59 @@ func (x MissionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MissionType.Descriptor instead.
 func (MissionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{77}
+	return file_penum_proto_rawDescGZIP(), []int{79}
+}
+
+type MusicType int32
+
+const (
+	MusicType_MusicType_Unknown      MusicType = 0
+	MusicType_MusicType_Music        MusicType = 1
+	MusicType_MusicType_Instrumental MusicType = 2
+	MusicType_MusicType_Bgm          MusicType = 3
+)
+
+// Enum value maps for MusicType.
+var (
+	MusicType_name = map[int32]string{
+		0: "MusicType_Unknown",
+		1: "MusicType_Music",
+		2: "MusicType_Instrumental",
+		3: "MusicType_Bgm",
+	}
+	MusicType_value = map[string]int32{
+		"MusicType_Unknown":      0,
+		"MusicType_Music":        1,
+		"MusicType_Instrumental": 2,
+		"MusicType_Bgm":          3,
+	}
+)
+
+func (x MusicType) Enum() *MusicType {
+	p := new(MusicType)
+	*p = x
+	return p
+}
+
+func (x MusicType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MusicType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[80].Descriptor()
+}
+
+func (MusicType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[80]
+}
+
+func (x MusicType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MusicType.Descriptor instead.
+func (MusicType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{80}
 }
 
 type MusicWishListRequesterType int32
@@ -5466,11 +5658,11 @@ func (x MusicWishListRequesterType) String() string {
 }
 
 func (MusicWishListRequesterType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[78].Descriptor()
+	return file_penum_proto_enumTypes[81].Descriptor()
 }
 
 func (MusicWishListRequesterType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[78]
+	return &file_penum_proto_enumTypes[81]
 }
 
 func (x MusicWishListRequesterType) Number() protoreflect.EnumNumber {
@@ -5479,7 +5671,7 @@ func (x MusicWishListRequesterType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MusicWishListRequesterType.Descriptor instead.
 func (MusicWishListRequesterType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{78}
+	return file_penum_proto_rawDescGZIP(), []int{81}
 }
 
 type NoticeCategory int32
@@ -5518,11 +5710,11 @@ func (x NoticeCategory) String() string {
 }
 
 func (NoticeCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[79].Descriptor()
+	return file_penum_proto_enumTypes[82].Descriptor()
 }
 
 func (NoticeCategory) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[79]
+	return &file_penum_proto_enumTypes[82]
 }
 
 func (x NoticeCategory) Number() protoreflect.EnumNumber {
@@ -5531,7 +5723,7 @@ func (x NoticeCategory) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use NoticeCategory.Descriptor instead.
 func (NoticeCategory) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{79}
+	return file_penum_proto_rawDescGZIP(), []int{82}
 }
 
 type NoticeType int32
@@ -5585,11 +5777,11 @@ func (x NoticeType) String() string {
 }
 
 func (NoticeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[80].Descriptor()
+	return file_penum_proto_enumTypes[83].Descriptor()
 }
 
 func (NoticeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[80]
+	return &file_penum_proto_enumTypes[83]
 }
 
 func (x NoticeType) Number() protoreflect.EnumNumber {
@@ -5598,7 +5790,7 @@ func (x NoticeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use NoticeType.Descriptor instead.
 func (NoticeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{80}
+	return file_penum_proto_rawDescGZIP(), []int{83}
 }
 
 type PaymentPendingReceiptDialogTimingType int32
@@ -5634,11 +5826,11 @@ func (x PaymentPendingReceiptDialogTimingType) String() string {
 }
 
 func (PaymentPendingReceiptDialogTimingType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[81].Descriptor()
+	return file_penum_proto_enumTypes[84].Descriptor()
 }
 
 func (PaymentPendingReceiptDialogTimingType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[81]
+	return &file_penum_proto_enumTypes[84]
 }
 
 func (x PaymentPendingReceiptDialogTimingType) Number() protoreflect.EnumNumber {
@@ -5647,7 +5839,7 @@ func (x PaymentPendingReceiptDialogTimingType) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use PaymentPendingReceiptDialogTimingType.Descriptor instead.
 func (PaymentPendingReceiptDialogTimingType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{81}
+	return file_penum_proto_rawDescGZIP(), []int{84}
 }
 
 type PhotoBackgroundCategory int32
@@ -5689,11 +5881,11 @@ func (x PhotoBackgroundCategory) String() string {
 }
 
 func (PhotoBackgroundCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[82].Descriptor()
+	return file_penum_proto_enumTypes[85].Descriptor()
 }
 
 func (PhotoBackgroundCategory) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[82]
+	return &file_penum_proto_enumTypes[85]
 }
 
 func (x PhotoBackgroundCategory) Number() protoreflect.EnumNumber {
@@ -5702,7 +5894,7 @@ func (x PhotoBackgroundCategory) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhotoBackgroundCategory.Descriptor instead.
 func (PhotoBackgroundCategory) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{82}
+	return file_penum_proto_rawDescGZIP(), []int{85}
 }
 
 type PhotoBackgroundTimeType int32
@@ -5744,11 +5936,11 @@ func (x PhotoBackgroundTimeType) String() string {
 }
 
 func (PhotoBackgroundTimeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[83].Descriptor()
+	return file_penum_proto_enumTypes[86].Descriptor()
 }
 
 func (PhotoBackgroundTimeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[83]
+	return &file_penum_proto_enumTypes[86]
 }
 
 func (x PhotoBackgroundTimeType) Number() protoreflect.EnumNumber {
@@ -5757,7 +5949,7 @@ func (x PhotoBackgroundTimeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhotoBackgroundTimeType.Descriptor instead.
 func (PhotoBackgroundTimeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{83}
+	return file_penum_proto_rawDescGZIP(), []int{86}
 }
 
 type PhotoButtonExecuteType int32
@@ -5796,11 +5988,11 @@ func (x PhotoButtonExecuteType) String() string {
 }
 
 func (PhotoButtonExecuteType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[84].Descriptor()
+	return file_penum_proto_enumTypes[87].Descriptor()
 }
 
 func (PhotoButtonExecuteType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[84]
+	return &file_penum_proto_enumTypes[87]
 }
 
 func (x PhotoButtonExecuteType) Number() protoreflect.EnumNumber {
@@ -5809,7 +6001,7 @@ func (x PhotoButtonExecuteType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhotoButtonExecuteType.Descriptor instead.
 func (PhotoButtonExecuteType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{84}
+	return file_penum_proto_rawDescGZIP(), []int{87}
 }
 
 type PhotoLookTargetType int32
@@ -5848,11 +6040,11 @@ func (x PhotoLookTargetType) String() string {
 }
 
 func (PhotoLookTargetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[85].Descriptor()
+	return file_penum_proto_enumTypes[88].Descriptor()
 }
 
 func (PhotoLookTargetType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[85]
+	return &file_penum_proto_enumTypes[88]
 }
 
 func (x PhotoLookTargetType) Number() protoreflect.EnumNumber {
@@ -5861,7 +6053,7 @@ func (x PhotoLookTargetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhotoLookTargetType.Descriptor instead.
 func (PhotoLookTargetType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{85}
+	return file_penum_proto_rawDescGZIP(), []int{88}
 }
 
 type PhotoPoseMotionType int32
@@ -5897,11 +6089,11 @@ func (x PhotoPoseMotionType) String() string {
 }
 
 func (PhotoPoseMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[86].Descriptor()
+	return file_penum_proto_enumTypes[89].Descriptor()
 }
 
 func (PhotoPoseMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[86]
+	return &file_penum_proto_enumTypes[89]
 }
 
 func (x PhotoPoseMotionType) Number() protoreflect.EnumNumber {
@@ -5910,7 +6102,7 @@ func (x PhotoPoseMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhotoPoseMotionType.Descriptor instead.
 func (PhotoPoseMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{86}
+	return file_penum_proto_rawDescGZIP(), []int{89}
 }
 
 type PlatformType int32
@@ -5952,11 +6144,11 @@ func (x PlatformType) String() string {
 }
 
 func (PlatformType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[87].Descriptor()
+	return file_penum_proto_enumTypes[90].Descriptor()
 }
 
 func (PlatformType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[87]
+	return &file_penum_proto_enumTypes[90]
 }
 
 func (x PlatformType) Number() protoreflect.EnumNumber {
@@ -5965,7 +6157,7 @@ func (x PlatformType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PlatformType.Descriptor instead.
 func (PlatformType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{87}
+	return file_penum_proto_rawDescGZIP(), []int{90}
 }
 
 type PreferenceType int32
@@ -5998,11 +6190,11 @@ func (x PreferenceType) String() string {
 }
 
 func (PreferenceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[88].Descriptor()
+	return file_penum_proto_enumTypes[91].Descriptor()
 }
 
 func (PreferenceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[88]
+	return &file_penum_proto_enumTypes[91]
 }
 
 func (x PreferenceType) Number() protoreflect.EnumNumber {
@@ -6011,7 +6203,7 @@ func (x PreferenceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PreferenceType.Descriptor instead.
 func (PreferenceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{88}
+	return file_penum_proto_rawDescGZIP(), []int{91}
 }
 
 type ProduceAdvType int32
@@ -6098,11 +6290,11 @@ func (x ProduceAdvType) String() string {
 }
 
 func (ProduceAdvType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[89].Descriptor()
+	return file_penum_proto_enumTypes[92].Descriptor()
 }
 
 func (ProduceAdvType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[89]
+	return &file_penum_proto_enumTypes[92]
 }
 
 func (x ProduceAdvType) Number() protoreflect.EnumNumber {
@@ -6111,7 +6303,7 @@ func (x ProduceAdvType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceAdvType.Descriptor instead.
 func (ProduceAdvType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{89}
+	return file_penum_proto_rawDescGZIP(), []int{92}
 }
 
 type ProduceCampaignType int32
@@ -6165,11 +6357,11 @@ func (x ProduceCampaignType) String() string {
 }
 
 func (ProduceCampaignType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[90].Descriptor()
+	return file_penum_proto_enumTypes[93].Descriptor()
 }
 
 func (ProduceCampaignType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[90]
+	return &file_penum_proto_enumTypes[93]
 }
 
 func (x ProduceCampaignType) Number() protoreflect.EnumNumber {
@@ -6178,7 +6370,7 @@ func (x ProduceCampaignType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCampaignType.Descriptor instead.
 func (ProduceCampaignType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{90}
+	return file_penum_proto_rawDescGZIP(), []int{93}
 }
 
 type ProduceCardCategory int32
@@ -6217,11 +6409,11 @@ func (x ProduceCardCategory) String() string {
 }
 
 func (ProduceCardCategory) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[91].Descriptor()
+	return file_penum_proto_enumTypes[94].Descriptor()
 }
 
 func (ProduceCardCategory) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[91]
+	return &file_penum_proto_enumTypes[94]
 }
 
 func (x ProduceCardCategory) Number() protoreflect.EnumNumber {
@@ -6230,7 +6422,7 @@ func (x ProduceCardCategory) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardCategory.Descriptor instead.
 func (ProduceCardCategory) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{91}
+	return file_penum_proto_rawDescGZIP(), []int{94}
 }
 
 type ProduceCardGrowEffectType int32
@@ -6419,11 +6611,11 @@ func (x ProduceCardGrowEffectType) String() string {
 }
 
 func (ProduceCardGrowEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[92].Descriptor()
+	return file_penum_proto_enumTypes[95].Descriptor()
 }
 
 func (ProduceCardGrowEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[92]
+	return &file_penum_proto_enumTypes[95]
 }
 
 func (x ProduceCardGrowEffectType) Number() protoreflect.EnumNumber {
@@ -6432,7 +6624,7 @@ func (x ProduceCardGrowEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardGrowEffectType.Descriptor instead.
 func (ProduceCardGrowEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{92}
+	return file_penum_proto_rawDescGZIP(), []int{95}
 }
 
 type ProduceCardMoveEffectTriggerType int32
@@ -6474,11 +6666,11 @@ func (x ProduceCardMoveEffectTriggerType) String() string {
 }
 
 func (ProduceCardMoveEffectTriggerType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[93].Descriptor()
+	return file_penum_proto_enumTypes[96].Descriptor()
 }
 
 func (ProduceCardMoveEffectTriggerType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[93]
+	return &file_penum_proto_enumTypes[96]
 }
 
 func (x ProduceCardMoveEffectTriggerType) Number() protoreflect.EnumNumber {
@@ -6487,7 +6679,7 @@ func (x ProduceCardMoveEffectTriggerType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardMoveEffectTriggerType.Descriptor instead.
 func (ProduceCardMoveEffectTriggerType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{93}
+	return file_penum_proto_rawDescGZIP(), []int{96}
 }
 
 type ProduceCardMovePositionType int32
@@ -6538,11 +6730,11 @@ func (x ProduceCardMovePositionType) String() string {
 }
 
 func (ProduceCardMovePositionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[94].Descriptor()
+	return file_penum_proto_enumTypes[97].Descriptor()
 }
 
 func (ProduceCardMovePositionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[94]
+	return &file_penum_proto_enumTypes[97]
 }
 
 func (x ProduceCardMovePositionType) Number() protoreflect.EnumNumber {
@@ -6551,7 +6743,7 @@ func (x ProduceCardMovePositionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardMovePositionType.Descriptor instead.
 func (ProduceCardMovePositionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{94}
+	return file_penum_proto_rawDescGZIP(), []int{97}
 }
 
 type ProduceCardOrderType int32
@@ -6590,11 +6782,11 @@ func (x ProduceCardOrderType) String() string {
 }
 
 func (ProduceCardOrderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[95].Descriptor()
+	return file_penum_proto_enumTypes[98].Descriptor()
 }
 
 func (ProduceCardOrderType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[95]
+	return &file_penum_proto_enumTypes[98]
 }
 
 func (x ProduceCardOrderType) Number() protoreflect.EnumNumber {
@@ -6603,7 +6795,7 @@ func (x ProduceCardOrderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardOrderType.Descriptor instead.
 func (ProduceCardOrderType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{95}
+	return file_penum_proto_rawDescGZIP(), []int{98}
 }
 
 type ProduceCardPositionType int32
@@ -6672,11 +6864,11 @@ func (x ProduceCardPositionType) String() string {
 }
 
 func (ProduceCardPositionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[96].Descriptor()
+	return file_penum_proto_enumTypes[99].Descriptor()
 }
 
 func (ProduceCardPositionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[96]
+	return &file_penum_proto_enumTypes[99]
 }
 
 func (x ProduceCardPositionType) Number() protoreflect.EnumNumber {
@@ -6685,7 +6877,7 @@ func (x ProduceCardPositionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardPositionType.Descriptor instead.
 func (ProduceCardPositionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{96}
+	return file_penum_proto_rawDescGZIP(), []int{99}
 }
 
 type ProduceCardRarity int32
@@ -6727,11 +6919,11 @@ func (x ProduceCardRarity) String() string {
 }
 
 func (ProduceCardRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[97].Descriptor()
+	return file_penum_proto_enumTypes[100].Descriptor()
 }
 
 func (ProduceCardRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[97]
+	return &file_penum_proto_enumTypes[100]
 }
 
 func (x ProduceCardRarity) Number() protoreflect.EnumNumber {
@@ -6740,7 +6932,7 @@ func (x ProduceCardRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardRarity.Descriptor instead.
 func (ProduceCardRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{97}
+	return file_penum_proto_rawDescGZIP(), []int{100}
 }
 
 type ProduceCardSearchStatusType int32
@@ -6782,11 +6974,11 @@ func (x ProduceCardSearchStatusType) String() string {
 }
 
 func (ProduceCardSearchStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[98].Descriptor()
+	return file_penum_proto_enumTypes[101].Descriptor()
 }
 
 func (ProduceCardSearchStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[98]
+	return &file_penum_proto_enumTypes[101]
 }
 
 func (x ProduceCardSearchStatusType) Number() protoreflect.EnumNumber {
@@ -6795,7 +6987,7 @@ func (x ProduceCardSearchStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceCardSearchStatusType.Descriptor instead.
 func (ProduceCardSearchStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{98}
+	return file_penum_proto_rawDescGZIP(), []int{101}
 }
 
 type ProduceConditionType int32
@@ -6873,6 +7065,7 @@ const (
 	ProduceConditionType_ProduceConditionType_LatestAuditionStepSelectNumber   ProduceConditionType = 79
 	ProduceConditionType_ProduceConditionType_CurrentAuditionStepType          ProduceConditionType = 80
 	ProduceConditionType_ProduceConditionType_CurrentAuditionStepSelectNumber  ProduceConditionType = 81
+	ProduceConditionType_ProduceConditionType_DearnessPoint                    ProduceConditionType = 82
 	ProduceConditionType_ProduceConditionType_Set                              ProduceConditionType = 998
 	ProduceConditionType_ProduceConditionType_NegativeSet                      ProduceConditionType = 999
 )
@@ -6952,6 +7145,7 @@ var (
 		79:  "ProduceConditionType_LatestAuditionStepSelectNumber",
 		80:  "ProduceConditionType_CurrentAuditionStepType",
 		81:  "ProduceConditionType_CurrentAuditionStepSelectNumber",
+		82:  "ProduceConditionType_DearnessPoint",
 		998: "ProduceConditionType_Set",
 		999: "ProduceConditionType_NegativeSet",
 	}
@@ -7028,6 +7222,7 @@ var (
 		"ProduceConditionType_LatestAuditionStepSelectNumber":   79,
 		"ProduceConditionType_CurrentAuditionStepType":          80,
 		"ProduceConditionType_CurrentAuditionStepSelectNumber":  81,
+		"ProduceConditionType_DearnessPoint":                    82,
 		"ProduceConditionType_Set":                              998,
 		"ProduceConditionType_NegativeSet":                      999,
 	}
@@ -7044,11 +7239,11 @@ func (x ProduceConditionType) String() string {
 }
 
 func (ProduceConditionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[99].Descriptor()
+	return file_penum_proto_enumTypes[102].Descriptor()
 }
 
 func (ProduceConditionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[99]
+	return &file_penum_proto_enumTypes[102]
 }
 
 func (x ProduceConditionType) Number() protoreflect.EnumNumber {
@@ -7057,7 +7252,7 @@ func (x ProduceConditionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceConditionType.Descriptor instead.
 func (ProduceConditionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{99}
+	return file_penum_proto_rawDescGZIP(), []int{102}
 }
 
 type ProduceDescriptionSwapType int32
@@ -7096,11 +7291,11 @@ func (x ProduceDescriptionSwapType) String() string {
 }
 
 func (ProduceDescriptionSwapType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[100].Descriptor()
+	return file_penum_proto_enumTypes[103].Descriptor()
 }
 
 func (ProduceDescriptionSwapType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[100]
+	return &file_penum_proto_enumTypes[103]
 }
 
 func (x ProduceDescriptionSwapType) Number() protoreflect.EnumNumber {
@@ -7109,7 +7304,7 @@ func (x ProduceDescriptionSwapType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceDescriptionSwapType.Descriptor instead.
 func (ProduceDescriptionSwapType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{100}
+	return file_penum_proto_rawDescGZIP(), []int{103}
 }
 
 type ProduceDescriptionType int32
@@ -7202,11 +7397,11 @@ func (x ProduceDescriptionType) String() string {
 }
 
 func (ProduceDescriptionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[101].Descriptor()
+	return file_penum_proto_enumTypes[104].Descriptor()
 }
 
 func (ProduceDescriptionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[101]
+	return &file_penum_proto_enumTypes[104]
 }
 
 func (x ProduceDescriptionType) Number() protoreflect.EnumNumber {
@@ -7215,7 +7410,7 @@ func (x ProduceDescriptionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceDescriptionType.Descriptor instead.
 func (ProduceDescriptionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{101}
+	return file_penum_proto_rawDescGZIP(), []int{104}
 }
 
 type ProduceDisplayType int32
@@ -7251,11 +7446,11 @@ func (x ProduceDisplayType) String() string {
 }
 
 func (ProduceDisplayType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[102].Descriptor()
+	return file_penum_proto_enumTypes[105].Descriptor()
 }
 
 func (ProduceDisplayType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[102]
+	return &file_penum_proto_enumTypes[105]
 }
 
 func (x ProduceDisplayType) Number() protoreflect.EnumNumber {
@@ -7264,7 +7459,7 @@ func (x ProduceDisplayType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceDisplayType.Descriptor instead.
 func (ProduceDisplayType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{102}
+	return file_penum_proto_rawDescGZIP(), []int{105}
 }
 
 type ProduceDrinkRarity int32
@@ -7306,11 +7501,11 @@ func (x ProduceDrinkRarity) String() string {
 }
 
 func (ProduceDrinkRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[103].Descriptor()
+	return file_penum_proto_enumTypes[106].Descriptor()
 }
 
 func (ProduceDrinkRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[103]
+	return &file_penum_proto_enumTypes[106]
 }
 
 func (x ProduceDrinkRarity) Number() protoreflect.EnumNumber {
@@ -7319,7 +7514,7 @@ func (x ProduceDrinkRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceDrinkRarity.Descriptor instead.
 func (ProduceDrinkRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{103}
+	return file_penum_proto_rawDescGZIP(), []int{106}
 }
 
 type ProduceEffectType int32
@@ -7433,6 +7628,7 @@ const (
 	ProduceEffectType_ProduceEffectType_SelfLessonStaminaUp                          ProduceEffectType = 121
 	ProduceEffectType_ProduceEffectType_SelfLessonStaminaDown                        ProduceEffectType = 122
 	ProduceEffectType_ProduceEffectType_HighScoreGoldAddition                        ProduceEffectType = 123
+	ProduceEffectType_ProduceEffectType_IdolCardProduceCardCustomizeEnable           ProduceEffectType = 124
 )
 
 // Enum value maps for ProduceEffectType.
@@ -7546,6 +7742,7 @@ var (
 		121: "ProduceEffectType_SelfLessonStaminaUp",
 		122: "ProduceEffectType_SelfLessonStaminaDown",
 		123: "ProduceEffectType_HighScoreGoldAddition",
+		124: "ProduceEffectType_IdolCardProduceCardCustomizeEnable",
 	}
 	ProduceEffectType_value = map[string]int32{
 		"ProduceEffectType_Unknown":                                      0,
@@ -7656,6 +7853,7 @@ var (
 		"ProduceEffectType_SelfLessonStaminaUp":                          121,
 		"ProduceEffectType_SelfLessonStaminaDown":                        122,
 		"ProduceEffectType_HighScoreGoldAddition":                        123,
+		"ProduceEffectType_IdolCardProduceCardCustomizeEnable":           124,
 	}
 )
 
@@ -7670,11 +7868,11 @@ func (x ProduceEffectType) String() string {
 }
 
 func (ProduceEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[104].Descriptor()
+	return file_penum_proto_enumTypes[107].Descriptor()
 }
 
 func (ProduceEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[104]
+	return &file_penum_proto_enumTypes[107]
 }
 
 func (x ProduceEffectType) Number() protoreflect.EnumNumber {
@@ -7683,7 +7881,7 @@ func (x ProduceEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceEffectType.Descriptor instead.
 func (ProduceEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{104}
+	return file_penum_proto_rawDescGZIP(), []int{107}
 }
 
 type ProduceEventCharacterType int32
@@ -7755,11 +7953,11 @@ func (x ProduceEventCharacterType) String() string {
 }
 
 func (ProduceEventCharacterType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[105].Descriptor()
+	return file_penum_proto_enumTypes[108].Descriptor()
 }
 
 func (ProduceEventCharacterType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[105]
+	return &file_penum_proto_enumTypes[108]
 }
 
 func (x ProduceEventCharacterType) Number() protoreflect.EnumNumber {
@@ -7768,7 +7966,7 @@ func (x ProduceEventCharacterType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceEventCharacterType.Descriptor instead.
 func (ProduceEventCharacterType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{105}
+	return file_penum_proto_rawDescGZIP(), []int{108}
 }
 
 type ProduceEventSuggestionType int32
@@ -7804,11 +8002,11 @@ func (x ProduceEventSuggestionType) String() string {
 }
 
 func (ProduceEventSuggestionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[106].Descriptor()
+	return file_penum_proto_enumTypes[109].Descriptor()
 }
 
 func (ProduceEventSuggestionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[106]
+	return &file_penum_proto_enumTypes[109]
 }
 
 func (x ProduceEventSuggestionType) Number() protoreflect.EnumNumber {
@@ -7817,7 +8015,7 @@ func (x ProduceEventSuggestionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceEventSuggestionType.Descriptor instead.
 func (ProduceEventSuggestionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{106}
+	return file_penum_proto_rawDescGZIP(), []int{109}
 }
 
 type ProduceEventType int32
@@ -7868,11 +8066,11 @@ func (x ProduceEventType) String() string {
 }
 
 func (ProduceEventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[107].Descriptor()
+	return file_penum_proto_enumTypes[110].Descriptor()
 }
 
 func (ProduceEventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[107]
+	return &file_penum_proto_enumTypes[110]
 }
 
 func (x ProduceEventType) Number() protoreflect.EnumNumber {
@@ -7881,7 +8079,7 @@ func (x ProduceEventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceEventType.Descriptor instead.
 func (ProduceEventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{107}
+	return file_penum_proto_rawDescGZIP(), []int{110}
 }
 
 type ProduceExamAutoCardSelectEvaluationType int32
@@ -7920,11 +8118,11 @@ func (x ProduceExamAutoCardSelectEvaluationType) String() string {
 }
 
 func (ProduceExamAutoCardSelectEvaluationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[108].Descriptor()
+	return file_penum_proto_enumTypes[111].Descriptor()
 }
 
 func (ProduceExamAutoCardSelectEvaluationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[108]
+	return &file_penum_proto_enumTypes[111]
 }
 
 func (x ProduceExamAutoCardSelectEvaluationType) Number() protoreflect.EnumNumber {
@@ -7933,7 +8131,7 @@ func (x ProduceExamAutoCardSelectEvaluationType) Number() protoreflect.EnumNumbe
 
 // Deprecated: Use ProduceExamAutoCardSelectEvaluationType.Descriptor instead.
 func (ProduceExamAutoCardSelectEvaluationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{108}
+	return file_penum_proto_rawDescGZIP(), []int{111}
 }
 
 type ProduceExamAutoEvaluationType int32
@@ -8098,11 +8296,11 @@ func (x ProduceExamAutoEvaluationType) String() string {
 }
 
 func (ProduceExamAutoEvaluationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[109].Descriptor()
+	return file_penum_proto_enumTypes[112].Descriptor()
 }
 
 func (ProduceExamAutoEvaluationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[109]
+	return &file_penum_proto_enumTypes[112]
 }
 
 func (x ProduceExamAutoEvaluationType) Number() protoreflect.EnumNumber {
@@ -8111,7 +8309,7 @@ func (x ProduceExamAutoEvaluationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamAutoEvaluationType.Descriptor instead.
 func (ProduceExamAutoEvaluationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{109}
+	return file_penum_proto_rawDescGZIP(), []int{112}
 }
 
 type ProduceExamEffectType int32
@@ -8543,11 +8741,11 @@ func (x ProduceExamEffectType) String() string {
 }
 
 func (ProduceExamEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[110].Descriptor()
+	return file_penum_proto_enumTypes[113].Descriptor()
 }
 
 func (ProduceExamEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[110]
+	return &file_penum_proto_enumTypes[113]
 }
 
 func (x ProduceExamEffectType) Number() protoreflect.EnumNumber {
@@ -8556,7 +8754,7 @@ func (x ProduceExamEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamEffectType.Descriptor instead.
 func (ProduceExamEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{110}
+	return file_penum_proto_rawDescGZIP(), []int{113}
 }
 
 type ProduceExamFieldStatusType int32
@@ -8697,11 +8895,11 @@ func (x ProduceExamFieldStatusType) String() string {
 }
 
 func (ProduceExamFieldStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[111].Descriptor()
+	return file_penum_proto_enumTypes[114].Descriptor()
 }
 
 func (ProduceExamFieldStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[111]
+	return &file_penum_proto_enumTypes[114]
 }
 
 func (x ProduceExamFieldStatusType) Number() protoreflect.EnumNumber {
@@ -8710,7 +8908,7 @@ func (x ProduceExamFieldStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamFieldStatusType.Descriptor instead.
 func (ProduceExamFieldStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{111}
+	return file_penum_proto_rawDescGZIP(), []int{114}
 }
 
 type ProduceExamPhaseType int32
@@ -8872,11 +9070,11 @@ func (x ProduceExamPhaseType) String() string {
 }
 
 func (ProduceExamPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[112].Descriptor()
+	return file_penum_proto_enumTypes[115].Descriptor()
 }
 
 func (ProduceExamPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[112]
+	return &file_penum_proto_enumTypes[115]
 }
 
 func (x ProduceExamPhaseType) Number() protoreflect.EnumNumber {
@@ -8885,7 +9083,7 @@ func (x ProduceExamPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamPhaseType.Descriptor instead.
 func (ProduceExamPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{112}
+	return file_penum_proto_rawDescGZIP(), []int{115}
 }
 
 type ProduceExamResultType int32
@@ -8924,11 +9122,11 @@ func (x ProduceExamResultType) String() string {
 }
 
 func (ProduceExamResultType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[113].Descriptor()
+	return file_penum_proto_enumTypes[116].Descriptor()
 }
 
 func (ProduceExamResultType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[113]
+	return &file_penum_proto_enumTypes[116]
 }
 
 func (x ProduceExamResultType) Number() protoreflect.EnumNumber {
@@ -8937,7 +9135,7 @@ func (x ProduceExamResultType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamResultType.Descriptor instead.
 func (ProduceExamResultType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{113}
+	return file_penum_proto_rawDescGZIP(), []int{116}
 }
 
 type ProduceExamTriggerCheckType int32
@@ -8970,11 +9168,11 @@ func (x ProduceExamTriggerCheckType) String() string {
 }
 
 func (ProduceExamTriggerCheckType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[114].Descriptor()
+	return file_penum_proto_enumTypes[117].Descriptor()
 }
 
 func (ProduceExamTriggerCheckType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[114]
+	return &file_penum_proto_enumTypes[117]
 }
 
 func (x ProduceExamTriggerCheckType) Number() protoreflect.EnumNumber {
@@ -8983,7 +9181,7 @@ func (x ProduceExamTriggerCheckType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceExamTriggerCheckType.Descriptor instead.
 func (ProduceExamTriggerCheckType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{114}
+	return file_penum_proto_rawDescGZIP(), []int{117}
 }
 
 type ProduceHighScoreEventType int32
@@ -9019,11 +9217,11 @@ func (x ProduceHighScoreEventType) String() string {
 }
 
 func (ProduceHighScoreEventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[115].Descriptor()
+	return file_penum_proto_enumTypes[118].Descriptor()
 }
 
 func (ProduceHighScoreEventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[115]
+	return &file_penum_proto_enumTypes[118]
 }
 
 func (x ProduceHighScoreEventType) Number() protoreflect.EnumNumber {
@@ -9032,7 +9230,7 @@ func (x ProduceHighScoreEventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceHighScoreEventType.Descriptor instead.
 func (ProduceHighScoreEventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{115}
+	return file_penum_proto_rawDescGZIP(), []int{118}
 }
 
 type ProduceItemEffectType int32
@@ -9068,11 +9266,11 @@ func (x ProduceItemEffectType) String() string {
 }
 
 func (ProduceItemEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[116].Descriptor()
+	return file_penum_proto_enumTypes[119].Descriptor()
 }
 
 func (ProduceItemEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[116]
+	return &file_penum_proto_enumTypes[119]
 }
 
 func (x ProduceItemEffectType) Number() protoreflect.EnumNumber {
@@ -9081,7 +9279,7 @@ func (x ProduceItemEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceItemEffectType.Descriptor instead.
 func (ProduceItemEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{116}
+	return file_penum_proto_rawDescGZIP(), []int{119}
 }
 
 type ProduceItemRarity int32
@@ -9123,11 +9321,11 @@ func (x ProduceItemRarity) String() string {
 }
 
 func (ProduceItemRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[117].Descriptor()
+	return file_penum_proto_enumTypes[120].Descriptor()
 }
 
 func (ProduceItemRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[117]
+	return &file_penum_proto_enumTypes[120]
 }
 
 func (x ProduceItemRarity) Number() protoreflect.EnumNumber {
@@ -9136,7 +9334,7 @@ func (x ProduceItemRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceItemRarity.Descriptor instead.
 func (ProduceItemRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{117}
+	return file_penum_proto_rawDescGZIP(), []int{120}
 }
 
 type ProduceLiveType int32
@@ -9184,11 +9382,11 @@ func (x ProduceLiveType) String() string {
 }
 
 func (ProduceLiveType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[118].Descriptor()
+	return file_penum_proto_enumTypes[121].Descriptor()
 }
 
 func (ProduceLiveType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[118]
+	return &file_penum_proto_enumTypes[121]
 }
 
 func (x ProduceLiveType) Number() protoreflect.EnumNumber {
@@ -9197,7 +9395,7 @@ func (x ProduceLiveType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceLiveType.Descriptor instead.
 func (ProduceLiveType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{118}
+	return file_penum_proto_rawDescGZIP(), []int{121}
 }
 
 type ProduceMemoryProduceCardPhaseType int32
@@ -9233,11 +9431,11 @@ func (x ProduceMemoryProduceCardPhaseType) String() string {
 }
 
 func (ProduceMemoryProduceCardPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[119].Descriptor()
+	return file_penum_proto_enumTypes[122].Descriptor()
 }
 
 func (ProduceMemoryProduceCardPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[119]
+	return &file_penum_proto_enumTypes[122]
 }
 
 func (x ProduceMemoryProduceCardPhaseType) Number() protoreflect.EnumNumber {
@@ -9246,7 +9444,7 @@ func (x ProduceMemoryProduceCardPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceMemoryProduceCardPhaseType.Descriptor instead.
 func (ProduceMemoryProduceCardPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{119}
+	return file_penum_proto_rawDescGZIP(), []int{122}
 }
 
 type ProduceParameterType int32
@@ -9285,11 +9483,11 @@ func (x ProduceParameterType) String() string {
 }
 
 func (ProduceParameterType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[120].Descriptor()
+	return file_penum_proto_enumTypes[123].Descriptor()
 }
 
 func (ProduceParameterType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[120]
+	return &file_penum_proto_enumTypes[123]
 }
 
 func (x ProduceParameterType) Number() protoreflect.EnumNumber {
@@ -9298,7 +9496,7 @@ func (x ProduceParameterType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceParameterType.Descriptor instead.
 func (ProduceParameterType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{120}
+	return file_penum_proto_rawDescGZIP(), []int{123}
 }
 
 type ProducePhaseType int32
@@ -9346,6 +9544,8 @@ const (
 	ProducePhaseType_ProducePhaseType_BuyShopItemProduceItem        ProducePhaseType = 55
 	ProducePhaseType_ProducePhaseType_BuyShopItemUpgradeProduceCard ProducePhaseType = 56
 	ProducePhaseType_ProducePhaseType_BuyShopItemDeleteProduceCard  ProducePhaseType = 57
+	ProducePhaseType_ProducePhaseType_EndPresent                    ProducePhaseType = 58
+	ProducePhaseType_ProducePhaseType_EndShop                       ProducePhaseType = 59
 )
 
 // Enum value maps for ProducePhaseType.
@@ -9393,6 +9593,8 @@ var (
 		55: "ProducePhaseType_BuyShopItemProduceItem",
 		56: "ProducePhaseType_BuyShopItemUpgradeProduceCard",
 		57: "ProducePhaseType_BuyShopItemDeleteProduceCard",
+		58: "ProducePhaseType_EndPresent",
+		59: "ProducePhaseType_EndShop",
 	}
 	ProducePhaseType_value = map[string]int32{
 		"ProducePhaseType_Unknown":                       0,
@@ -9437,6 +9639,8 @@ var (
 		"ProducePhaseType_BuyShopItemProduceItem":        55,
 		"ProducePhaseType_BuyShopItemUpgradeProduceCard": 56,
 		"ProducePhaseType_BuyShopItemDeleteProduceCard":  57,
+		"ProducePhaseType_EndPresent":                    58,
+		"ProducePhaseType_EndShop":                       59,
 	}
 )
 
@@ -9451,11 +9655,11 @@ func (x ProducePhaseType) String() string {
 }
 
 func (ProducePhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[121].Descriptor()
+	return file_penum_proto_enumTypes[124].Descriptor()
 }
 
 func (ProducePhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[121]
+	return &file_penum_proto_enumTypes[124]
 }
 
 func (x ProducePhaseType) Number() protoreflect.EnumNumber {
@@ -9464,7 +9668,7 @@ func (x ProducePhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProducePhaseType.Descriptor instead.
 func (ProducePhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{121}
+	return file_penum_proto_rawDescGZIP(), []int{124}
 }
 
 type ProducePickRangeType int32
@@ -9503,11 +9707,11 @@ func (x ProducePickRangeType) String() string {
 }
 
 func (ProducePickRangeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[122].Descriptor()
+	return file_penum_proto_enumTypes[125].Descriptor()
 }
 
 func (ProducePickRangeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[122]
+	return &file_penum_proto_enumTypes[125]
 }
 
 func (x ProducePickRangeType) Number() protoreflect.EnumNumber {
@@ -9516,7 +9720,7 @@ func (x ProducePickRangeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProducePickRangeType.Descriptor instead.
 func (ProducePickRangeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{122}
+	return file_penum_proto_rawDescGZIP(), []int{125}
 }
 
 type ProducePlanType int32
@@ -9558,11 +9762,11 @@ func (x ProducePlanType) String() string {
 }
 
 func (ProducePlanType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[123].Descriptor()
+	return file_penum_proto_enumTypes[126].Descriptor()
 }
 
 func (ProducePlanType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[123]
+	return &file_penum_proto_enumTypes[126]
 }
 
 func (x ProducePlanType) Number() protoreflect.EnumNumber {
@@ -9571,7 +9775,7 @@ func (x ProducePlanType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProducePlanType.Descriptor instead.
 func (ProducePlanType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{123}
+	return file_penum_proto_rawDescGZIP(), []int{126}
 }
 
 type ProduceProgressAuditionStatusType int32
@@ -9613,11 +9817,11 @@ func (x ProduceProgressAuditionStatusType) String() string {
 }
 
 func (ProduceProgressAuditionStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[124].Descriptor()
+	return file_penum_proto_enumTypes[127].Descriptor()
 }
 
 func (ProduceProgressAuditionStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[124]
+	return &file_penum_proto_enumTypes[127]
 }
 
 func (x ProduceProgressAuditionStatusType) Number() protoreflect.EnumNumber {
@@ -9626,7 +9830,7 @@ func (x ProduceProgressAuditionStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceProgressAuditionStatusType.Descriptor instead.
 func (ProduceProgressAuditionStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{124}
+	return file_penum_proto_rawDescGZIP(), []int{127}
 }
 
 type ProduceProgressConditionType int32
@@ -9686,11 +9890,11 @@ func (x ProduceProgressConditionType) String() string {
 }
 
 func (ProduceProgressConditionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[125].Descriptor()
+	return file_penum_proto_enumTypes[128].Descriptor()
 }
 
 func (ProduceProgressConditionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[125]
+	return &file_penum_proto_enumTypes[128]
 }
 
 func (x ProduceProgressConditionType) Number() protoreflect.EnumNumber {
@@ -9699,7 +9903,7 @@ func (x ProduceProgressConditionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceProgressConditionType.Descriptor instead.
 func (ProduceProgressConditionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{125}
+	return file_penum_proto_rawDescGZIP(), []int{128}
 }
 
 type ProduceProgressStatus int32
@@ -9731,6 +9935,7 @@ const (
 	ProduceProgressStatus_ProduceProgressStatus_Result                          ProduceProgressStatus = 31
 	ProduceProgressStatus_ProduceProgressStatus_GuildMission                    ProduceProgressStatus = 32
 	ProduceProgressStatus_ProduceProgressStatus_EndingCharacterDearnessStory    ProduceProgressStatus = 33
+	ProduceProgressStatus_ProduceProgressStatus_DearnessBoost                   ProduceProgressStatus = 34
 	ProduceProgressStatus_ProduceProgressStatus_Finished                        ProduceProgressStatus = 99
 )
 
@@ -9763,6 +9968,7 @@ var (
 		31: "ProduceProgressStatus_Result",
 		32: "ProduceProgressStatus_GuildMission",
 		33: "ProduceProgressStatus_EndingCharacterDearnessStory",
+		34: "ProduceProgressStatus_DearnessBoost",
 		99: "ProduceProgressStatus_Finished",
 	}
 	ProduceProgressStatus_value = map[string]int32{
@@ -9792,6 +9998,7 @@ var (
 		"ProduceProgressStatus_Result":                          31,
 		"ProduceProgressStatus_GuildMission":                    32,
 		"ProduceProgressStatus_EndingCharacterDearnessStory":    33,
+		"ProduceProgressStatus_DearnessBoost":                   34,
 		"ProduceProgressStatus_Finished":                        99,
 	}
 )
@@ -9807,11 +10014,11 @@ func (x ProduceProgressStatus) String() string {
 }
 
 func (ProduceProgressStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[126].Descriptor()
+	return file_penum_proto_enumTypes[129].Descriptor()
 }
 
 func (ProduceProgressStatus) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[126]
+	return &file_penum_proto_enumTypes[129]
 }
 
 func (x ProduceProgressStatus) Number() protoreflect.EnumNumber {
@@ -9820,7 +10027,7 @@ func (x ProduceProgressStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceProgressStatus.Descriptor instead.
 func (ProduceProgressStatus) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{126}
+	return file_penum_proto_rawDescGZIP(), []int{129}
 }
 
 type ProduceResourceOriginType int32
@@ -9883,11 +10090,11 @@ func (x ProduceResourceOriginType) String() string {
 }
 
 func (ProduceResourceOriginType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[127].Descriptor()
+	return file_penum_proto_enumTypes[130].Descriptor()
 }
 
 func (ProduceResourceOriginType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[127]
+	return &file_penum_proto_enumTypes[130]
 }
 
 func (x ProduceResourceOriginType) Number() protoreflect.EnumNumber {
@@ -9896,7 +10103,7 @@ func (x ProduceResourceOriginType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceResourceOriginType.Descriptor instead.
 func (ProduceResourceOriginType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{127}
+	return file_penum_proto_rawDescGZIP(), []int{130}
 }
 
 type ProduceResourceType int32
@@ -9965,11 +10172,11 @@ func (x ProduceResourceType) String() string {
 }
 
 func (ProduceResourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[128].Descriptor()
+	return file_penum_proto_enumTypes[131].Descriptor()
 }
 
 func (ProduceResourceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[128]
+	return &file_penum_proto_enumTypes[131]
 }
 
 func (x ProduceResourceType) Number() protoreflect.EnumNumber {
@@ -9978,7 +10185,7 @@ func (x ProduceResourceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceResourceType.Descriptor instead.
 func (ProduceResourceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{128}
+	return file_penum_proto_rawDescGZIP(), []int{131}
 }
 
 type ProduceRewardType int32
@@ -10014,11 +10221,11 @@ func (x ProduceRewardType) String() string {
 }
 
 func (ProduceRewardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[129].Descriptor()
+	return file_penum_proto_enumTypes[132].Descriptor()
 }
 
 func (ProduceRewardType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[129]
+	return &file_penum_proto_enumTypes[132]
 }
 
 func (x ProduceRewardType) Number() protoreflect.EnumNumber {
@@ -10027,7 +10234,7 @@ func (x ProduceRewardType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceRewardType.Descriptor instead.
 func (ProduceRewardType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{129}
+	return file_penum_proto_rawDescGZIP(), []int{132}
 }
 
 type ProduceScheduleLocationType int32
@@ -10087,11 +10294,11 @@ func (x ProduceScheduleLocationType) String() string {
 }
 
 func (ProduceScheduleLocationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[130].Descriptor()
+	return file_penum_proto_enumTypes[133].Descriptor()
 }
 
 func (ProduceScheduleLocationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[130]
+	return &file_penum_proto_enumTypes[133]
 }
 
 func (x ProduceScheduleLocationType) Number() protoreflect.EnumNumber {
@@ -10100,7 +10307,7 @@ func (x ProduceScheduleLocationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleLocationType.Descriptor instead.
 func (ProduceScheduleLocationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{130}
+	return file_penum_proto_rawDescGZIP(), []int{133}
 }
 
 type ProduceScheduleMotionType int32
@@ -10142,11 +10349,11 @@ func (x ProduceScheduleMotionType) String() string {
 }
 
 func (ProduceScheduleMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[131].Descriptor()
+	return file_penum_proto_enumTypes[134].Descriptor()
 }
 
 func (ProduceScheduleMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[131]
+	return &file_penum_proto_enumTypes[134]
 }
 
 func (x ProduceScheduleMotionType) Number() protoreflect.EnumNumber {
@@ -10155,7 +10362,7 @@ func (x ProduceScheduleMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleMotionType.Descriptor instead.
 func (ProduceScheduleMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{131}
+	return file_penum_proto_rawDescGZIP(), []int{134}
 }
 
 type ProduceScheduleStaminaMotionType int32
@@ -10191,11 +10398,11 @@ func (x ProduceScheduleStaminaMotionType) String() string {
 }
 
 func (ProduceScheduleStaminaMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[132].Descriptor()
+	return file_penum_proto_enumTypes[135].Descriptor()
 }
 
 func (ProduceScheduleStaminaMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[132]
+	return &file_penum_proto_enumTypes[135]
 }
 
 func (x ProduceScheduleStaminaMotionType) Number() protoreflect.EnumNumber {
@@ -10204,7 +10411,7 @@ func (x ProduceScheduleStaminaMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleStaminaMotionType.Descriptor instead.
 func (ProduceScheduleStaminaMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{132}
+	return file_penum_proto_rawDescGZIP(), []int{135}
 }
 
 type ProduceSkillEffectType int32
@@ -10261,11 +10468,11 @@ func (x ProduceSkillEffectType) String() string {
 }
 
 func (ProduceSkillEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[133].Descriptor()
+	return file_penum_proto_enumTypes[136].Descriptor()
 }
 
 func (ProduceSkillEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[133]
+	return &file_penum_proto_enumTypes[136]
 }
 
 func (x ProduceSkillEffectType) Number() protoreflect.EnumNumber {
@@ -10274,7 +10481,7 @@ func (x ProduceSkillEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceSkillEffectType.Descriptor instead.
 func (ProduceSkillEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{133}
+	return file_penum_proto_rawDescGZIP(), []int{136}
 }
 
 type ProduceStartMotionType int32
@@ -10310,11 +10517,11 @@ func (x ProduceStartMotionType) String() string {
 }
 
 func (ProduceStartMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[134].Descriptor()
+	return file_penum_proto_enumTypes[137].Descriptor()
 }
 
 func (ProduceStartMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[134]
+	return &file_penum_proto_enumTypes[137]
 }
 
 func (x ProduceStartMotionType) Number() protoreflect.EnumNumber {
@@ -10323,7 +10530,7 @@ func (x ProduceStartMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStartMotionType.Descriptor instead.
 func (ProduceStartMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{134}
+	return file_penum_proto_rawDescGZIP(), []int{137}
 }
 
 type ProduceStepAuditionMotionType int32
@@ -10368,11 +10575,11 @@ func (x ProduceStepAuditionMotionType) String() string {
 }
 
 func (ProduceStepAuditionMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[135].Descriptor()
+	return file_penum_proto_enumTypes[138].Descriptor()
 }
 
 func (ProduceStepAuditionMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[135]
+	return &file_penum_proto_enumTypes[138]
 }
 
 func (x ProduceStepAuditionMotionType) Number() protoreflect.EnumNumber {
@@ -10381,7 +10588,7 @@ func (x ProduceStepAuditionMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepAuditionMotionType.Descriptor instead.
 func (ProduceStepAuditionMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{135}
+	return file_penum_proto_rawDescGZIP(), []int{138}
 }
 
 type ProduceStepAuditionType int32
@@ -10441,11 +10648,11 @@ func (x ProduceStepAuditionType) String() string {
 }
 
 func (ProduceStepAuditionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[136].Descriptor()
+	return file_penum_proto_enumTypes[139].Descriptor()
 }
 
 func (ProduceStepAuditionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[136]
+	return &file_penum_proto_enumTypes[139]
 }
 
 func (x ProduceStepAuditionType) Number() protoreflect.EnumNumber {
@@ -10454,7 +10661,7 @@ func (x ProduceStepAuditionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepAuditionType.Descriptor instead.
 func (ProduceStepAuditionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{136}
+	return file_penum_proto_rawDescGZIP(), []int{139}
 }
 
 type ProduceStepBusinessType int32
@@ -10496,11 +10703,11 @@ func (x ProduceStepBusinessType) String() string {
 }
 
 func (ProduceStepBusinessType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[137].Descriptor()
+	return file_penum_proto_enumTypes[140].Descriptor()
 }
 
 func (ProduceStepBusinessType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[137]
+	return &file_penum_proto_enumTypes[140]
 }
 
 func (x ProduceStepBusinessType) Number() protoreflect.EnumNumber {
@@ -10509,7 +10716,7 @@ func (x ProduceStepBusinessType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepBusinessType.Descriptor instead.
 func (ProduceStepBusinessType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{137}
+	return file_penum_proto_rawDescGZIP(), []int{140}
 }
 
 type ProduceStepFanPresentMotionType int32
@@ -10545,11 +10752,11 @@ func (x ProduceStepFanPresentMotionType) String() string {
 }
 
 func (ProduceStepFanPresentMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[138].Descriptor()
+	return file_penum_proto_enumTypes[141].Descriptor()
 }
 
 func (ProduceStepFanPresentMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[138]
+	return &file_penum_proto_enumTypes[141]
 }
 
 func (x ProduceStepFanPresentMotionType) Number() protoreflect.EnumNumber {
@@ -10558,7 +10765,7 @@ func (x ProduceStepFanPresentMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepFanPresentMotionType.Descriptor instead.
 func (ProduceStepFanPresentMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{138}
+	return file_penum_proto_rawDescGZIP(), []int{141}
 }
 
 type ProduceStepLessonType int32
@@ -10636,11 +10843,11 @@ func (x ProduceStepLessonType) String() string {
 }
 
 func (ProduceStepLessonType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[139].Descriptor()
+	return file_penum_proto_enumTypes[142].Descriptor()
 }
 
 func (ProduceStepLessonType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[139]
+	return &file_penum_proto_enumTypes[142]
 }
 
 func (x ProduceStepLessonType) Number() protoreflect.EnumNumber {
@@ -10649,7 +10856,7 @@ func (x ProduceStepLessonType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepLessonType.Descriptor instead.
 func (ProduceStepLessonType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{139}
+	return file_penum_proto_rawDescGZIP(), []int{142}
 }
 
 type ProduceStepPhaseType int32
@@ -10685,11 +10892,11 @@ func (x ProduceStepPhaseType) String() string {
 }
 
 func (ProduceStepPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[140].Descriptor()
+	return file_penum_proto_enumTypes[143].Descriptor()
 }
 
 func (ProduceStepPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[140]
+	return &file_penum_proto_enumTypes[143]
 }
 
 func (x ProduceStepPhaseType) Number() protoreflect.EnumNumber {
@@ -10698,7 +10905,7 @@ func (x ProduceStepPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepPhaseType.Descriptor instead.
 func (ProduceStepPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{140}
+	return file_penum_proto_rawDescGZIP(), []int{143}
 }
 
 type ProduceStepType int32
@@ -10812,11 +11019,11 @@ func (x ProduceStepType) String() string {
 }
 
 func (ProduceStepType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[141].Descriptor()
+	return file_penum_proto_enumTypes[144].Descriptor()
 }
 
 func (ProduceStepType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[141]
+	return &file_penum_proto_enumTypes[144]
 }
 
 func (x ProduceStepType) Number() protoreflect.EnumNumber {
@@ -10825,7 +11032,7 @@ func (x ProduceStepType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepType.Descriptor instead.
 func (ProduceStepType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{141}
+	return file_penum_proto_rawDescGZIP(), []int{144}
 }
 
 type ProduceStoryType int32
@@ -10882,11 +11089,11 @@ func (x ProduceStoryType) String() string {
 }
 
 func (ProduceStoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[142].Descriptor()
+	return file_penum_proto_enumTypes[145].Descriptor()
 }
 
 func (ProduceStoryType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[142]
+	return &file_penum_proto_enumTypes[145]
 }
 
 func (x ProduceStoryType) Number() protoreflect.EnumNumber {
@@ -10895,7 +11102,7 @@ func (x ProduceStoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStoryType.Descriptor instead.
 func (ProduceStoryType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{142}
+	return file_penum_proto_rawDescGZIP(), []int{145}
 }
 
 type ProduceTriggerOriginType int32
@@ -10952,11 +11159,11 @@ func (x ProduceTriggerOriginType) String() string {
 }
 
 func (ProduceTriggerOriginType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[143].Descriptor()
+	return file_penum_proto_enumTypes[146].Descriptor()
 }
 
 func (ProduceTriggerOriginType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[143]
+	return &file_penum_proto_enumTypes[146]
 }
 
 func (x ProduceTriggerOriginType) Number() protoreflect.EnumNumber {
@@ -10965,7 +11172,7 @@ func (x ProduceTriggerOriginType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceTriggerOriginType.Descriptor instead.
 func (ProduceTriggerOriginType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{143}
+	return file_penum_proto_rawDescGZIP(), []int{146}
 }
 
 type ProduceType int32
@@ -11001,11 +11208,11 @@ func (x ProduceType) String() string {
 }
 
 func (ProduceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[144].Descriptor()
+	return file_penum_proto_enumTypes[147].Descriptor()
 }
 
 func (ProduceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[144]
+	return &file_penum_proto_enumTypes[147]
 }
 
 func (x ProduceType) Number() protoreflect.EnumNumber {
@@ -11014,7 +11221,7 @@ func (x ProduceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceType.Descriptor instead.
 func (ProduceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{144}
+	return file_penum_proto_rawDescGZIP(), []int{147}
 }
 
 type ProducerLevelUnlockType int32
@@ -11062,11 +11269,11 @@ func (x ProducerLevelUnlockType) String() string {
 }
 
 func (ProducerLevelUnlockType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[145].Descriptor()
+	return file_penum_proto_enumTypes[148].Descriptor()
 }
 
 func (ProducerLevelUnlockType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[145]
+	return &file_penum_proto_enumTypes[148]
 }
 
 func (x ProducerLevelUnlockType) Number() protoreflect.EnumNumber {
@@ -11075,7 +11282,7 @@ func (x ProducerLevelUnlockType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProducerLevelUnlockType.Descriptor instead.
 func (ProducerLevelUnlockType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{145}
+	return file_penum_proto_rawDescGZIP(), []int{148}
 }
 
 type PurchaseTransactionStatusType int32
@@ -11123,11 +11330,11 @@ func (x PurchaseTransactionStatusType) String() string {
 }
 
 func (PurchaseTransactionStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[146].Descriptor()
+	return file_penum_proto_enumTypes[149].Descriptor()
 }
 
 func (PurchaseTransactionStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[146]
+	return &file_penum_proto_enumTypes[149]
 }
 
 func (x PurchaseTransactionStatusType) Number() protoreflect.EnumNumber {
@@ -11136,7 +11343,7 @@ func (x PurchaseTransactionStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PurchaseTransactionStatusType.Descriptor instead.
 func (PurchaseTransactionStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{146}
+	return file_penum_proto_rawDescGZIP(), []int{149}
 }
 
 type PushType int32
@@ -11187,11 +11394,11 @@ func (x PushType) String() string {
 }
 
 func (PushType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[147].Descriptor()
+	return file_penum_proto_enumTypes[150].Descriptor()
 }
 
 func (PushType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[147]
+	return &file_penum_proto_enumTypes[150]
 }
 
 func (x PushType) Number() protoreflect.EnumNumber {
@@ -11200,7 +11407,7 @@ func (x PushType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PushType.Descriptor instead.
 func (PushType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{147}
+	return file_penum_proto_rawDescGZIP(), []int{150}
 }
 
 type PvpRateGrade int32
@@ -11254,11 +11461,11 @@ func (x PvpRateGrade) String() string {
 }
 
 func (PvpRateGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[148].Descriptor()
+	return file_penum_proto_enumTypes[151].Descriptor()
 }
 
 func (PvpRateGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[148]
+	return &file_penum_proto_enumTypes[151]
 }
 
 func (x PvpRateGrade) Number() protoreflect.EnumNumber {
@@ -11267,7 +11474,7 @@ func (x PvpRateGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateGrade.Descriptor instead.
 func (PvpRateGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{148}
+	return file_penum_proto_rawDescGZIP(), []int{151}
 }
 
 type PvpRateMotionType int32
@@ -11303,11 +11510,11 @@ func (x PvpRateMotionType) String() string {
 }
 
 func (PvpRateMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[149].Descriptor()
+	return file_penum_proto_enumTypes[152].Descriptor()
 }
 
 func (PvpRateMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[149]
+	return &file_penum_proto_enumTypes[152]
 }
 
 func (x PvpRateMotionType) Number() protoreflect.EnumNumber {
@@ -11316,7 +11523,7 @@ func (x PvpRateMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateMotionType.Descriptor instead.
 func (PvpRateMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{149}
+	return file_penum_proto_rawDescGZIP(), []int{152}
 }
 
 type PvpRatePhaseType int32
@@ -11361,11 +11568,11 @@ func (x PvpRatePhaseType) String() string {
 }
 
 func (PvpRatePhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[150].Descriptor()
+	return file_penum_proto_enumTypes[153].Descriptor()
 }
 
 func (PvpRatePhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[150]
+	return &file_penum_proto_enumTypes[153]
 }
 
 func (x PvpRatePhaseType) Number() protoreflect.EnumNumber {
@@ -11374,7 +11581,7 @@ func (x PvpRatePhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRatePhaseType.Descriptor instead.
 func (PvpRatePhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{150}
+	return file_penum_proto_rawDescGZIP(), []int{153}
 }
 
 type PvpRateRivalType int32
@@ -11413,11 +11620,11 @@ func (x PvpRateRivalType) String() string {
 }
 
 func (PvpRateRivalType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[151].Descriptor()
+	return file_penum_proto_enumTypes[154].Descriptor()
 }
 
 func (PvpRateRivalType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[151]
+	return &file_penum_proto_enumTypes[154]
 }
 
 func (x PvpRateRivalType) Number() protoreflect.EnumNumber {
@@ -11426,7 +11633,7 @@ func (x PvpRateRivalType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateRivalType.Descriptor instead.
 func (PvpRateRivalType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{151}
+	return file_penum_proto_rawDescGZIP(), []int{154}
 }
 
 type PvpRateSeasonStatusType int32
@@ -11468,11 +11675,11 @@ func (x PvpRateSeasonStatusType) String() string {
 }
 
 func (PvpRateSeasonStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[152].Descriptor()
+	return file_penum_proto_enumTypes[155].Descriptor()
 }
 
 func (PvpRateSeasonStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[152]
+	return &file_penum_proto_enumTypes[155]
 }
 
 func (x PvpRateSeasonStatusType) Number() protoreflect.EnumNumber {
@@ -11481,7 +11688,7 @@ func (x PvpRateSeasonStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateSeasonStatusType.Descriptor instead.
 func (PvpRateSeasonStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{152}
+	return file_penum_proto_rawDescGZIP(), []int{155}
 }
 
 type PvpRateStageType int32
@@ -11520,11 +11727,11 @@ func (x PvpRateStageType) String() string {
 }
 
 func (PvpRateStageType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[153].Descriptor()
+	return file_penum_proto_enumTypes[156].Descriptor()
 }
 
 func (PvpRateStageType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[153]
+	return &file_penum_proto_enumTypes[156]
 }
 
 func (x PvpRateStageType) Number() protoreflect.EnumNumber {
@@ -11533,7 +11740,7 @@ func (x PvpRateStageType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateStageType.Descriptor instead.
 func (PvpRateStageType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{153}
+	return file_penum_proto_rawDescGZIP(), []int{156}
 }
 
 type ResetTimingType int32
@@ -11575,11 +11782,11 @@ func (x ResetTimingType) String() string {
 }
 
 func (ResetTimingType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[154].Descriptor()
+	return file_penum_proto_enumTypes[157].Descriptor()
 }
 
 func (ResetTimingType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[154]
+	return &file_penum_proto_enumTypes[157]
 }
 
 func (x ResetTimingType) Number() protoreflect.EnumNumber {
@@ -11588,7 +11795,7 @@ func (x ResetTimingType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResetTimingType.Descriptor instead.
 func (ResetTimingType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{154}
+	return file_penum_proto_rawDescGZIP(), []int{157}
 }
 
 type ResourceOriginType int32
@@ -11627,11 +11834,11 @@ func (x ResourceOriginType) String() string {
 }
 
 func (ResourceOriginType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[155].Descriptor()
+	return file_penum_proto_enumTypes[158].Descriptor()
 }
 
 func (ResourceOriginType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[155]
+	return &file_penum_proto_enumTypes[158]
 }
 
 func (x ResourceOriginType) Number() protoreflect.EnumNumber {
@@ -11640,7 +11847,7 @@ func (x ResourceOriginType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResourceOriginType.Descriptor instead.
 func (ResourceOriginType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{155}
+	return file_penum_proto_rawDescGZIP(), []int{158}
 }
 
 type ResourceType int32
@@ -11669,6 +11876,7 @@ const (
 	ResourceType_ResourceType_PvpRatePlayCount        ResourceType = 20
 	ResourceType_ResourceType_PhotoBackground         ResourceType = 21
 	ResourceType_ResourceType_PhotoPose               ResourceType = 22
+	ResourceType_ResourceType_DearnessPoint           ResourceType = 23
 	ResourceType_ResourceType_JewelTotal              ResourceType = 1100
 	ResourceType_ResourceType_JewelPaidOnly           ResourceType = 1101
 	ResourceType_ResourceType_Set                     ResourceType = 9999
@@ -11700,6 +11908,7 @@ var (
 		20:   "ResourceType_PvpRatePlayCount",
 		21:   "ResourceType_PhotoBackground",
 		22:   "ResourceType_PhotoPose",
+		23:   "ResourceType_DearnessPoint",
 		1100: "ResourceType_JewelTotal",
 		1101: "ResourceType_JewelPaidOnly",
 		9999: "ResourceType_Set",
@@ -11728,6 +11937,7 @@ var (
 		"ResourceType_PvpRatePlayCount":        20,
 		"ResourceType_PhotoBackground":         21,
 		"ResourceType_PhotoPose":               22,
+		"ResourceType_DearnessPoint":           23,
 		"ResourceType_JewelTotal":              1100,
 		"ResourceType_JewelPaidOnly":           1101,
 		"ResourceType_Set":                     9999,
@@ -11745,11 +11955,11 @@ func (x ResourceType) String() string {
 }
 
 func (ResourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[156].Descriptor()
+	return file_penum_proto_enumTypes[159].Descriptor()
 }
 
 func (ResourceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[156]
+	return &file_penum_proto_enumTypes[159]
 }
 
 func (x ResourceType) Number() protoreflect.EnumNumber {
@@ -11758,7 +11968,7 @@ func (x ResourceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResourceType.Descriptor instead.
 func (ResourceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{156}
+	return file_penum_proto_rawDescGZIP(), []int{159}
 }
 
 type ResultGrade int32
@@ -11833,11 +12043,11 @@ func (x ResultGrade) String() string {
 }
 
 func (ResultGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[157].Descriptor()
+	return file_penum_proto_enumTypes[160].Descriptor()
 }
 
 func (ResultGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[157]
+	return &file_penum_proto_enumTypes[160]
 }
 
 func (x ResultGrade) Number() protoreflect.EnumNumber {
@@ -11846,7 +12056,7 @@ func (x ResultGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResultGrade.Descriptor instead.
 func (ResultGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{157}
+	return file_penum_proto_rawDescGZIP(), []int{160}
 }
 
 type ResultGradeType int32
@@ -11888,11 +12098,11 @@ func (x ResultGradeType) String() string {
 }
 
 func (ResultGradeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[158].Descriptor()
+	return file_penum_proto_enumTypes[161].Descriptor()
 }
 
 func (ResultGradeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[158]
+	return &file_penum_proto_enumTypes[161]
 }
 
 func (x ResultGradeType) Number() protoreflect.EnumNumber {
@@ -11901,7 +12111,7 @@ func (x ResultGradeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResultGradeType.Descriptor instead.
 func (ResultGradeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{158}
+	return file_penum_proto_rawDescGZIP(), []int{161}
 }
 
 type RewardProvideType int32
@@ -11946,11 +12156,11 @@ func (x RewardProvideType) String() string {
 }
 
 func (RewardProvideType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[159].Descriptor()
+	return file_penum_proto_enumTypes[162].Descriptor()
 }
 
 func (RewardProvideType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[159]
+	return &file_penum_proto_enumTypes[162]
 }
 
 func (x RewardProvideType) Number() protoreflect.EnumNumber {
@@ -11959,7 +12169,7 @@ func (x RewardProvideType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RewardProvideType.Descriptor instead.
 func (RewardProvideType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{159}
+	return file_penum_proto_rawDescGZIP(), []int{162}
 }
 
 type RewardSetType int32
@@ -11995,11 +12205,11 @@ func (x RewardSetType) String() string {
 }
 
 func (RewardSetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[160].Descriptor()
+	return file_penum_proto_enumTypes[163].Descriptor()
 }
 
 func (RewardSetType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[160]
+	return &file_penum_proto_enumTypes[163]
 }
 
 func (x RewardSetType) Number() protoreflect.EnumNumber {
@@ -12008,7 +12218,7 @@ func (x RewardSetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RewardSetType.Descriptor instead.
 func (RewardSetType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{160}
+	return file_penum_proto_rawDescGZIP(), []int{163}
 }
 
 type RuleType int32
@@ -12050,11 +12260,11 @@ func (x RuleType) String() string {
 }
 
 func (RuleType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[161].Descriptor()
+	return file_penum_proto_enumTypes[164].Descriptor()
 }
 
 func (RuleType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[161]
+	return &file_penum_proto_enumTypes[164]
 }
 
 func (x RuleType) Number() protoreflect.EnumNumber {
@@ -12063,7 +12273,7 @@ func (x RuleType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RuleType.Descriptor instead.
 func (RuleType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{161}
+	return file_penum_proto_rawDescGZIP(), []int{164}
 }
 
 type ServingStatus int32
@@ -12105,11 +12315,11 @@ func (x ServingStatus) String() string {
 }
 
 func (ServingStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[162].Descriptor()
+	return file_penum_proto_enumTypes[165].Descriptor()
 }
 
 func (ServingStatus) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[162]
+	return &file_penum_proto_enumTypes[165]
 }
 
 func (x ServingStatus) Number() protoreflect.EnumNumber {
@@ -12118,7 +12328,7 @@ func (x ServingStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ServingStatus.Descriptor instead.
 func (ServingStatus) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{162}
+	return file_penum_proto_rawDescGZIP(), []int{165}
 }
 
 type ShopItemLabelType int32
@@ -12154,11 +12364,11 @@ func (x ShopItemLabelType) String() string {
 }
 
 func (ShopItemLabelType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[163].Descriptor()
+	return file_penum_proto_enumTypes[166].Descriptor()
 }
 
 func (ShopItemLabelType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[163]
+	return &file_penum_proto_enumTypes[166]
 }
 
 func (x ShopItemLabelType) Number() protoreflect.EnumNumber {
@@ -12167,7 +12377,7 @@ func (x ShopItemLabelType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShopItemLabelType.Descriptor instead.
 func (ShopItemLabelType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{163}
+	return file_penum_proto_rawDescGZIP(), []int{166}
 }
 
 type ShopType int32
@@ -12209,11 +12419,11 @@ func (x ShopType) String() string {
 }
 
 func (ShopType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[164].Descriptor()
+	return file_penum_proto_enumTypes[167].Descriptor()
 }
 
 func (ShopType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[164]
+	return &file_penum_proto_enumTypes[167]
 }
 
 func (x ShopType) Number() protoreflect.EnumNumber {
@@ -12222,7 +12432,7 @@ func (x ShopType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShopType.Descriptor instead.
 func (ShopType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{164}
+	return file_penum_proto_rawDescGZIP(), []int{167}
 }
 
 type SkillRarity int32
@@ -12232,6 +12442,7 @@ const (
 	SkillRarity_SkillRarity_R       SkillRarity = 1
 	SkillRarity_SkillRarity_Sr      SkillRarity = 2
 	SkillRarity_SkillRarity_Ssr     SkillRarity = 3
+	SkillRarity_SkillRarity_Ur      SkillRarity = 4
 )
 
 // Enum value maps for SkillRarity.
@@ -12241,12 +12452,14 @@ var (
 		1: "SkillRarity_R",
 		2: "SkillRarity_Sr",
 		3: "SkillRarity_Ssr",
+		4: "SkillRarity_Ur",
 	}
 	SkillRarity_value = map[string]int32{
 		"SkillRarity_Unknown": 0,
 		"SkillRarity_R":       1,
 		"SkillRarity_Sr":      2,
 		"SkillRarity_Ssr":     3,
+		"SkillRarity_Ur":      4,
 	}
 )
 
@@ -12261,11 +12474,11 @@ func (x SkillRarity) String() string {
 }
 
 func (SkillRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[165].Descriptor()
+	return file_penum_proto_enumTypes[168].Descriptor()
 }
 
 func (SkillRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[165]
+	return &file_penum_proto_enumTypes[168]
 }
 
 func (x SkillRarity) Number() protoreflect.EnumNumber {
@@ -12274,7 +12487,7 @@ func (x SkillRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SkillRarity.Descriptor instead.
 func (SkillRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{165}
+	return file_penum_proto_rawDescGZIP(), []int{168}
 }
 
 type StartupNotificationDisplayType int32
@@ -12334,11 +12547,11 @@ func (x StartupNotificationDisplayType) String() string {
 }
 
 func (StartupNotificationDisplayType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[166].Descriptor()
+	return file_penum_proto_enumTypes[169].Descriptor()
 }
 
 func (StartupNotificationDisplayType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[166]
+	return &file_penum_proto_enumTypes[169]
 }
 
 func (x StartupNotificationDisplayType) Number() protoreflect.EnumNumber {
@@ -12347,7 +12560,7 @@ func (x StartupNotificationDisplayType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationDisplayType.Descriptor instead.
 func (StartupNotificationDisplayType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{166}
+	return file_penum_proto_rawDescGZIP(), []int{169}
 }
 
 type StartupNotificationEffectType int32
@@ -12386,11 +12599,11 @@ func (x StartupNotificationEffectType) String() string {
 }
 
 func (StartupNotificationEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[167].Descriptor()
+	return file_penum_proto_enumTypes[170].Descriptor()
 }
 
 func (StartupNotificationEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[167]
+	return &file_penum_proto_enumTypes[170]
 }
 
 func (x StartupNotificationEffectType) Number() protoreflect.EnumNumber {
@@ -12399,18 +12612,19 @@ func (x StartupNotificationEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationEffectType.Descriptor instead.
 func (StartupNotificationEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{167}
+	return file_penum_proto_rawDescGZIP(), []int{170}
 }
 
 type StartupNotificationType int32
 
 const (
-	StartupNotificationType_StartupNotificationType_Unknown StartupNotificationType = 0
-	StartupNotificationType_StartupNotificationType_Movie   StartupNotificationType = 1
-	StartupNotificationType_StartupNotificationType_Adv     StartupNotificationType = 2
-	StartupNotificationType_StartupNotificationType_Image   StartupNotificationType = 3
-	StartupNotificationType_StartupNotificationType_Notice  StartupNotificationType = 4
-	StartupNotificationType_StartupNotificationType_Shop    StartupNotificationType = 5
+	StartupNotificationType_StartupNotificationType_Unknown       StartupNotificationType = 0
+	StartupNotificationType_StartupNotificationType_Movie         StartupNotificationType = 1
+	StartupNotificationType_StartupNotificationType_Adv           StartupNotificationType = 2
+	StartupNotificationType_StartupNotificationType_Image         StartupNotificationType = 3
+	StartupNotificationType_StartupNotificationType_Notice        StartupNotificationType = 4
+	StartupNotificationType_StartupNotificationType_Shop          StartupNotificationType = 5
+	StartupNotificationType_StartupNotificationType_ProfileReport StartupNotificationType = 6
 )
 
 // Enum value maps for StartupNotificationType.
@@ -12422,14 +12636,16 @@ var (
 		3: "StartupNotificationType_Image",
 		4: "StartupNotificationType_Notice",
 		5: "StartupNotificationType_Shop",
+		6: "StartupNotificationType_ProfileReport",
 	}
 	StartupNotificationType_value = map[string]int32{
-		"StartupNotificationType_Unknown": 0,
-		"StartupNotificationType_Movie":   1,
-		"StartupNotificationType_Adv":     2,
-		"StartupNotificationType_Image":   3,
-		"StartupNotificationType_Notice":  4,
-		"StartupNotificationType_Shop":    5,
+		"StartupNotificationType_Unknown":       0,
+		"StartupNotificationType_Movie":         1,
+		"StartupNotificationType_Adv":           2,
+		"StartupNotificationType_Image":         3,
+		"StartupNotificationType_Notice":        4,
+		"StartupNotificationType_Shop":          5,
+		"StartupNotificationType_ProfileReport": 6,
 	}
 )
 
@@ -12444,11 +12660,11 @@ func (x StartupNotificationType) String() string {
 }
 
 func (StartupNotificationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[168].Descriptor()
+	return file_penum_proto_enumTypes[171].Descriptor()
 }
 
 func (StartupNotificationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[168]
+	return &file_penum_proto_enumTypes[171]
 }
 
 func (x StartupNotificationType) Number() protoreflect.EnumNumber {
@@ -12457,7 +12673,7 @@ func (x StartupNotificationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationType.Descriptor instead.
 func (StartupNotificationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{168}
+	return file_penum_proto_rawDescGZIP(), []int{171}
 }
 
 type StoryCampaignType int32
@@ -12493,11 +12709,11 @@ func (x StoryCampaignType) String() string {
 }
 
 func (StoryCampaignType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[169].Descriptor()
+	return file_penum_proto_enumTypes[172].Descriptor()
 }
 
 func (StoryCampaignType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[169]
+	return &file_penum_proto_enumTypes[172]
 }
 
 func (x StoryCampaignType) Number() protoreflect.EnumNumber {
@@ -12506,7 +12722,7 @@ func (x StoryCampaignType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryCampaignType.Descriptor instead.
 func (StoryCampaignType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{169}
+	return file_penum_proto_rawDescGZIP(), []int{172}
 }
 
 type StoryEventMotionType int32
@@ -12545,11 +12761,11 @@ func (x StoryEventMotionType) String() string {
 }
 
 func (StoryEventMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[170].Descriptor()
+	return file_penum_proto_enumTypes[173].Descriptor()
 }
 
 func (StoryEventMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[170]
+	return &file_penum_proto_enumTypes[173]
 }
 
 func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
@@ -12558,7 +12774,7 @@ func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventMotionType.Descriptor instead.
 func (StoryEventMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{170}
+	return file_penum_proto_rawDescGZIP(), []int{173}
 }
 
 type StoryEventType int32
@@ -12600,11 +12816,11 @@ func (x StoryEventType) String() string {
 }
 
 func (StoryEventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[171].Descriptor()
+	return file_penum_proto_enumTypes[174].Descriptor()
 }
 
 func (StoryEventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[171]
+	return &file_penum_proto_enumTypes[174]
 }
 
 func (x StoryEventType) Number() protoreflect.EnumNumber {
@@ -12613,7 +12829,7 @@ func (x StoryEventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventType.Descriptor instead.
 func (StoryEventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{171}
+	return file_penum_proto_rawDescGZIP(), []int{174}
 }
 
 type StoryType int32
@@ -12673,11 +12889,11 @@ func (x StoryType) String() string {
 }
 
 func (StoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[172].Descriptor()
+	return file_penum_proto_enumTypes[175].Descriptor()
 }
 
 func (StoryType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[172]
+	return &file_penum_proto_enumTypes[175]
 }
 
 func (x StoryType) Number() protoreflect.EnumNumber {
@@ -12686,7 +12902,7 @@ func (x StoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryType.Descriptor instead.
 func (StoryType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{172}
+	return file_penum_proto_rawDescGZIP(), []int{175}
 }
 
 type SupportCardLevelLimitRank int32
@@ -12728,11 +12944,11 @@ func (x SupportCardLevelLimitRank) String() string {
 }
 
 func (SupportCardLevelLimitRank) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[173].Descriptor()
+	return file_penum_proto_enumTypes[176].Descriptor()
 }
 
 func (SupportCardLevelLimitRank) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[173]
+	return &file_penum_proto_enumTypes[176]
 }
 
 func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
@@ -12741,7 +12957,7 @@ func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardLevelLimitRank.Descriptor instead.
 func (SupportCardLevelLimitRank) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{173}
+	return file_penum_proto_rawDescGZIP(), []int{176}
 }
 
 type SupportCardRarity int32
@@ -12780,11 +12996,11 @@ func (x SupportCardRarity) String() string {
 }
 
 func (SupportCardRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[174].Descriptor()
+	return file_penum_proto_enumTypes[177].Descriptor()
 }
 
 func (SupportCardRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[174]
+	return &file_penum_proto_enumTypes[177]
 }
 
 func (x SupportCardRarity) Number() protoreflect.EnumNumber {
@@ -12793,7 +13009,7 @@ func (x SupportCardRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardRarity.Descriptor instead.
 func (SupportCardRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{174}
+	return file_penum_proto_rawDescGZIP(), []int{177}
 }
 
 type SupportCardType int32
@@ -12835,11 +13051,11 @@ func (x SupportCardType) String() string {
 }
 
 func (SupportCardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[175].Descriptor()
+	return file_penum_proto_enumTypes[178].Descriptor()
 }
 
 func (SupportCardType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[175]
+	return &file_penum_proto_enumTypes[178]
 }
 
 func (x SupportCardType) Number() protoreflect.EnumNumber {
@@ -12848,7 +13064,7 @@ func (x SupportCardType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardType.Descriptor instead.
 func (SupportCardType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{175}
+	return file_penum_proto_rawDescGZIP(), []int{178}
 }
 
 type TermsType int32
@@ -12887,11 +13103,11 @@ func (x TermsType) String() string {
 }
 
 func (TermsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[176].Descriptor()
+	return file_penum_proto_enumTypes[179].Descriptor()
 }
 
 func (TermsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[176]
+	return &file_penum_proto_enumTypes[179]
 }
 
 func (x TermsType) Number() protoreflect.EnumNumber {
@@ -12900,7 +13116,7 @@ func (x TermsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TermsType.Descriptor instead.
 func (TermsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{176}
+	return file_penum_proto_rawDescGZIP(), []int{179}
 }
 
 type TimeType int32
@@ -12957,11 +13173,11 @@ func (x TimeType) String() string {
 }
 
 func (TimeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[177].Descriptor()
+	return file_penum_proto_enumTypes[180].Descriptor()
 }
 
 func (TimeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[177]
+	return &file_penum_proto_enumTypes[180]
 }
 
 func (x TimeType) Number() protoreflect.EnumNumber {
@@ -12970,7 +13186,7 @@ func (x TimeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TimeType.Descriptor instead.
 func (TimeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{177}
+	return file_penum_proto_rawDescGZIP(), []int{180}
 }
 
 type TipsType int32
@@ -13015,11 +13231,11 @@ func (x TipsType) String() string {
 }
 
 func (TipsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[178].Descriptor()
+	return file_penum_proto_enumTypes[181].Descriptor()
 }
 
 func (TipsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[178]
+	return &file_penum_proto_enumTypes[181]
 }
 
 func (x TipsType) Number() protoreflect.EnumNumber {
@@ -13028,7 +13244,7 @@ func (x TipsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TipsType.Descriptor instead.
 func (TipsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{178}
+	return file_penum_proto_rawDescGZIP(), []int{181}
 }
 
 type TutorialCharacterVoiceType int32
@@ -13064,11 +13280,11 @@ func (x TutorialCharacterVoiceType) String() string {
 }
 
 func (TutorialCharacterVoiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[179].Descriptor()
+	return file_penum_proto_enumTypes[182].Descriptor()
 }
 
 func (TutorialCharacterVoiceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[179]
+	return &file_penum_proto_enumTypes[182]
 }
 
 func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
@@ -13077,7 +13293,7 @@ func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialCharacterVoiceType.Descriptor instead.
 func (TutorialCharacterVoiceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{179}
+	return file_penum_proto_rawDescGZIP(), []int{182}
 }
 
 type TutorialNavigationPositionType int32
@@ -13122,11 +13338,11 @@ func (x TutorialNavigationPositionType) String() string {
 }
 
 func (TutorialNavigationPositionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[180].Descriptor()
+	return file_penum_proto_enumTypes[183].Descriptor()
 }
 
 func (TutorialNavigationPositionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[180]
+	return &file_penum_proto_enumTypes[183]
 }
 
 func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
@@ -13135,7 +13351,7 @@ func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationPositionType.Descriptor instead.
 func (TutorialNavigationPositionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{180}
+	return file_penum_proto_rawDescGZIP(), []int{183}
 }
 
 type TutorialNavigationType int32
@@ -13180,11 +13396,11 @@ func (x TutorialNavigationType) String() string {
 }
 
 func (TutorialNavigationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[181].Descriptor()
+	return file_penum_proto_enumTypes[184].Descriptor()
 }
 
 func (TutorialNavigationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[181]
+	return &file_penum_proto_enumTypes[184]
 }
 
 func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
@@ -13193,7 +13409,7 @@ func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationType.Descriptor instead.
 func (TutorialNavigationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{181}
+	return file_penum_proto_rawDescGZIP(), []int{184}
 }
 
 type TutorialProduceCommandType int32
@@ -13247,11 +13463,11 @@ func (x TutorialProduceCommandType) String() string {
 }
 
 func (TutorialProduceCommandType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[182].Descriptor()
+	return file_penum_proto_enumTypes[185].Descriptor()
 }
 
 func (TutorialProduceCommandType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[182]
+	return &file_penum_proto_enumTypes[185]
 }
 
 func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
@@ -13260,7 +13476,7 @@ func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialProduceCommandType.Descriptor instead.
 func (TutorialProduceCommandType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{182}
+	return file_penum_proto_rawDescGZIP(), []int{185}
 }
 
 type TutorialType int32
@@ -13294,6 +13510,8 @@ const (
 	TutorialType_TutorialType_MeishiEditCustom                          TutorialType = 26
 	TutorialType_TutorialType_MeishiEditCustomManual                    TutorialType = 27
 	TutorialType_TutorialType_IdolCardSkinUnit                          TutorialType = 28
+	TutorialType_TutorialType_DearnessTop                               TutorialType = 29
+	TutorialType_TutorialType_DearnessPoint                             TutorialType = 30
 	TutorialType_TutorialType_ProduceIdolCardSelect                     TutorialType = 100
 	TutorialType_TutorialType_ProduceSupportCardSelect                  TutorialType = 101
 	TutorialType_TutorialType_ProduceMemorySelect                       TutorialType = 102
@@ -13331,6 +13549,8 @@ const (
 	TutorialType_TutorialType_StoryEventBoxGasha                        TutorialType = 204
 	TutorialType_TutorialType_StoryEventGuildMission                    TutorialType = 205
 	TutorialType_TutorialType_GvgRaid                                   TutorialType = 206
+	TutorialType_TutorialType_ProduceNextIdolAuditionMaster             TutorialType = 207
+	TutorialType_TutorialType_ProduceNextIdolAuditionMasterRanking      TutorialType = 208
 )
 
 // Enum value maps for TutorialType.
@@ -13364,6 +13584,8 @@ var (
 		26:  "TutorialType_MeishiEditCustom",
 		27:  "TutorialType_MeishiEditCustomManual",
 		28:  "TutorialType_IdolCardSkinUnit",
+		29:  "TutorialType_DearnessTop",
+		30:  "TutorialType_DearnessPoint",
 		100: "TutorialType_ProduceIdolCardSelect",
 		101: "TutorialType_ProduceSupportCardSelect",
 		102: "TutorialType_ProduceMemorySelect",
@@ -13401,6 +13623,8 @@ var (
 		204: "TutorialType_StoryEventBoxGasha",
 		205: "TutorialType_StoryEventGuildMission",
 		206: "TutorialType_GvgRaid",
+		207: "TutorialType_ProduceNextIdolAuditionMaster",
+		208: "TutorialType_ProduceNextIdolAuditionMasterRanking",
 	}
 	TutorialType_value = map[string]int32{
 		"TutorialType_Unknown":                                   0,
@@ -13431,6 +13655,8 @@ var (
 		"TutorialType_MeishiEditCustom":                          26,
 		"TutorialType_MeishiEditCustomManual":                    27,
 		"TutorialType_IdolCardSkinUnit":                          28,
+		"TutorialType_DearnessTop":                               29,
+		"TutorialType_DearnessPoint":                             30,
 		"TutorialType_ProduceIdolCardSelect":                     100,
 		"TutorialType_ProduceSupportCardSelect":                  101,
 		"TutorialType_ProduceMemorySelect":                       102,
@@ -13468,6 +13694,8 @@ var (
 		"TutorialType_StoryEventBoxGasha":                        204,
 		"TutorialType_StoryEventGuildMission":                    205,
 		"TutorialType_GvgRaid":                                   206,
+		"TutorialType_ProduceNextIdolAuditionMaster":             207,
+		"TutorialType_ProduceNextIdolAuditionMasterRanking":      208,
 	}
 )
 
@@ -13482,11 +13710,11 @@ func (x TutorialType) String() string {
 }
 
 func (TutorialType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[183].Descriptor()
+	return file_penum_proto_enumTypes[186].Descriptor()
 }
 
 func (TutorialType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[183]
+	return &file_penum_proto_enumTypes[186]
 }
 
 func (x TutorialType) Number() protoreflect.EnumNumber {
@@ -13495,7 +13723,7 @@ func (x TutorialType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialType.Descriptor instead.
 func (TutorialType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{183}
+	return file_penum_proto_rawDescGZIP(), []int{186}
 }
 
 type ViewAreaType int32
@@ -13531,11 +13759,11 @@ func (x ViewAreaType) String() string {
 }
 
 func (ViewAreaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[184].Descriptor()
+	return file_penum_proto_enumTypes[187].Descriptor()
 }
 
 func (ViewAreaType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[184]
+	return &file_penum_proto_enumTypes[187]
 }
 
 func (x ViewAreaType) Number() protoreflect.EnumNumber {
@@ -13544,7 +13772,7 @@ func (x ViewAreaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ViewAreaType.Descriptor instead.
 func (ViewAreaType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{184}
+	return file_penum_proto_rawDescGZIP(), []int{187}
 }
 
 type VoicePlayScreenType int32
@@ -13586,11 +13814,11 @@ func (x VoicePlayScreenType) String() string {
 }
 
 func (VoicePlayScreenType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[185].Descriptor()
+	return file_penum_proto_enumTypes[188].Descriptor()
 }
 
 func (VoicePlayScreenType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[185]
+	return &file_penum_proto_enumTypes[188]
 }
 
 func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
@@ -13599,7 +13827,7 @@ func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoicePlayScreenType.Descriptor instead.
 func (VoicePlayScreenType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{185}
+	return file_penum_proto_rawDescGZIP(), []int{188}
 }
 
 type Weekday int32
@@ -13650,11 +13878,11 @@ func (x Weekday) String() string {
 }
 
 func (Weekday) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[186].Descriptor()
+	return file_penum_proto_enumTypes[189].Descriptor()
 }
 
 func (Weekday) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[186]
+	return &file_penum_proto_enumTypes[189]
 }
 
 func (x Weekday) Number() protoreflect.EnumNumber {
@@ -13663,7 +13891,7 @@ func (x Weekday) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Weekday.Descriptor instead.
 func (Weekday) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{186}
+	return file_penum_proto_rawDescGZIP(), []int{189}
 }
 
 type WorkMotionType int32
@@ -13711,11 +13939,11 @@ func (x WorkMotionType) String() string {
 }
 
 func (WorkMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[187].Descriptor()
+	return file_penum_proto_enumTypes[190].Descriptor()
 }
 
 func (WorkMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[187]
+	return &file_penum_proto_enumTypes[190]
 }
 
 func (x WorkMotionType) Number() protoreflect.EnumNumber {
@@ -13724,7 +13952,7 @@ func (x WorkMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMotionType.Descriptor instead.
 func (WorkMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{187}
+	return file_penum_proto_rawDescGZIP(), []int{190}
 }
 
 type WorkType int32
@@ -13760,11 +13988,11 @@ func (x WorkType) String() string {
 }
 
 func (WorkType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[188].Descriptor()
+	return file_penum_proto_enumTypes[191].Descriptor()
 }
 
 func (WorkType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[188]
+	return &file_penum_proto_enumTypes[191]
 }
 
 func (x WorkType) Number() protoreflect.EnumNumber {
@@ -13773,7 +14001,7 @@ func (x WorkType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkType.Descriptor instead.
 func (WorkType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{188}
+	return file_penum_proto_rawDescGZIP(), []int{191}
 }
 
 var File_penum_proto protoreflect.FileDescriptor
@@ -13988,7 +14216,18 @@ const file_penum_proto_rawDesc = "" +
 	"$CountType_ProduceClearTimeBanWarning\x10\x10\x12\x1f\n" +
 	"\x1bCountType_MainTaskProducer2\x10d\x12\x1f\n" +
 	"\x1bCountType_MainTaskProducer3\x10e\x12\x1f\n" +
-	"\x1bCountType_MainTaskProducer4\x10f*\xb8\x01\n" +
+	"\x1bCountType_MainTaskProducer4\x10f*\xe7\x02\n" +
+	"\x12DearnessMotionType\x12\x1e\n" +
+	"\x1aDearnessMotionType_Unknown\x10\x00\x12\x1c\n" +
+	"\x18DearnessMotionType_Wait1\x10\x01\x12\x1c\n" +
+	"\x18DearnessMotionType_Wait2\x10\x02\x12\x1f\n" +
+	"\x1bDearnessMotionType_Reaction\x10\x03\x12#\n" +
+	"\x1fDearnessMotionType_ReactionOnce\x10\x04\x12%\n" +
+	"!DearnessMotionType_WaitLookAround\x10\x05\x12#\n" +
+	"\x1fDearnessMotionType_MultipleTaps\x10\x06\x12!\n" +
+	"\x1dDearnessMotionType_Transition\x10\a\x12\x1f\n" +
+	"\x1bDearnessMotionType_WaitOnce\x10\b\x12\x1f\n" +
+	"\x1bDearnessMotionType_WaitLoop\x10\t*\xb8\x01\n" +
 	"\x11DeckRecommendType\x12\x1d\n" +
 	"\x19DeckRecommendType_Unknown\x10\x00\x12\x1c\n" +
 	"\x18DeckRecommendType_Manual\x10\x01\x12\x1f\n" +
@@ -14056,7 +14295,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1cEventStoryFilterType_Unknown\x10\x00\x12#\n" +
 	"\x1fEventStoryFilterType_StoryEvent\x10\x01\x12$\n" +
 	" EventStoryFilterType_SeasonEvent\x10\x02\x12 \n" +
-	"\x1cEventStoryFilterType_GvgRaid\x10\x03*\xba\x02\n" +
+	"\x1cEventStoryFilterType_GvgRaid\x10\x03*\xd7\x02\n" +
 	"\tEventType\x12\x15\n" +
 	"\x11EventType_Unknown\x10\x00\x12!\n" +
 	"\x1dEventType_MissionDailyRelease\x10\x01\x12\x1a\n" +
@@ -14067,7 +14306,9 @@ const file_penum_proto_rawDesc = "" +
 	"\x1dEventType_StoryEventMainStory\x10\x06\x12 \n" +
 	"\x1cEventType_StoryEventBoxGasha\x10\a\x12$\n" +
 	" EventType_StoryEventGuildMission\x10\b\x12\x15\n" +
-	"\x11EventType_GvgRaid\x10\t*\xcb\x04\n" +
+	"\x11EventType_GvgRaid\x10\t\x12\x1b\n" +
+	"\x17EventType_DearnessBoost\x10\n" +
+	"*\xcb\x04\n" +
 	"\x0fExamCommandType\x12\x1b\n" +
 	"\x17ExamCommandType_Unknown\x10\x00\x12\x1c\n" +
 	"\x18ExamCommandType_TurnDraw\x10\x01\x12\x1b\n" +
@@ -14172,7 +14413,13 @@ const file_penum_proto_rawDesc = "" +
 	"\x15ExamPlayType_AutoPlay\x10\x01\x12!\n" +
 	"\x1dExamPlayType_ManualPlayLesson\x10\x02\x12%\n" +
 	"!ExamPlayType_ManualPlayLessonHard\x10\x03\x12#\n" +
-	"\x1fExamPlayType_ManualPlayAudition\x10\x04*\x98\x01\n" +
+	"\x1fExamPlayType_ManualPlayAudition\x10\x04*\xd9\x01\n" +
+	"\x18ExchangeItemCategoryType\x12$\n" +
+	" ExchangeItemCategoryType_Unknown\x10\x00\x12 \n" +
+	"\x1cExchangeItemCategoryType_All\x10\x01\x12)\n" +
+	"%ExchangeItemCategoryType_ResourceType\x10\x02\x12%\n" +
+	"!ExchangeItemCategoryType_ItemType\x10\x03\x12#\n" +
+	"\x1eExchangeItemCategoryType_Other\x10\xe7\a*\x98\x01\n" +
 	"\x1cExchangeItemResetCheckStatus\x12(\n" +
 	"$ExchangeItemResetCheckStatus_Unknown\x10\x00\x12%\n" +
 	"!ExchangeItemResetCheckStatus_Open\x10\x01\x12'\n" +
@@ -14181,7 +14428,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ExchangeType_Unknown\x10\x00\x12\x16\n" +
 	"\x12ExchangeType_Daily\x10\x01\x12\x15\n" +
 	"\x11ExchangeType_Item\x10\x02\x12\x16\n" +
-	"\x12ExchangeType_Event\x10\x03*\x8d\x06\n" +
+	"\x12ExchangeType_Event\x10\x03*\xb2\x06\n" +
 	"\x16FeatureMaintenanceType\x12\"\n" +
 	"\x1eFeatureMaintenanceType_Unknown\x10\x00\x12#\n" +
 	"\x1fFeatureMaintenanceType_Exchange\x10\x01\x12\x1f\n" +
@@ -14203,7 +14450,8 @@ const file_penum_proto_rawDesc = "" +
 	"#FeatureMaintenanceType_MissionPanel\x10\x10\x12.\n" +
 	"*FeatureMaintenanceType_MissionDailyRelease\x10\x11\x12(\n" +
 	"$FeatureMaintenanceType_StoryCampaign\x10\x12\x12\"\n" +
-	"\x1eFeatureMaintenanceType_GvgRaid\x10\x13*\xaa\x01\n" +
+	"\x1eFeatureMaintenanceType_GvgRaid\x10\x13\x12#\n" +
+	"\x1fFeatureMaintenanceType_Dearness\x10\x14*\xaa\x01\n" +
 	"\x10FriendStatusType\x12\x1c\n" +
 	"\x18FriendStatusType_Unknown\x10\x00\x12\x19\n" +
 	"\x15FriendStatusType_None\x10\x01\x12!\n" +
@@ -14229,13 +14477,14 @@ const file_penum_proto_rawDesc = "" +
 	"\"GashaAnimationStepType_FreezeAfter\x10\t\x12$\n" +
 	" GashaAnimationStepType_LightList\x10\n" +
 	"\x12\x1e\n" +
-	"\x1aGashaAnimationStepType_End\x10\v*\xd2\x01\n" +
+	"\x1aGashaAnimationStepType_End\x10\v*\x83\x02\n" +
 	"\x15GashaButtonAppealType\x12!\n" +
 	"\x1dGashaButtonAppealType_Unknown\x10\x00\x12$\n" +
 	" GashaButtonAppealType_AppealText\x10\x01\x12'\n" +
 	"#GashaButtonAppealType_DrawableCount\x10\x02\x12%\n" +
 	"!GashaButtonAppealType_CurrentStep\x10\x03\x12 \n" +
-	"\x1cGashaButtonAppealType_FixSsr\x10\x04*g\n" +
+	"\x1cGashaButtonAppealType_FixSsr\x10\x04\x12/\n" +
+	"+GashaButtonAppealType_DiscountDrawableCount\x10\x05*g\n" +
 	"\x0fGashaButtonType\x12\x1b\n" +
 	"\x17GashaButtonType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16GashaButtonType_Static\x10\x01\x12\x1b\n" +
@@ -14246,13 +14495,14 @@ const file_penum_proto_rawDesc = "" +
 	"\x1eGashaCardBonusType_IdolCardAll\x10\x02\x12%\n" +
 	"!GashaCardBonusType_SupportCardAll\x10\x03\x12\x1f\n" +
 	"\x1bGashaCardBonusType_IdolCard\x10\x04\x12\"\n" +
-	"\x1eGashaCardBonusType_SupportCard\x10\x05*\x9f\x01\n" +
+	"\x1eGashaCardBonusType_SupportCard\x10\x05*\xca\x01\n" +
 	"\x0eGashaLimitType\x12\x1a\n" +
 	"\x16GashaLimitType_Unknown\x10\x00\x12\x17\n" +
 	"\x13GashaLimitType_None\x10\x01\x12\x18\n" +
 	"\x14GashaLimitType_Total\x10\x02\x12\x18\n" +
 	"\x14GashaLimitType_Daily\x10\x03\x12$\n" +
-	" GashaLimitType_DailyAccumulation\x10\x04*k\n" +
+	" GashaLimitType_DailyAccumulation\x10\x04\x12)\n" +
+	"%GashaLimitType_DailyLoginAccumulation\x10\x05*k\n" +
 	"\tGashaType\x12\x15\n" +
 	"\x11GashaType_Unknown\x10\x00\x12\x15\n" +
 	"\x11GashaType_Default\x10\x01\x12\x14\n" +
@@ -14388,7 +14638,7 @@ const file_penum_proto_rawDesc = "" +
 	"\fItemRarity_N\x10\x01\x12\x10\n" +
 	"\fItemRarity_R\x10\x02\x12\x11\n" +
 	"\rItemRarity_Sr\x10\x03\x12\x12\n" +
-	"\x0eItemRarity_Ssr\x10\x04*\xdb\x05\n" +
+	"\x0eItemRarity_Ssr\x10\x04*\xfd\x05\n" +
 	"\bItemType\x12\x14\n" +
 	"\x10ItemType_Unknown\x10\x00\x12\x12\n" +
 	"\x0eItemType_Money\x10\x01\x12\x1c\n" +
@@ -14410,7 +14660,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x1eItemType_ProduceLiveUnlockItem\x10\x10\x12)\n" +
 	"%ItemType_IdolCardPotentialRankUpgrade\x10\x11\x12-\n" +
 	")ItemType_SupportCardLevelLimitRankUpgrade\x10\x12\x12\x1a\n" +
-	"\x16ItemType_MemoryInherit\x10\x13\x126\n" +
+	"\x16ItemType_MemoryInherit\x10\x13\x12 \n" +
+	"\x1cItemType_DearnessStoryUnlock\x10\x14\x126\n" +
 	"2ItemType_ProduceBoostRewardSupportCardEnhancePoint\x10f\x129\n" +
 	"5ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial\x10g*U\n" +
 	"\bLangType\x12\x14\n" +
@@ -14632,7 +14883,12 @@ const file_penum_proto_rawDesc = "" +
 	"$MissionType_AbsoluteProduceStoryRead\x10\xa7\x03\x12\x1f\n" +
 	"\x1aMissionType_ConditionClear\x10\xe6\a\x12&\n" +
 	"!MissionType_ProduceConditionClear\x10\xe7\a\x12:\n" +
-	"5MissionType_ProduceConditionClearBeforeLiveEvaluation\x10\xe8\a*\xbd\x01\n" +
+	"5MissionType_ProduceConditionClearBeforeLiveEvaluation\x10\xe8\a*f\n" +
+	"\tMusicType\x12\x15\n" +
+	"\x11MusicType_Unknown\x10\x00\x12\x13\n" +
+	"\x0fMusicType_Music\x10\x01\x12\x1a\n" +
+	"\x16MusicType_Instrumental\x10\x02\x12\x11\n" +
+	"\rMusicType_Bgm\x10\x03*\xbd\x01\n" +
 	"\x1aMusicWishListRequesterType\x12&\n" +
 	"\"MusicWishListRequesterType_Unknown\x10\x00\x12#\n" +
 	"\x1fMusicWishListRequesterType_Self\x10\x01\x12(\n" +
@@ -14832,7 +15088,7 @@ const file_penum_proto_rawDesc = "" +
 	"$ProduceCardSearchStatusType_LostPlay\x10\x01\x12+\n" +
 	"'ProduceCardSearchStatusType_EndTurnLost\x10\x02\x12'\n" +
 	"#ProduceCardSearchStatusType_Initial\x10\x04\x12(\n" +
-	"$ProduceCardSearchStatusType_Restrict\x10\x05*\xae\x1a\n" +
+	"$ProduceCardSearchStatusType_Restrict\x10\x05*\xd6\x1a\n" +
 	"\x14ProduceConditionType\x12 \n" +
 	"\x1cProduceConditionType_Unknown\x10\x00\x12&\n" +
 	"\"ProduceConditionType_EventOccurred\x10\x01\x12)\n" +
@@ -14906,7 +15162,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x1eProduceConditionType_VoteCount\x10N\x127\n" +
 	"3ProduceConditionType_LatestAuditionStepSelectNumber\x10O\x120\n" +
 	",ProduceConditionType_CurrentAuditionStepType\x10P\x128\n" +
-	"4ProduceConditionType_CurrentAuditionStepSelectNumber\x10Q\x12\x1d\n" +
+	"4ProduceConditionType_CurrentAuditionStepSelectNumber\x10Q\x12&\n" +
+	"\"ProduceConditionType_DearnessPoint\x10R\x12\x1d\n" +
 	"\x18ProduceConditionType_Set\x10\xe6\a\x12%\n" +
 	" ProduceConditionType_NegativeSet\x10\xe7\a*\xbc\x01\n" +
 	"\x1aProduceDescriptionSwapType\x12&\n" +
@@ -14947,7 +15204,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ProduceDrinkRarity_N\x10\x01\x12\x18\n" +
 	"\x14ProduceDrinkRarity_R\x10\x02\x12\x19\n" +
 	"\x15ProduceDrinkRarity_Sr\x10\x03\x12\x1a\n" +
-	"\x16ProduceDrinkRarity_Ssr\x10\x04*\xa5)\n" +
+	"\x16ProduceDrinkRarity_Ssr\x10\x04*\xdf)\n" +
 	"\x11ProduceEffectType\x12\x1d\n" +
 	"\x19ProduceEffectType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceEffectType_VocalAddition\x10\x01\x12#\n" +
@@ -15057,7 +15314,8 @@ const file_penum_proto_rawDesc = "" +
 	"'ProduceEffectType_AuditionVoteCountDown\x10x\x12)\n" +
 	"%ProduceEffectType_SelfLessonStaminaUp\x10y\x12+\n" +
 	"'ProduceEffectType_SelfLessonStaminaDown\x10z\x12+\n" +
-	"'ProduceEffectType_HighScoreGoldAddition\x10{*\xe7\x05\n" +
+	"'ProduceEffectType_HighScoreGoldAddition\x10{\x128\n" +
+	"4ProduceEffectType_IdolCardProduceCardCustomizeEnable\x10|*\xe7\x05\n" +
 	"\x19ProduceEventCharacterType\x12%\n" +
 	"!ProduceEventCharacterType_Unknown\x10\x00\x12%\n" +
 	"!ProduceEventCharacterType_Opening\x10\x01\x12(\n" +
@@ -15402,7 +15660,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1cProduceParameterType_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aProduceParameterType_Vocal\x10\x01\x12\x1e\n" +
 	"\x1aProduceParameterType_Dance\x10\x02\x12\x1f\n" +
-	"\x1bProduceParameterType_Visual\x10\x03*\x86\r\n" +
+	"\x1bProduceParameterType_Visual\x10\x03*\xc5\r\n" +
 	"\x10ProducePhaseType\x12\x1c\n" +
 	"\x18ProducePhaseType_Unknown\x10\x00\x12$\n" +
 	" ProducePhaseType_RecoveryStamina\x10\x01\x12)\n" +
@@ -15446,7 +15704,9 @@ const file_penum_proto_rawDesc = "" +
 	"(ProducePhaseType_BuyShopItemProduceDrink\x106\x12+\n" +
 	"'ProducePhaseType_BuyShopItemProduceItem\x107\x122\n" +
 	".ProducePhaseType_BuyShopItemUpgradeProduceCard\x108\x121\n" +
-	"-ProducePhaseType_BuyShopItemDeleteProduceCard\x109*\x98\x01\n" +
+	"-ProducePhaseType_BuyShopItemDeleteProduceCard\x109\x12\x1f\n" +
+	"\x1bProducePhaseType_EndPresent\x10:\x12\x1c\n" +
+	"\x18ProducePhaseType_EndShop\x10;*\x98\x01\n" +
 	"\x14ProducePickRangeType\x12 \n" +
 	"\x1cProducePickRangeType_Unknown\x10\x00\x12\x1f\n" +
 	"\x1bProducePickRangeType_Select\x10\x01\x12\x1f\n" +
@@ -15476,7 +15736,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceProgressConditionType_Dance\x10\b\x12'\n" +
 	"#ProduceProgressConditionType_Visual\x10\t\x12+\n" +
 	"'ProduceProgressConditionType_StepNumber\x10\n" +
-	"*\x9a\n" +
+	"*\xc3\n" +
 	"\n" +
 	"\x15ProduceProgressStatus\x12!\n" +
 	"\x1dProduceProgressStatus_Unknown\x10\x00\x12$\n" +
@@ -15505,7 +15765,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x19ProduceProgressStatus_End\x10\x1e\x12 \n" +
 	"\x1cProduceProgressStatus_Result\x10\x1f\x12&\n" +
 	"\"ProduceProgressStatus_GuildMission\x10 \x126\n" +
-	"2ProduceProgressStatus_EndingCharacterDearnessStory\x10!\x12\"\n" +
+	"2ProduceProgressStatus_EndingCharacterDearnessStory\x10!\x12'\n" +
+	"#ProduceProgressStatus_DearnessBoost\x10\"\x12\"\n" +
 	"\x1eProduceProgressStatus_Finished\x10c*\x92\x04\n" +
 	"\x19ProduceResourceOriginType\x12%\n" +
 	"!ProduceResourceOriginType_Unknown\x10\x00\x12%\n" +
@@ -15761,7 +16022,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1aResourceOriginType_Unknown\x10\x00\x12\x1f\n" +
 	"\x1bResourceOriginType_IdolCard\x10\x01\x12#\n" +
 	"\x1fResourceOriginType_IdolCardSkin\x10\x02\x12\x1b\n" +
-	"\x17ResourceOriginType_Shop\x10\x03*\xaa\x06\n" +
+	"\x17ResourceOriginType_Shop\x10\x03*\xca\x06\n" +
 	"\fResourceType\x12\x18\n" +
 	"\x14ResourceType_Unknown\x10\x00\x12\x1c\n" +
 	"\x18ResourceType_ProduceCard\x10\x01\x12\x15\n" +
@@ -15786,7 +16047,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x1cResourceType_StoryEventPoint\x10\x13\x12!\n" +
 	"\x1dResourceType_PvpRatePlayCount\x10\x14\x12 \n" +
 	"\x1cResourceType_PhotoBackground\x10\x15\x12\x1a\n" +
-	"\x16ResourceType_PhotoPose\x10\x16\x12\x1c\n" +
+	"\x16ResourceType_PhotoPose\x10\x16\x12\x1e\n" +
+	"\x1aResourceType_DearnessPoint\x10\x17\x12\x1c\n" +
 	"\x17ResourceType_JewelTotal\x10\xcc\b\x12\x1f\n" +
 	"\x1aResourceType_JewelPaidOnly\x10\xcd\b\x12\x15\n" +
 	"\x10ResourceType_Set\x10\x8fN*\xe1\x02\n" +
@@ -15846,12 +16108,13 @@ const file_penum_proto_rawDesc = "" +
 	"\x0eShopType_Jewel\x10\x01\x12\x11\n" +
 	"\rShopType_Pass\x10\x02\x12\x11\n" +
 	"\rShopType_Pack\x10\x03\x12\x14\n" +
-	"\x10ShopType_Costume\x10\x04*b\n" +
+	"\x10ShopType_Costume\x10\x04*v\n" +
 	"\vSkillRarity\x12\x17\n" +
 	"\x13SkillRarity_Unknown\x10\x00\x12\x11\n" +
 	"\rSkillRarity_R\x10\x01\x12\x12\n" +
 	"\x0eSkillRarity_Sr\x10\x02\x12\x13\n" +
-	"\x0fSkillRarity_Ssr\x10\x03*\xa5\x04\n" +
+	"\x0fSkillRarity_Ssr\x10\x03\x12\x12\n" +
+	"\x0eSkillRarity_Ur\x10\x04*\xa5\x04\n" +
 	"\x1eStartupNotificationDisplayType\x12*\n" +
 	"&StartupNotificationDisplayType_Unknown\x10\x00\x12'\n" +
 	"#StartupNotificationDisplayType_Home\x10\x01\x12'\n" +
@@ -15869,14 +16132,15 @@ const file_penum_proto_rawDesc = "" +
 	"%StartupNotificationEffectType_Unknown\x10\x00\x12+\n" +
 	"'StartupNotificationEffectType_Confetti1\x10\x01\x12+\n" +
 	"'StartupNotificationEffectType_Confetti2\x10\x02\x12,\n" +
-	"(StartupNotificationEffectType_Twinkling1\x10\x03*\xeb\x01\n" +
+	"(StartupNotificationEffectType_Twinkling1\x10\x03*\x96\x02\n" +
 	"\x17StartupNotificationType\x12#\n" +
 	"\x1fStartupNotificationType_Unknown\x10\x00\x12!\n" +
 	"\x1dStartupNotificationType_Movie\x10\x01\x12\x1f\n" +
 	"\x1bStartupNotificationType_Adv\x10\x02\x12!\n" +
 	"\x1dStartupNotificationType_Image\x10\x03\x12\"\n" +
 	"\x1eStartupNotificationType_Notice\x10\x04\x12 \n" +
-	"\x1cStartupNotificationType_Shop\x10\x05*t\n" +
+	"\x1cStartupNotificationType_Shop\x10\x05\x12)\n" +
+	"%StartupNotificationType_ProfileReport\x10\x06*t\n" +
 	"\x11StoryCampaignType\x12\x1d\n" +
 	"\x19StoryCampaignType_Unknown\x10\x00\x12\x1b\n" +
 	"\x17StoryCampaignType_Event\x10\x01\x12#\n" +
@@ -15973,7 +16237,7 @@ const file_penum_proto_rawDesc = "" +
 	".TutorialProduceCommandType_StepAuditionExamEnd\x10\x05\x12.\n" +
 	"*TutorialProduceCommandType_StepAuditionEnd\x10\x06\x12?\n" +
 	";TutorialProduceCommandType_CheckBeforeLiveProduceEvaluation\x10\a\x12%\n" +
-	"!TutorialProduceCommandType_Result\x10\b*\xab\x12\n" +
+	"!TutorialProduceCommandType_Result\x10\b*\xd2\x13\n" +
 	"\fTutorialType\x12\x18\n" +
 	"\x14TutorialType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16TutorialType_GameStart\x10\x01\x12\x19\n" +
@@ -16003,7 +16267,9 @@ const file_penum_proto_rawDesc = "" +
 	"\x12TutorialType_Photo\x10\x19\x12!\n" +
 	"\x1dTutorialType_MeishiEditCustom\x10\x1a\x12'\n" +
 	"#TutorialType_MeishiEditCustomManual\x10\x1b\x12!\n" +
-	"\x1dTutorialType_IdolCardSkinUnit\x10\x1c\x12&\n" +
+	"\x1dTutorialType_IdolCardSkinUnit\x10\x1c\x12\x1c\n" +
+	"\x18TutorialType_DearnessTop\x10\x1d\x12\x1e\n" +
+	"\x1aTutorialType_DearnessPoint\x10\x1e\x12&\n" +
 	"\"TutorialType_ProduceIdolCardSelect\x10d\x12)\n" +
 	"%TutorialType_ProduceSupportCardSelect\x10e\x12$\n" +
 	" TutorialType_ProduceMemorySelect\x10f\x12 \n" +
@@ -16040,7 +16306,9 @@ const file_penum_proto_rawDesc = "" +
 	" TutorialType_StoryEventMainStroy\x10\xcb\x01\x12$\n" +
 	"\x1fTutorialType_StoryEventBoxGasha\x10\xcc\x01\x12(\n" +
 	"#TutorialType_StoryEventGuildMission\x10\xcd\x01\x12\x19\n" +
-	"\x14TutorialType_GvgRaid\x10\xce\x01*\\\n" +
+	"\x14TutorialType_GvgRaid\x10\xce\x01\x12/\n" +
+	"*TutorialType_ProduceNextIdolAuditionMaster\x10\xcf\x01\x126\n" +
+	"1TutorialType_ProduceNextIdolAuditionMasterRanking\x10\xd0\x01*\\\n" +
 	"\fViewAreaType\x12\x18\n" +
 	"\x14ViewAreaType_Unknown\x10\x00\x12\x18\n" +
 	"\x14ViewAreaType_Produce\x10\x01\x12\x18\n" +
@@ -16085,7 +16353,7 @@ func file_penum_proto_rawDescGZIP() []byte {
 	return file_penum_proto_rawDescData
 }
 
-var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 189)
+var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 192)
 var file_penum_proto_goTypes = []any{
 	(AchievementCategory)(0),                     // 0: penum.AchievementCategory
 	(AntiCheatFeatureType)(0),                    // 1: penum.AntiCheatFeatureType
@@ -16108,174 +16376,177 @@ var file_penum_proto_goTypes = []any{
 	(CostumeMotionType)(0),                       // 18: penum.CostumeMotionType
 	(CostumeSetType)(0),                          // 19: penum.CostumeSetType
 	(CountType)(0),                               // 20: penum.CountType
-	(DeckRecommendType)(0),                       // 21: penum.DeckRecommendType
-	(ErrorCode)(0),                               // 22: penum.ErrorCode
-	(EventStoryFilterType)(0),                    // 23: penum.EventStoryFilterType
-	(EventType)(0),                               // 24: penum.EventType
-	(ExamCommandType)(0),                         // 25: penum.ExamCommandType
-	(ExamCostType)(0),                            // 26: penum.ExamCostType
-	(ExamDescriptionType)(0),                     // 27: penum.ExamDescriptionType
-	(ExamGameType)(0),                            // 28: penum.ExamGameType
-	(ExamIdolStatusType)(0),                      // 29: penum.ExamIdolStatusType
-	(ExamMotionTargetType)(0),                    // 30: penum.ExamMotionTargetType
-	(ExamMotionType)(0),                          // 31: penum.ExamMotionType
-	(ExamOutGameMotionType)(0),                   // 32: penum.ExamOutGameMotionType
-	(ExamPhaseType)(0),                           // 33: penum.ExamPhaseType
-	(ExamPlayType)(0),                            // 34: penum.ExamPlayType
-	(ExchangeItemResetCheckStatus)(0),            // 35: penum.ExchangeItemResetCheckStatus
-	(ExchangeType)(0),                            // 36: penum.ExchangeType
-	(FeatureMaintenanceType)(0),                  // 37: penum.FeatureMaintenanceType
-	(FriendStatusType)(0),                        // 38: penum.FriendStatusType
-	(GashaAnimationRarity)(0),                    // 39: penum.GashaAnimationRarity
-	(GashaAnimationStepType)(0),                  // 40: penum.GashaAnimationStepType
-	(GashaButtonAppealType)(0),                   // 41: penum.GashaButtonAppealType
-	(GashaButtonType)(0),                         // 42: penum.GashaButtonType
-	(GashaCardBonusType)(0),                      // 43: penum.GashaCardBonusType
-	(GashaLimitType)(0),                          // 44: penum.GashaLimitType
-	(GashaType)(0),                               // 45: penum.GashaType
-	(GiftFilterType)(0),                          // 46: penum.GiftFilterType
-	(GuildActivityPolicyType)(0),                 // 47: penum.GuildActivityPolicyType
-	(GuildJoinRequestRouteType)(0),               // 48: penum.GuildJoinRequestRouteType
-	(GuildJoinType)(0),                           // 49: penum.GuildJoinType
-	(GuildMissionPhaseType)(0),                   // 50: penum.GuildMissionPhaseType
-	(GuildNotificationType)(0),                   // 51: penum.GuildNotificationType
-	(GuildRoleType)(0),                           // 52: penum.GuildRoleType
-	(GuildSearchMemberCountRangeType)(0),         // 53: penum.GuildSearchMemberCountRangeType
-	(GvgRaidStageIconSizeType)(0),                // 54: penum.GvgRaidStageIconSizeType
-	(HomeLocationType)(0),                        // 55: penum.HomeLocationType
-	(HomeMotionType)(0),                          // 56: penum.HomeMotionType
-	(HomeTimeType)(0),                            // 57: penum.HomeTimeType
-	(HomeType)(0),                                // 58: penum.HomeType
-	(IdolCardDifficultyType)(0),                  // 59: penum.IdolCardDifficultyType
-	(IdolCardLevelLimitEffectType)(0),            // 60: penum.IdolCardLevelLimitEffectType
-	(IdolCardLevelLimitRank)(0),                  // 61: penum.IdolCardLevelLimitRank
-	(IdolCardPotentialEffectType)(0),             // 62: penum.IdolCardPotentialEffectType
-	(IdolCardPotentialRank)(0),                   // 63: penum.IdolCardPotentialRank
-	(IdolCardRarity)(0),                          // 64: penum.IdolCardRarity
-	(IdolSkillPossessionType)(0),                 // 65: penum.IdolSkillPossessionType
-	(ItemRarity)(0),                              // 66: penum.ItemRarity
-	(ItemType)(0),                                // 67: penum.ItemType
-	(LangType)(0),                                // 68: penum.LangType
-	(LinkType)(0),                                // 69: penum.LinkType
-	(LoginBonusType)(0),                          // 70: penum.LoginBonusType
-	(MainTaskType)(0),                            // 71: penum.MainTaskType
-	(MediaType)(0),                               // 72: penum.MediaType
-	(MeishiBaseAssetType)(0),                     // 73: penum.MeishiBaseAssetType
-	(MeishiIllustrationType)(0),                  // 74: penum.MeishiIllustrationType
-	(MeishiObjectType)(0),                        // 75: penum.MeishiObjectType
-	(MissionCategory)(0),                         // 76: penum.MissionCategory
-	(MissionType)(0),                             // 77: penum.MissionType
-	(MusicWishListRequesterType)(0),              // 78: penum.MusicWishListRequesterType
-	(NoticeCategory)(0),                          // 79: penum.NoticeCategory
-	(NoticeType)(0),                              // 80: penum.NoticeType
-	(PaymentPendingReceiptDialogTimingType)(0),   // 81: penum.PaymentPendingReceiptDialogTimingType
-	(PhotoBackgroundCategory)(0),                 // 82: penum.PhotoBackgroundCategory
-	(PhotoBackgroundTimeType)(0),                 // 83: penum.PhotoBackgroundTimeType
-	(PhotoButtonExecuteType)(0),                  // 84: penum.PhotoButtonExecuteType
-	(PhotoLookTargetType)(0),                     // 85: penum.PhotoLookTargetType
-	(PhotoPoseMotionType)(0),                     // 86: penum.PhotoPoseMotionType
-	(PlatformType)(0),                            // 87: penum.PlatformType
-	(PreferenceType)(0),                          // 88: penum.PreferenceType
-	(ProduceAdvType)(0),                          // 89: penum.ProduceAdvType
-	(ProduceCampaignType)(0),                     // 90: penum.ProduceCampaignType
-	(ProduceCardCategory)(0),                     // 91: penum.ProduceCardCategory
-	(ProduceCardGrowEffectType)(0),               // 92: penum.ProduceCardGrowEffectType
-	(ProduceCardMoveEffectTriggerType)(0),        // 93: penum.ProduceCardMoveEffectTriggerType
-	(ProduceCardMovePositionType)(0),             // 94: penum.ProduceCardMovePositionType
-	(ProduceCardOrderType)(0),                    // 95: penum.ProduceCardOrderType
-	(ProduceCardPositionType)(0),                 // 96: penum.ProduceCardPositionType
-	(ProduceCardRarity)(0),                       // 97: penum.ProduceCardRarity
-	(ProduceCardSearchStatusType)(0),             // 98: penum.ProduceCardSearchStatusType
-	(ProduceConditionType)(0),                    // 99: penum.ProduceConditionType
-	(ProduceDescriptionSwapType)(0),              // 100: penum.ProduceDescriptionSwapType
-	(ProduceDescriptionType)(0),                  // 101: penum.ProduceDescriptionType
-	(ProduceDisplayType)(0),                      // 102: penum.ProduceDisplayType
-	(ProduceDrinkRarity)(0),                      // 103: penum.ProduceDrinkRarity
-	(ProduceEffectType)(0),                       // 104: penum.ProduceEffectType
-	(ProduceEventCharacterType)(0),               // 105: penum.ProduceEventCharacterType
-	(ProduceEventSuggestionType)(0),              // 106: penum.ProduceEventSuggestionType
-	(ProduceEventType)(0),                        // 107: penum.ProduceEventType
-	(ProduceExamAutoCardSelectEvaluationType)(0), // 108: penum.ProduceExamAutoCardSelectEvaluationType
-	(ProduceExamAutoEvaluationType)(0),           // 109: penum.ProduceExamAutoEvaluationType
-	(ProduceExamEffectType)(0),                   // 110: penum.ProduceExamEffectType
-	(ProduceExamFieldStatusType)(0),              // 111: penum.ProduceExamFieldStatusType
-	(ProduceExamPhaseType)(0),                    // 112: penum.ProduceExamPhaseType
-	(ProduceExamResultType)(0),                   // 113: penum.ProduceExamResultType
-	(ProduceExamTriggerCheckType)(0),             // 114: penum.ProduceExamTriggerCheckType
-	(ProduceHighScoreEventType)(0),               // 115: penum.ProduceHighScoreEventType
-	(ProduceItemEffectType)(0),                   // 116: penum.ProduceItemEffectType
-	(ProduceItemRarity)(0),                       // 117: penum.ProduceItemRarity
-	(ProduceLiveType)(0),                         // 118: penum.ProduceLiveType
-	(ProduceMemoryProduceCardPhaseType)(0),       // 119: penum.ProduceMemoryProduceCardPhaseType
-	(ProduceParameterType)(0),                    // 120: penum.ProduceParameterType
-	(ProducePhaseType)(0),                        // 121: penum.ProducePhaseType
-	(ProducePickRangeType)(0),                    // 122: penum.ProducePickRangeType
-	(ProducePlanType)(0),                         // 123: penum.ProducePlanType
-	(ProduceProgressAuditionStatusType)(0),       // 124: penum.ProduceProgressAuditionStatusType
-	(ProduceProgressConditionType)(0),            // 125: penum.ProduceProgressConditionType
-	(ProduceProgressStatus)(0),                   // 126: penum.ProduceProgressStatus
-	(ProduceResourceOriginType)(0),               // 127: penum.ProduceResourceOriginType
-	(ProduceResourceType)(0),                     // 128: penum.ProduceResourceType
-	(ProduceRewardType)(0),                       // 129: penum.ProduceRewardType
-	(ProduceScheduleLocationType)(0),             // 130: penum.ProduceScheduleLocationType
-	(ProduceScheduleMotionType)(0),               // 131: penum.ProduceScheduleMotionType
-	(ProduceScheduleStaminaMotionType)(0),        // 132: penum.ProduceScheduleStaminaMotionType
-	(ProduceSkillEffectType)(0),                  // 133: penum.ProduceSkillEffectType
-	(ProduceStartMotionType)(0),                  // 134: penum.ProduceStartMotionType
-	(ProduceStepAuditionMotionType)(0),           // 135: penum.ProduceStepAuditionMotionType
-	(ProduceStepAuditionType)(0),                 // 136: penum.ProduceStepAuditionType
-	(ProduceStepBusinessType)(0),                 // 137: penum.ProduceStepBusinessType
-	(ProduceStepFanPresentMotionType)(0),         // 138: penum.ProduceStepFanPresentMotionType
-	(ProduceStepLessonType)(0),                   // 139: penum.ProduceStepLessonType
-	(ProduceStepPhaseType)(0),                    // 140: penum.ProduceStepPhaseType
-	(ProduceStepType)(0),                         // 141: penum.ProduceStepType
-	(ProduceStoryType)(0),                        // 142: penum.ProduceStoryType
-	(ProduceTriggerOriginType)(0),                // 143: penum.ProduceTriggerOriginType
-	(ProduceType)(0),                             // 144: penum.ProduceType
-	(ProducerLevelUnlockType)(0),                 // 145: penum.ProducerLevelUnlockType
-	(PurchaseTransactionStatusType)(0),           // 146: penum.PurchaseTransactionStatusType
-	(PushType)(0),                                // 147: penum.PushType
-	(PvpRateGrade)(0),                            // 148: penum.PvpRateGrade
-	(PvpRateMotionType)(0),                       // 149: penum.PvpRateMotionType
-	(PvpRatePhaseType)(0),                        // 150: penum.PvpRatePhaseType
-	(PvpRateRivalType)(0),                        // 151: penum.PvpRateRivalType
-	(PvpRateSeasonStatusType)(0),                 // 152: penum.PvpRateSeasonStatusType
-	(PvpRateStageType)(0),                        // 153: penum.PvpRateStageType
-	(ResetTimingType)(0),                         // 154: penum.ResetTimingType
-	(ResourceOriginType)(0),                      // 155: penum.ResourceOriginType
-	(ResourceType)(0),                            // 156: penum.ResourceType
-	(ResultGrade)(0),                             // 157: penum.ResultGrade
-	(ResultGradeType)(0),                         // 158: penum.ResultGradeType
-	(RewardProvideType)(0),                       // 159: penum.RewardProvideType
-	(RewardSetType)(0),                           // 160: penum.RewardSetType
-	(RuleType)(0),                                // 161: penum.RuleType
-	(ServingStatus)(0),                           // 162: penum.ServingStatus
-	(ShopItemLabelType)(0),                       // 163: penum.ShopItemLabelType
-	(ShopType)(0),                                // 164: penum.ShopType
-	(SkillRarity)(0),                             // 165: penum.SkillRarity
-	(StartupNotificationDisplayType)(0),          // 166: penum.StartupNotificationDisplayType
-	(StartupNotificationEffectType)(0),           // 167: penum.StartupNotificationEffectType
-	(StartupNotificationType)(0),                 // 168: penum.StartupNotificationType
-	(StoryCampaignType)(0),                       // 169: penum.StoryCampaignType
-	(StoryEventMotionType)(0),                    // 170: penum.StoryEventMotionType
-	(StoryEventType)(0),                          // 171: penum.StoryEventType
-	(StoryType)(0),                               // 172: penum.StoryType
-	(SupportCardLevelLimitRank)(0),               // 173: penum.SupportCardLevelLimitRank
-	(SupportCardRarity)(0),                       // 174: penum.SupportCardRarity
-	(SupportCardType)(0),                         // 175: penum.SupportCardType
-	(TermsType)(0),                               // 176: penum.TermsType
-	(TimeType)(0),                                // 177: penum.TimeType
-	(TipsType)(0),                                // 178: penum.TipsType
-	(TutorialCharacterVoiceType)(0),              // 179: penum.TutorialCharacterVoiceType
-	(TutorialNavigationPositionType)(0),          // 180: penum.TutorialNavigationPositionType
-	(TutorialNavigationType)(0),                  // 181: penum.TutorialNavigationType
-	(TutorialProduceCommandType)(0),              // 182: penum.TutorialProduceCommandType
-	(TutorialType)(0),                            // 183: penum.TutorialType
-	(ViewAreaType)(0),                            // 184: penum.ViewAreaType
-	(VoicePlayScreenType)(0),                     // 185: penum.VoicePlayScreenType
-	(Weekday)(0),                                 // 186: penum.Weekday
-	(WorkMotionType)(0),                          // 187: penum.WorkMotionType
-	(WorkType)(0),                                // 188: penum.WorkType
+	(DearnessMotionType)(0),                      // 21: penum.DearnessMotionType
+	(DeckRecommendType)(0),                       // 22: penum.DeckRecommendType
+	(ErrorCode)(0),                               // 23: penum.ErrorCode
+	(EventStoryFilterType)(0),                    // 24: penum.EventStoryFilterType
+	(EventType)(0),                               // 25: penum.EventType
+	(ExamCommandType)(0),                         // 26: penum.ExamCommandType
+	(ExamCostType)(0),                            // 27: penum.ExamCostType
+	(ExamDescriptionType)(0),                     // 28: penum.ExamDescriptionType
+	(ExamGameType)(0),                            // 29: penum.ExamGameType
+	(ExamIdolStatusType)(0),                      // 30: penum.ExamIdolStatusType
+	(ExamMotionTargetType)(0),                    // 31: penum.ExamMotionTargetType
+	(ExamMotionType)(0),                          // 32: penum.ExamMotionType
+	(ExamOutGameMotionType)(0),                   // 33: penum.ExamOutGameMotionType
+	(ExamPhaseType)(0),                           // 34: penum.ExamPhaseType
+	(ExamPlayType)(0),                            // 35: penum.ExamPlayType
+	(ExchangeItemCategoryType)(0),                // 36: penum.ExchangeItemCategoryType
+	(ExchangeItemResetCheckStatus)(0),            // 37: penum.ExchangeItemResetCheckStatus
+	(ExchangeType)(0),                            // 38: penum.ExchangeType
+	(FeatureMaintenanceType)(0),                  // 39: penum.FeatureMaintenanceType
+	(FriendStatusType)(0),                        // 40: penum.FriendStatusType
+	(GashaAnimationRarity)(0),                    // 41: penum.GashaAnimationRarity
+	(GashaAnimationStepType)(0),                  // 42: penum.GashaAnimationStepType
+	(GashaButtonAppealType)(0),                   // 43: penum.GashaButtonAppealType
+	(GashaButtonType)(0),                         // 44: penum.GashaButtonType
+	(GashaCardBonusType)(0),                      // 45: penum.GashaCardBonusType
+	(GashaLimitType)(0),                          // 46: penum.GashaLimitType
+	(GashaType)(0),                               // 47: penum.GashaType
+	(GiftFilterType)(0),                          // 48: penum.GiftFilterType
+	(GuildActivityPolicyType)(0),                 // 49: penum.GuildActivityPolicyType
+	(GuildJoinRequestRouteType)(0),               // 50: penum.GuildJoinRequestRouteType
+	(GuildJoinType)(0),                           // 51: penum.GuildJoinType
+	(GuildMissionPhaseType)(0),                   // 52: penum.GuildMissionPhaseType
+	(GuildNotificationType)(0),                   // 53: penum.GuildNotificationType
+	(GuildRoleType)(0),                           // 54: penum.GuildRoleType
+	(GuildSearchMemberCountRangeType)(0),         // 55: penum.GuildSearchMemberCountRangeType
+	(GvgRaidStageIconSizeType)(0),                // 56: penum.GvgRaidStageIconSizeType
+	(HomeLocationType)(0),                        // 57: penum.HomeLocationType
+	(HomeMotionType)(0),                          // 58: penum.HomeMotionType
+	(HomeTimeType)(0),                            // 59: penum.HomeTimeType
+	(HomeType)(0),                                // 60: penum.HomeType
+	(IdolCardDifficultyType)(0),                  // 61: penum.IdolCardDifficultyType
+	(IdolCardLevelLimitEffectType)(0),            // 62: penum.IdolCardLevelLimitEffectType
+	(IdolCardLevelLimitRank)(0),                  // 63: penum.IdolCardLevelLimitRank
+	(IdolCardPotentialEffectType)(0),             // 64: penum.IdolCardPotentialEffectType
+	(IdolCardPotentialRank)(0),                   // 65: penum.IdolCardPotentialRank
+	(IdolCardRarity)(0),                          // 66: penum.IdolCardRarity
+	(IdolSkillPossessionType)(0),                 // 67: penum.IdolSkillPossessionType
+	(ItemRarity)(0),                              // 68: penum.ItemRarity
+	(ItemType)(0),                                // 69: penum.ItemType
+	(LangType)(0),                                // 70: penum.LangType
+	(LinkType)(0),                                // 71: penum.LinkType
+	(LoginBonusType)(0),                          // 72: penum.LoginBonusType
+	(MainTaskType)(0),                            // 73: penum.MainTaskType
+	(MediaType)(0),                               // 74: penum.MediaType
+	(MeishiBaseAssetType)(0),                     // 75: penum.MeishiBaseAssetType
+	(MeishiIllustrationType)(0),                  // 76: penum.MeishiIllustrationType
+	(MeishiObjectType)(0),                        // 77: penum.MeishiObjectType
+	(MissionCategory)(0),                         // 78: penum.MissionCategory
+	(MissionType)(0),                             // 79: penum.MissionType
+	(MusicType)(0),                               // 80: penum.MusicType
+	(MusicWishListRequesterType)(0),              // 81: penum.MusicWishListRequesterType
+	(NoticeCategory)(0),                          // 82: penum.NoticeCategory
+	(NoticeType)(0),                              // 83: penum.NoticeType
+	(PaymentPendingReceiptDialogTimingType)(0),   // 84: penum.PaymentPendingReceiptDialogTimingType
+	(PhotoBackgroundCategory)(0),                 // 85: penum.PhotoBackgroundCategory
+	(PhotoBackgroundTimeType)(0),                 // 86: penum.PhotoBackgroundTimeType
+	(PhotoButtonExecuteType)(0),                  // 87: penum.PhotoButtonExecuteType
+	(PhotoLookTargetType)(0),                     // 88: penum.PhotoLookTargetType
+	(PhotoPoseMotionType)(0),                     // 89: penum.PhotoPoseMotionType
+	(PlatformType)(0),                            // 90: penum.PlatformType
+	(PreferenceType)(0),                          // 91: penum.PreferenceType
+	(ProduceAdvType)(0),                          // 92: penum.ProduceAdvType
+	(ProduceCampaignType)(0),                     // 93: penum.ProduceCampaignType
+	(ProduceCardCategory)(0),                     // 94: penum.ProduceCardCategory
+	(ProduceCardGrowEffectType)(0),               // 95: penum.ProduceCardGrowEffectType
+	(ProduceCardMoveEffectTriggerType)(0),        // 96: penum.ProduceCardMoveEffectTriggerType
+	(ProduceCardMovePositionType)(0),             // 97: penum.ProduceCardMovePositionType
+	(ProduceCardOrderType)(0),                    // 98: penum.ProduceCardOrderType
+	(ProduceCardPositionType)(0),                 // 99: penum.ProduceCardPositionType
+	(ProduceCardRarity)(0),                       // 100: penum.ProduceCardRarity
+	(ProduceCardSearchStatusType)(0),             // 101: penum.ProduceCardSearchStatusType
+	(ProduceConditionType)(0),                    // 102: penum.ProduceConditionType
+	(ProduceDescriptionSwapType)(0),              // 103: penum.ProduceDescriptionSwapType
+	(ProduceDescriptionType)(0),                  // 104: penum.ProduceDescriptionType
+	(ProduceDisplayType)(0),                      // 105: penum.ProduceDisplayType
+	(ProduceDrinkRarity)(0),                      // 106: penum.ProduceDrinkRarity
+	(ProduceEffectType)(0),                       // 107: penum.ProduceEffectType
+	(ProduceEventCharacterType)(0),               // 108: penum.ProduceEventCharacterType
+	(ProduceEventSuggestionType)(0),              // 109: penum.ProduceEventSuggestionType
+	(ProduceEventType)(0),                        // 110: penum.ProduceEventType
+	(ProduceExamAutoCardSelectEvaluationType)(0), // 111: penum.ProduceExamAutoCardSelectEvaluationType
+	(ProduceExamAutoEvaluationType)(0),           // 112: penum.ProduceExamAutoEvaluationType
+	(ProduceExamEffectType)(0),                   // 113: penum.ProduceExamEffectType
+	(ProduceExamFieldStatusType)(0),              // 114: penum.ProduceExamFieldStatusType
+	(ProduceExamPhaseType)(0),                    // 115: penum.ProduceExamPhaseType
+	(ProduceExamResultType)(0),                   // 116: penum.ProduceExamResultType
+	(ProduceExamTriggerCheckType)(0),             // 117: penum.ProduceExamTriggerCheckType
+	(ProduceHighScoreEventType)(0),               // 118: penum.ProduceHighScoreEventType
+	(ProduceItemEffectType)(0),                   // 119: penum.ProduceItemEffectType
+	(ProduceItemRarity)(0),                       // 120: penum.ProduceItemRarity
+	(ProduceLiveType)(0),                         // 121: penum.ProduceLiveType
+	(ProduceMemoryProduceCardPhaseType)(0),       // 122: penum.ProduceMemoryProduceCardPhaseType
+	(ProduceParameterType)(0),                    // 123: penum.ProduceParameterType
+	(ProducePhaseType)(0),                        // 124: penum.ProducePhaseType
+	(ProducePickRangeType)(0),                    // 125: penum.ProducePickRangeType
+	(ProducePlanType)(0),                         // 126: penum.ProducePlanType
+	(ProduceProgressAuditionStatusType)(0),       // 127: penum.ProduceProgressAuditionStatusType
+	(ProduceProgressConditionType)(0),            // 128: penum.ProduceProgressConditionType
+	(ProduceProgressStatus)(0),                   // 129: penum.ProduceProgressStatus
+	(ProduceResourceOriginType)(0),               // 130: penum.ProduceResourceOriginType
+	(ProduceResourceType)(0),                     // 131: penum.ProduceResourceType
+	(ProduceRewardType)(0),                       // 132: penum.ProduceRewardType
+	(ProduceScheduleLocationType)(0),             // 133: penum.ProduceScheduleLocationType
+	(ProduceScheduleMotionType)(0),               // 134: penum.ProduceScheduleMotionType
+	(ProduceScheduleStaminaMotionType)(0),        // 135: penum.ProduceScheduleStaminaMotionType
+	(ProduceSkillEffectType)(0),                  // 136: penum.ProduceSkillEffectType
+	(ProduceStartMotionType)(0),                  // 137: penum.ProduceStartMotionType
+	(ProduceStepAuditionMotionType)(0),           // 138: penum.ProduceStepAuditionMotionType
+	(ProduceStepAuditionType)(0),                 // 139: penum.ProduceStepAuditionType
+	(ProduceStepBusinessType)(0),                 // 140: penum.ProduceStepBusinessType
+	(ProduceStepFanPresentMotionType)(0),         // 141: penum.ProduceStepFanPresentMotionType
+	(ProduceStepLessonType)(0),                   // 142: penum.ProduceStepLessonType
+	(ProduceStepPhaseType)(0),                    // 143: penum.ProduceStepPhaseType
+	(ProduceStepType)(0),                         // 144: penum.ProduceStepType
+	(ProduceStoryType)(0),                        // 145: penum.ProduceStoryType
+	(ProduceTriggerOriginType)(0),                // 146: penum.ProduceTriggerOriginType
+	(ProduceType)(0),                             // 147: penum.ProduceType
+	(ProducerLevelUnlockType)(0),                 // 148: penum.ProducerLevelUnlockType
+	(PurchaseTransactionStatusType)(0),           // 149: penum.PurchaseTransactionStatusType
+	(PushType)(0),                                // 150: penum.PushType
+	(PvpRateGrade)(0),                            // 151: penum.PvpRateGrade
+	(PvpRateMotionType)(0),                       // 152: penum.PvpRateMotionType
+	(PvpRatePhaseType)(0),                        // 153: penum.PvpRatePhaseType
+	(PvpRateRivalType)(0),                        // 154: penum.PvpRateRivalType
+	(PvpRateSeasonStatusType)(0),                 // 155: penum.PvpRateSeasonStatusType
+	(PvpRateStageType)(0),                        // 156: penum.PvpRateStageType
+	(ResetTimingType)(0),                         // 157: penum.ResetTimingType
+	(ResourceOriginType)(0),                      // 158: penum.ResourceOriginType
+	(ResourceType)(0),                            // 159: penum.ResourceType
+	(ResultGrade)(0),                             // 160: penum.ResultGrade
+	(ResultGradeType)(0),                         // 161: penum.ResultGradeType
+	(RewardProvideType)(0),                       // 162: penum.RewardProvideType
+	(RewardSetType)(0),                           // 163: penum.RewardSetType
+	(RuleType)(0),                                // 164: penum.RuleType
+	(ServingStatus)(0),                           // 165: penum.ServingStatus
+	(ShopItemLabelType)(0),                       // 166: penum.ShopItemLabelType
+	(ShopType)(0),                                // 167: penum.ShopType
+	(SkillRarity)(0),                             // 168: penum.SkillRarity
+	(StartupNotificationDisplayType)(0),          // 169: penum.StartupNotificationDisplayType
+	(StartupNotificationEffectType)(0),           // 170: penum.StartupNotificationEffectType
+	(StartupNotificationType)(0),                 // 171: penum.StartupNotificationType
+	(StoryCampaignType)(0),                       // 172: penum.StoryCampaignType
+	(StoryEventMotionType)(0),                    // 173: penum.StoryEventMotionType
+	(StoryEventType)(0),                          // 174: penum.StoryEventType
+	(StoryType)(0),                               // 175: penum.StoryType
+	(SupportCardLevelLimitRank)(0),               // 176: penum.SupportCardLevelLimitRank
+	(SupportCardRarity)(0),                       // 177: penum.SupportCardRarity
+	(SupportCardType)(0),                         // 178: penum.SupportCardType
+	(TermsType)(0),                               // 179: penum.TermsType
+	(TimeType)(0),                                // 180: penum.TimeType
+	(TipsType)(0),                                // 181: penum.TipsType
+	(TutorialCharacterVoiceType)(0),              // 182: penum.TutorialCharacterVoiceType
+	(TutorialNavigationPositionType)(0),          // 183: penum.TutorialNavigationPositionType
+	(TutorialNavigationType)(0),                  // 184: penum.TutorialNavigationType
+	(TutorialProduceCommandType)(0),              // 185: penum.TutorialProduceCommandType
+	(TutorialType)(0),                            // 186: penum.TutorialType
+	(ViewAreaType)(0),                            // 187: penum.ViewAreaType
+	(VoicePlayScreenType)(0),                     // 188: penum.VoicePlayScreenType
+	(Weekday)(0),                                 // 189: penum.Weekday
+	(WorkMotionType)(0),                          // 190: penum.WorkMotionType
+	(WorkType)(0),                                // 191: penum.WorkType
 }
 var file_penum_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -16295,7 +16566,7 @@ func file_penum_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_penum_proto_rawDesc), len(file_penum_proto_rawDesc)),
-			NumEnums:      189,
+			NumEnums:      192,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,

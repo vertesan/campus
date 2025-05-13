@@ -296,6 +296,7 @@ type UserCharacter struct {
 	CharacterId         string                 `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
 	FanCount            int64                  `protobuf:"varint,3,opt,name=fanCount,proto3" json:"fanCount,omitempty"`
 	TrueEndProduceTypes []penum.ProduceType    `protobuf:"varint,4,rep,packed,name=trueEndProduceTypes,proto3,enum=penum.ProduceType" json:"trueEndProduceTypes,omitempty"`
+	DearnessPoint       int32                  `protobuf:"varint,7,opt,name=dearnessPoint,proto3" json:"dearnessPoint,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -349,6 +350,13 @@ func (x *UserCharacter) GetTrueEndProduceTypes() []penum.ProduceType {
 		return x.TrueEndProduceTypes
 	}
 	return nil
+}
+
+func (x *UserCharacter) GetDearnessPoint() int32 {
+	if x != nil {
+		return x.DearnessPoint
+	}
+	return 0
 }
 
 type UserCharacterCostume struct {
@@ -700,7 +708,9 @@ type UserDearnessStory struct {
 	CharacterId                        string                 `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
 	DearnessLevel                      int32                  `protobuf:"varint,3,opt,name=dearnessLevel,proto3" json:"dearnessLevel,omitempty"`
 	SatisfyDearnessProduceConditionSet bool                   `protobuf:"varint,4,opt,name=satisfyDearnessProduceConditionSet,proto3" json:"satisfyDearnessProduceConditionSet,omitempty"`
+	ReadTime                           int64                  `protobuf:"varint,5,opt,name=readTime,proto3" json:"readTime,omitempty"`
 	Read                               bool                   `protobuf:"varint,6,opt,name=read,proto3" json:"read,omitempty"`
+	ItemUnlocked                       bool                   `protobuf:"varint,7,opt,name=itemUnlocked,proto3" json:"itemUnlocked,omitempty"`
 	unknownFields                      protoimpl.UnknownFields
 	sizeCache                          protoimpl.SizeCache
 }
@@ -756,6 +766,13 @@ func (x *UserDearnessStory) GetSatisfyDearnessProduceConditionSet() bool {
 	return false
 }
 
+func (x *UserDearnessStory) GetReadTime() int64 {
+	if x != nil {
+		return x.ReadTime
+	}
+	return 0
+}
+
 func (x *UserDearnessStory) GetRead() bool {
 	if x != nil {
 		return x.Read
@@ -763,18 +780,27 @@ func (x *UserDearnessStory) GetRead() bool {
 	return false
 }
 
+func (x *UserDearnessStory) GetItemUnlocked() bool {
+	if x != nil {
+		return x.ItemUnlocked
+	}
+	return false
+}
+
 type UserGashaButton struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	GashaId                string                 `protobuf:"bytes,2,opt,name=gashaId,proto3" json:"gashaId,omitempty"`
-	GashaButtonId          string                 `protobuf:"bytes,3,opt,name=gashaButtonId,proto3" json:"gashaButtonId,omitempty"`
-	LastDrawnTime          int64                  `protobuf:"varint,4,opt,name=lastDrawnTime,proto3" json:"lastDrawnTime,omitempty"`
-	TodayDrawCount         int32                  `protobuf:"varint,5,opt,name=todayDrawCount,proto3" json:"todayDrawCount,omitempty"`
-	TotalDrawCount         int32                  `protobuf:"varint,6,opt,name=totalDrawCount,proto3" json:"totalDrawCount,omitempty"`
-	DiscountTodayDrawCount int32                  `protobuf:"varint,7,opt,name=discountTodayDrawCount,proto3" json:"discountTodayDrawCount,omitempty"`
-	DiscountTotalDrawCount int32                  `protobuf:"varint,8,opt,name=discountTotalDrawCount,proto3" json:"discountTotalDrawCount,omitempty"`
-	RedrawCount            int32                  `protobuf:"varint,9,opt,name=redrawCount,proto3" json:"redrawCount,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                             protoimpl.MessageState `protogen:"open.v1"`
+	GashaId                           string                 `protobuf:"bytes,2,opt,name=gashaId,proto3" json:"gashaId,omitempty"`
+	GashaButtonId                     string                 `protobuf:"bytes,3,opt,name=gashaButtonId,proto3" json:"gashaButtonId,omitempty"`
+	LastDrawnTime                     int64                  `protobuf:"varint,4,opt,name=lastDrawnTime,proto3" json:"lastDrawnTime,omitempty"`
+	TodayDrawCount                    int32                  `protobuf:"varint,5,opt,name=todayDrawCount,proto3" json:"todayDrawCount,omitempty"`
+	TotalDrawCount                    int32                  `protobuf:"varint,6,opt,name=totalDrawCount,proto3" json:"totalDrawCount,omitempty"`
+	DiscountTodayDrawCount            int32                  `protobuf:"varint,7,opt,name=discountTodayDrawCount,proto3" json:"discountTodayDrawCount,omitempty"`
+	DiscountTotalDrawCount            int32                  `protobuf:"varint,8,opt,name=discountTotalDrawCount,proto3" json:"discountTotalDrawCount,omitempty"`
+	RedrawCount                       int32                  `protobuf:"varint,9,opt,name=redrawCount,proto3" json:"redrawCount,omitempty"`
+	DailyLoginAccumulateCount         int32                  `protobuf:"varint,10,opt,name=dailyLoginAccumulateCount,proto3" json:"dailyLoginAccumulateCount,omitempty"`
+	DiscountDailyLoginAccumulateCount int32                  `protobuf:"varint,11,opt,name=discountDailyLoginAccumulateCount,proto3" json:"discountDailyLoginAccumulateCount,omitempty"`
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *UserGashaButton) Reset() {
@@ -859,6 +885,20 @@ func (x *UserGashaButton) GetDiscountTotalDrawCount() int32 {
 func (x *UserGashaButton) GetRedrawCount() int32 {
 	if x != nil {
 		return x.RedrawCount
+	}
+	return 0
+}
+
+func (x *UserGashaButton) GetDailyLoginAccumulateCount() int32 {
+	if x != nil {
+		return x.DailyLoginAccumulateCount
+	}
+	return 0
+}
+
+func (x *UserGashaButton) GetDiscountDailyLoginAccumulateCount() int32 {
+	if x != nil {
+		return x.DiscountDailyLoginAccumulateCount
 	}
 	return 0
 }
@@ -2779,6 +2819,8 @@ type UserProduceCharacter struct {
 	state                     protoimpl.MessageState `protogen:"open.v1"`
 	CharacterId               string                 `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
 	ProduceId                 string                 `protobuf:"bytes,3,opt,name=produceId,proto3" json:"produceId,omitempty"`
+	PlayCount                 int32                  `protobuf:"varint,5,opt,name=playCount,proto3" json:"playCount,omitempty"`
+	ClearCount                int32                  `protobuf:"varint,6,opt,name=clearCount,proto3" json:"clearCount,omitempty"`
 	UnlockChallengeSlotNumber int32                  `protobuf:"varint,7,opt,name=unlockChallengeSlotNumber,proto3" json:"unlockChallengeSlotNumber,omitempty"`
 	unknownFields             protoimpl.UnknownFields
 	sizeCache                 protoimpl.SizeCache
@@ -2826,6 +2868,20 @@ func (x *UserProduceCharacter) GetProduceId() string {
 		return x.ProduceId
 	}
 	return ""
+}
+
+func (x *UserProduceCharacter) GetPlayCount() int32 {
+	if x != nil {
+		return x.PlayCount
+	}
+	return 0
+}
+
+func (x *UserProduceCharacter) GetClearCount() int32 {
+	if x != nil {
+		return x.ClearCount
+	}
+	return 0
 }
 
 func (x *UserProduceCharacter) GetUnlockChallengeSlotNumber() int32 {
@@ -2959,6 +3015,7 @@ type UserProduceIdolCard struct {
 	state                   protoimpl.MessageState `protogen:"open.v1"`
 	ProduceId               string                 `protobuf:"bytes,2,opt,name=produceId,proto3" json:"produceId,omitempty"`
 	IdolCardId              string                 `protobuf:"bytes,3,opt,name=idolCardId,proto3" json:"idolCardId,omitempty"`
+	ClearCount              int32                  `protobuf:"varint,5,opt,name=clearCount,proto3" json:"clearCount,omitempty"`
 	ChallengeProduceItemIds []string               `protobuf:"bytes,10,rep,name=challengeProduceItemIds,proto3" json:"challengeProduceItemIds,omitempty"`
 	LiveType                penum.ProduceLiveType  `protobuf:"varint,11,opt,name=liveType,proto3,enum=penum.ProduceLiveType" json:"liveType,omitempty"`
 	unknownFields           protoimpl.UnknownFields
@@ -3007,6 +3064,13 @@ func (x *UserProduceIdolCard) GetIdolCardId() string {
 		return x.IdolCardId
 	}
 	return ""
+}
+
+func (x *UserProduceIdolCard) GetClearCount() int32 {
+	if x != nil {
+		return x.ClearCount
+	}
+	return 0
 }
 
 func (x *UserProduceIdolCard) GetChallengeProduceItemIds() []string {
@@ -3284,6 +3348,7 @@ type UserProduceProgress struct {
 	ProduceDrinkGetDisableTurn                    int32                                              `protobuf:"varint,401,opt,name=produceDrinkGetDisableTurn,proto3" json:"produceDrinkGetDisableTurn,omitempty"`
 	AuditionEffectParameterBonusPermil            int32                                              `protobuf:"varint,504,opt,name=auditionEffectParameterBonusPermil,proto3" json:"auditionEffectParameterBonusPermil,omitempty"`
 	AuditionNpcEnhancePermil                      int32                                              `protobuf:"varint,505,opt,name=auditionNpcEnhancePermil,proto3" json:"auditionNpcEnhancePermil,omitempty"`
+	AuditionParameterGrowthRatePermil             int32                                              `protobuf:"varint,508,opt,name=auditionParameterGrowthRatePermil,proto3" json:"auditionParameterGrowthRatePermil,omitempty"`
 	EventSchoolStaminaPermil                      int32                                              `protobuf:"varint,550,opt,name=eventSchoolStaminaPermil,proto3" json:"eventSchoolStaminaPermil,omitempty"`
 	EventActivityProducePointPermil               int32                                              `protobuf:"varint,551,opt,name=eventActivityProducePointPermil,proto3" json:"eventActivityProducePointPermil,omitempty"`
 	EventBusinessVoteCountPermil                  int32                                              `protobuf:"varint,552,opt,name=eventBusinessVoteCountPermil,proto3" json:"eventBusinessVoteCountPermil,omitempty"`
@@ -3303,6 +3368,7 @@ type UserProduceProgress struct {
 	LessonPresentAdditionalProduceCardRewardCount int32                                              `protobuf:"varint,700,opt,name=lessonPresentAdditionalProduceCardRewardCount,proto3" json:"lessonPresentAdditionalProduceCardRewardCount,omitempty"`
 	CustomizeAdditionalProduceCardCount           int32                                              `protobuf:"varint,760,opt,name=customizeAdditionalProduceCardCount,proto3" json:"customizeAdditionalProduceCardCount,omitempty"`
 	CustomizeDiscountPermils                      []int32                                            `protobuf:"varint,761,rep,packed,name=customizeDiscountPermils,proto3" json:"customizeDiscountPermils,omitempty"`
+	EnableIdolCardProduceCardCustomize            bool                                               `protobuf:"varint,762,opt,name=enableIdolCardProduceCardCustomize,proto3" json:"enableIdolCardProduceCardCustomize,omitempty"`
 	ShopProduceCardUpgradePrice                   int32                                              `protobuf:"varint,800,opt,name=shopProduceCardUpgradePrice,proto3" json:"shopProduceCardUpgradePrice,omitempty"`
 	ShopProduceCardDeletePrice                    int32                                              `protobuf:"varint,801,opt,name=shopProduceCardDeletePrice,proto3" json:"shopProduceCardDeletePrice,omitempty"`
 	ShopDiscountPermils                           []int32                                            `protobuf:"varint,802,rep,packed,name=shopDiscountPermils,proto3" json:"shopDiscountPermils,omitempty"`
@@ -3844,6 +3910,13 @@ func (x *UserProduceProgress) GetAuditionNpcEnhancePermil() int32 {
 	return 0
 }
 
+func (x *UserProduceProgress) GetAuditionParameterGrowthRatePermil() int32 {
+	if x != nil {
+		return x.AuditionParameterGrowthRatePermil
+	}
+	return 0
+}
+
 func (x *UserProduceProgress) GetEventSchoolStaminaPermil() int32 {
 	if x != nil {
 		return x.EventSchoolStaminaPermil
@@ -3975,6 +4048,13 @@ func (x *UserProduceProgress) GetCustomizeDiscountPermils() []int32 {
 		return x.CustomizeDiscountPermils
 	}
 	return nil
+}
+
+func (x *UserProduceProgress) GetEnableIdolCardProduceCardCustomize() bool {
+	if x != nil {
+		return x.EnableIdolCardProduceCardCustomize
+	}
+	return false
 }
 
 func (x *UserProduceProgress) GetShopProduceCardUpgradePrice() int32 {
@@ -6483,6 +6563,7 @@ type UserProduceProgress_ProduceItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProduceItemId string                 `protobuf:"bytes,1,opt,name=produceItemId,proto3" json:"produceItemId,omitempty"`
 	FireCount     int32                  `protobuf:"varint,2,opt,name=fireCount,proto3" json:"fireCount,omitempty"`
+	ReactionCount int32                  `protobuf:"varint,3,opt,name=reactionCount,proto3" json:"reactionCount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6527,6 +6608,13 @@ func (x *UserProduceProgress_ProduceItem) GetProduceItemId() string {
 func (x *UserProduceProgress_ProduceItem) GetFireCount() int32 {
 	if x != nil {
 		return x.FireCount
+	}
+	return 0
+}
+
+func (x *UserProduceProgress_ProduceItem) GetReactionCount() int32 {
+	if x != nil {
+		return x.ReactionCount
 	}
 	return 0
 }
@@ -6973,11 +7061,12 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\vfreeBalance\x18\x01 \x01(\x05R\vfreeBalance\x12 \n" +
 	"\vpaidBalance\x18\x02 \x01(\x05R\vpaidBalance\"H\n" +
 	"\x0eUserBanWarning\x126\n" +
-	"\x16isConfirmationRequired\x18\x02 \x01(\bR\x16isConfirmationRequired\"\x93\x01\n" +
+	"\x16isConfirmationRequired\x18\x02 \x01(\bR\x16isConfirmationRequired\"\xb9\x01\n" +
 	"\rUserCharacter\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12\x1a\n" +
 	"\bfanCount\x18\x03 \x01(\x03R\bfanCount\x12D\n" +
-	"\x13trueEndProduceTypes\x18\x04 \x03(\x0e2\x12.penum.ProduceTypeR\x13trueEndProduceTypes\"\xad\x01\n" +
+	"\x13trueEndProduceTypes\x18\x04 \x03(\x0e2\x12.penum.ProduceTypeR\x13trueEndProduceTypes\x12$\n" +
+	"\rdearnessPoint\x18\a \x01(\x05R\rdearnessPoint\"\xad\x01\n" +
 	"\x14UserCharacterCostume\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12/\n" +
 	"\asetType\x18\x03 \x01(\x0e2\x15.penum.CostumeSetTypeR\asetType\x12$\n" +
@@ -7005,12 +7094,14 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\n" +
 	"dailyCount\x18\x04 \x01(\x03R\n" +
 	"dailyCount\x12 \n" +
-	"\vupdatedTime\x18\x05 \x01(\x03R\vupdatedTime\"\xbf\x01\n" +
+	"\vupdatedTime\x18\x05 \x01(\x03R\vupdatedTime\"\xff\x01\n" +
 	"\x11UserDearnessStory\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12$\n" +
 	"\rdearnessLevel\x18\x03 \x01(\x05R\rdearnessLevel\x12N\n" +
-	"\"satisfyDearnessProduceConditionSet\x18\x04 \x01(\bR\"satisfyDearnessProduceConditionSet\x12\x12\n" +
-	"\x04read\x18\x06 \x01(\bR\x04read\"\xd9\x02\n" +
+	"\"satisfyDearnessProduceConditionSet\x18\x04 \x01(\bR\"satisfyDearnessProduceConditionSet\x12\x1a\n" +
+	"\breadTime\x18\x05 \x01(\x03R\breadTime\x12\x12\n" +
+	"\x04read\x18\x06 \x01(\bR\x04read\x12\"\n" +
+	"\fitemUnlocked\x18\a \x01(\bR\fitemUnlocked\"\xe5\x03\n" +
 	"\x0fUserGashaButton\x12\x18\n" +
 	"\agashaId\x18\x02 \x01(\tR\agashaId\x12$\n" +
 	"\rgashaButtonId\x18\x03 \x01(\tR\rgashaButtonId\x12$\n" +
@@ -7019,7 +7110,10 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0etotalDrawCount\x18\x06 \x01(\x05R\x0etotalDrawCount\x126\n" +
 	"\x16discountTodayDrawCount\x18\a \x01(\x05R\x16discountTodayDrawCount\x126\n" +
 	"\x16discountTotalDrawCount\x18\b \x01(\x05R\x16discountTotalDrawCount\x12 \n" +
-	"\vredrawCount\x18\t \x01(\x05R\vredrawCount\">\n" +
+	"\vredrawCount\x18\t \x01(\x05R\vredrawCount\x12<\n" +
+	"\x19dailyLoginAccumulateCount\x18\n" +
+	" \x01(\x05R\x19dailyLoginAccumulateCount\x12L\n" +
+	"!discountDailyLoginAccumulateCount\x18\v \x01(\x05R!discountDailyLoginAccumulateCount\">\n" +
 	"\tUserGuild\x121\n" +
 	"\bjoinType\x18\xe7\a \x01(\x0e2\x14.penum.GuildJoinTypeR\bjoinType\"~\n" +
 	"\x11UserHomeCharacter\x12+\n" +
@@ -7181,10 +7275,14 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\x128\n" +
 	"\x17produceCardUpgradeCount\x18\x03 \x01(\x05R\x17produceCardUpgradeCount\"=\n" +
 	"\x15UserProduceCardReward\x12$\n" +
-	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\"\x94\x01\n" +
+	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\"\xd2\x01\n" +
 	"\x14UserProduceCharacter\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12\x1c\n" +
-	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12<\n" +
+	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12\x1c\n" +
+	"\tplayCount\x18\x05 \x01(\x05R\tplayCount\x12\x1e\n" +
+	"\n" +
+	"clearCount\x18\x06 \x01(\x05R\n" +
+	"clearCount\x12<\n" +
 	"\x19unlockChallengeSlotNumber\x18\a \x01(\x05R\x19unlockChallengeSlotNumber\":\n" +
 	"\x10UserProduceDrink\x12&\n" +
 	"\x0eproduceDrinkId\x18\x02 \x01(\tR\x0eproduceDrinkId\"\xc9\x02\n" +
@@ -7193,12 +7291,15 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0eproduceGroupId\x18\x03 \x01(\tR\x0eproduceGroupId\x12j\n" +
 	" viewUnlockAnimationAuditionTypes\x18\x04 \x03(\x0e2\x1e.penum.ProduceStepAuditionTypeR viewUnlockAnimationAuditionTypes\x12>\n" +
 	"\x0eendingLiveType\x18\x05 \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0eendingLiveType\x126\n" +
-	"\x16disableForceLiveCommon\x18\x06 \x01(\bR\x16disableForceLiveCommon\"\xc1\x01\n" +
+	"\x16disableForceLiveCommon\x18\x06 \x01(\bR\x16disableForceLiveCommon\"\xe1\x01\n" +
 	"\x13UserProduceIdolCard\x12\x1c\n" +
 	"\tproduceId\x18\x02 \x01(\tR\tproduceId\x12\x1e\n" +
 	"\n" +
 	"idolCardId\x18\x03 \x01(\tR\n" +
-	"idolCardId\x128\n" +
+	"idolCardId\x12\x1e\n" +
+	"\n" +
+	"clearCount\x18\x05 \x01(\x05R\n" +
+	"clearCount\x128\n" +
 	"\x17challengeProduceItemIds\x18\n" +
 	" \x03(\tR\x17challengeProduceItemIds\x122\n" +
 	"\bliveType\x18\v \x01(\x0e2\x16.penum.ProduceLiveTypeR\bliveType\"7\n" +
@@ -7214,7 +7315,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\vproduceType\x18\x02 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12$\n" +
 	"\ruserMemoryIds\x18\x04 \x03(\tR\ruserMemoryIds\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\"\x984\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\"\xde5\n" +
 	"\x13UserProduceProgress\x12&\n" +
 	"\x0eproduceGroupId\x18\x02 \x01(\tR\x0eproduceGroupId\x12\x1c\n" +
 	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12$\n" +
@@ -7293,7 +7394,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0fproduceDrinkIds\x18\x90\x03 \x03(\tR\x0fproduceDrinkIds\x12?\n" +
 	"\x1aproduceDrinkGetDisableTurn\x18\x91\x03 \x01(\x05R\x1aproduceDrinkGetDisableTurn\x12O\n" +
 	"\"auditionEffectParameterBonusPermil\x18\xf8\x03 \x01(\x05R\"auditionEffectParameterBonusPermil\x12;\n" +
-	"\x18auditionNpcEnhancePermil\x18\xf9\x03 \x01(\x05R\x18auditionNpcEnhancePermil\x12;\n" +
+	"\x18auditionNpcEnhancePermil\x18\xf9\x03 \x01(\x05R\x18auditionNpcEnhancePermil\x12M\n" +
+	"!auditionParameterGrowthRatePermil\x18\xfc\x03 \x01(\x05R!auditionParameterGrowthRatePermil\x12;\n" +
 	"\x18eventSchoolStaminaPermil\x18\xa6\x04 \x01(\x05R\x18eventSchoolStaminaPermil\x12I\n" +
 	"\x1feventActivityProducePointPermil\x18\xa7\x04 \x01(\x05R\x1feventActivityProducePointPermil\x12C\n" +
 	"\x1ceventBusinessVoteCountPermil\x18\xa8\x04 \x01(\x05R\x1ceventBusinessVoteCountPermil\x12%\n" +
@@ -7312,7 +7414,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\bliveType\x18\x8a\x05 \x01(\x0e2\x16.penum.ProduceLiveTypeR\bliveType\x12e\n" +
 	"-lessonPresentAdditionalProduceCardRewardCount\x18\xbc\x05 \x01(\x05R-lessonPresentAdditionalProduceCardRewardCount\x12Q\n" +
 	"#customizeAdditionalProduceCardCount\x18\xf8\x05 \x01(\x05R#customizeAdditionalProduceCardCount\x12;\n" +
-	"\x18customizeDiscountPermils\x18\xf9\x05 \x03(\x05R\x18customizeDiscountPermils\x12A\n" +
+	"\x18customizeDiscountPermils\x18\xf9\x05 \x03(\x05R\x18customizeDiscountPermils\x12O\n" +
+	"\"enableIdolCardProduceCardCustomize\x18\xfa\x05 \x01(\bR\"enableIdolCardProduceCardCustomize\x12A\n" +
 	"\x1bshopProduceCardUpgradePrice\x18\xa0\x06 \x01(\x05R\x1bshopProduceCardUpgradePrice\x12?\n" +
 	"\x1ashopProduceCardDeletePrice\x18\xa1\x06 \x01(\x05R\x1ashopProduceCardDeletePrice\x121\n" +
 	"\x13shopDiscountPermils\x18\xa2\x06 \x03(\x05R\x13shopDiscountPermils\x12U\n" +
@@ -7330,10 +7433,11 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\roriginOwnerId\x18\x02 \x01(\tR\roriginOwnerId\x12\x1a\n" +
 	"\boriginId\x18\x03 \x01(\tR\boriginId\x12 \n" +
 	"\voriginLevel\x18\x04 \x01(\x05R\voriginLevel\x12\x0e\n" +
-	"\x02id\x18\x05 \x01(\tR\x02id\x1aQ\n" +
+	"\x02id\x18\x05 \x01(\tR\x02id\x1aw\n" +
 	"\vProduceItem\x12$\n" +
 	"\rproduceItemId\x18\x01 \x01(\tR\rproduceItemId\x12\x1c\n" +
-	"\tfireCount\x18\x02 \x01(\x05R\tfireCount\x1aX\n" +
+	"\tfireCount\x18\x02 \x01(\x05R\tfireCount\x12$\n" +
+	"\rreactionCount\x18\x03 \x01(\x05R\rreactionCount\x1aX\n" +
 	"\fProduceSkill\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\"\n" +

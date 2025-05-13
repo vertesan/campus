@@ -228,6 +228,18 @@ enum CountType {
   CountType_MainTaskProducer3 = 101;
   CountType_MainTaskProducer4 = 102;
 }
+enum DearnessMotionType {
+  DearnessMotionType_Unknown = 0;
+  DearnessMotionType_Wait1 = 1;
+  DearnessMotionType_Wait2 = 2;
+  DearnessMotionType_Reaction = 3;
+  DearnessMotionType_ReactionOnce = 4;
+  DearnessMotionType_WaitLookAround = 5;
+  DearnessMotionType_MultipleTaps = 6;
+  DearnessMotionType_Transition = 7;
+  DearnessMotionType_WaitOnce = 8;
+  DearnessMotionType_WaitLoop = 9;
+}
 enum DeckRecommendType {
   DeckRecommendType_Unknown = 0;
   DeckRecommendType_Manual = 1;
@@ -310,6 +322,7 @@ enum EventType {
   EventType_StoryEventBoxGasha = 7;
   EventType_StoryEventGuildMission = 8;
   EventType_GvgRaid = 9;
+  EventType_DearnessBoost = 10;
 }
 enum ExamCommandType {
   ExamCommandType_Unknown = 0;
@@ -424,6 +437,13 @@ enum ExamPlayType {
   ExamPlayType_ManualPlayLessonHard = 3;
   ExamPlayType_ManualPlayAudition = 4;
 }
+enum ExchangeItemCategoryType {
+  ExchangeItemCategoryType_Unknown = 0;
+  ExchangeItemCategoryType_All = 1;
+  ExchangeItemCategoryType_ResourceType = 2;
+  ExchangeItemCategoryType_ItemType = 3;
+  ExchangeItemCategoryType_Other = 999;
+}
 enum ExchangeItemResetCheckStatus {
   ExchangeItemResetCheckStatus_Unknown = 0;
   ExchangeItemResetCheckStatus_Open = 1;
@@ -456,6 +476,7 @@ enum FeatureMaintenanceType {
   FeatureMaintenanceType_MissionDailyRelease = 17;
   FeatureMaintenanceType_StoryCampaign = 18;
   FeatureMaintenanceType_GvgRaid = 19;
+  FeatureMaintenanceType_Dearness = 20;
 }
 enum FriendStatusType {
   FriendStatusType_Unknown = 0;
@@ -491,6 +512,7 @@ enum GashaButtonAppealType {
   GashaButtonAppealType_DrawableCount = 2;
   GashaButtonAppealType_CurrentStep = 3;
   GashaButtonAppealType_FixSsr = 4;
+  GashaButtonAppealType_DiscountDrawableCount = 5;
 }
 enum GashaButtonType {
   GashaButtonType_Unknown = 0;
@@ -511,6 +533,7 @@ enum GashaLimitType {
   GashaLimitType_Total = 2;
   GashaLimitType_Daily = 3;
   GashaLimitType_DailyAccumulation = 4;
+  GashaLimitType_DailyLoginAccumulation = 5;
 }
 enum GashaType {
   GashaType_Unknown = 0;
@@ -690,6 +713,7 @@ enum ItemType {
   ItemType_IdolCardPotentialRankUpgrade = 17;
   ItemType_SupportCardLevelLimitRankUpgrade = 18;
   ItemType_MemoryInherit = 19;
+  ItemType_DearnessStoryUnlock = 20;
   ItemType_ProduceBoostRewardSupportCardEnhancePoint = 102;
   ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial = 103;
 }
@@ -920,6 +944,12 @@ enum MissionType {
   MissionType_ConditionClear = 998;
   MissionType_ProduceConditionClear = 999;
   MissionType_ProduceConditionClearBeforeLiveEvaluation = 1000;
+}
+enum MusicType {
+  MusicType_Unknown = 0;
+  MusicType_Music = 1;
+  MusicType_Instrumental = 2;
+  MusicType_Bgm = 3;
 }
 enum MusicWishListRequesterType {
   MusicWishListRequesterType_Unknown = 0;
@@ -1212,6 +1242,7 @@ enum ProduceConditionType {
   ProduceConditionType_LatestAuditionStepSelectNumber = 79;
   ProduceConditionType_CurrentAuditionStepType = 80;
   ProduceConditionType_CurrentAuditionStepSelectNumber = 81;
+  ProduceConditionType_DearnessPoint = 82;
   ProduceConditionType_Set = 998;
   ProduceConditionType_NegativeSet = 999;
 }
@@ -1366,6 +1397,7 @@ enum ProduceEffectType {
   ProduceEffectType_SelfLessonStaminaUp = 121;
   ProduceEffectType_SelfLessonStaminaDown = 122;
   ProduceEffectType_HighScoreGoldAddition = 123;
+  ProduceEffectType_IdolCardProduceCardCustomizeEnable = 124;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1767,6 +1799,8 @@ enum ProducePhaseType {
   ProducePhaseType_BuyShopItemProduceItem = 55;
   ProducePhaseType_BuyShopItemUpgradeProduceCard = 56;
   ProducePhaseType_BuyShopItemDeleteProduceCard = 57;
+  ProducePhaseType_EndPresent = 58;
+  ProducePhaseType_EndShop = 59;
 }
 enum ProducePickRangeType {
   ProducePickRangeType_Unknown = 0;
@@ -1828,6 +1862,7 @@ enum ProduceProgressStatus {
   ProduceProgressStatus_Result = 31;
   ProduceProgressStatus_GuildMission = 32;
   ProduceProgressStatus_EndingCharacterDearnessStory = 33;
+  ProduceProgressStatus_DearnessBoost = 34;
   ProduceProgressStatus_Finished = 99;
 }
 enum ProduceResourceOriginType {
@@ -2132,6 +2167,7 @@ enum ResourceType {
   ResourceType_PvpRatePlayCount = 20;
   ResourceType_PhotoBackground = 21;
   ResourceType_PhotoPose = 22;
+  ResourceType_DearnessPoint = 23;
   ResourceType_JewelTotal = 1100;
   ResourceType_JewelPaidOnly = 1101;
   ResourceType_Set = 9999;
@@ -2205,6 +2241,7 @@ enum SkillRarity {
   SkillRarity_R = 1;
   SkillRarity_Sr = 2;
   SkillRarity_Ssr = 3;
+  SkillRarity_Ur = 4;
 }
 enum StartupNotificationDisplayType {
   StartupNotificationDisplayType_Unknown = 0;
@@ -2232,6 +2269,7 @@ enum StartupNotificationType {
   StartupNotificationType_Image = 3;
   StartupNotificationType_Notice = 4;
   StartupNotificationType_Shop = 5;
+  StartupNotificationType_ProfileReport = 6;
 }
 enum StoryCampaignType {
   StoryCampaignType_Unknown = 0;
@@ -2371,6 +2409,8 @@ enum TutorialType {
   TutorialType_MeishiEditCustom = 26;
   TutorialType_MeishiEditCustomManual = 27;
   TutorialType_IdolCardSkinUnit = 28;
+  TutorialType_DearnessTop = 29;
+  TutorialType_DearnessPoint = 30;
   TutorialType_ProduceIdolCardSelect = 100;
   TutorialType_ProduceSupportCardSelect = 101;
   TutorialType_ProduceMemorySelect = 102;
@@ -2408,6 +2448,8 @@ enum TutorialType {
   TutorialType_StoryEventBoxGasha = 204;
   TutorialType_StoryEventGuildMission = 205;
   TutorialType_GvgRaid = 206;
+  TutorialType_ProduceNextIdolAuditionMaster = 207;
+  TutorialType_ProduceNextIdolAuditionMasterRanking = 208;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;

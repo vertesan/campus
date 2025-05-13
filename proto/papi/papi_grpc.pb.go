@@ -6807,6 +6807,7 @@ const (
 	Produce_End_FullMethodName                       = "/client.api.Produce/End"
 	Produce_Result_FullMethodName                    = "/client.api.Produce/Result"
 	Produce_ReportGuildMission_FullMethodName        = "/client.api.Produce/ReportGuildMission"
+	Produce_ReportDearnessBoostEvent_FullMethodName  = "/client.api.Produce/ReportDearnessBoostEvent"
 	Produce_Continue_FullMethodName                  = "/client.api.Produce/Continue"
 	Produce_Retire_FullMethodName                    = "/client.api.Produce/Retire"
 	Produce_History_FullMethodName                   = "/client.api.Produce/History"
@@ -6865,6 +6866,7 @@ type ProduceClient interface {
 	End(ctx context.Context, in *ProduceEndRequest, opts ...grpc.CallOption) (*ProduceEndResponse, error)
 	Result(ctx context.Context, in *ProduceResultRequest, opts ...grpc.CallOption) (*ProduceResultResponse, error)
 	ReportGuildMission(ctx context.Context, in *ProduceReportGuildMissionRequest, opts ...grpc.CallOption) (*ProduceReportGuildMissionResponse, error)
+	ReportDearnessBoostEvent(ctx context.Context, in *ProduceReportDearnessBoostEventRequest, opts ...grpc.CallOption) (*ProduceReportDearnessBoostEventResponse, error)
 	Continue(ctx context.Context, in *ProduceContinueRequest, opts ...grpc.CallOption) (*ProduceContinueResponse, error)
 	Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceRetireResponse, error)
 	History(ctx context.Context, in *ProduceHistoryRequest, opts ...grpc.CallOption) (*ProduceHistoryResponse, error)
@@ -7323,6 +7325,16 @@ func (c *produceClient) ReportGuildMission(ctx context.Context, in *ProduceRepor
 	return out, nil
 }
 
+func (c *produceClient) ReportDearnessBoostEvent(ctx context.Context, in *ProduceReportDearnessBoostEventRequest, opts ...grpc.CallOption) (*ProduceReportDearnessBoostEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceReportDearnessBoostEventResponse)
+	err := c.cc.Invoke(ctx, Produce_ReportDearnessBoostEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *produceClient) Continue(ctx context.Context, in *ProduceContinueRequest, opts ...grpc.CallOption) (*ProduceContinueResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProduceContinueResponse)
@@ -7451,6 +7463,7 @@ type ProduceServer interface {
 	End(context.Context, *ProduceEndRequest) (*ProduceEndResponse, error)
 	Result(context.Context, *ProduceResultRequest) (*ProduceResultResponse, error)
 	ReportGuildMission(context.Context, *ProduceReportGuildMissionRequest) (*ProduceReportGuildMissionResponse, error)
+	ReportDearnessBoostEvent(context.Context, *ProduceReportDearnessBoostEventRequest) (*ProduceReportDearnessBoostEventResponse, error)
 	Continue(context.Context, *ProduceContinueRequest) (*ProduceContinueResponse, error)
 	Retire(context.Context, *Empty) (*ProduceRetireResponse, error)
 	History(context.Context, *ProduceHistoryRequest) (*ProduceHistoryResponse, error)
@@ -7600,6 +7613,9 @@ func (UnimplementedProduceServer) Result(context.Context, *ProduceResultRequest)
 }
 func (UnimplementedProduceServer) ReportGuildMission(context.Context, *ProduceReportGuildMissionRequest) (*ProduceReportGuildMissionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportGuildMission not implemented")
+}
+func (UnimplementedProduceServer) ReportDearnessBoostEvent(context.Context, *ProduceReportDearnessBoostEventRequest) (*ProduceReportDearnessBoostEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReportDearnessBoostEvent not implemented")
 }
 func (UnimplementedProduceServer) Continue(context.Context, *ProduceContinueRequest) (*ProduceContinueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Continue not implemented")
@@ -8438,6 +8454,24 @@ func _Produce_ReportGuildMission_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Produce_ReportDearnessBoostEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceReportDearnessBoostEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ReportDearnessBoostEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ReportDearnessBoostEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ReportDearnessBoostEvent(ctx, req.(*ProduceReportDearnessBoostEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Produce_Continue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProduceContinueRequest)
 	if err := dec(in); err != nil {
@@ -8766,6 +8800,10 @@ var Produce_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Produce_ReportGuildMission_Handler,
 		},
 		{
+			MethodName: "ReportDearnessBoostEvent",
+			Handler:    _Produce_ReportDearnessBoostEvent_Handler,
+		},
+		{
 			MethodName: "Continue",
 			Handler:    _Produce_Continue_Handler,
 		},
@@ -8974,6 +9012,147 @@ var ProduceHighScore_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRankReward",
 			Handler:    _ProduceHighScore_ListRankReward_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	ProduceNextIdolAuditionMaster_Ranking_FullMethodName        = "/client.api.ProduceNextIdolAuditionMaster/Ranking"
+	ProduceNextIdolAuditionMaster_ListRankReward_FullMethodName = "/client.api.ProduceNextIdolAuditionMaster/ListRankReward"
+)
+
+// ProduceNextIdolAuditionMasterClient is the client API for ProduceNextIdolAuditionMaster service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProduceNextIdolAuditionMasterClient interface {
+	Ranking(ctx context.Context, in *ProduceNextIdolAuditionMasterRankingRequest, opts ...grpc.CallOption) (*ProduceNextIdolAuditionMasterRankingResponse, error)
+	ListRankReward(ctx context.Context, in *ProduceNextIdolAuditionMasterListRankRewardRequest, opts ...grpc.CallOption) (*ProduceNextIdolAuditionMasterListRankRewardResponse, error)
+}
+
+type produceNextIdolAuditionMasterClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProduceNextIdolAuditionMasterClient(cc grpc.ClientConnInterface) ProduceNextIdolAuditionMasterClient {
+	return &produceNextIdolAuditionMasterClient{cc}
+}
+
+func (c *produceNextIdolAuditionMasterClient) Ranking(ctx context.Context, in *ProduceNextIdolAuditionMasterRankingRequest, opts ...grpc.CallOption) (*ProduceNextIdolAuditionMasterRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceNextIdolAuditionMasterRankingResponse)
+	err := c.cc.Invoke(ctx, ProduceNextIdolAuditionMaster_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceNextIdolAuditionMasterClient) ListRankReward(ctx context.Context, in *ProduceNextIdolAuditionMasterListRankRewardRequest, opts ...grpc.CallOption) (*ProduceNextIdolAuditionMasterListRankRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceNextIdolAuditionMasterListRankRewardResponse)
+	err := c.cc.Invoke(ctx, ProduceNextIdolAuditionMaster_ListRankReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProduceNextIdolAuditionMasterServer is the server API for ProduceNextIdolAuditionMaster service.
+// All implementations must embed UnimplementedProduceNextIdolAuditionMasterServer
+// for forward compatibility.
+type ProduceNextIdolAuditionMasterServer interface {
+	Ranking(context.Context, *ProduceNextIdolAuditionMasterRankingRequest) (*ProduceNextIdolAuditionMasterRankingResponse, error)
+	ListRankReward(context.Context, *ProduceNextIdolAuditionMasterListRankRewardRequest) (*ProduceNextIdolAuditionMasterListRankRewardResponse, error)
+	mustEmbedUnimplementedProduceNextIdolAuditionMasterServer()
+}
+
+// UnimplementedProduceNextIdolAuditionMasterServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProduceNextIdolAuditionMasterServer struct{}
+
+func (UnimplementedProduceNextIdolAuditionMasterServer) Ranking(context.Context, *ProduceNextIdolAuditionMasterRankingRequest) (*ProduceNextIdolAuditionMasterRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedProduceNextIdolAuditionMasterServer) ListRankReward(context.Context, *ProduceNextIdolAuditionMasterListRankRewardRequest) (*ProduceNextIdolAuditionMasterListRankRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRankReward not implemented")
+}
+func (UnimplementedProduceNextIdolAuditionMasterServer) mustEmbedUnimplementedProduceNextIdolAuditionMasterServer() {
+}
+func (UnimplementedProduceNextIdolAuditionMasterServer) testEmbeddedByValue() {}
+
+// UnsafeProduceNextIdolAuditionMasterServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProduceNextIdolAuditionMasterServer will
+// result in compilation errors.
+type UnsafeProduceNextIdolAuditionMasterServer interface {
+	mustEmbedUnimplementedProduceNextIdolAuditionMasterServer()
+}
+
+func RegisterProduceNextIdolAuditionMasterServer(s grpc.ServiceRegistrar, srv ProduceNextIdolAuditionMasterServer) {
+	// If the following call pancis, it indicates UnimplementedProduceNextIdolAuditionMasterServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&ProduceNextIdolAuditionMaster_ServiceDesc, srv)
+}
+
+func _ProduceNextIdolAuditionMaster_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceNextIdolAuditionMasterRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceNextIdolAuditionMasterServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceNextIdolAuditionMaster_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceNextIdolAuditionMasterServer).Ranking(ctx, req.(*ProduceNextIdolAuditionMasterRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceNextIdolAuditionMaster_ListRankReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceNextIdolAuditionMasterListRankRewardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceNextIdolAuditionMasterServer).ListRankReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceNextIdolAuditionMaster_ListRankReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceNextIdolAuditionMasterServer).ListRankReward(ctx, req.(*ProduceNextIdolAuditionMasterListRankRewardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProduceNextIdolAuditionMaster_ServiceDesc is the grpc.ServiceDesc for ProduceNextIdolAuditionMaster service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProduceNextIdolAuditionMaster_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.ProduceNextIdolAuditionMaster",
+	HandlerType: (*ProduceNextIdolAuditionMasterServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ranking",
+			Handler:    _ProduceNextIdolAuditionMaster_Ranking_Handler,
+		},
+		{
+			MethodName: "ListRankReward",
+			Handler:    _ProduceNextIdolAuditionMaster_ListRankReward_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -10695,11 +10874,12 @@ var StoryEvent_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Story_Read_FullMethodName               = "/client.api.Story/Read"
-	Story_ReadProduceStory_FullMethodName   = "/client.api.Story/ReadProduceStory"
-	Story_ReadDearnessStory_FullMethodName  = "/client.api.Story/ReadDearnessStory"
-	Story_Unlock_FullMethodName             = "/client.api.Story/Unlock"
-	Story_UnlockProduceStory_FullMethodName = "/client.api.Story/UnlockProduceStory"
+	Story_Read_FullMethodName                = "/client.api.Story/Read"
+	Story_ReadProduceStory_FullMethodName    = "/client.api.Story/ReadProduceStory"
+	Story_ReadDearnessStory_FullMethodName   = "/client.api.Story/ReadDearnessStory"
+	Story_Unlock_FullMethodName              = "/client.api.Story/Unlock"
+	Story_UnlockProduceStory_FullMethodName  = "/client.api.Story/UnlockProduceStory"
+	Story_UnlockDearnessStory_FullMethodName = "/client.api.Story/UnlockDearnessStory"
 )
 
 // StoryClient is the client API for Story service.
@@ -10711,6 +10891,7 @@ type StoryClient interface {
 	ReadDearnessStory(ctx context.Context, in *StoryReadDearnessStoryRequest, opts ...grpc.CallOption) (*StoryReadDearnessStoryResponse, error)
 	Unlock(ctx context.Context, in *StoryUnlockRequest, opts ...grpc.CallOption) (*StoryUnlockResponse, error)
 	UnlockProduceStory(ctx context.Context, in *StoryUnlockProduceStoryRequest, opts ...grpc.CallOption) (*StoryUnlockProduceStoryResponse, error)
+	UnlockDearnessStory(ctx context.Context, in *StoryUnlockDearnessStoryRequest, opts ...grpc.CallOption) (*StoryUnlockDearnessStoryResponse, error)
 }
 
 type storyClient struct {
@@ -10771,6 +10952,16 @@ func (c *storyClient) UnlockProduceStory(ctx context.Context, in *StoryUnlockPro
 	return out, nil
 }
 
+func (c *storyClient) UnlockDearnessStory(ctx context.Context, in *StoryUnlockDearnessStoryRequest, opts ...grpc.CallOption) (*StoryUnlockDearnessStoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StoryUnlockDearnessStoryResponse)
+	err := c.cc.Invoke(ctx, Story_UnlockDearnessStory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StoryServer is the server API for Story service.
 // All implementations must embed UnimplementedStoryServer
 // for forward compatibility.
@@ -10780,6 +10971,7 @@ type StoryServer interface {
 	ReadDearnessStory(context.Context, *StoryReadDearnessStoryRequest) (*StoryReadDearnessStoryResponse, error)
 	Unlock(context.Context, *StoryUnlockRequest) (*StoryUnlockResponse, error)
 	UnlockProduceStory(context.Context, *StoryUnlockProduceStoryRequest) (*StoryUnlockProduceStoryResponse, error)
+	UnlockDearnessStory(context.Context, *StoryUnlockDearnessStoryRequest) (*StoryUnlockDearnessStoryResponse, error)
 	mustEmbedUnimplementedStoryServer()
 }
 
@@ -10804,6 +10996,9 @@ func (UnimplementedStoryServer) Unlock(context.Context, *StoryUnlockRequest) (*S
 }
 func (UnimplementedStoryServer) UnlockProduceStory(context.Context, *StoryUnlockProduceStoryRequest) (*StoryUnlockProduceStoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlockProduceStory not implemented")
+}
+func (UnimplementedStoryServer) UnlockDearnessStory(context.Context, *StoryUnlockDearnessStoryRequest) (*StoryUnlockDearnessStoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockDearnessStory not implemented")
 }
 func (UnimplementedStoryServer) mustEmbedUnimplementedStoryServer() {}
 func (UnimplementedStoryServer) testEmbeddedByValue()               {}
@@ -10916,6 +11111,24 @@ func _Story_UnlockProduceStory_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Story_UnlockDearnessStory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StoryUnlockDearnessStoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoryServer).UnlockDearnessStory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Story_UnlockDearnessStory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoryServer).UnlockDearnessStory(ctx, req.(*StoryUnlockDearnessStoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Story_ServiceDesc is the grpc.ServiceDesc for Story service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -10942,6 +11155,10 @@ var Story_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnlockProduceStory",
 			Handler:    _Story_UnlockProduceStory_Handler,
+		},
+		{
+			MethodName: "UnlockDearnessStory",
+			Handler:    _Story_UnlockDearnessStory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

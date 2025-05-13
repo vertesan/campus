@@ -88,6 +88,8 @@ message Character {
   string normalCostumeId = 23;
   string trainingCostumeId = 24;
   string liveCostumeId = 25;
+  string dearnessMissionGroupId = 28;
+  string dearnessStoryUnlockItemId = 29;
   repeated string otherStoryIds = 34;
   string potentialRank1VoiceAssetId = 40;
   string potentialRank3VoiceAssetId = 41;
@@ -137,6 +139,12 @@ message CharacterDearnessLevel {
   repeated CharacterDearnessLevel.ProduceSkill produceSkills = 13;
   repeated pcommon.Reward rewards = 17;
   bool ignoreReport = 18;
+  string itemUnlockConditionSetId = 19;
+  bool isStepThresholdLevel = 30;
+  bool isTargetLevel = 31;
+  string targetDescription = 32;
+  penum.ProduceType trueEndAchievementProduceType = 33;
+  int32 dearnessPointThreshold = 34;
   message ProduceSkill {
     string id = 1;
     int32 level = 2;
@@ -322,6 +330,48 @@ message CostumePhotoGroup {
 message CostumePhotoGroupList {
   repeated CostumePhotoGroup list = 1;
 }
+message DearnessBackground {
+  string characterId = 1;
+  int32 dearnessLevel = 2;
+  int32 number = 3;
+  string backgroundAssetId = 4;
+  string sceneLayoutCollectionId = 5;
+  string sceneLayoutId = 6;
+  string conditionSetId = 7;
+  bool isDearnessBoost = 8;
+}
+message DearnessBackgroundList {
+  repeated DearnessBackground list = 1;
+}
+message DearnessBgm {
+  string characterId = 1;
+  string bgmAssetId = 2;
+}
+message DearnessBgmList {
+  repeated DearnessBgm list = 1;
+}
+message DearnessBoostBgm {
+  string characterId = 1;
+  string bgmAssetId = 2;
+}
+message DearnessBoostBgmList {
+  repeated DearnessBoostBgm list = 1;
+}
+message DearnessMotion {
+  string characterId = 1;
+  penum.DearnessMotionType motionType = 2;
+  int32 number = 3;
+  string conditionSetId = 4;
+  repeated string facialAssetIds = 5;
+  repeated string bodyAssetIds = 6;
+  string voiceAssetId = 7;
+  string costumeId = 8;
+  string costumeHeadId = 9;
+  bool isPrioritized = 10;
+}
+message DearnessMotionList {
+  repeated DearnessMotion list = 1;
+}
 message DearnessStoryCampaign {
   string id = 1;
   string characterId = 2;
@@ -454,6 +504,7 @@ message ExamSetting {
   int32 examOverPreservationStaminaMultiplePermil = 46;
   int32 overPreservationReleaseToFullPowerGrowEffectLessonAdd = 47;
   repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
+  bool examDrinkTriggerFixed = 49;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -469,6 +520,17 @@ message ExamSimulation {
 }
 message ExamSimulationList {
   repeated ExamSimulation list = 1;
+}
+message ExchangeItemCategory {
+  string exchangeId = 1;
+  int32 number = 2;
+  string name = 3;
+  penum.ExchangeItemCategoryType categoryType = 100;
+  penum.ResourceType resourceType = 101;
+  penum.ItemType itemType = 102;
+}
+message ExchangeItemCategoryList {
+  repeated ExchangeItemCategory list = 1;
 }
 message FeatureLock {
   penum.TutorialType tutorialType = 1;
@@ -522,6 +584,8 @@ message GashaButton {
   int32 order = 18;
   penum.GashaButtonAppealType appealType = 19;
   string appealText = 20;
+  penum.GashaButtonAppealType highAppealType = 21;
+  string highAppealText = 22;
 }
 message GashaButtonList {
   repeated pcommon.GashaButton list = 1;
@@ -664,6 +728,7 @@ message IdolCard {
   string idolCardPotentialProduceSkillId = 14;
   string idolCardLevelLimitId = 15;
   string idolCardLevelLimitProduceSkillId = 16;
+  penum.IdolCardLevelLimitRank maxIdolCardLevelLimitRank = 18;
   penum.ProducePlanType planType = 30;
   string idolCardLevelLimitStatusUpId = 31;
   int32 produceVocal = 32;
@@ -680,6 +745,7 @@ message IdolCard {
   string afterProduceItemId = 45;
   penum.ProduceExamEffectType examEffectType = 48;
   string produceChallengeSlotId = 49;
+  penum.ProduceExamEffectType showExamEffectType = 50;
   string potentialRankVoiceAssetId = 72;
   string produceSelectVoiceAssetId = 75;
   string produceScheduleFrontVoiceGroupId = 76;
@@ -792,6 +858,7 @@ message IdolCardSkin {
   string produceSelectFacialAssetId = 55;
   string produceSelectBodyAssetId = 56;
   string produceScheduleVoiceGroupId = 57;
+  string levelLimitRank7VoiceAssetId = 58;
   bool hasProduceIdolAnimation = 70;
   bool hasGashaAnimation = 71;
   bool isProduceIdolAnimationStillCard = 72;
@@ -818,6 +885,7 @@ message IdolCardSkinSelectReward {
   string idolCardSkinId = 2;
   string movieAssetId = 3;
   penum.IdolCardDifficultyType difficultyType = 4;
+  int32 order = 5;
 }
 message IdolCardSkinSelectRewardList {
   repeated IdolCardSkinSelectReward list = 1;
@@ -873,6 +941,7 @@ message Item {
   string produceHighScoreEventId = 21;
   penum.IdolCardRarity idolCardRarity = 22;
   penum.SupportCardRarity supportCardRarity = 23;
+  string characterId = 24;
   repeated Item.Gasha gashas = 25;
   string viewConditionSetId = 30;
   string unlockConditionSetId = 31;
@@ -1178,6 +1247,7 @@ message MissionPanelSheetGroup {
   string name = 2;
   string bannerAssetId = 4;
   string conditionSetId = 5;
+  string dearnessCharacterId = 6;
 }
 message MissionPanelSheetGroupList {
   repeated MissionPanelSheetGroup list = 1;
@@ -1264,6 +1334,7 @@ message Music {
   string lyrics = 4;
   string composer = 5;
   string arranger = 6;
+  penum.MusicType type = 7;
   string jacketAssetId = 8;
   string gameVersionAssetId = 9;
   string idolCardSkinUnitId = 10;
@@ -1507,6 +1578,18 @@ message ProduceCardGrowEffectList {
 message ProduceCardList {
   repeated pcommon.ProduceCard list = 1;
 }
+message ProduceCardPool {
+  string id = 1;
+  repeated ProduceCardPool.ProduceCardRatio produceCardRatios = 5;
+  message ProduceCardRatio {
+    string id = 1;
+    int32 upgradeCount = 2;
+    int32 ratio = 3;
+  }
+}
+message ProduceCardPoolList {
+  repeated ProduceCardPool list = 1;
+}
 message ProduceCardRandomPool {
   string id = 1;
   string produceCardId = 2;
@@ -1536,6 +1619,7 @@ message ProduceCardSearch {
   repeated string effectGroupIds = 18;
   bool isSelf = 19;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 20;
+  string produceCardPoolId = 21;
 }
 message ProduceCardSearchList {
   repeated ProduceCardSearch list = 1;
@@ -1999,6 +2083,8 @@ message ProduceGroupLiveCommon {
   string liveMusicAssetId = 14;
   string beforeAdvAssetId = 15;
   string afterAdvAssetId = 16;
+  string liveOverrideAssetId = 17;
+  repeated string additionalActorAssetIds = 18;
 }
 message ProduceGroupLiveCommonList {
   repeated ProduceGroupLiveCommon list = 1;
@@ -2061,6 +2147,7 @@ message ProduceItem {
   string name = 4;
   penum.ProducePlanType planType = 6;
   int32 fireLimit = 7;
+  int32 fireInterval = 24;
   string produceTriggerId = 8;
   repeated string produceTriggerIds = 9;
   repeated string produceItemEffectIds = 10;
@@ -2087,6 +2174,7 @@ message ProduceItemChallengeGroup {
   string id = 1;
   string produceItemId = 2;
   int32 lessonLimitUpScore = 3;
+  int32 auditionParameterGrowthRatePermil = 4;
 }
 message ProduceItemChallengeGroupList {
   repeated ProduceItemChallengeGroup list = 1;
@@ -2136,6 +2224,8 @@ message ProduceLive {
   repeated string motionAssetIds = 12;
   repeated string unitLiveThumbnailAssetCharacterIds = 13;
   repeated string unitLiveThumbnailAssetIds = 14;
+  string liveOverrideAssetId = 15;
+  repeated string additionalActorAssetIds = 16;
 }
 message ProduceLiveList {
   repeated ProduceLive list = 1;
@@ -2147,6 +2237,16 @@ message ProduceNavigation {
 }
 message ProduceNavigationList {
   repeated ProduceNavigation list = 1;
+}
+message ProduceNextIdolAuditionMasterRankingSeason {
+  string id = 1;
+  string produceId = 3;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+}
+message ProduceNextIdolAuditionMasterRankingSeasonList {
+  repeated ProduceNextIdolAuditionMasterRankingSeason list = 1;
 }
 message ProduceResultMotion {
   string characterId = 1;
@@ -2629,6 +2729,7 @@ message Setting {
   string dmmGamesInquiryURL = 125;
   int32 towerRankingDisplayCount = 127;
   int32 towerRankingDeckDisplayCount = 128;
+  string dearnessTopConditionSetID = 131;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2662,6 +2763,10 @@ message Setting {
   int32 produceSupportCardRecommendTypePreferentialCoefficientPermil = 1043;
   repeated int32 produceSupportCardRecommendSpPreferentialSlotCounts = 1044;
   int32 produceSupportCardRecommendSpPreferentialCoefficientPermil = 1045;
+  int32 memoryCreateAbilityRToUrPermil = 1047;
+  int32 memoryCreateAbilitySrToUrPermil = 1048;
+  int32 memoryCreateAbilitySsrToUrPermil = 1049;
+  bool produceStepShopDiscountRoundDownEnable = 1050;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -2708,6 +2813,7 @@ message Setting {
   int32 pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay = 1907;
   string aprilFool2025TransitionStoryID = 2001;
   string aprilFool2025ProduceLiveMusicID = 2002;
+  string produceNextIdolAuditionMasterRankingUnlockConditionSetID = 2101;
 }
 message SettingList {
   repeated Setting list = 1;
@@ -2878,6 +2984,16 @@ message SupportCardLevelList {
 }
 message SupportCardList {
   repeated pcommon.SupportCard list = 1;
+}
+message SupportCardProduceSkillFilter {
+  string id = 1;
+  string title = 2;
+  int32 order = 3;
+  repeated penum.ProduceEffectType produceEffectTypes = 100;
+  repeated string produceTriggerIds = 101;
+}
+message SupportCardProduceSkillFilterList {
+  repeated SupportCardProduceSkillFilter list = 1;
 }
 message SupportCardProduceSkillLevelAssist {
   string supportCardId = 1;

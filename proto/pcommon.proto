@@ -86,6 +86,8 @@ message Event {
   string missionPanelSheetGroupId = 9;
   string storyGroupId = 10;
   string itemId = 11;
+  repeated string characterIds = 12;
+  repeated string dearnessMissionPanelSheetGroupIds = 13;
   int64 startTime = 100;
   int64 endTime = 101;
   int64 fixRankTime = 99;
@@ -589,6 +591,9 @@ message ProduceLessonGrowthResult {
   int32 growthRateBonusVocal = 7;
   int32 growthRateBonusDance = 8;
   int32 growthRateBonusVisual = 9;
+  int32 auditionParameterGrowthRateVocal = 10;
+  int32 auditionParameterGrowthRateDance = 11;
+  int32 auditionParameterGrowthRateVisual = 12;
 }
 message ProduceMemoryRewardResult {
   repeated ProduceRewardResult providedRewards = 1;

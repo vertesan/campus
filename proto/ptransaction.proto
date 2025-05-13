@@ -29,6 +29,7 @@ message UserCharacter {
   string characterId = 2;
   int64 fanCount = 3;
   repeated penum.ProduceType trueEndProduceTypes = 4;
+  int32 dearnessPoint = 7;
 }
 message UserCharacterCostume {
   string characterId = 2;
@@ -62,7 +63,9 @@ message UserDearnessStory {
   string characterId = 2;
   int32 dearnessLevel = 3;
   bool satisfyDearnessProduceConditionSet = 4;
+  int64 readTime = 5;
   bool read = 6;
+  bool itemUnlocked = 7;
 }
 message UserGashaButton {
   string gashaId = 2;
@@ -73,6 +76,8 @@ message UserGashaButton {
   int32 discountTodayDrawCount = 7;
   int32 discountTotalDrawCount = 8;
   int32 redrawCount = 9;
+  int32 dailyLoginAccumulateCount = 10;
+  int32 discountDailyLoginAccumulateCount = 11;
 }
 message UserGuild {
   penum.GuildJoinType joinType = 999;
@@ -255,6 +260,8 @@ message UserProduceCardReward {
 message UserProduceCharacter {
   string characterId = 2;
   string produceId = 3;
+  int32 playCount = 5;
+  int32 clearCount = 6;
   int32 unlockChallengeSlotNumber = 7;
 }
 message UserProduceDrink {
@@ -270,6 +277,7 @@ message UserProduceGroupCharacter {
 message UserProduceIdolCard {
   string produceId = 2;
   string idolCardId = 3;
+  int32 clearCount = 5;
   repeated string challengeProduceItemIds = 10;
   penum.ProduceLiveType liveType = 11;
 }
@@ -361,6 +369,7 @@ message UserProduceProgress {
   int32 produceDrinkGetDisableTurn = 401;
   int32 auditionEffectParameterBonusPermil = 504;
   int32 auditionNpcEnhancePermil = 505;
+  int32 auditionParameterGrowthRatePermil = 508;
   int32 eventSchoolStaminaPermil = 550;
   int32 eventActivityProducePointPermil = 551;
   int32 eventBusinessVoteCountPermil = 552;
@@ -380,6 +389,7 @@ message UserProduceProgress {
   int32 lessonPresentAdditionalProduceCardRewardCount = 700;
   int32 customizeAdditionalProduceCardCount = 760;
   repeated int32 customizeDiscountPermils = 761;
+  bool enableIdolCardProduceCardCustomize = 762;
   int32 shopProduceCardUpgradePrice = 800;
   int32 shopProduceCardDeletePrice = 801;
   repeated int32 shopDiscountPermils = 802;
@@ -400,6 +410,7 @@ message UserProduceProgress {
   message ProduceItem {
     string produceItemId = 1;
     int32 fireCount = 2;
+    int32 reactionCount = 3;
   }
   message ProduceSkill {
     string id = 1;
