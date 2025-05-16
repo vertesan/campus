@@ -49,11 +49,17 @@ func sendRequestInternal(url string, method string, header *http.Header, body io
     return nil, cancel, err
   }
   if res.StatusCode != 200 {
+    // retrieve error message from body
+    body, err := io.ReadAll(res.Body)
+    if err != nil {
+      rich.Error("failed to read error response body: %v", err)
+      return nil, cancel, err
+    }
     if err := res.Body.Close(); err != nil {
       panic(err)
     }
     rich.Error("Get an abnormal status when requesting %q.", url)
-    rich.Error("status code: %d, message: %s", res.StatusCode, res.Status)
+    rich.Error("status code: %d, message: %s", res.StatusCode, string(body))
     return nil, cancel, fmt.Errorf("connection failed with code: %d, message: %s", res.StatusCode, res.Status)
   }
   return res, cancel, nil

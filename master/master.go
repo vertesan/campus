@@ -114,7 +114,7 @@ func PutDb(name string, jsonDb string) {
     "Authorization": {fmt.Sprintf("Bearer %s", secret)},
   }
   payload := strings.NewReader(fmt.Sprintf("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"metadata\"\r\n\r\n{}\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"value\"\r\n\r\n%s\r\n-----011000010111000001101001--\r\n\r\n", jsonDb))
-  _, _, err = hyper.SendRequest(url, "PUT", headers, payload, 10, 3)
+  _, _, err = hyper.SendRequest(url, "PUT", headers, payload, 30, 3)
   if err != nil {
     rich.Error("Put database %q failed. Stopping process.", name)
     panic(err)
@@ -156,6 +156,7 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
   }
   dbList := []string{}
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
+    rich.Info("Decrypting database %q.", masterTagPack.Type)
     if _, ok := mapping.ProtoMap["Master."+masterTagPack.Type]; !ok {
       rich.Warning("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
       rich.Warning("Skip processing 'Master.%s'", masterTagPack.Type)
@@ -216,7 +217,6 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
 
     writeJson(masterTagPack.Type, &jsonDb)
     dbList = append(dbList, masterTagPack.Type)
-    rich.Info("Database %q is successfully decrypted.", masterTagPack.Type)
   }
 
   // delete databases that no longer exist
