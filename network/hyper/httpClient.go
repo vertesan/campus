@@ -53,7 +53,8 @@ func sendRequestInternal(url string, method string, header *http.Header, body io
       panic(err)
     }
     rich.Error("Get an abnormal status when requesting %q.", url)
-    return nil, cancel, fmt.Errorf("status code: %d, message: %v", res.StatusCode, res.Status)
+    rich.Error("status code: %d, message: %s", res.StatusCode, res.Status)
+    return nil, cancel, fmt.Errorf("connection failed with code: %d, message: %s", res.StatusCode, res.Status)
   }
   return res, cancel, nil
 }
