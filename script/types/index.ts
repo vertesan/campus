@@ -162,6 +162,7 @@ export type Master = [
   ResultGradePattern[],
   GuildReaction[],
   ProduceDescriptionLabel[],
+  ProduceGroup[],
 ]
 
 export type XMaster = {
@@ -203,6 +204,7 @@ export type XMaster = {
   resultGradePatterns: XResultGradePattern[],
   guildReactions: GuildReaction[],
   produceDescriptionLabels: { [id: string]: ProduceDescriptionLabel },
+  produceGroups: ProduceGroup[],
 }
 
 export type Csprt = [
@@ -280,7 +282,7 @@ export type XIdolCard = IdolCard & {
     { produceSkill?: ProduceSkill & { produceEffects: ProduceEffect[] } }
   )[],
   auditionScenarios: {
-    [scenario in ProduceType]: {
+    [produceId: string]: {
       [stepType in ProduceStepType]: (
         ProduceStepAuditionDifficulty &
         { npcs: ProduceExamBattleNpcGroup[] } &

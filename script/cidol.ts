@@ -117,8 +117,8 @@ export function getXIdolCard([
     )
 
     const auditionScenarios = auditionDifficulties.reduce((accDifficulty, curDifficulty) => {
-      const groupType = produceIdMap[curDifficulty.produceId].group.type
-      const scenario = accDifficulty[groupType] || {}
+      // const groupType = produceIdMap[curDifficulty.produceId].group.type
+      const scenario = accDifficulty[curDifficulty.produceId] || {}
 
       const npcs = filterItems(ProduceExamBattleNpcGroups, "id", curDifficulty.produceExamBattleNpcGroupId, { sortRules: ["number", true] })
       const examBattleConfig = ProduceExamBattleConfigs.find(config => config.id === curDifficulty.produceExamBattleConfigId)!
@@ -137,7 +137,7 @@ export function getXIdolCard([
         scenario[curDifficulty.stepType] = []
       }
       scenario[curDifficulty.stepType].unshift(xDifficulty)
-      accDifficulty[groupType] = scenario
+      accDifficulty[curDifficulty.produceId] = scenario
       return accDifficulty
     }, {} as XIdolCard['auditionScenarios'])
 
