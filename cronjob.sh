@@ -37,7 +37,7 @@ fi
 echo "=== run asset upload ==="
 pipenv run python3 unpack_upload.py
 
-if [[ "$pre_version" != "$new_version" ]]; then
+if [[ "$pre_version" != "$new_version" ]] || [ "$1" == "-f" ]; then
   cd script && pnpm i && pnpm tsx main.ts
 fi
 
