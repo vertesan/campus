@@ -1,0 +1,17 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "update-db": "tsx masterTagPack.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL-3.0 license ",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "tsx": "^4.19.4"
+  }
+}
