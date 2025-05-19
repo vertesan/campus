@@ -1,7 +1,6 @@
 import { Cidol, XIdolCard } from "~/types"
 import { filterItems } from "~/apiUtils"
-import { getExamEffects, getSingleXProduceCard } from "~/pcard"
-import { Produce, ProduceGroup } from "~/types/proto/pmaster"
+import { getCardGrowEffects, getCustomizeRarityEvaluations, getExamEffects, getSingleXCustProduceCard, getSingleXProduceCard } from "~/pcard"
 
 export function getXIdolCard([
   IdolCards,
@@ -23,23 +22,32 @@ export function getXIdolCard([
   ProduceExamEffect,
   ProduceGroup,
   Produce,
+  ProduceDescriptionProduceCardGrowEffect,
+  ProduceCardCustomizeRarityEvaluation,
+  ProduceCardCustomize,
+  ProduceCardGrowEffect,
+  ProduceCardStatusEnchant,
+  ProduceExamTrigger,
 ]: Cidol
 ): XIdolCard[] {
   const examEffects = getExamEffects(ProduceExamEffect)
-  const produceIdMap = Produce.reduce((acc, cur) => {
-    const group = ProduceGroup.find(x => x.produceIds.includes(cur.id))
-    if (!group) return acc
-    acc[cur.id] = {
-      produce: cur,
-      group: group,
-    }
-    return acc
-  }, {} as { [id: string]: { produce: Produce, group: ProduceGroup } })
+  const cardGrowEffects = getCardGrowEffects(ProduceDescriptionProduceCardGrowEffect)
+  const customizeRarityEvaluations = getCustomizeRarityEvaluations(ProduceCardCustomizeRarityEvaluation)
 
   const xIdolCards: XIdolCard[] = IdolCards.map(idolCard => {
     const produceCards =
-      filterItems(ProduceCards, "id", idolCard.produceCardId, { sortRules: ["upgradeCount", true] })
-        .map(x => getSingleXProduceCard(x, examEffects))
+      filterItems(
+        ProduceCards, "id", idolCard.produceCardId, { sortRules: ["upgradeCount", true] }
+      ).map(x => getSingleXCustProduceCard(
+        x,
+        examEffects,
+        cardGrowEffects,
+        customizeRarityEvaluations,
+        ProduceCardCustomize,
+        ProduceCardGrowEffect,
+        ProduceCardStatusEnchant,
+        ProduceExamTrigger,
+      ))
     const produceItems = filterItems(ProduceItems, "id", [idolCard.beforeProduceItemId, idolCard.afterProduceItemId], { sortRules: ["evaluation", true] })
     const idolCardSkins = filterItems(IdolCardSkins, "idolCardId", idolCard.id, { sortRules: ["order", false] })
 

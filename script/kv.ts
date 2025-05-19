@@ -29,6 +29,7 @@ export async function getPCard(dirPath: string): Promise<PCard | null> {
 
 export async function getMaster(dirPath: string): Promise<Master | null> {
   return await getAllJson([
+    "Version",
     "Character",
     "ProduceEffectIcon",
     "Produce",
@@ -55,6 +56,7 @@ export async function getMaster(dirPath: string): Promise<Master | null> {
     "ResultGradePattern",
     "GuildReaction",
     "ProduceDescriptionLabel",
+    "ProduceGroup",
   ], dirPath)
 }
 
@@ -103,6 +105,12 @@ export async function getCidol(dirPath: string): Promise<Cidol | null> {
     "ProduceExamEffect",
     "ProduceGroup",
     "Produce",
+    "ProduceDescriptionProduceCardGrowEffect",
+    "ProduceCardCustomizeRarityEvaluation",
+    "ProduceCardCustomize",
+    "ProduceCardGrowEffect",
+    "ProduceCardStatusEnchant",
+    "ProduceExamTrigger",
   ], dirPath)
 }
 

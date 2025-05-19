@@ -136,6 +136,7 @@ export type UsedDB = {
 }
 
 export type Master = [
+  Version: { version: string },
   Character[],
   ProduceEffectIcon[],
   Produce[],
@@ -264,10 +265,16 @@ export type Cidol = [
   ProduceExamEffect[],
   ProduceGroup[],
   Produce[],
+  ProduceDescriptionProduceCardGrowEffect[],
+  ProduceCardCustomizeRarityEvaluation[],
+  ProduceCardCustomize[],
+  ProduceCardGrowEffect[],
+  ProduceCardStatusEnchant[],
+  ProduceExamTrigger[],
 ]
 
 export type XIdolCard = IdolCard & {
-  produceCards: XProduceCard[],
+  produceCards: XCustProduceCard[],
   produceItems: ProduceItem[],
   idolCardSkins: IdolCardSkin[],
   levelLimits: (
