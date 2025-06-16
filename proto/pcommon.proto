@@ -77,6 +77,7 @@ message ConsumptionResult {
 message Event {
   penum.EventType eventType = 1;
   string eventId = 2;
+  string eventName = 14;
   string homeIconAssetId = 3;
   string bannerAssetId = 4;
   bool noti = 5;
@@ -94,27 +95,19 @@ message Event {
   int64 closeTime = 102;
   int32 priority = 103;
 }
+message ExamAction {
+  penum.ExamActionType actionType = 1;
+  repeated int32 indexes = 2;
+}
 message ExamAiBaseModel {
   string modelVersion = 1;
   string env = 3;
   string tag = 4;
   string masterVersion = 5;
   string name = 6;
+  string machineType = 7;
+  int32 trainingCount = 8;
   penum.ProducePlanType planType = 50;
-  int32 staminaMin = 51;
-  int32 staminaMax = 52;
-  int32 maxStaminaMin = 53;
-  int32 maxStaminaMax = 54;
-  int32 limitTurnMin = 55;
-  int32 limitTurnMax = 56;
-  int32 limitBorderMin = 57;
-  int32 limitBorderMax = 58;
-  int32 clearBorderMin = 59;
-  int32 clearBorderMax = 60;
-  int32 produceCardCountMin = 61;
-  int32 produceCardCountMax = 62;
-  int32 produceItemCountMin = 63;
-  int32 produceItemCountMax = 64;
 }
 message ExamAntiCheatTarget {
   repeated penum.ExamGameType features = 1;
@@ -192,6 +185,90 @@ message ExamCommandLog {
   int32 useIndex = 4;
   ProduceCard useProduceCard = 5;
   string useProduceDrinkId = 6;
+}
+message ExamContestCommand {
+  penum.ExamCommandType commandType = 1;
+  penum.ExamPhaseType phaseType = 2;
+  repeated ExamAction examActions = 10;
+  ProduceCard useProduceCard = 20;
+  string useProduceDrinkId = 21;
+}
+message ExamContestPlayer {
+  int64 seed = 1;
+  string characterId = 10;
+  string idolCardId = 11;
+  penum.ProduceExamEffectType examEffectType = 12;
+  penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 13;
+  penum.IdolCardPotentialRank idolCardPotentialRank = 14;
+  int32 power = 16;
+  int32 vocal = 50;
+  int32 dance = 51;
+  int32 visual = 52;
+  int32 vocalBonusPermil = 53;
+  int32 danceBonusPermil = 54;
+  int32 visualBonusPermil = 55;
+  int32 maxStamina = 56;
+  repeated ProduceCard produceCards = 57;
+  repeated ProduceItem produceItems = 58;
+}
+message ExamContestPlayerResult {
+  int32 score = 1;
+  bool isAuto = 2;
+  int32 stamina = 20;
+  repeated ProduceItem produceItems = 21;
+  repeated ExamContestTurn examContestTurns = 50;
+}
+message ExamContestResult {
+  repeated ExamContestStageResult stages = 1;
+}
+message ExamContestSection {
+  int32 limitTurn = 1;
+  string produceExamGimmickEffectGroupId = 2;
+  ExamContestPlayer player = 3;
+}
+message ExamContestSectionResult {
+  ExamContestPlayerResult player = 1;
+}
+message ExamContestSituation {
+  string appVersion = 1;
+  string imageVersion = 2;
+  string masterVersion = 3;
+  string masterHash = 4;
+  int32 vocal = 10;
+  int32 dance = 11;
+  int32 visual = 12;
+  string examSettingId = 13;
+  repeated ExamContestStage stages = 14;
+}
+message ExamContestStage {
+  penum.ProducePlanType planType = 1;
+  repeated ExamContestSection selfSections = 10;
+}
+message ExamContestStageResult {
+  repeated ExamContestSectionResult selfSections = 1;
+}
+message ExamContestTurn {
+  int32 turn = 1;
+  repeated ExamContestCommand examContestCommands = 10;
+  int32 score = 50;
+  int32 additionScore = 51;
+  int32 stamina = 52;
+  int32 consumedStamina = 53;
+  int32 block = 54;
+  int32 additionBlock = 55;
+  repeated string triggeredStatusEnchantIds = 56;
+  penum.ProduceParameterType parameterType = 57;
+  penum.ExamIdolStatusType idolStatusType = 58;
+  int32 idolStatusStepCount = 59;
+  repeated ProduceCard startPlayHandProduceCards = 60;
+  repeated ProduceCard startPlayHoldProduceCards = 61;
+  repeated ExamStatusEffect startPlayStatuses = 62;
+}
+message ExamStatusEffect {
+  penum.ExamStatusEffectType statusEffectType = 1;
+  int32 value = 2;
+  int32 turn = 3;
+  bool isPassingTurnStart = 4;
 }
 message ExamTriggerCount {
   string produceExamTriggerId = 1;

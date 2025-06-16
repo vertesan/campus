@@ -2572,10 +2572,11 @@ func (x *UserPhotoPose) GetPhotoPoseId() string {
 }
 
 type UserPreference struct {
-	state                  protoimpl.MessageState       `protogen:"open.v1"`
-	PhotoButtonExecuteType penum.PhotoButtonExecuteType `protobuf:"varint,2,opt,name=photoButtonExecuteType,proto3,enum=penum.PhotoButtonExecuteType" json:"photoButtonExecuteType,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                         protoimpl.MessageState       `protogen:"open.v1"`
+	PhotoButtonExecuteType        penum.PhotoButtonExecuteType `protobuf:"varint,2,opt,name=photoButtonExecuteType,proto3,enum=penum.PhotoButtonExecuteType" json:"photoButtonExecuteType,omitempty"`
+	ProduceDisableForceLiveCommon bool                         `protobuf:"varint,3,opt,name=produceDisableForceLiveCommon,proto3" json:"produceDisableForceLiveCommon,omitempty"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *UserPreference) Reset() {
@@ -2613,6 +2614,13 @@ func (x *UserPreference) GetPhotoButtonExecuteType() penum.PhotoButtonExecuteTyp
 		return x.PhotoButtonExecuteType
 	}
 	return penum.PhotoButtonExecuteType(0)
+}
+
+func (x *UserPreference) GetProduceDisableForceLiveCommon() bool {
+	if x != nil {
+		return x.ProduceDisableForceLiveCommon
+	}
+	return false
 }
 
 type UserProduce struct {
@@ -7260,9 +7268,10 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x13UserPhotoBackground\x12,\n" +
 	"\x11photoBackgroundId\x18\x02 \x01(\tR\x11photoBackgroundId\"1\n" +
 	"\rUserPhotoPose\x12 \n" +
-	"\vphotoPoseId\x18\x02 \x01(\tR\vphotoPoseId\"g\n" +
+	"\vphotoPoseId\x18\x02 \x01(\tR\vphotoPoseId\"\xad\x01\n" +
 	"\x0eUserPreference\x12U\n" +
-	"\x16photoButtonExecuteType\x18\x02 \x01(\x0e2\x1d.penum.PhotoButtonExecuteTypeR\x16photoButtonExecuteType\"i\n" +
+	"\x16photoButtonExecuteType\x18\x02 \x01(\x0e2\x1d.penum.PhotoButtonExecuteTypeR\x16photoButtonExecuteType\x12D\n" +
+	"\x1dproduceDisableForceLiveCommon\x18\x03 \x01(\bR\x1dproduceDisableForceLiveCommon\"i\n" +
 	"\vUserProduce\x12\x1c\n" +
 	"\tproduceId\x18\x02 \x01(\tR\tproduceId\x12\x1c\n" +
 	"\tplayCount\x18\x03 \x01(\x05R\tplayCount\x12\x1e\n" +

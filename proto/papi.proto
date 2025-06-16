@@ -326,6 +326,17 @@ service TicketExchange {
   rpc ListItems(TicketExchangeListItemsRequest) returns (TicketExchangeListItemsResponse);
   rpc Execute(TicketExchangeExecuteRequest) returns (TicketExchangeExecuteResponse);
 }
+service Tour {
+  rpc Top(TourTopRequest) returns (TourTopResponse);
+  rpc GetProgress(TourGetProgressRequest) returns (TourGetProgressResponse);
+  rpc Start(TourStartRequest) returns (TourStartResponse);
+  rpc End(TourEndRequest) returns (TourEndResponse);
+  rpc Result(TourResultRequest) returns (TourResultResponse);
+  rpc Continue(TourContinueRequest) returns (TourContinueResponse);
+  rpc Retire(Empty) returns (TourRetireResponse);
+  rpc PlayTest(TourPlayTestRequest) returns (TourPlayTestResponse);
+  rpc UpdateDeck(TourUpdateDeckRequest) returns (TourUpdateDeckResponse);
+}
 service Tower {
   rpc Top(Empty) returns (TowerTopResponse);
   rpc ListLayers(TowerListLayersRequest) returns (TowerListLayersResponse);
@@ -1802,6 +1813,7 @@ message PhotoUpdateProtectionResponse {
 }
 message PreferenceUpdateRequest {
   penum.PhotoButtonExecuteType photoButtonExecuteType = 1;
+  bool produceDisableForceLiveCommon = 2;
   repeated penum.PreferenceType preferenceTypes = 999;
 }
 message PreferenceUpdateResponse {
@@ -1910,6 +1922,7 @@ message ProduceHighScoreGetResponse {
   string missionDailyReleaseGroupId = 9;
   pcommon.CoinGasha coinGasha = 11;
   string consumptionItemId = 12;
+  string bgmAssetId = 14;
   ProduceHighScoreResult result = 50;
   repeated pcommon.StartupNotification startupNotifications = 70;
   int64 startTime = 100;
@@ -2152,6 +2165,7 @@ message ProduceResultResponse {
     repeated pcommon.RewardResult highScoreRewardResults = 9;
     repeated pcommon.RewardResult characterHighScoreRewardResults = 10;
     repeated pcommon.RewardResult highScoreRushGoldRewardResults = 11;
+    int32 characterCount = 12;
   }
 }
 message ProduceRetireResponse {
@@ -3096,6 +3110,183 @@ message TicketExchangeListItemsRequest {
 }
 message TicketExchangeListItemsResponse {
   repeated TicketExchangeItem items = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message TourContinueRequest {
+  string clientUuid = 1;
+}
+message TourContinueResponse {
+  int64 seed = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message TourDeck {
+  pcommon.Memory mainMemory = 1;
+  repeated pcommon.Memory subMemories = 2;
+  int32 supportBonusPermyriad = 3;
+  bool isDefault = 4;
+}
+message TourEndRequest {
+  int64 seed = 1;
+  pcommon.ExamContestResult result = 2;
+}
+message TourEndResponse {
+  int32 beforeTotalScore = 1;
+  int32 score = 2;
+  penum.TourScoreGrade grade = 3;
+  int32 beforeLevel = 4;
+  int32 afterLevel = 5;
+  repeated TourStageLevel levels = 6;
+  int32 remainingContinueCount = 7;
+  papicommon.Response commonResponse = 9999;
+}
+message TourGetProgressRequest {
+  string clientUuid = 1;
+}
+message TourGetProgressResponse {
+  int32 stageNumber = 1;
+  string name = 2;
+  penum.TourProgressPhaseType phase = 3;
+  TourGetProgressResponse.Progress progress = 4;
+  TourGetProgressResponse.ExamEnd examEnd = 5;
+  papicommon.Response commonResponse = 9999;
+  message ExamEnd {
+    int32 beforeTotalScore = 1;
+    int32 score = 2;
+    penum.TourScoreGrade grade = 3;
+    int32 beforeLevel = 4;
+    int32 afterLevel = 5;
+    repeated TourStageLevel levels = 6;
+    int32 remainingRetryCount = 7;
+  }
+  message Progress {
+    pcommon.ExamContestSituation examContestSituation = 1;
+    TourDeck deck = 2;
+    repeated TourScoreGradePattern scoreGradePatterns = 3;
+  }
+}
+message TourPlayTestRequest {
+  int32 stageNumber = 1;
+}
+message TourPlayTestResponse {
+  pcommon.ExamContestSituation examContestSituation = 1;
+  TourDeck deck = 2;
+  repeated TourScoreGradePattern scoreGradePatterns = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message TourResultRequest {
+  string clientUuid = 1;
+}
+message TourResultResponse {
+  int32 beforeTotalPoint = 1;
+  int32 basePoint = 2;
+  int32 scoreBonusPoint = 3;
+  int32 scoreGradeBonusPoint = 4;
+  repeated TourTotalPointReward totalPointRewards = 5;
+  repeated pcommon.RewardResult totalPointRewardResults = 6;
+  repeated pcommon.RewardResult stageLevelClearRewardResults = 7;
+  papicommon.Response commonResponse = 9999;
+}
+message TourRetireResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message TourScoreGradePattern {
+  penum.TourScoreGrade grade = 1;
+  int32 threshold = 2;
+}
+message TourSetUpDeck {
+  string mainUserMemoryId = 1;
+  repeated string subUserMemoryIds = 2;
+}
+message TourStageLevel {
+  int32 level = 1;
+  int32 scoreThreshold = 2;
+}
+message TourStartRequest {
+  string clientUuid = 1;
+  int32 stageNumber = 2;
+  bool isAuto = 3;
+}
+message TourStartResponse {
+  pcommon.ExamContestSituation examContestSituation = 1;
+  TourDeck deck = 2;
+  repeated TourScoreGradePattern scoreGradePatterns = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message TourTopRequest {
+  string clientUuid = 1;
+}
+message TourTopResponse {
+  string tourId = 1;
+  string name = 2;
+  string titleAssetId = 3;
+  string rewardAssetId = 4;
+  string colorCode = 5;
+  string bgmAssetId = 6;
+  string backgroundAssetId = 7;
+  string storyGroupId = 8;
+  string missionGroupId = 9;
+  string exchangeId = 10;
+  string exchangeConsumptionItemId = 11;
+  string playItemId = 12;
+  repeated TourTotalPointReward totalPointRewards = 13;
+  int32 currentTotalPoint = 14;
+  repeated TourTopResponse.Stage stages = 15;
+  bool inProgress = 16;
+  bool isCurrentClientUuid = 17;
+  int32 minStageScoreThreshold = 18;
+  int32 maxStageScoreThreshold = 19;
+  penum.IdolCardPotentialRank maxIdolCardPotentialRank = 20;
+  string idolCardPieceItemId = 21;
+  int32 maxContinueCount = 22;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+  int64 closeTime = 103;
+  papicommon.Response commonResponse = 9999;
+  message Stage {
+    int32 number = 1;
+    string name = 2;
+    int32 turn = 3;
+    int32 vocal = 4;
+    int32 dance = 5;
+    int32 visual = 6;
+    penum.ProducePlanType planType = 7;
+    repeated string characterIds = 8;
+    string produceExamBattleScoreConfigId = 9;
+    repeated string produceItemIds = 10;
+    string produceExamGimmickEffectGroupId = 11;
+    int32 maxSubMemoryCount = 12;
+    TourSetUpDeck deck = 13;
+    int32 currentTotalScore = 14;
+    int32 currentLevel = 15;
+    int32 highScore = 16;
+    penum.TourScoreGrade highScoreGrade = 17;
+    repeated TourTopResponse.Stage.StageLevelReward levels = 18;
+    string iconAssetId = 19;
+    int64 iconX = 20;
+    int64 iconY = 21;
+    penum.TourStageIconSizeType iconSizeType = 22;
+    string bannerAssetId = 23;
+    string backgroundAssetId = 24;
+    message StageLevelReward {
+      int32 level = 1;
+      int32 scoreThreshold = 2;
+      repeated pcommon.Reward rewards = 3;
+    }
+  }
+}
+message TourTotalPointReward {
+  int32 point = 1;
+  repeated pcommon.Reward rewards = 2;
+  bool repeat = 3;
+  int32 repeatPoint = 4;
+}
+message TourUpdateDeckRequest {
+  int32 stageNumber = 1;
+  TourSetUpDeck deck = 2;
+  penum.DeckRecommendType recommendType = 3;
+}
+message TourUpdateDeckResponse {
   papicommon.Response commonResponse = 9999;
 }
 message TowerCheckRequest {

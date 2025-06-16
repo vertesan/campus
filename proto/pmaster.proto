@@ -277,6 +277,7 @@ message Costume {
   bool isBarefoot = 15;
   bool isCommonThumbnail = 16;
   repeated penum.CostumeFeatureType invalidCostumeFeatureTypes = 13;
+  int32 costumeWaitMotionNumber = 17;
   string viewConditionSetId = 97;
   int64 viewStartTime = 98;
   int32 order = 99;
@@ -329,6 +330,15 @@ message CostumePhotoGroup {
 }
 message CostumePhotoGroupList {
   repeated CostumePhotoGroup list = 1;
+}
+message CostumeWaitMotion {
+  string characterId = 1;
+  int32 number = 2;
+  string facialAssetId = 3;
+  string bodyAssetId = 4;
+}
+message CostumeWaitMotionList {
+  repeated CostumeWaitMotion list = 1;
 }
 message DearnessBackground {
   string characterId = 1;
@@ -505,6 +515,7 @@ message ExamSetting {
   int32 overPreservationReleaseToFullPowerGrowEffectLessonAdd = 47;
   repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
   bool examDrinkTriggerFixed = 49;
+  int32 examLessonValueMultipleDependReviewOrAggressiveMultiplePermil = 50;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -539,6 +550,7 @@ message FeatureLock {
   string routeDescription = 4;
   string unlockConditionSetId = 5;
   bool isForce = 6;
+  string viewConditionSetId = 7;
 }
 message FeatureLockList {
   repeated FeatureLock list = 1;
@@ -874,6 +886,8 @@ message IdolCardSkin {
   float afterDetailPositionX = 109;
   float afterDetailPositionY = 110;
   float afterDetailScale = 111;
+  int32 beforeLevelLimitRankPositionPattern = 112;
+  int32 afterLevelLimitRankPositionPattern = 113;
   int64 viewStartTime = 999;
   int64 order = 1000;
 }
@@ -1040,6 +1054,7 @@ message MainTaskGroup {
   string title = 2;
   penum.MainTaskType mainTaskType = 3;
   string viewConditionSetId = 4;
+  string backgroundAssetId = 5;
   int32 order = 99;
 }
 message MainTaskGroupList {
@@ -1065,6 +1080,8 @@ message Media {
   repeated string characterIds = 7;
   string externalUrl = 8;
   int32 fourPanelComicEpisode = 9;
+  string caption = 10;
+  penum.FourPanelComicSeries fourPanelComicSeries = 11;
   int64 startTime = 100;
   int64 endTime = 101;
   int32 order = 102;
@@ -3095,6 +3112,33 @@ message TitleVoice {
 message TitleVoiceList {
   repeated TitleVoice list = 1;
 }
+message Tour {
+  string id = 1;
+  string name = 2;
+  string titleAssetId = 3;
+  string bannerAssetId = 5;
+  string storyGroupId = 10;
+  string examSettingId = 17;
+  int32 continueCount = 18;
+  int32 basePoint = 22;
+  string tourStageTimelineId = 26;
+  int32 order = 104;
+}
+message TourList {
+  repeated Tour list = 1;
+}
+message TourStageTimeline {
+  string id = 1;
+  int32 stageNumber = 2;
+  string startTimelineAssetId = 3;
+  string examTimelineAssetId = 4;
+  string resultTimelineAssetId = 5;
+  string examBgmAssetId = 6;
+  string timelineBackgroundAssetId = 7;
+}
+message TourStageTimelineList {
+  repeated TourStageTimeline list = 1;
+}
 message Tower {
   string id = 1;
   string characterId = 2;
@@ -3145,6 +3189,14 @@ message TowerLayerRankList {
 }
 message TowerList {
   repeated Tower list = 1;
+}
+message TowerReset {
+  string towerId = 1;
+  int32 layerNumber = 2;
+  int32 number = 3;
+}
+message TowerResetList {
+  repeated TowerReset list = 1;
 }
 message TowerTotalClearRankReward {
   int32 rank = 1;

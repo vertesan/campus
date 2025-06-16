@@ -241,6 +241,7 @@ message UserPhotoPose {
 }
 message UserPreference {
   penum.PhotoButtonExecuteType photoButtonExecuteType = 2;
+  bool produceDisableForceLiveCommon = 3;
 }
 message UserProduce {
   string produceId = 2;

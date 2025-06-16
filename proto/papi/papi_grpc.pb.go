@@ -11624,6 +11624,412 @@ var TicketExchange_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Tour_Top_FullMethodName         = "/client.api.Tour/Top"
+	Tour_GetProgress_FullMethodName = "/client.api.Tour/GetProgress"
+	Tour_Start_FullMethodName       = "/client.api.Tour/Start"
+	Tour_End_FullMethodName         = "/client.api.Tour/End"
+	Tour_Result_FullMethodName      = "/client.api.Tour/Result"
+	Tour_Continue_FullMethodName    = "/client.api.Tour/Continue"
+	Tour_Retire_FullMethodName      = "/client.api.Tour/Retire"
+	Tour_PlayTest_FullMethodName    = "/client.api.Tour/PlayTest"
+	Tour_UpdateDeck_FullMethodName  = "/client.api.Tour/UpdateDeck"
+)
+
+// TourClient is the client API for Tour service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TourClient interface {
+	Top(ctx context.Context, in *TourTopRequest, opts ...grpc.CallOption) (*TourTopResponse, error)
+	GetProgress(ctx context.Context, in *TourGetProgressRequest, opts ...grpc.CallOption) (*TourGetProgressResponse, error)
+	Start(ctx context.Context, in *TourStartRequest, opts ...grpc.CallOption) (*TourStartResponse, error)
+	End(ctx context.Context, in *TourEndRequest, opts ...grpc.CallOption) (*TourEndResponse, error)
+	Result(ctx context.Context, in *TourResultRequest, opts ...grpc.CallOption) (*TourResultResponse, error)
+	Continue(ctx context.Context, in *TourContinueRequest, opts ...grpc.CallOption) (*TourContinueResponse, error)
+	Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TourRetireResponse, error)
+	PlayTest(ctx context.Context, in *TourPlayTestRequest, opts ...grpc.CallOption) (*TourPlayTestResponse, error)
+	UpdateDeck(ctx context.Context, in *TourUpdateDeckRequest, opts ...grpc.CallOption) (*TourUpdateDeckResponse, error)
+}
+
+type tourClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTourClient(cc grpc.ClientConnInterface) TourClient {
+	return &tourClient{cc}
+}
+
+func (c *tourClient) Top(ctx context.Context, in *TourTopRequest, opts ...grpc.CallOption) (*TourTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourTopResponse)
+	err := c.cc.Invoke(ctx, Tour_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) GetProgress(ctx context.Context, in *TourGetProgressRequest, opts ...grpc.CallOption) (*TourGetProgressResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourGetProgressResponse)
+	err := c.cc.Invoke(ctx, Tour_GetProgress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) Start(ctx context.Context, in *TourStartRequest, opts ...grpc.CallOption) (*TourStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourStartResponse)
+	err := c.cc.Invoke(ctx, Tour_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) End(ctx context.Context, in *TourEndRequest, opts ...grpc.CallOption) (*TourEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourEndResponse)
+	err := c.cc.Invoke(ctx, Tour_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) Result(ctx context.Context, in *TourResultRequest, opts ...grpc.CallOption) (*TourResultResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourResultResponse)
+	err := c.cc.Invoke(ctx, Tour_Result_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) Continue(ctx context.Context, in *TourContinueRequest, opts ...grpc.CallOption) (*TourContinueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourContinueResponse)
+	err := c.cc.Invoke(ctx, Tour_Continue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TourRetireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourRetireResponse)
+	err := c.cc.Invoke(ctx, Tour_Retire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) PlayTest(ctx context.Context, in *TourPlayTestRequest, opts ...grpc.CallOption) (*TourPlayTestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourPlayTestResponse)
+	err := c.cc.Invoke(ctx, Tour_PlayTest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tourClient) UpdateDeck(ctx context.Context, in *TourUpdateDeckRequest, opts ...grpc.CallOption) (*TourUpdateDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourUpdateDeckResponse)
+	err := c.cc.Invoke(ctx, Tour_UpdateDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TourServer is the server API for Tour service.
+// All implementations must embed UnimplementedTourServer
+// for forward compatibility.
+type TourServer interface {
+	Top(context.Context, *TourTopRequest) (*TourTopResponse, error)
+	GetProgress(context.Context, *TourGetProgressRequest) (*TourGetProgressResponse, error)
+	Start(context.Context, *TourStartRequest) (*TourStartResponse, error)
+	End(context.Context, *TourEndRequest) (*TourEndResponse, error)
+	Result(context.Context, *TourResultRequest) (*TourResultResponse, error)
+	Continue(context.Context, *TourContinueRequest) (*TourContinueResponse, error)
+	Retire(context.Context, *Empty) (*TourRetireResponse, error)
+	PlayTest(context.Context, *TourPlayTestRequest) (*TourPlayTestResponse, error)
+	UpdateDeck(context.Context, *TourUpdateDeckRequest) (*TourUpdateDeckResponse, error)
+	mustEmbedUnimplementedTourServer()
+}
+
+// UnimplementedTourServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTourServer struct{}
+
+func (UnimplementedTourServer) Top(context.Context, *TourTopRequest) (*TourTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedTourServer) GetProgress(context.Context, *TourGetProgressRequest) (*TourGetProgressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProgress not implemented")
+}
+func (UnimplementedTourServer) Start(context.Context, *TourStartRequest) (*TourStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedTourServer) End(context.Context, *TourEndRequest) (*TourEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedTourServer) Result(context.Context, *TourResultRequest) (*TourResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Result not implemented")
+}
+func (UnimplementedTourServer) Continue(context.Context, *TourContinueRequest) (*TourContinueResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Continue not implemented")
+}
+func (UnimplementedTourServer) Retire(context.Context, *Empty) (*TourRetireResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Retire not implemented")
+}
+func (UnimplementedTourServer) PlayTest(context.Context, *TourPlayTestRequest) (*TourPlayTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayTest not implemented")
+}
+func (UnimplementedTourServer) UpdateDeck(context.Context, *TourUpdateDeckRequest) (*TourUpdateDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeck not implemented")
+}
+func (UnimplementedTourServer) mustEmbedUnimplementedTourServer() {}
+func (UnimplementedTourServer) testEmbeddedByValue()              {}
+
+// UnsafeTourServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TourServer will
+// result in compilation errors.
+type UnsafeTourServer interface {
+	mustEmbedUnimplementedTourServer()
+}
+
+func RegisterTourServer(s grpc.ServiceRegistrar, srv TourServer) {
+	// If the following call pancis, it indicates UnimplementedTourServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Tour_ServiceDesc, srv)
+}
+
+func _Tour_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).Top(ctx, req.(*TourTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_GetProgress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourGetProgressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).GetProgress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_GetProgress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).GetProgress(ctx, req.(*TourGetProgressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).Start(ctx, req.(*TourStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).End(ctx, req.(*TourEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_Result_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourResultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).Result(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_Result_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).Result(ctx, req.(*TourResultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_Continue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourContinueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).Continue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_Continue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).Continue(ctx, req.(*TourContinueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_Retire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).Retire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_Retire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).Retire(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_PlayTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourPlayTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).PlayTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_PlayTest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).PlayTest(ctx, req.(*TourPlayTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tour_UpdateDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TourUpdateDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).UpdateDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_UpdateDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).UpdateDeck(ctx, req.(*TourUpdateDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Tour_ServiceDesc is the grpc.ServiceDesc for Tour service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tour_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Tour",
+	HandlerType: (*TourServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _Tour_Top_Handler,
+		},
+		{
+			MethodName: "GetProgress",
+			Handler:    _Tour_GetProgress_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _Tour_Start_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _Tour_End_Handler,
+		},
+		{
+			MethodName: "Result",
+			Handler:    _Tour_Result_Handler,
+		},
+		{
+			MethodName: "Continue",
+			Handler:    _Tour_Continue_Handler,
+		},
+		{
+			MethodName: "Retire",
+			Handler:    _Tour_Retire_Handler,
+		},
+		{
+			MethodName: "PlayTest",
+			Handler:    _Tour_PlayTest_Handler,
+		},
+		{
+			MethodName: "UpdateDeck",
+			Handler:    _Tour_UpdateDeck_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
 	Tower_Top_FullMethodName                                  = "/client.api.Tower/Top"
 	Tower_ListLayers_FullMethodName                           = "/client.api.Tower/ListLayers"
 	Tower_GetLayer_FullMethodName                             = "/client.api.Tower/GetLayer"
