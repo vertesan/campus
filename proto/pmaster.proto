@@ -1645,7 +1645,8 @@ message ProduceCardSimulation {
   string produceCardSimulationGroupId = 1;
   string produceCardId = 2;
   int32 produceCardUpgradeCount = 3;
-  int32 count = 4;
+  repeated int32 produceCardCustomizeCounts = 4;
+  int32 count = 5;
 }
 message ProduceCardSimulationGroup {
   string id = 1;
@@ -2747,6 +2748,7 @@ message Setting {
   int32 towerRankingDisplayCount = 127;
   int32 towerRankingDeckDisplayCount = 128;
   string dearnessTopConditionSetID = 131;
+  string liveLightAnchorEnableConditionSetID = 133;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;

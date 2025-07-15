@@ -168,6 +168,8 @@ enum ConditionType {
   ConditionType_Comeback = 66;
   ConditionType_MissionGroupComplete = 67;
   ConditionType_MissionGroupNotComplete = 68;
+  ConditionType_AppVersionGreaterThanOrEqual = 69;
+  ConditionType_AppVersionLessThanOrEqual = 70;
   ConditionType_Set = 998;
   ConditionType_NegativeSet = 999;
 }
@@ -333,6 +335,10 @@ enum ExamActionType {
   ExamActionType_UseDrink = 2;
   ExamActionType_TurnEnd = 3;
   ExamActionType_EffectCardSelect = 4;
+}
+enum ExamAiModelType {
+  ExamAiModelType_Unknown = 0;
+  ExamAiModelType_Audition = 1;
 }
 enum ExamCommandType {
   ExamCommandType_Unknown = 0;

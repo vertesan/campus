@@ -17680,7 +17680,8 @@ type ProduceCardSimulation struct {
 	ProduceCardSimulationGroupId string                 `protobuf:"bytes,1,opt,name=produceCardSimulationGroupId,proto3" json:"produceCardSimulationGroupId,omitempty"`
 	ProduceCardId                string                 `protobuf:"bytes,2,opt,name=produceCardId,proto3" json:"produceCardId,omitempty"`
 	ProduceCardUpgradeCount      int32                  `protobuf:"varint,3,opt,name=produceCardUpgradeCount,proto3" json:"produceCardUpgradeCount,omitempty"`
-	Count                        int32                  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
+	ProduceCardCustomizeCounts   []int32                `protobuf:"varint,4,rep,packed,name=produceCardCustomizeCounts,proto3" json:"produceCardCustomizeCounts,omitempty"`
+	Count                        int32                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields                protoimpl.UnknownFields
 	sizeCache                    protoimpl.SizeCache
 }
@@ -17734,6 +17735,13 @@ func (x *ProduceCardSimulation) GetProduceCardUpgradeCount() int32 {
 		return x.ProduceCardUpgradeCount
 	}
 	return 0
+}
+
+func (x *ProduceCardSimulation) GetProduceCardCustomizeCounts() []int32 {
+	if x != nil {
+		return x.ProduceCardCustomizeCounts
+	}
+	return nil
 }
 
 func (x *ProduceCardSimulation) GetCount() int32 {
@@ -28964,6 +28972,7 @@ type Setting struct {
 	TowerRankingDisplayCount                                     int32                  `protobuf:"varint,127,opt,name=towerRankingDisplayCount,proto3" json:"towerRankingDisplayCount,omitempty"`
 	TowerRankingDeckDisplayCount                                 int32                  `protobuf:"varint,128,opt,name=towerRankingDeckDisplayCount,proto3" json:"towerRankingDeckDisplayCount,omitempty"`
 	DearnessTopConditionSetID                                    string                 `protobuf:"bytes,131,opt,name=dearnessTopConditionSetID,proto3" json:"dearnessTopConditionSetID,omitempty"`
+	LiveLightAnchorEnableConditionSetID                          string                 `protobuf:"bytes,133,opt,name=liveLightAnchorEnableConditionSetID,proto3" json:"liveLightAnchorEnableConditionSetID,omitempty"`
 	ProduceDailyMemoryRentalLimit                                int32                  `protobuf:"varint,1001,opt,name=produceDailyMemoryRentalLimit,proto3" json:"produceDailyMemoryRentalLimit,omitempty"`
 	ProduceDailyFreeContinueCount                                int32                  `protobuf:"varint,1002,opt,name=produceDailyFreeContinueCount,proto3" json:"produceDailyFreeContinueCount,omitempty"`
 	ProduceContinueItemID                                        string                 `protobuf:"bytes,1003,opt,name=produceContinueItemID,proto3" json:"produceContinueItemID,omitempty"`
@@ -29771,6 +29780,13 @@ func (x *Setting) GetTowerRankingDeckDisplayCount() int32 {
 func (x *Setting) GetDearnessTopConditionSetID() string {
 	if x != nil {
 		return x.DearnessTopConditionSetID
+	}
+	return ""
+}
+
+func (x *Setting) GetLiveLightAnchorEnableConditionSetID() string {
+	if x != nil {
+		return x.LiveLightAnchorEnableConditionSetID
 	}
 	return ""
 }
@@ -38508,12 +38524,13 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x13produceDescriptions\x18\x14 \x03(\v2\".pcommon.ProduceDescriptionSegmentR\x13produceDescriptions\x12,\n" +
 	"\x11produceCardPoolId\x18\x15 \x01(\tR\x11produceCardPoolId\"G\n" +
 	"\x15ProduceCardSearchList\x12.\n" +
-	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ProduceCardSearchR\x04list\"\xd1\x01\n" +
+	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ProduceCardSearchR\x04list\"\x91\x02\n" +
 	"\x15ProduceCardSimulation\x12B\n" +
 	"\x1cproduceCardSimulationGroupId\x18\x01 \x01(\tR\x1cproduceCardSimulationGroupId\x12$\n" +
 	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\x128\n" +
-	"\x17produceCardUpgradeCount\x18\x03 \x01(\x05R\x17produceCardUpgradeCount\x12\x14\n" +
-	"\x05count\x18\x04 \x01(\x05R\x05count\"@\n" +
+	"\x17produceCardUpgradeCount\x18\x03 \x01(\x05R\x17produceCardUpgradeCount\x12>\n" +
+	"\x1aproduceCardCustomizeCounts\x18\x04 \x03(\x05R\x1aproduceCardCustomizeCounts\x12\x14\n" +
+	"\x05count\x18\x05 \x01(\x05R\x05count\"@\n" +
 	"\x1aProduceCardSimulationGroup\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"Y\n" +
@@ -39430,7 +39447,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\arewards\x18\n" +
 	" \x03(\v2\x0f.pcommon.RewardR\arewards\"O\n" +
 	"\x19SeminarExamTransitionList\x122\n" +
-	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xa6f\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xf9f\n" +
 	"\aSetting\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x124\n" +
 	"\x15giftDefaultLimitCount\x18\x02 \x01(\x05R\x15giftDefaultLimitCount\x12B\n" +
@@ -39531,7 +39548,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x12dmmGamesInquiryURL\x18} \x01(\tR\x12dmmGamesInquiryURL\x12:\n" +
 	"\x18towerRankingDisplayCount\x18\x7f \x01(\x05R\x18towerRankingDisplayCount\x12C\n" +
 	"\x1ctowerRankingDeckDisplayCount\x18\x80\x01 \x01(\x05R\x1ctowerRankingDeckDisplayCount\x12=\n" +
-	"\x19dearnessTopConditionSetID\x18\x83\x01 \x01(\tR\x19dearnessTopConditionSetID\x12E\n" +
+	"\x19dearnessTopConditionSetID\x18\x83\x01 \x01(\tR\x19dearnessTopConditionSetID\x12Q\n" +
+	"#liveLightAnchorEnableConditionSetID\x18\x85\x01 \x01(\tR#liveLightAnchorEnableConditionSetID\x12E\n" +
 	"\x1dproduceDailyMemoryRentalLimit\x18\xe9\a \x01(\x05R\x1dproduceDailyMemoryRentalLimit\x12E\n" +
 	"\x1dproduceDailyFreeContinueCount\x18\xea\a \x01(\x05R\x1dproduceDailyFreeContinueCount\x125\n" +
 	"\x15produceContinueItemID\x18\xeb\a \x01(\tR\x15produceContinueItemID\x12a\n" +
