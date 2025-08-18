@@ -5073,12 +5073,13 @@ var Meishi_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Memory_Inherit_FullMethodName          = "/client.api.Memory/Inherit"
-	Memory_FixInherit_FullMethodName       = "/client.api.Memory/FixInherit"
-	Memory_Exchange_FullMethodName         = "/client.api.Memory/Exchange"
-	Memory_UpdateProtection_FullMethodName = "/client.api.Memory/UpdateProtection"
-	Memory_UpdateTagSetting_FullMethodName = "/client.api.Memory/UpdateTagSetting"
-	Memory_Reshooting_FullMethodName       = "/client.api.Memory/Reshooting"
+	Memory_Inherit_FullMethodName                = "/client.api.Memory/Inherit"
+	Memory_FixInherit_FullMethodName             = "/client.api.Memory/FixInherit"
+	Memory_Exchange_FullMethodName               = "/client.api.Memory/Exchange"
+	Memory_UpdateProtection_FullMethodName       = "/client.api.Memory/UpdateProtection"
+	Memory_UpdateResearchFavorite_FullMethodName = "/client.api.Memory/UpdateResearchFavorite"
+	Memory_UpdateTagSetting_FullMethodName       = "/client.api.Memory/UpdateTagSetting"
+	Memory_Reshooting_FullMethodName             = "/client.api.Memory/Reshooting"
 )
 
 // MemoryClient is the client API for Memory service.
@@ -5089,6 +5090,7 @@ type MemoryClient interface {
 	FixInherit(ctx context.Context, in *MemoryFixInheritRequest, opts ...grpc.CallOption) (*MemoryFixInheritResponse, error)
 	Exchange(ctx context.Context, in *MemoryExchangeRequest, opts ...grpc.CallOption) (*MemoryExchangeResponse, error)
 	UpdateProtection(ctx context.Context, in *MemoryUpdateProtectionRequest, opts ...grpc.CallOption) (*MemoryUpdateProtectionResponse, error)
+	UpdateResearchFavorite(ctx context.Context, in *MemoryUpdateResearchFavoriteRequest, opts ...grpc.CallOption) (*MemoryUpdateResearchFavoriteResponse, error)
 	UpdateTagSetting(ctx context.Context, in *MemoryUpdateTagSettingRequest, opts ...grpc.CallOption) (*MemoryUpdateTagSettingResponse, error)
 	Reshooting(ctx context.Context, in *MemoryReshootingRequest, opts ...grpc.CallOption) (*MemoryReshootingResponse, error)
 }
@@ -5141,6 +5143,16 @@ func (c *memoryClient) UpdateProtection(ctx context.Context, in *MemoryUpdatePro
 	return out, nil
 }
 
+func (c *memoryClient) UpdateResearchFavorite(ctx context.Context, in *MemoryUpdateResearchFavoriteRequest, opts ...grpc.CallOption) (*MemoryUpdateResearchFavoriteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MemoryUpdateResearchFavoriteResponse)
+	err := c.cc.Invoke(ctx, Memory_UpdateResearchFavorite_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *memoryClient) UpdateTagSetting(ctx context.Context, in *MemoryUpdateTagSettingRequest, opts ...grpc.CallOption) (*MemoryUpdateTagSettingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MemoryUpdateTagSettingResponse)
@@ -5169,6 +5181,7 @@ type MemoryServer interface {
 	FixInherit(context.Context, *MemoryFixInheritRequest) (*MemoryFixInheritResponse, error)
 	Exchange(context.Context, *MemoryExchangeRequest) (*MemoryExchangeResponse, error)
 	UpdateProtection(context.Context, *MemoryUpdateProtectionRequest) (*MemoryUpdateProtectionResponse, error)
+	UpdateResearchFavorite(context.Context, *MemoryUpdateResearchFavoriteRequest) (*MemoryUpdateResearchFavoriteResponse, error)
 	UpdateTagSetting(context.Context, *MemoryUpdateTagSettingRequest) (*MemoryUpdateTagSettingResponse, error)
 	Reshooting(context.Context, *MemoryReshootingRequest) (*MemoryReshootingResponse, error)
 	mustEmbedUnimplementedMemoryServer()
@@ -5192,6 +5205,9 @@ func (UnimplementedMemoryServer) Exchange(context.Context, *MemoryExchangeReques
 }
 func (UnimplementedMemoryServer) UpdateProtection(context.Context, *MemoryUpdateProtectionRequest) (*MemoryUpdateProtectionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProtection not implemented")
+}
+func (UnimplementedMemoryServer) UpdateResearchFavorite(context.Context, *MemoryUpdateResearchFavoriteRequest) (*MemoryUpdateResearchFavoriteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateResearchFavorite not implemented")
 }
 func (UnimplementedMemoryServer) UpdateTagSetting(context.Context, *MemoryUpdateTagSettingRequest) (*MemoryUpdateTagSettingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTagSetting not implemented")
@@ -5292,6 +5308,24 @@ func _Memory_UpdateProtection_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Memory_UpdateResearchFavorite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemoryUpdateResearchFavoriteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MemoryServer).UpdateResearchFavorite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Memory_UpdateResearchFavorite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MemoryServer).UpdateResearchFavorite(ctx, req.(*MemoryUpdateResearchFavoriteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Memory_UpdateTagSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MemoryUpdateTagSettingRequest)
 	if err := dec(in); err != nil {
@@ -5350,6 +5384,10 @@ var Memory_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateProtection",
 			Handler:    _Memory_UpdateProtection_Handler,
+		},
+		{
+			MethodName: "UpdateResearchFavorite",
+			Handler:    _Memory_UpdateResearchFavorite_Handler,
 		},
 		{
 			MethodName: "UpdateTagSetting",
@@ -9896,6 +9934,184 @@ var PvpRate_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Research_Get_FullMethodName          = "/client.api.Research/Get"
+	Research_Ranking_FullMethodName      = "/client.api.Research/Ranking"
+	Research_RerollMemory_FullMethodName = "/client.api.Research/RerollMemory"
+)
+
+// ResearchClient is the client API for Research service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ResearchClient interface {
+	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ResearchGetResponse, error)
+	Ranking(ctx context.Context, in *ResearchRankingRequest, opts ...grpc.CallOption) (*ResearchRankingResponse, error)
+	RerollMemory(ctx context.Context, in *ResearchRerollMemoryRequest, opts ...grpc.CallOption) (*ResearchRerollMemoryResponse, error)
+}
+
+type researchClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewResearchClient(cc grpc.ClientConnInterface) ResearchClient {
+	return &researchClient{cc}
+}
+
+func (c *researchClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ResearchGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResearchGetResponse)
+	err := c.cc.Invoke(ctx, Research_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *researchClient) Ranking(ctx context.Context, in *ResearchRankingRequest, opts ...grpc.CallOption) (*ResearchRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResearchRankingResponse)
+	err := c.cc.Invoke(ctx, Research_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *researchClient) RerollMemory(ctx context.Context, in *ResearchRerollMemoryRequest, opts ...grpc.CallOption) (*ResearchRerollMemoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResearchRerollMemoryResponse)
+	err := c.cc.Invoke(ctx, Research_RerollMemory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ResearchServer is the server API for Research service.
+// All implementations must embed UnimplementedResearchServer
+// for forward compatibility.
+type ResearchServer interface {
+	Get(context.Context, *Empty) (*ResearchGetResponse, error)
+	Ranking(context.Context, *ResearchRankingRequest) (*ResearchRankingResponse, error)
+	RerollMemory(context.Context, *ResearchRerollMemoryRequest) (*ResearchRerollMemoryResponse, error)
+	mustEmbedUnimplementedResearchServer()
+}
+
+// UnimplementedResearchServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedResearchServer struct{}
+
+func (UnimplementedResearchServer) Get(context.Context, *Empty) (*ResearchGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedResearchServer) Ranking(context.Context, *ResearchRankingRequest) (*ResearchRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedResearchServer) RerollMemory(context.Context, *ResearchRerollMemoryRequest) (*ResearchRerollMemoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RerollMemory not implemented")
+}
+func (UnimplementedResearchServer) mustEmbedUnimplementedResearchServer() {}
+func (UnimplementedResearchServer) testEmbeddedByValue()                  {}
+
+// UnsafeResearchServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ResearchServer will
+// result in compilation errors.
+type UnsafeResearchServer interface {
+	mustEmbedUnimplementedResearchServer()
+}
+
+func RegisterResearchServer(s grpc.ServiceRegistrar, srv ResearchServer) {
+	// If the following call pancis, it indicates UnimplementedResearchServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Research_ServiceDesc, srv)
+}
+
+func _Research_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ResearchServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Research_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ResearchServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Research_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResearchRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ResearchServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Research_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ResearchServer).Ranking(ctx, req.(*ResearchRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Research_RerollMemory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResearchRerollMemoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ResearchServer).RerollMemory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Research_RerollMemory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ResearchServer).RerollMemory(ctx, req.(*ResearchRerollMemoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Research_ServiceDesc is the grpc.ServiceDesc for Research service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Research_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Research",
+	HandlerType: (*ResearchServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Get",
+			Handler:    _Research_Get_Handler,
+		},
+		{
+			MethodName: "Ranking",
+			Handler:    _Research_Ranking_Handler,
+		},
+		{
+			MethodName: "RerollMemory",
+			Handler:    _Research_RerollMemory_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
 	Seminar_ListExam_FullMethodName = "/client.api.Seminar/ListExam"
 	Seminar_GetExam_FullMethodName  = "/client.api.Seminar/GetExam"
 	Seminar_EndExam_FullMethodName  = "/client.api.Seminar/EndExam"
@@ -11624,15 +11840,16 @@ var TicketExchange_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Tour_Top_FullMethodName         = "/client.api.Tour/Top"
-	Tour_GetProgress_FullMethodName = "/client.api.Tour/GetProgress"
-	Tour_Start_FullMethodName       = "/client.api.Tour/Start"
-	Tour_End_FullMethodName         = "/client.api.Tour/End"
-	Tour_Result_FullMethodName      = "/client.api.Tour/Result"
-	Tour_Continue_FullMethodName    = "/client.api.Tour/Continue"
-	Tour_Retire_FullMethodName      = "/client.api.Tour/Retire"
-	Tour_PlayTest_FullMethodName    = "/client.api.Tour/PlayTest"
-	Tour_UpdateDeck_FullMethodName  = "/client.api.Tour/UpdateDeck"
+	Tour_Top_FullMethodName          = "/client.api.Tour/Top"
+	Tour_GetProgress_FullMethodName  = "/client.api.Tour/GetProgress"
+	Tour_Start_FullMethodName        = "/client.api.Tour/Start"
+	Tour_End_FullMethodName          = "/client.api.Tour/End"
+	Tour_Result_FullMethodName       = "/client.api.Tour/Result"
+	Tour_Continue_FullMethodName     = "/client.api.Tour/Continue"
+	Tour_Retire_FullMethodName       = "/client.api.Tour/Retire"
+	Tour_PlayTest_FullMethodName     = "/client.api.Tour/PlayTest"
+	Tour_UpdateDeck_FullMethodName   = "/client.api.Tour/UpdateDeck"
+	Tour_StageRanking_FullMethodName = "/client.api.Tour/StageRanking"
 )
 
 // TourClient is the client API for Tour service.
@@ -11648,6 +11865,7 @@ type TourClient interface {
 	Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TourRetireResponse, error)
 	PlayTest(ctx context.Context, in *TourPlayTestRequest, opts ...grpc.CallOption) (*TourPlayTestResponse, error)
 	UpdateDeck(ctx context.Context, in *TourUpdateDeckRequest, opts ...grpc.CallOption) (*TourUpdateDeckResponse, error)
+	StageRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TourStageRankingResponse, error)
 }
 
 type tourClient struct {
@@ -11748,6 +11966,16 @@ func (c *tourClient) UpdateDeck(ctx context.Context, in *TourUpdateDeckRequest, 
 	return out, nil
 }
 
+func (c *tourClient) StageRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TourStageRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TourStageRankingResponse)
+	err := c.cc.Invoke(ctx, Tour_StageRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TourServer is the server API for Tour service.
 // All implementations must embed UnimplementedTourServer
 // for forward compatibility.
@@ -11761,6 +11989,7 @@ type TourServer interface {
 	Retire(context.Context, *Empty) (*TourRetireResponse, error)
 	PlayTest(context.Context, *TourPlayTestRequest) (*TourPlayTestResponse, error)
 	UpdateDeck(context.Context, *TourUpdateDeckRequest) (*TourUpdateDeckResponse, error)
+	StageRanking(context.Context, *Empty) (*TourStageRankingResponse, error)
 	mustEmbedUnimplementedTourServer()
 }
 
@@ -11797,6 +12026,9 @@ func (UnimplementedTourServer) PlayTest(context.Context, *TourPlayTestRequest) (
 }
 func (UnimplementedTourServer) UpdateDeck(context.Context, *TourUpdateDeckRequest) (*TourUpdateDeckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeck not implemented")
+}
+func (UnimplementedTourServer) StageRanking(context.Context, *Empty) (*TourStageRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StageRanking not implemented")
 }
 func (UnimplementedTourServer) mustEmbedUnimplementedTourServer() {}
 func (UnimplementedTourServer) testEmbeddedByValue()              {}
@@ -11981,6 +12213,24 @@ func _Tour_UpdateDeck_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Tour_StageRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TourServer).StageRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tour_StageRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TourServer).StageRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Tour_ServiceDesc is the grpc.ServiceDesc for Tour service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -12023,6 +12273,10 @@ var Tour_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateDeck",
 			Handler:    _Tour_UpdateDeck_Handler,
+		},
+		{
+			MethodName: "StageRanking",
+			Handler:    _Tour_StageRanking_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

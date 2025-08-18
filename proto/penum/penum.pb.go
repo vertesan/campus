@@ -82,6 +82,7 @@ const (
 	AntiCheatFeatureType_AntiCheatFeatureType_ExamPvpRate          AntiCheatFeatureType = 3
 	AntiCheatFeatureType_AntiCheatFeatureType_ExamTower            AntiCheatFeatureType = 4
 	AntiCheatFeatureType_AntiCheatFeatureType_ExamGvgRaid          AntiCheatFeatureType = 5
+	AntiCheatFeatureType_AntiCheatFeatureType_ExamTour             AntiCheatFeatureType = 6
 	AntiCheatFeatureType_AntiCheatFeatureType_AndroidPlayIntegrity AntiCheatFeatureType = 101
 )
 
@@ -94,6 +95,7 @@ var (
 		3:   "AntiCheatFeatureType_ExamPvpRate",
 		4:   "AntiCheatFeatureType_ExamTower",
 		5:   "AntiCheatFeatureType_ExamGvgRaid",
+		6:   "AntiCheatFeatureType_ExamTour",
 		101: "AntiCheatFeatureType_AndroidPlayIntegrity",
 	}
 	AntiCheatFeatureType_value = map[string]int32{
@@ -103,6 +105,7 @@ var (
 		"AntiCheatFeatureType_ExamPvpRate":          3,
 		"AntiCheatFeatureType_ExamTower":            4,
 		"AntiCheatFeatureType_ExamGvgRaid":          5,
+		"AntiCheatFeatureType_ExamTour":             6,
 		"AntiCheatFeatureType_AndroidPlayIntegrity": 101,
 	}
 )
@@ -1825,6 +1828,7 @@ const (
 	EventType_EventType_GvgRaid                EventType = 9
 	EventType_EventType_DearnessBoost          EventType = 10
 	EventType_EventType_Tour                   EventType = 11
+	EventType_EventType_Research               EventType = 12
 )
 
 // Enum value maps for EventType.
@@ -1842,6 +1846,7 @@ var (
 		9:  "EventType_GvgRaid",
 		10: "EventType_DearnessBoost",
 		11: "EventType_Tour",
+		12: "EventType_Research",
 	}
 	EventType_value = map[string]int32{
 		"EventType_Unknown":                0,
@@ -1856,6 +1861,7 @@ var (
 		"EventType_GvgRaid":                9,
 		"EventType_DearnessBoost":          10,
 		"EventType_Tour":                   11,
+		"EventType_Research":               12,
 	}
 )
 
@@ -2248,6 +2254,7 @@ const (
 	ExamGameType_ExamGameType_PvpRate         ExamGameType = 3
 	ExamGameType_ExamGameType_Tower           ExamGameType = 4
 	ExamGameType_ExamGameType_GvgRaid         ExamGameType = 5
+	ExamGameType_ExamGameType_Tour            ExamGameType = 6
 )
 
 // Enum value maps for ExamGameType.
@@ -2259,6 +2266,7 @@ var (
 		3: "ExamGameType_PvpRate",
 		4: "ExamGameType_Tower",
 		5: "ExamGameType_GvgRaid",
+		6: "ExamGameType_Tour",
 	}
 	ExamGameType_value = map[string]int32{
 		"ExamGameType_Unknown":         0,
@@ -2267,6 +2275,7 @@ var (
 		"ExamGameType_PvpRate":         3,
 		"ExamGameType_Tower":           4,
 		"ExamGameType_GvgRaid":         5,
+		"ExamGameType_Tour":            6,
 	}
 )
 
@@ -3058,6 +3067,8 @@ const (
 	FeatureMaintenanceType_FeatureMaintenanceType_GvgRaid             FeatureMaintenanceType = 19
 	FeatureMaintenanceType_FeatureMaintenanceType_Dearness            FeatureMaintenanceType = 20
 	FeatureMaintenanceType_FeatureMaintenanceType_Tour                FeatureMaintenanceType = 21
+	FeatureMaintenanceType_FeatureMaintenanceType_Research            FeatureMaintenanceType = 22
+	FeatureMaintenanceType_FeatureMaintenanceType_ProduceEvent        FeatureMaintenanceType = 24
 )
 
 // Enum value maps for FeatureMaintenanceType.
@@ -3085,6 +3096,8 @@ var (
 		19: "FeatureMaintenanceType_GvgRaid",
 		20: "FeatureMaintenanceType_Dearness",
 		21: "FeatureMaintenanceType_Tour",
+		22: "FeatureMaintenanceType_Research",
+		24: "FeatureMaintenanceType_ProduceEvent",
 	}
 	FeatureMaintenanceType_value = map[string]int32{
 		"FeatureMaintenanceType_Unknown":             0,
@@ -3109,6 +3122,8 @@ var (
 		"FeatureMaintenanceType_GvgRaid":             19,
 		"FeatureMaintenanceType_Dearness":            20,
 		"FeatureMaintenanceType_Tour":                21,
+		"FeatureMaintenanceType_Research":            22,
+		"FeatureMaintenanceType_ProduceEvent":        24,
 	}
 )
 
@@ -6186,7 +6201,6 @@ type PaymentPendingReceiptDialogTimingType int32
 const (
 	PaymentPendingReceiptDialogTimingType_PaymentPendingReceiptDialogTimingType_Unknown PaymentPendingReceiptDialogTimingType = 0
 	PaymentPendingReceiptDialogTimingType_PaymentPendingReceiptDialogTimingType_Skip    PaymentPendingReceiptDialogTimingType = 1
-	PaymentPendingReceiptDialogTimingType_PaymentPendingReceiptDialogTimingType_Daily   PaymentPendingReceiptDialogTimingType = 2
 )
 
 // Enum value maps for PaymentPendingReceiptDialogTimingType.
@@ -6194,12 +6208,10 @@ var (
 	PaymentPendingReceiptDialogTimingType_name = map[int32]string{
 		0: "PaymentPendingReceiptDialogTimingType_Unknown",
 		1: "PaymentPendingReceiptDialogTimingType_Skip",
-		2: "PaymentPendingReceiptDialogTimingType_Daily",
 	}
 	PaymentPendingReceiptDialogTimingType_value = map[string]int32{
 		"PaymentPendingReceiptDialogTimingType_Unknown": 0,
 		"PaymentPendingReceiptDialogTimingType_Skip":    1,
-		"PaymentPendingReceiptDialogTimingType_Daily":   2,
 	}
 )
 
@@ -7709,6 +7721,7 @@ const (
 	ProduceDescriptionType_ProduceDescriptionType_Exam                                         ProduceDescriptionType = 6
 	ProduceDescriptionType_ProduceDescriptionType_ProduceCardGrowEffectType                    ProduceDescriptionType = 7
 	ProduceDescriptionType_ProduceDescriptionType_ProduceStepType                              ProduceDescriptionType = 8
+	ProduceDescriptionType_ProduceDescriptionType_ProduceStepBusinessType                      ProduceDescriptionType = 9
 	ProduceDescriptionType_ProduceDescriptionType_ProduceDescription                           ProduceDescriptionType = 10
 	ProduceDescriptionType_ProduceDescriptionType_ProduceDescriptionName                       ProduceDescriptionType = 11
 	ProduceDescriptionType_ProduceDescriptionType_ProduceCard                                  ProduceDescriptionType = 12
@@ -7736,6 +7749,7 @@ var (
 		6:  "ProduceDescriptionType_Exam",
 		7:  "ProduceDescriptionType_ProduceCardGrowEffectType",
 		8:  "ProduceDescriptionType_ProduceStepType",
+		9:  "ProduceDescriptionType_ProduceStepBusinessType",
 		10: "ProduceDescriptionType_ProduceDescription",
 		11: "ProduceDescriptionType_ProduceDescriptionName",
 		12: "ProduceDescriptionType_ProduceCard",
@@ -7760,6 +7774,7 @@ var (
 		"ProduceDescriptionType_Exam":                                         6,
 		"ProduceDescriptionType_ProduceCardGrowEffectType":                    7,
 		"ProduceDescriptionType_ProduceStepType":                              8,
+		"ProduceDescriptionType_ProduceStepBusinessType":                      9,
 		"ProduceDescriptionType_ProduceDescription":                           10,
 		"ProduceDescriptionType_ProduceDescriptionName":                       11,
 		"ProduceDescriptionType_ProduceCard":                                  12,
@@ -13006,37 +13021,107 @@ func (StartupNotificationEffectType) EnumDescriptor() ([]byte, []int) {
 	return file_penum_proto_rawDescGZIP(), []int{174}
 }
 
+type StartupNotificationRemindType int32
+
+const (
+	StartupNotificationRemindType_StartupNotificationRemindType_Unknown    StartupNotificationRemindType = 0
+	StartupNotificationRemindType_StartupNotificationRemindType_CoinGasha  StartupNotificationRemindType = 1
+	StartupNotificationRemindType_StartupNotificationRemindType_Exchange   StartupNotificationRemindType = 2
+	StartupNotificationRemindType_StartupNotificationRemindType_PlayItem   StartupNotificationRemindType = 3
+	StartupNotificationRemindType_StartupNotificationRemindType_GashaPoint StartupNotificationRemindType = 4
+)
+
+// Enum value maps for StartupNotificationRemindType.
+var (
+	StartupNotificationRemindType_name = map[int32]string{
+		0: "StartupNotificationRemindType_Unknown",
+		1: "StartupNotificationRemindType_CoinGasha",
+		2: "StartupNotificationRemindType_Exchange",
+		3: "StartupNotificationRemindType_PlayItem",
+		4: "StartupNotificationRemindType_GashaPoint",
+	}
+	StartupNotificationRemindType_value = map[string]int32{
+		"StartupNotificationRemindType_Unknown":    0,
+		"StartupNotificationRemindType_CoinGasha":  1,
+		"StartupNotificationRemindType_Exchange":   2,
+		"StartupNotificationRemindType_PlayItem":   3,
+		"StartupNotificationRemindType_GashaPoint": 4,
+	}
+)
+
+func (x StartupNotificationRemindType) Enum() *StartupNotificationRemindType {
+	p := new(StartupNotificationRemindType)
+	*p = x
+	return p
+}
+
+func (x StartupNotificationRemindType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StartupNotificationRemindType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[175].Descriptor()
+}
+
+func (StartupNotificationRemindType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[175]
+}
+
+func (x StartupNotificationRemindType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StartupNotificationRemindType.Descriptor instead.
+func (StartupNotificationRemindType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{175}
+}
+
 type StartupNotificationType int32
 
 const (
-	StartupNotificationType_StartupNotificationType_Unknown       StartupNotificationType = 0
-	StartupNotificationType_StartupNotificationType_Movie         StartupNotificationType = 1
-	StartupNotificationType_StartupNotificationType_Adv           StartupNotificationType = 2
-	StartupNotificationType_StartupNotificationType_Image         StartupNotificationType = 3
-	StartupNotificationType_StartupNotificationType_Notice        StartupNotificationType = 4
-	StartupNotificationType_StartupNotificationType_Shop          StartupNotificationType = 5
-	StartupNotificationType_StartupNotificationType_ProfileReport StartupNotificationType = 6
+	StartupNotificationType_StartupNotificationType_Unknown             StartupNotificationType = 0
+	StartupNotificationType_StartupNotificationType_Movie               StartupNotificationType = 1
+	StartupNotificationType_StartupNotificationType_Adv                 StartupNotificationType = 2
+	StartupNotificationType_StartupNotificationType_Image               StartupNotificationType = 3
+	StartupNotificationType_StartupNotificationType_Notice              StartupNotificationType = 4
+	StartupNotificationType_StartupNotificationType_Shop                StartupNotificationType = 5
+	StartupNotificationType_StartupNotificationType_ProfileReport       StartupNotificationType = 6
+	StartupNotificationType_StartupNotificationType_FreeText            StartupNotificationType = 7
+	StartupNotificationType_StartupNotificationType_GashaPointExpire    StartupNotificationType = 8
+	StartupNotificationType_StartupNotificationType_ExchangeItemExpire  StartupNotificationType = 9
+	StartupNotificationType_StartupNotificationType_CoinGashaItemExpire StartupNotificationType = 10
+	StartupNotificationType_StartupNotificationType_PlayItemExpire      StartupNotificationType = 11
 )
 
 // Enum value maps for StartupNotificationType.
 var (
 	StartupNotificationType_name = map[int32]string{
-		0: "StartupNotificationType_Unknown",
-		1: "StartupNotificationType_Movie",
-		2: "StartupNotificationType_Adv",
-		3: "StartupNotificationType_Image",
-		4: "StartupNotificationType_Notice",
-		5: "StartupNotificationType_Shop",
-		6: "StartupNotificationType_ProfileReport",
+		0:  "StartupNotificationType_Unknown",
+		1:  "StartupNotificationType_Movie",
+		2:  "StartupNotificationType_Adv",
+		3:  "StartupNotificationType_Image",
+		4:  "StartupNotificationType_Notice",
+		5:  "StartupNotificationType_Shop",
+		6:  "StartupNotificationType_ProfileReport",
+		7:  "StartupNotificationType_FreeText",
+		8:  "StartupNotificationType_GashaPointExpire",
+		9:  "StartupNotificationType_ExchangeItemExpire",
+		10: "StartupNotificationType_CoinGashaItemExpire",
+		11: "StartupNotificationType_PlayItemExpire",
 	}
 	StartupNotificationType_value = map[string]int32{
-		"StartupNotificationType_Unknown":       0,
-		"StartupNotificationType_Movie":         1,
-		"StartupNotificationType_Adv":           2,
-		"StartupNotificationType_Image":         3,
-		"StartupNotificationType_Notice":        4,
-		"StartupNotificationType_Shop":          5,
-		"StartupNotificationType_ProfileReport": 6,
+		"StartupNotificationType_Unknown":             0,
+		"StartupNotificationType_Movie":               1,
+		"StartupNotificationType_Adv":                 2,
+		"StartupNotificationType_Image":               3,
+		"StartupNotificationType_Notice":              4,
+		"StartupNotificationType_Shop":                5,
+		"StartupNotificationType_ProfileReport":       6,
+		"StartupNotificationType_FreeText":            7,
+		"StartupNotificationType_GashaPointExpire":    8,
+		"StartupNotificationType_ExchangeItemExpire":  9,
+		"StartupNotificationType_CoinGashaItemExpire": 10,
+		"StartupNotificationType_PlayItemExpire":      11,
 	}
 )
 
@@ -13051,11 +13136,11 @@ func (x StartupNotificationType) String() string {
 }
 
 func (StartupNotificationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[175].Descriptor()
+	return file_penum_proto_enumTypes[176].Descriptor()
 }
 
 func (StartupNotificationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[175]
+	return &file_penum_proto_enumTypes[176]
 }
 
 func (x StartupNotificationType) Number() protoreflect.EnumNumber {
@@ -13064,7 +13149,7 @@ func (x StartupNotificationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationType.Descriptor instead.
 func (StartupNotificationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{175}
+	return file_penum_proto_rawDescGZIP(), []int{176}
 }
 
 type StoryCampaignType int32
@@ -13100,11 +13185,11 @@ func (x StoryCampaignType) String() string {
 }
 
 func (StoryCampaignType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[176].Descriptor()
+	return file_penum_proto_enumTypes[177].Descriptor()
 }
 
 func (StoryCampaignType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[176]
+	return &file_penum_proto_enumTypes[177]
 }
 
 func (x StoryCampaignType) Number() protoreflect.EnumNumber {
@@ -13113,7 +13198,7 @@ func (x StoryCampaignType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryCampaignType.Descriptor instead.
 func (StoryCampaignType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{176}
+	return file_penum_proto_rawDescGZIP(), []int{177}
 }
 
 type StoryEventMotionType int32
@@ -13152,11 +13237,11 @@ func (x StoryEventMotionType) String() string {
 }
 
 func (StoryEventMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[177].Descriptor()
+	return file_penum_proto_enumTypes[178].Descriptor()
 }
 
 func (StoryEventMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[177]
+	return &file_penum_proto_enumTypes[178]
 }
 
 func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
@@ -13165,7 +13250,7 @@ func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventMotionType.Descriptor instead.
 func (StoryEventMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{177}
+	return file_penum_proto_rawDescGZIP(), []int{178}
 }
 
 type StoryEventType int32
@@ -13207,11 +13292,11 @@ func (x StoryEventType) String() string {
 }
 
 func (StoryEventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[178].Descriptor()
+	return file_penum_proto_enumTypes[179].Descriptor()
 }
 
 func (StoryEventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[178]
+	return &file_penum_proto_enumTypes[179]
 }
 
 func (x StoryEventType) Number() protoreflect.EnumNumber {
@@ -13220,7 +13305,7 @@ func (x StoryEventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventType.Descriptor instead.
 func (StoryEventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{178}
+	return file_penum_proto_rawDescGZIP(), []int{179}
 }
 
 type StoryType int32
@@ -13283,11 +13368,11 @@ func (x StoryType) String() string {
 }
 
 func (StoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[179].Descriptor()
+	return file_penum_proto_enumTypes[180].Descriptor()
 }
 
 func (StoryType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[179]
+	return &file_penum_proto_enumTypes[180]
 }
 
 func (x StoryType) Number() protoreflect.EnumNumber {
@@ -13296,7 +13381,7 @@ func (x StoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryType.Descriptor instead.
 func (StoryType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{179}
+	return file_penum_proto_rawDescGZIP(), []int{180}
 }
 
 type SupportCardLevelLimitRank int32
@@ -13338,11 +13423,11 @@ func (x SupportCardLevelLimitRank) String() string {
 }
 
 func (SupportCardLevelLimitRank) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[180].Descriptor()
+	return file_penum_proto_enumTypes[181].Descriptor()
 }
 
 func (SupportCardLevelLimitRank) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[180]
+	return &file_penum_proto_enumTypes[181]
 }
 
 func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
@@ -13351,7 +13436,7 @@ func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardLevelLimitRank.Descriptor instead.
 func (SupportCardLevelLimitRank) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{180}
+	return file_penum_proto_rawDescGZIP(), []int{181}
 }
 
 type SupportCardRarity int32
@@ -13390,11 +13475,11 @@ func (x SupportCardRarity) String() string {
 }
 
 func (SupportCardRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[181].Descriptor()
+	return file_penum_proto_enumTypes[182].Descriptor()
 }
 
 func (SupportCardRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[181]
+	return &file_penum_proto_enumTypes[182]
 }
 
 func (x SupportCardRarity) Number() protoreflect.EnumNumber {
@@ -13403,7 +13488,7 @@ func (x SupportCardRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardRarity.Descriptor instead.
 func (SupportCardRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{181}
+	return file_penum_proto_rawDescGZIP(), []int{182}
 }
 
 type SupportCardType int32
@@ -13445,11 +13530,11 @@ func (x SupportCardType) String() string {
 }
 
 func (SupportCardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[182].Descriptor()
+	return file_penum_proto_enumTypes[183].Descriptor()
 }
 
 func (SupportCardType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[182]
+	return &file_penum_proto_enumTypes[183]
 }
 
 func (x SupportCardType) Number() protoreflect.EnumNumber {
@@ -13458,7 +13543,7 @@ func (x SupportCardType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardType.Descriptor instead.
 func (SupportCardType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{182}
+	return file_penum_proto_rawDescGZIP(), []int{183}
 }
 
 type TermsType int32
@@ -13497,11 +13582,11 @@ func (x TermsType) String() string {
 }
 
 func (TermsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[183].Descriptor()
+	return file_penum_proto_enumTypes[184].Descriptor()
 }
 
 func (TermsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[183]
+	return &file_penum_proto_enumTypes[184]
 }
 
 func (x TermsType) Number() protoreflect.EnumNumber {
@@ -13510,7 +13595,7 @@ func (x TermsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TermsType.Descriptor instead.
 func (TermsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{183}
+	return file_penum_proto_rawDescGZIP(), []int{184}
 }
 
 type TimeType int32
@@ -13567,11 +13652,11 @@ func (x TimeType) String() string {
 }
 
 func (TimeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[184].Descriptor()
+	return file_penum_proto_enumTypes[185].Descriptor()
 }
 
 func (TimeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[184]
+	return &file_penum_proto_enumTypes[185]
 }
 
 func (x TimeType) Number() protoreflect.EnumNumber {
@@ -13580,7 +13665,7 @@ func (x TimeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TimeType.Descriptor instead.
 func (TimeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{184}
+	return file_penum_proto_rawDescGZIP(), []int{185}
 }
 
 type TipsType int32
@@ -13625,11 +13710,11 @@ func (x TipsType) String() string {
 }
 
 func (TipsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[185].Descriptor()
+	return file_penum_proto_enumTypes[186].Descriptor()
 }
 
 func (TipsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[185]
+	return &file_penum_proto_enumTypes[186]
 }
 
 func (x TipsType) Number() protoreflect.EnumNumber {
@@ -13638,7 +13723,7 @@ func (x TipsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TipsType.Descriptor instead.
 func (TipsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{185}
+	return file_penum_proto_rawDescGZIP(), []int{186}
 }
 
 type TourProgressPhaseType int32
@@ -13674,11 +13759,11 @@ func (x TourProgressPhaseType) String() string {
 }
 
 func (TourProgressPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[186].Descriptor()
+	return file_penum_proto_enumTypes[187].Descriptor()
 }
 
 func (TourProgressPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[186]
+	return &file_penum_proto_enumTypes[187]
 }
 
 func (x TourProgressPhaseType) Number() protoreflect.EnumNumber {
@@ -13687,7 +13772,7 @@ func (x TourProgressPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourProgressPhaseType.Descriptor instead.
 func (TourProgressPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{186}
+	return file_penum_proto_rawDescGZIP(), []int{187}
 }
 
 type TourScoreGrade int32
@@ -13756,11 +13841,11 @@ func (x TourScoreGrade) String() string {
 }
 
 func (TourScoreGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[187].Descriptor()
+	return file_penum_proto_enumTypes[188].Descriptor()
 }
 
 func (TourScoreGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[187]
+	return &file_penum_proto_enumTypes[188]
 }
 
 func (x TourScoreGrade) Number() protoreflect.EnumNumber {
@@ -13769,7 +13854,7 @@ func (x TourScoreGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourScoreGrade.Descriptor instead.
 func (TourScoreGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{187}
+	return file_penum_proto_rawDescGZIP(), []int{188}
 }
 
 type TourStageIconSizeType int32
@@ -13808,11 +13893,11 @@ func (x TourStageIconSizeType) String() string {
 }
 
 func (TourStageIconSizeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[188].Descriptor()
+	return file_penum_proto_enumTypes[189].Descriptor()
 }
 
 func (TourStageIconSizeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[188]
+	return &file_penum_proto_enumTypes[189]
 }
 
 func (x TourStageIconSizeType) Number() protoreflect.EnumNumber {
@@ -13821,7 +13906,7 @@ func (x TourStageIconSizeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourStageIconSizeType.Descriptor instead.
 func (TourStageIconSizeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{188}
+	return file_penum_proto_rawDescGZIP(), []int{189}
 }
 
 type TutorialCharacterVoiceType int32
@@ -13857,11 +13942,11 @@ func (x TutorialCharacterVoiceType) String() string {
 }
 
 func (TutorialCharacterVoiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[189].Descriptor()
+	return file_penum_proto_enumTypes[190].Descriptor()
 }
 
 func (TutorialCharacterVoiceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[189]
+	return &file_penum_proto_enumTypes[190]
 }
 
 func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
@@ -13870,7 +13955,7 @@ func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialCharacterVoiceType.Descriptor instead.
 func (TutorialCharacterVoiceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{189}
+	return file_penum_proto_rawDescGZIP(), []int{190}
 }
 
 type TutorialNavigationPositionType int32
@@ -13915,11 +14000,11 @@ func (x TutorialNavigationPositionType) String() string {
 }
 
 func (TutorialNavigationPositionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[190].Descriptor()
+	return file_penum_proto_enumTypes[191].Descriptor()
 }
 
 func (TutorialNavigationPositionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[190]
+	return &file_penum_proto_enumTypes[191]
 }
 
 func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
@@ -13928,7 +14013,7 @@ func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationPositionType.Descriptor instead.
 func (TutorialNavigationPositionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{190}
+	return file_penum_proto_rawDescGZIP(), []int{191}
 }
 
 type TutorialNavigationType int32
@@ -13973,11 +14058,11 @@ func (x TutorialNavigationType) String() string {
 }
 
 func (TutorialNavigationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[191].Descriptor()
+	return file_penum_proto_enumTypes[192].Descriptor()
 }
 
 func (TutorialNavigationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[191]
+	return &file_penum_proto_enumTypes[192]
 }
 
 func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
@@ -13986,7 +14071,7 @@ func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationType.Descriptor instead.
 func (TutorialNavigationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{191}
+	return file_penum_proto_rawDescGZIP(), []int{192}
 }
 
 type TutorialProduceCommandType int32
@@ -14040,11 +14125,11 @@ func (x TutorialProduceCommandType) String() string {
 }
 
 func (TutorialProduceCommandType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[192].Descriptor()
+	return file_penum_proto_enumTypes[193].Descriptor()
 }
 
 func (TutorialProduceCommandType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[192]
+	return &file_penum_proto_enumTypes[193]
 }
 
 func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
@@ -14053,7 +14138,7 @@ func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialProduceCommandType.Descriptor instead.
 func (TutorialProduceCommandType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{192}
+	return file_penum_proto_rawDescGZIP(), []int{193}
 }
 
 type TutorialType int32
@@ -14129,6 +14214,7 @@ const (
 	TutorialType_TutorialType_ProduceNextIdolAuditionMaster             TutorialType = 207
 	TutorialType_TutorialType_ProduceNextIdolAuditionMasterRanking      TutorialType = 208
 	TutorialType_TutorialType_Tour                                      TutorialType = 209
+	TutorialType_TutorialType_Research                                  TutorialType = 210
 )
 
 // Enum value maps for TutorialType.
@@ -14204,6 +14290,7 @@ var (
 		207: "TutorialType_ProduceNextIdolAuditionMaster",
 		208: "TutorialType_ProduceNextIdolAuditionMasterRanking",
 		209: "TutorialType_Tour",
+		210: "TutorialType_Research",
 	}
 	TutorialType_value = map[string]int32{
 		"TutorialType_Unknown":                                   0,
@@ -14276,6 +14363,7 @@ var (
 		"TutorialType_ProduceNextIdolAuditionMaster":             207,
 		"TutorialType_ProduceNextIdolAuditionMasterRanking":      208,
 		"TutorialType_Tour":                                      209,
+		"TutorialType_Research":                                  210,
 	}
 )
 
@@ -14290,11 +14378,11 @@ func (x TutorialType) String() string {
 }
 
 func (TutorialType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[193].Descriptor()
+	return file_penum_proto_enumTypes[194].Descriptor()
 }
 
 func (TutorialType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[193]
+	return &file_penum_proto_enumTypes[194]
 }
 
 func (x TutorialType) Number() protoreflect.EnumNumber {
@@ -14303,7 +14391,7 @@ func (x TutorialType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialType.Descriptor instead.
 func (TutorialType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{193}
+	return file_penum_proto_rawDescGZIP(), []int{194}
 }
 
 type ViewAreaType int32
@@ -14339,11 +14427,11 @@ func (x ViewAreaType) String() string {
 }
 
 func (ViewAreaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[194].Descriptor()
+	return file_penum_proto_enumTypes[195].Descriptor()
 }
 
 func (ViewAreaType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[194]
+	return &file_penum_proto_enumTypes[195]
 }
 
 func (x ViewAreaType) Number() protoreflect.EnumNumber {
@@ -14352,7 +14440,7 @@ func (x ViewAreaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ViewAreaType.Descriptor instead.
 func (ViewAreaType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{194}
+	return file_penum_proto_rawDescGZIP(), []int{195}
 }
 
 type VoicePlayScreenType int32
@@ -14394,11 +14482,11 @@ func (x VoicePlayScreenType) String() string {
 }
 
 func (VoicePlayScreenType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[195].Descriptor()
+	return file_penum_proto_enumTypes[196].Descriptor()
 }
 
 func (VoicePlayScreenType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[195]
+	return &file_penum_proto_enumTypes[196]
 }
 
 func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
@@ -14407,7 +14495,7 @@ func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoicePlayScreenType.Descriptor instead.
 func (VoicePlayScreenType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{195}
+	return file_penum_proto_rawDescGZIP(), []int{196}
 }
 
 type Weekday int32
@@ -14458,11 +14546,11 @@ func (x Weekday) String() string {
 }
 
 func (Weekday) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[196].Descriptor()
+	return file_penum_proto_enumTypes[197].Descriptor()
 }
 
 func (Weekday) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[196]
+	return &file_penum_proto_enumTypes[197]
 }
 
 func (x Weekday) Number() protoreflect.EnumNumber {
@@ -14471,7 +14559,7 @@ func (x Weekday) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Weekday.Descriptor instead.
 func (Weekday) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{196}
+	return file_penum_proto_rawDescGZIP(), []int{197}
 }
 
 type WorkMotionType int32
@@ -14519,11 +14607,11 @@ func (x WorkMotionType) String() string {
 }
 
 func (WorkMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[197].Descriptor()
+	return file_penum_proto_enumTypes[198].Descriptor()
 }
 
 func (WorkMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[197]
+	return &file_penum_proto_enumTypes[198]
 }
 
 func (x WorkMotionType) Number() protoreflect.EnumNumber {
@@ -14532,7 +14620,7 @@ func (x WorkMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMotionType.Descriptor instead.
 func (WorkMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{197}
+	return file_penum_proto_rawDescGZIP(), []int{198}
 }
 
 type WorkType int32
@@ -14568,11 +14656,11 @@ func (x WorkType) String() string {
 }
 
 func (WorkType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[198].Descriptor()
+	return file_penum_proto_enumTypes[199].Descriptor()
 }
 
 func (WorkType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[198]
+	return &file_penum_proto_enumTypes[199]
 }
 
 func (x WorkType) Number() protoreflect.EnumNumber {
@@ -14581,7 +14669,7 @@ func (x WorkType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkType.Descriptor instead.
 func (WorkType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{198}
+	return file_penum_proto_rawDescGZIP(), []int{199}
 }
 
 var File_penum_proto protoreflect.FileDescriptor
@@ -14593,14 +14681,15 @@ const file_penum_proto_rawDesc = "" +
 	"\x1bAchievementCategory_Unknown\x10\x00\x12\x1c\n" +
 	"\x18AchievementCategory_Idol\x10\x01\x12\x1f\n" +
 	"\x1bAchievementCategory_Produce\x10\x02\x12\x1d\n" +
-	"\x19AchievementCategory_Other\x10c*\xb1\x02\n" +
+	"\x19AchievementCategory_Other\x10c*\xd4\x02\n" +
 	"\x14AntiCheatFeatureType\x12 \n" +
 	"\x1cAntiCheatFeatureType_Unknown\x10\x00\x12*\n" +
 	"&AntiCheatFeatureType_ExamProduceLesson\x10\x01\x12,\n" +
 	"(AntiCheatFeatureType_ExamProduceAudition\x10\x02\x12$\n" +
 	" AntiCheatFeatureType_ExamPvpRate\x10\x03\x12\"\n" +
 	"\x1eAntiCheatFeatureType_ExamTower\x10\x04\x12$\n" +
-	" AntiCheatFeatureType_ExamGvgRaid\x10\x05\x12-\n" +
+	" AntiCheatFeatureType_ExamGvgRaid\x10\x05\x12!\n" +
+	"\x1dAntiCheatFeatureType_ExamTour\x10\x06\x12-\n" +
 	")AntiCheatFeatureType_AndroidPlayIntegrity\x10e*\x9e\x01\n" +
 	"\rAppReviewType\x12\x19\n" +
 	"\x15AppReviewType_Unknown\x10\x00\x12\x17\n" +
@@ -14879,7 +14968,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1fEventStoryFilterType_StoryEvent\x10\x01\x12$\n" +
 	" EventStoryFilterType_SeasonEvent\x10\x02\x12 \n" +
 	"\x1cEventStoryFilterType_GvgRaid\x10\x03\x12\x1d\n" +
-	"\x19EventStoryFilterType_Tour\x10\x04*\xeb\x02\n" +
+	"\x19EventStoryFilterType_Tour\x10\x04*\x83\x03\n" +
 	"\tEventType\x12\x15\n" +
 	"\x11EventType_Unknown\x10\x00\x12!\n" +
 	"\x1dEventType_MissionDailyRelease\x10\x01\x12\x1a\n" +
@@ -14893,7 +14982,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x11EventType_GvgRaid\x10\t\x12\x1b\n" +
 	"\x17EventType_DearnessBoost\x10\n" +
 	"\x12\x12\n" +
-	"\x0eEventType_Tour\x10\v*\xa6\x01\n" +
+	"\x0eEventType_Tour\x10\v\x12\x16\n" +
+	"\x12EventType_Research\x10\f*\xa6\x01\n" +
 	"\x0eExamActionType\x12\x1a\n" +
 	"\x16ExamActionType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16ExamActionType_UseHand\x10\x01\x12\x1b\n" +
@@ -14951,14 +15041,15 @@ const file_penum_proto_rawDesc = "" +
 	")ExamDescriptionType_ExamProduceExamEffect\x10\x10\x12-\n" +
 	")ExamDescriptionType_ExamProduceCardSearch\x10\x11\x124\n" +
 	"0ExamDescriptionType_CustomizeEffectValuePercent1\x10\x14\x124\n" +
-	"0ExamDescriptionType_CustomizeEffectValuePercent2\x10\x15*\xb6\x01\n" +
+	"0ExamDescriptionType_CustomizeEffectValuePercent2\x10\x15*\xcd\x01\n" +
 	"\fExamGameType\x12\x18\n" +
 	"\x14ExamGameType_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aExamGameType_ProduceLesson\x10\x01\x12 \n" +
 	"\x1cExamGameType_ProduceAudition\x10\x02\x12\x18\n" +
 	"\x14ExamGameType_PvpRate\x10\x03\x12\x16\n" +
 	"\x12ExamGameType_Tower\x10\x04\x12\x18\n" +
-	"\x14ExamGameType_GvgRaid\x10\x05*\xca\x01\n" +
+	"\x14ExamGameType_GvgRaid\x10\x05\x12\x15\n" +
+	"\x11ExamGameType_Tour\x10\x06*\xca\x01\n" +
 	"\x12ExamIdolStatusType\x12\x1e\n" +
 	"\x1aExamIdolStatusType_Unknown\x10\x00\x12$\n" +
 	" ExamIdolStatusType_Concentration\x10\x01\x12#\n" +
@@ -15081,7 +15172,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ExchangeType_Unknown\x10\x00\x12\x16\n" +
 	"\x12ExchangeType_Daily\x10\x01\x12\x15\n" +
 	"\x11ExchangeType_Item\x10\x02\x12\x16\n" +
-	"\x12ExchangeType_Event\x10\x03*\xd3\x06\n" +
+	"\x12ExchangeType_Event\x10\x03*\xa1\a\n" +
 	"\x16FeatureMaintenanceType\x12\"\n" +
 	"\x1eFeatureMaintenanceType_Unknown\x10\x00\x12#\n" +
 	"\x1fFeatureMaintenanceType_Exchange\x10\x01\x12\x1f\n" +
@@ -15105,7 +15196,9 @@ const file_penum_proto_rawDesc = "" +
 	"$FeatureMaintenanceType_StoryCampaign\x10\x12\x12\"\n" +
 	"\x1eFeatureMaintenanceType_GvgRaid\x10\x13\x12#\n" +
 	"\x1fFeatureMaintenanceType_Dearness\x10\x14\x12\x1f\n" +
-	"\x1bFeatureMaintenanceType_Tour\x10\x15*w\n" +
+	"\x1bFeatureMaintenanceType_Tour\x10\x15\x12#\n" +
+	"\x1fFeatureMaintenanceType_Research\x10\x16\x12'\n" +
+	"#FeatureMaintenanceType_ProduceEvent\x10\x18*w\n" +
 	"\x14FourPanelComicSeries\x12 \n" +
 	"\x1cFourPanelComicSeries_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aFourPanelComicSeries_Radio\x10\x01\x12\x1d\n" +
@@ -15570,11 +15663,10 @@ const file_penum_proto_rawDesc = "" +
 	"\x14NoticeType_Important\x10\x05\x12\x1a\n" +
 	"\x16NoticeType_Information\x10\x06\x12\x1a\n" +
 	"\x16NoticeType_Maintenance\x10\a\x12\x12\n" +
-	"\x0eNoticeType_Bug\x10\b*\xbb\x01\n" +
+	"\x0eNoticeType_Bug\x10\b*\x8a\x01\n" +
 	"%PaymentPendingReceiptDialogTimingType\x121\n" +
 	"-PaymentPendingReceiptDialogTimingType_Unknown\x10\x00\x12.\n" +
-	"*PaymentPendingReceiptDialogTimingType_Skip\x10\x01\x12/\n" +
-	"+PaymentPendingReceiptDialogTimingType_Daily\x10\x02*\xd0\x01\n" +
+	"*PaymentPendingReceiptDialogTimingType_Skip\x10\x01*\xd0\x01\n" +
 	"\x17PhotoBackgroundCategory\x12#\n" +
 	"\x1fPhotoBackgroundCategory_Unknown\x10\x00\x12\"\n" +
 	"\x1ePhotoBackgroundCategory_Gakuen\x10\x01\x12%\n" +
@@ -15832,7 +15924,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceDescriptionSwapType_Unknown\x10\x00\x12%\n" +
 	"!ProduceDescriptionSwapType_Lesson\x10\x01\x12'\n" +
 	"#ProduceDescriptionSwapType_Audition\x10\x02\x12&\n" +
-	"\"ProduceDescriptionSwapType_Contest\x10\x03*\xed\a\n" +
+	"\"ProduceDescriptionSwapType_Contest\x10\x03*\xa1\b\n" +
 	"\x16ProduceDescriptionType\x12\"\n" +
 	"\x1eProduceDescriptionType_Unknown\x10\x00\x12$\n" +
 	" ProduceDescriptionType_PlainText\x10\x01\x120\n" +
@@ -15841,7 +15933,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x1fProduceDescriptionType_DiffText\x10\x05\x12\x1f\n" +
 	"\x1bProduceDescriptionType_Exam\x10\x06\x124\n" +
 	"0ProduceDescriptionType_ProduceCardGrowEffectType\x10\a\x12*\n" +
-	"&ProduceDescriptionType_ProduceStepType\x10\b\x12-\n" +
+	"&ProduceDescriptionType_ProduceStepType\x10\b\x122\n" +
+	".ProduceDescriptionType_ProduceStepBusinessType\x10\t\x12-\n" +
 	")ProduceDescriptionType_ProduceDescription\x10\n" +
 	"\x121\n" +
 	"-ProduceDescriptionType_ProduceDescriptionName\x10\v\x12&\n" +
@@ -16794,7 +16887,13 @@ const file_penum_proto_rawDesc = "" +
 	"%StartupNotificationEffectType_Unknown\x10\x00\x12+\n" +
 	"'StartupNotificationEffectType_Confetti1\x10\x01\x12+\n" +
 	"'StartupNotificationEffectType_Confetti2\x10\x02\x12,\n" +
-	"(StartupNotificationEffectType_Twinkling1\x10\x03*\x96\x02\n" +
+	"(StartupNotificationEffectType_Twinkling1\x10\x03*\xfd\x01\n" +
+	"\x1dStartupNotificationRemindType\x12)\n" +
+	"%StartupNotificationRemindType_Unknown\x10\x00\x12+\n" +
+	"'StartupNotificationRemindType_CoinGasha\x10\x01\x12*\n" +
+	"&StartupNotificationRemindType_Exchange\x10\x02\x12*\n" +
+	"&StartupNotificationRemindType_PlayItem\x10\x03\x12,\n" +
+	"(StartupNotificationRemindType_GashaPoint\x10\x04*\xf7\x03\n" +
 	"\x17StartupNotificationType\x12#\n" +
 	"\x1fStartupNotificationType_Unknown\x10\x00\x12!\n" +
 	"\x1dStartupNotificationType_Movie\x10\x01\x12\x1f\n" +
@@ -16802,7 +16901,13 @@ const file_penum_proto_rawDesc = "" +
 	"\x1dStartupNotificationType_Image\x10\x03\x12\"\n" +
 	"\x1eStartupNotificationType_Notice\x10\x04\x12 \n" +
 	"\x1cStartupNotificationType_Shop\x10\x05\x12)\n" +
-	"%StartupNotificationType_ProfileReport\x10\x06*t\n" +
+	"%StartupNotificationType_ProfileReport\x10\x06\x12$\n" +
+	" StartupNotificationType_FreeText\x10\a\x12,\n" +
+	"(StartupNotificationType_GashaPointExpire\x10\b\x12.\n" +
+	"*StartupNotificationType_ExchangeItemExpire\x10\t\x12/\n" +
+	"+StartupNotificationType_CoinGashaItemExpire\x10\n" +
+	"\x12*\n" +
+	"&StartupNotificationType_PlayItemExpire\x10\v*t\n" +
 	"\x11StoryCampaignType\x12\x1d\n" +
 	"\x19StoryCampaignType_Unknown\x10\x00\x12\x1b\n" +
 	"\x17StoryCampaignType_Event\x10\x01\x12#\n" +
@@ -16925,7 +17030,7 @@ const file_penum_proto_rawDesc = "" +
 	".TutorialProduceCommandType_StepAuditionExamEnd\x10\x05\x12.\n" +
 	"*TutorialProduceCommandType_StepAuditionEnd\x10\x06\x12?\n" +
 	";TutorialProduceCommandType_CheckBeforeLiveProduceEvaluation\x10\a\x12%\n" +
-	"!TutorialProduceCommandType_Result\x10\b*\xea\x13\n" +
+	"!TutorialProduceCommandType_Result\x10\b*\x86\x14\n" +
 	"\fTutorialType\x12\x18\n" +
 	"\x14TutorialType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16TutorialType_GameStart\x10\x01\x12\x19\n" +
@@ -16997,7 +17102,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x14TutorialType_GvgRaid\x10\xce\x01\x12/\n" +
 	"*TutorialType_ProduceNextIdolAuditionMaster\x10\xcf\x01\x126\n" +
 	"1TutorialType_ProduceNextIdolAuditionMasterRanking\x10\xd0\x01\x12\x16\n" +
-	"\x11TutorialType_Tour\x10\xd1\x01*\\\n" +
+	"\x11TutorialType_Tour\x10\xd1\x01\x12\x1a\n" +
+	"\x15TutorialType_Research\x10\xd2\x01*\\\n" +
 	"\fViewAreaType\x12\x18\n" +
 	"\x14ViewAreaType_Unknown\x10\x00\x12\x18\n" +
 	"\x14ViewAreaType_Produce\x10\x01\x12\x18\n" +
@@ -17042,7 +17148,7 @@ func file_penum_proto_rawDescGZIP() []byte {
 	return file_penum_proto_rawDescData
 }
 
-var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 199)
+var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 200)
 var file_penum_proto_goTypes = []any{
 	(AchievementCategory)(0),                     // 0: penum.AchievementCategory
 	(AntiCheatFeatureType)(0),                    // 1: penum.AntiCheatFeatureType
@@ -17219,30 +17325,31 @@ var file_penum_proto_goTypes = []any{
 	(SkillRarity)(0),                             // 172: penum.SkillRarity
 	(StartupNotificationDisplayType)(0),          // 173: penum.StartupNotificationDisplayType
 	(StartupNotificationEffectType)(0),           // 174: penum.StartupNotificationEffectType
-	(StartupNotificationType)(0),                 // 175: penum.StartupNotificationType
-	(StoryCampaignType)(0),                       // 176: penum.StoryCampaignType
-	(StoryEventMotionType)(0),                    // 177: penum.StoryEventMotionType
-	(StoryEventType)(0),                          // 178: penum.StoryEventType
-	(StoryType)(0),                               // 179: penum.StoryType
-	(SupportCardLevelLimitRank)(0),               // 180: penum.SupportCardLevelLimitRank
-	(SupportCardRarity)(0),                       // 181: penum.SupportCardRarity
-	(SupportCardType)(0),                         // 182: penum.SupportCardType
-	(TermsType)(0),                               // 183: penum.TermsType
-	(TimeType)(0),                                // 184: penum.TimeType
-	(TipsType)(0),                                // 185: penum.TipsType
-	(TourProgressPhaseType)(0),                   // 186: penum.TourProgressPhaseType
-	(TourScoreGrade)(0),                          // 187: penum.TourScoreGrade
-	(TourStageIconSizeType)(0),                   // 188: penum.TourStageIconSizeType
-	(TutorialCharacterVoiceType)(0),              // 189: penum.TutorialCharacterVoiceType
-	(TutorialNavigationPositionType)(0),          // 190: penum.TutorialNavigationPositionType
-	(TutorialNavigationType)(0),                  // 191: penum.TutorialNavigationType
-	(TutorialProduceCommandType)(0),              // 192: penum.TutorialProduceCommandType
-	(TutorialType)(0),                            // 193: penum.TutorialType
-	(ViewAreaType)(0),                            // 194: penum.ViewAreaType
-	(VoicePlayScreenType)(0),                     // 195: penum.VoicePlayScreenType
-	(Weekday)(0),                                 // 196: penum.Weekday
-	(WorkMotionType)(0),                          // 197: penum.WorkMotionType
-	(WorkType)(0),                                // 198: penum.WorkType
+	(StartupNotificationRemindType)(0),           // 175: penum.StartupNotificationRemindType
+	(StartupNotificationType)(0),                 // 176: penum.StartupNotificationType
+	(StoryCampaignType)(0),                       // 177: penum.StoryCampaignType
+	(StoryEventMotionType)(0),                    // 178: penum.StoryEventMotionType
+	(StoryEventType)(0),                          // 179: penum.StoryEventType
+	(StoryType)(0),                               // 180: penum.StoryType
+	(SupportCardLevelLimitRank)(0),               // 181: penum.SupportCardLevelLimitRank
+	(SupportCardRarity)(0),                       // 182: penum.SupportCardRarity
+	(SupportCardType)(0),                         // 183: penum.SupportCardType
+	(TermsType)(0),                               // 184: penum.TermsType
+	(TimeType)(0),                                // 185: penum.TimeType
+	(TipsType)(0),                                // 186: penum.TipsType
+	(TourProgressPhaseType)(0),                   // 187: penum.TourProgressPhaseType
+	(TourScoreGrade)(0),                          // 188: penum.TourScoreGrade
+	(TourStageIconSizeType)(0),                   // 189: penum.TourStageIconSizeType
+	(TutorialCharacterVoiceType)(0),              // 190: penum.TutorialCharacterVoiceType
+	(TutorialNavigationPositionType)(0),          // 191: penum.TutorialNavigationPositionType
+	(TutorialNavigationType)(0),                  // 192: penum.TutorialNavigationType
+	(TutorialProduceCommandType)(0),              // 193: penum.TutorialProduceCommandType
+	(TutorialType)(0),                            // 194: penum.TutorialType
+	(ViewAreaType)(0),                            // 195: penum.ViewAreaType
+	(VoicePlayScreenType)(0),                     // 196: penum.VoicePlayScreenType
+	(Weekday)(0),                                 // 197: penum.Weekday
+	(WorkMotionType)(0),                          // 198: penum.WorkMotionType
+	(WorkType)(0),                                // 199: penum.WorkType
 }
 var file_penum_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -17262,7 +17369,7 @@ func file_penum_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_penum_proto_rawDesc), len(file_penum_proto_rawDesc)),
-			NumEnums:      199,
+			NumEnums:      200,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,

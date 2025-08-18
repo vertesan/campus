@@ -516,6 +516,7 @@ message ExamSetting {
   repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
   bool examDrinkTriggerFixed = 49;
   int32 examLessonValueMultipleDependReviewOrAggressiveMultiplePermil = 50;
+  bool examStanceChangeAssignmentCountEnable = 51;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -598,6 +599,9 @@ message GashaButton {
   string appealText = 20;
   penum.GashaButtonAppealType highAppealType = 21;
   string highAppealText = 22;
+  penum.GashaButtonAppealType bottomAppealType = 23;
+  string bottomAppealText = 24;
+  bool isOverride = 199;
 }
 message GashaButtonList {
   repeated pcommon.GashaButton list = 1;
@@ -953,6 +957,8 @@ message Item {
   string shopCoinGashaId = 17;
   string storyEventId = 20;
   string produceHighScoreEventId = 21;
+  string tourEventId = 26;
+  string researchEventId = 27;
   penum.IdolCardRarity idolCardRarity = 22;
   penum.SupportCardRarity supportCardRarity = 23;
   string characterId = 24;
@@ -1834,6 +1840,7 @@ message ProduceEffect {
   penum.ProducePickRangeType pickRangeType = 15;
   int32 pickCountMin = 16;
   int32 pickCountMax = 17;
+  bool isResearch = 30;
   message ProduceReward {
     penum.ProduceResourceType resourceType = 1;
     string resourceId = 2;
@@ -2153,6 +2160,7 @@ message ProduceHighScore {
   string id = 1;
   string name = 2;
   penum.ProduceHighScoreEventType produceHighScoreEventType = 16;
+  string bannerAssetId = 5;
   int32 order = 104;
 }
 message ProduceHighScoreList {
@@ -2180,6 +2188,7 @@ message ProduceItem {
   repeated string effectGroupIds = 21;
   bool isChallenge = 22;
   bool isHighScoreRush = 23;
+  bool isResearch = 25;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -2312,6 +2321,8 @@ message ProduceSetting {
   int32 stepCustomizeStartAlertProducePointThreshold = 22;
   int32 examStartAlertStaminaThreshold = 23;
   int32 continueCount = 26;
+  int32 produceAuditionTrendAssessmentPermilUpper = 62;
+  int32 produceAuditionTrendAssessmentPermilLower = 63;
   int32 produceAuditionTrendAssessmentPermil = 64;
 }
 message ProduceSettingList {
@@ -2617,6 +2628,14 @@ message PvpRateUnitSlotUnlock {
 message PvpRateUnitSlotUnlockList {
   repeated PvpRateUnitSlotUnlock list = 1;
 }
+message ResearchMemoryRerollCost {
+  int32 lockCount = 1;
+  int32 rerollCount = 2;
+  int32 quantity = 3;
+}
+message ResearchMemoryRerollCostList {
+  repeated ResearchMemoryRerollCost list = 1;
+}
 message ResultGradePattern {
   penum.ResultGradeType type = 1;
   penum.ResultGrade grade = 2;
@@ -2749,6 +2768,14 @@ message Setting {
   int32 towerRankingDeckDisplayCount = 128;
   string dearnessTopConditionSetID = 131;
   string liveLightAnchorEnableConditionSetID = 133;
+  int32 tourScoreEffectMiddleThreshold = 134;
+  int32 tourScoreEffectLargeThreshold = 135;
+  int32 tourAuditionScoreUpMiddle = 136;
+  int32 tourAuditionScoreUpLarge = 137;
+  int32 tourScoreGradeThreshold = 138;
+  int32 memoryInheritMaterialLowerResultGrade = 139;
+  bool memoryInheritCustomizeProduceCardEnable = 140;
+  int32 researchRankingDisplayCount = 141;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2786,6 +2813,9 @@ message Setting {
   int32 memoryCreateAbilitySrToUrPermil = 1048;
   int32 memoryCreateAbilitySsrToUrPermil = 1049;
   bool produceStepShopDiscountRoundDownEnable = 1050;
+  bool produceAuditionTrendAssessmentPermilSeparateEnable = 1051;
+  int32 produceMaxMemoryDeckCount = 1052;
+  int32 produceMaxSupportCardDeckCount = 1053;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -3124,10 +3154,25 @@ message Tour {
   int32 continueCount = 18;
   int32 basePoint = 22;
   string tourStageTimelineId = 26;
-  int32 order = 104;
+  string liveTicketName = 33;
+  string tourMotionId = 35;
+  int32 order = 103;
 }
 message TourList {
   repeated Tour list = 1;
+}
+message TourMotion {
+  string id = 1;
+  string characterId = 2;
+  int32 number = 3;
+  string facialAssetId = 4;
+  string bodyAssetId = 5;
+  string voiceAssetId = 6;
+  string sceneLayoutId = 7;
+  string cameraId = 8;
+}
+message TourMotionList {
+  repeated TourMotion list = 1;
 }
 message TourStageTimeline {
   string id = 1;

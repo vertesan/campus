@@ -1487,6 +1487,9 @@ type UserMemory struct {
 	Stamina                  int32                                   `protobuf:"varint,33,opt,name=stamina,proto3" json:"stamina,omitempty"`
 	ExamBattleProduceCards   []*pcommon.ProduceCard                  `protobuf:"bytes,36,rep,name=examBattleProduceCards,proto3" json:"examBattleProduceCards,omitempty"`
 	ExamBattleProduceItemIds []string                                `protobuf:"bytes,37,rep,name=examBattleProduceItemIds,proto3" json:"examBattleProduceItemIds,omitempty"`
+	ResearchId               string                                  `protobuf:"bytes,50,opt,name=researchId,proto3" json:"researchId,omitempty"`
+	ResearchRerollCount      int32                                   `protobuf:"varint,51,opt,name=researchRerollCount,proto3" json:"researchRerollCount,omitempty"`
+	IsResearchFavorite       bool                                    `protobuf:"varint,52,opt,name=isResearchFavorite,proto3" json:"isResearchFavorite,omitempty"`
 	EndingLiveType           penum.ProduceLiveType                   `protobuf:"varint,99,opt,name=endingLiveType,proto3,enum=penum.ProduceLiveType" json:"endingLiveType,omitempty"`
 	ProduceLiveType          penum.ProduceLiveType                   `protobuf:"varint,100,opt,name=produceLiveType,proto3,enum=penum.ProduceLiveType" json:"produceLiveType,omitempty"`
 	LiveCostumeId            string                                  `protobuf:"bytes,101,opt,name=liveCostumeId,proto3" json:"liveCostumeId,omitempty"`
@@ -1710,6 +1713,27 @@ func (x *UserMemory) GetExamBattleProduceItemIds() []string {
 		return x.ExamBattleProduceItemIds
 	}
 	return nil
+}
+
+func (x *UserMemory) GetResearchId() string {
+	if x != nil {
+		return x.ResearchId
+	}
+	return ""
+}
+
+func (x *UserMemory) GetResearchRerollCount() int32 {
+	if x != nil {
+		return x.ResearchRerollCount
+	}
+	return 0
+}
+
+func (x *UserMemory) GetIsResearchFavorite() bool {
+	if x != nil {
+		return x.IsResearchFavorite
+	}
+	return false
 }
 
 func (x *UserMemory) GetEndingLiveType() penum.ProduceLiveType {
@@ -3298,6 +3322,10 @@ type UserProduceProgress struct {
 	TrueEndProduceTypes                           []penum.ProduceType                                `protobuf:"varint,13,rep,packed,name=trueEndProduceTypes,proto3,enum=penum.ProduceType" json:"trueEndProduceTypes,omitempty"`
 	HasForceLiveCommonIdolCard                    bool                                               `protobuf:"varint,15,opt,name=hasForceLiveCommonIdolCard,proto3" json:"hasForceLiveCommonIdolCard,omitempty"`
 	DisableForceLiveCommon                        bool                                               `protobuf:"varint,16,opt,name=disableForceLiveCommon,proto3" json:"disableForceLiveCommon,omitempty"`
+	IsResearch                                    bool                                               `protobuf:"varint,71,opt,name=isResearch,proto3" json:"isResearch,omitempty"`
+	ResearchExternalProduceCardIds                []string                                           `protobuf:"bytes,72,rep,name=researchExternalProduceCardIds,proto3" json:"researchExternalProduceCardIds,omitempty"`
+	ResearchMemoryPickupProduceCardIds            []string                                           `protobuf:"bytes,73,rep,name=researchMemoryPickupProduceCardIds,proto3" json:"researchMemoryPickupProduceCardIds,omitempty"`
+	ResearchProduceItemIds                        []string                                           `protobuf:"bytes,74,rep,name=researchProduceItemIds,proto3" json:"researchProduceItemIds,omitempty"`
 	ProduceHighScoreId                            string                                             `protobuf:"bytes,80,opt,name=produceHighScoreId,proto3" json:"produceHighScoreId,omitempty"`
 	ProduceCampaigns                              []*pcommon.ProduceCampaign                         `protobuf:"bytes,91,rep,name=produceCampaigns,proto3" json:"produceCampaigns,omitempty"`
 	Status                                        penum.ProduceProgressStatus                        `protobuf:"varint,100,opt,name=status,proto3,enum=penum.ProduceProgressStatus" json:"status,omitempty"`
@@ -3510,6 +3538,34 @@ func (x *UserProduceProgress) GetDisableForceLiveCommon() bool {
 		return x.DisableForceLiveCommon
 	}
 	return false
+}
+
+func (x *UserProduceProgress) GetIsResearch() bool {
+	if x != nil {
+		return x.IsResearch
+	}
+	return false
+}
+
+func (x *UserProduceProgress) GetResearchExternalProduceCardIds() []string {
+	if x != nil {
+		return x.ResearchExternalProduceCardIds
+	}
+	return nil
+}
+
+func (x *UserProduceProgress) GetResearchMemoryPickupProduceCardIds() []string {
+	if x != nil {
+		return x.ResearchMemoryPickupProduceCardIds
+	}
+	return nil
+}
+
+func (x *UserProduceProgress) GetResearchProduceItemIds() []string {
+	if x != nil {
+		return x.ResearchProduceItemIds
+	}
+	return nil
 }
 
 func (x *UserProduceProgress) GetProduceHighScoreId() string {
@@ -4390,6 +4446,7 @@ type UserProduceProgressEffect struct {
 	Type                    penum.ProduceEffectType             `protobuf:"varint,4,opt,name=type,proto3,enum=penum.ProduceEffectType" json:"type,omitempty"`
 	Value                   int32                               `protobuf:"varint,5,opt,name=value,proto3" json:"value,omitempty"`
 	Rewards                 []*UserProduceProgressEffect_Reward `protobuf:"bytes,10,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	ResearchExternalIndexes []int32                             `protobuf:"varint,11,rep,packed,name=researchExternalIndexes,proto3" json:"researchExternalIndexes,omitempty"`
 	PickRangeType           penum.ProducePickRangeType          `protobuf:"varint,13,opt,name=pickRangeType,proto3,enum=penum.ProducePickRangeType" json:"pickRangeType,omitempty"`
 	PickCountMin            int32                               `protobuf:"varint,14,opt,name=pickCountMin,proto3" json:"pickCountMin,omitempty"`
 	PickCountMax            int32                               `protobuf:"varint,15,opt,name=pickCountMax,proto3" json:"pickCountMax,omitempty"`
@@ -4467,6 +4524,13 @@ func (x *UserProduceProgressEffect) GetValue() int32 {
 func (x *UserProduceProgressEffect) GetRewards() []*UserProduceProgressEffect_Reward {
 	if x != nil {
 		return x.Rewards
+	}
+	return nil
+}
+
+func (x *UserProduceProgressEffect) GetResearchExternalIndexes() []int32 {
+	if x != nil {
+		return x.ResearchExternalIndexes
 	}
 	return nil
 }
@@ -4700,17 +4764,18 @@ func (x *UserProduceProgressMemory) GetMemory() *pcommon.Memory {
 }
 
 type UserProduceProgressPresent struct {
-	state          protoimpl.MessageState               `protogen:"open.v1"`
-	PositionNumber int32                                `protobuf:"varint,2,opt,name=positionNumber,proto3" json:"positionNumber,omitempty"`
-	Received       bool                                 `protobuf:"varint,3,opt,name=received,proto3" json:"received,omitempty"`
-	DisplayType    penum.ProduceDisplayType             `protobuf:"varint,4,opt,name=displayType,proto3,enum=penum.ProduceDisplayType" json:"displayType,omitempty"`
-	RewardCount    int32                                `protobuf:"varint,5,opt,name=rewardCount,proto3" json:"rewardCount,omitempty"`
-	PickCount      int32                                `protobuf:"varint,6,opt,name=pickCount,proto3" json:"pickCount,omitempty"`
-	Rewards        []*UserProduceProgressPresent_Reward `protobuf:"bytes,11,rep,name=rewards,proto3" json:"rewards,omitempty"`
-	RewardIndexes  []int32                              `protobuf:"varint,12,rep,packed,name=rewardIndexes,proto3" json:"rewardIndexes,omitempty"`
-	IsVoteBonus    bool                                 `protobuf:"varint,14,opt,name=isVoteBonus,proto3" json:"isVoteBonus,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                   protoimpl.MessageState               `protogen:"open.v1"`
+	PositionNumber          int32                                `protobuf:"varint,2,opt,name=positionNumber,proto3" json:"positionNumber,omitempty"`
+	Received                bool                                 `protobuf:"varint,3,opt,name=received,proto3" json:"received,omitempty"`
+	DisplayType             penum.ProduceDisplayType             `protobuf:"varint,4,opt,name=displayType,proto3,enum=penum.ProduceDisplayType" json:"displayType,omitempty"`
+	RewardCount             int32                                `protobuf:"varint,5,opt,name=rewardCount,proto3" json:"rewardCount,omitempty"`
+	PickCount               int32                                `protobuf:"varint,6,opt,name=pickCount,proto3" json:"pickCount,omitempty"`
+	Rewards                 []*UserProduceProgressPresent_Reward `protobuf:"bytes,11,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	RewardIndexes           []int32                              `protobuf:"varint,12,rep,packed,name=rewardIndexes,proto3" json:"rewardIndexes,omitempty"`
+	IsVoteBonus             bool                                 `protobuf:"varint,14,opt,name=isVoteBonus,proto3" json:"isVoteBonus,omitempty"`
+	ResearchExternalIndexes []int32                              `protobuf:"varint,15,rep,packed,name=researchExternalIndexes,proto3" json:"researchExternalIndexes,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *UserProduceProgressPresent) Reset() {
@@ -4797,6 +4862,13 @@ func (x *UserProduceProgressPresent) GetIsVoteBonus() bool {
 		return x.IsVoteBonus
 	}
 	return false
+}
+
+func (x *UserProduceProgressPresent) GetResearchExternalIndexes() []int32 {
+	if x != nil {
+		return x.ResearchExternalIndexes
+	}
+	return nil
 }
 
 type UserProduceProgressProduceCard struct {
@@ -7164,7 +7236,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x13UserMeishiBaseAsset\x12,\n" +
 	"\x11meishiBaseAssetId\x18\x02 \x01(\tR\x11meishiBaseAssetId\"[\n" +
 	"\x1bUserMeishiIllustrationAsset\x12<\n" +
-	"\x19meishiIllustrationAssetId\x18\x02 \x01(\tR\x19meishiIllustrationAssetId\"\x90\x0e\n" +
+	"\x19meishiIllustrationAssetId\x18\x02 \x01(\tR\x19meishiIllustrationAssetId\"\x92\x0f\n" +
 	"\n" +
 	"UserMemory\x12\"\n" +
 	"\fuserMemoryId\x18\x02 \x01(\tR\fuserMemoryId\x12 \n" +
@@ -7195,7 +7267,12 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x06visual\x18  \x01(\x05R\x06visual\x12\x18\n" +
 	"\astamina\x18! \x01(\x05R\astamina\x12L\n" +
 	"\x16examBattleProduceCards\x18$ \x03(\v2\x14.pcommon.ProduceCardR\x16examBattleProduceCards\x12:\n" +
-	"\x18examBattleProduceItemIds\x18% \x03(\tR\x18examBattleProduceItemIds\x12>\n" +
+	"\x18examBattleProduceItemIds\x18% \x03(\tR\x18examBattleProduceItemIds\x12\x1e\n" +
+	"\n" +
+	"researchId\x182 \x01(\tR\n" +
+	"researchId\x120\n" +
+	"\x13researchRerollCount\x183 \x01(\x05R\x13researchRerollCount\x12.\n" +
+	"\x12isResearchFavorite\x184 \x01(\bR\x12isResearchFavorite\x12>\n" +
 	"\x0eendingLiveType\x18c \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0eendingLiveType\x12@\n" +
 	"\x0fproduceLiveType\x18d \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0fproduceLiveType\x12$\n" +
 	"\rliveCostumeId\x18e \x01(\tR\rliveCostumeId\x12,\n" +
@@ -7324,7 +7401,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\vproduceType\x18\x02 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12$\n" +
 	"\ruserMemoryIds\x18\x04 \x03(\tR\ruserMemoryIds\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\"\xde5\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\"\xce7\n" +
 	"\x13UserProduceProgress\x12&\n" +
 	"\x0eproduceGroupId\x18\x02 \x01(\tR\x0eproduceGroupId\x12\x1c\n" +
 	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12$\n" +
@@ -7341,7 +7418,13 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x13produceBoostItemIds\x18\f \x03(\tR\x13produceBoostItemIds\x12D\n" +
 	"\x13trueEndProduceTypes\x18\r \x03(\x0e2\x12.penum.ProduceTypeR\x13trueEndProduceTypes\x12>\n" +
 	"\x1ahasForceLiveCommonIdolCard\x18\x0f \x01(\bR\x1ahasForceLiveCommonIdolCard\x126\n" +
-	"\x16disableForceLiveCommon\x18\x10 \x01(\bR\x16disableForceLiveCommon\x12.\n" +
+	"\x16disableForceLiveCommon\x18\x10 \x01(\bR\x16disableForceLiveCommon\x12\x1e\n" +
+	"\n" +
+	"isResearch\x18G \x01(\bR\n" +
+	"isResearch\x12F\n" +
+	"\x1eresearchExternalProduceCardIds\x18H \x03(\tR\x1eresearchExternalProduceCardIds\x12N\n" +
+	"\"researchMemoryPickupProduceCardIds\x18I \x03(\tR\"researchMemoryPickupProduceCardIds\x126\n" +
+	"\x16researchProduceItemIds\x18J \x03(\tR\x16researchProduceItemIds\x12.\n" +
 	"\x12produceHighScoreId\x18P \x01(\tR\x12produceHighScoreId\x12D\n" +
 	"\x10produceCampaigns\x18[ \x03(\v2\x18.pcommon.ProduceCampaignR\x10produceCampaigns\x124\n" +
 	"\x06status\x18d \x01(\x0e2\x1c.penum.ProduceProgressStatusR\x06status\x12\"\n" +
@@ -7483,14 +7566,15 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0fexcellentPermil\x18\b \x01(\x05R\x0fexcellentPermil\x12:\n" +
 	"\x18produceStepEventDetailId\x18\t \x01(\tR\x18produceStepEventDetailId\x12L\n" +
 	"!excellentProduceStepEventDetailId\x18\n" +
-	" \x01(\tR!excellentProduceStepEventDetailId\"\x90\a\n" +
+	" \x01(\tR!excellentProduceStepEventDetailId\"\xca\a\n" +
 	"\x19UserProduceProgressEffect\x12\x16\n" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12\x18\n" +
 	"\anumbers\x18\x03 \x03(\x05R\anumbers\x12,\n" +
 	"\x04type\x18\x04 \x01(\x0e2\x18.penum.ProduceEffectTypeR\x04type\x12\x14\n" +
 	"\x05value\x18\x05 \x01(\x05R\x05value\x12H\n" +
 	"\arewards\x18\n" +
-	" \x03(\v2..ptransaction.UserProduceProgressEffect.RewardR\arewards\x12A\n" +
+	" \x03(\v2..ptransaction.UserProduceProgressEffect.RewardR\arewards\x128\n" +
+	"\x17researchExternalIndexes\x18\v \x03(\x05R\x17researchExternalIndexes\x12A\n" +
 	"\rpickRangeType\x18\r \x01(\x0e2\x1b.penum.ProducePickRangeTypeR\rpickRangeType\x12\"\n" +
 	"\fpickCountMin\x18\x0e \x01(\x05R\fpickCountMin\x12\"\n" +
 	"\fpickCountMax\x18\x0f \x01(\x05R\fpickCountMax\x12 \n" +
@@ -7526,7 +7610,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\rMemoryAbility\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\"\n" +
-	"\ftriggerCount\x18\x03 \x01(\x05R\ftriggerCount\"\x9d\x04\n" +
+	"\ftriggerCount\x18\x03 \x01(\x05R\ftriggerCount\"\xd7\x04\n" +
 	"\x1aUserProduceProgressPresent\x12&\n" +
 	"\x0epositionNumber\x18\x02 \x01(\x05R\x0epositionNumber\x12\x1a\n" +
 	"\breceived\x18\x03 \x01(\bR\breceived\x12;\n" +
@@ -7535,7 +7619,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\tpickCount\x18\x06 \x01(\x05R\tpickCount\x12I\n" +
 	"\arewards\x18\v \x03(\v2/.ptransaction.UserProduceProgressPresent.RewardR\arewards\x12$\n" +
 	"\rrewardIndexes\x18\f \x03(\x05R\rrewardIndexes\x12 \n" +
-	"\visVoteBonus\x18\x0e \x01(\bR\visVoteBonus\x1a\xaa\x01\n" +
+	"\visVoteBonus\x18\x0e \x01(\bR\visVoteBonus\x128\n" +
+	"\x17researchExternalIndexes\x18\x0f \x03(\x05R\x17researchExternalIndexes\x1a\xaa\x01\n" +
 	"\x06Reward\x12>\n" +
 	"\fresourceType\x18\x01 \x01(\x0e2\x1a.penum.ProduceResourceTypeR\fresourceType\x12\x1e\n" +
 	"\n" +

@@ -87,6 +87,7 @@ message Event {
   string missionPanelSheetGroupId = 9;
   string storyGroupId = 10;
   string itemId = 11;
+  string playItemId = 15;
   repeated string characterIds = 12;
   repeated string dearnessMissionPanelSheetGroupIds = 13;
   int64 startTime = 100;
@@ -325,6 +326,13 @@ message GashaBackgroundPickup {
   string screenAssetId = 4;
   repeated Reward rewards = 5;
 }
+message GashaBanner {
+  string gashaId = 1;
+  string bannerAssetId = 2;
+  string name = 3;
+  int64 endTime = 100;
+  int32 order = 101;
+}
 message GashaButton {
   string id = 1;
   int32 remainingDrawCount = 2;
@@ -335,6 +343,8 @@ message GashaPoint {
   int32 point = 2;
   bool exchangeable = 3;
   string name = 4;
+  int32 minRequire = 5;
+  int64 endTime = 101;
 }
 message GashaSelectPickup {
   repeated string idolCardSkinIds = 2;
@@ -494,6 +504,7 @@ message Memory {
   penum.IdolCardPotentialRank idolCardPotentialRank = 11;
   bool noProduceHistory = 12;
   bool isHighScoreRush = 14;
+  string researchId = 15;
   ProduceCard produceCard = 20;
   penum.ProduceMemoryProduceCardPhaseType produceCardPhaseType = 21;
   repeated MemoryAbility abilities = 22;
@@ -550,6 +561,7 @@ message ProduceDescriptionSegment {
   penum.ProduceCardCategory produceCardCategory = 5;
   penum.ProduceCardMovePositionType produceCardMovePositionType = 6;
   penum.ProduceStepType produceStepType = 7;
+  penum.ProduceStepBusinessType produceStepBusinessType = 8;
   string text = 100;
   string targetId = 101;
   int32 targetLevel = 102;
@@ -634,10 +646,12 @@ message ProduceHistory {
   int32 voteCount = 37;
   bool isHighScoreRush = 100;
   int32 highScoreGold = 101;
+  string researchId = 110;
   message Audition {
     penum.ProduceStepType stepType = 1;
     int32 stepSelectNumber = 2;
     int32 rank = 3;
+    int32 score = 4;
   }
   message DeckMemory {
     Memory memory = 1;
@@ -753,6 +767,14 @@ message StartupNotification {
   string shopItemId = 11;
   int32 shopItemPurchasedCount = 12;
   int64 shopItemNextResetTime = 13;
+  GashaPoint gashaPoint = 15;
+  repeated GashaBanner gashaPointBanners = 16;
+  string coinGashaItemId = 17;
+  string exchangeItemId = 18;
+  string playItemId = 22;
+  string freeText = 23;
+  string freeTextTitle = 24;
+  string freeTextCloseButtonText = 25;
   int32 priority = 99;
 }
 message StoryEventBonus {

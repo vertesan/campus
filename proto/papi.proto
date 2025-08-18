@@ -152,6 +152,7 @@ service Memory {
   rpc FixInherit(MemoryFixInheritRequest) returns (MemoryFixInheritResponse);
   rpc Exchange(MemoryExchangeRequest) returns (MemoryExchangeResponse);
   rpc UpdateProtection(MemoryUpdateProtectionRequest) returns (MemoryUpdateProtectionResponse);
+  rpc UpdateResearchFavorite(MemoryUpdateResearchFavoriteRequest) returns (MemoryUpdateResearchFavoriteResponse);
   rpc UpdateTagSetting(MemoryUpdateTagSettingRequest) returns (MemoryUpdateTagSettingResponse);
   rpc Reshooting(MemoryReshootingRequest) returns (MemoryReshootingResponse);
 }
@@ -278,6 +279,11 @@ service PvpRate {
   rpc GetHistory(PvpRateGetHistoryRequest) returns (PvpRateGetHistoryResponse);
   rpc UpdateUserPvpRateUnit(PvpRateUpdateUserPvpRateUnitRequest) returns (PvpRateUpdateUserPvpRateUnitResponse);
 }
+service Research {
+  rpc Get(Empty) returns (ResearchGetResponse);
+  rpc Ranking(ResearchRankingRequest) returns (ResearchRankingResponse);
+  rpc RerollMemory(ResearchRerollMemoryRequest) returns (ResearchRerollMemoryResponse);
+}
 service Seminar {
   rpc ListExam(Empty) returns (SeminarListExamResponse);
   rpc GetExam(SeminarGetExamRequest) returns (SeminarGetExamResponse);
@@ -336,6 +342,7 @@ service Tour {
   rpc Retire(Empty) returns (TourRetireResponse);
   rpc PlayTest(TourPlayTestRequest) returns (TourPlayTestResponse);
   rpc UpdateDeck(TourUpdateDeckRequest) returns (TourUpdateDeckResponse);
+  rpc StageRanking(Empty) returns (TourStageRankingResponse);
 }
 service Tower {
   rpc Top(Empty) returns (TowerTopResponse);
@@ -744,6 +751,7 @@ message GashaGetPrecautionResponse {
 }
 message GashaGetProbabilityRequest {
   string gashaId = 1;
+  string gashaButtonId = 2;
 }
 message GashaGetProbabilityResponse {
   DefaultGashaProbability probability = 1;
@@ -751,6 +759,7 @@ message GashaGetProbabilityResponse {
 }
 message GashaGetSelectPickupProbabilityRequest {
   string gashaId = 1;
+  string gashaButtonId = 2;
 }
 message GashaGetSelectPickupProbabilityResponse {
   DefaultGashaProbability probability = 1;
@@ -1577,6 +1586,13 @@ message MemoryUpdateProtectionRequest {
 message MemoryUpdateProtectionResponse {
   papicommon.Response commonResponse = 9999;
 }
+message MemoryUpdateResearchFavoriteRequest {
+  string userMemoryId = 1;
+  bool isResearchFavorite = 2;
+}
+message MemoryUpdateResearchFavoriteResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message MemoryUpdateTagSettingRequest {
   string userMemoryId = 1;
   string memoryTagId = 2;
@@ -1822,6 +1838,7 @@ message PreferenceUpdateResponse {
 message ProduceActivateEffectRequest {
   string produceUuid = 1;
   repeated int32 pickIndexes = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceActivateEffectResponse {
   repeated pcommon.ProduceEffectResult effectResults = 1;
@@ -1847,17 +1864,20 @@ message ProduceChangeForceLiveCommonResponse {
 message ProduceCheckProgressRequest {
   string produceUuid = 1;
   string clientProduceUuid = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceCheckProgressResponse {
   bool isCurrentProduce = 1;
   bool needForceReset = 2;
   string forceResetDescription = 3;
   string produceUuid = 4;
+  string deviceProduceUuid = 5;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceContinueRequest {
   string produceUuid = 1;
   int32 auditionStepSelectNumber = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceContinueResponse {
   papicommon.Response commonResponse = 9999;
@@ -1865,6 +1885,7 @@ message ProduceContinueResponse {
 message ProduceDiscardDrinkRequest {
   string produceUuid = 1;
   repeated int32 drinkIndexes = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceDiscardDrinkResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -1872,6 +1893,7 @@ message ProduceDiscardDrinkResponse {
 }
 message ProduceEndBeforeLiveEvaluationRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceEndBeforeLiveEvaluationResponse {
   papicommon.Response commonResponse = 9999;
@@ -1880,6 +1902,7 @@ message ProduceEndRequest {
   string produceUuid = 1;
   string userMemoryId = 2;
   bool isDefaultImageMemory = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceEndResponse {
   pcommon.Memory memory = 1;
@@ -1888,6 +1911,7 @@ message ProduceEndResponse {
 message ProduceExcludeProduceCardRequest {
   string produceUuid = 1;
   int32 pickIndex = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceExcludeProduceCardResponse {
   papicommon.Response commonResponse = 9999;
@@ -1981,6 +2005,7 @@ message ProduceHistoryResponse {
 }
 message ProduceListRentalMemoryRequest {
   bool isHighScoreRush = 1;
+  bool isResearch = 2;
 }
 message ProduceListRentalMemoryResponse {
   repeated ProduceListRentalMemoryResponse.RentalMemory memories = 1;
@@ -2044,6 +2069,7 @@ message ProduceNextRequest {
   string produceUuid = 1;
   penum.ProduceStepType stepType = 2;
   int32 selectNumber = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceNextResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2087,6 +2113,7 @@ message ProduceRankingTopResponse {
 message ProduceReadAdvRequest {
   string produceUuid = 1;
   string assetId = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceReadAdvResponse {
   papicommon.Response commonResponse = 9999;
@@ -2095,6 +2122,7 @@ message ProduceReadDearnessStoryRequest {
   string produceUuid = 1;
   bool isAuto = 2;
   bool isSkip = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceReadDearnessStoryResponse {
   bool isFirst = 1;
@@ -2104,6 +2132,7 @@ message ProduceReadDearnessStoryResponse {
 }
 message ProduceReportDearnessBoostEventRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceReportDearnessBoostEventResponse {
   string missionPanelSheetGroupId = 1;
@@ -2114,6 +2143,7 @@ message ProduceReportDearnessBoostEventResponse {
 }
 message ProduceReportGuildMissionRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceReportGuildMissionResponse {
   repeated pcommon.GuildMission guildMissions = 1;
@@ -2123,12 +2153,14 @@ message ProduceReportGuildMissionResponse {
 }
 message ProduceRerollMemoryRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceRerollMemoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceRerollSelectProduceCardRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceRerollSelectProduceCardResponse {
   papicommon.Response commonResponse = 9999;
@@ -2142,12 +2174,15 @@ message ProduceResultRequest {
   int32 memoryNumber = 6;
   bool isMemoryExchanged = 7;
   bool useCharacterFocusCamera = 8;
+  bool isMemoryResearchFavorite = 9;
+  string deviceProduceUuid = 10;
 }
 message ProduceResultResponse {
   repeated pcommon.RewardResult rewardResults = 1;
   pcommon.StoryEventProduceResult storyEventProduceResult = 2;
   ProduceResultResponse.HighScoreUpdateResult highScoreUpdateResult = 3;
   repeated int32 unlockChallengeSlotNumbers = 4;
+  ProduceResultResponse.ResearchResult researchResult = 5;
   papicommon.Response commonResponse = 9999;
   message HighScoreReward {
     int32 score = 1;
@@ -2167,12 +2202,18 @@ message ProduceResultResponse {
     repeated pcommon.RewardResult highScoreRushGoldRewardResults = 11;
     int32 characterCount = 12;
   }
+  message ResearchResult {
+    int32 auditionScore = 1;
+    repeated pcommon.RewardResult auditionScoreRewardResults = 2;
+    repeated pcommon.RewardResult produceGradeRewardResults = 3;
+  }
 }
 message ProduceRetireResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStartBeforeLiveEvaluationRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStartBeforeLiveEvaluationResponse {
   papicommon.Response commonResponse = 9999;
@@ -2190,6 +2231,7 @@ message ProduceStartRequest {
   repeated string challengeProduceItemIds = 10;
   bool isHighScoreRush = 11;
   repeated string changeCostumeLiveUnitCharacterIds = 12;
+  bool isResearch = 13;
   string clientProduceUuid = 99;
   message Memory {
     string userMemoryId = 1;
@@ -2202,6 +2244,7 @@ message ProduceStartRequest {
 }
 message ProduceStartResponse {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
@@ -2209,6 +2252,7 @@ message ProduceStepAuditionEndExamBattleRequest {
   string produceUuid = 1;
   pcommon.ExamBattleResult result = 2;
   repeated pcommon.ExamTurnEndLog turnEndLogs = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceStepAuditionEndExamBattleResponse {
   bool shouldTransitionSeminar = 1;
@@ -2216,6 +2260,7 @@ message ProduceStepAuditionEndExamBattleResponse {
 }
 message ProduceStepAuditionEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionEndResponse {
   repeated pcommon.ProduceRewardResult rewardResults = 1;
@@ -2225,6 +2270,7 @@ message ProduceStepAuditionEndResponse {
 }
 message ProduceStepAuditionRefreshRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionRefreshResponse {
   int32 beforeStamina = 1;
@@ -2234,6 +2280,7 @@ message ProduceStepAuditionRefreshResponse {
 }
 message ProduceStepAuditionStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 100;
@@ -2242,6 +2289,7 @@ message ProduceStepAuditionStartResponse {
 message ProduceStepBusinessSelectRequest {
   string produceUuid = 1;
   penum.ProduceStepBusinessType businessType = 2;
+  string deviceProduceUuid = 3;
 }
 message ProduceStepBusinessSelectResponse {
   repeated pcommon.ProduceConsumptionResult consumptionResults = 100;
@@ -2250,6 +2298,7 @@ message ProduceStepBusinessSelectResponse {
 }
 message ProduceStepBusinessStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepBusinessStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2257,6 +2306,7 @@ message ProduceStepBusinessStartResponse {
 }
 message ProduceStepCustomizeEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepCustomizeEndResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2266,6 +2316,7 @@ message ProduceStepCustomizeSelectRequest {
   string produceUuid = 1;
   int32 deckProduceCardIndex = 2;
   string produceCardCustomizeId = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceStepCustomizeSelectResponse {
   int32 beforeProducePoint = 1;
@@ -2275,6 +2326,7 @@ message ProduceStepCustomizeSelectResponse {
 }
 message ProduceStepCustomizeStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepCustomizeStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2285,6 +2337,7 @@ message ProduceStepEventRequest {
   int32 suggestionIndex = 2;
   bool isSkip = 3;
   bool isFastForward = 4;
+  string deviceProduceUuid = 5;
 }
 message ProduceStepEventResponse {
   bool success = 1;
@@ -2294,6 +2347,7 @@ message ProduceStepEventResponse {
 }
 message ProduceStepLessonEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
   pcommon.ProduceExamEndResult examEndResult = 1001;
   repeated pcommon.ExamTurnEndLog turnEndLogs = 1002;
 }
@@ -2304,6 +2358,7 @@ message ProduceStepLessonEndResponse {
 }
 message ProduceStepLessonStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepLessonStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2311,6 +2366,7 @@ message ProduceStepLessonStartResponse {
 }
 message ProduceStepPresentEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepPresentEndResponse {
   repeated pcommon.ProduceRewardResult rewardResults = 1;
@@ -2321,6 +2377,7 @@ message ProduceStepPresentReceiveRequest {
   string produceUuid = 1;
   int32 positionNumber = 2;
   repeated int32 rewardIndexes = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceStepPresentReceiveResponse {
   repeated pcommon.ProduceRewardResult providedRewards = 1;
@@ -2329,6 +2386,7 @@ message ProduceStepPresentReceiveResponse {
 }
 message ProduceStepPresentStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepPresentStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2336,6 +2394,7 @@ message ProduceStepPresentStartResponse {
 }
 message ProduceStepRefreshRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepRefreshResponse {
   int32 beforeStamina = 1;
@@ -2345,6 +2404,7 @@ message ProduceStepRefreshResponse {
 }
 message ProduceStepSelfLessonEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepSelfLessonEndResponse {
   repeated pcommon.ProduceRewardResult rewardResults = 100;
@@ -2353,6 +2413,7 @@ message ProduceStepSelfLessonEndResponse {
 }
 message ProduceStepSelfLessonStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepSelfLessonStartResponse {
   int32 beforeStamina = 1;
@@ -2364,6 +2425,7 @@ message ProduceStepShopBuyRequest {
   string produceUuid = 1;
   int32 positionNumber = 2;
   int32 deckProduceCardIndex = 3;
+  string deviceProduceUuid = 4;
 }
 message ProduceStepShopBuyResponse {
   repeated pcommon.ProduceRewardResult providedRewards = 1;
@@ -2374,6 +2436,7 @@ message ProduceStepShopBuyResponse {
 }
 message ProduceStepShopEndRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepShopEndResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2381,12 +2444,14 @@ message ProduceStepShopEndResponse {
 }
 message ProduceStepShopRerollRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepShopRerollResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepShopStartRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepShopStartResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
@@ -2394,6 +2459,7 @@ message ProduceStepShopStartResponse {
 }
 message ProduceStepSkipRequest {
   string produceUuid = 1;
+  string deviceProduceUuid = 2;
 }
 message ProduceStepSkipResponse {
   int32 beforeStamina = 1;
@@ -2409,6 +2475,7 @@ message ProduceTopResponse {
   pcommon.StoryEventBonus storyEventBonus = 6;
   ProduceTopResponse.ProduceHighScore produceHighScore = 8;
   repeated string produceHighScoreCharacterIds = 7;
+  ProduceTopResponse.Research research = 9;
   papicommon.Response commonResponse = 9999;
   message ProduceHighScore {
     penum.ProduceHighScoreEventType eventType = 1;
@@ -2417,6 +2484,15 @@ message ProduceTopResponse {
     repeated string produceItemIds = 4;
     int64 startTime = 5;
     int64 endTime = 6;
+  }
+  message Research {
+    repeated string produceGroupIds = 1;
+    repeated penum.ProduceExamEffectType playableExamEffectTypes = 2;
+    repeated string externalProduceCardIds = 3;
+    repeated string memoryPickupProduceCardIds = 4;
+    repeated string produceItemIds = 5;
+    int64 startTime = 100;
+    int64 endTime = 101;
   }
 }
 message ProduceUnlockPictureBookLiveRequest {
@@ -2450,9 +2526,6 @@ message ProduceUpdateSupportCardDeckRequest {
 }
 message ProduceUpdateSupportCardDeckResponse {
   papicommon.Response commonResponse = 9999;
-}
-message ProduceUseDrinkResponse {
-  repeated pcommon.ProduceEffectResult effectResults = 101;
 }
 message ProduceViewPictureBookLiveRequest {
   string musicId = 1;
@@ -2658,6 +2731,47 @@ message PvpRateUpdateUserPvpRateUnitRequest {
   penum.DeckRecommendType recommendType = 2;
 }
 message PvpRateUpdateUserPvpRateUnitResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ResearchGetResponse {
+  string researchId = 1;
+  string titleAssetId = 2;
+  string bgmAssetId = 3;
+  string missionGroupId = 4;
+  string rerollItemId = 5;
+  penum.SkillRarity ignoreMemoryAbilityRarity = 6;
+  int32 maxMemoryAbilityLockCount = 7;
+  repeated string produceGroupIds = 8;
+  repeated penum.ProduceExamEffectType playableExamEffectTypes = 9;
+  repeated string externalProduceCardIds = 10;
+  repeated string memoryPickupProduceCardIds = 11;
+  repeated string produceItemIds = 12;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 closeTime = 102;
+  papicommon.Response commonResponse = 9999;
+}
+message ResearchRankingRequest {
+  string characterId = 1;
+}
+message ResearchRankingResponse {
+  ResearchRankingResponse.Rank selfRank = 1;
+  repeated ResearchRankingResponse.Rank ranks = 2;
+  papicommon.Response commonResponse = 9999;
+  message Rank {
+    int32 rank = 1;
+    int32 auditionScore = 2;
+    string produceGroupId = 3;
+    string idolCardSkinId = 4;
+    string userMemoryId = 5;
+    pcommon.SimpleProfile profile = 99;
+  }
+}
+message ResearchRerollMemoryRequest {
+  string userMemoryId = 1;
+  repeated bool memoryAbilityRerollLocks = 2;
+}
+message ResearchRerollMemoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message SeminarEndExamRequest {
@@ -3182,9 +3296,13 @@ message TourResultResponse {
   int32 scoreBonusPoint = 3;
   int32 scoreGradeBonusPoint = 4;
   repeated TourTotalPointReward totalPointRewards = 5;
-  repeated pcommon.RewardResult totalPointRewardResults = 6;
+  TourResultResponse.TotalPointRewardResult totalPointRewardResult = 6;
   repeated pcommon.RewardResult stageLevelClearRewardResults = 7;
   papicommon.Response commonResponse = 9999;
+  message TotalPointRewardResult {
+    repeated pcommon.RewardResult totalPointRewardResults = 1;
+    repeated TourTotalPointReward totalPointRewardRanges = 2;
+  }
 }
 message TourRetireResponse {
   papicommon.Response commonResponse = 9999;
@@ -3200,6 +3318,25 @@ message TourSetUpDeck {
 message TourStageLevel {
   int32 level = 1;
   int32 scoreThreshold = 2;
+}
+message TourStageRankingResponse {
+  repeated TourStageRankingResponse.StageRanking stageRankings = 1;
+  repeated TourStageRankingResponse.SelfStageRank selfStageRanks = 2;
+  papicommon.Response commonResponse = 9999;
+  message UserRank {
+    int32 rank = 1;
+    int32 score = 2;
+    pcommon.SimpleProfile profile = 3;
+    TourDeck deck = 4;
+  }
+  message SelfStageRank {
+    int32 number = 1;
+    TourStageRankingResponse.UserRank userRank = 2;
+  }
+  message StageRanking {
+    int32 number = 1;
+    repeated TourStageRankingResponse.UserRank userRanks = 2;
+  }
 }
 message TourStartRequest {
   string clientUuid = 1;
@@ -3238,10 +3375,14 @@ message TourTopResponse {
   penum.IdolCardPotentialRank maxIdolCardPotentialRank = 20;
   string idolCardPieceItemId = 21;
   int32 maxContinueCount = 22;
+  string gradationColor1 = 23;
+  string gradationColor2 = 24;
+  string liveTicketName = 25;
+  int32 initialPlayItemCount = 26;
+  int32 dailyPlayItemCount = 27;
   int64 startTime = 100;
   int64 endTime = 101;
-  int64 fixRankTime = 102;
-  int64 closeTime = 103;
+  int64 closeTime = 102;
   papicommon.Response commonResponse = 9999;
   message Stage {
     int32 number = 1;
@@ -3266,8 +3407,8 @@ message TourTopResponse {
     int64 iconX = 20;
     int64 iconY = 21;
     penum.TourStageIconSizeType iconSizeType = 22;
-    string bannerAssetId = 23;
-    string backgroundAssetId = 24;
+    int64 sceneLayoutHeightCorrection = 25;
+    string nameLogoAssetId = 26;
     message StageLevelReward {
       int32 level = 1;
       int32 scoreThreshold = 2;

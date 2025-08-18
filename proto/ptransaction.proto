@@ -153,6 +153,9 @@ message UserMemory {
   int32 stamina = 33;
   repeated pcommon.ProduceCard examBattleProduceCards = 36;
   repeated string examBattleProduceItemIds = 37;
+  string researchId = 50;
+  int32 researchRerollCount = 51;
+  bool isResearchFavorite = 52;
   penum.ProduceLiveType endingLiveType = 99;
   penum.ProduceLiveType produceLiveType = 100;
   string liveCostumeId = 101;
@@ -312,6 +315,10 @@ message UserProduceProgress {
   repeated penum.ProduceType trueEndProduceTypes = 13;
   bool hasForceLiveCommonIdolCard = 15;
   bool disableForceLiveCommon = 16;
+  bool isResearch = 71;
+  repeated string researchExternalProduceCardIds = 72;
+  repeated string researchMemoryPickupProduceCardIds = 73;
+  repeated string researchProduceItemIds = 74;
   string produceHighScoreId = 80;
   repeated pcommon.ProduceCampaign produceCampaigns = 91;
   penum.ProduceProgressStatus status = 100;
@@ -459,6 +466,7 @@ message UserProduceProgressEffect {
   penum.ProduceEffectType type = 4;
   int32 value = 5;
   repeated UserProduceProgressEffect.Reward rewards = 10;
+  repeated int32 researchExternalIndexes = 11;
   penum.ProducePickRangeType pickRangeType = 13;
   int32 pickCountMin = 14;
   int32 pickCountMax = 15;
@@ -505,6 +513,7 @@ message UserProduceProgressPresent {
   repeated UserProduceProgressPresent.Reward rewards = 11;
   repeated int32 rewardIndexes = 12;
   bool isVoteBonus = 14;
+  repeated int32 researchExternalIndexes = 15;
   message Reward {
     penum.ProduceResourceType resourceType = 1;
     string resourceId = 2;

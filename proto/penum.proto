@@ -15,6 +15,7 @@ enum AntiCheatFeatureType {
   AntiCheatFeatureType_ExamPvpRate = 3;
   AntiCheatFeatureType_ExamTower = 4;
   AntiCheatFeatureType_ExamGvgRaid = 5;
+  AntiCheatFeatureType_ExamTour = 6;
   AntiCheatFeatureType_AndroidPlayIntegrity = 101;
 }
 enum AppReviewType {
@@ -328,6 +329,7 @@ enum EventType {
   EventType_GvgRaid = 9;
   EventType_DearnessBoost = 10;
   EventType_Tour = 11;
+  EventType_Research = 12;
 }
 enum ExamActionType {
   ExamActionType_Unknown = 0;
@@ -397,6 +399,7 @@ enum ExamGameType {
   ExamGameType_PvpRate = 3;
   ExamGameType_Tower = 4;
   ExamGameType_GvgRaid = 5;
+  ExamGameType_Tour = 6;
 }
 enum ExamIdolStatusType {
   ExamIdolStatusType_Unknown = 0;
@@ -553,6 +556,8 @@ enum FeatureMaintenanceType {
   FeatureMaintenanceType_GvgRaid = 19;
   FeatureMaintenanceType_Dearness = 20;
   FeatureMaintenanceType_Tour = 21;
+  FeatureMaintenanceType_Research = 22;
+  FeatureMaintenanceType_ProduceEvent = 24;
 }
 enum FourPanelComicSeries {
   FourPanelComicSeries_Unknown = 0;
@@ -1061,7 +1066,6 @@ enum NoticeType {
 enum PaymentPendingReceiptDialogTimingType {
   PaymentPendingReceiptDialogTimingType_Unknown = 0;
   PaymentPendingReceiptDialogTimingType_Skip = 1;
-  PaymentPendingReceiptDialogTimingType_Daily = 2;
 }
 enum PhotoBackgroundCategory {
   PhotoBackgroundCategory_Unknown = 0;
@@ -1346,6 +1350,7 @@ enum ProduceDescriptionType {
   ProduceDescriptionType_Exam = 6;
   ProduceDescriptionType_ProduceCardGrowEffectType = 7;
   ProduceDescriptionType_ProduceStepType = 8;
+  ProduceDescriptionType_ProduceStepBusinessType = 9;
   ProduceDescriptionType_ProduceDescription = 10;
   ProduceDescriptionType_ProduceDescriptionName = 11;
   ProduceDescriptionType_ProduceCard = 12;
@@ -2347,6 +2352,13 @@ enum StartupNotificationEffectType {
   StartupNotificationEffectType_Confetti2 = 2;
   StartupNotificationEffectType_Twinkling1 = 3;
 }
+enum StartupNotificationRemindType {
+  StartupNotificationRemindType_Unknown = 0;
+  StartupNotificationRemindType_CoinGasha = 1;
+  StartupNotificationRemindType_Exchange = 2;
+  StartupNotificationRemindType_PlayItem = 3;
+  StartupNotificationRemindType_GashaPoint = 4;
+}
 enum StartupNotificationType {
   StartupNotificationType_Unknown = 0;
   StartupNotificationType_Movie = 1;
@@ -2355,6 +2367,11 @@ enum StartupNotificationType {
   StartupNotificationType_Notice = 4;
   StartupNotificationType_Shop = 5;
   StartupNotificationType_ProfileReport = 6;
+  StartupNotificationType_FreeText = 7;
+  StartupNotificationType_GashaPointExpire = 8;
+  StartupNotificationType_ExchangeItemExpire = 9;
+  StartupNotificationType_CoinGashaItemExpire = 10;
+  StartupNotificationType_PlayItemExpire = 11;
 }
 enum StoryCampaignType {
   StoryCampaignType_Unknown = 0;
@@ -2564,6 +2581,7 @@ enum TutorialType {
   TutorialType_ProduceNextIdolAuditionMaster = 207;
   TutorialType_ProduceNextIdolAuditionMasterRanking = 208;
   TutorialType_Tour = 209;
+  TutorialType_Research = 210;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;
