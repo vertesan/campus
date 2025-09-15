@@ -13,7 +13,6 @@ import (
 
 const NEW_AB_FLAG_FILE = "cache/newab_flag"
 const OCTO_CACHE_FILE = "cache/octocacheevai"
-const MASTER_TAG_FILE = "cache/masterGetDec240522202758690.bin"
 
 var (
   flagDb        = flag.Bool("db", false, "Download and decrypt master database if true.\nGenerated yaml files are saved in 'cache/masterYaml' directory.")

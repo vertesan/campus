@@ -1,12 +1,13 @@
 import { exit } from "process";
 import { getXIdolCard } from "./cidol";
-import { getCidol, getCsprt, getMemoryInspector, getPCard } from "./kv";
+import { getCidol, getCsprt, getMaster, getMemoryInspector, getPCard } from "./kv";
 import * as zlib from "zlib";
 import { promisify } from "util";
 import { getXSupportCard } from "./csprt";
 import { getXCustProduceCards } from "./pcard";
 import { getXMemoryInspector } from "./memoryInspector";
 import path from "path";
+import { getXMaster } from "./master";
 
 const kvEndpoint = process.env.CAMPUS_DB_PUT_URL
 const kvApiKey = process.env.CAMPUS_DB_PUT_SECRET
@@ -62,6 +63,6 @@ async function run() {
   await updateDB("GXSupportCard", getCsprt, getXSupportCard)
   await updateDB("GXProduceCard", getPCard, getXCustProduceCards)
   await updateDB("GXMemory", getMemoryInspector, getXMemoryInspector)
+  await updateDB("GXMaster", getMaster, getXMaster)
 }
-
 await run()

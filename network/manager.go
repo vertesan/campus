@@ -79,7 +79,9 @@ func ProcessMasterDbAndApiResp(flagForceDb bool, flagPutDb bool) {
     // download master database
     master.DownloadAndDecrypt(manager.Client.MasterResp, flagPutDb)
     if flagPutDb {
-      master.PutDb("Version", fmt.Sprintf(`{"version":"%s"}`, serverVer))
+      strVersion := fmt.Sprintf(`{"version":"%s"}`, serverVer)
+      master.PutDb("Version", strVersion)
+      master.WriteJson("Version", &strVersion)
     }
   } else {
     rich.Info("Local database is already up to date, skip downloading database.")
@@ -105,19 +107,25 @@ func ProcessApiResponse(manager *NetworkManager) {
   if err != nil {
     panic(err)
   }
-  master.PutDb("HomeEnter", string(homeBytes))
+  strHome := string(homeBytes)
+  master.PutDb("HomeEnter", strHome)
+  master.WriteJson("HomeEnter", &strHome)
   // Hotice.ListAll
   noticeBytes, err := jsonMarshalOptions.Marshal(manager.Client.NoticeListAllResp)
   if err != nil {
     panic(err)
   }
-  master.PutDb("NoticeListAll", string(noticeBytes))
+  strNotice := string(noticeBytes)
+  master.PutDb("NoticeListAll", strNotice)
+  master.WriteJson("NoticeListAll", &strNotice)
   // PvpRate.Get
   if manager.Client.PvpRateGetResp != nil {
     pvpBytes, err := jsonMarshalOptions.Marshal(manager.Client.PvpRateGetResp)
     if err != nil {
       panic(err)
     }
-    master.PutDb("PvpRateGet", string(pvpBytes))
+    strPvp := string(pvpBytes)
+    master.PutDb("PvpRateGet", strPvp)
+    master.WriteJson("PvpRateGet", &strPvp)
   }
 }

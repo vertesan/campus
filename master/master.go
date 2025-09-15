@@ -229,3 +229,7 @@ func writeJson(name string, data *string) {
     panic(err)
   }
 }
+
+func WriteJson(name string, data *string) {
+  writeJson(name, data)
+}
