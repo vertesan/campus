@@ -59,10 +59,13 @@ async function updateDB<
 }
 
 async function run() {
-  await updateDB("GXIdolCard", getCidol, getXIdolCard)
-  await updateDB("GXSupportCard", getCsprt, getXSupportCard)
-  await updateDB("GXProduceCard", getPCard, getXCustProduceCards)
-  await updateDB("GXMemory", getMemoryInspector, getXMemoryInspector)
+  const args = process.argv.slice(2)
+  if (args.length === 2 && args[0] !== args[1]) {
+    await updateDB("GXIdolCard", getCidol, getXIdolCard)
+    await updateDB("GXSupportCard", getCsprt, getXSupportCard)
+    await updateDB("GXProduceCard", getPCard, getXCustProduceCards)
+    await updateDB("GXMemory", getMemoryInspector, getXMemoryInspector)
+  }
   await updateDB("GXMaster", getMaster, getXMaster)
 }
 await run()
