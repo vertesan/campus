@@ -18,6 +18,9 @@ message UserActionPoint {
 message UserAuthProvider {
   penum.AuthProviderType authProviderType = 2;
 }
+message UserBadge {
+  string badgeId = 2;
+}
 message UserBalance {
   int32 freeBalance = 1;
   int32 paidBalance = 2;
@@ -36,6 +39,9 @@ message UserCharacterCostume {
   penum.CostumeSetType setType = 3;
   string costumeHeadId = 5;
   string costumeId = 4;
+  bool useDefaultCostumeHead = 6;
+  repeated string excludeCostumeIds = 7;
+  repeated string excludeCostumeHeadIds = 8;
 }
 message UserCharacterRoster {
   string characterId = 2;
@@ -315,6 +321,9 @@ message UserProduceProgress {
   repeated penum.ProduceType trueEndProduceTypes = 13;
   bool hasForceLiveCommonIdolCard = 15;
   bool disableForceLiveCommon = 16;
+  bool isInterrupted = 18;
+  bool hasInterruptedBefore = 19;
+  int32 startDearnessLevel = 20;
   bool isResearch = 71;
   repeated string researchExternalProduceCardIds = 72;
   repeated string researchMemoryPickupProduceCardIds = 73;

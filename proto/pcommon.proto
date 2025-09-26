@@ -714,6 +714,22 @@ message ProducerLevelUnlockTarget {
   string id = 2;
   int32 quantity = 3;
 }
+message ProducerRankingResult {
+  string characterId = 1;
+  repeated ProducerRankingResult.ProduceResult produceResults = 2;
+  repeated ProducerRankingResult.TowerResult towerResults = 3;
+  message ProduceResult {
+    string produceGroupId = 1;
+    int64 point = 2;
+    int64 diff = 3;
+  }
+  message TowerResult {
+    string towerId = 1;
+    int64 layerNumber = 2;
+    int64 point = 3;
+    int64 diff = 4;
+  }
+}
 message PvpRateExamBattleResult {
   ExamBattleAutoRequest examBattleAutoRequest = 1;
   repeated int32 selfStageResultScoreList = 2;

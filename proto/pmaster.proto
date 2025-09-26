@@ -56,6 +56,23 @@ message AssetDownload {
 message AssetDownloadList {
   repeated AssetDownload list = 1;
 }
+message Badge {
+  string id = 1;
+  string characterId = 2;
+  string name = 3;
+  string description = 4;
+  penum.BadgeType type = 5;
+  string targetId = 6;
+  penum.BadgeGrade grade = 8;
+  string producerRankingId = 50;
+  string targetIdentityName = 100;
+  string targetContentName = 101;
+  string targetGradeName = 102;
+  int32 order = 999;
+}
+message BadgeList {
+  repeated Badge list = 1;
+}
 message Bgm {
   string page = 2;
   string name = 3;
@@ -449,6 +466,7 @@ message ExamMotion {
   string sceneLayoutId = 8;
   string cameraId = 9;
   repeated string produceGroupIds = 10;
+  repeated string targetIds = 11;
 }
 message ExamMotionList {
   repeated ExamMotion list = 1;
@@ -1088,6 +1106,7 @@ message Media {
   int32 fourPanelComicEpisode = 9;
   string caption = 10;
   penum.FourPanelComicSeries fourPanelComicSeries = 11;
+  penum.MediaMovieType mediaMovieType = 12;
   int64 startTime = 100;
   int64 endTime = 101;
   int32 order = 102;
@@ -1367,6 +1386,7 @@ message Music {
   string unlockConditionSetId = 14;
   string produceLiveUnlockItemConditionSetId = 15;
   string externalUrl = 18;
+  repeated string unlockMusicIds = 19;
   int64 viewStartTime = 98;
   int32 order = 99;
 }
@@ -2310,6 +2330,24 @@ message ProduceScheduleMotion {
 message ProduceScheduleMotionList {
   repeated ProduceScheduleMotion list = 1;
 }
+message ProduceSeason {
+  string id = 1;
+  string name = 2;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+}
+message ProduceSeasonList {
+  repeated ProduceSeason list = 1;
+}
+message ProduceSeasonZeroGrade {
+  string produceGroupId = 1;
+  penum.ResultGrade grade = 2;
+  int32 threshold = 3;
+}
+message ProduceSeasonZeroGradeList {
+  repeated ProduceSeasonZeroGrade list = 1;
+}
 message ProduceSetting {
   string id = 1;
   int32 initialProducePoint = 5;
@@ -2323,7 +2361,6 @@ message ProduceSetting {
   int32 continueCount = 26;
   int32 produceAuditionTrendAssessmentPermilUpper = 62;
   int32 produceAuditionTrendAssessmentPermilLower = 63;
-  int32 produceAuditionTrendAssessmentPermil = 64;
 }
 message ProduceSettingList {
   repeated ProduceSetting list = 1;
@@ -2570,6 +2607,53 @@ message ProducerLevel {
 message ProducerLevelList {
   repeated ProducerLevel list = 1;
 }
+message ProducerRanking {
+  string id = 1;
+  string name = 2;
+  repeated string characterIds = 3;
+  bool hasCharacterRankingReward = 5;
+  bool hasOverallRankingReward = 7;
+  string producerRankingRankGradeId = 8;
+  string producerRankingProduceId = 100;
+  string producerRankingTowerId = 101;
+  int64 startTime = 200;
+  int64 endTime = 201;
+  int64 fixRankTime = 202;
+}
+message ProducerRankingCharacter {
+  string characterId = 1;
+  float characterTopPositionX = 2;
+  float characterTopPositionY = 3;
+}
+message ProducerRankingCharacterList {
+  repeated ProducerRankingCharacter list = 1;
+}
+message ProducerRankingList {
+  repeated ProducerRanking list = 1;
+}
+message ProducerRankingProduce {
+  string id = 1;
+  string produceId = 2;
+}
+message ProducerRankingProduceList {
+  repeated ProducerRankingProduce list = 1;
+}
+message ProducerRankingRankGrade {
+  string id = 1;
+  int32 upperLimitRank = 2;
+  penum.ProducerRankingGrade grade = 3;
+}
+message ProducerRankingRankGradeList {
+  repeated ProducerRankingRankGrade list = 1;
+}
+message ProducerRankingTower {
+  string id = 1;
+  string towerId = 2;
+  repeated int32 layerNumbers = 4;
+}
+message ProducerRankingTowerList {
+  repeated ProducerRankingTower list = 1;
+}
 message PvpRateCommonProduceCard {
   string id = 1;
   penum.ProducePlanType planType = 2;
@@ -2767,7 +2851,6 @@ message Setting {
   int32 towerRankingDisplayCount = 127;
   int32 towerRankingDeckDisplayCount = 128;
   string dearnessTopConditionSetID = 131;
-  string liveLightAnchorEnableConditionSetID = 133;
   int32 tourScoreEffectMiddleThreshold = 134;
   int32 tourScoreEffectLargeThreshold = 135;
   int32 tourAuditionScoreUpMiddle = 136;
@@ -2776,6 +2859,7 @@ message Setting {
   int32 memoryInheritMaterialLowerResultGrade = 139;
   bool memoryInheritCustomizeProduceCardEnable = 140;
   int32 researchRankingDisplayCount = 141;
+  string homeCharacterRandomIdolViewConditionSetID = 143;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -2863,6 +2947,9 @@ message Setting {
   string aprilFool2025TransitionStoryID = 2001;
   string aprilFool2025ProduceLiveMusicID = 2002;
   string produceNextIdolAuditionMasterRankingUnlockConditionSetID = 2101;
+  string producerRankingUnlockConditionSetID = 2201;
+  string producerRankingBGMAssetID = 2202;
+  int32 producerRankingCharacterAnimationLowerLimitRank = 2203;
 }
 message SettingList {
   repeated Setting list = 1;

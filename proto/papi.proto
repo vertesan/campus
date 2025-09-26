@@ -32,6 +32,7 @@ service CoinGasha {
 service Costume {
   rpc Set(CostumeSetRequest) returns (CostumeSetResponse);
   rpc Check(CostumeCheckRequest) returns (CostumeCheckResponse);
+  rpc SetRandom(CostumeSetRandomRequest) returns (CostumeSetRandomResponse);
 }
 service Exchange {
   rpc Get(ExchangeGetRequest) returns (ExchangeGetResponse);
@@ -204,6 +205,8 @@ service Produce {
   rpc ListRentalMemory(ProduceListRentalMemoryRequest) returns (ProduceListRentalMemoryResponse);
   rpc CheckProgress(ProduceCheckProgressRequest) returns (ProduceCheckProgressResponse);
   rpc Start(ProduceStartRequest) returns (ProduceStartResponse);
+  rpc Restart(Empty) returns (ProduceRestartResponse);
+  rpc Save(ProduceSaveRequest) returns (ProduceSaveResponse);
   rpc Next(ProduceNextRequest) returns (ProduceNextResponse);
   rpc StepSkip(ProduceStepSkipRequest) returns (ProduceStepSkipResponse);
   rpc StepEvent(ProduceStepEventRequest) returns (ProduceStepEventResponse);
@@ -258,6 +261,21 @@ service ProduceHighScore {
 service ProduceNextIdolAuditionMaster {
   rpc Ranking(ProduceNextIdolAuditionMasterRankingRequest) returns (ProduceNextIdolAuditionMasterRankingResponse);
   rpc ListRankReward(ProduceNextIdolAuditionMasterListRankRewardRequest) returns (ProduceNextIdolAuditionMasterListRankRewardResponse);
+}
+service ProduceSeason {
+  rpc RankingTop(ProduceSeasonRankingTopRequest) returns (ProduceSeasonRankingTopResponse);
+  rpc RankingTopHistory(ProduceSeasonRankingTopHistoryRequest) returns (ProduceSeasonRankingTopHistoryResponse);
+  rpc Ranking(ProduceSeasonRankingRequest) returns (ProduceSeasonRankingResponse);
+  rpc RankingHistory(ProduceSeasonRankingHistoryRequest) returns (ProduceSeasonRankingHistoryResponse);
+}
+service ProducerRanking {
+  rpc Top(Empty) returns (ProducerRankingTopResponse);
+  rpc Ranking(ProducerRankingRankingRequest) returns (ProducerRankingRankingResponse);
+  rpc Character(ProducerRankingCharacterRequest) returns (ProducerRankingCharacterResponse);
+  rpc ListRankReward(ProducerRankingListRankRewardRequest) returns (ProducerRankingListRankRewardResponse);
+  rpc TopHistory(ProducerRankingTopHistoryRequest) returns (ProducerRankingTopHistoryResponse);
+  rpc RankingHistory(ProducerRankingRankingHistoryRequest) returns (ProducerRankingRankingHistoryResponse);
+  rpc CharacterHistory(ProducerRankingCharacterHistoryRequest) returns (ProducerRankingCharacterHistoryResponse);
 }
 service Profile {
   rpc Get(ProfileGetRequest) returns (ProfileGetResponse);
@@ -521,6 +539,19 @@ message CostumeCheckRequest {
 message CostumeCheckResponse {
   papicommon.Response commonResponse = 9999;
 }
+message CostumeSetRandomRequest {
+  penum.CostumeSetType setType = 1;
+  repeated CostumeSetRandomRequest.RandomCharacterCostume randomCharacterCostumes = 2;
+  message RandomCharacterCostume {
+    string characterId = 1;
+    bool useDefaultCostumeHead = 2;
+    repeated string excludeCostumeIds = 3;
+    repeated string excludeCostumeHeadIds = 4;
+  }
+}
+message CostumeSetRandomResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message CostumeSetRequest {
   string characterId = 1;
   penum.CostumeSetType setType = 2;
@@ -661,6 +692,9 @@ message GashaDrawRequest {
   string gashaId = 1;
   string gashaButtonId = 2;
   int32 drawCount = 3;
+  penum.ResourceType consumeResourceType = 4;
+  string consumeResourceId = 5;
+  int32 consumeResourceQuantity = 6;
 }
 message GashaDrawResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -678,6 +712,9 @@ message GashaDrawResult {
 message GashaDrawSelectPickupRequest {
   string gashaId = 1;
   string gashaButtonId = 2;
+  penum.ResourceType consumeResourceType = 3;
+  string consumeResourceId = 4;
+  int32 consumeResourceQuantity = 5;
 }
 message GashaDrawSelectPickupResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -689,6 +726,9 @@ message GashaDrawSelectPickupResponse {
 message GashaDrawStepUpRequest {
   string gashaId = 1;
   string gashaButtonId = 2;
+  penum.ResourceType consumeResourceType = 3;
+  string consumeResourceId = 4;
+  int32 consumeResourceQuantity = 5;
 }
 message GashaDrawStepUpResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -1271,6 +1311,7 @@ message HomeLoginResponse {
   HomeLoginResponse.FriendResult friendResult = 1;
   repeated pcommon.ProducerLevelUnlock producerLevelUnlocks = 2;
   HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult produceNextIdolAuditionMasterSeasonResult = 100;
+  HomeLoginResponse.ProducerRankingResult producerRankingResult = 101;
   papicommon.Response commonResponse = 9999;
   message FriendResult {
     int32 receivedFriendCoinQuantity = 1;
@@ -1284,6 +1325,16 @@ message HomeLoginResponse {
       string characterId = 1;
       int32 rank = 2;
       int32 score = 3;
+      repeated pcommon.Reward rewards = 4;
+    }
+  }
+  message ProducerRankingResult {
+    string producerRankingId = 1;
+    repeated HomeLoginResponse.ProducerRankingResult.CharacterResult characterResults = 2;
+    message CharacterResult {
+      string characterId = 1;
+      int32 rank = 2;
+      int64 point = 3;
       repeated pcommon.Reward rewards = 4;
     }
   }
@@ -1836,7 +1887,6 @@ message PreferenceUpdateResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceActivateEffectRequest {
-  string produceUuid = 1;
   repeated int32 pickIndexes = 2;
   string deviceProduceUuid = 3;
 }
@@ -1862,7 +1912,6 @@ message ProduceChangeForceLiveCommonResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceCheckProgressRequest {
-  string produceUuid = 1;
   string clientProduceUuid = 2;
   string deviceProduceUuid = 3;
 }
@@ -1872,10 +1921,10 @@ message ProduceCheckProgressResponse {
   string forceResetDescription = 3;
   string produceUuid = 4;
   string deviceProduceUuid = 5;
+  bool isInterrupted = 6;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceContinueRequest {
-  string produceUuid = 1;
   int32 auditionStepSelectNumber = 2;
   string deviceProduceUuid = 3;
 }
@@ -1883,7 +1932,6 @@ message ProduceContinueResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceDiscardDrinkRequest {
-  string produceUuid = 1;
   repeated int32 drinkIndexes = 2;
   string deviceProduceUuid = 3;
 }
@@ -1892,14 +1940,12 @@ message ProduceDiscardDrinkResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceEndBeforeLiveEvaluationRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceEndBeforeLiveEvaluationResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceEndRequest {
-  string produceUuid = 1;
   string userMemoryId = 2;
   bool isDefaultImageMemory = 3;
   string deviceProduceUuid = 4;
@@ -1909,7 +1955,6 @@ message ProduceEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceExcludeProduceCardRequest {
-  string produceUuid = 1;
   int32 pickIndex = 2;
   string deviceProduceUuid = 3;
 }
@@ -2066,7 +2111,6 @@ message ProduceNextIdolAuditionMasterRankingResponse {
   }
 }
 message ProduceNextRequest {
-  string produceUuid = 1;
   penum.ProduceStepType stepType = 2;
   int32 selectNumber = 3;
   string deviceProduceUuid = 4;
@@ -2111,7 +2155,6 @@ message ProduceRankingTopResponse {
   }
 }
 message ProduceReadAdvRequest {
-  string produceUuid = 1;
   string assetId = 2;
   string deviceProduceUuid = 3;
 }
@@ -2119,7 +2162,6 @@ message ProduceReadAdvResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceReadDearnessStoryRequest {
-  string produceUuid = 1;
   bool isAuto = 2;
   bool isSkip = 3;
   string deviceProduceUuid = 4;
@@ -2131,7 +2173,6 @@ message ProduceReadDearnessStoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceReportDearnessBoostEventRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceReportDearnessBoostEventResponse {
@@ -2142,7 +2183,6 @@ message ProduceReportDearnessBoostEventResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceReportGuildMissionRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceReportGuildMissionResponse {
@@ -2152,21 +2192,22 @@ message ProduceReportGuildMissionResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceRerollMemoryRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceRerollMemoryResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceRerollSelectProduceCardRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceRerollSelectProduceCardResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ProduceRestartResponse {
+  string deviceProduceUuid = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceResultRequest {
-  string produceUuid = 1;
   bool isSkipLive = 2;
   int32 manualPhotoCount = 3;
   bool isMemoryProtected = 4;
@@ -2183,6 +2224,7 @@ message ProduceResultResponse {
   ProduceResultResponse.HighScoreUpdateResult highScoreUpdateResult = 3;
   repeated int32 unlockChallengeSlotNumbers = 4;
   ProduceResultResponse.ResearchResult researchResult = 5;
+  pcommon.ProducerRankingResult producerRankingResult = 6;
   papicommon.Response commonResponse = 9999;
   message HighScoreReward {
     int32 score = 1;
@@ -2211,8 +2253,61 @@ message ProduceResultResponse {
 message ProduceRetireResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ProduceSaveRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceSaveResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceSeasonRank {
+  pcommon.SimpleProfile profile = 1;
+  int32 rank = 2;
+  int32 score = 3;
+  penum.ResultGrade grade = 4;
+  string userMemoryId = 5;
+}
+message ProduceSeasonRanking {
+  string idolCardId = 1;
+  ProduceSeasonRank selfRank = 2;
+  repeated ProduceSeasonRank topRanks = 3;
+}
+message ProduceSeasonRankingHistoryRequest {
+  string produceSeasonId = 1;
+  string produceGroupId = 2;
+  string idolCardId = 3;
+}
+message ProduceSeasonRankingHistoryResponse {
+  ProduceSeasonRank selfRank = 1;
+  repeated ProduceSeasonRank ranks = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceSeasonRankingRequest {
+  string produceGroupId = 1;
+  string idolCardId = 2;
+}
+message ProduceSeasonRankingResponse {
+  ProduceSeasonRank selfRank = 1;
+  repeated ProduceSeasonRank ranks = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceSeasonRankingTopHistoryRequest {
+  string produceSeasonId = 1;
+  string produceGroupId = 2;
+  string characterId = 3;
+}
+message ProduceSeasonRankingTopHistoryResponse {
+  repeated ProduceSeasonRanking rankings = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceSeasonRankingTopRequest {
+  string produceGroupId = 1;
+  string characterId = 2;
+}
+message ProduceSeasonRankingTopResponse {
+  repeated ProduceSeasonRanking rankings = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceStartBeforeLiveEvaluationRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStartBeforeLiveEvaluationResponse {
@@ -2249,7 +2344,6 @@ message ProduceStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepAuditionEndExamBattleRequest {
-  string produceUuid = 1;
   pcommon.ExamBattleResult result = 2;
   repeated pcommon.ExamTurnEndLog turnEndLogs = 3;
   string deviceProduceUuid = 4;
@@ -2259,7 +2353,6 @@ message ProduceStepAuditionEndExamBattleResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepAuditionEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionEndResponse {
@@ -2269,7 +2362,6 @@ message ProduceStepAuditionEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepAuditionRefreshRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionRefreshResponse {
@@ -2279,7 +2371,6 @@ message ProduceStepAuditionRefreshResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepAuditionStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepAuditionStartResponse {
@@ -2287,7 +2378,6 @@ message ProduceStepAuditionStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepBusinessSelectRequest {
-  string produceUuid = 1;
   penum.ProduceStepBusinessType businessType = 2;
   string deviceProduceUuid = 3;
 }
@@ -2297,7 +2387,6 @@ message ProduceStepBusinessSelectResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepBusinessStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepBusinessStartResponse {
@@ -2305,7 +2394,6 @@ message ProduceStepBusinessStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepCustomizeEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepCustomizeEndResponse {
@@ -2313,7 +2401,6 @@ message ProduceStepCustomizeEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepCustomizeSelectRequest {
-  string produceUuid = 1;
   int32 deckProduceCardIndex = 2;
   string produceCardCustomizeId = 3;
   string deviceProduceUuid = 4;
@@ -2325,7 +2412,6 @@ message ProduceStepCustomizeSelectResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepCustomizeStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepCustomizeStartResponse {
@@ -2333,7 +2419,6 @@ message ProduceStepCustomizeStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepEventRequest {
-  string produceUuid = 1;
   int32 suggestionIndex = 2;
   bool isSkip = 3;
   bool isFastForward = 4;
@@ -2346,7 +2431,6 @@ message ProduceStepEventResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepLessonEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
   pcommon.ProduceExamEndResult examEndResult = 1001;
   repeated pcommon.ExamTurnEndLog turnEndLogs = 1002;
@@ -2357,7 +2441,6 @@ message ProduceStepLessonEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepLessonStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepLessonStartResponse {
@@ -2365,7 +2448,6 @@ message ProduceStepLessonStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepPresentEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepPresentEndResponse {
@@ -2374,7 +2456,6 @@ message ProduceStepPresentEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepPresentReceiveRequest {
-  string produceUuid = 1;
   int32 positionNumber = 2;
   repeated int32 rewardIndexes = 3;
   string deviceProduceUuid = 4;
@@ -2385,7 +2466,6 @@ message ProduceStepPresentReceiveResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepPresentStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepPresentStartResponse {
@@ -2393,7 +2473,6 @@ message ProduceStepPresentStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepRefreshRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepRefreshResponse {
@@ -2403,7 +2482,6 @@ message ProduceStepRefreshResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepSelfLessonEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepSelfLessonEndResponse {
@@ -2412,7 +2490,6 @@ message ProduceStepSelfLessonEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepSelfLessonStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepSelfLessonStartResponse {
@@ -2422,7 +2499,6 @@ message ProduceStepSelfLessonStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepShopBuyRequest {
-  string produceUuid = 1;
   int32 positionNumber = 2;
   int32 deckProduceCardIndex = 3;
   string deviceProduceUuid = 4;
@@ -2435,7 +2511,6 @@ message ProduceStepShopBuyResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepShopEndRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepShopEndResponse {
@@ -2443,14 +2518,12 @@ message ProduceStepShopEndResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepShopRerollRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepShopRerollResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepShopStartRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepShopStartResponse {
@@ -2458,7 +2531,6 @@ message ProduceStepShopStartResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceStepSkipRequest {
-  string produceUuid = 1;
   string deviceProduceUuid = 2;
 }
 message ProduceStepSkipResponse {
@@ -2533,6 +2605,103 @@ message ProduceViewPictureBookLiveRequest {
 }
 message ProduceViewPictureBookLiveResponse {
   papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingCharacter {
+  string characterId = 1;
+  int32 rank = 2;
+  int64 point = 3;
+  ProducerRankingCharacterProduce produce = 100;
+  repeated ProducerRankingCharacterTower towers = 101;
+}
+message ProducerRankingCharacterHistoryRequest {
+  string producerRankingId = 1;
+  string characterId = 2;
+  string publicUserId = 3;
+}
+message ProducerRankingCharacterHistoryResponse {
+  pmaster.ProducerRankingCharacter character = 1;
+  pcommon.SimpleProfile profile = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingCharacterProduce {
+  string characterId = 1;
+  string idolCardId = 2;
+  string idolCardSkinId = 3;
+  string produceGroupId = 4;
+  string userMemoryId = 5;
+  int32 highScore = 6;
+  int64 point = 7;
+}
+message ProducerRankingCharacterRequest {
+  string characterId = 1;
+  string publicUserId = 2;
+}
+message ProducerRankingCharacterResponse {
+  pmaster.ProducerRankingCharacter character = 1;
+  pcommon.SimpleProfile profile = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingCharacterTower {
+  string characterId = 1;
+  string towerId = 2;
+  repeated ProducerRankingTowerLayer layers = 3;
+}
+message ProducerRankingListRankRewardRequest {
+  string characterId = 1;
+}
+message ProducerRankingListRankRewardResponse {
+  string characterId = 1;
+  int32 selfRank = 2;
+  repeated papicommon.RankReward rankRewards = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingRank {
+  int32 rank = 1;
+  int64 point = 2;
+  pcommon.SimpleProfile profile = 99;
+}
+message ProducerRankingRankingHistoryRequest {
+  string producerRankingId = 1;
+  string characterId = 2;
+}
+message ProducerRankingRankingHistoryResponse {
+  string characterId = 1;
+  ProducerRankingRank selfRank = 2;
+  repeated ProducerRankingRank ranks = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingRankingRequest {
+  string characterId = 1;
+}
+message ProducerRankingRankingResponse {
+  string characterId = 1;
+  ProducerRankingRank selfRank = 2;
+  repeated ProducerRankingRank ranks = 3;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingTopHistoryRequest {
+  string producerRankingId = 1;
+}
+message ProducerRankingTopHistoryResponse {
+  string name = 1;
+  repeated pmaster.ProducerRankingCharacter characters = 2;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingTopResponse {
+  string name = 1;
+  repeated pmaster.ProducerRankingCharacter characters = 2;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 fixRankTime = 102;
+  papicommon.Response commonResponse = 9999;
+}
+message ProducerRankingTowerLayer {
+  int32 layerNumber = 1;
+  int32 highScore = 2;
+  int64 point = 3;
 }
 message ProfileBirthday {
   int32 month = 1;
@@ -3444,6 +3613,7 @@ message TowerEndRequest {
 }
 message TowerEndResponse {
   repeated pcommon.RewardResult results = 1;
+  pcommon.ProducerRankingResult producerRankingResult = 2;
   papicommon.Response commonResponse = 9999;
 }
 message TowerGetLayerIdolCardRankingRequest {

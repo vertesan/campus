@@ -23,6 +23,12 @@ message PvpRateSeasonTop {
   int64 currentSeasonStartTime = 6;
   int64 currentSeasonEndTime = 7;
 }
+message RankReward {
+  int32 upperRank = 1;
+  int32 lowerRank = 2;
+  int64 borderScore = 3;
+  repeated pcommon.Reward rewards = 4;
+}
 message Response {
   UserData updatedData = 1;
   UserData deletedData = 2;
@@ -41,6 +47,7 @@ message UserData {
   ptransaction.User user = 342861366;
   ptransaction.UserActionPoint userActionPoint = 238317234;
   repeated ptransaction.UserAuthProvider userAuthProviderList = 151341701;
+  repeated ptransaction.UserBadge userBadgeList = 175219847;
   ptransaction.UserBalance userBalance = 164091159;
   ptransaction.UserBanWarning userBanWarning = 531719871;
   repeated ptransaction.UserCharacter userCharacterList = 370704040;

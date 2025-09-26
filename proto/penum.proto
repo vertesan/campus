@@ -54,6 +54,19 @@ enum AuthProviderType {
   AuthProviderType_BandaiNamcoId = 1;
   AuthProviderType_DmmgamesId = 2;
 }
+enum BadgeGrade {
+  BadgeGrade_Unknown = 0;
+  BadgeGrade__1 = 1;
+  BadgeGrade__2 = 2;
+  BadgeGrade__3 = 3;
+  BadgeGrade__4 = 4;
+  BadgeGrade__5 = 5;
+  BadgeGrade__6 = 6;
+}
+enum BadgeType {
+  BadgeType_Unknown = 0;
+  BadgeType_ProducerRanking = 1;
+}
 enum CharacterDetailType {
   CharacterDetailType_Unknown = 0;
   CharacterDetailType_Grade = 1;
@@ -298,6 +311,8 @@ enum ErrorCode {
   ErrorCode_DmmGamesIdDuplicated = 2039;
   ErrorCode_DmmGamesIdLinkAccountAlreadyExists = 2040;
   ErrorCode_DmmGamesIdLocalUserDataNotLinked = 2041;
+  ErrorCode_HistoryNotFound = 2042;
+  ErrorCode_RankingAggregating = 2043;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -418,6 +433,7 @@ enum ExamMotionTargetType {
   ExamMotionTargetType_VisualLessonHard = 7;
   ExamMotionTargetType_Audition = 8;
   ExamMotionTargetType_Contest = 9;
+  ExamMotionTargetType_Tour = 10;
 }
 enum ExamMotionType {
   ExamMotionType_Unknown = 0;
@@ -557,6 +573,7 @@ enum FeatureMaintenanceType {
   FeatureMaintenanceType_Dearness = 20;
   FeatureMaintenanceType_Tour = 21;
   FeatureMaintenanceType_Research = 22;
+  FeatureMaintenanceType_ProducerRanking = 23;
   FeatureMaintenanceType_ProduceEvent = 24;
 }
 enum FourPanelComicSeries {
@@ -847,6 +864,8 @@ enum LinkType {
   LinkType_ShopCostume = 36;
   LinkType_PhotoLiveSelect = 37;
   LinkType_Tour = 38;
+  LinkType_Research = 39;
+  LinkType_ProducerRanking = 40;
 }
 enum LoginBonusType {
   LoginBonusType_Unknown = 0;
@@ -861,6 +880,11 @@ enum MainTaskType {
   MainTaskType_Producer2 = 3;
   MainTaskType_Producer3 = 4;
   MainTaskType_Producer4 = 5;
+}
+enum MediaMovieType {
+  MediaMovieType_Unknown = 0;
+  MediaMovieType_Movie = 1;
+  MediaMovieType_Birthday = 2;
 }
 enum MediaType {
   MediaType_Unknown = 0;
@@ -884,6 +908,7 @@ enum MeishiIllustrationType {
   MeishiIllustrationType_IdolSign = 3;
   MeishiIllustrationType_Logo = 4;
   MeishiIllustrationType_PictoIcon = 5;
+  MeishiIllustrationType_Badge = 6;
   MeishiIllustrationType_Other = 99;
 }
 enum MeishiObjectType {
@@ -2158,6 +2183,20 @@ enum ProducerLevelUnlockType {
   ProducerLevelUnlockType_ProduceCardSelectRerollCount = 12;
   ProducerLevelUnlockType_ProduceCardExcludeCount = 13;
 }
+enum ProducerRankingGrade {
+  ProducerRankingGrade_Unknown = 0;
+  ProducerRankingGrade_Normal = 1;
+  ProducerRankingGrade_Bronze = 2;
+  ProducerRankingGrade_Silver = 3;
+  ProducerRankingGrade_Gold = 4;
+  ProducerRankingGrade_Rainbow = 5;
+  ProducerRankingGrade_RainbowPlus = 6;
+}
+enum ProducerRankingPointType {
+  ProducerRankingPointType_Unknown = 0;
+  ProducerRankingPointType_Produce = 1;
+  ProducerRankingPointType_Tower = 2;
+}
 enum PurchaseTransactionStatusType {
   PurchaseTransactionStatusType_Unknown = 0;
   PurchaseTransactionStatusType_None = 1;
@@ -2258,6 +2297,7 @@ enum ResourceType {
   ResourceType_PhotoBackground = 21;
   ResourceType_PhotoPose = 22;
   ResourceType_DearnessPoint = 23;
+  ResourceType_Badge = 24;
   ResourceType_JewelTotal = 1100;
   ResourceType_JewelPaidOnly = 1101;
   ResourceType_Set = 9999;
@@ -2358,6 +2398,7 @@ enum StartupNotificationRemindType {
   StartupNotificationRemindType_Exchange = 2;
   StartupNotificationRemindType_PlayItem = 3;
   StartupNotificationRemindType_GashaPoint = 4;
+  StartupNotificationRemindType_CommonLimitItem = 5;
 }
 enum StartupNotificationType {
   StartupNotificationType_Unknown = 0;
@@ -2372,6 +2413,7 @@ enum StartupNotificationType {
   StartupNotificationType_ExchangeItemExpire = 9;
   StartupNotificationType_CoinGashaItemExpire = 10;
   StartupNotificationType_PlayItemExpire = 11;
+  StartupNotificationType_CommonLimitItemExpire = 12;
 }
 enum StoryCampaignType {
   StoryCampaignType_Unknown = 0;
@@ -2582,6 +2624,7 @@ enum TutorialType {
   TutorialType_ProduceNextIdolAuditionMasterRanking = 208;
   TutorialType_Tour = 209;
   TutorialType_Research = 210;
+  TutorialType_ProducerRanking = 211;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;

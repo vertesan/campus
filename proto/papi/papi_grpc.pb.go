@@ -781,8 +781,9 @@ var CoinGasha_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Costume_Set_FullMethodName   = "/client.api.Costume/Set"
-	Costume_Check_FullMethodName = "/client.api.Costume/Check"
+	Costume_Set_FullMethodName       = "/client.api.Costume/Set"
+	Costume_Check_FullMethodName     = "/client.api.Costume/Check"
+	Costume_SetRandom_FullMethodName = "/client.api.Costume/SetRandom"
 )
 
 // CostumeClient is the client API for Costume service.
@@ -791,6 +792,7 @@ const (
 type CostumeClient interface {
 	Set(ctx context.Context, in *CostumeSetRequest, opts ...grpc.CallOption) (*CostumeSetResponse, error)
 	Check(ctx context.Context, in *CostumeCheckRequest, opts ...grpc.CallOption) (*CostumeCheckResponse, error)
+	SetRandom(ctx context.Context, in *CostumeSetRandomRequest, opts ...grpc.CallOption) (*CostumeSetRandomResponse, error)
 }
 
 type costumeClient struct {
@@ -821,12 +823,23 @@ func (c *costumeClient) Check(ctx context.Context, in *CostumeCheckRequest, opts
 	return out, nil
 }
 
+func (c *costumeClient) SetRandom(ctx context.Context, in *CostumeSetRandomRequest, opts ...grpc.CallOption) (*CostumeSetRandomResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CostumeSetRandomResponse)
+	err := c.cc.Invoke(ctx, Costume_SetRandom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CostumeServer is the server API for Costume service.
 // All implementations must embed UnimplementedCostumeServer
 // for forward compatibility.
 type CostumeServer interface {
 	Set(context.Context, *CostumeSetRequest) (*CostumeSetResponse, error)
 	Check(context.Context, *CostumeCheckRequest) (*CostumeCheckResponse, error)
+	SetRandom(context.Context, *CostumeSetRandomRequest) (*CostumeSetRandomResponse, error)
 	mustEmbedUnimplementedCostumeServer()
 }
 
@@ -842,6 +855,9 @@ func (UnimplementedCostumeServer) Set(context.Context, *CostumeSetRequest) (*Cos
 }
 func (UnimplementedCostumeServer) Check(context.Context, *CostumeCheckRequest) (*CostumeCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedCostumeServer) SetRandom(context.Context, *CostumeSetRandomRequest) (*CostumeSetRandomResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRandom not implemented")
 }
 func (UnimplementedCostumeServer) mustEmbedUnimplementedCostumeServer() {}
 func (UnimplementedCostumeServer) testEmbeddedByValue()                 {}
@@ -900,6 +916,24 @@ func _Costume_Check_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Costume_SetRandom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CostumeSetRandomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CostumeServer).SetRandom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Costume_SetRandom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CostumeServer).SetRandom(ctx, req.(*CostumeSetRandomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Costume_ServiceDesc is the grpc.ServiceDesc for Costume service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -914,6 +948,10 @@ var Costume_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Check",
 			Handler:    _Costume_Check_Handler,
+		},
+		{
+			MethodName: "SetRandom",
+			Handler:    _Costume_SetRandom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -6809,6 +6847,8 @@ const (
 	Produce_ListRentalMemory_FullMethodName          = "/client.api.Produce/ListRentalMemory"
 	Produce_CheckProgress_FullMethodName             = "/client.api.Produce/CheckProgress"
 	Produce_Start_FullMethodName                     = "/client.api.Produce/Start"
+	Produce_Restart_FullMethodName                   = "/client.api.Produce/Restart"
+	Produce_Save_FullMethodName                      = "/client.api.Produce/Save"
 	Produce_Next_FullMethodName                      = "/client.api.Produce/Next"
 	Produce_StepSkip_FullMethodName                  = "/client.api.Produce/StepSkip"
 	Produce_StepEvent_FullMethodName                 = "/client.api.Produce/StepEvent"
@@ -6868,6 +6908,8 @@ type ProduceClient interface {
 	ListRentalMemory(ctx context.Context, in *ProduceListRentalMemoryRequest, opts ...grpc.CallOption) (*ProduceListRentalMemoryResponse, error)
 	CheckProgress(ctx context.Context, in *ProduceCheckProgressRequest, opts ...grpc.CallOption) (*ProduceCheckProgressResponse, error)
 	Start(ctx context.Context, in *ProduceStartRequest, opts ...grpc.CallOption) (*ProduceStartResponse, error)
+	Restart(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceRestartResponse, error)
+	Save(ctx context.Context, in *ProduceSaveRequest, opts ...grpc.CallOption) (*ProduceSaveResponse, error)
 	Next(ctx context.Context, in *ProduceNextRequest, opts ...grpc.CallOption) (*ProduceNextResponse, error)
 	StepSkip(ctx context.Context, in *ProduceStepSkipRequest, opts ...grpc.CallOption) (*ProduceStepSkipResponse, error)
 	StepEvent(ctx context.Context, in *ProduceStepEventRequest, opts ...grpc.CallOption) (*ProduceStepEventResponse, error)
@@ -6997,6 +7039,26 @@ func (c *produceClient) Start(ctx context.Context, in *ProduceStartRequest, opts
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProduceStartResponse)
 	err := c.cc.Invoke(ctx, Produce_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Restart(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProduceRestartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceRestartResponse)
+	err := c.cc.Invoke(ctx, Produce_Restart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceClient) Save(ctx context.Context, in *ProduceSaveRequest, opts ...grpc.CallOption) (*ProduceSaveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceSaveResponse)
+	err := c.cc.Invoke(ctx, Produce_Save_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -7465,6 +7527,8 @@ type ProduceServer interface {
 	ListRentalMemory(context.Context, *ProduceListRentalMemoryRequest) (*ProduceListRentalMemoryResponse, error)
 	CheckProgress(context.Context, *ProduceCheckProgressRequest) (*ProduceCheckProgressResponse, error)
 	Start(context.Context, *ProduceStartRequest) (*ProduceStartResponse, error)
+	Restart(context.Context, *Empty) (*ProduceRestartResponse, error)
+	Save(context.Context, *ProduceSaveRequest) (*ProduceSaveResponse, error)
 	Next(context.Context, *ProduceNextRequest) (*ProduceNextResponse, error)
 	StepSkip(context.Context, *ProduceStepSkipRequest) (*ProduceStepSkipResponse, error)
 	StepEvent(context.Context, *ProduceStepEventRequest) (*ProduceStepEventResponse, error)
@@ -7543,6 +7607,12 @@ func (UnimplementedProduceServer) CheckProgress(context.Context, *ProduceCheckPr
 }
 func (UnimplementedProduceServer) Start(context.Context, *ProduceStartRequest) (*ProduceStartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedProduceServer) Restart(context.Context, *Empty) (*ProduceRestartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
+}
+func (UnimplementedProduceServer) Save(context.Context, *ProduceSaveRequest) (*ProduceSaveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Save not implemented")
 }
 func (UnimplementedProduceServer) Next(context.Context, *ProduceNextRequest) (*ProduceNextResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Next not implemented")
@@ -7840,6 +7910,42 @@ func _Produce_Start_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProduceServer).Start(ctx, req.(*ProduceStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Restart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Restart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Restart(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Produce_Save_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceSaveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).Save(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_Save_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).Save(ctx, req.(*ProduceSaveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -8694,6 +8800,14 @@ var Produce_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Produce_Start_Handler,
 		},
 		{
+			MethodName: "Restart",
+			Handler:    _Produce_Restart_Handler,
+		},
+		{
+			MethodName: "Save",
+			Handler:    _Produce_Save_Handler,
+		},
+		{
 			MethodName: "Next",
 			Handler:    _Produce_Next_Handler,
 		},
@@ -9191,6 +9305,552 @@ var ProduceNextIdolAuditionMaster_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListRankReward",
 			Handler:    _ProduceNextIdolAuditionMaster_ListRankReward_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	ProduceSeason_RankingTop_FullMethodName        = "/client.api.ProduceSeason/RankingTop"
+	ProduceSeason_RankingTopHistory_FullMethodName = "/client.api.ProduceSeason/RankingTopHistory"
+	ProduceSeason_Ranking_FullMethodName           = "/client.api.ProduceSeason/Ranking"
+	ProduceSeason_RankingHistory_FullMethodName    = "/client.api.ProduceSeason/RankingHistory"
+)
+
+// ProduceSeasonClient is the client API for ProduceSeason service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProduceSeasonClient interface {
+	RankingTop(ctx context.Context, in *ProduceSeasonRankingTopRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingTopResponse, error)
+	RankingTopHistory(ctx context.Context, in *ProduceSeasonRankingTopHistoryRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingTopHistoryResponse, error)
+	Ranking(ctx context.Context, in *ProduceSeasonRankingRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingResponse, error)
+	RankingHistory(ctx context.Context, in *ProduceSeasonRankingHistoryRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingHistoryResponse, error)
+}
+
+type produceSeasonClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProduceSeasonClient(cc grpc.ClientConnInterface) ProduceSeasonClient {
+	return &produceSeasonClient{cc}
+}
+
+func (c *produceSeasonClient) RankingTop(ctx context.Context, in *ProduceSeasonRankingTopRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceSeasonRankingTopResponse)
+	err := c.cc.Invoke(ctx, ProduceSeason_RankingTop_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceSeasonClient) RankingTopHistory(ctx context.Context, in *ProduceSeasonRankingTopHistoryRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingTopHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceSeasonRankingTopHistoryResponse)
+	err := c.cc.Invoke(ctx, ProduceSeason_RankingTopHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceSeasonClient) Ranking(ctx context.Context, in *ProduceSeasonRankingRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceSeasonRankingResponse)
+	err := c.cc.Invoke(ctx, ProduceSeason_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *produceSeasonClient) RankingHistory(ctx context.Context, in *ProduceSeasonRankingHistoryRequest, opts ...grpc.CallOption) (*ProduceSeasonRankingHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceSeasonRankingHistoryResponse)
+	err := c.cc.Invoke(ctx, ProduceSeason_RankingHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProduceSeasonServer is the server API for ProduceSeason service.
+// All implementations must embed UnimplementedProduceSeasonServer
+// for forward compatibility.
+type ProduceSeasonServer interface {
+	RankingTop(context.Context, *ProduceSeasonRankingTopRequest) (*ProduceSeasonRankingTopResponse, error)
+	RankingTopHistory(context.Context, *ProduceSeasonRankingTopHistoryRequest) (*ProduceSeasonRankingTopHistoryResponse, error)
+	Ranking(context.Context, *ProduceSeasonRankingRequest) (*ProduceSeasonRankingResponse, error)
+	RankingHistory(context.Context, *ProduceSeasonRankingHistoryRequest) (*ProduceSeasonRankingHistoryResponse, error)
+	mustEmbedUnimplementedProduceSeasonServer()
+}
+
+// UnimplementedProduceSeasonServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProduceSeasonServer struct{}
+
+func (UnimplementedProduceSeasonServer) RankingTop(context.Context, *ProduceSeasonRankingTopRequest) (*ProduceSeasonRankingTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RankingTop not implemented")
+}
+func (UnimplementedProduceSeasonServer) RankingTopHistory(context.Context, *ProduceSeasonRankingTopHistoryRequest) (*ProduceSeasonRankingTopHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RankingTopHistory not implemented")
+}
+func (UnimplementedProduceSeasonServer) Ranking(context.Context, *ProduceSeasonRankingRequest) (*ProduceSeasonRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedProduceSeasonServer) RankingHistory(context.Context, *ProduceSeasonRankingHistoryRequest) (*ProduceSeasonRankingHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RankingHistory not implemented")
+}
+func (UnimplementedProduceSeasonServer) mustEmbedUnimplementedProduceSeasonServer() {}
+func (UnimplementedProduceSeasonServer) testEmbeddedByValue()                       {}
+
+// UnsafeProduceSeasonServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProduceSeasonServer will
+// result in compilation errors.
+type UnsafeProduceSeasonServer interface {
+	mustEmbedUnimplementedProduceSeasonServer()
+}
+
+func RegisterProduceSeasonServer(s grpc.ServiceRegistrar, srv ProduceSeasonServer) {
+	// If the following call pancis, it indicates UnimplementedProduceSeasonServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&ProduceSeason_ServiceDesc, srv)
+}
+
+func _ProduceSeason_RankingTop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceSeasonRankingTopRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceSeasonServer).RankingTop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceSeason_RankingTop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceSeasonServer).RankingTop(ctx, req.(*ProduceSeasonRankingTopRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceSeason_RankingTopHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceSeasonRankingTopHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceSeasonServer).RankingTopHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceSeason_RankingTopHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceSeasonServer).RankingTopHistory(ctx, req.(*ProduceSeasonRankingTopHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceSeason_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceSeasonRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceSeasonServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceSeason_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceSeasonServer).Ranking(ctx, req.(*ProduceSeasonRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProduceSeason_RankingHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceSeasonRankingHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceSeasonServer).RankingHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProduceSeason_RankingHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceSeasonServer).RankingHistory(ctx, req.(*ProduceSeasonRankingHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProduceSeason_ServiceDesc is the grpc.ServiceDesc for ProduceSeason service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProduceSeason_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.ProduceSeason",
+	HandlerType: (*ProduceSeasonServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "RankingTop",
+			Handler:    _ProduceSeason_RankingTop_Handler,
+		},
+		{
+			MethodName: "RankingTopHistory",
+			Handler:    _ProduceSeason_RankingTopHistory_Handler,
+		},
+		{
+			MethodName: "Ranking",
+			Handler:    _ProduceSeason_Ranking_Handler,
+		},
+		{
+			MethodName: "RankingHistory",
+			Handler:    _ProduceSeason_RankingHistory_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
+	ProducerRanking_Top_FullMethodName              = "/client.api.ProducerRanking/Top"
+	ProducerRanking_Ranking_FullMethodName          = "/client.api.ProducerRanking/Ranking"
+	ProducerRanking_Character_FullMethodName        = "/client.api.ProducerRanking/Character"
+	ProducerRanking_ListRankReward_FullMethodName   = "/client.api.ProducerRanking/ListRankReward"
+	ProducerRanking_TopHistory_FullMethodName       = "/client.api.ProducerRanking/TopHistory"
+	ProducerRanking_RankingHistory_FullMethodName   = "/client.api.ProducerRanking/RankingHistory"
+	ProducerRanking_CharacterHistory_FullMethodName = "/client.api.ProducerRanking/CharacterHistory"
+)
+
+// ProducerRankingClient is the client API for ProducerRanking service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ProducerRankingClient interface {
+	Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProducerRankingTopResponse, error)
+	Ranking(ctx context.Context, in *ProducerRankingRankingRequest, opts ...grpc.CallOption) (*ProducerRankingRankingResponse, error)
+	Character(ctx context.Context, in *ProducerRankingCharacterRequest, opts ...grpc.CallOption) (*ProducerRankingCharacterResponse, error)
+	ListRankReward(ctx context.Context, in *ProducerRankingListRankRewardRequest, opts ...grpc.CallOption) (*ProducerRankingListRankRewardResponse, error)
+	TopHistory(ctx context.Context, in *ProducerRankingTopHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingTopHistoryResponse, error)
+	RankingHistory(ctx context.Context, in *ProducerRankingRankingHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingRankingHistoryResponse, error)
+	CharacterHistory(ctx context.Context, in *ProducerRankingCharacterHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingCharacterHistoryResponse, error)
+}
+
+type producerRankingClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewProducerRankingClient(cc grpc.ClientConnInterface) ProducerRankingClient {
+	return &producerRankingClient{cc}
+}
+
+func (c *producerRankingClient) Top(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ProducerRankingTopResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingTopResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_Top_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) Ranking(ctx context.Context, in *ProducerRankingRankingRequest, opts ...grpc.CallOption) (*ProducerRankingRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingRankingResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_Ranking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) Character(ctx context.Context, in *ProducerRankingCharacterRequest, opts ...grpc.CallOption) (*ProducerRankingCharacterResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingCharacterResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_Character_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) ListRankReward(ctx context.Context, in *ProducerRankingListRankRewardRequest, opts ...grpc.CallOption) (*ProducerRankingListRankRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingListRankRewardResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_ListRankReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) TopHistory(ctx context.Context, in *ProducerRankingTopHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingTopHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingTopHistoryResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_TopHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) RankingHistory(ctx context.Context, in *ProducerRankingRankingHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingRankingHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingRankingHistoryResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_RankingHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *producerRankingClient) CharacterHistory(ctx context.Context, in *ProducerRankingCharacterHistoryRequest, opts ...grpc.CallOption) (*ProducerRankingCharacterHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProducerRankingCharacterHistoryResponse)
+	err := c.cc.Invoke(ctx, ProducerRanking_CharacterHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ProducerRankingServer is the server API for ProducerRanking service.
+// All implementations must embed UnimplementedProducerRankingServer
+// for forward compatibility.
+type ProducerRankingServer interface {
+	Top(context.Context, *Empty) (*ProducerRankingTopResponse, error)
+	Ranking(context.Context, *ProducerRankingRankingRequest) (*ProducerRankingRankingResponse, error)
+	Character(context.Context, *ProducerRankingCharacterRequest) (*ProducerRankingCharacterResponse, error)
+	ListRankReward(context.Context, *ProducerRankingListRankRewardRequest) (*ProducerRankingListRankRewardResponse, error)
+	TopHistory(context.Context, *ProducerRankingTopHistoryRequest) (*ProducerRankingTopHistoryResponse, error)
+	RankingHistory(context.Context, *ProducerRankingRankingHistoryRequest) (*ProducerRankingRankingHistoryResponse, error)
+	CharacterHistory(context.Context, *ProducerRankingCharacterHistoryRequest) (*ProducerRankingCharacterHistoryResponse, error)
+	mustEmbedUnimplementedProducerRankingServer()
+}
+
+// UnimplementedProducerRankingServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedProducerRankingServer struct{}
+
+func (UnimplementedProducerRankingServer) Top(context.Context, *Empty) (*ProducerRankingTopResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Top not implemented")
+}
+func (UnimplementedProducerRankingServer) Ranking(context.Context, *ProducerRankingRankingRequest) (*ProducerRankingRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ranking not implemented")
+}
+func (UnimplementedProducerRankingServer) Character(context.Context, *ProducerRankingCharacterRequest) (*ProducerRankingCharacterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Character not implemented")
+}
+func (UnimplementedProducerRankingServer) ListRankReward(context.Context, *ProducerRankingListRankRewardRequest) (*ProducerRankingListRankRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRankReward not implemented")
+}
+func (UnimplementedProducerRankingServer) TopHistory(context.Context, *ProducerRankingTopHistoryRequest) (*ProducerRankingTopHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TopHistory not implemented")
+}
+func (UnimplementedProducerRankingServer) RankingHistory(context.Context, *ProducerRankingRankingHistoryRequest) (*ProducerRankingRankingHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RankingHistory not implemented")
+}
+func (UnimplementedProducerRankingServer) CharacterHistory(context.Context, *ProducerRankingCharacterHistoryRequest) (*ProducerRankingCharacterHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CharacterHistory not implemented")
+}
+func (UnimplementedProducerRankingServer) mustEmbedUnimplementedProducerRankingServer() {}
+func (UnimplementedProducerRankingServer) testEmbeddedByValue()                         {}
+
+// UnsafeProducerRankingServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ProducerRankingServer will
+// result in compilation errors.
+type UnsafeProducerRankingServer interface {
+	mustEmbedUnimplementedProducerRankingServer()
+}
+
+func RegisterProducerRankingServer(s grpc.ServiceRegistrar, srv ProducerRankingServer) {
+	// If the following call pancis, it indicates UnimplementedProducerRankingServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&ProducerRanking_ServiceDesc, srv)
+}
+
+func _ProducerRanking_Top_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).Top(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_Top_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).Top(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_Ranking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingRankingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).Ranking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_Ranking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).Ranking(ctx, req.(*ProducerRankingRankingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_Character_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingCharacterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).Character(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_Character_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).Character(ctx, req.(*ProducerRankingCharacterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_ListRankReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingListRankRewardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).ListRankReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_ListRankReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).ListRankReward(ctx, req.(*ProducerRankingListRankRewardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_TopHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingTopHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).TopHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_TopHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).TopHistory(ctx, req.(*ProducerRankingTopHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_RankingHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingRankingHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).RankingHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_RankingHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).RankingHistory(ctx, req.(*ProducerRankingRankingHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProducerRanking_CharacterHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProducerRankingCharacterHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProducerRankingServer).CharacterHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProducerRanking_CharacterHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProducerRankingServer).CharacterHistory(ctx, req.(*ProducerRankingCharacterHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// ProducerRanking_ServiceDesc is the grpc.ServiceDesc for ProducerRanking service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ProducerRanking_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.ProducerRanking",
+	HandlerType: (*ProducerRankingServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Top",
+			Handler:    _ProducerRanking_Top_Handler,
+		},
+		{
+			MethodName: "Ranking",
+			Handler:    _ProducerRanking_Ranking_Handler,
+		},
+		{
+			MethodName: "Character",
+			Handler:    _ProducerRanking_Character_Handler,
+		},
+		{
+			MethodName: "ListRankReward",
+			Handler:    _ProducerRanking_ListRankReward_Handler,
+		},
+		{
+			MethodName: "TopHistory",
+			Handler:    _ProducerRanking_TopHistory_Handler,
+		},
+		{
+			MethodName: "RankingHistory",
+			Handler:    _ProducerRanking_RankingHistory_Handler,
+		},
+		{
+			MethodName: "CharacterHistory",
+			Handler:    _ProducerRanking_CharacterHistory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

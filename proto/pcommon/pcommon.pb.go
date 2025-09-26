@@ -6666,6 +6666,66 @@ func (x *ProducerLevelUnlockTarget) GetQuantity() int32 {
 	return 0
 }
 
+type ProducerRankingResult struct {
+	state          protoimpl.MessageState                 `protogen:"open.v1"`
+	CharacterId    string                                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	ProduceResults []*ProducerRankingResult_ProduceResult `protobuf:"bytes,2,rep,name=produceResults,proto3" json:"produceResults,omitempty"`
+	TowerResults   []*ProducerRankingResult_TowerResult   `protobuf:"bytes,3,rep,name=towerResults,proto3" json:"towerResults,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProducerRankingResult) Reset() {
+	*x = ProducerRankingResult{}
+	mi := &file_pcommon_proto_msgTypes[67]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProducerRankingResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProducerRankingResult) ProtoMessage() {}
+
+func (x *ProducerRankingResult) ProtoReflect() protoreflect.Message {
+	mi := &file_pcommon_proto_msgTypes[67]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProducerRankingResult.ProtoReflect.Descriptor instead.
+func (*ProducerRankingResult) Descriptor() ([]byte, []int) {
+	return file_pcommon_proto_rawDescGZIP(), []int{67}
+}
+
+func (x *ProducerRankingResult) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ProducerRankingResult) GetProduceResults() []*ProducerRankingResult_ProduceResult {
+	if x != nil {
+		return x.ProduceResults
+	}
+	return nil
+}
+
+func (x *ProducerRankingResult) GetTowerResults() []*ProducerRankingResult_TowerResult {
+	if x != nil {
+		return x.TowerResults
+	}
+	return nil
+}
+
 type PvpRateExamBattleResult struct {
 	state                     protoimpl.MessageState `protogen:"open.v1"`
 	ExamBattleAutoRequest     *ExamBattleAutoRequest `protobuf:"bytes,1,opt,name=examBattleAutoRequest,proto3" json:"examBattleAutoRequest,omitempty"`
@@ -6677,7 +6737,7 @@ type PvpRateExamBattleResult struct {
 
 func (x *PvpRateExamBattleResult) Reset() {
 	*x = PvpRateExamBattleResult{}
-	mi := &file_pcommon_proto_msgTypes[67]
+	mi := &file_pcommon_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6689,7 +6749,7 @@ func (x *PvpRateExamBattleResult) String() string {
 func (*PvpRateExamBattleResult) ProtoMessage() {}
 
 func (x *PvpRateExamBattleResult) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[67]
+	mi := &file_pcommon_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6702,7 +6762,7 @@ func (x *PvpRateExamBattleResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateExamBattleResult.ProtoReflect.Descriptor instead.
 func (*PvpRateExamBattleResult) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{67}
+	return file_pcommon_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *PvpRateExamBattleResult) GetExamBattleAutoRequest() *ExamBattleAutoRequest {
@@ -6736,7 +6796,7 @@ type PvpRateSetupUnitStageFormation struct {
 
 func (x *PvpRateSetupUnitStageFormation) Reset() {
 	*x = PvpRateSetupUnitStageFormation{}
-	mi := &file_pcommon_proto_msgTypes[68]
+	mi := &file_pcommon_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6748,7 +6808,7 @@ func (x *PvpRateSetupUnitStageFormation) String() string {
 func (*PvpRateSetupUnitStageFormation) ProtoMessage() {}
 
 func (x *PvpRateSetupUnitStageFormation) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[68]
+	mi := &file_pcommon_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6761,7 +6821,7 @@ func (x *PvpRateSetupUnitStageFormation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateSetupUnitStageFormation.ProtoReflect.Descriptor instead.
 func (*PvpRateSetupUnitStageFormation) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{68}
+	return file_pcommon_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *PvpRateSetupUnitStageFormation) GetStage() penum.PvpRateStageType {
@@ -6789,7 +6849,7 @@ type Reward struct {
 
 func (x *Reward) Reset() {
 	*x = Reward{}
-	mi := &file_pcommon_proto_msgTypes[69]
+	mi := &file_pcommon_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6801,7 +6861,7 @@ func (x *Reward) String() string {
 func (*Reward) ProtoMessage() {}
 
 func (x *Reward) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[69]
+	mi := &file_pcommon_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6814,7 +6874,7 @@ func (x *Reward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Reward.ProtoReflect.Descriptor instead.
 func (*Reward) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{69}
+	return file_pcommon_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *Reward) GetResourceType() penum.ResourceType {
@@ -6856,7 +6916,7 @@ type RewardResult struct {
 
 func (x *RewardResult) Reset() {
 	*x = RewardResult{}
-	mi := &file_pcommon_proto_msgTypes[70]
+	mi := &file_pcommon_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6868,7 +6928,7 @@ func (x *RewardResult) String() string {
 func (*RewardResult) ProtoMessage() {}
 
 func (x *RewardResult) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[70]
+	mi := &file_pcommon_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6881,7 +6941,7 @@ func (x *RewardResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RewardResult.ProtoReflect.Descriptor instead.
 func (*RewardResult) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{70}
+	return file_pcommon_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *RewardResult) GetResourceType() penum.ResourceType {
@@ -6968,7 +7028,7 @@ type SimpleProfile struct {
 
 func (x *SimpleProfile) Reset() {
 	*x = SimpleProfile{}
-	mi := &file_pcommon_proto_msgTypes[71]
+	mi := &file_pcommon_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6980,7 +7040,7 @@ func (x *SimpleProfile) String() string {
 func (*SimpleProfile) ProtoMessage() {}
 
 func (x *SimpleProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[71]
+	mi := &file_pcommon_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6993,7 +7053,7 @@ func (x *SimpleProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SimpleProfile.ProtoReflect.Descriptor instead.
 func (*SimpleProfile) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{71}
+	return file_pcommon_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *SimpleProfile) GetPublicUserId() string {
@@ -7069,7 +7129,7 @@ type StartupNotification struct {
 
 func (x *StartupNotification) Reset() {
 	*x = StartupNotification{}
-	mi := &file_pcommon_proto_msgTypes[72]
+	mi := &file_pcommon_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7081,7 +7141,7 @@ func (x *StartupNotification) String() string {
 func (*StartupNotification) ProtoMessage() {}
 
 func (x *StartupNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[72]
+	mi := &file_pcommon_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7094,7 +7154,7 @@ func (x *StartupNotification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartupNotification.ProtoReflect.Descriptor instead.
 func (*StartupNotification) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{72}
+	return file_pcommon_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *StartupNotification) GetId() string {
@@ -7269,7 +7329,7 @@ type StoryEventBonus struct {
 
 func (x *StoryEventBonus) Reset() {
 	*x = StoryEventBonus{}
-	mi := &file_pcommon_proto_msgTypes[73]
+	mi := &file_pcommon_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7281,7 +7341,7 @@ func (x *StoryEventBonus) String() string {
 func (*StoryEventBonus) ProtoMessage() {}
 
 func (x *StoryEventBonus) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[73]
+	mi := &file_pcommon_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7294,7 +7354,7 @@ func (x *StoryEventBonus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventBonus.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73}
+	return file_pcommon_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *StoryEventBonus) GetCharacterBonuses() []*StoryEventBonus_CharacterBonus {
@@ -7331,7 +7391,7 @@ type StoryEventPointReward struct {
 
 func (x *StoryEventPointReward) Reset() {
 	*x = StoryEventPointReward{}
-	mi := &file_pcommon_proto_msgTypes[74]
+	mi := &file_pcommon_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7343,7 +7403,7 @@ func (x *StoryEventPointReward) String() string {
 func (*StoryEventPointReward) ProtoMessage() {}
 
 func (x *StoryEventPointReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[74]
+	mi := &file_pcommon_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7356,7 +7416,7 @@ func (x *StoryEventPointReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventPointReward.ProtoReflect.Descriptor instead.
 func (*StoryEventPointReward) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{74}
+	return file_pcommon_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *StoryEventPointReward) GetPoint() int32 {
@@ -7415,7 +7475,7 @@ type StoryEventProduceResult struct {
 
 func (x *StoryEventProduceResult) Reset() {
 	*x = StoryEventProduceResult{}
-	mi := &file_pcommon_proto_msgTypes[75]
+	mi := &file_pcommon_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7427,7 +7487,7 @@ func (x *StoryEventProduceResult) String() string {
 func (*StoryEventProduceResult) ProtoMessage() {}
 
 func (x *StoryEventProduceResult) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[75]
+	mi := &file_pcommon_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7440,7 +7500,7 @@ func (x *StoryEventProduceResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventProduceResult.ProtoReflect.Descriptor instead.
 func (*StoryEventProduceResult) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{75}
+	return file_pcommon_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *StoryEventProduceResult) GetPointResult() *StoryEventProduceResult_PointResult {
@@ -7545,7 +7605,7 @@ type SupportCard struct {
 
 func (x *SupportCard) Reset() {
 	*x = SupportCard{}
-	mi := &file_pcommon_proto_msgTypes[76]
+	mi := &file_pcommon_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7557,7 +7617,7 @@ func (x *SupportCard) String() string {
 func (*SupportCard) ProtoMessage() {}
 
 func (x *SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[76]
+	mi := &file_pcommon_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7570,7 +7630,7 @@ func (x *SupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCard.ProtoReflect.Descriptor instead.
 func (*SupportCard) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{76}
+	return file_pcommon_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *SupportCard) GetId() string {
@@ -7611,7 +7671,7 @@ type TowerLayerHistory struct {
 
 func (x *TowerLayerHistory) Reset() {
 	*x = TowerLayerHistory{}
-	mi := &file_pcommon_proto_msgTypes[77]
+	mi := &file_pcommon_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7623,7 +7683,7 @@ func (x *TowerLayerHistory) String() string {
 func (*TowerLayerHistory) ProtoMessage() {}
 
 func (x *TowerLayerHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[77]
+	mi := &file_pcommon_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7636,7 +7696,7 @@ func (x *TowerLayerHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerHistory.ProtoReflect.Descriptor instead.
 func (*TowerLayerHistory) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{77}
+	return file_pcommon_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *TowerLayerHistory) GetUserId() string {
@@ -7712,7 +7772,7 @@ type AntiCheatCriticalResult_Log struct {
 
 func (x *AntiCheatCriticalResult_Log) Reset() {
 	*x = AntiCheatCriticalResult_Log{}
-	mi := &file_pcommon_proto_msgTypes[78]
+	mi := &file_pcommon_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7724,7 +7784,7 @@ func (x *AntiCheatCriticalResult_Log) String() string {
 func (*AntiCheatCriticalResult_Log) ProtoMessage() {}
 
 func (x *AntiCheatCriticalResult_Log) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[78]
+	mi := &file_pcommon_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7766,7 +7826,7 @@ type AntiCheatCriticalResult_Record struct {
 
 func (x *AntiCheatCriticalResult_Record) Reset() {
 	*x = AntiCheatCriticalResult_Record{}
-	mi := &file_pcommon_proto_msgTypes[79]
+	mi := &file_pcommon_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7778,7 +7838,7 @@ func (x *AntiCheatCriticalResult_Record) String() string {
 func (*AntiCheatCriticalResult_Record) ProtoMessage() {}
 
 func (x *AntiCheatCriticalResult_Record) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[79]
+	mi := &file_pcommon_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7833,7 +7893,7 @@ type AntiCheatSummaryResult_Score struct {
 
 func (x *AntiCheatSummaryResult_Score) Reset() {
 	*x = AntiCheatSummaryResult_Score{}
-	mi := &file_pcommon_proto_msgTypes[80]
+	mi := &file_pcommon_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7845,7 +7905,7 @@ func (x *AntiCheatSummaryResult_Score) String() string {
 func (*AntiCheatSummaryResult_Score) ProtoMessage() {}
 
 func (x *AntiCheatSummaryResult_Score) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[80]
+	mi := &file_pcommon_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7895,7 +7955,7 @@ type ExamBattleAutoStageResult_Player struct {
 
 func (x *ExamBattleAutoStageResult_Player) Reset() {
 	*x = ExamBattleAutoStageResult_Player{}
-	mi := &file_pcommon_proto_msgTypes[81]
+	mi := &file_pcommon_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7907,7 +7967,7 @@ func (x *ExamBattleAutoStageResult_Player) String() string {
 func (*ExamBattleAutoStageResult_Player) ProtoMessage() {}
 
 func (x *ExamBattleAutoStageResult_Player) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[81]
+	mi := &file_pcommon_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7970,7 +8030,7 @@ type GuildMission_Icon struct {
 
 func (x *GuildMission_Icon) Reset() {
 	*x = GuildMission_Icon{}
-	mi := &file_pcommon_proto_msgTypes[82]
+	mi := &file_pcommon_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7982,7 +8042,7 @@ func (x *GuildMission_Icon) String() string {
 func (*GuildMission_Icon) ProtoMessage() {}
 
 func (x *GuildMission_Icon) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[82]
+	mi := &file_pcommon_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8038,7 +8098,7 @@ type ProduceHistory_Audition struct {
 
 func (x *ProduceHistory_Audition) Reset() {
 	*x = ProduceHistory_Audition{}
-	mi := &file_pcommon_proto_msgTypes[83]
+	mi := &file_pcommon_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8050,7 +8110,7 @@ func (x *ProduceHistory_Audition) String() string {
 func (*ProduceHistory_Audition) ProtoMessage() {}
 
 func (x *ProduceHistory_Audition) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[83]
+	mi := &file_pcommon_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8104,7 +8164,7 @@ type ProduceHistory_DeckMemory struct {
 
 func (x *ProduceHistory_DeckMemory) Reset() {
 	*x = ProduceHistory_DeckMemory{}
-	mi := &file_pcommon_proto_msgTypes[84]
+	mi := &file_pcommon_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8116,7 +8176,7 @@ func (x *ProduceHistory_DeckMemory) String() string {
 func (*ProduceHistory_DeckMemory) ProtoMessage() {}
 
 func (x *ProduceHistory_DeckMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[84]
+	mi := &file_pcommon_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8156,7 +8216,7 @@ type ProduceHistory_DeckProduceCard struct {
 
 func (x *ProduceHistory_DeckProduceCard) Reset() {
 	*x = ProduceHistory_DeckProduceCard{}
-	mi := &file_pcommon_proto_msgTypes[85]
+	mi := &file_pcommon_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8168,7 +8228,7 @@ func (x *ProduceHistory_DeckProduceCard) String() string {
 func (*ProduceHistory_DeckProduceCard) ProtoMessage() {}
 
 func (x *ProduceHistory_DeckProduceCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[85]
+	mi := &file_pcommon_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8210,7 +8270,7 @@ type ProduceHistory_DeckSupportCard struct {
 
 func (x *ProduceHistory_DeckSupportCard) Reset() {
 	*x = ProduceHistory_DeckSupportCard{}
-	mi := &file_pcommon_proto_msgTypes[86]
+	mi := &file_pcommon_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8222,7 +8282,7 @@ func (x *ProduceHistory_DeckSupportCard) String() string {
 func (*ProduceHistory_DeckSupportCard) ProtoMessage() {}
 
 func (x *ProduceHistory_DeckSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[86]
+	mi := &file_pcommon_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8266,6 +8326,134 @@ func (x *ProduceHistory_DeckSupportCard) GetIsRental() bool {
 	return false
 }
 
+type ProducerRankingResult_ProduceResult struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ProduceGroupId string                 `protobuf:"bytes,1,opt,name=produceGroupId,proto3" json:"produceGroupId,omitempty"`
+	Point          int64                  `protobuf:"varint,2,opt,name=point,proto3" json:"point,omitempty"`
+	Diff           int64                  `protobuf:"varint,3,opt,name=diff,proto3" json:"diff,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProducerRankingResult_ProduceResult) Reset() {
+	*x = ProducerRankingResult_ProduceResult{}
+	mi := &file_pcommon_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProducerRankingResult_ProduceResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProducerRankingResult_ProduceResult) ProtoMessage() {}
+
+func (x *ProducerRankingResult_ProduceResult) ProtoReflect() protoreflect.Message {
+	mi := &file_pcommon_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProducerRankingResult_ProduceResult.ProtoReflect.Descriptor instead.
+func (*ProducerRankingResult_ProduceResult) Descriptor() ([]byte, []int) {
+	return file_pcommon_proto_rawDescGZIP(), []int{67, 0}
+}
+
+func (x *ProducerRankingResult_ProduceResult) GetProduceGroupId() string {
+	if x != nil {
+		return x.ProduceGroupId
+	}
+	return ""
+}
+
+func (x *ProducerRankingResult_ProduceResult) GetPoint() int64 {
+	if x != nil {
+		return x.Point
+	}
+	return 0
+}
+
+func (x *ProducerRankingResult_ProduceResult) GetDiff() int64 {
+	if x != nil {
+		return x.Diff
+	}
+	return 0
+}
+
+type ProducerRankingResult_TowerResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TowerId       string                 `protobuf:"bytes,1,opt,name=towerId,proto3" json:"towerId,omitempty"`
+	LayerNumber   int64                  `protobuf:"varint,2,opt,name=layerNumber,proto3" json:"layerNumber,omitempty"`
+	Point         int64                  `protobuf:"varint,3,opt,name=point,proto3" json:"point,omitempty"`
+	Diff          int64                  `protobuf:"varint,4,opt,name=diff,proto3" json:"diff,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProducerRankingResult_TowerResult) Reset() {
+	*x = ProducerRankingResult_TowerResult{}
+	mi := &file_pcommon_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProducerRankingResult_TowerResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProducerRankingResult_TowerResult) ProtoMessage() {}
+
+func (x *ProducerRankingResult_TowerResult) ProtoReflect() protoreflect.Message {
+	mi := &file_pcommon_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProducerRankingResult_TowerResult.ProtoReflect.Descriptor instead.
+func (*ProducerRankingResult_TowerResult) Descriptor() ([]byte, []int) {
+	return file_pcommon_proto_rawDescGZIP(), []int{67, 1}
+}
+
+func (x *ProducerRankingResult_TowerResult) GetTowerId() string {
+	if x != nil {
+		return x.TowerId
+	}
+	return ""
+}
+
+func (x *ProducerRankingResult_TowerResult) GetLayerNumber() int64 {
+	if x != nil {
+		return x.LayerNumber
+	}
+	return 0
+}
+
+func (x *ProducerRankingResult_TowerResult) GetPoint() int64 {
+	if x != nil {
+		return x.Point
+	}
+	return 0
+}
+
+func (x *ProducerRankingResult_TowerResult) GetDiff() int64 {
+	if x != nil {
+		return x.Diff
+	}
+	return 0
+}
+
 type PvpRateSetupUnitStageFormation_Slot struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	MainUserMemoryId string                 `protobuf:"bytes,1,opt,name=mainUserMemoryId,proto3" json:"mainUserMemoryId,omitempty"`
@@ -8276,7 +8464,7 @@ type PvpRateSetupUnitStageFormation_Slot struct {
 
 func (x *PvpRateSetupUnitStageFormation_Slot) Reset() {
 	*x = PvpRateSetupUnitStageFormation_Slot{}
-	mi := &file_pcommon_proto_msgTypes[87]
+	mi := &file_pcommon_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8288,7 +8476,7 @@ func (x *PvpRateSetupUnitStageFormation_Slot) String() string {
 func (*PvpRateSetupUnitStageFormation_Slot) ProtoMessage() {}
 
 func (x *PvpRateSetupUnitStageFormation_Slot) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[87]
+	mi := &file_pcommon_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8301,7 +8489,7 @@ func (x *PvpRateSetupUnitStageFormation_Slot) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use PvpRateSetupUnitStageFormation_Slot.ProtoReflect.Descriptor instead.
 func (*PvpRateSetupUnitStageFormation_Slot) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{68, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{69, 0}
 }
 
 func (x *PvpRateSetupUnitStageFormation_Slot) GetMainUserMemoryId() string {
@@ -8330,7 +8518,7 @@ type StoryEventBonus_CharacterBonus struct {
 
 func (x *StoryEventBonus_CharacterBonus) Reset() {
 	*x = StoryEventBonus_CharacterBonus{}
-	mi := &file_pcommon_proto_msgTypes[88]
+	mi := &file_pcommon_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8342,7 +8530,7 @@ func (x *StoryEventBonus_CharacterBonus) String() string {
 func (*StoryEventBonus_CharacterBonus) ProtoMessage() {}
 
 func (x *StoryEventBonus_CharacterBonus) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[88]
+	mi := &file_pcommon_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8355,7 +8543,7 @@ func (x *StoryEventBonus_CharacterBonus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventBonus_CharacterBonus.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_CharacterBonus) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 0}
 }
 
 func (x *StoryEventBonus_CharacterBonus) GetCharacterIds() []string {
@@ -8396,7 +8584,7 @@ type StoryEventBonus_IdolCardBonus struct {
 
 func (x *StoryEventBonus_IdolCardBonus) Reset() {
 	*x = StoryEventBonus_IdolCardBonus{}
-	mi := &file_pcommon_proto_msgTypes[89]
+	mi := &file_pcommon_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8408,7 +8596,7 @@ func (x *StoryEventBonus_IdolCardBonus) String() string {
 func (*StoryEventBonus_IdolCardBonus) ProtoMessage() {}
 
 func (x *StoryEventBonus_IdolCardBonus) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[89]
+	mi := &file_pcommon_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8421,7 +8609,7 @@ func (x *StoryEventBonus_IdolCardBonus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventBonus_IdolCardBonus.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_IdolCardBonus) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 1}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 1}
 }
 
 func (x *StoryEventBonus_IdolCardBonus) GetIdolCardIds() []string {
@@ -8448,7 +8636,7 @@ type StoryEventBonus_SupportCardBonus struct {
 
 func (x *StoryEventBonus_SupportCardBonus) Reset() {
 	*x = StoryEventBonus_SupportCardBonus{}
-	mi := &file_pcommon_proto_msgTypes[90]
+	mi := &file_pcommon_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8460,7 +8648,7 @@ func (x *StoryEventBonus_SupportCardBonus) String() string {
 func (*StoryEventBonus_SupportCardBonus) ProtoMessage() {}
 
 func (x *StoryEventBonus_SupportCardBonus) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[90]
+	mi := &file_pcommon_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8473,7 +8661,7 @@ func (x *StoryEventBonus_SupportCardBonus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventBonus_SupportCardBonus.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_SupportCardBonus) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 2}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 2}
 }
 
 func (x *StoryEventBonus_SupportCardBonus) GetSupportCardIds() []string {
@@ -8500,7 +8688,7 @@ type StoryEventBonus_CharacterBonus_PotentialRankBonusPermil struct {
 
 func (x *StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) Reset() {
 	*x = StoryEventBonus_CharacterBonus_PotentialRankBonusPermil{}
-	mi := &file_pcommon_proto_msgTypes[91]
+	mi := &file_pcommon_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8512,7 +8700,7 @@ func (x *StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) String() strin
 func (*StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) ProtoMessage() {}
 
 func (x *StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[91]
+	mi := &file_pcommon_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8525,7 +8713,7 @@ func (x *StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) ProtoReflect()
 
 // Deprecated: Use StoryEventBonus_CharacterBonus_PotentialRankBonusPermil.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 0, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 0, 0}
 }
 
 func (x *StoryEventBonus_CharacterBonus_PotentialRankBonusPermil) GetPotentialRank() penum.IdolCardPotentialRank {
@@ -8552,7 +8740,7 @@ type StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil struct {
 
 func (x *StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) Reset() {
 	*x = StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil{}
-	mi := &file_pcommon_proto_msgTypes[92]
+	mi := &file_pcommon_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8564,7 +8752,7 @@ func (x *StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) String() string
 func (*StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) ProtoMessage() {}
 
 func (x *StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[92]
+	mi := &file_pcommon_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8577,7 +8765,7 @@ func (x *StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) ProtoReflect() 
 
 // Deprecated: Use StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 1, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 1, 0}
 }
 
 func (x *StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil) GetPotentialRank() penum.IdolCardPotentialRank {
@@ -8604,7 +8792,7 @@ type StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil struct {
 
 func (x *StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) Reset() {
 	*x = StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil{}
-	mi := &file_pcommon_proto_msgTypes[93]
+	mi := &file_pcommon_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8616,7 +8804,7 @@ func (x *StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) String() st
 func (*StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) ProtoMessage() {}
 
 func (x *StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[93]
+	mi := &file_pcommon_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8629,7 +8817,7 @@ func (x *StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) ProtoReflec
 
 // Deprecated: Use StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil.ProtoReflect.Descriptor instead.
 func (*StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{73, 2, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{74, 2, 0}
 }
 
 func (x *StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil) GetLevelLimitRank() penum.SupportCardLevelLimitRank {
@@ -8660,7 +8848,7 @@ type StoryEventProduceResult_CoinResult struct {
 
 func (x *StoryEventProduceResult_CoinResult) Reset() {
 	*x = StoryEventProduceResult_CoinResult{}
-	mi := &file_pcommon_proto_msgTypes[94]
+	mi := &file_pcommon_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8672,7 +8860,7 @@ func (x *StoryEventProduceResult_CoinResult) String() string {
 func (*StoryEventProduceResult_CoinResult) ProtoMessage() {}
 
 func (x *StoryEventProduceResult_CoinResult) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[94]
+	mi := &file_pcommon_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8685,7 +8873,7 @@ func (x *StoryEventProduceResult_CoinResult) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use StoryEventProduceResult_CoinResult.ProtoReflect.Descriptor instead.
 func (*StoryEventProduceResult_CoinResult) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{75, 0}
+	return file_pcommon_proto_rawDescGZIP(), []int{76, 0}
 }
 
 func (x *StoryEventProduceResult_CoinResult) GetStoryEventId() string {
@@ -8744,7 +8932,7 @@ type StoryEventProduceResult_PointResult struct {
 
 func (x *StoryEventProduceResult_PointResult) Reset() {
 	*x = StoryEventProduceResult_PointResult{}
-	mi := &file_pcommon_proto_msgTypes[95]
+	mi := &file_pcommon_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8756,7 +8944,7 @@ func (x *StoryEventProduceResult_PointResult) String() string {
 func (*StoryEventProduceResult_PointResult) ProtoMessage() {}
 
 func (x *StoryEventProduceResult_PointResult) ProtoReflect() protoreflect.Message {
-	mi := &file_pcommon_proto_msgTypes[95]
+	mi := &file_pcommon_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8769,7 +8957,7 @@ func (x *StoryEventProduceResult_PointResult) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use StoryEventProduceResult_PointResult.ProtoReflect.Descriptor instead.
 func (*StoryEventProduceResult_PointResult) Descriptor() ([]byte, []int) {
-	return file_pcommon_proto_rawDescGZIP(), []int{75, 1}
+	return file_pcommon_proto_rawDescGZIP(), []int{76, 1}
 }
 
 func (x *StoryEventProduceResult_PointResult) GetStoryEventId() string {
@@ -9557,7 +9745,20 @@ const file_pcommon_proto_rawDesc = "" +
 	"\x19ProducerLevelUnlockTarget\x122\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1e.penum.ProducerLevelUnlockTypeR\x04type\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1a\n" +
-	"\bquantity\x18\x03 \x01(\x05R\bquantity\"\xe9\x01\n" +
+	"\bquantity\x18\x03 \x01(\x05R\bquantity\"\xb7\x03\n" +
+	"\x15ProducerRankingResult\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12T\n" +
+	"\x0eproduceResults\x18\x02 \x03(\v2,.pcommon.ProducerRankingResult.ProduceResultR\x0eproduceResults\x12N\n" +
+	"\ftowerResults\x18\x03 \x03(\v2*.pcommon.ProducerRankingResult.TowerResultR\ftowerResults\x1aa\n" +
+	"\rProduceResult\x12&\n" +
+	"\x0eproduceGroupId\x18\x01 \x01(\tR\x0eproduceGroupId\x12\x14\n" +
+	"\x05point\x18\x02 \x01(\x03R\x05point\x12\x12\n" +
+	"\x04diff\x18\x03 \x01(\x03R\x04diff\x1as\n" +
+	"\vTowerResult\x12\x18\n" +
+	"\atowerId\x18\x01 \x01(\tR\atowerId\x12 \n" +
+	"\vlayerNumber\x18\x02 \x01(\x03R\vlayerNumber\x12\x14\n" +
+	"\x05point\x18\x03 \x01(\x03R\x05point\x12\x12\n" +
+	"\x04diff\x18\x04 \x01(\x03R\x04diff\"\xe9\x01\n" +
 	"\x17PvpRateExamBattleResult\x12T\n" +
 	"\x15examBattleAutoRequest\x18\x01 \x01(\v2\x1e.pcommon.ExamBattleAutoRequestR\x15examBattleAutoRequest\x12:\n" +
 	"\x18selfStageResultScoreList\x18\x02 \x03(\x05R\x18selfStageResultScoreList\x12<\n" +
@@ -9730,189 +9931,192 @@ func file_pcommon_proto_rawDescGZIP() []byte {
 	return file_pcommon_proto_rawDescData
 }
 
-var file_pcommon_proto_msgTypes = make([]protoimpl.MessageInfo, 96)
+var file_pcommon_proto_msgTypes = make([]protoimpl.MessageInfo, 99)
 var file_pcommon_proto_goTypes = []any{
-	(*Achievement)(nil),                         // 0: pcommon.Achievement
-	(*AntiCheatCriticalResult)(nil),             // 1: pcommon.AntiCheatCriticalResult
-	(*AntiCheatSummaryResult)(nil),              // 2: pcommon.AntiCheatSummaryResult
-	(*CoinGasha)(nil),                           // 3: pcommon.CoinGasha
-	(*CoinGashaBox)(nil),                        // 4: pcommon.CoinGashaBox
-	(*CoinGashaDrawCountReward)(nil),            // 5: pcommon.CoinGashaDrawCountReward
-	(*CoinGashaReward)(nil),                     // 6: pcommon.CoinGashaReward
-	(*ConsumptionResult)(nil),                   // 7: pcommon.ConsumptionResult
-	(*Event)(nil),                               // 8: pcommon.Event
-	(*ExamAction)(nil),                          // 9: pcommon.ExamAction
-	(*ExamAiBaseModel)(nil),                     // 10: pcommon.ExamAiBaseModel
-	(*ExamAntiCheatTarget)(nil),                 // 11: pcommon.ExamAntiCheatTarget
-	(*ExamBattleAutoPlayer)(nil),                // 12: pcommon.ExamBattleAutoPlayer
-	(*ExamBattleAutoRequest)(nil),               // 13: pcommon.ExamBattleAutoRequest
-	(*ExamBattleAutoStage)(nil),                 // 14: pcommon.ExamBattleAutoStage
-	(*ExamBattleAutoStageResult)(nil),           // 15: pcommon.ExamBattleAutoStageResult
-	(*ExamBattleResult)(nil),                    // 16: pcommon.ExamBattleResult
-	(*ExamCommandLog)(nil),                      // 17: pcommon.ExamCommandLog
-	(*ExamContestCommand)(nil),                  // 18: pcommon.ExamContestCommand
-	(*ExamContestPlayer)(nil),                   // 19: pcommon.ExamContestPlayer
-	(*ExamContestPlayerResult)(nil),             // 20: pcommon.ExamContestPlayerResult
-	(*ExamContestResult)(nil),                   // 21: pcommon.ExamContestResult
-	(*ExamContestSection)(nil),                  // 22: pcommon.ExamContestSection
-	(*ExamContestSectionResult)(nil),            // 23: pcommon.ExamContestSectionResult
-	(*ExamContestSituation)(nil),                // 24: pcommon.ExamContestSituation
-	(*ExamContestStage)(nil),                    // 25: pcommon.ExamContestStage
-	(*ExamContestStageResult)(nil),              // 26: pcommon.ExamContestStageResult
-	(*ExamContestTurn)(nil),                     // 27: pcommon.ExamContestTurn
-	(*ExamStatusEffect)(nil),                    // 28: pcommon.ExamStatusEffect
-	(*ExamTriggerCount)(nil),                    // 29: pcommon.ExamTriggerCount
-	(*ExamTurnEndLog)(nil),                      // 30: pcommon.ExamTurnEndLog
-	(*Gasha)(nil),                               // 31: pcommon.Gasha
-	(*GashaBackgroundPickup)(nil),               // 32: pcommon.GashaBackgroundPickup
-	(*GashaBanner)(nil),                         // 33: pcommon.GashaBanner
-	(*GashaButton)(nil),                         // 34: pcommon.GashaButton
-	(*GashaPoint)(nil),                          // 35: pcommon.GashaPoint
-	(*GashaSelectPickup)(nil),                   // 36: pcommon.GashaSelectPickup
-	(*GashaStepUp)(nil),                         // 37: pcommon.GashaStepUp
-	(*GashaStepUpStep)(nil),                     // 38: pcommon.GashaStepUpStep
-	(*GuildMission)(nil),                        // 39: pcommon.GuildMission
-	(*GuildMissionHistory)(nil),                 // 40: pcommon.GuildMissionHistory
-	(*GvgRaidGuild)(nil),                        // 41: pcommon.GvgRaidGuild
-	(*GvgRaidSetUpDeck)(nil),                    // 42: pcommon.GvgRaidSetUpDeck
-	(*GvgRaidSlot)(nil),                         // 43: pcommon.GvgRaidSlot
-	(*HomeBanner)(nil),                          // 44: pcommon.HomeBanner
-	(*HomeNavigation)(nil),                      // 45: pcommon.HomeNavigation
-	(*IdolCard)(nil),                            // 46: pcommon.IdolCard
-	(*Meishi)(nil),                              // 47: pcommon.Meishi
-	(*MeishiBase)(nil),                          // 48: pcommon.MeishiBase
-	(*MeishiObject)(nil),                        // 49: pcommon.MeishiObject
-	(*Memory)(nil),                              // 50: pcommon.Memory
-	(*MemoryAbility)(nil),                       // 51: pcommon.MemoryAbility
-	(*ProduceCampaign)(nil),                     // 52: pcommon.ProduceCampaign
-	(*ProduceCard)(nil),                         // 53: pcommon.ProduceCard
-	(*ProduceCardCustomize)(nil),                // 54: pcommon.ProduceCardCustomize
-	(*ProduceConsumptionResult)(nil),            // 55: pcommon.ProduceConsumptionResult
-	(*ProduceDescriptionSegment)(nil),           // 56: pcommon.ProduceDescriptionSegment
-	(*ProduceEffectResult)(nil),                 // 57: pcommon.ProduceEffectResult
-	(*ProduceExamEndResult)(nil),                // 58: pcommon.ProduceExamEndResult
-	(*ProduceHistory)(nil),                      // 59: pcommon.ProduceHistory
-	(*ProduceItem)(nil),                         // 60: pcommon.ProduceItem
-	(*ProduceLessonGrowthResult)(nil),           // 61: pcommon.ProduceLessonGrowthResult
-	(*ProduceMemoryRewardResult)(nil),           // 62: pcommon.ProduceMemoryRewardResult
-	(*ProduceRewardResult)(nil),                 // 63: pcommon.ProduceRewardResult
-	(*ProduceTriggerOrigin)(nil),                // 64: pcommon.ProduceTriggerOrigin
-	(*ProducerLevelUnlock)(nil),                 // 65: pcommon.ProducerLevelUnlock
-	(*ProducerLevelUnlockTarget)(nil),           // 66: pcommon.ProducerLevelUnlockTarget
-	(*PvpRateExamBattleResult)(nil),             // 67: pcommon.PvpRateExamBattleResult
-	(*PvpRateSetupUnitStageFormation)(nil),      // 68: pcommon.PvpRateSetupUnitStageFormation
-	(*Reward)(nil),                              // 69: pcommon.Reward
-	(*RewardResult)(nil),                        // 70: pcommon.RewardResult
-	(*SimpleProfile)(nil),                       // 71: pcommon.SimpleProfile
-	(*StartupNotification)(nil),                 // 72: pcommon.StartupNotification
-	(*StoryEventBonus)(nil),                     // 73: pcommon.StoryEventBonus
-	(*StoryEventPointReward)(nil),               // 74: pcommon.StoryEventPointReward
-	(*StoryEventProduceResult)(nil),             // 75: pcommon.StoryEventProduceResult
-	(*SupportCard)(nil),                         // 76: pcommon.SupportCard
-	(*TowerLayerHistory)(nil),                   // 77: pcommon.TowerLayerHistory
-	(*AntiCheatCriticalResult_Log)(nil),         // 78: pcommon.AntiCheatCriticalResult.Log
-	(*AntiCheatCriticalResult_Record)(nil),      // 79: pcommon.AntiCheatCriticalResult.Record
-	(*AntiCheatSummaryResult_Score)(nil),        // 80: pcommon.AntiCheatSummaryResult.Score
-	(*ExamBattleAutoStageResult_Player)(nil),    // 81: pcommon.ExamBattleAutoStageResult.Player
-	(*GuildMission_Icon)(nil),                   // 82: pcommon.GuildMission.Icon
-	(*ProduceHistory_Audition)(nil),             // 83: pcommon.ProduceHistory.Audition
-	(*ProduceHistory_DeckMemory)(nil),           // 84: pcommon.ProduceHistory.DeckMemory
-	(*ProduceHistory_DeckProduceCard)(nil),      // 85: pcommon.ProduceHistory.DeckProduceCard
-	(*ProduceHistory_DeckSupportCard)(nil),      // 86: pcommon.ProduceHistory.DeckSupportCard
-	(*PvpRateSetupUnitStageFormation_Slot)(nil), // 87: pcommon.PvpRateSetupUnitStageFormation.Slot
-	(*StoryEventBonus_CharacterBonus)(nil),      // 88: pcommon.StoryEventBonus.CharacterBonus
-	(*StoryEventBonus_IdolCardBonus)(nil),       // 89: pcommon.StoryEventBonus.IdolCardBonus
-	(*StoryEventBonus_SupportCardBonus)(nil),    // 90: pcommon.StoryEventBonus.SupportCardBonus
-	(*StoryEventBonus_CharacterBonus_PotentialRankBonusPermil)(nil),    // 91: pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil
-	(*StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil)(nil),     // 92: pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil
-	(*StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil)(nil), // 93: pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil
-	(*StoryEventProduceResult_CoinResult)(nil),                         // 94: pcommon.StoryEventProduceResult.CoinResult
-	(*StoryEventProduceResult_PointResult)(nil),                        // 95: pcommon.StoryEventProduceResult.PointResult
-	(penum.CoinGashaType)(0),                                           // 96: penum.CoinGashaType
-	(penum.CoinGashaBoxResetTypeType)(0),                               // 97: penum.CoinGashaBoxResetTypeType
-	(penum.ResourceType)(0),                                            // 98: penum.ResourceType
-	(penum.EventType)(0),                                               // 99: penum.EventType
-	(penum.ExamActionType)(0),                                          // 100: penum.ExamActionType
-	(penum.ProducePlanType)(0),                                         // 101: penum.ProducePlanType
-	(penum.ExamGameType)(0),                                            // 102: penum.ExamGameType
-	(penum.ProduceExamEffectType)(0),                                   // 103: penum.ProduceExamEffectType
-	(penum.IdolCardLevelLimitRank)(0),                                  // 104: penum.IdolCardLevelLimitRank
-	(penum.IdolCardPotentialRank)(0),                                   // 105: penum.IdolCardPotentialRank
-	(penum.ExamCommandType)(0),                                         // 106: penum.ExamCommandType
-	(penum.ExamPhaseType)(0),                                           // 107: penum.ExamPhaseType
-	(penum.ProduceParameterType)(0),                                    // 108: penum.ProduceParameterType
-	(penum.ExamIdolStatusType)(0),                                      // 109: penum.ExamIdolStatusType
-	(penum.ExamStatusEffectType)(0),                                    // 110: penum.ExamStatusEffectType
-	(penum.GashaType)(0),                                               // 111: penum.GashaType
-	(penum.GuildMissionPhaseType)(0),                                   // 112: penum.GuildMissionPhaseType
-	(penum.LinkType)(0),                                                // 113: penum.LinkType
-	(penum.MeishiObjectType)(0),                                        // 114: penum.MeishiObjectType
-	(penum.PvpRateGrade)(0),                                            // 115: penum.PvpRateGrade
-	(penum.ResultGrade)(0),                                             // 116: penum.ResultGrade
-	(penum.ProduceMemoryProduceCardPhaseType)(0),                       // 117: penum.ProduceMemoryProduceCardPhaseType
-	(penum.ProduceCampaignType)(0),                                     // 118: penum.ProduceCampaignType
-	(penum.ProduceResourceType)(0),                                     // 119: penum.ProduceResourceType
-	(penum.ProduceDescriptionType)(0),                                  // 120: penum.ProduceDescriptionType
-	(penum.ExamDescriptionType)(0),                                     // 121: penum.ExamDescriptionType
-	(penum.ProduceCardGrowEffectType)(0),                               // 122: penum.ProduceCardGrowEffectType
-	(penum.ProduceCardCategory)(0),                                     // 123: penum.ProduceCardCategory
-	(penum.ProduceCardMovePositionType)(0),                             // 124: penum.ProduceCardMovePositionType
-	(penum.ProduceStepType)(0),                                         // 125: penum.ProduceStepType
-	(penum.ProduceStepBusinessType)(0),                                 // 126: penum.ProduceStepBusinessType
-	(penum.ProduceEffectType)(0),                                       // 127: penum.ProduceEffectType
-	(penum.ProduceType)(0),                                             // 128: penum.ProduceType
-	(penum.ProduceTriggerOriginType)(0),                                // 129: penum.ProduceTriggerOriginType
-	(penum.ProducerLevelUnlockType)(0),                                 // 130: penum.ProducerLevelUnlockType
-	(penum.PvpRateStageType)(0),                                        // 131: penum.PvpRateStageType
-	(penum.StartupNotificationType)(0),                                 // 132: penum.StartupNotificationType
-	(penum.StartupNotificationEffectType)(0),                           // 133: penum.StartupNotificationEffectType
-	(penum.StoryEventType)(0),                                          // 134: penum.StoryEventType
-	(penum.SupportCardLevelLimitRank)(0),                               // 135: penum.SupportCardLevelLimitRank
-	(penum.ProduceConditionType)(0),                                    // 136: penum.ProduceConditionType
-	(penum.IdolCardRarity)(0),                                          // 137: penum.IdolCardRarity
+	(*Achievement)(nil),                                             // 0: pcommon.Achievement
+	(*AntiCheatCriticalResult)(nil),                                 // 1: pcommon.AntiCheatCriticalResult
+	(*AntiCheatSummaryResult)(nil),                                  // 2: pcommon.AntiCheatSummaryResult
+	(*CoinGasha)(nil),                                               // 3: pcommon.CoinGasha
+	(*CoinGashaBox)(nil),                                            // 4: pcommon.CoinGashaBox
+	(*CoinGashaDrawCountReward)(nil),                                // 5: pcommon.CoinGashaDrawCountReward
+	(*CoinGashaReward)(nil),                                         // 6: pcommon.CoinGashaReward
+	(*ConsumptionResult)(nil),                                       // 7: pcommon.ConsumptionResult
+	(*Event)(nil),                                                   // 8: pcommon.Event
+	(*ExamAction)(nil),                                              // 9: pcommon.ExamAction
+	(*ExamAiBaseModel)(nil),                                         // 10: pcommon.ExamAiBaseModel
+	(*ExamAntiCheatTarget)(nil),                                     // 11: pcommon.ExamAntiCheatTarget
+	(*ExamBattleAutoPlayer)(nil),                                    // 12: pcommon.ExamBattleAutoPlayer
+	(*ExamBattleAutoRequest)(nil),                                   // 13: pcommon.ExamBattleAutoRequest
+	(*ExamBattleAutoStage)(nil),                                     // 14: pcommon.ExamBattleAutoStage
+	(*ExamBattleAutoStageResult)(nil),                               // 15: pcommon.ExamBattleAutoStageResult
+	(*ExamBattleResult)(nil),                                        // 16: pcommon.ExamBattleResult
+	(*ExamCommandLog)(nil),                                          // 17: pcommon.ExamCommandLog
+	(*ExamContestCommand)(nil),                                      // 18: pcommon.ExamContestCommand
+	(*ExamContestPlayer)(nil),                                       // 19: pcommon.ExamContestPlayer
+	(*ExamContestPlayerResult)(nil),                                 // 20: pcommon.ExamContestPlayerResult
+	(*ExamContestResult)(nil),                                       // 21: pcommon.ExamContestResult
+	(*ExamContestSection)(nil),                                      // 22: pcommon.ExamContestSection
+	(*ExamContestSectionResult)(nil),                                // 23: pcommon.ExamContestSectionResult
+	(*ExamContestSituation)(nil),                                    // 24: pcommon.ExamContestSituation
+	(*ExamContestStage)(nil),                                        // 25: pcommon.ExamContestStage
+	(*ExamContestStageResult)(nil),                                  // 26: pcommon.ExamContestStageResult
+	(*ExamContestTurn)(nil),                                         // 27: pcommon.ExamContestTurn
+	(*ExamStatusEffect)(nil),                                        // 28: pcommon.ExamStatusEffect
+	(*ExamTriggerCount)(nil),                                        // 29: pcommon.ExamTriggerCount
+	(*ExamTurnEndLog)(nil),                                          // 30: pcommon.ExamTurnEndLog
+	(*Gasha)(nil),                                                   // 31: pcommon.Gasha
+	(*GashaBackgroundPickup)(nil),                                   // 32: pcommon.GashaBackgroundPickup
+	(*GashaBanner)(nil),                                             // 33: pcommon.GashaBanner
+	(*GashaButton)(nil),                                             // 34: pcommon.GashaButton
+	(*GashaPoint)(nil),                                              // 35: pcommon.GashaPoint
+	(*GashaSelectPickup)(nil),                                       // 36: pcommon.GashaSelectPickup
+	(*GashaStepUp)(nil),                                             // 37: pcommon.GashaStepUp
+	(*GashaStepUpStep)(nil),                                         // 38: pcommon.GashaStepUpStep
+	(*GuildMission)(nil),                                            // 39: pcommon.GuildMission
+	(*GuildMissionHistory)(nil),                                     // 40: pcommon.GuildMissionHistory
+	(*GvgRaidGuild)(nil),                                            // 41: pcommon.GvgRaidGuild
+	(*GvgRaidSetUpDeck)(nil),                                        // 42: pcommon.GvgRaidSetUpDeck
+	(*GvgRaidSlot)(nil),                                             // 43: pcommon.GvgRaidSlot
+	(*HomeBanner)(nil),                                              // 44: pcommon.HomeBanner
+	(*HomeNavigation)(nil),                                          // 45: pcommon.HomeNavigation
+	(*IdolCard)(nil),                                                // 46: pcommon.IdolCard
+	(*Meishi)(nil),                                                  // 47: pcommon.Meishi
+	(*MeishiBase)(nil),                                              // 48: pcommon.MeishiBase
+	(*MeishiObject)(nil),                                            // 49: pcommon.MeishiObject
+	(*Memory)(nil),                                                  // 50: pcommon.Memory
+	(*MemoryAbility)(nil),                                           // 51: pcommon.MemoryAbility
+	(*ProduceCampaign)(nil),                                         // 52: pcommon.ProduceCampaign
+	(*ProduceCard)(nil),                                             // 53: pcommon.ProduceCard
+	(*ProduceCardCustomize)(nil),                                    // 54: pcommon.ProduceCardCustomize
+	(*ProduceConsumptionResult)(nil),                                // 55: pcommon.ProduceConsumptionResult
+	(*ProduceDescriptionSegment)(nil),                               // 56: pcommon.ProduceDescriptionSegment
+	(*ProduceEffectResult)(nil),                                     // 57: pcommon.ProduceEffectResult
+	(*ProduceExamEndResult)(nil),                                    // 58: pcommon.ProduceExamEndResult
+	(*ProduceHistory)(nil),                                          // 59: pcommon.ProduceHistory
+	(*ProduceItem)(nil),                                             // 60: pcommon.ProduceItem
+	(*ProduceLessonGrowthResult)(nil),                               // 61: pcommon.ProduceLessonGrowthResult
+	(*ProduceMemoryRewardResult)(nil),                               // 62: pcommon.ProduceMemoryRewardResult
+	(*ProduceRewardResult)(nil),                                     // 63: pcommon.ProduceRewardResult
+	(*ProduceTriggerOrigin)(nil),                                    // 64: pcommon.ProduceTriggerOrigin
+	(*ProducerLevelUnlock)(nil),                                     // 65: pcommon.ProducerLevelUnlock
+	(*ProducerLevelUnlockTarget)(nil),                               // 66: pcommon.ProducerLevelUnlockTarget
+	(*ProducerRankingResult)(nil),                                   // 67: pcommon.ProducerRankingResult
+	(*PvpRateExamBattleResult)(nil),                                 // 68: pcommon.PvpRateExamBattleResult
+	(*PvpRateSetupUnitStageFormation)(nil),                          // 69: pcommon.PvpRateSetupUnitStageFormation
+	(*Reward)(nil),                                                  // 70: pcommon.Reward
+	(*RewardResult)(nil),                                            // 71: pcommon.RewardResult
+	(*SimpleProfile)(nil),                                           // 72: pcommon.SimpleProfile
+	(*StartupNotification)(nil),                                     // 73: pcommon.StartupNotification
+	(*StoryEventBonus)(nil),                                         // 74: pcommon.StoryEventBonus
+	(*StoryEventPointReward)(nil),                                   // 75: pcommon.StoryEventPointReward
+	(*StoryEventProduceResult)(nil),                                 // 76: pcommon.StoryEventProduceResult
+	(*SupportCard)(nil),                                             // 77: pcommon.SupportCard
+	(*TowerLayerHistory)(nil),                                       // 78: pcommon.TowerLayerHistory
+	(*AntiCheatCriticalResult_Log)(nil),                             // 79: pcommon.AntiCheatCriticalResult.Log
+	(*AntiCheatCriticalResult_Record)(nil),                          // 80: pcommon.AntiCheatCriticalResult.Record
+	(*AntiCheatSummaryResult_Score)(nil),                            // 81: pcommon.AntiCheatSummaryResult.Score
+	(*ExamBattleAutoStageResult_Player)(nil),                        // 82: pcommon.ExamBattleAutoStageResult.Player
+	(*GuildMission_Icon)(nil),                                       // 83: pcommon.GuildMission.Icon
+	(*ProduceHistory_Audition)(nil),                                 // 84: pcommon.ProduceHistory.Audition
+	(*ProduceHistory_DeckMemory)(nil),                               // 85: pcommon.ProduceHistory.DeckMemory
+	(*ProduceHistory_DeckProduceCard)(nil),                          // 86: pcommon.ProduceHistory.DeckProduceCard
+	(*ProduceHistory_DeckSupportCard)(nil),                          // 87: pcommon.ProduceHistory.DeckSupportCard
+	(*ProducerRankingResult_ProduceResult)(nil),                     // 88: pcommon.ProducerRankingResult.ProduceResult
+	(*ProducerRankingResult_TowerResult)(nil),                       // 89: pcommon.ProducerRankingResult.TowerResult
+	(*PvpRateSetupUnitStageFormation_Slot)(nil),                     // 90: pcommon.PvpRateSetupUnitStageFormation.Slot
+	(*StoryEventBonus_CharacterBonus)(nil),                          // 91: pcommon.StoryEventBonus.CharacterBonus
+	(*StoryEventBonus_IdolCardBonus)(nil),                           // 92: pcommon.StoryEventBonus.IdolCardBonus
+	(*StoryEventBonus_SupportCardBonus)(nil),                        // 93: pcommon.StoryEventBonus.SupportCardBonus
+	(*StoryEventBonus_CharacterBonus_PotentialRankBonusPermil)(nil), // 94: pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil
+	(*StoryEventBonus_IdolCardBonus_PotentialRankBonusPermil)(nil),  // 95: pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil
+	(*StoryEventBonus_SupportCardBonus_LevelLimitRankBonusPermil)(nil), // 96: pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil
+	(*StoryEventProduceResult_CoinResult)(nil),                         // 97: pcommon.StoryEventProduceResult.CoinResult
+	(*StoryEventProduceResult_PointResult)(nil),                        // 98: pcommon.StoryEventProduceResult.PointResult
+	(penum.CoinGashaType)(0),                                           // 99: penum.CoinGashaType
+	(penum.CoinGashaBoxResetTypeType)(0),                               // 100: penum.CoinGashaBoxResetTypeType
+	(penum.ResourceType)(0),                                            // 101: penum.ResourceType
+	(penum.EventType)(0),                                               // 102: penum.EventType
+	(penum.ExamActionType)(0),                                          // 103: penum.ExamActionType
+	(penum.ProducePlanType)(0),                                         // 104: penum.ProducePlanType
+	(penum.ExamGameType)(0),                                            // 105: penum.ExamGameType
+	(penum.ProduceExamEffectType)(0),                                   // 106: penum.ProduceExamEffectType
+	(penum.IdolCardLevelLimitRank)(0),                                  // 107: penum.IdolCardLevelLimitRank
+	(penum.IdolCardPotentialRank)(0),                                   // 108: penum.IdolCardPotentialRank
+	(penum.ExamCommandType)(0),                                         // 109: penum.ExamCommandType
+	(penum.ExamPhaseType)(0),                                           // 110: penum.ExamPhaseType
+	(penum.ProduceParameterType)(0),                                    // 111: penum.ProduceParameterType
+	(penum.ExamIdolStatusType)(0),                                      // 112: penum.ExamIdolStatusType
+	(penum.ExamStatusEffectType)(0),                                    // 113: penum.ExamStatusEffectType
+	(penum.GashaType)(0),                                               // 114: penum.GashaType
+	(penum.GuildMissionPhaseType)(0),                                   // 115: penum.GuildMissionPhaseType
+	(penum.LinkType)(0),                                                // 116: penum.LinkType
+	(penum.MeishiObjectType)(0),                                        // 117: penum.MeishiObjectType
+	(penum.PvpRateGrade)(0),                                            // 118: penum.PvpRateGrade
+	(penum.ResultGrade)(0),                                             // 119: penum.ResultGrade
+	(penum.ProduceMemoryProduceCardPhaseType)(0),                       // 120: penum.ProduceMemoryProduceCardPhaseType
+	(penum.ProduceCampaignType)(0),                                     // 121: penum.ProduceCampaignType
+	(penum.ProduceResourceType)(0),                                     // 122: penum.ProduceResourceType
+	(penum.ProduceDescriptionType)(0),                                  // 123: penum.ProduceDescriptionType
+	(penum.ExamDescriptionType)(0),                                     // 124: penum.ExamDescriptionType
+	(penum.ProduceCardGrowEffectType)(0),                               // 125: penum.ProduceCardGrowEffectType
+	(penum.ProduceCardCategory)(0),                                     // 126: penum.ProduceCardCategory
+	(penum.ProduceCardMovePositionType)(0),                             // 127: penum.ProduceCardMovePositionType
+	(penum.ProduceStepType)(0),                                         // 128: penum.ProduceStepType
+	(penum.ProduceStepBusinessType)(0),                                 // 129: penum.ProduceStepBusinessType
+	(penum.ProduceEffectType)(0),                                       // 130: penum.ProduceEffectType
+	(penum.ProduceType)(0),                                             // 131: penum.ProduceType
+	(penum.ProduceTriggerOriginType)(0),                                // 132: penum.ProduceTriggerOriginType
+	(penum.ProducerLevelUnlockType)(0),                                 // 133: penum.ProducerLevelUnlockType
+	(penum.PvpRateStageType)(0),                                        // 134: penum.PvpRateStageType
+	(penum.StartupNotificationType)(0),                                 // 135: penum.StartupNotificationType
+	(penum.StartupNotificationEffectType)(0),                           // 136: penum.StartupNotificationEffectType
+	(penum.StoryEventType)(0),                                          // 137: penum.StoryEventType
+	(penum.SupportCardLevelLimitRank)(0),                               // 138: penum.SupportCardLevelLimitRank
+	(penum.ProduceConditionType)(0),                                    // 139: penum.ProduceConditionType
+	(penum.IdolCardRarity)(0),                                          // 140: penum.IdolCardRarity
 }
 var file_pcommon_proto_depIdxs = []int32{
-	79,  // 0: pcommon.AntiCheatCriticalResult.records:type_name -> pcommon.AntiCheatCriticalResult.Record
-	78,  // 1: pcommon.AntiCheatCriticalResult.logs:type_name -> pcommon.AntiCheatCriticalResult.Log
-	80,  // 2: pcommon.AntiCheatSummaryResult.scores:type_name -> pcommon.AntiCheatSummaryResult.Score
-	96,  // 3: pcommon.CoinGasha.type:type_name -> penum.CoinGashaType
+	80,  // 0: pcommon.AntiCheatCriticalResult.records:type_name -> pcommon.AntiCheatCriticalResult.Record
+	79,  // 1: pcommon.AntiCheatCriticalResult.logs:type_name -> pcommon.AntiCheatCriticalResult.Log
+	81,  // 2: pcommon.AntiCheatSummaryResult.scores:type_name -> pcommon.AntiCheatSummaryResult.Score
+	99,  // 3: pcommon.CoinGasha.type:type_name -> penum.CoinGashaType
 	6,   // 4: pcommon.CoinGasha.featureGashaRewards:type_name -> pcommon.CoinGashaReward
 	6,   // 5: pcommon.CoinGasha.commonGashaRewards:type_name -> pcommon.CoinGashaReward
 	4,   // 6: pcommon.CoinGasha.prevBoxList:type_name -> pcommon.CoinGashaBox
 	4,   // 7: pcommon.CoinGasha.nextBoxList:type_name -> pcommon.CoinGashaBox
-	97,  // 8: pcommon.CoinGasha.boxResetType:type_name -> penum.CoinGashaBoxResetTypeType
+	100, // 8: pcommon.CoinGasha.boxResetType:type_name -> penum.CoinGashaBoxResetTypeType
 	5,   // 9: pcommon.CoinGasha.drawCountRewards:type_name -> pcommon.CoinGashaDrawCountReward
 	6,   // 10: pcommon.CoinGashaBox.featureGashaRewards:type_name -> pcommon.CoinGashaReward
 	6,   // 11: pcommon.CoinGashaBox.commonGashaRewards:type_name -> pcommon.CoinGashaReward
-	69,  // 12: pcommon.CoinGashaDrawCountReward.reward:type_name -> pcommon.Reward
-	69,  // 13: pcommon.CoinGashaReward.reward:type_name -> pcommon.Reward
-	98,  // 14: pcommon.ConsumptionResult.resourceType:type_name -> penum.ResourceType
-	99,  // 15: pcommon.Event.eventType:type_name -> penum.EventType
-	100, // 16: pcommon.ExamAction.actionType:type_name -> penum.ExamActionType
-	101, // 17: pcommon.ExamAiBaseModel.planType:type_name -> penum.ProducePlanType
-	102, // 18: pcommon.ExamAntiCheatTarget.features:type_name -> penum.ExamGameType
-	101, // 19: pcommon.ExamBattleAutoPlayer.planType:type_name -> penum.ProducePlanType
-	103, // 20: pcommon.ExamBattleAutoPlayer.examEffectType:type_name -> penum.ProduceExamEffectType
-	104, // 21: pcommon.ExamBattleAutoPlayer.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	105, // 22: pcommon.ExamBattleAutoPlayer.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	70,  // 12: pcommon.CoinGashaDrawCountReward.reward:type_name -> pcommon.Reward
+	70,  // 13: pcommon.CoinGashaReward.reward:type_name -> pcommon.Reward
+	101, // 14: pcommon.ConsumptionResult.resourceType:type_name -> penum.ResourceType
+	102, // 15: pcommon.Event.eventType:type_name -> penum.EventType
+	103, // 16: pcommon.ExamAction.actionType:type_name -> penum.ExamActionType
+	104, // 17: pcommon.ExamAiBaseModel.planType:type_name -> penum.ProducePlanType
+	105, // 18: pcommon.ExamAntiCheatTarget.features:type_name -> penum.ExamGameType
+	104, // 19: pcommon.ExamBattleAutoPlayer.planType:type_name -> penum.ProducePlanType
+	106, // 20: pcommon.ExamBattleAutoPlayer.examEffectType:type_name -> penum.ProduceExamEffectType
+	107, // 21: pcommon.ExamBattleAutoPlayer.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 22: pcommon.ExamBattleAutoPlayer.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
 	53,  // 23: pcommon.ExamBattleAutoPlayer.produceCards:type_name -> pcommon.ProduceCard
 	14,  // 24: pcommon.ExamBattleAutoRequest.stages:type_name -> pcommon.ExamBattleAutoStage
 	12,  // 25: pcommon.ExamBattleAutoStage.selfPlayers:type_name -> pcommon.ExamBattleAutoPlayer
 	12,  // 26: pcommon.ExamBattleAutoStage.rivalPlayers:type_name -> pcommon.ExamBattleAutoPlayer
-	81,  // 27: pcommon.ExamBattleAutoStageResult.selfPlayers:type_name -> pcommon.ExamBattleAutoStageResult.Player
-	81,  // 28: pcommon.ExamBattleAutoStageResult.rivalPlayers:type_name -> pcommon.ExamBattleAutoStageResult.Player
+	82,  // 27: pcommon.ExamBattleAutoStageResult.selfPlayers:type_name -> pcommon.ExamBattleAutoStageResult.Player
+	82,  // 28: pcommon.ExamBattleAutoStageResult.rivalPlayers:type_name -> pcommon.ExamBattleAutoStageResult.Player
 	60,  // 29: pcommon.ExamBattleResult.produceItems:type_name -> pcommon.ProduceItem
 	29,  // 30: pcommon.ExamBattleResult.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
-	106, // 31: pcommon.ExamCommandLog.commandType:type_name -> penum.ExamCommandType
-	107, // 32: pcommon.ExamCommandLog.phaseType:type_name -> penum.ExamPhaseType
+	109, // 31: pcommon.ExamCommandLog.commandType:type_name -> penum.ExamCommandType
+	110, // 32: pcommon.ExamCommandLog.phaseType:type_name -> penum.ExamPhaseType
 	53,  // 33: pcommon.ExamCommandLog.useProduceCard:type_name -> pcommon.ProduceCard
-	106, // 34: pcommon.ExamContestCommand.commandType:type_name -> penum.ExamCommandType
-	107, // 35: pcommon.ExamContestCommand.phaseType:type_name -> penum.ExamPhaseType
+	109, // 34: pcommon.ExamContestCommand.commandType:type_name -> penum.ExamCommandType
+	110, // 35: pcommon.ExamContestCommand.phaseType:type_name -> penum.ExamPhaseType
 	9,   // 36: pcommon.ExamContestCommand.examActions:type_name -> pcommon.ExamAction
 	53,  // 37: pcommon.ExamContestCommand.useProduceCard:type_name -> pcommon.ProduceCard
-	103, // 38: pcommon.ExamContestPlayer.examEffectType:type_name -> penum.ProduceExamEffectType
-	104, // 39: pcommon.ExamContestPlayer.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	105, // 40: pcommon.ExamContestPlayer.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	106, // 38: pcommon.ExamContestPlayer.examEffectType:type_name -> penum.ProduceExamEffectType
+	107, // 39: pcommon.ExamContestPlayer.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 40: pcommon.ExamContestPlayer.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
 	53,  // 41: pcommon.ExamContestPlayer.produceCards:type_name -> pcommon.ProduceCard
 	60,  // 42: pcommon.ExamContestPlayer.produceItems:type_name -> pcommon.ProduceItem
 	60,  // 43: pcommon.ExamContestPlayerResult.produceItems:type_name -> pcommon.ProduceItem
@@ -9921,136 +10125,138 @@ var file_pcommon_proto_depIdxs = []int32{
 	19,  // 46: pcommon.ExamContestSection.player:type_name -> pcommon.ExamContestPlayer
 	20,  // 47: pcommon.ExamContestSectionResult.player:type_name -> pcommon.ExamContestPlayerResult
 	25,  // 48: pcommon.ExamContestSituation.stages:type_name -> pcommon.ExamContestStage
-	101, // 49: pcommon.ExamContestStage.planType:type_name -> penum.ProducePlanType
+	104, // 49: pcommon.ExamContestStage.planType:type_name -> penum.ProducePlanType
 	22,  // 50: pcommon.ExamContestStage.selfSections:type_name -> pcommon.ExamContestSection
 	23,  // 51: pcommon.ExamContestStageResult.selfSections:type_name -> pcommon.ExamContestSectionResult
 	18,  // 52: pcommon.ExamContestTurn.examContestCommands:type_name -> pcommon.ExamContestCommand
-	108, // 53: pcommon.ExamContestTurn.parameterType:type_name -> penum.ProduceParameterType
-	109, // 54: pcommon.ExamContestTurn.idolStatusType:type_name -> penum.ExamIdolStatusType
+	111, // 53: pcommon.ExamContestTurn.parameterType:type_name -> penum.ProduceParameterType
+	112, // 54: pcommon.ExamContestTurn.idolStatusType:type_name -> penum.ExamIdolStatusType
 	53,  // 55: pcommon.ExamContestTurn.startPlayHandProduceCards:type_name -> pcommon.ProduceCard
 	53,  // 56: pcommon.ExamContestTurn.startPlayHoldProduceCards:type_name -> pcommon.ProduceCard
 	28,  // 57: pcommon.ExamContestTurn.startPlayStatuses:type_name -> pcommon.ExamStatusEffect
-	110, // 58: pcommon.ExamStatusEffect.statusEffectType:type_name -> penum.ExamStatusEffectType
-	108, // 59: pcommon.ExamTurnEndLog.parameterType:type_name -> penum.ProduceParameterType
-	109, // 60: pcommon.ExamTurnEndLog.idolStatusType:type_name -> penum.ExamIdolStatusType
+	113, // 58: pcommon.ExamStatusEffect.statusEffectType:type_name -> penum.ExamStatusEffectType
+	111, // 59: pcommon.ExamTurnEndLog.parameterType:type_name -> penum.ProduceParameterType
+	112, // 60: pcommon.ExamTurnEndLog.idolStatusType:type_name -> penum.ExamIdolStatusType
 	53,  // 61: pcommon.ExamTurnEndLog.startPlayHandProduceCards:type_name -> pcommon.ProduceCard
 	53,  // 62: pcommon.ExamTurnEndLog.startPlayHoldProduceCards:type_name -> pcommon.ProduceCard
 	17,  // 63: pcommon.ExamTurnEndLog.commands:type_name -> pcommon.ExamCommandLog
-	111, // 64: pcommon.Gasha.type:type_name -> penum.GashaType
+	114, // 64: pcommon.Gasha.type:type_name -> penum.GashaType
 	34,  // 65: pcommon.Gasha.gashaButtons:type_name -> pcommon.GashaButton
 	37,  // 66: pcommon.Gasha.gashaStepUp:type_name -> pcommon.GashaStepUp
 	36,  // 67: pcommon.Gasha.gashaSelectPickup:type_name -> pcommon.GashaSelectPickup
 	35,  // 68: pcommon.Gasha.gashaPoint:type_name -> pcommon.GashaPoint
-	69,  // 69: pcommon.Gasha.bonusRewards:type_name -> pcommon.Reward
+	70,  // 69: pcommon.Gasha.bonusRewards:type_name -> pcommon.Reward
 	32,  // 70: pcommon.Gasha.backgroundPickupIdolCardSkins:type_name -> pcommon.GashaBackgroundPickup
 	32,  // 71: pcommon.Gasha.backgroundPickupSupportCards:type_name -> pcommon.GashaBackgroundPickup
-	69,  // 72: pcommon.GashaBackgroundPickup.rewards:type_name -> pcommon.Reward
-	69,  // 73: pcommon.GashaSelectPickup.pickupRewards:type_name -> pcommon.Reward
+	70,  // 72: pcommon.GashaBackgroundPickup.rewards:type_name -> pcommon.Reward
+	70,  // 73: pcommon.GashaSelectPickup.pickupRewards:type_name -> pcommon.Reward
 	38,  // 74: pcommon.GashaStepUp.steps:type_name -> pcommon.GashaStepUpStep
-	69,  // 75: pcommon.GashaStepUpStep.bonusRewards:type_name -> pcommon.Reward
-	69,  // 76: pcommon.GuildMission.reward:type_name -> pcommon.Reward
-	71,  // 77: pcommon.GuildMission.mvpProfile:type_name -> pcommon.SimpleProfile
-	82,  // 78: pcommon.GuildMission.icon:type_name -> pcommon.GuildMission.Icon
-	71,  // 79: pcommon.GuildMissionHistory.profile:type_name -> pcommon.SimpleProfile
-	112, // 80: pcommon.GuildMissionHistory.phaseType:type_name -> penum.GuildMissionPhaseType
+	70,  // 75: pcommon.GashaStepUpStep.bonusRewards:type_name -> pcommon.Reward
+	70,  // 76: pcommon.GuildMission.reward:type_name -> pcommon.Reward
+	72,  // 77: pcommon.GuildMission.mvpProfile:type_name -> pcommon.SimpleProfile
+	83,  // 78: pcommon.GuildMission.icon:type_name -> pcommon.GuildMission.Icon
+	72,  // 79: pcommon.GuildMissionHistory.profile:type_name -> pcommon.SimpleProfile
+	115, // 80: pcommon.GuildMissionHistory.phaseType:type_name -> penum.GuildMissionPhaseType
 	0,   // 81: pcommon.GvgRaidGuild.achievement:type_name -> pcommon.Achievement
 	43,  // 82: pcommon.GvgRaidSetUpDeck.slots:type_name -> pcommon.GvgRaidSlot
-	113, // 83: pcommon.HomeBanner.linkType:type_name -> penum.LinkType
-	104, // 84: pcommon.IdolCard.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	105, // 85: pcommon.IdolCard.potentialRank:type_name -> penum.IdolCardPotentialRank
+	116, // 83: pcommon.HomeBanner.linkType:type_name -> penum.LinkType
+	107, // 84: pcommon.IdolCard.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 85: pcommon.IdolCard.potentialRank:type_name -> penum.IdolCardPotentialRank
 	48,  // 86: pcommon.Meishi.meishiBase:type_name -> pcommon.MeishiBase
 	49,  // 87: pcommon.Meishi.objects:type_name -> pcommon.MeishiObject
-	114, // 88: pcommon.MeishiObject.type:type_name -> penum.MeishiObjectType
-	115, // 89: pcommon.MeishiObject.grade:type_name -> penum.PvpRateGrade
+	117, // 88: pcommon.MeishiObject.type:type_name -> penum.MeishiObjectType
+	118, // 89: pcommon.MeishiObject.grade:type_name -> penum.PvpRateGrade
 	0,   // 90: pcommon.MeishiObject.achievement:type_name -> pcommon.Achievement
-	116, // 91: pcommon.Memory.grade:type_name -> penum.ResultGrade
-	101, // 92: pcommon.Memory.planType:type_name -> penum.ProducePlanType
-	104, // 93: pcommon.Memory.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	105, // 94: pcommon.Memory.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	119, // 91: pcommon.Memory.grade:type_name -> penum.ResultGrade
+	104, // 92: pcommon.Memory.planType:type_name -> penum.ProducePlanType
+	107, // 93: pcommon.Memory.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 94: pcommon.Memory.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
 	53,  // 95: pcommon.Memory.produceCard:type_name -> pcommon.ProduceCard
-	117, // 96: pcommon.Memory.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
+	120, // 96: pcommon.Memory.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
 	51,  // 97: pcommon.Memory.abilities:type_name -> pcommon.MemoryAbility
 	53,  // 98: pcommon.Memory.examBattleProduceCards:type_name -> pcommon.ProduceCard
-	118, // 99: pcommon.ProduceCampaign.type:type_name -> penum.ProduceCampaignType
-	69,  // 100: pcommon.ProduceCampaign.appealRewards:type_name -> pcommon.Reward
+	121, // 99: pcommon.ProduceCampaign.type:type_name -> penum.ProduceCampaignType
+	70,  // 100: pcommon.ProduceCampaign.appealRewards:type_name -> pcommon.Reward
 	54,  // 101: pcommon.ProduceCard.customizes:type_name -> pcommon.ProduceCardCustomize
-	119, // 102: pcommon.ProduceConsumptionResult.resourceType:type_name -> penum.ProduceResourceType
-	120, // 103: pcommon.ProduceDescriptionSegment.produceDescriptionType:type_name -> penum.ProduceDescriptionType
-	121, // 104: pcommon.ProduceDescriptionSegment.examDescriptionType:type_name -> penum.ExamDescriptionType
-	103, // 105: pcommon.ProduceDescriptionSegment.examEffectType:type_name -> penum.ProduceExamEffectType
-	122, // 106: pcommon.ProduceDescriptionSegment.produceCardGrowEffectType:type_name -> penum.ProduceCardGrowEffectType
-	123, // 107: pcommon.ProduceDescriptionSegment.produceCardCategory:type_name -> penum.ProduceCardCategory
-	124, // 108: pcommon.ProduceDescriptionSegment.produceCardMovePositionType:type_name -> penum.ProduceCardMovePositionType
-	125, // 109: pcommon.ProduceDescriptionSegment.produceStepType:type_name -> penum.ProduceStepType
-	126, // 110: pcommon.ProduceDescriptionSegment.produceStepBusinessType:type_name -> penum.ProduceStepBusinessType
-	127, // 111: pcommon.ProduceEffectResult.effectType:type_name -> penum.ProduceEffectType
+	122, // 102: pcommon.ProduceConsumptionResult.resourceType:type_name -> penum.ProduceResourceType
+	123, // 103: pcommon.ProduceDescriptionSegment.produceDescriptionType:type_name -> penum.ProduceDescriptionType
+	124, // 104: pcommon.ProduceDescriptionSegment.examDescriptionType:type_name -> penum.ExamDescriptionType
+	106, // 105: pcommon.ProduceDescriptionSegment.examEffectType:type_name -> penum.ProduceExamEffectType
+	125, // 106: pcommon.ProduceDescriptionSegment.produceCardGrowEffectType:type_name -> penum.ProduceCardGrowEffectType
+	126, // 107: pcommon.ProduceDescriptionSegment.produceCardCategory:type_name -> penum.ProduceCardCategory
+	127, // 108: pcommon.ProduceDescriptionSegment.produceCardMovePositionType:type_name -> penum.ProduceCardMovePositionType
+	128, // 109: pcommon.ProduceDescriptionSegment.produceStepType:type_name -> penum.ProduceStepType
+	129, // 110: pcommon.ProduceDescriptionSegment.produceStepBusinessType:type_name -> penum.ProduceStepBusinessType
+	130, // 111: pcommon.ProduceEffectResult.effectType:type_name -> penum.ProduceEffectType
 	64,  // 112: pcommon.ProduceEffectResult.origin:type_name -> pcommon.ProduceTriggerOrigin
 	53,  // 113: pcommon.ProduceEffectResult.beforeProduceCards:type_name -> pcommon.ProduceCard
 	53,  // 114: pcommon.ProduceEffectResult.afterProduceCards:type_name -> pcommon.ProduceCard
 	63,  // 115: pcommon.ProduceEffectResult.providedRewards:type_name -> pcommon.ProduceRewardResult
-	125, // 116: pcommon.ProduceExamEndResult.stepType:type_name -> penum.ProduceStepType
+	128, // 116: pcommon.ProduceExamEndResult.stepType:type_name -> penum.ProduceStepType
 	60,  // 117: pcommon.ProduceExamEndResult.produceItems:type_name -> pcommon.ProduceItem
 	29,  // 118: pcommon.ProduceExamEndResult.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
-	116, // 119: pcommon.ProduceHistory.grade:type_name -> penum.ResultGrade
-	104, // 120: pcommon.ProduceHistory.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	105, // 121: pcommon.ProduceHistory.potentialRank:type_name -> penum.IdolCardPotentialRank
-	128, // 122: pcommon.ProduceHistory.trueEndProduceTypes:type_name -> penum.ProduceType
-	83,  // 123: pcommon.ProduceHistory.auditions:type_name -> pcommon.ProduceHistory.Audition
-	86,  // 124: pcommon.ProduceHistory.deckSupportCards:type_name -> pcommon.ProduceHistory.DeckSupportCard
-	84,  // 125: pcommon.ProduceHistory.deckMemories:type_name -> pcommon.ProduceHistory.DeckMemory
-	85,  // 126: pcommon.ProduceHistory.produceCards:type_name -> pcommon.ProduceHistory.DeckProduceCard
+	119, // 119: pcommon.ProduceHistory.grade:type_name -> penum.ResultGrade
+	107, // 120: pcommon.ProduceHistory.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 121: pcommon.ProduceHistory.potentialRank:type_name -> penum.IdolCardPotentialRank
+	131, // 122: pcommon.ProduceHistory.trueEndProduceTypes:type_name -> penum.ProduceType
+	84,  // 123: pcommon.ProduceHistory.auditions:type_name -> pcommon.ProduceHistory.Audition
+	87,  // 124: pcommon.ProduceHistory.deckSupportCards:type_name -> pcommon.ProduceHistory.DeckSupportCard
+	85,  // 125: pcommon.ProduceHistory.deckMemories:type_name -> pcommon.ProduceHistory.DeckMemory
+	86,  // 126: pcommon.ProduceHistory.produceCards:type_name -> pcommon.ProduceHistory.DeckProduceCard
 	50,  // 127: pcommon.ProduceHistory.memory:type_name -> pcommon.Memory
 	63,  // 128: pcommon.ProduceMemoryRewardResult.providedRewards:type_name -> pcommon.ProduceRewardResult
 	64,  // 129: pcommon.ProduceMemoryRewardResult.origin:type_name -> pcommon.ProduceTriggerOrigin
-	119, // 130: pcommon.ProduceRewardResult.resourceType:type_name -> penum.ProduceResourceType
+	122, // 130: pcommon.ProduceRewardResult.resourceType:type_name -> penum.ProduceResourceType
 	54,  // 131: pcommon.ProduceRewardResult.customizes:type_name -> pcommon.ProduceCardCustomize
-	129, // 132: pcommon.ProduceTriggerOrigin.originType:type_name -> penum.ProduceTriggerOriginType
+	132, // 132: pcommon.ProduceTriggerOrigin.originType:type_name -> penum.ProduceTriggerOriginType
 	66,  // 133: pcommon.ProducerLevelUnlock.targets:type_name -> pcommon.ProducerLevelUnlockTarget
-	69,  // 134: pcommon.ProducerLevelUnlock.reward:type_name -> pcommon.Reward
-	69,  // 135: pcommon.ProducerLevelUnlock.bonusRewards:type_name -> pcommon.Reward
-	130, // 136: pcommon.ProducerLevelUnlockTarget.type:type_name -> penum.ProducerLevelUnlockType
-	13,  // 137: pcommon.PvpRateExamBattleResult.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	131, // 138: pcommon.PvpRateSetupUnitStageFormation.stage:type_name -> penum.PvpRateStageType
-	87,  // 139: pcommon.PvpRateSetupUnitStageFormation.slots:type_name -> pcommon.PvpRateSetupUnitStageFormation.Slot
-	98,  // 140: pcommon.Reward.resourceType:type_name -> penum.ResourceType
-	98,  // 141: pcommon.RewardResult.resourceType:type_name -> penum.ResourceType
-	47,  // 142: pcommon.SimpleProfile.meishi:type_name -> pcommon.Meishi
-	132, // 143: pcommon.StartupNotification.type:type_name -> penum.StartupNotificationType
-	133, // 144: pcommon.StartupNotification.effectType:type_name -> penum.StartupNotificationEffectType
-	113, // 145: pcommon.StartupNotification.linkType:type_name -> penum.LinkType
-	35,  // 146: pcommon.StartupNotification.gashaPoint:type_name -> pcommon.GashaPoint
-	33,  // 147: pcommon.StartupNotification.gashaPointBanners:type_name -> pcommon.GashaBanner
-	88,  // 148: pcommon.StoryEventBonus.characterBonuses:type_name -> pcommon.StoryEventBonus.CharacterBonus
-	89,  // 149: pcommon.StoryEventBonus.idolCardBonuses:type_name -> pcommon.StoryEventBonus.IdolCardBonus
-	90,  // 150: pcommon.StoryEventBonus.supportCardBonuses:type_name -> pcommon.StoryEventBonus.SupportCardBonus
-	69,  // 151: pcommon.StoryEventPointReward.reward:type_name -> pcommon.Reward
-	95,  // 152: pcommon.StoryEventProduceResult.pointResult:type_name -> pcommon.StoryEventProduceResult.PointResult
-	94,  // 153: pcommon.StoryEventProduceResult.coinResult:type_name -> pcommon.StoryEventProduceResult.CoinResult
-	70,  // 154: pcommon.StoryEventProduceResult.rewardResults:type_name -> pcommon.RewardResult
-	134, // 155: pcommon.StoryEventProduceResult.storyEventType:type_name -> penum.StoryEventType
-	135, // 156: pcommon.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	50,  // 157: pcommon.TowerLayerHistory.memories:type_name -> pcommon.Memory
-	136, // 158: pcommon.GuildMission.Icon.type:type_name -> penum.ProduceConditionType
-	116, // 159: pcommon.GuildMission.Icon.grade:type_name -> penum.ResultGrade
-	125, // 160: pcommon.ProduceHistory.Audition.stepType:type_name -> penum.ProduceStepType
-	50,  // 161: pcommon.ProduceHistory.DeckMemory.memory:type_name -> pcommon.Memory
-	53,  // 162: pcommon.ProduceHistory.DeckProduceCard.produceCard:type_name -> pcommon.ProduceCard
-	135, // 163: pcommon.ProduceHistory.DeckSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	137, // 164: pcommon.StoryEventBonus.CharacterBonus.idolCardRarities:type_name -> penum.IdolCardRarity
-	91,  // 165: pcommon.StoryEventBonus.CharacterBonus.potentialRankBonusPermils:type_name -> pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil
-	92,  // 166: pcommon.StoryEventBonus.IdolCardBonus.potentialRankBonusPermils:type_name -> pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil
-	93,  // 167: pcommon.StoryEventBonus.SupportCardBonus.levelLimitRankBonusPermils:type_name -> pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil
-	105, // 168: pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil.potentialRank:type_name -> penum.IdolCardPotentialRank
-	105, // 169: pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil.potentialRank:type_name -> penum.IdolCardPotentialRank
-	135, // 170: pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	98,  // 171: pcommon.StoryEventProduceResult.CoinResult.resourceType:type_name -> penum.ResourceType
-	74,  // 172: pcommon.StoryEventProduceResult.PointResult.allRewards:type_name -> pcommon.StoryEventPointReward
-	74,  // 173: pcommon.StoryEventProduceResult.PointResult.provideRewards:type_name -> pcommon.StoryEventPointReward
-	174, // [174:174] is the sub-list for method output_type
-	174, // [174:174] is the sub-list for method input_type
-	174, // [174:174] is the sub-list for extension type_name
-	174, // [174:174] is the sub-list for extension extendee
-	0,   // [0:174] is the sub-list for field type_name
+	70,  // 134: pcommon.ProducerLevelUnlock.reward:type_name -> pcommon.Reward
+	70,  // 135: pcommon.ProducerLevelUnlock.bonusRewards:type_name -> pcommon.Reward
+	133, // 136: pcommon.ProducerLevelUnlockTarget.type:type_name -> penum.ProducerLevelUnlockType
+	88,  // 137: pcommon.ProducerRankingResult.produceResults:type_name -> pcommon.ProducerRankingResult.ProduceResult
+	89,  // 138: pcommon.ProducerRankingResult.towerResults:type_name -> pcommon.ProducerRankingResult.TowerResult
+	13,  // 139: pcommon.PvpRateExamBattleResult.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	134, // 140: pcommon.PvpRateSetupUnitStageFormation.stage:type_name -> penum.PvpRateStageType
+	90,  // 141: pcommon.PvpRateSetupUnitStageFormation.slots:type_name -> pcommon.PvpRateSetupUnitStageFormation.Slot
+	101, // 142: pcommon.Reward.resourceType:type_name -> penum.ResourceType
+	101, // 143: pcommon.RewardResult.resourceType:type_name -> penum.ResourceType
+	47,  // 144: pcommon.SimpleProfile.meishi:type_name -> pcommon.Meishi
+	135, // 145: pcommon.StartupNotification.type:type_name -> penum.StartupNotificationType
+	136, // 146: pcommon.StartupNotification.effectType:type_name -> penum.StartupNotificationEffectType
+	116, // 147: pcommon.StartupNotification.linkType:type_name -> penum.LinkType
+	35,  // 148: pcommon.StartupNotification.gashaPoint:type_name -> pcommon.GashaPoint
+	33,  // 149: pcommon.StartupNotification.gashaPointBanners:type_name -> pcommon.GashaBanner
+	91,  // 150: pcommon.StoryEventBonus.characterBonuses:type_name -> pcommon.StoryEventBonus.CharacterBonus
+	92,  // 151: pcommon.StoryEventBonus.idolCardBonuses:type_name -> pcommon.StoryEventBonus.IdolCardBonus
+	93,  // 152: pcommon.StoryEventBonus.supportCardBonuses:type_name -> pcommon.StoryEventBonus.SupportCardBonus
+	70,  // 153: pcommon.StoryEventPointReward.reward:type_name -> pcommon.Reward
+	98,  // 154: pcommon.StoryEventProduceResult.pointResult:type_name -> pcommon.StoryEventProduceResult.PointResult
+	97,  // 155: pcommon.StoryEventProduceResult.coinResult:type_name -> pcommon.StoryEventProduceResult.CoinResult
+	71,  // 156: pcommon.StoryEventProduceResult.rewardResults:type_name -> pcommon.RewardResult
+	137, // 157: pcommon.StoryEventProduceResult.storyEventType:type_name -> penum.StoryEventType
+	138, // 158: pcommon.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	50,  // 159: pcommon.TowerLayerHistory.memories:type_name -> pcommon.Memory
+	139, // 160: pcommon.GuildMission.Icon.type:type_name -> penum.ProduceConditionType
+	119, // 161: pcommon.GuildMission.Icon.grade:type_name -> penum.ResultGrade
+	128, // 162: pcommon.ProduceHistory.Audition.stepType:type_name -> penum.ProduceStepType
+	50,  // 163: pcommon.ProduceHistory.DeckMemory.memory:type_name -> pcommon.Memory
+	53,  // 164: pcommon.ProduceHistory.DeckProduceCard.produceCard:type_name -> pcommon.ProduceCard
+	138, // 165: pcommon.ProduceHistory.DeckSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	140, // 166: pcommon.StoryEventBonus.CharacterBonus.idolCardRarities:type_name -> penum.IdolCardRarity
+	94,  // 167: pcommon.StoryEventBonus.CharacterBonus.potentialRankBonusPermils:type_name -> pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil
+	95,  // 168: pcommon.StoryEventBonus.IdolCardBonus.potentialRankBonusPermils:type_name -> pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil
+	96,  // 169: pcommon.StoryEventBonus.SupportCardBonus.levelLimitRankBonusPermils:type_name -> pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil
+	108, // 170: pcommon.StoryEventBonus.CharacterBonus.PotentialRankBonusPermil.potentialRank:type_name -> penum.IdolCardPotentialRank
+	108, // 171: pcommon.StoryEventBonus.IdolCardBonus.PotentialRankBonusPermil.potentialRank:type_name -> penum.IdolCardPotentialRank
+	138, // 172: pcommon.StoryEventBonus.SupportCardBonus.LevelLimitRankBonusPermil.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	101, // 173: pcommon.StoryEventProduceResult.CoinResult.resourceType:type_name -> penum.ResourceType
+	75,  // 174: pcommon.StoryEventProduceResult.PointResult.allRewards:type_name -> pcommon.StoryEventPointReward
+	75,  // 175: pcommon.StoryEventProduceResult.PointResult.provideRewards:type_name -> pcommon.StoryEventPointReward
+	176, // [176:176] is the sub-list for method output_type
+	176, // [176:176] is the sub-list for method input_type
+	176, // [176:176] is the sub-list for extension type_name
+	176, // [176:176] is the sub-list for extension extendee
+	0,   // [0:176] is the sub-list for field type_name
 }
 
 func init() { file_pcommon_proto_init() }
@@ -10064,7 +10270,7 @@ func file_pcommon_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pcommon_proto_rawDesc), len(file_pcommon_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   96,
+			NumMessages:   99,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
