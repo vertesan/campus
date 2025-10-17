@@ -6839,61 +6839,62 @@ var Preference_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Produce_Top_FullMethodName                       = "/client.api.Produce/Top"
-	Produce_ChangeForceLiveCommon_FullMethodName     = "/client.api.Produce/ChangeForceLiveCommon"
-	Produce_UpdateSupportCardDeck_FullMethodName     = "/client.api.Produce/UpdateSupportCardDeck"
-	Produce_UpdateMemoryDeck_FullMethodName          = "/client.api.Produce/UpdateMemoryDeck"
-	Produce_ListRentalSupportCard_FullMethodName     = "/client.api.Produce/ListRentalSupportCard"
-	Produce_ListRentalMemory_FullMethodName          = "/client.api.Produce/ListRentalMemory"
-	Produce_CheckProgress_FullMethodName             = "/client.api.Produce/CheckProgress"
-	Produce_Start_FullMethodName                     = "/client.api.Produce/Start"
-	Produce_Restart_FullMethodName                   = "/client.api.Produce/Restart"
-	Produce_Save_FullMethodName                      = "/client.api.Produce/Save"
-	Produce_Next_FullMethodName                      = "/client.api.Produce/Next"
-	Produce_StepSkip_FullMethodName                  = "/client.api.Produce/StepSkip"
-	Produce_StepEvent_FullMethodName                 = "/client.api.Produce/StepEvent"
-	Produce_StepBusinessStart_FullMethodName         = "/client.api.Produce/StepBusinessStart"
-	Produce_StepBusinessSelect_FullMethodName        = "/client.api.Produce/StepBusinessSelect"
-	Produce_StepCustomizeStart_FullMethodName        = "/client.api.Produce/StepCustomizeStart"
-	Produce_StepCustomizeSelect_FullMethodName       = "/client.api.Produce/StepCustomizeSelect"
-	Produce_StepCustomizeEnd_FullMethodName          = "/client.api.Produce/StepCustomizeEnd"
-	Produce_StepRefresh_FullMethodName               = "/client.api.Produce/StepRefresh"
-	Produce_StepShopStart_FullMethodName             = "/client.api.Produce/StepShopStart"
-	Produce_StepShopReroll_FullMethodName            = "/client.api.Produce/StepShopReroll"
-	Produce_StepShopBuy_FullMethodName               = "/client.api.Produce/StepShopBuy"
-	Produce_StepShopEnd_FullMethodName               = "/client.api.Produce/StepShopEnd"
-	Produce_StepPresentStart_FullMethodName          = "/client.api.Produce/StepPresentStart"
-	Produce_StepPresentReceive_FullMethodName        = "/client.api.Produce/StepPresentReceive"
-	Produce_StepPresentEnd_FullMethodName            = "/client.api.Produce/StepPresentEnd"
-	Produce_StepLessonStart_FullMethodName           = "/client.api.Produce/StepLessonStart"
-	Produce_StepLessonEnd_FullMethodName             = "/client.api.Produce/StepLessonEnd"
-	Produce_StepSelfLessonStart_FullMethodName       = "/client.api.Produce/StepSelfLessonStart"
-	Produce_StepSelfLessonEnd_FullMethodName         = "/client.api.Produce/StepSelfLessonEnd"
-	Produce_StepAuditionRefresh_FullMethodName       = "/client.api.Produce/StepAuditionRefresh"
-	Produce_StepAuditionStart_FullMethodName         = "/client.api.Produce/StepAuditionStart"
-	Produce_StepAuditionEndExamBattle_FullMethodName = "/client.api.Produce/StepAuditionEndExamBattle"
-	Produce_StepAuditionEnd_FullMethodName           = "/client.api.Produce/StepAuditionEnd"
-	Produce_DiscardDrink_FullMethodName              = "/client.api.Produce/DiscardDrink"
-	Produce_RerollSelectProduceCard_FullMethodName   = "/client.api.Produce/RerollSelectProduceCard"
-	Produce_ExcludeProduceCard_FullMethodName        = "/client.api.Produce/ExcludeProduceCard"
-	Produce_ActivateEffect_FullMethodName            = "/client.api.Produce/ActivateEffect"
-	Produce_ReadDearnessStory_FullMethodName         = "/client.api.Produce/ReadDearnessStory"
-	Produce_ReadAdv_FullMethodName                   = "/client.api.Produce/ReadAdv"
-	Produce_StartBeforeLiveEvaluation_FullMethodName = "/client.api.Produce/StartBeforeLiveEvaluation"
-	Produce_EndBeforeLiveEvaluation_FullMethodName   = "/client.api.Produce/EndBeforeLiveEvaluation"
-	Produce_RerollMemory_FullMethodName              = "/client.api.Produce/RerollMemory"
-	Produce_End_FullMethodName                       = "/client.api.Produce/End"
-	Produce_Result_FullMethodName                    = "/client.api.Produce/Result"
-	Produce_ReportGuildMission_FullMethodName        = "/client.api.Produce/ReportGuildMission"
-	Produce_ReportDearnessBoostEvent_FullMethodName  = "/client.api.Produce/ReportDearnessBoostEvent"
-	Produce_Continue_FullMethodName                  = "/client.api.Produce/Continue"
-	Produce_Retire_FullMethodName                    = "/client.api.Produce/Retire"
-	Produce_History_FullMethodName                   = "/client.api.Produce/History"
-	Produce_RankingTop_FullMethodName                = "/client.api.Produce/RankingTop"
-	Produce_Ranking_FullMethodName                   = "/client.api.Produce/Ranking"
-	Produce_ChangeCostume_FullMethodName             = "/client.api.Produce/ChangeCostume"
-	Produce_ViewPictureBookLive_FullMethodName       = "/client.api.Produce/ViewPictureBookLive"
-	Produce_UnlockPictureBookLive_FullMethodName     = "/client.api.Produce/UnlockPictureBookLive"
+	Produce_Top_FullMethodName                         = "/client.api.Produce/Top"
+	Produce_ChangeForceLiveCommon_FullMethodName       = "/client.api.Produce/ChangeForceLiveCommon"
+	Produce_UpdateSupportCardDeck_FullMethodName       = "/client.api.Produce/UpdateSupportCardDeck"
+	Produce_UpdateMemoryDeck_FullMethodName            = "/client.api.Produce/UpdateMemoryDeck"
+	Produce_ListRentalSupportCard_FullMethodName       = "/client.api.Produce/ListRentalSupportCard"
+	Produce_ListRentalMemory_FullMethodName            = "/client.api.Produce/ListRentalMemory"
+	Produce_CheckProgress_FullMethodName               = "/client.api.Produce/CheckProgress"
+	Produce_Start_FullMethodName                       = "/client.api.Produce/Start"
+	Produce_Restart_FullMethodName                     = "/client.api.Produce/Restart"
+	Produce_Save_FullMethodName                        = "/client.api.Produce/Save"
+	Produce_Next_FullMethodName                        = "/client.api.Produce/Next"
+	Produce_StepSkip_FullMethodName                    = "/client.api.Produce/StepSkip"
+	Produce_StepEvent_FullMethodName                   = "/client.api.Produce/StepEvent"
+	Produce_StepBusinessStart_FullMethodName           = "/client.api.Produce/StepBusinessStart"
+	Produce_StepBusinessSelect_FullMethodName          = "/client.api.Produce/StepBusinessSelect"
+	Produce_StepCustomizeStart_FullMethodName          = "/client.api.Produce/StepCustomizeStart"
+	Produce_StepCustomizeSelect_FullMethodName         = "/client.api.Produce/StepCustomizeSelect"
+	Produce_StepCustomizeEnd_FullMethodName            = "/client.api.Produce/StepCustomizeEnd"
+	Produce_StepRefresh_FullMethodName                 = "/client.api.Produce/StepRefresh"
+	Produce_StepShopStart_FullMethodName               = "/client.api.Produce/StepShopStart"
+	Produce_StepShopReroll_FullMethodName              = "/client.api.Produce/StepShopReroll"
+	Produce_StepShopBuy_FullMethodName                 = "/client.api.Produce/StepShopBuy"
+	Produce_StepShopEnd_FullMethodName                 = "/client.api.Produce/StepShopEnd"
+	Produce_StepPresentStart_FullMethodName            = "/client.api.Produce/StepPresentStart"
+	Produce_StepPresentReceive_FullMethodName          = "/client.api.Produce/StepPresentReceive"
+	Produce_StepPresentEnd_FullMethodName              = "/client.api.Produce/StepPresentEnd"
+	Produce_StepLessonStart_FullMethodName             = "/client.api.Produce/StepLessonStart"
+	Produce_StepLessonEnd_FullMethodName               = "/client.api.Produce/StepLessonEnd"
+	Produce_StepSelfLessonStart_FullMethodName         = "/client.api.Produce/StepSelfLessonStart"
+	Produce_StepSelfLessonEnd_FullMethodName           = "/client.api.Produce/StepSelfLessonEnd"
+	Produce_StepAuditionRefresh_FullMethodName         = "/client.api.Produce/StepAuditionRefresh"
+	Produce_StepAuditionStart_FullMethodName           = "/client.api.Produce/StepAuditionStart"
+	Produce_StepAuditionEndExamBattle_FullMethodName   = "/client.api.Produce/StepAuditionEndExamBattle"
+	Produce_StepAuditionEnd_FullMethodName             = "/client.api.Produce/StepAuditionEnd"
+	Produce_DiscardDrink_FullMethodName                = "/client.api.Produce/DiscardDrink"
+	Produce_RerollSelectProduceCard_FullMethodName     = "/client.api.Produce/RerollSelectProduceCard"
+	Produce_ExcludeProduceCard_FullMethodName          = "/client.api.Produce/ExcludeProduceCard"
+	Produce_ActivateEffect_FullMethodName              = "/client.api.Produce/ActivateEffect"
+	Produce_ReadDearnessStory_FullMethodName           = "/client.api.Produce/ReadDearnessStory"
+	Produce_ReadAdv_FullMethodName                     = "/client.api.Produce/ReadAdv"
+	Produce_StartBeforeLiveEvaluation_FullMethodName   = "/client.api.Produce/StartBeforeLiveEvaluation"
+	Produce_EndBeforeLiveEvaluation_FullMethodName     = "/client.api.Produce/EndBeforeLiveEvaluation"
+	Produce_RerollMemory_FullMethodName                = "/client.api.Produce/RerollMemory"
+	Produce_End_FullMethodName                         = "/client.api.Produce/End"
+	Produce_Result_FullMethodName                      = "/client.api.Produce/Result"
+	Produce_ReportGuildMission_FullMethodName          = "/client.api.Produce/ReportGuildMission"
+	Produce_ReportDearnessBoostEvent_FullMethodName    = "/client.api.Produce/ReportDearnessBoostEvent"
+	Produce_Continue_FullMethodName                    = "/client.api.Produce/Continue"
+	Produce_Retire_FullMethodName                      = "/client.api.Produce/Retire"
+	Produce_History_FullMethodName                     = "/client.api.Produce/History"
+	Produce_RankingTop_FullMethodName                  = "/client.api.Produce/RankingTop"
+	Produce_Ranking_FullMethodName                     = "/client.api.Produce/Ranking"
+	Produce_ChangeCostume_FullMethodName               = "/client.api.Produce/ChangeCostume"
+	Produce_ViewPictureBookLive_FullMethodName         = "/client.api.Produce/ViewPictureBookLive"
+	Produce_UnlockPictureBookLive_FullMethodName       = "/client.api.Produce/UnlockPictureBookLive"
+	Produce_ChangeProduceCardConversion_FullMethodName = "/client.api.Produce/ChangeProduceCardConversion"
 )
 
 // ProduceClient is the client API for Produce service.
@@ -6955,6 +6956,7 @@ type ProduceClient interface {
 	ChangeCostume(ctx context.Context, in *ProduceChangeCostumeRequest, opts ...grpc.CallOption) (*ProduceChangeCostumeResponse, error)
 	ViewPictureBookLive(ctx context.Context, in *ProduceViewPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceViewPictureBookLiveResponse, error)
 	UnlockPictureBookLive(ctx context.Context, in *ProduceUnlockPictureBookLiveRequest, opts ...grpc.CallOption) (*ProduceUnlockPictureBookLiveResponse, error)
+	ChangeProduceCardConversion(ctx context.Context, in *ProduceChangeProduceCardConversionRequest, opts ...grpc.CallOption) (*ProduceChangeProduceCardConversionResponse, error)
 }
 
 type produceClient struct {
@@ -7515,6 +7517,16 @@ func (c *produceClient) UnlockPictureBookLive(ctx context.Context, in *ProduceUn
 	return out, nil
 }
 
+func (c *produceClient) ChangeProduceCardConversion(ctx context.Context, in *ProduceChangeProduceCardConversionRequest, opts ...grpc.CallOption) (*ProduceChangeProduceCardConversionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProduceChangeProduceCardConversionResponse)
+	err := c.cc.Invoke(ctx, Produce_ChangeProduceCardConversion_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProduceServer is the server API for Produce service.
 // All implementations must embed UnimplementedProduceServer
 // for forward compatibility.
@@ -7574,6 +7586,7 @@ type ProduceServer interface {
 	ChangeCostume(context.Context, *ProduceChangeCostumeRequest) (*ProduceChangeCostumeResponse, error)
 	ViewPictureBookLive(context.Context, *ProduceViewPictureBookLiveRequest) (*ProduceViewPictureBookLiveResponse, error)
 	UnlockPictureBookLive(context.Context, *ProduceUnlockPictureBookLiveRequest) (*ProduceUnlockPictureBookLiveResponse, error)
+	ChangeProduceCardConversion(context.Context, *ProduceChangeProduceCardConversionRequest) (*ProduceChangeProduceCardConversionResponse, error)
 	mustEmbedUnimplementedProduceServer()
 }
 
@@ -7748,6 +7761,9 @@ func (UnimplementedProduceServer) ViewPictureBookLive(context.Context, *ProduceV
 }
 func (UnimplementedProduceServer) UnlockPictureBookLive(context.Context, *ProduceUnlockPictureBookLiveRequest) (*ProduceUnlockPictureBookLiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlockPictureBookLive not implemented")
+}
+func (UnimplementedProduceServer) ChangeProduceCardConversion(context.Context, *ProduceChangeProduceCardConversionRequest) (*ProduceChangeProduceCardConversionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeProduceCardConversion not implemented")
 }
 func (UnimplementedProduceServer) mustEmbedUnimplementedProduceServer() {}
 func (UnimplementedProduceServer) testEmbeddedByValue()                 {}
@@ -8760,6 +8776,24 @@ func _Produce_UnlockPictureBookLive_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Produce_ChangeProduceCardConversion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProduceChangeProduceCardConversionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProduceServer).ChangeProduceCardConversion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Produce_ChangeProduceCardConversion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProduceServer).ChangeProduceCardConversion(ctx, req.(*ProduceChangeProduceCardConversionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Produce_ServiceDesc is the grpc.ServiceDesc for Produce service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -8986,6 +9020,10 @@ var Produce_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnlockPictureBookLive",
 			Handler:    _Produce_UnlockPictureBookLive_Handler,
+		},
+		{
+			MethodName: "ChangeProduceCardConversion",
+			Handler:    _Produce_ChangeProduceCardConversion_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -14250,9 +14288,10 @@ var Tutorial_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	User_Get_FullMethodName         = "/client.api.User/Get"
-	User_ListMessage_FullMethodName = "/client.api.User/ListMessage"
-	User_ReadMessage_FullMethodName = "/client.api.User/ReadMessage"
+	User_Get_FullMethodName                          = "/client.api.User/Get"
+	User_ReadForceTitleTransitionTime_FullMethodName = "/client.api.User/ReadForceTitleTransitionTime"
+	User_ListMessage_FullMethodName                  = "/client.api.User/ListMessage"
+	User_ReadMessage_FullMethodName                  = "/client.api.User/ReadMessage"
 )
 
 // UserClient is the client API for User service.
@@ -14260,6 +14299,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
 	Get(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserGetResponse, error)
+	ReadForceTitleTransitionTime(ctx context.Context, in *UserReadForceTitleTransitionTimeRequest, opts ...grpc.CallOption) (*UserReadForceTitleTransitionTimeResponse, error)
 	ListMessage(ctx context.Context, in *UserListMessageRequest, opts ...grpc.CallOption) (*UserListMessageResponse, error)
 	ReadMessage(ctx context.Context, in *UserReadMessageRequest, opts ...grpc.CallOption) (*UserReadMessageResponse, error)
 }
@@ -14276,6 +14316,16 @@ func (c *userClient) Get(ctx context.Context, in *Empty, opts ...grpc.CallOption
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserGetResponse)
 	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ReadForceTitleTransitionTime(ctx context.Context, in *UserReadForceTitleTransitionTimeRequest, opts ...grpc.CallOption) (*UserReadForceTitleTransitionTimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserReadForceTitleTransitionTimeResponse)
+	err := c.cc.Invoke(ctx, User_ReadForceTitleTransitionTime_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -14307,6 +14357,7 @@ func (c *userClient) ReadMessage(ctx context.Context, in *UserReadMessageRequest
 // for forward compatibility.
 type UserServer interface {
 	Get(context.Context, *Empty) (*UserGetResponse, error)
+	ReadForceTitleTransitionTime(context.Context, *UserReadForceTitleTransitionTimeRequest) (*UserReadForceTitleTransitionTimeResponse, error)
 	ListMessage(context.Context, *UserListMessageRequest) (*UserListMessageResponse, error)
 	ReadMessage(context.Context, *UserReadMessageRequest) (*UserReadMessageResponse, error)
 	mustEmbedUnimplementedUserServer()
@@ -14321,6 +14372,9 @@ type UnimplementedUserServer struct{}
 
 func (UnimplementedUserServer) Get(context.Context, *Empty) (*UserGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedUserServer) ReadForceTitleTransitionTime(context.Context, *UserReadForceTitleTransitionTimeRequest) (*UserReadForceTitleTransitionTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadForceTitleTransitionTime not implemented")
 }
 func (UnimplementedUserServer) ListMessage(context.Context, *UserListMessageRequest) (*UserListMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMessage not implemented")
@@ -14363,6 +14417,24 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Get(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ReadForceTitleTransitionTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserReadForceTitleTransitionTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ReadForceTitleTransitionTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ReadForceTitleTransitionTime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ReadForceTitleTransitionTime(ctx, req.(*UserReadForceTitleTransitionTimeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -14413,6 +14485,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _User_Get_Handler,
+		},
+		{
+			MethodName: "ReadForceTitleTransitionTime",
+			Handler:    _User_ReadForceTitleTransitionTime_Handler,
 		},
 		{
 			MethodName: "ListMessage",

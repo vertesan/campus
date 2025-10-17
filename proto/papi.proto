@@ -252,6 +252,7 @@ service Produce {
   rpc ChangeCostume(ProduceChangeCostumeRequest) returns (ProduceChangeCostumeResponse);
   rpc ViewPictureBookLive(ProduceViewPictureBookLiveRequest) returns (ProduceViewPictureBookLiveResponse);
   rpc UnlockPictureBookLive(ProduceUnlockPictureBookLiveRequest) returns (ProduceUnlockPictureBookLiveResponse);
+  rpc ChangeProduceCardConversion(ProduceChangeProduceCardConversionRequest) returns (ProduceChangeProduceCardConversionResponse);
 }
 service ProduceHighScore {
   rpc Get(Empty) returns (ProduceHighScoreGetResponse);
@@ -399,6 +400,7 @@ service Tutorial {
 }
 service User {
   rpc Get(Empty) returns (UserGetResponse);
+  rpc ReadForceTitleTransitionTime(UserReadForceTitleTransitionTimeRequest) returns (UserReadForceTitleTransitionTimeResponse);
   rpc ListMessage(UserListMessageRequest) returns (UserListMessageResponse);
   rpc ReadMessage(UserReadMessageRequest) returns (UserReadMessageResponse);
 }
@@ -1909,6 +1911,14 @@ message ProduceChangeForceLiveCommonRequest {
   bool disableForceLiveCommon = 3;
 }
 message ProduceChangeForceLiveCommonResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceChangeProduceCardConversionRequest {
+  string beforeProduceCardId = 1;
+  string afterProduceCardId = 2;
+  bool enable = 3;
+}
+message ProduceChangeProduceCardConversionResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceCheckProgressRequest {
@@ -3916,6 +3926,12 @@ message UserListMessageResponse {
     string userPersonalMessageId = 1;
     string message = 2;
   }
+}
+message UserReadForceTitleTransitionTimeRequest {
+  int64 readForceTitleTransitionTime = 1;
+}
+message UserReadForceTitleTransitionTimeResponse {
+  papicommon.Response commonResponse = 9999;
 }
 message UserReadMessageRequest {
   repeated string userPersonalMessageIds = 1;

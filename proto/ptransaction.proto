@@ -9,6 +9,8 @@ message User {
   string publicUserId = 2;
   int64 tutorialClearedTime = 7;
   bool receivedTutorialRewardIdolCard = 8;
+  int64 forceTitleTransitionTime = 10;
+  int64 readForceTitleTransitionTime = 11;
   string dmmGamesId = 101;
 }
 message UserActionPoint {
@@ -264,6 +266,11 @@ message UserProduceCard {
   string produceCardId = 2;
   int32 produceCardUpgradeCount = 3;
 }
+message UserProduceCardConversion {
+  string beforeProduceCardId = 2;
+  string afterProduceCardId = 3;
+  bool enable = 4;
+}
 message UserProduceCardReward {
   string produceCardId = 2;
 }
@@ -380,6 +387,8 @@ message UserProduceProgress {
   repeated string excludeProduceCardIds = 313;
   int32 produceCardRemainExcludeCount = 314;
   bool hiddenProduceCardExclude = 315;
+  int32 produceCardAdditionalLegendCount = 317;
+  repeated string convertProduceCardIds = 318;
   repeated UserProduceProgress.ProduceItem produceItems = 353;
   int32 produceItemGetDisableTurn = 354;
   repeated string produceDrinkIds = 400;
@@ -402,6 +411,8 @@ message UserProduceProgress {
   int32 lessonLimitUpScore = 622;
   int32 examExtraTurn = 625;
   repeated UserProduceProgress.SelfLessonTypeStaminaPermil selfLessonTypeStaminaPermils = 627;
+  repeated UserProduceProgress.ExamStatusEnchant examPermanentLessonStatusEnchants = 633;
+  repeated UserProduceProgress.ExamStatusEnchant examPermanentAuditionStatusEnchants = 639;
   penum.ProduceLiveType liveType = 650;
   int32 lessonPresentAdditionalProduceCardRewardCount = 700;
   int32 customizeAdditionalProduceCardCount = 760;
@@ -548,6 +559,12 @@ message UserProduceProgressSchedule {
   string danceSpProduceStepSelfLessonId = 34;
   string visualProduceStepSelfLessonId = 36;
   string visualSpProduceStepSelfLessonId = 37;
+  string legendVocalProduceStepLessonId = 51;
+  string legendVocalSpProduceStepLessonId = 52;
+  string legendDanceProduceStepLessonId = 54;
+  string legendDanceSpProduceStepLessonId = 55;
+  string legendVisualProduceStepLessonId = 57;
+  string legendVisualSpProduceStepLessonId = 58;
   repeated penum.ProduceStepType stepTypes = 24;
   penum.ProduceStepType selectedStepType = 25;
   penum.ProduceExamResultType examResultType = 26;

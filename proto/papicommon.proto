@@ -86,6 +86,7 @@ message UserData {
   repeated ptransaction.UserProduce userProduceList = 170637697;
   repeated ptransaction.UserProduceAdv userProduceAdvList = 280248182;
   repeated ptransaction.UserProduceCard userProduceCardList = 230550472;
+  repeated ptransaction.UserProduceCardConversion userProduceCardConversionList = 238079855;
   repeated ptransaction.UserProduceCardReward userProduceCardRewardList = 364806182;
   repeated ptransaction.UserProduceCharacter userProduceCharacterList = 494627662;
   repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;

@@ -485,6 +485,7 @@ type UserData struct {
 	UserProduceList                    []*ptransaction.UserProduce                    `protobuf:"bytes,170637697,rep,name=userProduceList,proto3" json:"userProduceList,omitempty"`
 	UserProduceAdvList                 []*ptransaction.UserProduceAdv                 `protobuf:"bytes,280248182,rep,name=userProduceAdvList,proto3" json:"userProduceAdvList,omitempty"`
 	UserProduceCardList                []*ptransaction.UserProduceCard                `protobuf:"bytes,230550472,rep,name=userProduceCardList,proto3" json:"userProduceCardList,omitempty"`
+	UserProduceCardConversionList      []*ptransaction.UserProduceCardConversion      `protobuf:"bytes,238079855,rep,name=userProduceCardConversionList,proto3" json:"userProduceCardConversionList,omitempty"`
 	UserProduceCardRewardList          []*ptransaction.UserProduceCardReward          `protobuf:"bytes,364806182,rep,name=userProduceCardRewardList,proto3" json:"userProduceCardRewardList,omitempty"`
 	UserProduceCharacterList           []*ptransaction.UserProduceCharacter           `protobuf:"bytes,494627662,rep,name=userProduceCharacterList,proto3" json:"userProduceCharacterList,omitempty"`
 	UserProduceDrinkList               []*ptransaction.UserProduceDrink               `protobuf:"bytes,65968245,rep,name=userProduceDrinkList,proto3" json:"userProduceDrinkList,omitempty"`
@@ -847,6 +848,13 @@ func (x *UserData) GetUserProduceCardList() []*ptransaction.UserProduceCard {
 	return nil
 }
 
+func (x *UserData) GetUserProduceCardConversionList() []*ptransaction.UserProduceCardConversion {
+	if x != nil {
+		return x.UserProduceCardConversionList
+	}
+	return nil
+}
+
 func (x *UserData) GetUserProduceCardRewardList() []*ptransaction.UserProduceCardReward {
 	if x != nil {
 		return x.UserProduceCardRewardList
@@ -1124,7 +1132,7 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x11storyEventRewards\x18\b \x03(\v2\x1c.papicommon.StoryEventRewardR\x11storyEventRewards\"z\n" +
 	"\x10StoryEventReward\x12\"\n" +
 	"\fstoryEventId\x18\x01 \x01(\tR\fstoryEventId\x12B\n" +
-	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\xdd3\n" +
+	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\xcf4\n" +
 	"\bUserData\x12*\n" +
 	"\x04user\x18\xb6̾\xa3\x01 \x01(\v2\x12.ptransaction.UserR\x04user\x12J\n" +
 	"\x0fuserActionPoint\x18\xb2\xdd\xd1q \x01(\v2\x1d.ptransaction.UserActionPointR\x0fuserActionPoint\x12U\n" +
@@ -1167,7 +1175,8 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x0euserPreference\x18\xd6窍\x01 \x01(\v2\x1c.ptransaction.UserPreferenceR\x0euserPreference\x12F\n" +
 	"\x0fuserProduceList\x18\x81\xf3\xaeQ \x03(\v2\x19.ptransaction.UserProduceR\x0fuserProduceList\x12P\n" +
 	"\x12userProduceAdvList\x18\xf6\xfeЅ\x01 \x03(\v2\x1c.ptransaction.UserProduceAdvR\x12userProduceAdvList\x12R\n" +
-	"\x13userProduceCardList\x18\xc8\xd7\xf7m \x03(\v2\x1d.ptransaction.UserProduceCardR\x13userProduceCardList\x12e\n" +
+	"\x13userProduceCardList\x18\xc8\xd7\xf7m \x03(\v2\x1d.ptransaction.UserProduceCardR\x13userProduceCardList\x12p\n" +
+	"\x1duserProduceCardConversionList\x18\xef\x9e\xc3q \x03(\v2'.ptransaction.UserProduceCardConversionR\x1duserProduceCardConversionList\x12e\n" +
 	"\x19userProduceCardRewardList\x18\xa6\x80\xfa\xad\x01 \x03(\v2#.ptransaction.UserProduceCardRewardR\x19userProduceCardRewardList\x12b\n" +
 	"\x18userProduceCharacterList\x18\xce\xd6\xed\xeb\x01 \x03(\v2\".ptransaction.UserProduceCharacterR\x18userProduceCharacterList\x12U\n" +
 	"\x14userProduceDrinkList\x18\xf5\xb0\xba\x1f \x03(\v2\x1e.ptransaction.UserProduceDrinkR\x14userProduceDrinkList\x12p\n" +
@@ -1272,40 +1281,41 @@ var file_papicommon_proto_goTypes = []any{
 	(*ptransaction.UserProduce)(nil),                    // 51: ptransaction.UserProduce
 	(*ptransaction.UserProduceAdv)(nil),                 // 52: ptransaction.UserProduceAdv
 	(*ptransaction.UserProduceCard)(nil),                // 53: ptransaction.UserProduceCard
-	(*ptransaction.UserProduceCardReward)(nil),          // 54: ptransaction.UserProduceCardReward
-	(*ptransaction.UserProduceCharacter)(nil),           // 55: ptransaction.UserProduceCharacter
-	(*ptransaction.UserProduceDrink)(nil),               // 56: ptransaction.UserProduceDrink
-	(*ptransaction.UserProduceGroupCharacter)(nil),      // 57: ptransaction.UserProduceGroupCharacter
-	(*ptransaction.UserProduceIdolCard)(nil),            // 58: ptransaction.UserProduceIdolCard
-	(*ptransaction.UserProduceItem)(nil),                // 59: ptransaction.UserProduceItem
-	(*ptransaction.UserProduceLive)(nil),                // 60: ptransaction.UserProduceLive
-	(*ptransaction.UserProduceMemoryDeck)(nil),          // 61: ptransaction.UserProduceMemoryDeck
-	(*ptransaction.UserProduceProgress)(nil),            // 62: ptransaction.UserProduceProgress
-	(*ptransaction.UserProduceProgressAudition)(nil),    // 63: ptransaction.UserProduceProgressAudition
-	(*ptransaction.UserProduceProgressBusiness)(nil),    // 64: ptransaction.UserProduceProgressBusiness
-	(*ptransaction.UserProduceProgressEffect)(nil),      // 65: ptransaction.UserProduceProgressEffect
-	(*ptransaction.UserProduceProgressEvent)(nil),       // 66: ptransaction.UserProduceProgressEvent
-	(*ptransaction.UserProduceProgressMemory)(nil),      // 67: ptransaction.UserProduceProgressMemory
-	(*ptransaction.UserProduceProgressPresent)(nil),     // 68: ptransaction.UserProduceProgressPresent
-	(*ptransaction.UserProduceProgressProduceCard)(nil), // 69: ptransaction.UserProduceProgressProduceCard
-	(*ptransaction.UserProduceProgressSchedule)(nil),    // 70: ptransaction.UserProduceProgressSchedule
-	(*ptransaction.UserProduceProgressShop)(nil),        // 71: ptransaction.UserProduceProgressShop
-	(*ptransaction.UserProduceProgressSupportCard)(nil), // 72: ptransaction.UserProduceProgressSupportCard
-	(*ptransaction.UserProduceRerollMemory)(nil),        // 73: ptransaction.UserProduceRerollMemory
-	(*ptransaction.UserProduceStartAchievement)(nil),    // 74: ptransaction.UserProduceStartAchievement
-	(*ptransaction.UserProduceStory)(nil),               // 75: ptransaction.UserProduceStory
-	(*ptransaction.UserProduceSupportCardDeck)(nil),     // 76: ptransaction.UserProduceSupportCardDeck
-	(*ptransaction.UserProfile)(nil),                    // 77: ptransaction.UserProfile
-	(*ptransaction.UserPvpRate)(nil),                    // 78: ptransaction.UserPvpRate
-	(*ptransaction.UserPvpRateUnit)(nil),                // 79: ptransaction.UserPvpRateUnit
-	(*ptransaction.UserShopItem)(nil),                   // 80: ptransaction.UserShopItem
-	(*ptransaction.UserStory)(nil),                      // 81: ptransaction.UserStory
-	(*ptransaction.UserSupportCard)(nil),                // 82: ptransaction.UserSupportCard
-	(*ptransaction.UserTime)(nil),                       // 83: ptransaction.UserTime
-	(*ptransaction.UserTower)(nil),                      // 84: ptransaction.UserTower
-	(*ptransaction.UserTutorial)(nil),                   // 85: ptransaction.UserTutorial
-	(*ptransaction.UserWork)(nil),                       // 86: ptransaction.UserWork
-	(*ptransaction.UserWorkCharacter)(nil),              // 87: ptransaction.UserWorkCharacter
+	(*ptransaction.UserProduceCardConversion)(nil),      // 54: ptransaction.UserProduceCardConversion
+	(*ptransaction.UserProduceCardReward)(nil),          // 55: ptransaction.UserProduceCardReward
+	(*ptransaction.UserProduceCharacter)(nil),           // 56: ptransaction.UserProduceCharacter
+	(*ptransaction.UserProduceDrink)(nil),               // 57: ptransaction.UserProduceDrink
+	(*ptransaction.UserProduceGroupCharacter)(nil),      // 58: ptransaction.UserProduceGroupCharacter
+	(*ptransaction.UserProduceIdolCard)(nil),            // 59: ptransaction.UserProduceIdolCard
+	(*ptransaction.UserProduceItem)(nil),                // 60: ptransaction.UserProduceItem
+	(*ptransaction.UserProduceLive)(nil),                // 61: ptransaction.UserProduceLive
+	(*ptransaction.UserProduceMemoryDeck)(nil),          // 62: ptransaction.UserProduceMemoryDeck
+	(*ptransaction.UserProduceProgress)(nil),            // 63: ptransaction.UserProduceProgress
+	(*ptransaction.UserProduceProgressAudition)(nil),    // 64: ptransaction.UserProduceProgressAudition
+	(*ptransaction.UserProduceProgressBusiness)(nil),    // 65: ptransaction.UserProduceProgressBusiness
+	(*ptransaction.UserProduceProgressEffect)(nil),      // 66: ptransaction.UserProduceProgressEffect
+	(*ptransaction.UserProduceProgressEvent)(nil),       // 67: ptransaction.UserProduceProgressEvent
+	(*ptransaction.UserProduceProgressMemory)(nil),      // 68: ptransaction.UserProduceProgressMemory
+	(*ptransaction.UserProduceProgressPresent)(nil),     // 69: ptransaction.UserProduceProgressPresent
+	(*ptransaction.UserProduceProgressProduceCard)(nil), // 70: ptransaction.UserProduceProgressProduceCard
+	(*ptransaction.UserProduceProgressSchedule)(nil),    // 71: ptransaction.UserProduceProgressSchedule
+	(*ptransaction.UserProduceProgressShop)(nil),        // 72: ptransaction.UserProduceProgressShop
+	(*ptransaction.UserProduceProgressSupportCard)(nil), // 73: ptransaction.UserProduceProgressSupportCard
+	(*ptransaction.UserProduceRerollMemory)(nil),        // 74: ptransaction.UserProduceRerollMemory
+	(*ptransaction.UserProduceStartAchievement)(nil),    // 75: ptransaction.UserProduceStartAchievement
+	(*ptransaction.UserProduceStory)(nil),               // 76: ptransaction.UserProduceStory
+	(*ptransaction.UserProduceSupportCardDeck)(nil),     // 77: ptransaction.UserProduceSupportCardDeck
+	(*ptransaction.UserProfile)(nil),                    // 78: ptransaction.UserProfile
+	(*ptransaction.UserPvpRate)(nil),                    // 79: ptransaction.UserPvpRate
+	(*ptransaction.UserPvpRateUnit)(nil),                // 80: ptransaction.UserPvpRateUnit
+	(*ptransaction.UserShopItem)(nil),                   // 81: ptransaction.UserShopItem
+	(*ptransaction.UserStory)(nil),                      // 82: ptransaction.UserStory
+	(*ptransaction.UserSupportCard)(nil),                // 83: ptransaction.UserSupportCard
+	(*ptransaction.UserTime)(nil),                       // 84: ptransaction.UserTime
+	(*ptransaction.UserTower)(nil),                      // 85: ptransaction.UserTower
+	(*ptransaction.UserTutorial)(nil),                   // 86: ptransaction.UserTutorial
+	(*ptransaction.UserWork)(nil),                       // 87: ptransaction.UserWork
+	(*ptransaction.UserWorkCharacter)(nil),              // 88: ptransaction.UserWorkCharacter
 }
 var file_papicommon_proto_depIdxs = []int32{
 	7,  // 0: papicommon.PvpRateSeasonTop.statusType:type_name -> penum.PvpRateSeasonStatusType
@@ -1359,45 +1369,46 @@ var file_papicommon_proto_depIdxs = []int32{
 	51, // 48: papicommon.UserData.userProduceList:type_name -> ptransaction.UserProduce
 	52, // 49: papicommon.UserData.userProduceAdvList:type_name -> ptransaction.UserProduceAdv
 	53, // 50: papicommon.UserData.userProduceCardList:type_name -> ptransaction.UserProduceCard
-	54, // 51: papicommon.UserData.userProduceCardRewardList:type_name -> ptransaction.UserProduceCardReward
-	55, // 52: papicommon.UserData.userProduceCharacterList:type_name -> ptransaction.UserProduceCharacter
-	56, // 53: papicommon.UserData.userProduceDrinkList:type_name -> ptransaction.UserProduceDrink
-	57, // 54: papicommon.UserData.userProduceGroupCharacterList:type_name -> ptransaction.UserProduceGroupCharacter
-	58, // 55: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
-	59, // 56: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
-	60, // 57: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
-	61, // 58: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
-	62, // 59: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
-	63, // 60: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
-	64, // 61: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
-	65, // 62: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
-	66, // 63: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
-	67, // 64: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
-	68, // 65: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
-	69, // 66: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
-	70, // 67: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
-	71, // 68: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
-	72, // 69: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
-	73, // 70: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
-	74, // 71: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
-	75, // 72: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
-	76, // 73: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
-	77, // 74: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
-	78, // 75: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
-	79, // 76: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
-	80, // 77: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
-	81, // 78: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
-	82, // 79: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
-	83, // 80: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
-	84, // 81: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
-	85, // 82: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
-	86, // 83: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
-	87, // 84: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
-	85, // [85:85] is the sub-list for method output_type
-	85, // [85:85] is the sub-list for method input_type
-	85, // [85:85] is the sub-list for extension type_name
-	85, // [85:85] is the sub-list for extension extendee
-	0,  // [0:85] is the sub-list for field type_name
+	54, // 51: papicommon.UserData.userProduceCardConversionList:type_name -> ptransaction.UserProduceCardConversion
+	55, // 52: papicommon.UserData.userProduceCardRewardList:type_name -> ptransaction.UserProduceCardReward
+	56, // 53: papicommon.UserData.userProduceCharacterList:type_name -> ptransaction.UserProduceCharacter
+	57, // 54: papicommon.UserData.userProduceDrinkList:type_name -> ptransaction.UserProduceDrink
+	58, // 55: papicommon.UserData.userProduceGroupCharacterList:type_name -> ptransaction.UserProduceGroupCharacter
+	59, // 56: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
+	60, // 57: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
+	61, // 58: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
+	62, // 59: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
+	63, // 60: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
+	64, // 61: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
+	65, // 62: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
+	66, // 63: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
+	67, // 64: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
+	68, // 65: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
+	69, // 66: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
+	70, // 67: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
+	71, // 68: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
+	72, // 69: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
+	73, // 70: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
+	74, // 71: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
+	75, // 72: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
+	76, // 73: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
+	77, // 74: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
+	78, // 75: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
+	79, // 76: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
+	80, // 77: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
+	81, // 78: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
+	82, // 79: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
+	83, // 80: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
+	84, // 81: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
+	85, // 82: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
+	86, // 83: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
+	87, // 84: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
+	88, // 85: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
+	86, // [86:86] is the sub-list for method output_type
+	86, // [86:86] is the sub-list for method input_type
+	86, // [86:86] is the sub-list for extension type_name
+	86, // [86:86] is the sub-list for extension extendee
+	0,  // [0:86] is the sub-list for field type_name
 }
 
 func init() { file_papicommon_proto_init() }
