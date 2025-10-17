@@ -3,9 +3,9 @@ package analyser
 import "regexp"
 
 var (
-  rootClassPtnStr         = `: Campus\.Common\.Proto\.Client\.$which\npublic sealed class (?<className>\w+)[\s\S]+?\n}\n\n// Namespace`
-  nestedClassPtnPrefixStr = `: Campus\.Common\.Proto\.Client\.$which\n`
-  nestedClassPtnStr       = `public sealed class $nestedClassName : I[\s\S]+?\n}\n\n// Namespace`
+  rootClassPtnStr         = `: Campus\.Common\.Proto\.Client\.$which\n.*\n?public sealed class (?<className>\w+)[\s\S]+?\n}\n\n// Namespace`
+  nestedClassPtnPrefixStr = `: Campus\.Common\.Proto\.Client\.$which\n.*\n?`
+  nestedClassPtnStr       = `public sealed class.*[\.|\s]$nestedClassName : I[\s\S]+?\n}\n\n// Namespace`
 
   generalColumnPtn = regexp.MustCompile(`public const int \w+ = (?<columnVal>\d+);[\s\S]*?private (readonly )?(?<type>[\w<>\.]+) (?<name>\w+);`)
 
