@@ -251,6 +251,54 @@ message CoinGashaButton {
 message CoinGashaButtonList {
   repeated CoinGashaButton list = 1;
 }
+message CompetitionExamStatusEffectIcon {
+  penum.ProducePlanType planType = 1;
+  penum.ExamStatusEffectType examStatusEffectType = 2;
+  int32 order = 99;
+}
+message CompetitionExamStatusEffectIconList {
+  repeated CompetitionExamStatusEffectIcon list = 1;
+}
+message CompetitionSeason {
+  string id = 1;
+  string name = 2;
+  string competitionGradeLineId = 10;
+  string competitionStaticGradeId = 12;
+  string competitionPlayRewardSetId = 13;
+  string competitionWinCountRewardSetId = 14;
+  string competitionRankRewardSetId = 15;
+  string examSettingId = 16;
+  string examContestEmbedProduceCardId = 17;
+  repeated CompetitionSeason.GradeConfig gradeConfigs = 99;
+  int64 prepareStartTime = 100;
+  int64 startTime = 101;
+  int64 endTime = 102;
+  int32 maxGroupMemberCount = 103;
+  bool isPreSeason = 500;
+  message Stage {
+    penum.CompetitionStageType stageType = 1;
+    penum.ProducePlanType planType = 2;
+    repeated string produceItemIds = 3;
+    string produceExamGimmickEffectGroupId = 4;
+    string produceExamBattleConfigId = 5;
+    penum.ProduceExamEffectType examEffectType = 6;
+  }
+  message GradeConfig {
+    penum.CompetitionGrade grade = 1;
+    repeated CompetitionSeason.Stage stages = 2;
+  }
+}
+message CompetitionSeasonList {
+  repeated CompetitionSeason list = 1;
+}
+message CompetitionStageSectionLock {
+  penum.CompetitionGrade grade = 1;
+  penum.CompetitionStageType stageType = 2;
+  repeated penum.CompetitionStageSectionType sectionTypes = 3;
+}
+message CompetitionStageSectionLockList {
+  repeated CompetitionStageSectionLock list = 1;
+}
 message ConditionSet {
   string id = 1;
   int32 number = 2;
@@ -447,6 +495,14 @@ message EventStoryCampaign {
 message EventStoryCampaignList {
   repeated EventStoryCampaign list = 1;
 }
+message ExamContestEmbedProduceCard {
+  string id = 1;
+  penum.ProduceExamEffectType examEffectType = 2;
+  repeated string produceCardIds = 3;
+}
+message ExamContestEmbedProduceCardList {
+  repeated ExamContestEmbedProduceCard list = 1;
+}
 message ExamInitialDeck {
   string id = 1;
   repeated string produceCardIds = 2;
@@ -465,7 +521,6 @@ message ExamMotion {
   string voiceAssetId = 7;
   string sceneLayoutId = 8;
   string cameraId = 9;
-  repeated string produceGroupIds = 10;
   repeated string targetIds = 11;
 }
 message ExamMotionList {
@@ -530,6 +585,7 @@ message ExamSetting {
   int32 overPreservationReleaseToFullPowerGrowEffectLessonAdd = 47;
   repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
   int32 examLessonValueMultipleDependReviewOrAggressiveMultiplePermil = 50;
+  int32 examLessonValueMultipleDependReviewOrAggressiveMaxPermil = 51;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -1952,6 +2008,15 @@ message ProduceExamAutoPlayCardEvaluation {
 message ProduceExamAutoPlayCardEvaluationList {
   repeated ProduceExamAutoPlayCardEvaluation list = 1;
 }
+message ProduceExamAutoPlayProduceCardEvaluation {
+  penum.ExamPlayType type = 1;
+  string produceCardId = 2;
+  int32 remainingTerm = 3;
+  int32 evaluation = 4;
+}
+message ProduceExamAutoPlayProduceCardEvaluationList {
+  repeated ProduceExamAutoPlayProduceCardEvaluation list = 1;
+}
 message ProduceExamAutoResourceEvaluation {
   penum.ExamPlayType type = 1;
   penum.ProduceResourceType resourceType = 2;
@@ -2978,6 +3043,20 @@ message Setting {
   string producerRankingUnlockConditionSetID = 2201;
   string producerRankingBGMAssetID = 2202;
   int32 producerRankingCharacterAnimationLowerLimitRank = 2203;
+  int32 competitionMaxDeckCount = 2301;
+  int32 competitionDeckNameLengthLimit = 2302;
+  int32 competitionMaxDailyPlayCount = 2303;
+  int32 competitionMaxContinueCount = 2304;
+  repeated int32 competitionDeckProduceCardRecommendRankAdditionValues = 2305;
+  int32 competitionExchangeAccessGrade = 2307;
+  int32 competitionRecommendDeckBuffCoefficientPermil = 2308;
+  int32 competitionNeedProduceCardCount = 2309;
+  int32 competitionGradeUpgradeAnimationThresholdGrade = 2310;
+  int32 competitionGradeStayAnimationThresholdGrade = 2311;
+  string competitionBgmAssetID = 2312;
+  bool webStoreBannerDisplayEnable = 3001;
+  string webStoreLinkURL = 3002;
+  string webStoreShopBannerAssetID = 3005;
 }
 message SettingList {
   repeated Setting list = 1;

@@ -781,6 +781,716 @@ var CoinGasha_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Competition_Initialize_FullMethodName                 = "/client.api.Competition/Initialize"
+	Competition_Get_FullMethodName                        = "/client.api.Competition/Get"
+	Competition_ListReward_FullMethodName                 = "/client.api.Competition/ListReward"
+	Competition_Start_FullMethodName                      = "/client.api.Competition/Start"
+	Competition_SelectAuto_FullMethodName                 = "/client.api.Competition/SelectAuto"
+	Competition_End_FullMethodName                        = "/client.api.Competition/End"
+	Competition_Retire_FullMethodName                     = "/client.api.Competition/Retire"
+	Competition_Continue_FullMethodName                   = "/client.api.Competition/Continue"
+	Competition_Result_FullMethodName                     = "/client.api.Competition/Result"
+	Competition_PlayTest_FullMethodName                   = "/client.api.Competition/PlayTest"
+	Competition_ResultPlayTest_FullMethodName             = "/client.api.Competition/ResultPlayTest"
+	Competition_UpdateDeck_FullMethodName                 = "/client.api.Competition/UpdateDeck"
+	Competition_UpdateSeasonDeck_FullMethodName           = "/client.api.Competition/UpdateSeasonDeck"
+	Competition_ListHighScoreRanking_FullMethodName       = "/client.api.Competition/ListHighScoreRanking"
+	Competition_ListWinCountRanking_FullMethodName        = "/client.api.Competition/ListWinCountRanking"
+	Competition_ListHistory_FullMethodName                = "/client.api.Competition/ListHistory"
+	Competition_ListDeckProduceCardRanking_FullMethodName = "/client.api.Competition/ListDeckProduceCardRanking"
+)
+
+// CompetitionClient is the client API for Competition service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type CompetitionClient interface {
+	Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionInitializeResponse, error)
+	Get(ctx context.Context, in *CompetitionGetRequest, opts ...grpc.CallOption) (*CompetitionGetResponse, error)
+	ListReward(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListRewardResponse, error)
+	Start(ctx context.Context, in *CompetitionStartRequest, opts ...grpc.CallOption) (*CompetitionStartResponse, error)
+	SelectAuto(ctx context.Context, in *CompetitionSelectAutoRequest, opts ...grpc.CallOption) (*CompetitionSelectAutoResponse, error)
+	End(ctx context.Context, in *CompetitionEndRequest, opts ...grpc.CallOption) (*CompetitionEndResponse, error)
+	Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionRetireResponse, error)
+	Continue(ctx context.Context, in *CompetitionContinueRequest, opts ...grpc.CallOption) (*CompetitionContinueResponse, error)
+	Result(ctx context.Context, in *CompetitionResultRequest, opts ...grpc.CallOption) (*CompetitionResultResponse, error)
+	PlayTest(ctx context.Context, in *CompetitionPlayTestRequest, opts ...grpc.CallOption) (*CompetitionPlayTestResponse, error)
+	ResultPlayTest(ctx context.Context, in *CompetitionResultPlayTestRequest, opts ...grpc.CallOption) (*CompetitionResultPlayTestResponse, error)
+	UpdateDeck(ctx context.Context, in *CompetitionUpdateDeckRequest, opts ...grpc.CallOption) (*CompetitionUpdateDeckResponse, error)
+	UpdateSeasonDeck(ctx context.Context, in *CompetitionUpdateSeasonDeckRequest, opts ...grpc.CallOption) (*CompetitionUpdateSeasonDeckResponse, error)
+	ListHighScoreRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListHighScoreRankingResponse, error)
+	ListWinCountRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListWinCountRankingResponse, error)
+	ListHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListHistoryResponse, error)
+	ListDeckProduceCardRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListDeckProduceCardRankingResponse, error)
+}
+
+type competitionClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCompetitionClient(cc grpc.ClientConnInterface) CompetitionClient {
+	return &competitionClient{cc}
+}
+
+func (c *competitionClient) Initialize(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionInitializeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionInitializeResponse)
+	err := c.cc.Invoke(ctx, Competition_Initialize_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) Get(ctx context.Context, in *CompetitionGetRequest, opts ...grpc.CallOption) (*CompetitionGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionGetResponse)
+	err := c.cc.Invoke(ctx, Competition_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ListReward(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionListRewardResponse)
+	err := c.cc.Invoke(ctx, Competition_ListReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) Start(ctx context.Context, in *CompetitionStartRequest, opts ...grpc.CallOption) (*CompetitionStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionStartResponse)
+	err := c.cc.Invoke(ctx, Competition_Start_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) SelectAuto(ctx context.Context, in *CompetitionSelectAutoRequest, opts ...grpc.CallOption) (*CompetitionSelectAutoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionSelectAutoResponse)
+	err := c.cc.Invoke(ctx, Competition_SelectAuto_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) End(ctx context.Context, in *CompetitionEndRequest, opts ...grpc.CallOption) (*CompetitionEndResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionEndResponse)
+	err := c.cc.Invoke(ctx, Competition_End_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) Retire(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionRetireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionRetireResponse)
+	err := c.cc.Invoke(ctx, Competition_Retire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) Continue(ctx context.Context, in *CompetitionContinueRequest, opts ...grpc.CallOption) (*CompetitionContinueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionContinueResponse)
+	err := c.cc.Invoke(ctx, Competition_Continue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) Result(ctx context.Context, in *CompetitionResultRequest, opts ...grpc.CallOption) (*CompetitionResultResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionResultResponse)
+	err := c.cc.Invoke(ctx, Competition_Result_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) PlayTest(ctx context.Context, in *CompetitionPlayTestRequest, opts ...grpc.CallOption) (*CompetitionPlayTestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionPlayTestResponse)
+	err := c.cc.Invoke(ctx, Competition_PlayTest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ResultPlayTest(ctx context.Context, in *CompetitionResultPlayTestRequest, opts ...grpc.CallOption) (*CompetitionResultPlayTestResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionResultPlayTestResponse)
+	err := c.cc.Invoke(ctx, Competition_ResultPlayTest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) UpdateDeck(ctx context.Context, in *CompetitionUpdateDeckRequest, opts ...grpc.CallOption) (*CompetitionUpdateDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionUpdateDeckResponse)
+	err := c.cc.Invoke(ctx, Competition_UpdateDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) UpdateSeasonDeck(ctx context.Context, in *CompetitionUpdateSeasonDeckRequest, opts ...grpc.CallOption) (*CompetitionUpdateSeasonDeckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionUpdateSeasonDeckResponse)
+	err := c.cc.Invoke(ctx, Competition_UpdateSeasonDeck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ListHighScoreRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListHighScoreRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionListHighScoreRankingResponse)
+	err := c.cc.Invoke(ctx, Competition_ListHighScoreRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ListWinCountRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListWinCountRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionListWinCountRankingResponse)
+	err := c.cc.Invoke(ctx, Competition_ListWinCountRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ListHistory(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionListHistoryResponse)
+	err := c.cc.Invoke(ctx, Competition_ListHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *competitionClient) ListDeckProduceCardRanking(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CompetitionListDeckProduceCardRankingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompetitionListDeckProduceCardRankingResponse)
+	err := c.cc.Invoke(ctx, Competition_ListDeckProduceCardRanking_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CompetitionServer is the server API for Competition service.
+// All implementations must embed UnimplementedCompetitionServer
+// for forward compatibility.
+type CompetitionServer interface {
+	Initialize(context.Context, *Empty) (*CompetitionInitializeResponse, error)
+	Get(context.Context, *CompetitionGetRequest) (*CompetitionGetResponse, error)
+	ListReward(context.Context, *Empty) (*CompetitionListRewardResponse, error)
+	Start(context.Context, *CompetitionStartRequest) (*CompetitionStartResponse, error)
+	SelectAuto(context.Context, *CompetitionSelectAutoRequest) (*CompetitionSelectAutoResponse, error)
+	End(context.Context, *CompetitionEndRequest) (*CompetitionEndResponse, error)
+	Retire(context.Context, *Empty) (*CompetitionRetireResponse, error)
+	Continue(context.Context, *CompetitionContinueRequest) (*CompetitionContinueResponse, error)
+	Result(context.Context, *CompetitionResultRequest) (*CompetitionResultResponse, error)
+	PlayTest(context.Context, *CompetitionPlayTestRequest) (*CompetitionPlayTestResponse, error)
+	ResultPlayTest(context.Context, *CompetitionResultPlayTestRequest) (*CompetitionResultPlayTestResponse, error)
+	UpdateDeck(context.Context, *CompetitionUpdateDeckRequest) (*CompetitionUpdateDeckResponse, error)
+	UpdateSeasonDeck(context.Context, *CompetitionUpdateSeasonDeckRequest) (*CompetitionUpdateSeasonDeckResponse, error)
+	ListHighScoreRanking(context.Context, *Empty) (*CompetitionListHighScoreRankingResponse, error)
+	ListWinCountRanking(context.Context, *Empty) (*CompetitionListWinCountRankingResponse, error)
+	ListHistory(context.Context, *Empty) (*CompetitionListHistoryResponse, error)
+	ListDeckProduceCardRanking(context.Context, *Empty) (*CompetitionListDeckProduceCardRankingResponse, error)
+	mustEmbedUnimplementedCompetitionServer()
+}
+
+// UnimplementedCompetitionServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedCompetitionServer struct{}
+
+func (UnimplementedCompetitionServer) Initialize(context.Context, *Empty) (*CompetitionInitializeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Initialize not implemented")
+}
+func (UnimplementedCompetitionServer) Get(context.Context, *CompetitionGetRequest) (*CompetitionGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCompetitionServer) ListReward(context.Context, *Empty) (*CompetitionListRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListReward not implemented")
+}
+func (UnimplementedCompetitionServer) Start(context.Context, *CompetitionStartRequest) (*CompetitionStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedCompetitionServer) SelectAuto(context.Context, *CompetitionSelectAutoRequest) (*CompetitionSelectAutoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelectAuto not implemented")
+}
+func (UnimplementedCompetitionServer) End(context.Context, *CompetitionEndRequest) (*CompetitionEndResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method End not implemented")
+}
+func (UnimplementedCompetitionServer) Retire(context.Context, *Empty) (*CompetitionRetireResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Retire not implemented")
+}
+func (UnimplementedCompetitionServer) Continue(context.Context, *CompetitionContinueRequest) (*CompetitionContinueResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Continue not implemented")
+}
+func (UnimplementedCompetitionServer) Result(context.Context, *CompetitionResultRequest) (*CompetitionResultResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Result not implemented")
+}
+func (UnimplementedCompetitionServer) PlayTest(context.Context, *CompetitionPlayTestRequest) (*CompetitionPlayTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayTest not implemented")
+}
+func (UnimplementedCompetitionServer) ResultPlayTest(context.Context, *CompetitionResultPlayTestRequest) (*CompetitionResultPlayTestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResultPlayTest not implemented")
+}
+func (UnimplementedCompetitionServer) UpdateDeck(context.Context, *CompetitionUpdateDeckRequest) (*CompetitionUpdateDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeck not implemented")
+}
+func (UnimplementedCompetitionServer) UpdateSeasonDeck(context.Context, *CompetitionUpdateSeasonDeckRequest) (*CompetitionUpdateSeasonDeckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSeasonDeck not implemented")
+}
+func (UnimplementedCompetitionServer) ListHighScoreRanking(context.Context, *Empty) (*CompetitionListHighScoreRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHighScoreRanking not implemented")
+}
+func (UnimplementedCompetitionServer) ListWinCountRanking(context.Context, *Empty) (*CompetitionListWinCountRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWinCountRanking not implemented")
+}
+func (UnimplementedCompetitionServer) ListHistory(context.Context, *Empty) (*CompetitionListHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHistory not implemented")
+}
+func (UnimplementedCompetitionServer) ListDeckProduceCardRanking(context.Context, *Empty) (*CompetitionListDeckProduceCardRankingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeckProduceCardRanking not implemented")
+}
+func (UnimplementedCompetitionServer) mustEmbedUnimplementedCompetitionServer() {}
+func (UnimplementedCompetitionServer) testEmbeddedByValue()                     {}
+
+// UnsafeCompetitionServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CompetitionServer will
+// result in compilation errors.
+type UnsafeCompetitionServer interface {
+	mustEmbedUnimplementedCompetitionServer()
+}
+
+func RegisterCompetitionServer(s grpc.ServiceRegistrar, srv CompetitionServer) {
+	// If the following call pancis, it indicates UnimplementedCompetitionServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Competition_ServiceDesc, srv)
+}
+
+func _Competition_Initialize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Initialize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Initialize_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Initialize(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Get(ctx, req.(*CompetitionGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ListReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ListReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ListReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ListReward(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Start(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Start_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Start(ctx, req.(*CompetitionStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_SelectAuto_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionSelectAutoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).SelectAuto(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_SelectAuto_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).SelectAuto(ctx, req.(*CompetitionSelectAutoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_End_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionEndRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).End(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_End_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).End(ctx, req.(*CompetitionEndRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_Retire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Retire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Retire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Retire(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_Continue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionContinueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Continue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Continue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Continue(ctx, req.(*CompetitionContinueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_Result_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionResultRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).Result(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_Result_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).Result(ctx, req.(*CompetitionResultRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_PlayTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionPlayTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).PlayTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_PlayTest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).PlayTest(ctx, req.(*CompetitionPlayTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ResultPlayTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionResultPlayTestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ResultPlayTest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ResultPlayTest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ResultPlayTest(ctx, req.(*CompetitionResultPlayTestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_UpdateDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionUpdateDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).UpdateDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_UpdateDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).UpdateDeck(ctx, req.(*CompetitionUpdateDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_UpdateSeasonDeck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompetitionUpdateSeasonDeckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).UpdateSeasonDeck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_UpdateSeasonDeck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).UpdateSeasonDeck(ctx, req.(*CompetitionUpdateSeasonDeckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ListHighScoreRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ListHighScoreRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ListHighScoreRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ListHighScoreRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ListWinCountRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ListWinCountRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ListWinCountRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ListWinCountRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ListHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ListHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ListHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ListHistory(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Competition_ListDeckProduceCardRanking_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CompetitionServer).ListDeckProduceCardRanking(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Competition_ListDeckProduceCardRanking_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CompetitionServer).ListDeckProduceCardRanking(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Competition_ServiceDesc is the grpc.ServiceDesc for Competition service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Competition_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.Competition",
+	HandlerType: (*CompetitionServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Initialize",
+			Handler:    _Competition_Initialize_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _Competition_Get_Handler,
+		},
+		{
+			MethodName: "ListReward",
+			Handler:    _Competition_ListReward_Handler,
+		},
+		{
+			MethodName: "Start",
+			Handler:    _Competition_Start_Handler,
+		},
+		{
+			MethodName: "SelectAuto",
+			Handler:    _Competition_SelectAuto_Handler,
+		},
+		{
+			MethodName: "End",
+			Handler:    _Competition_End_Handler,
+		},
+		{
+			MethodName: "Retire",
+			Handler:    _Competition_Retire_Handler,
+		},
+		{
+			MethodName: "Continue",
+			Handler:    _Competition_Continue_Handler,
+		},
+		{
+			MethodName: "Result",
+			Handler:    _Competition_Result_Handler,
+		},
+		{
+			MethodName: "PlayTest",
+			Handler:    _Competition_PlayTest_Handler,
+		},
+		{
+			MethodName: "ResultPlayTest",
+			Handler:    _Competition_ResultPlayTest_Handler,
+		},
+		{
+			MethodName: "UpdateDeck",
+			Handler:    _Competition_UpdateDeck_Handler,
+		},
+		{
+			MethodName: "UpdateSeasonDeck",
+			Handler:    _Competition_UpdateSeasonDeck_Handler,
+		},
+		{
+			MethodName: "ListHighScoreRanking",
+			Handler:    _Competition_ListHighScoreRanking_Handler,
+		},
+		{
+			MethodName: "ListWinCountRanking",
+			Handler:    _Competition_ListWinCountRanking_Handler,
+		},
+		{
+			MethodName: "ListHistory",
+			Handler:    _Competition_ListHistory_Handler,
+		},
+		{
+			MethodName: "ListDeckProduceCardRanking",
+			Handler:    _Competition_ListDeckProduceCardRanking_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
 	Costume_Set_FullMethodName       = "/client.api.Costume/Set"
 	Costume_Check_FullMethodName     = "/client.api.Costume/Check"
 	Costume_SetRandom_FullMethodName = "/client.api.Costume/SetRandom"
@@ -10988,17 +11698,19 @@ var Seminar_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Shop_Top_FullMethodName                              = "/client.api.Shop/Top"
-	Shop_ListItems_FullMethodName                        = "/client.api.Shop/ListItems"
-	Shop_Purchase_FullMethodName                         = "/client.api.Shop/Purchase"
-	Shop_CheckPurchaseJewel_FullMethodName               = "/client.api.Shop/CheckPurchaseJewel"
-	Shop_RegisterBirthday_FullMethodName                 = "/client.api.Shop/RegisterBirthday"
-	Shop_RegisterPurchaseTransaction_FullMethodName      = "/client.api.Shop/RegisterPurchaseTransaction"
-	Shop_CancelPurchaseTransaction_FullMethodName        = "/client.api.Shop/CancelPurchaseTransaction"
-	Shop_PurchaseJewel_FullMethodName                    = "/client.api.Shop/PurchaseJewel"
-	Shop_RecoverPurchaseJewel_FullMethodName             = "/client.api.Shop/RecoverPurchaseJewel"
-	Shop_RegisterDelayPurchaseTransaction_FullMethodName = "/client.api.Shop/RegisterDelayPurchaseTransaction"
-	Shop_GetPurchasePlatformTransaction_FullMethodName   = "/client.api.Shop/GetPurchasePlatformTransaction"
+	Shop_Top_FullMethodName                                 = "/client.api.Shop/Top"
+	Shop_ListItems_FullMethodName                           = "/client.api.Shop/ListItems"
+	Shop_Purchase_FullMethodName                            = "/client.api.Shop/Purchase"
+	Shop_CheckPurchaseJewel_FullMethodName                  = "/client.api.Shop/CheckPurchaseJewel"
+	Shop_CheckBirthday_FullMethodName                       = "/client.api.Shop/CheckBirthday"
+	Shop_RegisterBirthday_FullMethodName                    = "/client.api.Shop/RegisterBirthday"
+	Shop_RegisterPurchaseTransaction_FullMethodName         = "/client.api.Shop/RegisterPurchaseTransaction"
+	Shop_CancelPurchaseTransaction_FullMethodName           = "/client.api.Shop/CancelPurchaseTransaction"
+	Shop_PurchaseJewel_FullMethodName                       = "/client.api.Shop/PurchaseJewel"
+	Shop_RecoverPurchaseJewel_FullMethodName                = "/client.api.Shop/RecoverPurchaseJewel"
+	Shop_RegisterDelayPurchaseTransaction_FullMethodName    = "/client.api.Shop/RegisterDelayPurchaseTransaction"
+	Shop_GetPurchasePlatformTransaction_FullMethodName      = "/client.api.Shop/GetPurchasePlatformTransaction"
+	Shop_ReadWebStoreUserPurchaseTransaction_FullMethodName = "/client.api.Shop/ReadWebStoreUserPurchaseTransaction"
 )
 
 // ShopClient is the client API for Shop service.
@@ -11009,6 +11721,7 @@ type ShopClient interface {
 	ListItems(ctx context.Context, in *ShopListItemsRequest, opts ...grpc.CallOption) (*ShopListItemsResponse, error)
 	Purchase(ctx context.Context, in *ShopPurchaseRequest, opts ...grpc.CallOption) (*ShopPurchaseResponse, error)
 	CheckPurchaseJewel(ctx context.Context, in *ShopCheckPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopCheckPurchaseJewelResponse, error)
+	CheckBirthday(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ShopCheckBirthdayResponse, error)
 	RegisterBirthday(ctx context.Context, in *ShopRegisterBirthdayRequest, opts ...grpc.CallOption) (*ShopRegisterBirthdayResponse, error)
 	RegisterPurchaseTransaction(ctx context.Context, in *ShopRegisterPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterPurchaseTransactionResponse, error)
 	CancelPurchaseTransaction(ctx context.Context, in *ShopCancelPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopCancelPurchaseTransactionResponse, error)
@@ -11016,6 +11729,7 @@ type ShopClient interface {
 	RecoverPurchaseJewel(ctx context.Context, in *ShopRecoverPurchaseJewelRequest, opts ...grpc.CallOption) (*ShopRecoverPurchaseJewelResponse, error)
 	RegisterDelayPurchaseTransaction(ctx context.Context, in *ShopRegisterDelayPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopRegisterDelayPurchaseTransactionResponse, error)
 	GetPurchasePlatformTransaction(ctx context.Context, in *ShopGetPurchasePlatformTransactionRequest, opts ...grpc.CallOption) (*ShopGetPurchasePlatformTransactionResponse, error)
+	ReadWebStoreUserPurchaseTransaction(ctx context.Context, in *ShopReadWebStoreUserPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopReadWebStoreUserPurchaseTransactionResponse, error)
 }
 
 type shopClient struct {
@@ -11060,6 +11774,16 @@ func (c *shopClient) CheckPurchaseJewel(ctx context.Context, in *ShopCheckPurcha
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ShopCheckPurchaseJewelResponse)
 	err := c.cc.Invoke(ctx, Shop_CheckPurchaseJewel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopClient) CheckBirthday(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ShopCheckBirthdayResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopCheckBirthdayResponse)
+	err := c.cc.Invoke(ctx, Shop_CheckBirthday_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -11136,6 +11860,16 @@ func (c *shopClient) GetPurchasePlatformTransaction(ctx context.Context, in *Sho
 	return out, nil
 }
 
+func (c *shopClient) ReadWebStoreUserPurchaseTransaction(ctx context.Context, in *ShopReadWebStoreUserPurchaseTransactionRequest, opts ...grpc.CallOption) (*ShopReadWebStoreUserPurchaseTransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopReadWebStoreUserPurchaseTransactionResponse)
+	err := c.cc.Invoke(ctx, Shop_ReadWebStoreUserPurchaseTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShopServer is the server API for Shop service.
 // All implementations must embed UnimplementedShopServer
 // for forward compatibility.
@@ -11144,6 +11878,7 @@ type ShopServer interface {
 	ListItems(context.Context, *ShopListItemsRequest) (*ShopListItemsResponse, error)
 	Purchase(context.Context, *ShopPurchaseRequest) (*ShopPurchaseResponse, error)
 	CheckPurchaseJewel(context.Context, *ShopCheckPurchaseJewelRequest) (*ShopCheckPurchaseJewelResponse, error)
+	CheckBirthday(context.Context, *Empty) (*ShopCheckBirthdayResponse, error)
 	RegisterBirthday(context.Context, *ShopRegisterBirthdayRequest) (*ShopRegisterBirthdayResponse, error)
 	RegisterPurchaseTransaction(context.Context, *ShopRegisterPurchaseTransactionRequest) (*ShopRegisterPurchaseTransactionResponse, error)
 	CancelPurchaseTransaction(context.Context, *ShopCancelPurchaseTransactionRequest) (*ShopCancelPurchaseTransactionResponse, error)
@@ -11151,6 +11886,7 @@ type ShopServer interface {
 	RecoverPurchaseJewel(context.Context, *ShopRecoverPurchaseJewelRequest) (*ShopRecoverPurchaseJewelResponse, error)
 	RegisterDelayPurchaseTransaction(context.Context, *ShopRegisterDelayPurchaseTransactionRequest) (*ShopRegisterDelayPurchaseTransactionResponse, error)
 	GetPurchasePlatformTransaction(context.Context, *ShopGetPurchasePlatformTransactionRequest) (*ShopGetPurchasePlatformTransactionResponse, error)
+	ReadWebStoreUserPurchaseTransaction(context.Context, *ShopReadWebStoreUserPurchaseTransactionRequest) (*ShopReadWebStoreUserPurchaseTransactionResponse, error)
 	mustEmbedUnimplementedShopServer()
 }
 
@@ -11173,6 +11909,9 @@ func (UnimplementedShopServer) Purchase(context.Context, *ShopPurchaseRequest) (
 func (UnimplementedShopServer) CheckPurchaseJewel(context.Context, *ShopCheckPurchaseJewelRequest) (*ShopCheckPurchaseJewelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPurchaseJewel not implemented")
 }
+func (UnimplementedShopServer) CheckBirthday(context.Context, *Empty) (*ShopCheckBirthdayResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckBirthday not implemented")
+}
 func (UnimplementedShopServer) RegisterBirthday(context.Context, *ShopRegisterBirthdayRequest) (*ShopRegisterBirthdayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterBirthday not implemented")
 }
@@ -11193,6 +11932,9 @@ func (UnimplementedShopServer) RegisterDelayPurchaseTransaction(context.Context,
 }
 func (UnimplementedShopServer) GetPurchasePlatformTransaction(context.Context, *ShopGetPurchasePlatformTransactionRequest) (*ShopGetPurchasePlatformTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPurchasePlatformTransaction not implemented")
+}
+func (UnimplementedShopServer) ReadWebStoreUserPurchaseTransaction(context.Context, *ShopReadWebStoreUserPurchaseTransactionRequest) (*ShopReadWebStoreUserPurchaseTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadWebStoreUserPurchaseTransaction not implemented")
 }
 func (UnimplementedShopServer) mustEmbedUnimplementedShopServer() {}
 func (UnimplementedShopServer) testEmbeddedByValue()              {}
@@ -11283,6 +12025,24 @@ func _Shop_CheckPurchaseJewel_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ShopServer).CheckPurchaseJewel(ctx, req.(*ShopCheckPurchaseJewelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Shop_CheckBirthday_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).CheckBirthday(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_CheckBirthday_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).CheckBirthday(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -11413,6 +12173,24 @@ func _Shop_GetPurchasePlatformTransaction_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Shop_ReadWebStoreUserPurchaseTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ShopReadWebStoreUserPurchaseTransactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServer).ReadWebStoreUserPurchaseTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Shop_ReadWebStoreUserPurchaseTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServer).ReadWebStoreUserPurchaseTransaction(ctx, req.(*ShopReadWebStoreUserPurchaseTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Shop_ServiceDesc is the grpc.ServiceDesc for Shop service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -11435,6 +12213,10 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckPurchaseJewel",
 			Handler:    _Shop_CheckPurchaseJewel_Handler,
+		},
+		{
+			MethodName: "CheckBirthday",
+			Handler:    _Shop_CheckBirthday_Handler,
 		},
 		{
 			MethodName: "RegisterBirthday",
@@ -11463,6 +12245,10 @@ var Shop_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPurchasePlatformTransaction",
 			Handler:    _Shop_GetPurchasePlatformTransaction_Handler,
+		},
+		{
+			MethodName: "ReadWebStoreUserPurchaseTransaction",
+			Handler:    _Shop_ReadWebStoreUserPurchaseTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

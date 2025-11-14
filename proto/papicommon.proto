@@ -6,6 +6,23 @@ import "pcommon.proto";
 import "ptransaction.proto";
 import "pmaster.proto";
 
+message CompetitionPreSeasonResult {
+  int64 seasonStartTime = 1;
+  int64 seasonEndTime = 2;
+  penum.CompetitionGrade beforeGrade = 3;
+  int64 rank = 4;
+  int64 totalHighScore = 5;
+  repeated pcommon.Reward rewards = 6;
+}
+message CompetitionSeasonTop {
+  penum.CompetitionSeasonStatusType statusType = 1;
+  int32 rank = 2;
+  int64 highScore = 4;
+  int32 remainingDailyPlayCount = 6;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  bool isPreSeason = 199;
+}
 message DearnessStoryUnlock {
   string characterId = 1;
   string storyId = 2;
@@ -13,6 +30,23 @@ message DearnessStoryUnlock {
 message Mission {
   string missionId = 1;
   int32 threshold = 2;
+}
+message ProduceHighScoreRushExternalProduceReward {
+  penum.ProduceExamEffectType examEffectType = 1;
+  repeated string produceCardIds = 2;
+  repeated string produceItemIds = 3;
+  repeated string produceDrinkIds = 4;
+}
+message PvpRateSeasonResult {
+  int64 seasonStartTime = 1;
+  int64 seasonEndTime = 2;
+  penum.PvpRateGrade beforeGrade = 3;
+  penum.PvpRateGrade afterGrade = 4;
+  int32 rank = 5;
+  int32 rate = 6;
+  repeated pcommon.Reward rewards = 7;
+  penum.PvpRateGrade prevSeasonGrade = 8;
+  bool isNotPlayPrevSeason = 9;
 }
 message PvpRateSeasonTop {
   penum.PvpRateSeasonStatusType statusType = 1;
@@ -22,6 +56,7 @@ message PvpRateSeasonTop {
   int32 remainingDailyPlayCount = 5;
   int64 currentSeasonStartTime = 6;
   int64 currentSeasonEndTime = 7;
+  int64 nextSeasonPrepareStartTime = 8;
 }
 message RankReward {
   int32 upperRank = 1;
@@ -54,6 +89,9 @@ message UserData {
   repeated ptransaction.UserCharacterCostume userCharacterCostumeList = 314243425;
   repeated ptransaction.UserCharacterRoster userCharacterRosterList = 449008014;
   repeated ptransaction.UserComeback userComebackList = 440873335;
+  ptransaction.UserCompetition userCompetition = 59936386;
+  repeated ptransaction.UserCompetitionDeck userCompetitionDeckList = 205293456;
+  repeated ptransaction.UserCompetitionSeasonDeck userCompetitionSeasonDeckList = 444856278;
   repeated ptransaction.UserCostume userCostumeList = 469968532;
   repeated ptransaction.UserCostumeHead userCostumeHeadList = 374617052;
   repeated ptransaction.UserCount userCountList = 431111247;
@@ -119,6 +157,7 @@ message UserData {
   repeated ptransaction.UserTime userTimeList = 68970636;
   repeated ptransaction.UserTower userTowerList = 268691409;
   repeated ptransaction.UserTutorial userTutorialList = 201375606;
+  ptransaction.UserWebStore userWebStore = 223256751;
   repeated ptransaction.UserWork userWorkList = 225189857;
   repeated ptransaction.UserWorkCharacter userWorkCharacterList = 192688899;
 }

@@ -29,6 +29,25 @@ service CoinGasha {
   rpc Draw(CoinGashaDrawRequest) returns (CoinGashaDrawResponse);
   rpc ResetBox(CoinGashaResetBoxRequest) returns (CoinGashaResetBoxResponse);
 }
+service Competition {
+  rpc Initialize(Empty) returns (CompetitionInitializeResponse);
+  rpc Get(CompetitionGetRequest) returns (CompetitionGetResponse);
+  rpc ListReward(Empty) returns (CompetitionListRewardResponse);
+  rpc Start(CompetitionStartRequest) returns (CompetitionStartResponse);
+  rpc SelectAuto(CompetitionSelectAutoRequest) returns (CompetitionSelectAutoResponse);
+  rpc End(CompetitionEndRequest) returns (CompetitionEndResponse);
+  rpc Retire(Empty) returns (CompetitionRetireResponse);
+  rpc Continue(CompetitionContinueRequest) returns (CompetitionContinueResponse);
+  rpc Result(CompetitionResultRequest) returns (CompetitionResultResponse);
+  rpc PlayTest(CompetitionPlayTestRequest) returns (CompetitionPlayTestResponse);
+  rpc ResultPlayTest(CompetitionResultPlayTestRequest) returns (CompetitionResultPlayTestResponse);
+  rpc UpdateDeck(CompetitionUpdateDeckRequest) returns (CompetitionUpdateDeckResponse);
+  rpc UpdateSeasonDeck(CompetitionUpdateSeasonDeckRequest) returns (CompetitionUpdateSeasonDeckResponse);
+  rpc ListHighScoreRanking(Empty) returns (CompetitionListHighScoreRankingResponse);
+  rpc ListWinCountRanking(Empty) returns (CompetitionListWinCountRankingResponse);
+  rpc ListHistory(Empty) returns (CompetitionListHistoryResponse);
+  rpc ListDeckProduceCardRanking(Empty) returns (CompetitionListDeckProduceCardRankingResponse);
+}
 service Costume {
   rpc Set(CostumeSetRequest) returns (CostumeSetResponse);
   rpc Check(CostumeCheckRequest) returns (CostumeCheckResponse);
@@ -313,6 +332,7 @@ service Shop {
   rpc ListItems(ShopListItemsRequest) returns (ShopListItemsResponse);
   rpc Purchase(ShopPurchaseRequest) returns (ShopPurchaseResponse);
   rpc CheckPurchaseJewel(ShopCheckPurchaseJewelRequest) returns (ShopCheckPurchaseJewelResponse);
+  rpc CheckBirthday(Empty) returns (ShopCheckBirthdayResponse);
   rpc RegisterBirthday(ShopRegisterBirthdayRequest) returns (ShopRegisterBirthdayResponse);
   rpc RegisterPurchaseTransaction(ShopRegisterPurchaseTransactionRequest) returns (ShopRegisterPurchaseTransactionResponse);
   rpc CancelPurchaseTransaction(ShopCancelPurchaseTransactionRequest) returns (ShopCancelPurchaseTransactionResponse);
@@ -320,6 +340,7 @@ service Shop {
   rpc RecoverPurchaseJewel(ShopRecoverPurchaseJewelRequest) returns (ShopRecoverPurchaseJewelResponse);
   rpc RegisterDelayPurchaseTransaction(ShopRegisterDelayPurchaseTransactionRequest) returns (ShopRegisterDelayPurchaseTransactionResponse);
   rpc GetPurchasePlatformTransaction(ShopGetPurchasePlatformTransactionRequest) returns (ShopGetPurchasePlatformTransactionResponse);
+  rpc ReadWebStoreUserPurchaseTransaction(ShopReadWebStoreUserPurchaseTransactionRequest) returns (ShopReadWebStoreUserPurchaseTransactionResponse);
 }
 service Startup {
   rpc ListNotifications(StartupListNotificationsRequest) returns (StartupListNotificationsResponse);
@@ -528,6 +549,220 @@ message CoinGashaResetBoxRequest {
 message CoinGashaResetBoxResponse {
   pcommon.CoinGasha coinGasha = 1;
   papicommon.Response commonResponse = 9999;
+}
+message CompetitionContinueRequest {
+  string clientUuid = 1;
+}
+message CompetitionContinueResponse {
+  pcommon.ExamContestSituation examContestSituation = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionEndRequest {
+  string clientUuid = 1;
+  int64 seed = 2;
+  pcommon.ExamContestResult examContestResult = 3;
+}
+message CompetitionEndResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionGetRequest {
+  string clientUuid = 1;
+}
+message CompetitionGetResponse {
+  int64 startTime = 1;
+  int64 endTime = 2;
+  string examSettingId = 3;
+  string examContestEmbedProduceCardId = 4;
+  int32 maxGroupMemberCount = 5;
+  bool isPreSeason = 6;
+  int32 rank = 100;
+  int32 winCountRank = 101;
+  int64 highScore = 102;
+  int32 winCount = 103;
+  int64 gradeUpScore = 104;
+  int32 gradeUpRank = 105;
+  int64 gradeKeepScore = 106;
+  int32 gradeKeepRank = 107;
+  int32 gradeUpWinCount = 108;
+  int32 remainingDailyPlayCount = 109;
+  pcommon.Meishi meishi = 110;
+  CompetitionWinCountReward nextWinCountReward = 111;
+  int32 totalFinishCount = 112;
+  repeated CompetitionGetResponse.Stage stages = 200;
+  repeated CompetitionGetResponse.PlayTestStage playTestStages = 201;
+  bool isCurrentClientUuid = 300;
+  pcommon.ExamContestSituation examContestSituation = 301;
+  papicommon.Response commonResponse = 9999;
+  message Section {
+    penum.CompetitionStageSectionType sectionType = 1;
+    int32 turn = 2;
+  }
+  message PlayTestStage {
+    penum.CompetitionStageType stageType = 1;
+    int32 highScore = 2;
+    bool isPlayTest = 3;
+  }
+  message Stage {
+    penum.CompetitionStageType stageType = 1;
+    penum.ProducePlanType planType = 2;
+    int32 turn = 3;
+    repeated string produceItemIds = 4;
+    string produceExamGimmickEffectGroupId = 5;
+    string produceExamBattleConfigId = 6;
+    penum.ProduceExamEffectType examEffectType = 7;
+    int32 highScore = 8;
+    pcommon.SimpleProfile rivalProfile = 100;
+    repeated pcommon.ExamContestSection rivalSections = 101;
+    repeated CompetitionGetResponse.Section sections = 200;
+  }
+}
+message CompetitionInitializeResponse {
+  CompetitionSeasonResult previousSeasonResult = 1;
+  bool isDeckChanged = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionListDeckProduceCardRankingResponse {
+  repeated CompetitionListDeckProduceCardRankingResponse.Ranking rankings = 1;
+  papicommon.Response commonResponse = 9999;
+  message ProduceCardRank {
+    string produceCardId = 1;
+    int32 rank = 2;
+  }
+  message Ranking {
+    penum.CompetitionStageType stageType = 1;
+    penum.CompetitionStageSectionType sectionType = 2;
+    repeated CompetitionListDeckProduceCardRankingResponse.ProduceCardRank produceCardRanks = 3;
+  }
+}
+message CompetitionListHighScoreRankingResponse {
+  repeated CompetitionRank ranks = 1;
+  CompetitionRank selfRank = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionListHistoryResponse {
+  repeated CompetitionListHistoryResponse.History histories = 1;
+  repeated CompetitionListHistoryResponse.Stage stages = 2;
+  papicommon.Response commonResponse = 9999;
+  message History {
+    int64 playTimeUnixMilli = 1;
+    penum.CompetitionStageType stageType = 2;
+    bool isWin = 3;
+    int32 score = 4;
+    bool isHighScore = 5;
+    pcommon.SimpleProfile rivalProfile = 20;
+    int32 rivalScore = 21;
+    pcommon.ExamContestSituation examContestSituation = 99;
+  }
+  message Stage {
+    penum.CompetitionStageType stageType = 1;
+    int32 highScore = 2;
+    bool isPlayTest = 3;
+    pcommon.ExamContestSituation examContestSituation = 99;
+  }
+}
+message CompetitionListRewardResponse {
+  repeated CompetitionWinCountReward winCountRewards = 1;
+  repeated CompetitionRankingReward rankingRewards = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionListWinCountRankingResponse {
+  repeated CompetitionRank ranks = 1;
+  CompetitionRank selfRank = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionPlayTestRequest {
+  string clientUuid = 1;
+  penum.CompetitionStageType stageType = 2;
+}
+message CompetitionPlayTestResponse {
+  pcommon.ExamContestSituation examContestSituation = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionRank {
+  pcommon.SimpleProfile profile = 1;
+  int32 rank = 2;
+  int64 score = 3;
+  pcommon.CompetitionDeck deck = 4;
+}
+message CompetitionRankingReward {
+  int32 upperRank = 1;
+  int32 lowerRank = 2;
+  int32 borderScore = 3;
+  repeated pcommon.Reward rewards = 4;
+}
+message CompetitionResultPlayTestRequest {
+  string clientUuid = 1;
+  pcommon.ExamContestResult examContestResult = 2;
+}
+message CompetitionResultPlayTestResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionResultRequest {
+  string clientUuid = 1;
+}
+message CompetitionResultResponse {
+  int32 beforeHighScore = 1;
+  int32 afterHighScore = 2;
+  int64 beforeTotalHighScore = 3;
+  int64 afterTotalHighScore = 4;
+  int32 beforeTotalWinCount = 5;
+  int32 afterTotalWinCount = 6;
+  int32 totalHighScoreRank = 7;
+  int32 fanCount = 10;
+  repeated pcommon.RewardResult playRewards = 11;
+  repeated pcommon.RewardResult winRewards = 12;
+  repeated pcommon.RewardResult winCountRewards = 13;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionRetireResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionSeasonResult {
+  int64 seasonStartTime = 1;
+  int64 seasonEndTime = 2;
+  penum.CompetitionGrade beforeGrade = 3;
+  penum.CompetitionGrade afterGrade = 4;
+  penum.CompetitionGrade prevSeasonGrade = 5;
+  bool isNotPlayPrevSeason = 6;
+  int64 rank = 7;
+  int64 totalHighScore = 8;
+  repeated pcommon.Reward rewards = 9;
+}
+message CompetitionSelectAutoRequest {
+  string clientUuid = 1;
+  bool isAuto = 2;
+}
+message CompetitionSelectAutoResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionStartRequest {
+  string clientUuid = 1;
+  penum.CompetitionStageType stageType = 2;
+}
+message CompetitionStartResponse {
+  pcommon.ExamContestSituation examContestSituation = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionUpdateDeckRequest {
+  int32 number = 1;
+  string name = 2;
+  repeated pcommon.CompetitionDeckSetupMemorySlot memorySlots = 3;
+  penum.DeckRecommendType recommendType = 4;
+}
+message CompetitionUpdateDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionUpdateSeasonDeckRequest {
+  penum.CompetitionStageType stageType = 1;
+  repeated pcommon.CompetitionDeckSetupMemorySlot memorySlots = 2;
+  penum.DeckRecommendType recommendType = 3;
+}
+message CompetitionUpdateSeasonDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message CompetitionWinCountReward {
+  int32 winCount = 1;
+  repeated pcommon.Reward rewards = 2;
 }
 message Consent {
   penum.ConsentType consentType = 1;
@@ -1286,6 +1521,7 @@ message HomeEnterResponse {
   repeated pcommon.Gasha gashas = 4;
   papicommon.PvpRateSeasonTop pvpRateSeasonTop = 5;
   repeated pcommon.Event events = 6;
+  papicommon.CompetitionSeasonTop competitionSeasonTop = 7;
   int32 giftCount = 100;
   penum.ShopItemLabelType shopItemLabelType = 101;
   bool homeShopNoti = 102;
@@ -1297,6 +1533,8 @@ message HomeEnterResponse {
   bool hasExpireGashaPoint = 108;
   bool towerNoti = 109;
   int32 personalMessageCount = 110;
+  papicommon.CompetitionPreSeasonResult competitionPreSeasonResult = 500;
+  papicommon.PvpRateSeasonResult pvpRateSeasonResult = 501;
   papicommon.Response commonResponse = 9999;
   message FeatureMaintenance {
     penum.FeatureMaintenanceType type = 1;
@@ -2002,6 +2240,8 @@ message ProduceHighScoreGetResponse {
   pcommon.CoinGasha coinGasha = 11;
   string consumptionItemId = 12;
   string bgmAssetId = 14;
+  repeated papicommon.ProduceHighScoreRushExternalProduceReward externalProduceRewards = 15;
+  repeated string produceItemIds = 16;
   ProduceHighScoreResult result = 50;
   repeated pcommon.StartupNotification startupNotifications = 70;
   int64 startTime = 100;
@@ -2566,6 +2806,7 @@ message ProduceTopResponse {
     repeated string produceItemIds = 4;
     int64 startTime = 5;
     int64 endTime = 6;
+    repeated papicommon.ProduceHighScoreRushExternalProduceReward externalProduceRewards = 7;
   }
   message Research {
     repeated string produceGroupIds = 1;
@@ -2739,6 +2980,8 @@ message ProfileGetResponse {
   repeated ProfileGetResponse.ProduceRecord produceRecords = 120;
   int32 maxPvpRateUnitPower = 130;
   penum.PvpRateGrade pvpRateGrade = 131;
+  int32 maxCompetitionDeckPower = 132;
+  penum.CompetitionGrade competitionGrade = 133;
   pcommon.SupportCard supportCard = 201;
   pcommon.Memory memory = 202;
   pcommon.Meishi meishi = 204;
@@ -2823,7 +3066,7 @@ message PvpRateGetResponse {
   papicommon.Response commonResponse = 9999;
 }
 message PvpRateInitializeResponse {
-  PvpRateSeasonResult previousSeasonResult = 1;
+  papicommon.PvpRateSeasonResult previousSeasonResult = 1;
   bool isChangedFormation = 2;
   papicommon.Response commonResponse = 9999;
 }
@@ -3045,6 +3288,10 @@ message ShopCancelPurchaseTransactionRequest {
 message ShopCancelPurchaseTransactionResponse {
   papicommon.Response commonResponse = 9999;
 }
+message ShopCheckBirthdayResponse {
+  bool registered = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message ShopCheckPurchaseJewelRequest {
   string shopItemId = 1;
 }
@@ -3107,6 +3354,12 @@ message ShopPurchaseResponse {
   repeated pcommon.RewardResult rewardResults = 1;
   papicommon.Response commonResponse = 9999;
 }
+message ShopReadWebStoreUserPurchaseTransactionRequest {
+  string userPurchaseTransactionId = 1;
+}
+message ShopReadWebStoreUserPurchaseTransactionResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message ShopRecoverPurchaseJewelRequest {
   string productId = 1;
   string receipt = 2;
@@ -3138,6 +3391,7 @@ message ShopRegisterDelayPurchaseTransactionResponse {
 }
 message ShopRegisterPurchaseTransactionRequest {
   string shopItemId = 1;
+  bool force = 2;
 }
 message ShopRegisterPurchaseTransactionResponse {
   string transactionId = 1;

@@ -67,12 +67,39 @@ message CoinGashaReward {
   int32 maxEmissionCount = 3;
   bool isPickup = 4;
 }
+message CompetitionDeck {
+  repeated CompetitionStage stages = 1;
+}
+message CompetitionDeckSetup {
+  repeated CompetitionDeckSetup.Stage stages = 1;
+  message Stage {
+    penum.CompetitionStageType stageType = 1;
+    repeated CompetitionDeckSetupMemorySlot slots = 2;
+  }
+}
+message CompetitionDeckSetupMemorySlot {
+  penum.CompetitionStageSectionType sectionType = 1;
+  ContestDeckMemorySetup mainMemory = 2;
+  ContestDeckMemorySetup subMemory = 3;
+}
+message CompetitionStage {
+  penum.CompetitionStageType stageType = 1;
+  repeated ExamContestSection sections = 2;
+}
 message ConsumptionResult {
   penum.ResourceType resourceType = 1;
   string resourceId = 2;
   int64 quantity = 3;
   int64 beforeQuantity = 4;
   int64 afterQuantity = 5;
+}
+message ContestDeckMemory {
+  Memory memory = 1;
+  repeated string activeProduceCardIds = 2;
+}
+message ContestDeckMemorySetup {
+  string userMemoryId = 1;
+  repeated string activeProduceCardIds = 2;
 }
 message Event {
   penum.EventType eventType = 1;
@@ -202,6 +229,7 @@ message ExamContestPlayer {
   penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 13;
   penum.IdolCardPotentialRank idolCardPotentialRank = 14;
   int32 power = 16;
+  string idolCardSkinId = 17;
   int32 vocal = 50;
   int32 dance = 51;
   int32 visual = 52;
@@ -211,6 +239,7 @@ message ExamContestPlayer {
   int32 maxStamina = 56;
   repeated ProduceCard produceCards = 57;
   repeated ProduceItem produceItems = 58;
+  repeated ExamAction examActions = 100;
 }
 message ExamContestPlayerResult {
   int32 score = 1;
@@ -243,10 +272,14 @@ message ExamContestSituation {
 }
 message ExamContestStage {
   penum.ProducePlanType planType = 1;
+  string produceExamGimmickEffectGroupId = 2;
+  repeated ProduceItem stageProduceItems = 3;
   repeated ExamContestSection selfSections = 10;
+  repeated ExamContestSection rivalSections = 11;
 }
 message ExamContestStageResult {
   repeated ExamContestSectionResult selfSections = 1;
+  repeated ExamContestSectionResult rivalSections = 2;
 }
 message ExamContestTurn {
   int32 turn = 1;

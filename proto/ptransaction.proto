@@ -53,6 +53,26 @@ message UserComeback {
   string comebackId = 2;
   int64 endTime = 4;
 }
+message UserCompetition {
+  penum.CompetitionGrade grade = 3;
+  penum.CompetitionGrade bestGrade = 4;
+  int64 lastPlayTime = 5;
+  int64 remainingPlayCount = 7;
+  int64 remainingContinueCount = 9;
+  bool isInitializedCurrentSeason = 10;
+  penum.CompetitionStageType stageType = 101;
+  penum.CompetitionPhaseType phaseType = 102;
+  bool isAuto = 103;
+}
+message UserCompetitionDeck {
+  int32 number = 2;
+  string name = 3;
+  repeated pcommon.CompetitionDeckSetupMemorySlot memorySlots = 100;
+}
+message UserCompetitionSeasonDeck {
+  penum.CompetitionStageType stageType = 2;
+  repeated pcommon.CompetitionDeckSetupMemorySlot slots = 100;
+}
 message UserCostume {
   string costumeId = 2;
   bool checked = 3;
@@ -640,6 +660,7 @@ message UserProfile {
   int32 additionFollowLimitCount = 12;
   int32 selectedMeishiNumber = 13;
   int32 maxPvpRateUnitPower = 14;
+  int32 maxCompetitionDeckPower = 16;
 }
 message UserPvpRate {
   penum.PvpRateGrade grade = 3;
@@ -684,6 +705,10 @@ message UserTower {
 message UserTutorial {
   penum.TutorialType type = 2;
   int32 step = 3;
+}
+message UserWebStore {
+  string latestCompletedUserPurchaseTransactionId = 11;
+  string readUserPurchaseTransactionId = 12;
 }
 message UserWork {
   penum.WorkType type = 2;

@@ -25,6 +25,182 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CompetitionPreSeasonResult struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	SeasonStartTime int64                  `protobuf:"varint,1,opt,name=seasonStartTime,proto3" json:"seasonStartTime,omitempty"`
+	SeasonEndTime   int64                  `protobuf:"varint,2,opt,name=seasonEndTime,proto3" json:"seasonEndTime,omitempty"`
+	BeforeGrade     penum.CompetitionGrade `protobuf:"varint,3,opt,name=beforeGrade,proto3,enum=penum.CompetitionGrade" json:"beforeGrade,omitempty"`
+	Rank            int64                  `protobuf:"varint,4,opt,name=rank,proto3" json:"rank,omitempty"`
+	TotalHighScore  int64                  `protobuf:"varint,5,opt,name=totalHighScore,proto3" json:"totalHighScore,omitempty"`
+	Rewards         []*pcommon.Reward      `protobuf:"bytes,6,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CompetitionPreSeasonResult) Reset() {
+	*x = CompetitionPreSeasonResult{}
+	mi := &file_papicommon_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompetitionPreSeasonResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompetitionPreSeasonResult) ProtoMessage() {}
+
+func (x *CompetitionPreSeasonResult) ProtoReflect() protoreflect.Message {
+	mi := &file_papicommon_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompetitionPreSeasonResult.ProtoReflect.Descriptor instead.
+func (*CompetitionPreSeasonResult) Descriptor() ([]byte, []int) {
+	return file_papicommon_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CompetitionPreSeasonResult) GetSeasonStartTime() int64 {
+	if x != nil {
+		return x.SeasonStartTime
+	}
+	return 0
+}
+
+func (x *CompetitionPreSeasonResult) GetSeasonEndTime() int64 {
+	if x != nil {
+		return x.SeasonEndTime
+	}
+	return 0
+}
+
+func (x *CompetitionPreSeasonResult) GetBeforeGrade() penum.CompetitionGrade {
+	if x != nil {
+		return x.BeforeGrade
+	}
+	return penum.CompetitionGrade(0)
+}
+
+func (x *CompetitionPreSeasonResult) GetRank() int64 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *CompetitionPreSeasonResult) GetTotalHighScore() int64 {
+	if x != nil {
+		return x.TotalHighScore
+	}
+	return 0
+}
+
+func (x *CompetitionPreSeasonResult) GetRewards() []*pcommon.Reward {
+	if x != nil {
+		return x.Rewards
+	}
+	return nil
+}
+
+type CompetitionSeasonTop struct {
+	state                   protoimpl.MessageState            `protogen:"open.v1"`
+	StatusType              penum.CompetitionSeasonStatusType `protobuf:"varint,1,opt,name=statusType,proto3,enum=penum.CompetitionSeasonStatusType" json:"statusType,omitempty"`
+	Rank                    int32                             `protobuf:"varint,2,opt,name=rank,proto3" json:"rank,omitempty"`
+	HighScore               int64                             `protobuf:"varint,4,opt,name=highScore,proto3" json:"highScore,omitempty"`
+	RemainingDailyPlayCount int32                             `protobuf:"varint,6,opt,name=remainingDailyPlayCount,proto3" json:"remainingDailyPlayCount,omitempty"`
+	StartTime               int64                             `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	EndTime                 int64                             `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
+	IsPreSeason             bool                              `protobuf:"varint,199,opt,name=isPreSeason,proto3" json:"isPreSeason,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *CompetitionSeasonTop) Reset() {
+	*x = CompetitionSeasonTop{}
+	mi := &file_papicommon_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompetitionSeasonTop) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompetitionSeasonTop) ProtoMessage() {}
+
+func (x *CompetitionSeasonTop) ProtoReflect() protoreflect.Message {
+	mi := &file_papicommon_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompetitionSeasonTop.ProtoReflect.Descriptor instead.
+func (*CompetitionSeasonTop) Descriptor() ([]byte, []int) {
+	return file_papicommon_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CompetitionSeasonTop) GetStatusType() penum.CompetitionSeasonStatusType {
+	if x != nil {
+		return x.StatusType
+	}
+	return penum.CompetitionSeasonStatusType(0)
+}
+
+func (x *CompetitionSeasonTop) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *CompetitionSeasonTop) GetHighScore() int64 {
+	if x != nil {
+		return x.HighScore
+	}
+	return 0
+}
+
+func (x *CompetitionSeasonTop) GetRemainingDailyPlayCount() int32 {
+	if x != nil {
+		return x.RemainingDailyPlayCount
+	}
+	return 0
+}
+
+func (x *CompetitionSeasonTop) GetStartTime() int64 {
+	if x != nil {
+		return x.StartTime
+	}
+	return 0
+}
+
+func (x *CompetitionSeasonTop) GetEndTime() int64 {
+	if x != nil {
+		return x.EndTime
+	}
+	return 0
+}
+
+func (x *CompetitionSeasonTop) GetIsPreSeason() bool {
+	if x != nil {
+		return x.IsPreSeason
+	}
+	return false
+}
+
 type DearnessStoryUnlock struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
@@ -35,7 +211,7 @@ type DearnessStoryUnlock struct {
 
 func (x *DearnessStoryUnlock) Reset() {
 	*x = DearnessStoryUnlock{}
-	mi := &file_papicommon_proto_msgTypes[0]
+	mi := &file_papicommon_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +223,7 @@ func (x *DearnessStoryUnlock) String() string {
 func (*DearnessStoryUnlock) ProtoMessage() {}
 
 func (x *DearnessStoryUnlock) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[0]
+	mi := &file_papicommon_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +236,7 @@ func (x *DearnessStoryUnlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DearnessStoryUnlock.ProtoReflect.Descriptor instead.
 func (*DearnessStoryUnlock) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{0}
+	return file_papicommon_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *DearnessStoryUnlock) GetCharacterId() string {
@@ -87,7 +263,7 @@ type Mission struct {
 
 func (x *Mission) Reset() {
 	*x = Mission{}
-	mi := &file_papicommon_proto_msgTypes[1]
+	mi := &file_papicommon_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -99,7 +275,7 @@ func (x *Mission) String() string {
 func (*Mission) ProtoMessage() {}
 
 func (x *Mission) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[1]
+	mi := &file_papicommon_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +288,7 @@ func (x *Mission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Mission.ProtoReflect.Descriptor instead.
 func (*Mission) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{1}
+	return file_papicommon_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Mission) GetMissionId() string {
@@ -129,22 +305,199 @@ func (x *Mission) GetThreshold() int32 {
 	return 0
 }
 
+type ProduceHighScoreRushExternalProduceReward struct {
+	state           protoimpl.MessageState      `protogen:"open.v1"`
+	ExamEffectType  penum.ProduceExamEffectType `protobuf:"varint,1,opt,name=examEffectType,proto3,enum=penum.ProduceExamEffectType" json:"examEffectType,omitempty"`
+	ProduceCardIds  []string                    `protobuf:"bytes,2,rep,name=produceCardIds,proto3" json:"produceCardIds,omitempty"`
+	ProduceItemIds  []string                    `protobuf:"bytes,3,rep,name=produceItemIds,proto3" json:"produceItemIds,omitempty"`
+	ProduceDrinkIds []string                    `protobuf:"bytes,4,rep,name=produceDrinkIds,proto3" json:"produceDrinkIds,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) Reset() {
+	*x = ProduceHighScoreRushExternalProduceReward{}
+	mi := &file_papicommon_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceHighScoreRushExternalProduceReward) ProtoMessage() {}
+
+func (x *ProduceHighScoreRushExternalProduceReward) ProtoReflect() protoreflect.Message {
+	mi := &file_papicommon_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceHighScoreRushExternalProduceReward.ProtoReflect.Descriptor instead.
+func (*ProduceHighScoreRushExternalProduceReward) Descriptor() ([]byte, []int) {
+	return file_papicommon_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) GetExamEffectType() penum.ProduceExamEffectType {
+	if x != nil {
+		return x.ExamEffectType
+	}
+	return penum.ProduceExamEffectType(0)
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) GetProduceCardIds() []string {
+	if x != nil {
+		return x.ProduceCardIds
+	}
+	return nil
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) GetProduceItemIds() []string {
+	if x != nil {
+		return x.ProduceItemIds
+	}
+	return nil
+}
+
+func (x *ProduceHighScoreRushExternalProduceReward) GetProduceDrinkIds() []string {
+	if x != nil {
+		return x.ProduceDrinkIds
+	}
+	return nil
+}
+
+type PvpRateSeasonResult struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	SeasonStartTime     int64                  `protobuf:"varint,1,opt,name=seasonStartTime,proto3" json:"seasonStartTime,omitempty"`
+	SeasonEndTime       int64                  `protobuf:"varint,2,opt,name=seasonEndTime,proto3" json:"seasonEndTime,omitempty"`
+	BeforeGrade         penum.PvpRateGrade     `protobuf:"varint,3,opt,name=beforeGrade,proto3,enum=penum.PvpRateGrade" json:"beforeGrade,omitempty"`
+	AfterGrade          penum.PvpRateGrade     `protobuf:"varint,4,opt,name=afterGrade,proto3,enum=penum.PvpRateGrade" json:"afterGrade,omitempty"`
+	Rank                int32                  `protobuf:"varint,5,opt,name=rank,proto3" json:"rank,omitempty"`
+	Rate                int32                  `protobuf:"varint,6,opt,name=rate,proto3" json:"rate,omitempty"`
+	Rewards             []*pcommon.Reward      `protobuf:"bytes,7,rep,name=rewards,proto3" json:"rewards,omitempty"`
+	PrevSeasonGrade     penum.PvpRateGrade     `protobuf:"varint,8,opt,name=prevSeasonGrade,proto3,enum=penum.PvpRateGrade" json:"prevSeasonGrade,omitempty"`
+	IsNotPlayPrevSeason bool                   `protobuf:"varint,9,opt,name=isNotPlayPrevSeason,proto3" json:"isNotPlayPrevSeason,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PvpRateSeasonResult) Reset() {
+	*x = PvpRateSeasonResult{}
+	mi := &file_papicommon_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PvpRateSeasonResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PvpRateSeasonResult) ProtoMessage() {}
+
+func (x *PvpRateSeasonResult) ProtoReflect() protoreflect.Message {
+	mi := &file_papicommon_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PvpRateSeasonResult.ProtoReflect.Descriptor instead.
+func (*PvpRateSeasonResult) Descriptor() ([]byte, []int) {
+	return file_papicommon_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PvpRateSeasonResult) GetSeasonStartTime() int64 {
+	if x != nil {
+		return x.SeasonStartTime
+	}
+	return 0
+}
+
+func (x *PvpRateSeasonResult) GetSeasonEndTime() int64 {
+	if x != nil {
+		return x.SeasonEndTime
+	}
+	return 0
+}
+
+func (x *PvpRateSeasonResult) GetBeforeGrade() penum.PvpRateGrade {
+	if x != nil {
+		return x.BeforeGrade
+	}
+	return penum.PvpRateGrade(0)
+}
+
+func (x *PvpRateSeasonResult) GetAfterGrade() penum.PvpRateGrade {
+	if x != nil {
+		return x.AfterGrade
+	}
+	return penum.PvpRateGrade(0)
+}
+
+func (x *PvpRateSeasonResult) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *PvpRateSeasonResult) GetRate() int32 {
+	if x != nil {
+		return x.Rate
+	}
+	return 0
+}
+
+func (x *PvpRateSeasonResult) GetRewards() []*pcommon.Reward {
+	if x != nil {
+		return x.Rewards
+	}
+	return nil
+}
+
+func (x *PvpRateSeasonResult) GetPrevSeasonGrade() penum.PvpRateGrade {
+	if x != nil {
+		return x.PrevSeasonGrade
+	}
+	return penum.PvpRateGrade(0)
+}
+
+func (x *PvpRateSeasonResult) GetIsNotPlayPrevSeason() bool {
+	if x != nil {
+		return x.IsNotPlayPrevSeason
+	}
+	return false
+}
+
 type PvpRateSeasonTop struct {
-	state                   protoimpl.MessageState        `protogen:"open.v1"`
-	StatusType              penum.PvpRateSeasonStatusType `protobuf:"varint,1,opt,name=statusType,proto3,enum=penum.PvpRateSeasonStatusType" json:"statusType,omitempty"`
-	Rate                    int32                         `protobuf:"varint,2,opt,name=rate,proto3" json:"rate,omitempty"`
-	Rank                    int32                         `protobuf:"varint,3,opt,name=rank,proto3" json:"rank,omitempty"`
-	MaxDailyPlayCount       int32                         `protobuf:"varint,4,opt,name=maxDailyPlayCount,proto3" json:"maxDailyPlayCount,omitempty"`
-	RemainingDailyPlayCount int32                         `protobuf:"varint,5,opt,name=remainingDailyPlayCount,proto3" json:"remainingDailyPlayCount,omitempty"`
-	CurrentSeasonStartTime  int64                         `protobuf:"varint,6,opt,name=currentSeasonStartTime,proto3" json:"currentSeasonStartTime,omitempty"`
-	CurrentSeasonEndTime    int64                         `protobuf:"varint,7,opt,name=currentSeasonEndTime,proto3" json:"currentSeasonEndTime,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state                      protoimpl.MessageState        `protogen:"open.v1"`
+	StatusType                 penum.PvpRateSeasonStatusType `protobuf:"varint,1,opt,name=statusType,proto3,enum=penum.PvpRateSeasonStatusType" json:"statusType,omitempty"`
+	Rate                       int32                         `protobuf:"varint,2,opt,name=rate,proto3" json:"rate,omitempty"`
+	Rank                       int32                         `protobuf:"varint,3,opt,name=rank,proto3" json:"rank,omitempty"`
+	MaxDailyPlayCount          int32                         `protobuf:"varint,4,opt,name=maxDailyPlayCount,proto3" json:"maxDailyPlayCount,omitempty"`
+	RemainingDailyPlayCount    int32                         `protobuf:"varint,5,opt,name=remainingDailyPlayCount,proto3" json:"remainingDailyPlayCount,omitempty"`
+	CurrentSeasonStartTime     int64                         `protobuf:"varint,6,opt,name=currentSeasonStartTime,proto3" json:"currentSeasonStartTime,omitempty"`
+	CurrentSeasonEndTime       int64                         `protobuf:"varint,7,opt,name=currentSeasonEndTime,proto3" json:"currentSeasonEndTime,omitempty"`
+	NextSeasonPrepareStartTime int64                         `protobuf:"varint,8,opt,name=nextSeasonPrepareStartTime,proto3" json:"nextSeasonPrepareStartTime,omitempty"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *PvpRateSeasonTop) Reset() {
 	*x = PvpRateSeasonTop{}
-	mi := &file_papicommon_proto_msgTypes[2]
+	mi := &file_papicommon_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -156,7 +509,7 @@ func (x *PvpRateSeasonTop) String() string {
 func (*PvpRateSeasonTop) ProtoMessage() {}
 
 func (x *PvpRateSeasonTop) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[2]
+	mi := &file_papicommon_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +522,7 @@ func (x *PvpRateSeasonTop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateSeasonTop.ProtoReflect.Descriptor instead.
 func (*PvpRateSeasonTop) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{2}
+	return file_papicommon_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PvpRateSeasonTop) GetStatusType() penum.PvpRateSeasonStatusType {
@@ -221,6 +574,13 @@ func (x *PvpRateSeasonTop) GetCurrentSeasonEndTime() int64 {
 	return 0
 }
 
+func (x *PvpRateSeasonTop) GetNextSeasonPrepareStartTime() int64 {
+	if x != nil {
+		return x.NextSeasonPrepareStartTime
+	}
+	return 0
+}
+
 type RankReward struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UpperRank     int32                  `protobuf:"varint,1,opt,name=upperRank,proto3" json:"upperRank,omitempty"`
@@ -233,7 +593,7 @@ type RankReward struct {
 
 func (x *RankReward) Reset() {
 	*x = RankReward{}
-	mi := &file_papicommon_proto_msgTypes[3]
+	mi := &file_papicommon_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -245,7 +605,7 @@ func (x *RankReward) String() string {
 func (*RankReward) ProtoMessage() {}
 
 func (x *RankReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[3]
+	mi := &file_papicommon_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +618,7 @@ func (x *RankReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RankReward.ProtoReflect.Descriptor instead.
 func (*RankReward) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{3}
+	return file_papicommon_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RankReward) GetUpperRank() int32 {
@@ -305,7 +665,7 @@ type Response struct {
 
 func (x *Response) Reset() {
 	*x = Response{}
-	mi := &file_papicommon_proto_msgTypes[4]
+	mi := &file_papicommon_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -317,7 +677,7 @@ func (x *Response) String() string {
 func (*Response) ProtoMessage() {}
 
 func (x *Response) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[4]
+	mi := &file_papicommon_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +690,7 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Response.ProtoReflect.Descriptor instead.
 func (*Response) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{4}
+	return file_papicommon_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Response) GetUpdatedData() *UserData {
@@ -399,7 +759,7 @@ type StoryEventReward struct {
 
 func (x *StoryEventReward) Reset() {
 	*x = StoryEventReward{}
-	mi := &file_papicommon_proto_msgTypes[5]
+	mi := &file_papicommon_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -411,7 +771,7 @@ func (x *StoryEventReward) String() string {
 func (*StoryEventReward) ProtoMessage() {}
 
 func (x *StoryEventReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[5]
+	mi := &file_papicommon_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -424,7 +784,7 @@ func (x *StoryEventReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventReward.ProtoReflect.Descriptor instead.
 func (*StoryEventReward) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{5}
+	return file_papicommon_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *StoryEventReward) GetStoryEventId() string {
@@ -453,6 +813,9 @@ type UserData struct {
 	UserCharacterCostumeList           []*ptransaction.UserCharacterCostume           `protobuf:"bytes,314243425,rep,name=userCharacterCostumeList,proto3" json:"userCharacterCostumeList,omitempty"`
 	UserCharacterRosterList            []*ptransaction.UserCharacterRoster            `protobuf:"bytes,449008014,rep,name=userCharacterRosterList,proto3" json:"userCharacterRosterList,omitempty"`
 	UserComebackList                   []*ptransaction.UserComeback                   `protobuf:"bytes,440873335,rep,name=userComebackList,proto3" json:"userComebackList,omitempty"`
+	UserCompetition                    *ptransaction.UserCompetition                  `protobuf:"bytes,59936386,opt,name=userCompetition,proto3" json:"userCompetition,omitempty"`
+	UserCompetitionDeckList            []*ptransaction.UserCompetitionDeck            `protobuf:"bytes,205293456,rep,name=userCompetitionDeckList,proto3" json:"userCompetitionDeckList,omitempty"`
+	UserCompetitionSeasonDeckList      []*ptransaction.UserCompetitionSeasonDeck      `protobuf:"bytes,444856278,rep,name=userCompetitionSeasonDeckList,proto3" json:"userCompetitionSeasonDeckList,omitempty"`
 	UserCostumeList                    []*ptransaction.UserCostume                    `protobuf:"bytes,469968532,rep,name=userCostumeList,proto3" json:"userCostumeList,omitempty"`
 	UserCostumeHeadList                []*ptransaction.UserCostumeHead                `protobuf:"bytes,374617052,rep,name=userCostumeHeadList,proto3" json:"userCostumeHeadList,omitempty"`
 	UserCountList                      []*ptransaction.UserCount                      `protobuf:"bytes,431111247,rep,name=userCountList,proto3" json:"userCountList,omitempty"`
@@ -518,6 +881,7 @@ type UserData struct {
 	UserTimeList                       []*ptransaction.UserTime                       `protobuf:"bytes,68970636,rep,name=userTimeList,proto3" json:"userTimeList,omitempty"`
 	UserTowerList                      []*ptransaction.UserTower                      `protobuf:"bytes,268691409,rep,name=userTowerList,proto3" json:"userTowerList,omitempty"`
 	UserTutorialList                   []*ptransaction.UserTutorial                   `protobuf:"bytes,201375606,rep,name=userTutorialList,proto3" json:"userTutorialList,omitempty"`
+	UserWebStore                       *ptransaction.UserWebStore                     `protobuf:"bytes,223256751,opt,name=userWebStore,proto3" json:"userWebStore,omitempty"`
 	UserWorkList                       []*ptransaction.UserWork                       `protobuf:"bytes,225189857,rep,name=userWorkList,proto3" json:"userWorkList,omitempty"`
 	UserWorkCharacterList              []*ptransaction.UserWorkCharacter              `protobuf:"bytes,192688899,rep,name=userWorkCharacterList,proto3" json:"userWorkCharacterList,omitempty"`
 	unknownFields                      protoimpl.UnknownFields
@@ -526,7 +890,7 @@ type UserData struct {
 
 func (x *UserData) Reset() {
 	*x = UserData{}
-	mi := &file_papicommon_proto_msgTypes[6]
+	mi := &file_papicommon_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -538,7 +902,7 @@ func (x *UserData) String() string {
 func (*UserData) ProtoMessage() {}
 
 func (x *UserData) ProtoReflect() protoreflect.Message {
-	mi := &file_papicommon_proto_msgTypes[6]
+	mi := &file_papicommon_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -551,7 +915,7 @@ func (x *UserData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserData.ProtoReflect.Descriptor instead.
 func (*UserData) Descriptor() ([]byte, []int) {
-	return file_papicommon_proto_rawDescGZIP(), []int{6}
+	return file_papicommon_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UserData) GetUser() *ptransaction.User {
@@ -620,6 +984,27 @@ func (x *UserData) GetUserCharacterRosterList() []*ptransaction.UserCharacterRos
 func (x *UserData) GetUserComebackList() []*ptransaction.UserComeback {
 	if x != nil {
 		return x.UserComebackList
+	}
+	return nil
+}
+
+func (x *UserData) GetUserCompetition() *ptransaction.UserCompetition {
+	if x != nil {
+		return x.UserCompetition
+	}
+	return nil
+}
+
+func (x *UserData) GetUserCompetitionDeckList() []*ptransaction.UserCompetitionDeck {
+	if x != nil {
+		return x.UserCompetitionDeckList
+	}
+	return nil
+}
+
+func (x *UserData) GetUserCompetitionSeasonDeckList() []*ptransaction.UserCompetitionSeasonDeck {
+	if x != nil {
+		return x.UserCompetitionSeasonDeckList
 	}
 	return nil
 }
@@ -1079,6 +1464,13 @@ func (x *UserData) GetUserTutorialList() []*ptransaction.UserTutorial {
 	return nil
 }
 
+func (x *UserData) GetUserWebStore() *ptransaction.UserWebStore {
+	if x != nil {
+		return x.UserWebStore
+	}
+	return nil
+}
+
 func (x *UserData) GetUserWorkList() []*ptransaction.UserWork {
 	if x != nil {
 		return x.UserWorkList
@@ -1098,13 +1490,47 @@ var File_papicommon_proto protoreflect.FileDescriptor
 const file_papicommon_proto_rawDesc = "" +
 	"\n" +
 	"\x10papicommon.proto\x12\n" +
-	"papicommon\x1a\vpenum.proto\x1a\rpcommon.proto\x1a\x12ptransaction.proto\x1a\rpmaster.proto\"Q\n" +
+	"papicommon\x1a\vpenum.proto\x1a\rpcommon.proto\x1a\x12ptransaction.proto\x1a\rpmaster.proto\"\x8e\x02\n" +
+	"\x1aCompetitionPreSeasonResult\x12(\n" +
+	"\x0fseasonStartTime\x18\x01 \x01(\x03R\x0fseasonStartTime\x12$\n" +
+	"\rseasonEndTime\x18\x02 \x01(\x03R\rseasonEndTime\x129\n" +
+	"\vbeforeGrade\x18\x03 \x01(\x0e2\x17.penum.CompetitionGradeR\vbeforeGrade\x12\x12\n" +
+	"\x04rank\x18\x04 \x01(\x03R\x04rank\x12&\n" +
+	"\x0etotalHighScore\x18\x05 \x01(\x03R\x0etotalHighScore\x12)\n" +
+	"\arewards\x18\x06 \x03(\v2\x0f.pcommon.RewardR\arewards\"\xa1\x02\n" +
+	"\x14CompetitionSeasonTop\x12B\n" +
+	"\n" +
+	"statusType\x18\x01 \x01(\x0e2\".penum.CompetitionSeasonStatusTypeR\n" +
+	"statusType\x12\x12\n" +
+	"\x04rank\x18\x02 \x01(\x05R\x04rank\x12\x1c\n" +
+	"\thighScore\x18\x04 \x01(\x03R\thighScore\x128\n" +
+	"\x17remainingDailyPlayCount\x18\x06 \x01(\x05R\x17remainingDailyPlayCount\x12\x1c\n" +
+	"\tstartTime\x18d \x01(\x03R\tstartTime\x12\x18\n" +
+	"\aendTime\x18e \x01(\x03R\aendTime\x12!\n" +
+	"\visPreSeason\x18\xc7\x01 \x01(\bR\visPreSeason\"Q\n" +
 	"\x13DearnessStoryUnlock\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x18\n" +
 	"\astoryId\x18\x02 \x01(\tR\astoryId\"E\n" +
 	"\aMission\x12\x1c\n" +
 	"\tmissionId\x18\x01 \x01(\tR\tmissionId\x12\x1c\n" +
-	"\tthreshold\x18\x02 \x01(\x05R\tthreshold\"\xce\x02\n" +
+	"\tthreshold\x18\x02 \x01(\x05R\tthreshold\"\xeb\x01\n" +
+	")ProduceHighScoreRushExternalProduceReward\x12D\n" +
+	"\x0eexamEffectType\x18\x01 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x0eexamEffectType\x12&\n" +
+	"\x0eproduceCardIds\x18\x02 \x03(\tR\x0eproduceCardIds\x12&\n" +
+	"\x0eproduceItemIds\x18\x03 \x03(\tR\x0eproduceItemIds\x12(\n" +
+	"\x0fproduceDrinkIds\x18\x04 \x03(\tR\x0fproduceDrinkIds\"\x95\x03\n" +
+	"\x13PvpRateSeasonResult\x12(\n" +
+	"\x0fseasonStartTime\x18\x01 \x01(\x03R\x0fseasonStartTime\x12$\n" +
+	"\rseasonEndTime\x18\x02 \x01(\x03R\rseasonEndTime\x125\n" +
+	"\vbeforeGrade\x18\x03 \x01(\x0e2\x13.penum.PvpRateGradeR\vbeforeGrade\x123\n" +
+	"\n" +
+	"afterGrade\x18\x04 \x01(\x0e2\x13.penum.PvpRateGradeR\n" +
+	"afterGrade\x12\x12\n" +
+	"\x04rank\x18\x05 \x01(\x05R\x04rank\x12\x12\n" +
+	"\x04rate\x18\x06 \x01(\x05R\x04rate\x12)\n" +
+	"\arewards\x18\a \x03(\v2\x0f.pcommon.RewardR\arewards\x12=\n" +
+	"\x0fprevSeasonGrade\x18\b \x01(\x0e2\x13.penum.PvpRateGradeR\x0fprevSeasonGrade\x120\n" +
+	"\x13isNotPlayPrevSeason\x18\t \x01(\bR\x13isNotPlayPrevSeason\"\x8e\x03\n" +
 	"\x10PvpRateSeasonTop\x12>\n" +
 	"\n" +
 	"statusType\x18\x01 \x01(\x0e2\x1e.penum.PvpRateSeasonStatusTypeR\n" +
@@ -1114,7 +1540,8 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x11maxDailyPlayCount\x18\x04 \x01(\x05R\x11maxDailyPlayCount\x128\n" +
 	"\x17remainingDailyPlayCount\x18\x05 \x01(\x05R\x17remainingDailyPlayCount\x126\n" +
 	"\x16currentSeasonStartTime\x18\x06 \x01(\x03R\x16currentSeasonStartTime\x122\n" +
-	"\x14currentSeasonEndTime\x18\a \x01(\x03R\x14currentSeasonEndTime\"\x95\x01\n" +
+	"\x14currentSeasonEndTime\x18\a \x01(\x03R\x14currentSeasonEndTime\x12>\n" +
+	"\x1anextSeasonPrepareStartTime\x18\b \x01(\x03R\x1anextSeasonPrepareStartTime\"\x95\x01\n" +
 	"\n" +
 	"RankReward\x12\x1c\n" +
 	"\tupperRank\x18\x01 \x01(\x05R\tupperRank\x12\x1c\n" +
@@ -1132,7 +1559,7 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x11storyEventRewards\x18\b \x03(\v2\x1c.papicommon.StoryEventRewardR\x11storyEventRewards\"z\n" +
 	"\x10StoryEventReward\x12\"\n" +
 	"\fstoryEventId\x18\x01 \x01(\tR\fstoryEventId\x12B\n" +
-	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\xcf4\n" +
+	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\xb17\n" +
 	"\bUserData\x12*\n" +
 	"\x04user\x18\xb6̾\xa3\x01 \x01(\v2\x12.ptransaction.UserR\x04user\x12J\n" +
 	"\x0fuserActionPoint\x18\xb2\xdd\xd1q \x01(\v2\x1d.ptransaction.UserActionPointR\x0fuserActionPoint\x12U\n" +
@@ -1143,7 +1570,10 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x11userCharacterList\x18\xa8\xfd\xe1\xb0\x01 \x03(\v2\x1b.ptransaction.UserCharacterR\x11userCharacterList\x12b\n" +
 	"\x18userCharacterCostumeList\x18\xe1\xf2\xeb\x95\x01 \x03(\v2\".ptransaction.UserCharacterCostumeR\x18userCharacterCostumeList\x12_\n" +
 	"\x17userCharacterRosterList\x18\x8e\xa3\x8d\xd6\x01 \x03(\v2!.ptransaction.UserCharacterRosterR\x17userCharacterRosterList\x12J\n" +
-	"\x10userComebackList\x18\xf7\xe2\x9c\xd2\x01 \x03(\v2\x1a.ptransaction.UserComebackR\x10userComebackList\x12G\n" +
+	"\x10userComebackList\x18\xf7\xe2\x9c\xd2\x01 \x03(\v2\x1a.ptransaction.UserComebackR\x10userComebackList\x12J\n" +
+	"\x0fuserCompetition\x18\x82\x9d\xca\x1c \x01(\v2\x1d.ptransaction.UserCompetitionR\x0fuserCompetition\x12^\n" +
+	"\x17userCompetitionDeckList\x18\x90\x8f\xf2a \x03(\v2!.ptransaction.UserCompetitionDeckR\x17userCompetitionDeckList\x12q\n" +
+	"\x1duserCompetitionSeasonDeckList\x18\xd6\xef\x8f\xd4\x01 \x03(\v2'.ptransaction.UserCompetitionSeasonDeckR\x1duserCompetitionSeasonDeckList\x12G\n" +
 	"\x0fuserCostumeList\x18\x94͌\xe0\x01 \x03(\v2\x19.ptransaction.UserCostumeR\x0fuserCostumeList\x12S\n" +
 	"\x13userCostumeHeadList\x18\xdc\xe7в\x01 \x03(\v2\x1d.ptransaction.UserCostumeHeadR\x13userCostumeHeadList\x12A\n" +
 	"\ruserCountList\x18\xcf\xf8\xc8\xcd\x01 \x03(\v2\x17.ptransaction.UserCountR\ruserCountList\x12X\n" +
@@ -1209,7 +1639,8 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x13userSupportCardList\x18Ĳ\x88\x01 \x03(\v2\x1d.ptransaction.UserSupportCardR\x13userSupportCardList\x12=\n" +
 	"\fuserTimeList\x18\x8c\xd1\xf1  \x03(\v2\x16.ptransaction.UserTimeR\fuserTimeList\x12A\n" +
 	"\ruserTowerList\x18\xd1Ϗ\x80\x01 \x03(\v2\x17.ptransaction.UserTowerR\ruserTowerList\x12I\n" +
-	"\x10userTutorialList\x18\xf6\xfe\x82` \x03(\v2\x1a.ptransaction.UserTutorialR\x10userTutorialList\x12=\n" +
+	"\x10userTutorialList\x18\xf6\xfe\x82` \x03(\v2\x1a.ptransaction.UserTutorialR\x10userTutorialList\x12A\n" +
+	"\fuserWebStore\x18\xaf\xc1\xbaj \x01(\v2\x1a.ptransaction.UserWebStoreR\fuserWebStore\x12=\n" +
 	"\fuserWorkList\x18\u1ff0k \x03(\v2\x16.ptransaction.UserWorkR\fuserWorkList\x12X\n" +
 	"\x15userWorkCharacterList\x18\x83\xe6\xf0[ \x03(\v2\x1f.ptransaction.UserWorkCharacterR\x15userWorkCharacterListB\"Z vertesan/campus/proto/papicommonb\x06proto3"
 
@@ -1225,190 +1656,214 @@ func file_papicommon_proto_rawDescGZIP() []byte {
 	return file_papicommon_proto_rawDescData
 }
 
-var file_papicommon_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_papicommon_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_papicommon_proto_goTypes = []any{
-	(*DearnessStoryUnlock)(nil),                         // 0: papicommon.DearnessStoryUnlock
-	(*Mission)(nil),                                     // 1: papicommon.Mission
-	(*PvpRateSeasonTop)(nil),                            // 2: papicommon.PvpRateSeasonTop
-	(*RankReward)(nil),                                  // 3: papicommon.RankReward
-	(*Response)(nil),                                    // 4: papicommon.Response
-	(*StoryEventReward)(nil),                            // 5: papicommon.StoryEventReward
-	(*UserData)(nil),                                    // 6: papicommon.UserData
-	(penum.PvpRateSeasonStatusType)(0),                  // 7: penum.PvpRateSeasonStatusType
-	(*pcommon.Reward)(nil),                              // 8: pcommon.Reward
-	(*pmaster.Mission)(nil),                             // 9: pmaster.Mission
-	(*pcommon.ProducerLevelUnlock)(nil),                 // 10: pcommon.ProducerLevelUnlock
-	(*pcommon.StoryEventPointReward)(nil),               // 11: pcommon.StoryEventPointReward
-	(*ptransaction.User)(nil),                           // 12: ptransaction.User
-	(*ptransaction.UserActionPoint)(nil),                // 13: ptransaction.UserActionPoint
-	(*ptransaction.UserAuthProvider)(nil),               // 14: ptransaction.UserAuthProvider
-	(*ptransaction.UserBadge)(nil),                      // 15: ptransaction.UserBadge
-	(*ptransaction.UserBalance)(nil),                    // 16: ptransaction.UserBalance
-	(*ptransaction.UserBanWarning)(nil),                 // 17: ptransaction.UserBanWarning
-	(*ptransaction.UserCharacter)(nil),                  // 18: ptransaction.UserCharacter
-	(*ptransaction.UserCharacterCostume)(nil),           // 19: ptransaction.UserCharacterCostume
-	(*ptransaction.UserCharacterRoster)(nil),            // 20: ptransaction.UserCharacterRoster
-	(*ptransaction.UserComeback)(nil),                   // 21: ptransaction.UserComeback
-	(*ptransaction.UserCostume)(nil),                    // 22: ptransaction.UserCostume
-	(*ptransaction.UserCostumeHead)(nil),                // 23: ptransaction.UserCostumeHead
-	(*ptransaction.UserCount)(nil),                      // 24: ptransaction.UserCount
-	(*ptransaction.UserDearnessStory)(nil),              // 25: ptransaction.UserDearnessStory
-	(*ptransaction.UserGashaButton)(nil),                // 26: ptransaction.UserGashaButton
-	(*ptransaction.UserGuild)(nil),                      // 27: ptransaction.UserGuild
-	(*ptransaction.UserHomeCharacter)(nil),              // 28: ptransaction.UserHomeCharacter
-	(*ptransaction.UserIdolCard)(nil),                   // 29: ptransaction.UserIdolCard
-	(*ptransaction.UserIdolCardSkin)(nil),               // 30: ptransaction.UserIdolCardSkin
-	(*ptransaction.UserInvitation)(nil),                 // 31: ptransaction.UserInvitation
-	(*ptransaction.UserItem)(nil),                       // 32: ptransaction.UserItem
-	(*ptransaction.UserMeishi)(nil),                     // 33: ptransaction.UserMeishi
-	(*ptransaction.UserMeishiBaseAsset)(nil),            // 34: ptransaction.UserMeishiBaseAsset
-	(*ptransaction.UserMeishiIllustrationAsset)(nil),    // 35: ptransaction.UserMeishiIllustrationAsset
-	(*ptransaction.UserMemory)(nil),                     // 36: ptransaction.UserMemory
-	(*ptransaction.UserMemoryInherit)(nil),              // 37: ptransaction.UserMemoryInherit
-	(*ptransaction.UserMission)(nil),                    // 38: ptransaction.UserMission
-	(*ptransaction.UserMissionDailyReleaseGroup)(nil),   // 39: ptransaction.UserMissionDailyReleaseGroup
-	(*ptransaction.UserMissionGroup)(nil),               // 40: ptransaction.UserMissionGroup
-	(*ptransaction.UserMissionPass)(nil),                // 41: ptransaction.UserMissionPass
-	(*ptransaction.UserMissionPassPoint)(nil),           // 42: ptransaction.UserMissionPassPoint
-	(*ptransaction.UserMissionPoint)(nil),               // 43: ptransaction.UserMissionPoint
-	(*ptransaction.UserMoney)(nil),                      // 44: ptransaction.UserMoney
-	(*ptransaction.UserMovie)(nil),                      // 45: ptransaction.UserMovie
-	(*ptransaction.UserMusic)(nil),                      // 46: ptransaction.UserMusic
-	(*ptransaction.UserPhoto)(nil),                      // 47: ptransaction.UserPhoto
-	(*ptransaction.UserPhotoBackground)(nil),            // 48: ptransaction.UserPhotoBackground
-	(*ptransaction.UserPhotoPose)(nil),                  // 49: ptransaction.UserPhotoPose
-	(*ptransaction.UserPreference)(nil),                 // 50: ptransaction.UserPreference
-	(*ptransaction.UserProduce)(nil),                    // 51: ptransaction.UserProduce
-	(*ptransaction.UserProduceAdv)(nil),                 // 52: ptransaction.UserProduceAdv
-	(*ptransaction.UserProduceCard)(nil),                // 53: ptransaction.UserProduceCard
-	(*ptransaction.UserProduceCardConversion)(nil),      // 54: ptransaction.UserProduceCardConversion
-	(*ptransaction.UserProduceCardReward)(nil),          // 55: ptransaction.UserProduceCardReward
-	(*ptransaction.UserProduceCharacter)(nil),           // 56: ptransaction.UserProduceCharacter
-	(*ptransaction.UserProduceDrink)(nil),               // 57: ptransaction.UserProduceDrink
-	(*ptransaction.UserProduceGroupCharacter)(nil),      // 58: ptransaction.UserProduceGroupCharacter
-	(*ptransaction.UserProduceIdolCard)(nil),            // 59: ptransaction.UserProduceIdolCard
-	(*ptransaction.UserProduceItem)(nil),                // 60: ptransaction.UserProduceItem
-	(*ptransaction.UserProduceLive)(nil),                // 61: ptransaction.UserProduceLive
-	(*ptransaction.UserProduceMemoryDeck)(nil),          // 62: ptransaction.UserProduceMemoryDeck
-	(*ptransaction.UserProduceProgress)(nil),            // 63: ptransaction.UserProduceProgress
-	(*ptransaction.UserProduceProgressAudition)(nil),    // 64: ptransaction.UserProduceProgressAudition
-	(*ptransaction.UserProduceProgressBusiness)(nil),    // 65: ptransaction.UserProduceProgressBusiness
-	(*ptransaction.UserProduceProgressEffect)(nil),      // 66: ptransaction.UserProduceProgressEffect
-	(*ptransaction.UserProduceProgressEvent)(nil),       // 67: ptransaction.UserProduceProgressEvent
-	(*ptransaction.UserProduceProgressMemory)(nil),      // 68: ptransaction.UserProduceProgressMemory
-	(*ptransaction.UserProduceProgressPresent)(nil),     // 69: ptransaction.UserProduceProgressPresent
-	(*ptransaction.UserProduceProgressProduceCard)(nil), // 70: ptransaction.UserProduceProgressProduceCard
-	(*ptransaction.UserProduceProgressSchedule)(nil),    // 71: ptransaction.UserProduceProgressSchedule
-	(*ptransaction.UserProduceProgressShop)(nil),        // 72: ptransaction.UserProduceProgressShop
-	(*ptransaction.UserProduceProgressSupportCard)(nil), // 73: ptransaction.UserProduceProgressSupportCard
-	(*ptransaction.UserProduceRerollMemory)(nil),        // 74: ptransaction.UserProduceRerollMemory
-	(*ptransaction.UserProduceStartAchievement)(nil),    // 75: ptransaction.UserProduceStartAchievement
-	(*ptransaction.UserProduceStory)(nil),               // 76: ptransaction.UserProduceStory
-	(*ptransaction.UserProduceSupportCardDeck)(nil),     // 77: ptransaction.UserProduceSupportCardDeck
-	(*ptransaction.UserProfile)(nil),                    // 78: ptransaction.UserProfile
-	(*ptransaction.UserPvpRate)(nil),                    // 79: ptransaction.UserPvpRate
-	(*ptransaction.UserPvpRateUnit)(nil),                // 80: ptransaction.UserPvpRateUnit
-	(*ptransaction.UserShopItem)(nil),                   // 81: ptransaction.UserShopItem
-	(*ptransaction.UserStory)(nil),                      // 82: ptransaction.UserStory
-	(*ptransaction.UserSupportCard)(nil),                // 83: ptransaction.UserSupportCard
-	(*ptransaction.UserTime)(nil),                       // 84: ptransaction.UserTime
-	(*ptransaction.UserTower)(nil),                      // 85: ptransaction.UserTower
-	(*ptransaction.UserTutorial)(nil),                   // 86: ptransaction.UserTutorial
-	(*ptransaction.UserWork)(nil),                       // 87: ptransaction.UserWork
-	(*ptransaction.UserWorkCharacter)(nil),              // 88: ptransaction.UserWorkCharacter
+	(*CompetitionPreSeasonResult)(nil),                  // 0: papicommon.CompetitionPreSeasonResult
+	(*CompetitionSeasonTop)(nil),                        // 1: papicommon.CompetitionSeasonTop
+	(*DearnessStoryUnlock)(nil),                         // 2: papicommon.DearnessStoryUnlock
+	(*Mission)(nil),                                     // 3: papicommon.Mission
+	(*ProduceHighScoreRushExternalProduceReward)(nil),   // 4: papicommon.ProduceHighScoreRushExternalProduceReward
+	(*PvpRateSeasonResult)(nil),                         // 5: papicommon.PvpRateSeasonResult
+	(*PvpRateSeasonTop)(nil),                            // 6: papicommon.PvpRateSeasonTop
+	(*RankReward)(nil),                                  // 7: papicommon.RankReward
+	(*Response)(nil),                                    // 8: papicommon.Response
+	(*StoryEventReward)(nil),                            // 9: papicommon.StoryEventReward
+	(*UserData)(nil),                                    // 10: papicommon.UserData
+	(penum.CompetitionGrade)(0),                         // 11: penum.CompetitionGrade
+	(*pcommon.Reward)(nil),                              // 12: pcommon.Reward
+	(penum.CompetitionSeasonStatusType)(0),              // 13: penum.CompetitionSeasonStatusType
+	(penum.ProduceExamEffectType)(0),                    // 14: penum.ProduceExamEffectType
+	(penum.PvpRateGrade)(0),                             // 15: penum.PvpRateGrade
+	(penum.PvpRateSeasonStatusType)(0),                  // 16: penum.PvpRateSeasonStatusType
+	(*pmaster.Mission)(nil),                             // 17: pmaster.Mission
+	(*pcommon.ProducerLevelUnlock)(nil),                 // 18: pcommon.ProducerLevelUnlock
+	(*pcommon.StoryEventPointReward)(nil),               // 19: pcommon.StoryEventPointReward
+	(*ptransaction.User)(nil),                           // 20: ptransaction.User
+	(*ptransaction.UserActionPoint)(nil),                // 21: ptransaction.UserActionPoint
+	(*ptransaction.UserAuthProvider)(nil),               // 22: ptransaction.UserAuthProvider
+	(*ptransaction.UserBadge)(nil),                      // 23: ptransaction.UserBadge
+	(*ptransaction.UserBalance)(nil),                    // 24: ptransaction.UserBalance
+	(*ptransaction.UserBanWarning)(nil),                 // 25: ptransaction.UserBanWarning
+	(*ptransaction.UserCharacter)(nil),                  // 26: ptransaction.UserCharacter
+	(*ptransaction.UserCharacterCostume)(nil),           // 27: ptransaction.UserCharacterCostume
+	(*ptransaction.UserCharacterRoster)(nil),            // 28: ptransaction.UserCharacterRoster
+	(*ptransaction.UserComeback)(nil),                   // 29: ptransaction.UserComeback
+	(*ptransaction.UserCompetition)(nil),                // 30: ptransaction.UserCompetition
+	(*ptransaction.UserCompetitionDeck)(nil),            // 31: ptransaction.UserCompetitionDeck
+	(*ptransaction.UserCompetitionSeasonDeck)(nil),      // 32: ptransaction.UserCompetitionSeasonDeck
+	(*ptransaction.UserCostume)(nil),                    // 33: ptransaction.UserCostume
+	(*ptransaction.UserCostumeHead)(nil),                // 34: ptransaction.UserCostumeHead
+	(*ptransaction.UserCount)(nil),                      // 35: ptransaction.UserCount
+	(*ptransaction.UserDearnessStory)(nil),              // 36: ptransaction.UserDearnessStory
+	(*ptransaction.UserGashaButton)(nil),                // 37: ptransaction.UserGashaButton
+	(*ptransaction.UserGuild)(nil),                      // 38: ptransaction.UserGuild
+	(*ptransaction.UserHomeCharacter)(nil),              // 39: ptransaction.UserHomeCharacter
+	(*ptransaction.UserIdolCard)(nil),                   // 40: ptransaction.UserIdolCard
+	(*ptransaction.UserIdolCardSkin)(nil),               // 41: ptransaction.UserIdolCardSkin
+	(*ptransaction.UserInvitation)(nil),                 // 42: ptransaction.UserInvitation
+	(*ptransaction.UserItem)(nil),                       // 43: ptransaction.UserItem
+	(*ptransaction.UserMeishi)(nil),                     // 44: ptransaction.UserMeishi
+	(*ptransaction.UserMeishiBaseAsset)(nil),            // 45: ptransaction.UserMeishiBaseAsset
+	(*ptransaction.UserMeishiIllustrationAsset)(nil),    // 46: ptransaction.UserMeishiIllustrationAsset
+	(*ptransaction.UserMemory)(nil),                     // 47: ptransaction.UserMemory
+	(*ptransaction.UserMemoryInherit)(nil),              // 48: ptransaction.UserMemoryInherit
+	(*ptransaction.UserMission)(nil),                    // 49: ptransaction.UserMission
+	(*ptransaction.UserMissionDailyReleaseGroup)(nil),   // 50: ptransaction.UserMissionDailyReleaseGroup
+	(*ptransaction.UserMissionGroup)(nil),               // 51: ptransaction.UserMissionGroup
+	(*ptransaction.UserMissionPass)(nil),                // 52: ptransaction.UserMissionPass
+	(*ptransaction.UserMissionPassPoint)(nil),           // 53: ptransaction.UserMissionPassPoint
+	(*ptransaction.UserMissionPoint)(nil),               // 54: ptransaction.UserMissionPoint
+	(*ptransaction.UserMoney)(nil),                      // 55: ptransaction.UserMoney
+	(*ptransaction.UserMovie)(nil),                      // 56: ptransaction.UserMovie
+	(*ptransaction.UserMusic)(nil),                      // 57: ptransaction.UserMusic
+	(*ptransaction.UserPhoto)(nil),                      // 58: ptransaction.UserPhoto
+	(*ptransaction.UserPhotoBackground)(nil),            // 59: ptransaction.UserPhotoBackground
+	(*ptransaction.UserPhotoPose)(nil),                  // 60: ptransaction.UserPhotoPose
+	(*ptransaction.UserPreference)(nil),                 // 61: ptransaction.UserPreference
+	(*ptransaction.UserProduce)(nil),                    // 62: ptransaction.UserProduce
+	(*ptransaction.UserProduceAdv)(nil),                 // 63: ptransaction.UserProduceAdv
+	(*ptransaction.UserProduceCard)(nil),                // 64: ptransaction.UserProduceCard
+	(*ptransaction.UserProduceCardConversion)(nil),      // 65: ptransaction.UserProduceCardConversion
+	(*ptransaction.UserProduceCardReward)(nil),          // 66: ptransaction.UserProduceCardReward
+	(*ptransaction.UserProduceCharacter)(nil),           // 67: ptransaction.UserProduceCharacter
+	(*ptransaction.UserProduceDrink)(nil),               // 68: ptransaction.UserProduceDrink
+	(*ptransaction.UserProduceGroupCharacter)(nil),      // 69: ptransaction.UserProduceGroupCharacter
+	(*ptransaction.UserProduceIdolCard)(nil),            // 70: ptransaction.UserProduceIdolCard
+	(*ptransaction.UserProduceItem)(nil),                // 71: ptransaction.UserProduceItem
+	(*ptransaction.UserProduceLive)(nil),                // 72: ptransaction.UserProduceLive
+	(*ptransaction.UserProduceMemoryDeck)(nil),          // 73: ptransaction.UserProduceMemoryDeck
+	(*ptransaction.UserProduceProgress)(nil),            // 74: ptransaction.UserProduceProgress
+	(*ptransaction.UserProduceProgressAudition)(nil),    // 75: ptransaction.UserProduceProgressAudition
+	(*ptransaction.UserProduceProgressBusiness)(nil),    // 76: ptransaction.UserProduceProgressBusiness
+	(*ptransaction.UserProduceProgressEffect)(nil),      // 77: ptransaction.UserProduceProgressEffect
+	(*ptransaction.UserProduceProgressEvent)(nil),       // 78: ptransaction.UserProduceProgressEvent
+	(*ptransaction.UserProduceProgressMemory)(nil),      // 79: ptransaction.UserProduceProgressMemory
+	(*ptransaction.UserProduceProgressPresent)(nil),     // 80: ptransaction.UserProduceProgressPresent
+	(*ptransaction.UserProduceProgressProduceCard)(nil), // 81: ptransaction.UserProduceProgressProduceCard
+	(*ptransaction.UserProduceProgressSchedule)(nil),    // 82: ptransaction.UserProduceProgressSchedule
+	(*ptransaction.UserProduceProgressShop)(nil),        // 83: ptransaction.UserProduceProgressShop
+	(*ptransaction.UserProduceProgressSupportCard)(nil), // 84: ptransaction.UserProduceProgressSupportCard
+	(*ptransaction.UserProduceRerollMemory)(nil),        // 85: ptransaction.UserProduceRerollMemory
+	(*ptransaction.UserProduceStartAchievement)(nil),    // 86: ptransaction.UserProduceStartAchievement
+	(*ptransaction.UserProduceStory)(nil),               // 87: ptransaction.UserProduceStory
+	(*ptransaction.UserProduceSupportCardDeck)(nil),     // 88: ptransaction.UserProduceSupportCardDeck
+	(*ptransaction.UserProfile)(nil),                    // 89: ptransaction.UserProfile
+	(*ptransaction.UserPvpRate)(nil),                    // 90: ptransaction.UserPvpRate
+	(*ptransaction.UserPvpRateUnit)(nil),                // 91: ptransaction.UserPvpRateUnit
+	(*ptransaction.UserShopItem)(nil),                   // 92: ptransaction.UserShopItem
+	(*ptransaction.UserStory)(nil),                      // 93: ptransaction.UserStory
+	(*ptransaction.UserSupportCard)(nil),                // 94: ptransaction.UserSupportCard
+	(*ptransaction.UserTime)(nil),                       // 95: ptransaction.UserTime
+	(*ptransaction.UserTower)(nil),                      // 96: ptransaction.UserTower
+	(*ptransaction.UserTutorial)(nil),                   // 97: ptransaction.UserTutorial
+	(*ptransaction.UserWebStore)(nil),                   // 98: ptransaction.UserWebStore
+	(*ptransaction.UserWork)(nil),                       // 99: ptransaction.UserWork
+	(*ptransaction.UserWorkCharacter)(nil),              // 100: ptransaction.UserWorkCharacter
 }
 var file_papicommon_proto_depIdxs = []int32{
-	7,  // 0: papicommon.PvpRateSeasonTop.statusType:type_name -> penum.PvpRateSeasonStatusType
-	8,  // 1: papicommon.RankReward.rewards:type_name -> pcommon.Reward
-	6,  // 2: papicommon.Response.updatedData:type_name -> papicommon.UserData
-	6,  // 3: papicommon.Response.deletedData:type_name -> papicommon.UserData
-	9,  // 4: papicommon.Response.clearMissions:type_name -> pmaster.Mission
-	10, // 5: papicommon.Response.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
-	0,  // 6: papicommon.Response.dearnessStoryUnlocks:type_name -> papicommon.DearnessStoryUnlock
-	5,  // 7: papicommon.Response.storyEventRewards:type_name -> papicommon.StoryEventReward
-	11, // 8: papicommon.StoryEventReward.pointRewards:type_name -> pcommon.StoryEventPointReward
-	12, // 9: papicommon.UserData.user:type_name -> ptransaction.User
-	13, // 10: papicommon.UserData.userActionPoint:type_name -> ptransaction.UserActionPoint
-	14, // 11: papicommon.UserData.userAuthProviderList:type_name -> ptransaction.UserAuthProvider
-	15, // 12: papicommon.UserData.userBadgeList:type_name -> ptransaction.UserBadge
-	16, // 13: papicommon.UserData.userBalance:type_name -> ptransaction.UserBalance
-	17, // 14: papicommon.UserData.userBanWarning:type_name -> ptransaction.UserBanWarning
-	18, // 15: papicommon.UserData.userCharacterList:type_name -> ptransaction.UserCharacter
-	19, // 16: papicommon.UserData.userCharacterCostumeList:type_name -> ptransaction.UserCharacterCostume
-	20, // 17: papicommon.UserData.userCharacterRosterList:type_name -> ptransaction.UserCharacterRoster
-	21, // 18: papicommon.UserData.userComebackList:type_name -> ptransaction.UserComeback
-	22, // 19: papicommon.UserData.userCostumeList:type_name -> ptransaction.UserCostume
-	23, // 20: papicommon.UserData.userCostumeHeadList:type_name -> ptransaction.UserCostumeHead
-	24, // 21: papicommon.UserData.userCountList:type_name -> ptransaction.UserCount
-	25, // 22: papicommon.UserData.userDearnessStoryList:type_name -> ptransaction.UserDearnessStory
-	26, // 23: papicommon.UserData.userGashaButtonList:type_name -> ptransaction.UserGashaButton
-	27, // 24: papicommon.UserData.userGuild:type_name -> ptransaction.UserGuild
-	28, // 25: papicommon.UserData.userHomeCharacterList:type_name -> ptransaction.UserHomeCharacter
-	29, // 26: papicommon.UserData.userIdolCardList:type_name -> ptransaction.UserIdolCard
-	30, // 27: papicommon.UserData.userIdolCardSkinList:type_name -> ptransaction.UserIdolCardSkin
-	31, // 28: papicommon.UserData.userInvitation:type_name -> ptransaction.UserInvitation
-	32, // 29: papicommon.UserData.userItemList:type_name -> ptransaction.UserItem
-	33, // 30: papicommon.UserData.userMeishiList:type_name -> ptransaction.UserMeishi
-	34, // 31: papicommon.UserData.userMeishiBaseAssetList:type_name -> ptransaction.UserMeishiBaseAsset
-	35, // 32: papicommon.UserData.userMeishiIllustrationAssetList:type_name -> ptransaction.UserMeishiIllustrationAsset
-	36, // 33: papicommon.UserData.userMemoryList:type_name -> ptransaction.UserMemory
-	37, // 34: papicommon.UserData.userMemoryInherit:type_name -> ptransaction.UserMemoryInherit
-	38, // 35: papicommon.UserData.userMissionList:type_name -> ptransaction.UserMission
-	39, // 36: papicommon.UserData.userMissionDailyReleaseGroupList:type_name -> ptransaction.UserMissionDailyReleaseGroup
-	40, // 37: papicommon.UserData.userMissionGroupList:type_name -> ptransaction.UserMissionGroup
-	41, // 38: papicommon.UserData.userMissionPassList:type_name -> ptransaction.UserMissionPass
-	42, // 39: papicommon.UserData.userMissionPassPointList:type_name -> ptransaction.UserMissionPassPoint
-	43, // 40: papicommon.UserData.userMissionPointList:type_name -> ptransaction.UserMissionPoint
-	44, // 41: papicommon.UserData.userMoney:type_name -> ptransaction.UserMoney
-	45, // 42: papicommon.UserData.userMovieList:type_name -> ptransaction.UserMovie
-	46, // 43: papicommon.UserData.userMusicList:type_name -> ptransaction.UserMusic
-	47, // 44: papicommon.UserData.userPhotoList:type_name -> ptransaction.UserPhoto
-	48, // 45: papicommon.UserData.userPhotoBackgroundList:type_name -> ptransaction.UserPhotoBackground
-	49, // 46: papicommon.UserData.userPhotoPoseList:type_name -> ptransaction.UserPhotoPose
-	50, // 47: papicommon.UserData.userPreference:type_name -> ptransaction.UserPreference
-	51, // 48: papicommon.UserData.userProduceList:type_name -> ptransaction.UserProduce
-	52, // 49: papicommon.UserData.userProduceAdvList:type_name -> ptransaction.UserProduceAdv
-	53, // 50: papicommon.UserData.userProduceCardList:type_name -> ptransaction.UserProduceCard
-	54, // 51: papicommon.UserData.userProduceCardConversionList:type_name -> ptransaction.UserProduceCardConversion
-	55, // 52: papicommon.UserData.userProduceCardRewardList:type_name -> ptransaction.UserProduceCardReward
-	56, // 53: papicommon.UserData.userProduceCharacterList:type_name -> ptransaction.UserProduceCharacter
-	57, // 54: papicommon.UserData.userProduceDrinkList:type_name -> ptransaction.UserProduceDrink
-	58, // 55: papicommon.UserData.userProduceGroupCharacterList:type_name -> ptransaction.UserProduceGroupCharacter
-	59, // 56: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
-	60, // 57: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
-	61, // 58: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
-	62, // 59: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
-	63, // 60: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
-	64, // 61: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
-	65, // 62: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
-	66, // 63: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
-	67, // 64: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
-	68, // 65: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
-	69, // 66: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
-	70, // 67: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
-	71, // 68: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
-	72, // 69: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
-	73, // 70: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
-	74, // 71: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
-	75, // 72: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
-	76, // 73: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
-	77, // 74: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
-	78, // 75: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
-	79, // 76: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
-	80, // 77: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
-	81, // 78: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
-	82, // 79: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
-	83, // 80: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
-	84, // 81: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
-	85, // 82: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
-	86, // 83: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
-	87, // 84: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
-	88, // 85: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
-	86, // [86:86] is the sub-list for method output_type
-	86, // [86:86] is the sub-list for method input_type
-	86, // [86:86] is the sub-list for extension type_name
-	86, // [86:86] is the sub-list for extension extendee
-	0,  // [0:86] is the sub-list for field type_name
+	11,  // 0: papicommon.CompetitionPreSeasonResult.beforeGrade:type_name -> penum.CompetitionGrade
+	12,  // 1: papicommon.CompetitionPreSeasonResult.rewards:type_name -> pcommon.Reward
+	13,  // 2: papicommon.CompetitionSeasonTop.statusType:type_name -> penum.CompetitionSeasonStatusType
+	14,  // 3: papicommon.ProduceHighScoreRushExternalProduceReward.examEffectType:type_name -> penum.ProduceExamEffectType
+	15,  // 4: papicommon.PvpRateSeasonResult.beforeGrade:type_name -> penum.PvpRateGrade
+	15,  // 5: papicommon.PvpRateSeasonResult.afterGrade:type_name -> penum.PvpRateGrade
+	12,  // 6: papicommon.PvpRateSeasonResult.rewards:type_name -> pcommon.Reward
+	15,  // 7: papicommon.PvpRateSeasonResult.prevSeasonGrade:type_name -> penum.PvpRateGrade
+	16,  // 8: papicommon.PvpRateSeasonTop.statusType:type_name -> penum.PvpRateSeasonStatusType
+	12,  // 9: papicommon.RankReward.rewards:type_name -> pcommon.Reward
+	10,  // 10: papicommon.Response.updatedData:type_name -> papicommon.UserData
+	10,  // 11: papicommon.Response.deletedData:type_name -> papicommon.UserData
+	17,  // 12: papicommon.Response.clearMissions:type_name -> pmaster.Mission
+	18,  // 13: papicommon.Response.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
+	2,   // 14: papicommon.Response.dearnessStoryUnlocks:type_name -> papicommon.DearnessStoryUnlock
+	9,   // 15: papicommon.Response.storyEventRewards:type_name -> papicommon.StoryEventReward
+	19,  // 16: papicommon.StoryEventReward.pointRewards:type_name -> pcommon.StoryEventPointReward
+	20,  // 17: papicommon.UserData.user:type_name -> ptransaction.User
+	21,  // 18: papicommon.UserData.userActionPoint:type_name -> ptransaction.UserActionPoint
+	22,  // 19: papicommon.UserData.userAuthProviderList:type_name -> ptransaction.UserAuthProvider
+	23,  // 20: papicommon.UserData.userBadgeList:type_name -> ptransaction.UserBadge
+	24,  // 21: papicommon.UserData.userBalance:type_name -> ptransaction.UserBalance
+	25,  // 22: papicommon.UserData.userBanWarning:type_name -> ptransaction.UserBanWarning
+	26,  // 23: papicommon.UserData.userCharacterList:type_name -> ptransaction.UserCharacter
+	27,  // 24: papicommon.UserData.userCharacterCostumeList:type_name -> ptransaction.UserCharacterCostume
+	28,  // 25: papicommon.UserData.userCharacterRosterList:type_name -> ptransaction.UserCharacterRoster
+	29,  // 26: papicommon.UserData.userComebackList:type_name -> ptransaction.UserComeback
+	30,  // 27: papicommon.UserData.userCompetition:type_name -> ptransaction.UserCompetition
+	31,  // 28: papicommon.UserData.userCompetitionDeckList:type_name -> ptransaction.UserCompetitionDeck
+	32,  // 29: papicommon.UserData.userCompetitionSeasonDeckList:type_name -> ptransaction.UserCompetitionSeasonDeck
+	33,  // 30: papicommon.UserData.userCostumeList:type_name -> ptransaction.UserCostume
+	34,  // 31: papicommon.UserData.userCostumeHeadList:type_name -> ptransaction.UserCostumeHead
+	35,  // 32: papicommon.UserData.userCountList:type_name -> ptransaction.UserCount
+	36,  // 33: papicommon.UserData.userDearnessStoryList:type_name -> ptransaction.UserDearnessStory
+	37,  // 34: papicommon.UserData.userGashaButtonList:type_name -> ptransaction.UserGashaButton
+	38,  // 35: papicommon.UserData.userGuild:type_name -> ptransaction.UserGuild
+	39,  // 36: papicommon.UserData.userHomeCharacterList:type_name -> ptransaction.UserHomeCharacter
+	40,  // 37: papicommon.UserData.userIdolCardList:type_name -> ptransaction.UserIdolCard
+	41,  // 38: papicommon.UserData.userIdolCardSkinList:type_name -> ptransaction.UserIdolCardSkin
+	42,  // 39: papicommon.UserData.userInvitation:type_name -> ptransaction.UserInvitation
+	43,  // 40: papicommon.UserData.userItemList:type_name -> ptransaction.UserItem
+	44,  // 41: papicommon.UserData.userMeishiList:type_name -> ptransaction.UserMeishi
+	45,  // 42: papicommon.UserData.userMeishiBaseAssetList:type_name -> ptransaction.UserMeishiBaseAsset
+	46,  // 43: papicommon.UserData.userMeishiIllustrationAssetList:type_name -> ptransaction.UserMeishiIllustrationAsset
+	47,  // 44: papicommon.UserData.userMemoryList:type_name -> ptransaction.UserMemory
+	48,  // 45: papicommon.UserData.userMemoryInherit:type_name -> ptransaction.UserMemoryInherit
+	49,  // 46: papicommon.UserData.userMissionList:type_name -> ptransaction.UserMission
+	50,  // 47: papicommon.UserData.userMissionDailyReleaseGroupList:type_name -> ptransaction.UserMissionDailyReleaseGroup
+	51,  // 48: papicommon.UserData.userMissionGroupList:type_name -> ptransaction.UserMissionGroup
+	52,  // 49: papicommon.UserData.userMissionPassList:type_name -> ptransaction.UserMissionPass
+	53,  // 50: papicommon.UserData.userMissionPassPointList:type_name -> ptransaction.UserMissionPassPoint
+	54,  // 51: papicommon.UserData.userMissionPointList:type_name -> ptransaction.UserMissionPoint
+	55,  // 52: papicommon.UserData.userMoney:type_name -> ptransaction.UserMoney
+	56,  // 53: papicommon.UserData.userMovieList:type_name -> ptransaction.UserMovie
+	57,  // 54: papicommon.UserData.userMusicList:type_name -> ptransaction.UserMusic
+	58,  // 55: papicommon.UserData.userPhotoList:type_name -> ptransaction.UserPhoto
+	59,  // 56: papicommon.UserData.userPhotoBackgroundList:type_name -> ptransaction.UserPhotoBackground
+	60,  // 57: papicommon.UserData.userPhotoPoseList:type_name -> ptransaction.UserPhotoPose
+	61,  // 58: papicommon.UserData.userPreference:type_name -> ptransaction.UserPreference
+	62,  // 59: papicommon.UserData.userProduceList:type_name -> ptransaction.UserProduce
+	63,  // 60: papicommon.UserData.userProduceAdvList:type_name -> ptransaction.UserProduceAdv
+	64,  // 61: papicommon.UserData.userProduceCardList:type_name -> ptransaction.UserProduceCard
+	65,  // 62: papicommon.UserData.userProduceCardConversionList:type_name -> ptransaction.UserProduceCardConversion
+	66,  // 63: papicommon.UserData.userProduceCardRewardList:type_name -> ptransaction.UserProduceCardReward
+	67,  // 64: papicommon.UserData.userProduceCharacterList:type_name -> ptransaction.UserProduceCharacter
+	68,  // 65: papicommon.UserData.userProduceDrinkList:type_name -> ptransaction.UserProduceDrink
+	69,  // 66: papicommon.UserData.userProduceGroupCharacterList:type_name -> ptransaction.UserProduceGroupCharacter
+	70,  // 67: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
+	71,  // 68: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
+	72,  // 69: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
+	73,  // 70: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
+	74,  // 71: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
+	75,  // 72: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
+	76,  // 73: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
+	77,  // 74: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
+	78,  // 75: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
+	79,  // 76: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
+	80,  // 77: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
+	81,  // 78: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
+	82,  // 79: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
+	83,  // 80: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
+	84,  // 81: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
+	85,  // 82: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
+	86,  // 83: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
+	87,  // 84: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
+	88,  // 85: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
+	89,  // 86: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
+	90,  // 87: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
+	91,  // 88: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
+	92,  // 89: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
+	93,  // 90: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
+	94,  // 91: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
+	95,  // 92: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
+	96,  // 93: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
+	97,  // 94: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
+	98,  // 95: papicommon.UserData.userWebStore:type_name -> ptransaction.UserWebStore
+	99,  // 96: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
+	100, // 97: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
+	98,  // [98:98] is the sub-list for method output_type
+	98,  // [98:98] is the sub-list for method input_type
+	98,  // [98:98] is the sub-list for extension type_name
+	98,  // [98:98] is the sub-list for extension extendee
+	0,   // [0:98] is the sub-list for field type_name
 }
 
 func init() { file_papicommon_proto_init() }
@@ -1422,7 +1877,7 @@ func file_papicommon_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_papicommon_proto_rawDesc), len(file_papicommon_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

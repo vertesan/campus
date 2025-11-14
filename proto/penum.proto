@@ -103,6 +103,43 @@ enum CoinGashaType {
   CoinGashaType_Feature = 2;
   CoinGashaType_Box = 3;
 }
+enum CompetitionGrade {
+  CompetitionGrade_Unknown = 0;
+  CompetitionGrade__1 = 1;
+  CompetitionGrade__2 = 2;
+  CompetitionGrade__3 = 3;
+  CompetitionGrade__4 = 4;
+  CompetitionGrade__5 = 5;
+  CompetitionGrade__6 = 6;
+  CompetitionGrade__7 = 7;
+  CompetitionGrade__8 = 8;
+}
+enum CompetitionPhaseType {
+  CompetitionPhaseType_Unknown = 0;
+  CompetitionPhaseType_MatchedRivals = 1;
+  CompetitionPhaseType_Start = 2;
+  CompetitionPhaseType_Playing = 3;
+  CompetitionPhaseType_Result = 4;
+}
+enum CompetitionSeasonStatusType {
+  CompetitionSeasonStatusType_Unknown = 0;
+  CompetitionSeasonStatusType_OutOfTerm = 1;
+  CompetitionSeasonStatusType_PrepareStartTerm = 2;
+  CompetitionSeasonStatusType_InPlayable = 3;
+  CompetitionSeasonStatusType_NotAttended = 4;
+}
+enum CompetitionStageSectionType {
+  CompetitionStageSectionType_Unknown = 0;
+  CompetitionStageSectionType_Op = 1;
+  CompetitionStageSectionType_Mid = 2;
+  CompetitionStageSectionType_Ed = 3;
+}
+enum CompetitionStageType {
+  CompetitionStageType_Unknown = 0;
+  CompetitionStageType__1 = 1;
+  CompetitionStageType__2 = 2;
+  CompetitionStageType__3 = 3;
+}
 enum ConditionMinMaxType {
   ConditionMinMaxType_Unknown = 0;
   ConditionMinMaxType_MinMax = 1;
@@ -313,6 +350,13 @@ enum ErrorCode {
   ErrorCode_DmmGamesIdLocalUserDataNotLinked = 2041;
   ErrorCode_HistoryNotFound = 2042;
   ErrorCode_RankingAggregating = 2043;
+  ErrorCode_ShopExceedPurchaseThresholdOnRegisterPurchase = 2044;
+  ErrorCode_ShopExceedMaxJewelQuantityOnRegisterPurchase = 2045;
+  ErrorCode_ShopExceedPurchaseAlertThresholdOnRegisterPurchase = 2046;
+  ErrorCode_ShopExceedPurchaseLimitOnRegisterPurchase = 2047;
+  ErrorCode_ShopExceedPurchaseThresholdOnPurchase = 2048;
+  ErrorCode_ShopExceedMaxJewelQuantityOnPurchase = 2049;
+  ErrorCode_ShopExceedPurchaseLimitOnPurchase = 2050;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -356,6 +400,7 @@ enum ExamActionType {
 enum ExamAiModelType {
   ExamAiModelType_Unknown = 0;
   ExamAiModelType_Audition = 1;
+  ExamAiModelType_Competition = 2;
 }
 enum ExamCommandType {
   ExamCommandType_Unknown = 0;
@@ -471,6 +516,7 @@ enum ExamPlayType {
   ExamPlayType_ManualPlayLesson = 2;
   ExamPlayType_ManualPlayLessonHard = 3;
   ExamPlayType_ManualPlayAudition = 4;
+  ExamPlayType_AutoPlayCompetition = 5;
 }
 enum ExamStatusEffectType {
   ExamStatusEffectType_Unknown = 0;
@@ -575,6 +621,7 @@ enum FeatureMaintenanceType {
   FeatureMaintenanceType_Research = 22;
   FeatureMaintenanceType_ProducerRanking = 23;
   FeatureMaintenanceType_ProduceEvent = 24;
+  FeatureMaintenanceType_Competition = 25;
 }
 enum FourPanelComicSeries {
   FourPanelComicSeries_Unknown = 0;
@@ -817,6 +864,7 @@ enum ItemType {
   ItemType_SupportCardLevelLimitRankUpgrade = 18;
   ItemType_MemoryInherit = 19;
   ItemType_DearnessStoryUnlock = 20;
+  ItemType_CompetitionCoin = 21;
   ItemType_ProduceBoostRewardSupportCardEnhancePoint = 102;
   ItemType_ProduceBoostRewardIdolCardLevelLimitMaterial = 103;
 }
@@ -866,6 +914,8 @@ enum LinkType {
   LinkType_Tour = 38;
   LinkType_Research = 39;
   LinkType_ProducerRanking = 40;
+  LinkType_Competition = 41;
+  LinkType_WebStore = 42;
 }
 enum LoginBonusType {
   LoginBonusType_Unknown = 0;
@@ -984,6 +1034,10 @@ enum MissionType {
   MissionType_IncrementGvgRaidChallengeCount = 169;
   MissionType_IncrementGvgRaidLoopChallengeCount = 170;
   MissionType_IncrementTourLevelPlayCount = 171;
+  MissionType_IncrementCompetitionPlayCount = 172;
+  MissionType_IncrementCompetitionWinCount = 173;
+  MissionType_IncrementCompetitionUseProduceCardCount = 174;
+  MissionType_IncrementCompetitionStageScoreCount = 175;
   MissionType_IncrementProduceSupportCardDeckUpdateCount = 201;
   MissionType_IncrementProduceMemoryDeckUpdateCount = 202;
   MissionType_IncrementProduceTotalScore = 203;
@@ -1046,6 +1100,11 @@ enum MissionType {
   MissionType_AbsoluteTowerLayerClear = 376;
   MissionType_AbsolutePvpRateCurrentGrade = 377;
   MissionType_AbsoluteLinkSmartphoneWithDmm = 378;
+  MissionType_AbsoluteCompetitionGrade = 379;
+  MissionType_AbsoluteCompetitionRank = 380;
+  MissionType_AbsoluteCompetitionDeckPower = 381;
+  MissionType_AbsoluteCompetitionTotalHighScore = 382;
+  MissionType_AbsoluteCompetitionStageHighScore = 383;
   MissionType_AbsoluteProduceIdolCardHighScore = 401;
   MissionType_AbsoluteProducePlanTotalHighScore = 402;
   MissionType_AbsoluteProducePictureBookProduceCardCount = 410;
@@ -1128,6 +1187,7 @@ enum PlatformType {
   PlatformType_Ios = 1;
   PlatformType_Android = 2;
   PlatformType_Dmm = 3;
+  PlatformType_Sbps = 4;
   PlatformType_Other = 999;
 }
 enum PreferenceType {
@@ -1236,6 +1296,7 @@ enum ProduceCardMoveEffectTriggerType {
   ProduceCardMoveEffectTriggerType_Grave = 2;
   ProduceCardMoveEffectTriggerType_Draw = 3;
   ProduceCardMoveEffectTriggerType_Hold = 4;
+  ProduceCardMoveEffectTriggerType_Hand = 5;
 }
 enum ProduceCardMovePositionType {
   ProduceCardMovePositionType_Unknown = 0;
@@ -2318,6 +2379,7 @@ enum ResourceType {
   ResourceType_PhotoPose = 22;
   ResourceType_DearnessPoint = 23;
   ResourceType_Badge = 24;
+  ResourceType_CompetitionPlayCount = 25;
   ResourceType_JewelTotal = 1100;
   ResourceType_JewelPaidOnly = 1101;
   ResourceType_Set = 9999;
@@ -2386,6 +2448,7 @@ enum ShopType {
   ShopType_Pass = 2;
   ShopType_Pack = 3;
   ShopType_Costume = 4;
+  ShopType_WebStore = 999;
 }
 enum SkillRarity {
   SkillRarity_Unknown = 0;
@@ -2648,6 +2711,8 @@ enum TutorialType {
   TutorialType_Research = 210;
   TutorialType_ProducerRanking = 211;
   TutorialType_ProduceCardConvert = 212;
+  TutorialType_Competition = 213;
+  TutorialType_CompetitionPreOpen = 214;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;
