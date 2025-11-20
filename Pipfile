@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pillow = '>=10.3.0'
-cloudinary = '>=1.40.0'
-UnityPy = '>=1.10.13'
-rich = '>=13.7.1'
+pillow = '==12.0.0'
+cloudinary = '==1.44.1'
+UnityPy = '==1.10.18'
+rich = '==14.2.0'
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3.13"
