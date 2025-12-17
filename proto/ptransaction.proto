@@ -661,6 +661,7 @@ message UserProfile {
   int32 selectedMeishiNumber = 13;
   int32 maxPvpRateUnitPower = 14;
   int32 maxCompetitionDeckPower = 16;
+  string badgeId = 17;
 }
 message UserPvpRate {
   penum.PvpRateGrade grade = 3;

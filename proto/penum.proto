@@ -62,6 +62,10 @@ enum BadgeGrade {
   BadgeGrade__4 = 4;
   BadgeGrade__5 = 5;
   BadgeGrade__6 = 6;
+  BadgeGrade__7 = 7;
+  BadgeGrade__8 = 8;
+  BadgeGrade__9 = 9;
+  BadgeGrade__10 = 10;
 }
 enum BadgeType {
   BadgeType_Unknown = 0;
@@ -677,6 +681,13 @@ enum GashaCardBonusType {
   GashaCardBonusType_IdolCard = 4;
   GashaCardBonusType_SupportCard = 5;
 }
+enum GashaContinuousStepType {
+  GashaContinuousStepType_Unknown = 0;
+  GashaContinuousStepType_Drew = 1;
+  GashaContinuousStepType_Continued = 2;
+  GashaContinuousStepType_Result = 3;
+  GashaContinuousStepType_Finish = 4;
+}
 enum GashaLimitType {
   GashaLimitType_Unknown = 0;
   GashaLimitType_None = 1;
@@ -690,6 +701,7 @@ enum GashaType {
   GashaType_Default = 1;
   GashaType_StepUp = 2;
   GashaType_SelectPickup = 3;
+  GashaType_Continuous = 4;
 }
 enum GiftFilterType {
   GiftFilterType_Unknown = 0;
@@ -916,6 +928,7 @@ enum LinkType {
   LinkType_ProducerRanking = 40;
   LinkType_Competition = 41;
   LinkType_WebStore = 42;
+  LinkType_ProduceCardConversion = 43;
 }
 enum LoginBonusType {
   LoginBonusType_Unknown = 0;
@@ -1038,6 +1051,7 @@ enum MissionType {
   MissionType_IncrementCompetitionWinCount = 173;
   MissionType_IncrementCompetitionUseProduceCardCount = 174;
   MissionType_IncrementCompetitionStageScoreCount = 175;
+  MissionType_IncrementGashaContinuousSnsShareCount = 176;
   MissionType_IncrementProduceSupportCardDeckUpdateCount = 201;
   MissionType_IncrementProduceMemoryDeckUpdateCount = 202;
   MissionType_IncrementProduceTotalScore = 203;
@@ -2084,6 +2098,30 @@ enum ProduceRewardType {
   ProduceRewardType_Probability = 1;
   ProduceRewardType_Ratio = 2;
 }
+enum ProducerLevelUnlockType {
+  ProducerLevelUnlockType_Unknown = 0;
+  ProducerLevelUnlockType_ProduceCard = 1;
+  ProducerLevelUnlockType_ProduceDrink = 2;
+  ProducerLevelUnlockType_ProduceCardConversion = 3;
+  ProducerLevelUnlockType_ShopProduceCardUpgrade = 10;
+  ProducerLevelUnlockType_ShopProduceCardDelete = 11;
+  ProducerLevelUnlockType_ProduceCardSelectRerollCount = 12;
+  ProducerLevelUnlockType_ProduceCardExcludeCount = 13;
+}
+enum ProducerRankingGrade {
+  ProducerRankingGrade_Unknown = 0;
+  ProducerRankingGrade_Normal = 1;
+  ProducerRankingGrade_Bronze = 2;
+  ProducerRankingGrade_Silver = 3;
+  ProducerRankingGrade_Gold = 4;
+  ProducerRankingGrade_Rainbow = 5;
+  ProducerRankingGrade_RainbowPlus = 6;
+}
+enum ProducerRankingPointType {
+  ProducerRankingPointType_Unknown = 0;
+  ProducerRankingPointType_Produce = 1;
+  ProducerRankingPointType_Tower = 2;
+}
 enum ProduceScheduleLocationType {
   ProduceScheduleLocationType_Unknown = 0;
   ProduceScheduleLocationType_ProducerRoom1 = 1;
@@ -2253,30 +2291,6 @@ enum ProduceType {
   ProduceType_Unknown = 0;
   ProduceType_FirstStar = 1;
   ProduceType_NextIdolAudition = 2;
-}
-enum ProducerLevelUnlockType {
-  ProducerLevelUnlockType_Unknown = 0;
-  ProducerLevelUnlockType_ProduceCard = 1;
-  ProducerLevelUnlockType_ProduceDrink = 2;
-  ProducerLevelUnlockType_ProduceCardConversion = 3;
-  ProducerLevelUnlockType_ShopProduceCardUpgrade = 10;
-  ProducerLevelUnlockType_ShopProduceCardDelete = 11;
-  ProducerLevelUnlockType_ProduceCardSelectRerollCount = 12;
-  ProducerLevelUnlockType_ProduceCardExcludeCount = 13;
-}
-enum ProducerRankingGrade {
-  ProducerRankingGrade_Unknown = 0;
-  ProducerRankingGrade_Normal = 1;
-  ProducerRankingGrade_Bronze = 2;
-  ProducerRankingGrade_Silver = 3;
-  ProducerRankingGrade_Gold = 4;
-  ProducerRankingGrade_Rainbow = 5;
-  ProducerRankingGrade_RainbowPlus = 6;
-}
-enum ProducerRankingPointType {
-  ProducerRankingPointType_Unknown = 0;
-  ProducerRankingPointType_Produce = 1;
-  ProducerRankingPointType_Tower = 2;
 }
 enum PurchaseTransactionStatusType {
   PurchaseTransactionStatusType_Unknown = 0;
@@ -2713,6 +2727,7 @@ enum TutorialType {
   TutorialType_ProduceCardConvert = 212;
   TutorialType_Competition = 213;
   TutorialType_CompetitionPreOpen = 214;
+  TutorialType_Badge = 215;
 }
 enum ViewAreaType {
   ViewAreaType_Unknown = 0;

@@ -331,6 +331,7 @@ message Gasha {
   repeated GashaButton gashaButtons = 5;
   GashaStepUp gashaStepUp = 6;
   GashaSelectPickup gashaSelectPickup = 7;
+  GashaContinuous gashaContinuous = 8;
   string gashaCardBonusId = 20;
   GashaPoint gashaPoint = 21;
   repeated Reward bonusRewards = 22;
@@ -348,6 +349,7 @@ message Gasha {
   repeated GashaBackgroundPickup backgroundPickupIdolCardSkins = 42;
   repeated GashaBackgroundPickup backgroundPickupSupportCards = 43;
   string animationBackgroundAssetId = 44;
+  string bgmAssetId = 45;
   int64 startTime = 100;
   int64 endTime = 101;
   int32 order = 102;
@@ -370,6 +372,12 @@ message GashaButton {
   string id = 1;
   int32 remainingDrawCount = 2;
   int32 remainingDiscountDrawCount = 3;
+}
+message GashaContinuous {
+  bool isContinued = 1;
+  int32 sharedContinuedCount = 2;
+  int32 sharedDrawRewardCount = 3;
+  repeated Reward sharedRewards = 4;
 }
 message GashaPoint {
   string gashaPointId = 1;
@@ -574,6 +582,10 @@ message ProduceCard {
   string id = 1;
   int32 upgradeCount = 2;
   repeated ProduceCardCustomize customizes = 3;
+}
+message ProduceCardConversion {
+  string beforeProduceCardId = 1;
+  string afterProduceCardId = 2;
 }
 message ProduceCardCustomize {
   string id = 1;
@@ -800,6 +812,7 @@ message SimpleProfile {
   int64 lastLoginTime = 4;
   string comment = 6;
   Meishi meishi = 7;
+  string badgeId = 8;
 }
 message StartupNotification {
   string id = 1;
@@ -910,4 +923,5 @@ message TowerLayerHistory {
   repeated Memory memories = 7;
   bool isDefault = 8;
   int64 playTime = 9;
+  repeated ProduceCardConversion produceCardConversions = 10;
 }

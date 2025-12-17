@@ -760,6 +760,24 @@ message HelpInfo {
 message HelpInfoList {
   repeated HelpInfo list = 1;
 }
+message HomeBackground {
+  string id = 1;
+  string homeBackgroundAssetId = 2;
+  string homeBackgroundPrefabGroupId = 3;
+  string conditionSetId = 5;
+  int32 priority = 99;
+}
+message HomeBackgroundList {
+  repeated HomeBackground list = 1;
+}
+message HomeBackgroundPrefabGroup {
+  string id = 1;
+  string prefabId = 2;
+  repeated penum.HomeTimeType homeTimeTypes = 3;
+}
+message HomeBackgroundPrefabGroupList {
+  repeated HomeBackgroundPrefabGroup list = 1;
+}
 message HomeBoard {
   string prefabId = 1;
   string conditionSetId = 3;
@@ -814,6 +832,8 @@ message IdolCard {
   string idolCardLevelLimitId = 15;
   string idolCardLevelLimitProduceSkillId = 16;
   penum.IdolCardLevelLimitRank maxIdolCardLevelLimitRank = 18;
+  repeated string additionalAnotherCostumeHeadIds = 19;
+  repeated string additionalAnotherCostumeIds = 20;
   penum.ProducePlanType planType = 30;
   string idolCardLevelLimitStatusUpId = 31;
   int32 produceVocal = 32;
@@ -935,6 +955,8 @@ message IdolCardSkin {
   string costumeId = 9;
   string musicId = 10;
   int32 idolCardSsrAnimationStartMilliseconds = 11;
+  repeated string additionalCostumeHeadIds = 13;
+  repeated string additionalCostumeIds = 14;
   string homeVoiceGroupId = 50;
   string detailVoiceGroupId = 51;
   string beforeLevelLimitRankVoiceAssetId = 52;
@@ -1645,7 +1667,7 @@ message ProduceCardConversion {
   int32 order = 99;
 }
 message ProduceCardConversionList {
-  repeated ProduceCardConversion list = 1;
+  repeated pcommon.ProduceCardConversion list = 1;
 }
 message ProduceCardCustomize {
   string id = 1;
@@ -2953,6 +2975,7 @@ message Setting {
   bool memoryInheritCustomizeProduceCardEnable = 140;
   int32 researchRankingDisplayCount = 141;
   string homeCharacterRandomIdolViewConditionSetID = 143;
+  string badgeEditViewConditionSetID = 144;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -3043,6 +3066,7 @@ message Setting {
   string producerRankingUnlockConditionSetID = 2201;
   string producerRankingBGMAssetID = 2202;
   int32 producerRankingCharacterAnimationLowerLimitRank = 2203;
+  string producerRankingTowerLayerHighScoreViewConditionSetID = 2204;
   int32 competitionMaxDeckCount = 2301;
   int32 competitionDeckNameLengthLimit = 2302;
   int32 competitionMaxDailyPlayCount = 2303;
@@ -3376,6 +3400,7 @@ message TourStageTimeline {
   string resultTimelineAssetId = 5;
   string examBgmAssetId = 6;
   string timelineBackgroundAssetId = 7;
+  string liveOverrideAssetId = 8;
 }
 message TourStageTimelineList {
   repeated TourStageTimeline list = 1;

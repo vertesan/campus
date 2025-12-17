@@ -6114,6 +6114,7 @@ type UserProfile struct {
 	SelectedMeishiNumber     int32                  `protobuf:"varint,13,opt,name=selectedMeishiNumber,proto3" json:"selectedMeishiNumber,omitempty"`
 	MaxPvpRateUnitPower      int32                  `protobuf:"varint,14,opt,name=maxPvpRateUnitPower,proto3" json:"maxPvpRateUnitPower,omitempty"`
 	MaxCompetitionDeckPower  int32                  `protobuf:"varint,16,opt,name=maxCompetitionDeckPower,proto3" json:"maxCompetitionDeckPower,omitempty"`
+	BadgeId                  string                 `protobuf:"bytes,17,opt,name=badgeId,proto3" json:"badgeId,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -6237,6 +6238,13 @@ func (x *UserProfile) GetMaxCompetitionDeckPower() int32 {
 		return x.MaxCompetitionDeckPower
 	}
 	return 0
+}
+
+func (x *UserProfile) GetBadgeId() string {
+	if x != nil {
+		return x.BadgeId
+	}
+	return ""
 }
 
 type UserPvpRate struct {
@@ -8281,7 +8289,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\vproduceType\x18\x02 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12&\n" +
 	"\x0esupportCardIds\x18\x04 \x03(\tR\x0esupportCardIds\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\"\x8b\x04\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\"\xa5\x04\n" +
 	"\vUserProfile\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1c\n" +
 	"\tbornMonth\x18\x04 \x01(\x05R\tbornMonth\x12\x18\n" +
@@ -8296,7 +8304,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x18additionFollowLimitCount\x18\f \x01(\x05R\x18additionFollowLimitCount\x122\n" +
 	"\x14selectedMeishiNumber\x18\r \x01(\x05R\x14selectedMeishiNumber\x120\n" +
 	"\x13maxPvpRateUnitPower\x18\x0e \x01(\x05R\x13maxPvpRateUnitPower\x128\n" +
-	"\x17maxCompetitionDeckPower\x18\x10 \x01(\x05R\x17maxCompetitionDeckPower\"\xc0\x02\n" +
+	"\x17maxCompetitionDeckPower\x18\x10 \x01(\x05R\x17maxCompetitionDeckPower\x12\x18\n" +
+	"\abadgeId\x18\x11 \x01(\tR\abadgeId\"\xc0\x02\n" +
 	"\vUserPvpRate\x12)\n" +
 	"\x05grade\x18\x03 \x01(\x0e2\x13.penum.PvpRateGradeR\x05grade\x121\n" +
 	"\tbestGrade\x18\x04 \x01(\x0e2\x13.penum.PvpRateGradeR\tbestGrade\x12>\n" +

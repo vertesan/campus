@@ -75,6 +75,13 @@ service Gasha {
   rpc GetSelectPickupProbability(GashaGetSelectPickupProbabilityRequest) returns (GashaGetSelectPickupProbabilityResponse);
   rpc DrawStepUp(GashaDrawStepUpRequest) returns (GashaDrawStepUpResponse);
   rpc GetStepUpProbability(GashaGetStepUpProbabilityRequest) returns (GashaGetStepUpProbabilityResponse);
+  rpc DrawContinuous(GashaDrawContinuousRequest) returns (GashaDrawContinuousResponse);
+  rpc ContinueDrawContinuous(GashaContinueDrawContinuousRequest) returns (GashaContinueDrawContinuousResponse);
+  rpc PickContinuousDrawRewardCount(GashaPickContinuousDrawRewardCountRequest) returns (GashaPickContinuousDrawRewardCountResponse);
+  rpc ResumeContinuous(GashaResumeContinuousRequest) returns (GashaResumeContinuousResponse);
+  rpc FinishContinuous(GashaFinishContinuousRequest) returns (GashaFinishContinuousResponse);
+  rpc ReportShareSnsContinuousMission(GashaReportShareSnsContinuousMissionRequest) returns (GashaReportShareSnsContinuousMissionResponse);
+  rpc GetContinuousProbability(GashaGetContinuousProbabilityRequest) returns (GashaGetContinuousProbabilityResponse);
   rpc GetPointExchange(GashaGetPointExchangeRequest) returns (GashaGetPointExchangeResponse);
   rpc ExchangePoint(GashaExchangePointRequest) returns (GashaExchangePointResponse);
   rpc ExpirePoint(Empty) returns (GashaExpirePointResponse);
@@ -282,12 +289,6 @@ service ProduceNextIdolAuditionMaster {
   rpc Ranking(ProduceNextIdolAuditionMasterRankingRequest) returns (ProduceNextIdolAuditionMasterRankingResponse);
   rpc ListRankReward(ProduceNextIdolAuditionMasterListRankRewardRequest) returns (ProduceNextIdolAuditionMasterListRankRewardResponse);
 }
-service ProduceSeason {
-  rpc RankingTop(ProduceSeasonRankingTopRequest) returns (ProduceSeasonRankingTopResponse);
-  rpc RankingTopHistory(ProduceSeasonRankingTopHistoryRequest) returns (ProduceSeasonRankingTopHistoryResponse);
-  rpc Ranking(ProduceSeasonRankingRequest) returns (ProduceSeasonRankingResponse);
-  rpc RankingHistory(ProduceSeasonRankingHistoryRequest) returns (ProduceSeasonRankingHistoryResponse);
-}
 service ProducerRanking {
   rpc Top(Empty) returns (ProducerRankingTopResponse);
   rpc Ranking(ProducerRankingRankingRequest) returns (ProducerRankingRankingResponse);
@@ -296,6 +297,13 @@ service ProducerRanking {
   rpc TopHistory(ProducerRankingTopHistoryRequest) returns (ProducerRankingTopHistoryResponse);
   rpc RankingHistory(ProducerRankingRankingHistoryRequest) returns (ProducerRankingRankingHistoryResponse);
   rpc CharacterHistory(ProducerRankingCharacterHistoryRequest) returns (ProducerRankingCharacterHistoryResponse);
+  rpc GetTowerLayer(ProducerRankingGetTowerLayerRequest) returns (ProducerRankingGetTowerLayerResponse);
+}
+service ProduceSeason {
+  rpc RankingTop(ProduceSeasonRankingTopRequest) returns (ProduceSeasonRankingTopResponse);
+  rpc RankingTopHistory(ProduceSeasonRankingTopHistoryRequest) returns (ProduceSeasonRankingTopHistoryResponse);
+  rpc Ranking(ProduceSeasonRankingRequest) returns (ProduceSeasonRankingResponse);
+  rpc RankingHistory(ProduceSeasonRankingHistoryRequest) returns (ProduceSeasonRankingHistoryResponse);
 }
 service Profile {
   rpc Get(ProfileGetRequest) returns (ProfileGetResponse);
@@ -304,6 +312,7 @@ service Profile {
   rpc UpdateBirthday(ProfileUpdateBirthdayRequest) returns (ProfileUpdateBirthdayResponse);
   rpc UpdateSupportCard(ProfileUpdateSupportCardRequest) returns (ProfileUpdateSupportCardResponse);
   rpc UpdateMemory(ProfileUpdateMemoryRequest) returns (ProfileUpdateMemoryResponse);
+  rpc UpdateBadge(ProfileUpdateBadgeRequest) returns (ProfileUpdateBadgeResponse);
 }
 service PvpRate {
   rpc Initialize(Empty) returns (PvpRateInitializeResponse);
@@ -421,6 +430,7 @@ service Tutorial {
 }
 service User {
   rpc Get(Empty) returns (UserGetResponse);
+  rpc GetBalance(Empty) returns (UserGetBalanceResponse);
   rpc ReadForceTitleTransitionTime(UserReadForceTitleTransitionTimeRequest) returns (UserReadForceTitleTransitionTimeResponse);
   rpc ListMessage(UserListMessageRequest) returns (UserListMessageResponse);
   rpc ReadMessage(UserReadMessageRequest) returns (UserReadMessageResponse);
@@ -925,6 +935,34 @@ message FriendUnFollowRequest {
 message FriendUnFollowResponse {
   papicommon.Response commonResponse = 9999;
 }
+message GashaContinueDrawContinuousRequest {
+  string gashaId = 1;
+}
+message GashaContinueDrawContinuousResponse {
+  penum.GashaContinuousStepType stepType = 1;
+  repeated GashaDrawResult drawResults = 2;
+  papicommon.Response commonResponse = 9999;
+}
+message GashaContinuousProgress {
+  string advAssetId = 1;
+  int32 continuedCount = 2;
+  int32 continuedDrawRewardCount = 3;
+  int32 nextDrawRewardCount = 4;
+  bool isSharedUpdated = 5;
+}
+message GashaDrawContinuousRequest {
+  string gashaId = 1;
+  string gashaButtonId = 2;
+  penum.ResourceType consumeResourceType = 3;
+  string consumeResourceId = 4;
+  int32 consumeResourceQuantity = 5;
+}
+message GashaDrawContinuousResponse {
+  penum.GashaContinuousStepType stepType = 1;
+  repeated GashaDrawResult drawResults = 2;
+  pcommon.GashaButton gashaButton = 3;
+  papicommon.Response commonResponse = 9999;
+}
 message GashaDrawRequest {
   string gashaId = 1;
   string gashaButtonId = 2;
@@ -1000,6 +1038,21 @@ message GashaExpirePointResponse {
     repeated GashaExpirePointResponse.GashaBanner gashaBanners = 5;
   }
 }
+message GashaFinishContinuousRequest {
+  string gashaId = 1;
+}
+message GashaFinishContinuousResponse {
+  penum.GashaContinuousStepType stepType = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message GashaGetContinuousProbabilityRequest {
+  string gashaId = 1;
+  string gashaButtonId = 2;
+}
+message GashaGetContinuousProbabilityResponse {
+  DefaultGashaProbability probability = 1;
+  papicommon.Response commonResponse = 9999;
+}
 message GashaGetPointExchangeRequest {
   string gashaPointId = 1;
 }
@@ -1054,6 +1107,15 @@ message GashaListResponse {
   bool hasExpireGashaPoint = 2;
   papicommon.Response commonResponse = 9999;
 }
+message GashaPickContinuousDrawRewardCountRequest {
+  string gashaId = 1;
+}
+message GashaPickContinuousDrawRewardCountResponse {
+  penum.GashaContinuousStepType stepType = 1;
+  GashaContinuousProgress continuousProgress = 2;
+  repeated pcommon.Reward shareRewards = 3;
+  papicommon.Response commonResponse = 9999;
+}
 message GashaProbability {
   repeated GashaRarityProbability gashaRarityProbabilities = 1;
   repeated IdolCardRarityProbability idolCardRarityProbabilities = 2;
@@ -1062,6 +1124,22 @@ message GashaProbability {
 message GashaRarityProbability {
   int32 rarity = 1;
   int32 tenPermyriadProbability = 2;
+}
+message GashaReportShareSnsContinuousMissionRequest {
+  string gashaId = 1;
+}
+message GashaReportShareSnsContinuousMissionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message GashaResumeContinuousRequest {
+  string gashaId = 1;
+}
+message GashaResumeContinuousResponse {
+  penum.GashaContinuousStepType stepType = 1;
+  repeated GashaDrawResult drawResults = 2;
+  GashaContinuousProgress continuousProgress = 3;
+  repeated pcommon.Reward shareRewards = 4;
+  papicommon.Response commonResponse = 9999;
 }
 message GashaSelectPickupRequest {
   string gashaId = 1;
@@ -2296,6 +2374,7 @@ message ProduceHistoryRequest {
 }
 message ProduceHistoryResponse {
   pcommon.ProduceHistory produceHistory = 1;
+  pcommon.SimpleProfile profile = 2;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceListRentalMemoryRequest {
@@ -2897,6 +2976,17 @@ message ProducerRankingCharacterTower {
   string towerId = 2;
   repeated ProducerRankingTowerLayer layers = 3;
 }
+message ProducerRankingGetTowerLayerRequest {
+  string characterId = 1;
+  string towerId = 2;
+  int32 number = 3;
+}
+message ProducerRankingGetTowerLayerResponse {
+  string producerRankingId = 1;
+  string idolCardId = 2;
+  int32 highScore = 3;
+  papicommon.Response commonResponse = 9999;
+}
 message ProducerRankingListRankRewardRequest {
   string characterId = 1;
 }
@@ -2982,6 +3072,7 @@ message ProfileGetResponse {
   penum.PvpRateGrade pvpRateGrade = 131;
   int32 maxCompetitionDeckPower = 132;
   penum.CompetitionGrade competitionGrade = 133;
+  string badgeId = 134;
   pcommon.SupportCard supportCard = 201;
   pcommon.Memory memory = 202;
   pcommon.Meishi meishi = 204;
@@ -2991,6 +3082,12 @@ message ProfileGetResponse {
     int32 trueEndCount = 2;
     int32 highScore = 3;
   }
+}
+message ProfileUpdateBadgeRequest {
+  string badgeId = 1;
+}
+message ProfileUpdateBadgeResponse {
+  papicommon.Response commonResponse = 9999;
 }
 message ProfileUpdateBirthdayRequest {
   int32 month = 1;
@@ -3146,6 +3243,7 @@ message PvpRateUnitStageFormation {
     pcommon.Memory subMemory = 2;
     int32 supportBonusPermyriad = 3;
     bool isDefault = 4;
+    repeated pcommon.ProduceCardConversion produceCardConversions = 5;
   }
 }
 message PvpRateUpdateUserPvpRateUnitRequest {
@@ -3671,6 +3769,7 @@ message TourDeck {
   repeated pcommon.Memory subMemories = 2;
   int32 supportBonusPermyriad = 3;
   bool isDefault = 4;
+  repeated pcommon.ProduceCardConversion produceCardConversions = 5;
 }
 message TourEndRequest {
   int64 seed = 1;
@@ -3959,6 +4058,7 @@ message TowerGetRankingDeckRequest {
 message TowerGetRankingDeckResponse {
   repeated pcommon.Memory memories = 1;
   bool isDefaultMemory = 2;
+  repeated pcommon.ProduceCardConversion produceCardConversions = 3;
   papicommon.Response commonResponse = 9999;
 }
 message TowerGetRankingRequest {
@@ -4162,6 +4262,12 @@ message TutorialUnlockFeatureRequest {
   penum.TutorialType type = 1;
 }
 message TutorialUnlockFeatureResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message UserGetBalanceResponse {
+  int32 freeBalance = 1;
+  int32 paidBalance = 2;
+  int32 webStorePaidBalance = 3;
   papicommon.Response commonResponse = 9999;
 }
 message UserGetResponse {
