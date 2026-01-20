@@ -1522,6 +1522,13 @@ message PhotoFacialMotionGroup {
 message PhotoFacialMotionGroupList {
   repeated PhotoFacialMotionGroup list = 1;
 }
+message PhotoLookEffectorCharacter {
+  string characterId = 1;
+  string lookAtSettingAssetId = 2;
+}
+message PhotoLookEffectorCharacterList {
+  repeated PhotoLookEffectorCharacter list = 1;
+}
 message PhotoLookTargetVoiceCharacter {
   string characterId = 1;
   int32 number = 2;
@@ -2976,6 +2983,9 @@ message Setting {
   int32 researchRankingDisplayCount = 141;
   string homeCharacterRandomIdolViewConditionSetID = 143;
   string badgeEditViewConditionSetID = 144;
+  string sceneTransitionSDCharacterAnimationViewConditionSetID = 147;
+  repeated string sceneTransitionSDCharacterAnimationFirstAssetIDs = 148;
+  repeated string sceneTransitionSDCharacterAnimationSecondAssetIDs = 149;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -3081,6 +3091,10 @@ message Setting {
   bool webStoreBannerDisplayEnable = 3001;
   string webStoreLinkURL = 3002;
   string webStoreShopBannerAssetID = 3005;
+  bool webStoreShopBannerIOSDisplayEnable = 3014;
+  string webStoreShopBannerIOSAssetID = 3015;
+  bool webStoreShopBannerAndroidDisplayEnable = 3016;
+  string webStoreShopBannerAndroidAssetID = 3017;
 }
 message SettingList {
   repeated Setting list = 1;

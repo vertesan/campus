@@ -225,6 +225,9 @@ enum ConditionType {
   ConditionType_MissionGroupNotComplete = 68;
   ConditionType_AppVersionGreaterThanOrEqual = 69;
   ConditionType_AppVersionLessThanOrEqual = 70;
+  ConditionType_ProduceCardConversion = 71;
+  ConditionType_CompetitionSeasonGrade = 72;
+  ConditionType_CompetitionBestGrade = 73;
   ConditionType_Set = 998;
   ConditionType_NegativeSet = 999;
 }
@@ -2394,6 +2397,7 @@ enum ResourceType {
   ResourceType_DearnessPoint = 23;
   ResourceType_Badge = 24;
   ResourceType_CompetitionPlayCount = 25;
+  ResourceType_ProduceCardConversion = 26;
   ResourceType_JewelTotal = 1100;
   ResourceType_JewelPaidOnly = 1101;
   ResourceType_Set = 9999;

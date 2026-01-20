@@ -1266,6 +1266,9 @@ const (
 	ConditionType_ConditionType_MissionGroupNotComplete            ConditionType = 68
 	ConditionType_ConditionType_AppVersionGreaterThanOrEqual       ConditionType = 69
 	ConditionType_ConditionType_AppVersionLessThanOrEqual          ConditionType = 70
+	ConditionType_ConditionType_ProduceCardConversion              ConditionType = 71
+	ConditionType_ConditionType_CompetitionSeasonGrade             ConditionType = 72
+	ConditionType_ConditionType_CompetitionBestGrade               ConditionType = 73
 	ConditionType_ConditionType_Set                                ConditionType = 998
 	ConditionType_ConditionType_NegativeSet                        ConditionType = 999
 )
@@ -1342,6 +1345,9 @@ var (
 		68:  "ConditionType_MissionGroupNotComplete",
 		69:  "ConditionType_AppVersionGreaterThanOrEqual",
 		70:  "ConditionType_AppVersionLessThanOrEqual",
+		71:  "ConditionType_ProduceCardConversion",
+		72:  "ConditionType_CompetitionSeasonGrade",
+		73:  "ConditionType_CompetitionBestGrade",
 		998: "ConditionType_Set",
 		999: "ConditionType_NegativeSet",
 	}
@@ -1415,6 +1421,9 @@ var (
 		"ConditionType_MissionGroupNotComplete":            68,
 		"ConditionType_AppVersionGreaterThanOrEqual":       69,
 		"ConditionType_AppVersionLessThanOrEqual":          70,
+		"ConditionType_ProduceCardConversion":              71,
+		"ConditionType_CompetitionSeasonGrade":             72,
+		"ConditionType_CompetitionBestGrade":               73,
 		"ConditionType_Set":                                998,
 		"ConditionType_NegativeSet":                        999,
 	}
@@ -13095,6 +13104,7 @@ const (
 	ResourceType_ResourceType_DearnessPoint           ResourceType = 23
 	ResourceType_ResourceType_Badge                   ResourceType = 24
 	ResourceType_ResourceType_CompetitionPlayCount    ResourceType = 25
+	ResourceType_ResourceType_ProduceCardConversion   ResourceType = 26
 	ResourceType_ResourceType_JewelTotal              ResourceType = 1100
 	ResourceType_ResourceType_JewelPaidOnly           ResourceType = 1101
 	ResourceType_ResourceType_Set                     ResourceType = 9999
@@ -13129,6 +13139,7 @@ var (
 		23:   "ResourceType_DearnessPoint",
 		24:   "ResourceType_Badge",
 		25:   "ResourceType_CompetitionPlayCount",
+		26:   "ResourceType_ProduceCardConversion",
 		1100: "ResourceType_JewelTotal",
 		1101: "ResourceType_JewelPaidOnly",
 		9999: "ResourceType_Set",
@@ -13160,6 +13171,7 @@ var (
 		"ResourceType_DearnessPoint":           23,
 		"ResourceType_Badge":                   24,
 		"ResourceType_CompetitionPlayCount":    25,
+		"ResourceType_ProduceCardConversion":   26,
 		"ResourceType_JewelTotal":              1100,
 		"ResourceType_JewelPaidOnly":           1101,
 		"ResourceType_Set":                     9999,
@@ -15657,7 +15669,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x15ConditionOperatorType\x12!\n" +
 	"\x1dConditionOperatorType_Unknown\x10\x00\x12\x1d\n" +
 	"\x19ConditionOperatorType_And\x10\x01\x12\x1c\n" +
-	"\x18ConditionOperatorType_Or\x10\x02*\xf9\x13\n" +
+	"\x18ConditionOperatorType_Or\x10\x02*\xf4\x14\n" +
 	"\rConditionType\x12\x19\n" +
 	"\x15ConditionType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16ConditionType_TimeTerm\x10\x01\x12\x1e\n" +
@@ -15728,7 +15740,10 @@ const file_penum_proto_rawDesc = "" +
 	"\"ConditionType_MissionGroupComplete\x10C\x12)\n" +
 	"%ConditionType_MissionGroupNotComplete\x10D\x12.\n" +
 	"*ConditionType_AppVersionGreaterThanOrEqual\x10E\x12+\n" +
-	"'ConditionType_AppVersionLessThanOrEqual\x10F\x12\x16\n" +
+	"'ConditionType_AppVersionLessThanOrEqual\x10F\x12'\n" +
+	"#ConditionType_ProduceCardConversion\x10G\x12(\n" +
+	"$ConditionType_CompetitionSeasonGrade\x10H\x12&\n" +
+	"\"ConditionType_CompetitionBestGrade\x10I\x12\x16\n" +
 	"\x11ConditionType_Set\x10\xe6\a\x12\x1e\n" +
 	"\x19ConditionType_NegativeSet\x10\xe7\a*\xa8\x01\n" +
 	"\x14ConsentAgreementType\x12 \n" +
@@ -17749,7 +17764,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1aResourceOriginType_Unknown\x10\x00\x12\x1f\n" +
 	"\x1bResourceOriginType_IdolCard\x10\x01\x12#\n" +
 	"\x1fResourceOriginType_IdolCardSkin\x10\x02\x12\x1b\n" +
-	"\x17ResourceOriginType_Shop\x10\x03*\x89\a\n" +
+	"\x17ResourceOriginType_Shop\x10\x03*\xb1\a\n" +
 	"\fResourceType\x12\x18\n" +
 	"\x14ResourceType_Unknown\x10\x00\x12\x1c\n" +
 	"\x18ResourceType_ProduceCard\x10\x01\x12\x15\n" +
@@ -17777,7 +17792,8 @@ const file_penum_proto_rawDesc = "" +
 	"\x16ResourceType_PhotoPose\x10\x16\x12\x1e\n" +
 	"\x1aResourceType_DearnessPoint\x10\x17\x12\x16\n" +
 	"\x12ResourceType_Badge\x10\x18\x12%\n" +
-	"!ResourceType_CompetitionPlayCount\x10\x19\x12\x1c\n" +
+	"!ResourceType_CompetitionPlayCount\x10\x19\x12&\n" +
+	"\"ResourceType_ProduceCardConversion\x10\x1a\x12\x1c\n" +
 	"\x17ResourceType_JewelTotal\x10\xcc\b\x12\x1f\n" +
 	"\x1aResourceType_JewelPaidOnly\x10\xcd\b\x12\x15\n" +
 	"\x10ResourceType_Set\x10\x8fN*\xf7\x02\n" +

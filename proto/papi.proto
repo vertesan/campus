@@ -285,10 +285,6 @@ service ProduceHighScore {
   rpc Ranking(ProduceHighScoreRankingRequest) returns (ProduceHighScoreRankingResponse);
   rpc ListRankReward(Empty) returns (ProduceHighScoreListRankRewardResponse);
 }
-service ProduceNextIdolAuditionMaster {
-  rpc Ranking(ProduceNextIdolAuditionMasterRankingRequest) returns (ProduceNextIdolAuditionMasterRankingResponse);
-  rpc ListRankReward(ProduceNextIdolAuditionMasterListRankRewardRequest) returns (ProduceNextIdolAuditionMasterListRankRewardResponse);
-}
 service ProducerRanking {
   rpc Top(Empty) returns (ProducerRankingTopResponse);
   rpc Ranking(ProducerRankingRankingRequest) returns (ProducerRankingRankingResponse);
@@ -2409,36 +2405,6 @@ message ProduceListRentalSupportCardResponse {
     bool isGuildMember = 7;
   }
 }
-message ProduceNextIdolAuditionMasterListRankRewardRequest {
-  string characterId = 1;
-}
-message ProduceNextIdolAuditionMasterListRankRewardResponse {
-  int32 rank = 1;
-  repeated ProduceNextIdolAuditionMasterListRankRewardResponse.Reward rankRewards = 2;
-  papicommon.Response commonResponse = 9999;
-  message Reward {
-    int32 upperRank = 1;
-    int32 lowerRank = 2;
-    int32 borderScore = 3;
-    repeated pcommon.Reward rewards = 4;
-  }
-}
-message ProduceNextIdolAuditionMasterRankingRequest {
-  string characterId = 1;
-}
-message ProduceNextIdolAuditionMasterRankingResponse {
-  ProduceNextIdolAuditionMasterRankingResponse.Rank selfRank = 1;
-  repeated ProduceNextIdolAuditionMasterRankingResponse.Rank ranks = 2;
-  papicommon.Response commonResponse = 9999;
-  message Rank {
-    int32 rank = 1;
-    int32 score = 2;
-    penum.ResultGrade grade = 4;
-    string idolCardSkinId = 6;
-    string userMemoryId = 7;
-    pcommon.SimpleProfile profile = 99;
-  }
-}
 message ProduceNextRequest {
   penum.ProduceStepType stepType = 2;
   int32 selectNumber = 3;
@@ -3178,6 +3144,7 @@ message PvpRateListHistoryResponse {
     repeated PvpRateUnitStageFormation rivalFormations = 5;
     bool isWin = 6;
     repeated bool isWinStages = 7;
+    string badgeId = 8;
   }
 }
 message PvpRateListRankingResponse {
