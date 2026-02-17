@@ -15275,6 +15275,184 @@ var Tutorial_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	UserBlock_Block_FullMethodName     = "/client.api.UserBlock/Block"
+	UserBlock_Unblock_FullMethodName   = "/client.api.UserBlock/Unblock"
+	UserBlock_ListBlock_FullMethodName = "/client.api.UserBlock/ListBlock"
+)
+
+// UserBlockClient is the client API for UserBlock service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UserBlockClient interface {
+	Block(ctx context.Context, in *UserBlockBlockRequest, opts ...grpc.CallOption) (*UserBlockBlockResponse, error)
+	Unblock(ctx context.Context, in *UserBlockUnblockRequest, opts ...grpc.CallOption) (*UserBlockUnblockResponse, error)
+	ListBlock(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserBlockListBlockResponse, error)
+}
+
+type userBlockClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUserBlockClient(cc grpc.ClientConnInterface) UserBlockClient {
+	return &userBlockClient{cc}
+}
+
+func (c *userBlockClient) Block(ctx context.Context, in *UserBlockBlockRequest, opts ...grpc.CallOption) (*UserBlockBlockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserBlockBlockResponse)
+	err := c.cc.Invoke(ctx, UserBlock_Block_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userBlockClient) Unblock(ctx context.Context, in *UserBlockUnblockRequest, opts ...grpc.CallOption) (*UserBlockUnblockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserBlockUnblockResponse)
+	err := c.cc.Invoke(ctx, UserBlock_Unblock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userBlockClient) ListBlock(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserBlockListBlockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserBlockListBlockResponse)
+	err := c.cc.Invoke(ctx, UserBlock_ListBlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserBlockServer is the server API for UserBlock service.
+// All implementations must embed UnimplementedUserBlockServer
+// for forward compatibility.
+type UserBlockServer interface {
+	Block(context.Context, *UserBlockBlockRequest) (*UserBlockBlockResponse, error)
+	Unblock(context.Context, *UserBlockUnblockRequest) (*UserBlockUnblockResponse, error)
+	ListBlock(context.Context, *Empty) (*UserBlockListBlockResponse, error)
+	mustEmbedUnimplementedUserBlockServer()
+}
+
+// UnimplementedUserBlockServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedUserBlockServer struct{}
+
+func (UnimplementedUserBlockServer) Block(context.Context, *UserBlockBlockRequest) (*UserBlockBlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Block not implemented")
+}
+func (UnimplementedUserBlockServer) Unblock(context.Context, *UserBlockUnblockRequest) (*UserBlockUnblockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unblock not implemented")
+}
+func (UnimplementedUserBlockServer) ListBlock(context.Context, *Empty) (*UserBlockListBlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBlock not implemented")
+}
+func (UnimplementedUserBlockServer) mustEmbedUnimplementedUserBlockServer() {}
+func (UnimplementedUserBlockServer) testEmbeddedByValue()                   {}
+
+// UnsafeUserBlockServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UserBlockServer will
+// result in compilation errors.
+type UnsafeUserBlockServer interface {
+	mustEmbedUnimplementedUserBlockServer()
+}
+
+func RegisterUserBlockServer(s grpc.ServiceRegistrar, srv UserBlockServer) {
+	// If the following call pancis, it indicates UnimplementedUserBlockServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&UserBlock_ServiceDesc, srv)
+}
+
+func _UserBlock_Block_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserBlockBlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBlockServer).Block(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserBlock_Block_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBlockServer).Block(ctx, req.(*UserBlockBlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserBlock_Unblock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserBlockUnblockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBlockServer).Unblock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserBlock_Unblock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBlockServer).Unblock(ctx, req.(*UserBlockUnblockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserBlock_ListBlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBlockServer).ListBlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserBlock_ListBlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBlockServer).ListBlock(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// UserBlock_ServiceDesc is the grpc.ServiceDesc for UserBlock service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var UserBlock_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "client.api.UserBlock",
+	HandlerType: (*UserBlockServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Block",
+			Handler:    _UserBlock_Block_Handler,
+		},
+		{
+			MethodName: "Unblock",
+			Handler:    _UserBlock_Unblock_Handler,
+		},
+		{
+			MethodName: "ListBlock",
+			Handler:    _UserBlock_ListBlock_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "papi.proto",
+}
+
+const (
 	User_Get_FullMethodName                          = "/client.api.User/Get"
 	User_GetBalance_FullMethodName                   = "/client.api.User/GetBalance"
 	User_ReadForceTitleTransitionTime_FullMethodName = "/client.api.User/ReadForceTitleTransitionTime"

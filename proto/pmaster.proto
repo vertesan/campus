@@ -123,6 +123,13 @@ message Character {
   float produceHighScoreRushPositionY = 61;
   int32 order = 99;
 }
+message CharacterActorLookEffector {
+  string characterId = 1;
+  string jointLimitAssetId = 2;
+}
+message CharacterActorLookEffectorList {
+  repeated CharacterActorLookEffector list = 1;
+}
 message CharacterAdv {
   string characterId = 1;
   string name = 2;
@@ -586,6 +593,7 @@ message ExamSetting {
   repeated int32 examAutoPlaySearchCommandPlanLimits = 48;
   int32 examLessonValueMultipleDependReviewOrAggressiveMultiplePermil = 50;
   int32 examLessonValueMultipleDependReviewOrAggressiveMaxPermil = 51;
+  bool fixMoveCardShuffleDeckEnable = 52;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -1183,6 +1191,17 @@ message Media {
   int64 startTime = 100;
   int64 endTime = 101;
   int32 order = 102;
+}
+message MediaExternalLink {
+  string id = 1;
+  string url = 2;
+  string assetId = 3;
+  repeated penum.PlatformType ignorePlatformTypes = 90;
+  string viewConditionSetId = 91;
+  int32 order = 99;
+}
+message MediaExternalLinkList {
+  repeated MediaExternalLink list = 1;
 }
 message MediaList {
   repeated Media list = 1;
@@ -2132,6 +2151,8 @@ message ProduceExamEffect {
   string produceCardSearchId = 12;
   penum.ProduceCardMovePositionType movePositionType = 13;
   penum.ProducePickRangeType pickRangeType = 14;
+  string pickCountReferenceProduceCardSearchId = 22;
+  penum.ProducePickCountType pickCountType = 23;
   int32 pickCountMin = 15;
   int32 pickCountMax = 16;
   string chainProduceExamEffectId = 17;
@@ -2983,6 +3004,7 @@ message Setting {
   int32 researchRankingDisplayCount = 141;
   string homeCharacterRandomIdolViewConditionSetID = 143;
   string badgeEditViewConditionSetID = 144;
+  int32 userBlockLimitCount = 145;
   string sceneTransitionSDCharacterAnimationViewConditionSetID = 147;
   repeated string sceneTransitionSDCharacterAnimationFirstAssetIDs = 148;
   repeated string sceneTransitionSDCharacterAnimationSecondAssetIDs = 149;
@@ -3088,9 +3110,7 @@ message Setting {
   int32 competitionGradeUpgradeAnimationThresholdGrade = 2310;
   int32 competitionGradeStayAnimationThresholdGrade = 2311;
   string competitionBgmAssetID = 2312;
-  bool webStoreBannerDisplayEnable = 3001;
   string webStoreLinkURL = 3002;
-  string webStoreShopBannerAssetID = 3005;
   bool webStoreShopBannerIOSDisplayEnable = 3014;
   string webStoreShopBannerIOSAssetID = 3015;
   bool webStoreShopBannerAndroidDisplayEnable = 3016;
@@ -3383,10 +3403,7 @@ message Tour {
   string bannerAssetId = 5;
   string storyGroupId = 10;
   string examSettingId = 17;
-  int32 continueCount = 18;
-  int32 basePoint = 22;
   string tourStageTimelineId = 26;
-  string liveTicketName = 33;
   string tourMotionId = 35;
   int32 order = 103;
 }

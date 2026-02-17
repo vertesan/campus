@@ -123,6 +123,33 @@ message Event {
   int64 closeTime = 102;
   int32 priority = 103;
 }
+message EventBonus {
+  repeated EventBonus.EventCharacterBonus characterBonuses = 1;
+  repeated EventBonus.EventIdolCardBonus idolCardBonuses = 2;
+  repeated EventBonus.EventSupportCardBonus supportCardBonuses = 3;
+  message EventPotentialRankBonusPermil {
+    penum.IdolCardPotentialRank potentialRank = 1;
+    int32 permil = 2;
+  }
+  message EventLevelLimitRankBonusPermil {
+    penum.SupportCardLevelLimitRank levelLimitRank = 1;
+    int32 permil = 2;
+  }
+  message EventCharacterBonus {
+    repeated string characterIds = 1;
+    int32 permil = 2;
+    repeated penum.IdolCardRarity idolCardRarities = 3;
+    repeated EventBonus.EventPotentialRankBonusPermil potentialRankBonusPermils = 4;
+  }
+  message EventIdolCardBonus {
+    repeated string idolCardIds = 1;
+    repeated EventBonus.EventPotentialRankBonusPermil potentialRankBonusPermils = 2;
+  }
+  message EventSupportCardBonus {
+    repeated string supportCardIds = 1;
+    repeated EventBonus.EventLevelLimitRankBonusPermil levelLimitRankBonusPermils = 2;
+  }
+}
 message ExamAction {
   penum.ExamActionType actionType = 1;
   repeated int32 indexes = 2;
@@ -813,6 +840,7 @@ message SimpleProfile {
   string comment = 6;
   Meishi meishi = 7;
   string badgeId = 8;
+  bool isBlocked = 9;
 }
 message StartupNotification {
   string id = 1;

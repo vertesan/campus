@@ -364,6 +364,8 @@ enum ErrorCode {
   ErrorCode_ShopExceedPurchaseThresholdOnPurchase = 2048;
   ErrorCode_ShopExceedMaxJewelQuantityOnPurchase = 2049;
   ErrorCode_ShopExceedPurchaseLimitOnPurchase = 2050;
+  ErrorCode_PaymentBalanceInvalid = 2051;
+  ErrorCode_BlockCountLimitExceeded = 2052;
   ErrorCode_ProduceOutdatedRentalSupportCard = 2301;
   ErrorCode_ProduceOutdatedRentalMemory = 2302;
   ErrorCode_ProduceHistoryNotFound = 2303;
@@ -2002,6 +2004,12 @@ enum ProducePhaseType {
   ProducePhaseType_BuyShopItemDeleteProduceCard = 57;
   ProducePhaseType_EndPresent = 58;
   ProducePhaseType_EndShop = 59;
+}
+enum ProducePickCountType {
+  ProducePickCountType_Unknown = 0;
+  ProducePickCountType_Normal = 1;
+  ProducePickCountType_Shortage = 2;
+  ProducePickCountType_Over = 3;
 }
 enum ProducePickRangeType {
   ProducePickRangeType_Unknown = 0;

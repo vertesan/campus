@@ -424,6 +424,11 @@ service Tutorial {
   rpc CheckBeforeLiveProduceEvaluation(Empty) returns (TutorialCheckBeforeLiveProduceEvaluationResponse);
   rpc ProduceResult(TutorialProduceResultRequest) returns (TutorialProduceResultResponse);
 }
+service UserBlock {
+  rpc Block(UserBlockBlockRequest) returns (UserBlockBlockResponse);
+  rpc Unblock(UserBlockUnblockRequest) returns (UserBlockUnblockResponse);
+  rpc ListBlock(Empty) returns (UserBlockListBlockResponse);
+}
 service User {
   rpc Get(Empty) returns (UserGetResponse);
   rpc GetBalance(Empty) returns (UserGetBalanceResponse);
@@ -966,6 +971,8 @@ message GashaDrawRequest {
   penum.ResourceType consumeResourceType = 4;
   string consumeResourceId = 5;
   int32 consumeResourceQuantity = 6;
+  int32 freeBalance = 50;
+  int32 paidBalance = 51;
 }
 message GashaDrawResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -986,6 +993,8 @@ message GashaDrawSelectPickupRequest {
   penum.ResourceType consumeResourceType = 3;
   string consumeResourceId = 4;
   int32 consumeResourceQuantity = 5;
+  int32 freeBalance = 50;
+  int32 paidBalance = 51;
 }
 message GashaDrawSelectPickupResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -1000,6 +1009,8 @@ message GashaDrawStepUpRequest {
   penum.ResourceType consumeResourceType = 3;
   string consumeResourceId = 4;
   int32 consumeResourceQuantity = 5;
+  int32 freeBalance = 50;
+  int32 paidBalance = 51;
 }
 message GashaDrawStepUpResponse {
   repeated GashaDrawResult drawResults = 1;
@@ -1834,6 +1845,7 @@ message MeishiListFollowResponse {
     int64 followTime = 2;
     int64 lastLoginTime = 3;
     string userName = 4;
+    bool isBlocked = 5;
   }
 }
 message MeishiListResponse {
@@ -2520,6 +2532,7 @@ message ProduceResultResponse {
   repeated int32 unlockChallengeSlotNumbers = 4;
   ProduceResultResponse.ResearchResult researchResult = 5;
   pcommon.ProducerRankingResult producerRankingResult = 6;
+  ProduceResultResponse.TourResult tourResult = 7;
   papicommon.Response commonResponse = 9999;
   message HighScoreReward {
     int32 score = 1;
@@ -2543,6 +2556,14 @@ message ProduceResultResponse {
     int32 auditionScore = 1;
     repeated pcommon.RewardResult auditionScoreRewardResults = 2;
     repeated pcommon.RewardResult produceGradeRewardResults = 3;
+  }
+  message TourResult {
+    penum.ResourceType resourceType = 1;
+    string resourceId = 2;
+    int32 baseExchangeCoinQuantity = 3;
+    int32 bonusExchangeCoinQuantity = 4;
+    int32 exchangeCoinBonusPermil = 5;
+    repeated pcommon.RewardResult rewardResults = 6;
   }
 }
 message ProduceRetireResponse {
@@ -2843,6 +2864,7 @@ message ProduceTopResponse {
   ProduceTopResponse.ProduceHighScore produceHighScore = 8;
   repeated string produceHighScoreCharacterIds = 7;
   ProduceTopResponse.Research research = 9;
+  ProduceTopResponse.Tour tour = 10;
   papicommon.Response commonResponse = 9999;
   message ProduceHighScore {
     penum.ProduceHighScoreEventType eventType = 1;
@@ -2861,6 +2883,11 @@ message ProduceTopResponse {
     repeated string produceItemIds = 5;
     int64 startTime = 100;
     int64 endTime = 101;
+  }
+  message Tour {
+    string exchangeCoinItemId = 1;
+    pcommon.EventBonus eventBonus = 2;
+    string produceTopLogoAssetId = 3;
   }
 }
 message ProduceUnlockPictureBookLiveRequest {
@@ -3026,6 +3053,7 @@ message ProfileGetResponse {
   penum.FriendStatusType friendStatus = 6;
   bool followable = 7;
   string joinedGuildName = 8;
+  bool isBlocked = 9;
   int64 totalFanCount = 100;
   int32 achievementCount = 101;
   int32 mainTaskMainStoryClearCount = 102;
@@ -3414,6 +3442,8 @@ message ShopPurchaseJewelResponse {
 }
 message ShopPurchaseRequest {
   string shopItemId = 1;
+  int32 freeBalance = 50;
+  int32 paidBalance = 51;
 }
 message ShopPurchaseResponse {
   repeated pcommon.RewardResult rewardResults = 1;
@@ -3797,6 +3827,8 @@ message TourResultResponse {
   repeated TourTotalPointReward totalPointRewards = 5;
   TourResultResponse.TotalPointRewardResult totalPointRewardResult = 6;
   repeated pcommon.RewardResult stageLevelClearRewardResults = 7;
+  int32 eventBonusPoint = 8;
+  int32 eventBonusPermil = 9;
   papicommon.Response commonResponse = 9999;
   message TotalPointRewardResult {
     repeated pcommon.RewardResult totalPointRewardResults = 1;
@@ -3879,6 +3911,7 @@ message TourTopResponse {
   string liveTicketName = 25;
   int32 initialPlayItemCount = 26;
   int32 dailyPlayItemCount = 27;
+  pcommon.EventBonus eventBonus = 28;
   int64 startTime = 100;
   int64 endTime = 101;
   int64 closeTime = 102;
@@ -3908,6 +3941,8 @@ message TourTopResponse {
     penum.TourStageIconSizeType iconSizeType = 22;
     int64 sceneLayoutHeightCorrection = 25;
     string nameLogoAssetId = 26;
+    string embedProduceCardId = 27;
+    int32 needProduceCardCount = 28;
     message StageLevelReward {
       int32 level = 1;
       int32 scoreThreshold = 2;
@@ -4229,6 +4264,22 @@ message TutorialUnlockFeatureRequest {
   penum.TutorialType type = 1;
 }
 message TutorialUnlockFeatureResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message UserBlockBlockRequest {
+  string publicUserId = 1;
+}
+message UserBlockBlockResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message UserBlockListBlockResponse {
+  repeated pcommon.SimpleProfile blockUserProfiles = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message UserBlockUnblockRequest {
+  string publicUserId = 1;
+}
+message UserBlockUnblockResponse {
   papicommon.Response commonResponse = 9999;
 }
 message UserGetBalanceResponse {

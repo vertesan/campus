@@ -5469,6 +5469,8 @@ type GashaDrawRequest struct {
 	ConsumeResourceType     penum.ResourceType     `protobuf:"varint,4,opt,name=consumeResourceType,proto3,enum=penum.ResourceType" json:"consumeResourceType,omitempty"`
 	ConsumeResourceId       string                 `protobuf:"bytes,5,opt,name=consumeResourceId,proto3" json:"consumeResourceId,omitempty"`
 	ConsumeResourceQuantity int32                  `protobuf:"varint,6,opt,name=consumeResourceQuantity,proto3" json:"consumeResourceQuantity,omitempty"`
+	FreeBalance             int32                  `protobuf:"varint,50,opt,name=freeBalance,proto3" json:"freeBalance,omitempty"`
+	PaidBalance             int32                  `protobuf:"varint,51,opt,name=paidBalance,proto3" json:"paidBalance,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -5541,6 +5543,20 @@ func (x *GashaDrawRequest) GetConsumeResourceId() string {
 func (x *GashaDrawRequest) GetConsumeResourceQuantity() int32 {
 	if x != nil {
 		return x.ConsumeResourceQuantity
+	}
+	return 0
+}
+
+func (x *GashaDrawRequest) GetFreeBalance() int32 {
+	if x != nil {
+		return x.FreeBalance
+	}
+	return 0
+}
+
+func (x *GashaDrawRequest) GetPaidBalance() int32 {
+	if x != nil {
+		return x.PaidBalance
 	}
 	return 0
 }
@@ -5696,6 +5712,8 @@ type GashaDrawSelectPickupRequest struct {
 	ConsumeResourceType     penum.ResourceType     `protobuf:"varint,3,opt,name=consumeResourceType,proto3,enum=penum.ResourceType" json:"consumeResourceType,omitempty"`
 	ConsumeResourceId       string                 `protobuf:"bytes,4,opt,name=consumeResourceId,proto3" json:"consumeResourceId,omitempty"`
 	ConsumeResourceQuantity int32                  `protobuf:"varint,5,opt,name=consumeResourceQuantity,proto3" json:"consumeResourceQuantity,omitempty"`
+	FreeBalance             int32                  `protobuf:"varint,50,opt,name=freeBalance,proto3" json:"freeBalance,omitempty"`
+	PaidBalance             int32                  `protobuf:"varint,51,opt,name=paidBalance,proto3" json:"paidBalance,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -5761,6 +5779,20 @@ func (x *GashaDrawSelectPickupRequest) GetConsumeResourceId() string {
 func (x *GashaDrawSelectPickupRequest) GetConsumeResourceQuantity() int32 {
 	if x != nil {
 		return x.ConsumeResourceQuantity
+	}
+	return 0
+}
+
+func (x *GashaDrawSelectPickupRequest) GetFreeBalance() int32 {
+	if x != nil {
+		return x.FreeBalance
+	}
+	return 0
+}
+
+func (x *GashaDrawSelectPickupRequest) GetPaidBalance() int32 {
+	if x != nil {
+		return x.PaidBalance
 	}
 	return 0
 }
@@ -5848,6 +5880,8 @@ type GashaDrawStepUpRequest struct {
 	ConsumeResourceType     penum.ResourceType     `protobuf:"varint,3,opt,name=consumeResourceType,proto3,enum=penum.ResourceType" json:"consumeResourceType,omitempty"`
 	ConsumeResourceId       string                 `protobuf:"bytes,4,opt,name=consumeResourceId,proto3" json:"consumeResourceId,omitempty"`
 	ConsumeResourceQuantity int32                  `protobuf:"varint,5,opt,name=consumeResourceQuantity,proto3" json:"consumeResourceQuantity,omitempty"`
+	FreeBalance             int32                  `protobuf:"varint,50,opt,name=freeBalance,proto3" json:"freeBalance,omitempty"`
+	PaidBalance             int32                  `protobuf:"varint,51,opt,name=paidBalance,proto3" json:"paidBalance,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -5913,6 +5947,20 @@ func (x *GashaDrawStepUpRequest) GetConsumeResourceId() string {
 func (x *GashaDrawStepUpRequest) GetConsumeResourceQuantity() int32 {
 	if x != nil {
 		return x.ConsumeResourceQuantity
+	}
+	return 0
+}
+
+func (x *GashaDrawStepUpRequest) GetFreeBalance() int32 {
+	if x != nil {
+		return x.FreeBalance
+	}
+	return 0
+}
+
+func (x *GashaDrawStepUpRequest) GetPaidBalance() int32 {
+	if x != nil {
+		return x.PaidBalance
 	}
 	return 0
 }
@@ -20777,6 +20825,7 @@ type ProduceResultResponse struct {
 	UnlockChallengeSlotNumbers []int32                                      `protobuf:"varint,4,rep,packed,name=unlockChallengeSlotNumbers,proto3" json:"unlockChallengeSlotNumbers,omitempty"`
 	ResearchResult             *ProduceResultResponse_ResearchResult        `protobuf:"bytes,5,opt,name=researchResult,proto3" json:"researchResult,omitempty"`
 	ProducerRankingResult      *pcommon.ProducerRankingResult               `protobuf:"bytes,6,opt,name=producerRankingResult,proto3" json:"producerRankingResult,omitempty"`
+	TourResult                 *ProduceResultResponse_TourResult            `protobuf:"bytes,7,opt,name=tourResult,proto3" json:"tourResult,omitempty"`
 	CommonResponse             *papicommon.Response                         `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
@@ -20850,6 +20899,13 @@ func (x *ProduceResultResponse) GetResearchResult() *ProduceResultResponse_Resea
 func (x *ProduceResultResponse) GetProducerRankingResult() *pcommon.ProducerRankingResult {
 	if x != nil {
 		return x.ProducerRankingResult
+	}
+	return nil
+}
+
+func (x *ProduceResultResponse) GetTourResult() *ProduceResultResponse_TourResult {
+	if x != nil {
+		return x.TourResult
 	}
 	return nil
 }
@@ -24372,6 +24428,7 @@ type ProduceTopResponse struct {
 	ProduceHighScore             *ProduceTopResponse_ProduceHighScore `protobuf:"bytes,8,opt,name=produceHighScore,proto3" json:"produceHighScore,omitempty"`
 	ProduceHighScoreCharacterIds []string                             `protobuf:"bytes,7,rep,name=produceHighScoreCharacterIds,proto3" json:"produceHighScoreCharacterIds,omitempty"`
 	Research                     *ProduceTopResponse_Research         `protobuf:"bytes,9,opt,name=research,proto3" json:"research,omitempty"`
+	Tour                         *ProduceTopResponse_Tour             `protobuf:"bytes,10,opt,name=tour,proto3" json:"tour,omitempty"`
 	CommonResponse               *papicommon.Response                 `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
 	unknownFields                protoimpl.UnknownFields
 	sizeCache                    protoimpl.SizeCache
@@ -24466,6 +24523,13 @@ func (x *ProduceTopResponse) GetProduceHighScoreCharacterIds() []string {
 func (x *ProduceTopResponse) GetResearch() *ProduceTopResponse_Research {
 	if x != nil {
 		return x.Research
+	}
+	return nil
+}
+
+func (x *ProduceTopResponse) GetTour() *ProduceTopResponse_Tour {
+	if x != nil {
+		return x.Tour
 	}
 	return nil
 }
@@ -26359,6 +26423,7 @@ type ProfileGetResponse struct {
 	FriendStatus                penum.FriendStatusType              `protobuf:"varint,6,opt,name=friendStatus,proto3,enum=penum.FriendStatusType" json:"friendStatus,omitempty"`
 	Followable                  bool                                `protobuf:"varint,7,opt,name=followable,proto3" json:"followable,omitempty"`
 	JoinedGuildName             string                              `protobuf:"bytes,8,opt,name=joinedGuildName,proto3" json:"joinedGuildName,omitempty"`
+	IsBlocked                   bool                                `protobuf:"varint,9,opt,name=isBlocked,proto3" json:"isBlocked,omitempty"`
 	TotalFanCount               int64                               `protobuf:"varint,100,opt,name=totalFanCount,proto3" json:"totalFanCount,omitempty"`
 	AchievementCount            int32                               `protobuf:"varint,101,opt,name=achievementCount,proto3" json:"achievementCount,omitempty"`
 	MainTaskMainStoryClearCount int32                               `protobuf:"varint,102,opt,name=mainTaskMainStoryClearCount,proto3" json:"mainTaskMainStoryClearCount,omitempty"`
@@ -26464,6 +26529,13 @@ func (x *ProfileGetResponse) GetJoinedGuildName() string {
 		return x.JoinedGuildName
 	}
 	return ""
+}
+
+func (x *ProfileGetResponse) GetIsBlocked() bool {
+	if x != nil {
+		return x.IsBlocked
+	}
+	return false
 }
 
 func (x *ProfileGetResponse) GetTotalFanCount() int64 {
@@ -29988,6 +30060,8 @@ func (x *ShopPurchaseJewelResponse) GetCommonResponse() *papicommon.Response {
 type ShopPurchaseRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ShopItemId    string                 `protobuf:"bytes,1,opt,name=shopItemId,proto3" json:"shopItemId,omitempty"`
+	FreeBalance   int32                  `protobuf:"varint,50,opt,name=freeBalance,proto3" json:"freeBalance,omitempty"`
+	PaidBalance   int32                  `protobuf:"varint,51,opt,name=paidBalance,proto3" json:"paidBalance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -30027,6 +30101,20 @@ func (x *ShopPurchaseRequest) GetShopItemId() string {
 		return x.ShopItemId
 	}
 	return ""
+}
+
+func (x *ShopPurchaseRequest) GetFreeBalance() int32 {
+	if x != nil {
+		return x.FreeBalance
+	}
+	return 0
+}
+
+func (x *ShopPurchaseRequest) GetPaidBalance() int32 {
+	if x != nil {
+		return x.PaidBalance
+	}
+	return 0
 }
 
 type ShopPurchaseResponse struct {
@@ -33706,6 +33794,8 @@ type TourResultResponse struct {
 	TotalPointRewards            []*TourTotalPointReward                    `protobuf:"bytes,5,rep,name=totalPointRewards,proto3" json:"totalPointRewards,omitempty"`
 	TotalPointRewardResult       *TourResultResponse_TotalPointRewardResult `protobuf:"bytes,6,opt,name=totalPointRewardResult,proto3" json:"totalPointRewardResult,omitempty"`
 	StageLevelClearRewardResults []*pcommon.RewardResult                    `protobuf:"bytes,7,rep,name=stageLevelClearRewardResults,proto3" json:"stageLevelClearRewardResults,omitempty"`
+	EventBonusPoint              int32                                      `protobuf:"varint,8,opt,name=eventBonusPoint,proto3" json:"eventBonusPoint,omitempty"`
+	EventBonusPermil             int32                                      `protobuf:"varint,9,opt,name=eventBonusPermil,proto3" json:"eventBonusPermil,omitempty"`
 	CommonResponse               *papicommon.Response                       `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
 	unknownFields                protoimpl.UnknownFields
 	sizeCache                    protoimpl.SizeCache
@@ -33788,6 +33878,20 @@ func (x *TourResultResponse) GetStageLevelClearRewardResults() []*pcommon.Reward
 		return x.StageLevelClearRewardResults
 	}
 	return nil
+}
+
+func (x *TourResultResponse) GetEventBonusPoint() int32 {
+	if x != nil {
+		return x.EventBonusPoint
+	}
+	return 0
+}
+
+func (x *TourResultResponse) GetEventBonusPermil() int32 {
+	if x != nil {
+		return x.EventBonusPermil
+	}
+	return 0
 }
 
 func (x *TourResultResponse) GetCommonResponse() *papicommon.Response {
@@ -34258,6 +34362,7 @@ type TourTopResponse struct {
 	LiveTicketName            string                      `protobuf:"bytes,25,opt,name=liveTicketName,proto3" json:"liveTicketName,omitempty"`
 	InitialPlayItemCount      int32                       `protobuf:"varint,26,opt,name=initialPlayItemCount,proto3" json:"initialPlayItemCount,omitempty"`
 	DailyPlayItemCount        int32                       `protobuf:"varint,27,opt,name=dailyPlayItemCount,proto3" json:"dailyPlayItemCount,omitempty"`
+	EventBonus                *pcommon.EventBonus         `protobuf:"bytes,28,opt,name=eventBonus,proto3" json:"eventBonus,omitempty"`
 	StartTime                 int64                       `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
 	EndTime                   int64                       `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
 	CloseTime                 int64                       `protobuf:"varint,102,opt,name=closeTime,proto3" json:"closeTime,omitempty"`
@@ -34483,6 +34588,13 @@ func (x *TourTopResponse) GetDailyPlayItemCount() int32 {
 		return x.DailyPlayItemCount
 	}
 	return 0
+}
+
+func (x *TourTopResponse) GetEventBonus() *pcommon.EventBonus {
+	if x != nil {
+		return x.EventBonus
+	}
+	return nil
 }
 
 func (x *TourTopResponse) GetStartTime() int64 {
@@ -38125,6 +38237,234 @@ func (x *TutorialUnlockFeatureResponse) GetCommonResponse() *papicommon.Response
 	return nil
 }
 
+type UserBlockBlockRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PublicUserId  string                 `protobuf:"bytes,1,opt,name=publicUserId,proto3" json:"publicUserId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserBlockBlockRequest) Reset() {
+	*x = UserBlockBlockRequest{}
+	mi := &file_papi_proto_msgTypes[649]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBlockBlockRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBlockBlockRequest) ProtoMessage() {}
+
+func (x *UserBlockBlockRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[649]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBlockBlockRequest.ProtoReflect.Descriptor instead.
+func (*UserBlockBlockRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{649}
+}
+
+func (x *UserBlockBlockRequest) GetPublicUserId() string {
+	if x != nil {
+		return x.PublicUserId
+	}
+	return ""
+}
+
+type UserBlockBlockResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	CommonResponse *papicommon.Response   `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *UserBlockBlockResponse) Reset() {
+	*x = UserBlockBlockResponse{}
+	mi := &file_papi_proto_msgTypes[650]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBlockBlockResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBlockBlockResponse) ProtoMessage() {}
+
+func (x *UserBlockBlockResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[650]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBlockBlockResponse.ProtoReflect.Descriptor instead.
+func (*UserBlockBlockResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{650}
+}
+
+func (x *UserBlockBlockResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
+type UserBlockListBlockResponse struct {
+	state             protoimpl.MessageState   `protogen:"open.v1"`
+	BlockUserProfiles []*pcommon.SimpleProfile `protobuf:"bytes,1,rep,name=blockUserProfiles,proto3" json:"blockUserProfiles,omitempty"`
+	CommonResponse    *papicommon.Response     `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UserBlockListBlockResponse) Reset() {
+	*x = UserBlockListBlockResponse{}
+	mi := &file_papi_proto_msgTypes[651]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBlockListBlockResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBlockListBlockResponse) ProtoMessage() {}
+
+func (x *UserBlockListBlockResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[651]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBlockListBlockResponse.ProtoReflect.Descriptor instead.
+func (*UserBlockListBlockResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{651}
+}
+
+func (x *UserBlockListBlockResponse) GetBlockUserProfiles() []*pcommon.SimpleProfile {
+	if x != nil {
+		return x.BlockUserProfiles
+	}
+	return nil
+}
+
+func (x *UserBlockListBlockResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
+type UserBlockUnblockRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PublicUserId  string                 `protobuf:"bytes,1,opt,name=publicUserId,proto3" json:"publicUserId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserBlockUnblockRequest) Reset() {
+	*x = UserBlockUnblockRequest{}
+	mi := &file_papi_proto_msgTypes[652]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBlockUnblockRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBlockUnblockRequest) ProtoMessage() {}
+
+func (x *UserBlockUnblockRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[652]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBlockUnblockRequest.ProtoReflect.Descriptor instead.
+func (*UserBlockUnblockRequest) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{652}
+}
+
+func (x *UserBlockUnblockRequest) GetPublicUserId() string {
+	if x != nil {
+		return x.PublicUserId
+	}
+	return ""
+}
+
+type UserBlockUnblockResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	CommonResponse *papicommon.Response   `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *UserBlockUnblockResponse) Reset() {
+	*x = UserBlockUnblockResponse{}
+	mi := &file_papi_proto_msgTypes[653]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBlockUnblockResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBlockUnblockResponse) ProtoMessage() {}
+
+func (x *UserBlockUnblockResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[653]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBlockUnblockResponse.ProtoReflect.Descriptor instead.
+func (*UserBlockUnblockResponse) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{653}
+}
+
+func (x *UserBlockUnblockResponse) GetCommonResponse() *papicommon.Response {
+	if x != nil {
+		return x.CommonResponse
+	}
+	return nil
+}
+
 type UserGetBalanceResponse struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	FreeBalance         int32                  `protobuf:"varint,1,opt,name=freeBalance,proto3" json:"freeBalance,omitempty"`
@@ -38137,7 +38477,7 @@ type UserGetBalanceResponse struct {
 
 func (x *UserGetBalanceResponse) Reset() {
 	*x = UserGetBalanceResponse{}
-	mi := &file_papi_proto_msgTypes[649]
+	mi := &file_papi_proto_msgTypes[654]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38149,7 +38489,7 @@ func (x *UserGetBalanceResponse) String() string {
 func (*UserGetBalanceResponse) ProtoMessage() {}
 
 func (x *UserGetBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[649]
+	mi := &file_papi_proto_msgTypes[654]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38162,7 +38502,7 @@ func (x *UserGetBalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGetBalanceResponse.ProtoReflect.Descriptor instead.
 func (*UserGetBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{649}
+	return file_papi_proto_rawDescGZIP(), []int{654}
 }
 
 func (x *UserGetBalanceResponse) GetFreeBalance() int32 {
@@ -38202,7 +38542,7 @@ type UserGetResponse struct {
 
 func (x *UserGetResponse) Reset() {
 	*x = UserGetResponse{}
-	mi := &file_papi_proto_msgTypes[650]
+	mi := &file_papi_proto_msgTypes[655]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38214,7 +38554,7 @@ func (x *UserGetResponse) String() string {
 func (*UserGetResponse) ProtoMessage() {}
 
 func (x *UserGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[650]
+	mi := &file_papi_proto_msgTypes[655]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38227,7 +38567,7 @@ func (x *UserGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGetResponse.ProtoReflect.Descriptor instead.
 func (*UserGetResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{650}
+	return file_papi_proto_rawDescGZIP(), []int{655}
 }
 
 func (x *UserGetResponse) GetUserData() *papicommon.UserData {
@@ -38246,7 +38586,7 @@ type UserListMessageRequest struct {
 
 func (x *UserListMessageRequest) Reset() {
 	*x = UserListMessageRequest{}
-	mi := &file_papi_proto_msgTypes[651]
+	mi := &file_papi_proto_msgTypes[656]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38258,7 +38598,7 @@ func (x *UserListMessageRequest) String() string {
 func (*UserListMessageRequest) ProtoMessage() {}
 
 func (x *UserListMessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[651]
+	mi := &file_papi_proto_msgTypes[656]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38271,7 +38611,7 @@ func (x *UserListMessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserListMessageRequest.ProtoReflect.Descriptor instead.
 func (*UserListMessageRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{651}
+	return file_papi_proto_rawDescGZIP(), []int{656}
 }
 
 func (x *UserListMessageRequest) GetOffset() int32 {
@@ -38294,7 +38634,7 @@ type UserListMessageResponse struct {
 
 func (x *UserListMessageResponse) Reset() {
 	*x = UserListMessageResponse{}
-	mi := &file_papi_proto_msgTypes[652]
+	mi := &file_papi_proto_msgTypes[657]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38306,7 +38646,7 @@ func (x *UserListMessageResponse) String() string {
 func (*UserListMessageResponse) ProtoMessage() {}
 
 func (x *UserListMessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[652]
+	mi := &file_papi_proto_msgTypes[657]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38319,7 +38659,7 @@ func (x *UserListMessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserListMessageResponse.ProtoReflect.Descriptor instead.
 func (*UserListMessageResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{652}
+	return file_papi_proto_rawDescGZIP(), []int{657}
 }
 
 func (x *UserListMessageResponse) GetPersonalMessages() []*UserListMessageResponse_PersonalMessage {
@@ -38366,7 +38706,7 @@ type UserReadForceTitleTransitionTimeRequest struct {
 
 func (x *UserReadForceTitleTransitionTimeRequest) Reset() {
 	*x = UserReadForceTitleTransitionTimeRequest{}
-	mi := &file_papi_proto_msgTypes[653]
+	mi := &file_papi_proto_msgTypes[658]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38378,7 +38718,7 @@ func (x *UserReadForceTitleTransitionTimeRequest) String() string {
 func (*UserReadForceTitleTransitionTimeRequest) ProtoMessage() {}
 
 func (x *UserReadForceTitleTransitionTimeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[653]
+	mi := &file_papi_proto_msgTypes[658]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38391,7 +38731,7 @@ func (x *UserReadForceTitleTransitionTimeRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UserReadForceTitleTransitionTimeRequest.ProtoReflect.Descriptor instead.
 func (*UserReadForceTitleTransitionTimeRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{653}
+	return file_papi_proto_rawDescGZIP(), []int{658}
 }
 
 func (x *UserReadForceTitleTransitionTimeRequest) GetReadForceTitleTransitionTime() int64 {
@@ -38410,7 +38750,7 @@ type UserReadForceTitleTransitionTimeResponse struct {
 
 func (x *UserReadForceTitleTransitionTimeResponse) Reset() {
 	*x = UserReadForceTitleTransitionTimeResponse{}
-	mi := &file_papi_proto_msgTypes[654]
+	mi := &file_papi_proto_msgTypes[659]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38422,7 +38762,7 @@ func (x *UserReadForceTitleTransitionTimeResponse) String() string {
 func (*UserReadForceTitleTransitionTimeResponse) ProtoMessage() {}
 
 func (x *UserReadForceTitleTransitionTimeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[654]
+	mi := &file_papi_proto_msgTypes[659]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38435,7 +38775,7 @@ func (x *UserReadForceTitleTransitionTimeResponse) ProtoReflect() protoreflect.M
 
 // Deprecated: Use UserReadForceTitleTransitionTimeResponse.ProtoReflect.Descriptor instead.
 func (*UserReadForceTitleTransitionTimeResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{654}
+	return file_papi_proto_rawDescGZIP(), []int{659}
 }
 
 func (x *UserReadForceTitleTransitionTimeResponse) GetCommonResponse() *papicommon.Response {
@@ -38454,7 +38794,7 @@ type UserReadMessageRequest struct {
 
 func (x *UserReadMessageRequest) Reset() {
 	*x = UserReadMessageRequest{}
-	mi := &file_papi_proto_msgTypes[655]
+	mi := &file_papi_proto_msgTypes[660]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38466,7 +38806,7 @@ func (x *UserReadMessageRequest) String() string {
 func (*UserReadMessageRequest) ProtoMessage() {}
 
 func (x *UserReadMessageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[655]
+	mi := &file_papi_proto_msgTypes[660]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38479,7 +38819,7 @@ func (x *UserReadMessageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserReadMessageRequest.ProtoReflect.Descriptor instead.
 func (*UserReadMessageRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{655}
+	return file_papi_proto_rawDescGZIP(), []int{660}
 }
 
 func (x *UserReadMessageRequest) GetUserPersonalMessageIds() []string {
@@ -38498,7 +38838,7 @@ type UserReadMessageResponse struct {
 
 func (x *UserReadMessageResponse) Reset() {
 	*x = UserReadMessageResponse{}
-	mi := &file_papi_proto_msgTypes[656]
+	mi := &file_papi_proto_msgTypes[661]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38510,7 +38850,7 @@ func (x *UserReadMessageResponse) String() string {
 func (*UserReadMessageResponse) ProtoMessage() {}
 
 func (x *UserReadMessageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[656]
+	mi := &file_papi_proto_msgTypes[661]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38523,7 +38863,7 @@ func (x *UserReadMessageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserReadMessageResponse.ProtoReflect.Descriptor instead.
 func (*UserReadMessageResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{656}
+	return file_papi_proto_rawDescGZIP(), []int{661}
 }
 
 func (x *UserReadMessageResponse) GetCommonResponse() *papicommon.Response {
@@ -38543,7 +38883,7 @@ type WorkFinishResponse struct {
 
 func (x *WorkFinishResponse) Reset() {
 	*x = WorkFinishResponse{}
-	mi := &file_papi_proto_msgTypes[657]
+	mi := &file_papi_proto_msgTypes[662]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38555,7 +38895,7 @@ func (x *WorkFinishResponse) String() string {
 func (*WorkFinishResponse) ProtoMessage() {}
 
 func (x *WorkFinishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[657]
+	mi := &file_papi_proto_msgTypes[662]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38568,7 +38908,7 @@ func (x *WorkFinishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkFinishResponse.ProtoReflect.Descriptor instead.
 func (*WorkFinishResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{657}
+	return file_papi_proto_rawDescGZIP(), []int{662}
 }
 
 func (x *WorkFinishResponse) GetFinishResults() []*WorkFinishResult {
@@ -38597,7 +38937,7 @@ type WorkFinishResult struct {
 
 func (x *WorkFinishResult) Reset() {
 	*x = WorkFinishResult{}
-	mi := &file_papi_proto_msgTypes[658]
+	mi := &file_papi_proto_msgTypes[663]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38609,7 +38949,7 @@ func (x *WorkFinishResult) String() string {
 func (*WorkFinishResult) ProtoMessage() {}
 
 func (x *WorkFinishResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[658]
+	mi := &file_papi_proto_msgTypes[663]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38622,7 +38962,7 @@ func (x *WorkFinishResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkFinishResult.ProtoReflect.Descriptor instead.
 func (*WorkFinishResult) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{658}
+	return file_papi_proto_rawDescGZIP(), []int{663}
 }
 
 func (x *WorkFinishResult) GetType() penum.WorkType {
@@ -38662,7 +39002,7 @@ type WorkSkipRequest struct {
 
 func (x *WorkSkipRequest) Reset() {
 	*x = WorkSkipRequest{}
-	mi := &file_papi_proto_msgTypes[659]
+	mi := &file_papi_proto_msgTypes[664]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38674,7 +39014,7 @@ func (x *WorkSkipRequest) String() string {
 func (*WorkSkipRequest) ProtoMessage() {}
 
 func (x *WorkSkipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[659]
+	mi := &file_papi_proto_msgTypes[664]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38687,7 +39027,7 @@ func (x *WorkSkipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkipRequest.ProtoReflect.Descriptor instead.
 func (*WorkSkipRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{659}
+	return file_papi_proto_rawDescGZIP(), []int{664}
 }
 
 func (x *WorkSkipRequest) GetType() penum.WorkType {
@@ -38707,7 +39047,7 @@ type WorkSkipResponse struct {
 
 func (x *WorkSkipResponse) Reset() {
 	*x = WorkSkipResponse{}
-	mi := &file_papi_proto_msgTypes[660]
+	mi := &file_papi_proto_msgTypes[665]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38719,7 +39059,7 @@ func (x *WorkSkipResponse) String() string {
 func (*WorkSkipResponse) ProtoMessage() {}
 
 func (x *WorkSkipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[660]
+	mi := &file_papi_proto_msgTypes[665]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38732,7 +39072,7 @@ func (x *WorkSkipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkipResponse.ProtoReflect.Descriptor instead.
 func (*WorkSkipResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{660}
+	return file_papi_proto_rawDescGZIP(), []int{665}
 }
 
 func (x *WorkSkipResponse) GetFinishResult() *WorkFinishResult {
@@ -38760,7 +39100,7 @@ type WorkStartRequest struct {
 
 func (x *WorkStartRequest) Reset() {
 	*x = WorkStartRequest{}
-	mi := &file_papi_proto_msgTypes[661]
+	mi := &file_papi_proto_msgTypes[666]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38772,7 +39112,7 @@ func (x *WorkStartRequest) String() string {
 func (*WorkStartRequest) ProtoMessage() {}
 
 func (x *WorkStartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[661]
+	mi := &file_papi_proto_msgTypes[666]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38785,7 +39125,7 @@ func (x *WorkStartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStartRequest.ProtoReflect.Descriptor instead.
 func (*WorkStartRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{661}
+	return file_papi_proto_rawDescGZIP(), []int{666}
 }
 
 func (x *WorkStartRequest) GetType() penum.WorkType {
@@ -38818,7 +39158,7 @@ type WorkStartResponse struct {
 
 func (x *WorkStartResponse) Reset() {
 	*x = WorkStartResponse{}
-	mi := &file_papi_proto_msgTypes[662]
+	mi := &file_papi_proto_msgTypes[667]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38830,7 +39170,7 @@ func (x *WorkStartResponse) String() string {
 func (*WorkStartResponse) ProtoMessage() {}
 
 func (x *WorkStartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[662]
+	mi := &file_papi_proto_msgTypes[667]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38843,7 +39183,7 @@ func (x *WorkStartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStartResponse.ProtoReflect.Descriptor instead.
 func (*WorkStartResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{662}
+	return file_papi_proto_rawDescGZIP(), []int{667}
 }
 
 func (x *WorkStartResponse) GetCommonResponse() *papicommon.Response {
@@ -38862,7 +39202,7 @@ type WorkStopRequest struct {
 
 func (x *WorkStopRequest) Reset() {
 	*x = WorkStopRequest{}
-	mi := &file_papi_proto_msgTypes[663]
+	mi := &file_papi_proto_msgTypes[668]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38874,7 +39214,7 @@ func (x *WorkStopRequest) String() string {
 func (*WorkStopRequest) ProtoMessage() {}
 
 func (x *WorkStopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[663]
+	mi := &file_papi_proto_msgTypes[668]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38887,7 +39227,7 @@ func (x *WorkStopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStopRequest.ProtoReflect.Descriptor instead.
 func (*WorkStopRequest) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{663}
+	return file_papi_proto_rawDescGZIP(), []int{668}
 }
 
 func (x *WorkStopRequest) GetType() penum.WorkType {
@@ -38906,7 +39246,7 @@ type WorkStopResponse struct {
 
 func (x *WorkStopResponse) Reset() {
 	*x = WorkStopResponse{}
-	mi := &file_papi_proto_msgTypes[664]
+	mi := &file_papi_proto_msgTypes[669]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38918,7 +39258,7 @@ func (x *WorkStopResponse) String() string {
 func (*WorkStopResponse) ProtoMessage() {}
 
 func (x *WorkStopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[664]
+	mi := &file_papi_proto_msgTypes[669]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38931,7 +39271,7 @@ func (x *WorkStopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkStopResponse.ProtoReflect.Descriptor instead.
 func (*WorkStopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{664}
+	return file_papi_proto_rawDescGZIP(), []int{669}
 }
 
 func (x *WorkStopResponse) GetCommonResponse() *papicommon.Response {
@@ -38951,7 +39291,7 @@ type WorkTopResponse struct {
 
 func (x *WorkTopResponse) Reset() {
 	*x = WorkTopResponse{}
-	mi := &file_papi_proto_msgTypes[665]
+	mi := &file_papi_proto_msgTypes[670]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38963,7 +39303,7 @@ func (x *WorkTopResponse) String() string {
 func (*WorkTopResponse) ProtoMessage() {}
 
 func (x *WorkTopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[665]
+	mi := &file_papi_proto_msgTypes[670]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38976,7 +39316,7 @@ func (x *WorkTopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTopResponse.ProtoReflect.Descriptor instead.
 func (*WorkTopResponse) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{665}
+	return file_papi_proto_rawDescGZIP(), []int{670}
 }
 
 func (x *WorkTopResponse) GetFinishResults() []*WorkFinishResult {
@@ -39004,7 +39344,7 @@ type AuthLoginResponse_Term struct {
 
 func (x *AuthLoginResponse_Term) Reset() {
 	*x = AuthLoginResponse_Term{}
-	mi := &file_papi_proto_msgTypes[666]
+	mi := &file_papi_proto_msgTypes[671]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39016,7 +39356,7 @@ func (x *AuthLoginResponse_Term) String() string {
 func (*AuthLoginResponse_Term) ProtoMessage() {}
 
 func (x *AuthLoginResponse_Term) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[666]
+	mi := &file_papi_proto_msgTypes[671]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39063,7 +39403,7 @@ type AuthSendConsentRequest_Consent struct {
 
 func (x *AuthSendConsentRequest_Consent) Reset() {
 	*x = AuthSendConsentRequest_Consent{}
-	mi := &file_papi_proto_msgTypes[667]
+	mi := &file_papi_proto_msgTypes[672]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39075,7 +39415,7 @@ func (x *AuthSendConsentRequest_Consent) String() string {
 func (*AuthSendConsentRequest_Consent) ProtoMessage() {}
 
 func (x *AuthSendConsentRequest_Consent) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[667]
+	mi := &file_papi_proto_msgTypes[672]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39115,7 +39455,7 @@ type CompetitionGetResponse_Section struct {
 
 func (x *CompetitionGetResponse_Section) Reset() {
 	*x = CompetitionGetResponse_Section{}
-	mi := &file_papi_proto_msgTypes[668]
+	mi := &file_papi_proto_msgTypes[673]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39127,7 +39467,7 @@ func (x *CompetitionGetResponse_Section) String() string {
 func (*CompetitionGetResponse_Section) ProtoMessage() {}
 
 func (x *CompetitionGetResponse_Section) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[668]
+	mi := &file_papi_proto_msgTypes[673]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39168,7 +39508,7 @@ type CompetitionGetResponse_PlayTestStage struct {
 
 func (x *CompetitionGetResponse_PlayTestStage) Reset() {
 	*x = CompetitionGetResponse_PlayTestStage{}
-	mi := &file_papi_proto_msgTypes[669]
+	mi := &file_papi_proto_msgTypes[674]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39180,7 +39520,7 @@ func (x *CompetitionGetResponse_PlayTestStage) String() string {
 func (*CompetitionGetResponse_PlayTestStage) ProtoMessage() {}
 
 func (x *CompetitionGetResponse_PlayTestStage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[669]
+	mi := &file_papi_proto_msgTypes[674]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39236,7 +39576,7 @@ type CompetitionGetResponse_Stage struct {
 
 func (x *CompetitionGetResponse_Stage) Reset() {
 	*x = CompetitionGetResponse_Stage{}
-	mi := &file_papi_proto_msgTypes[670]
+	mi := &file_papi_proto_msgTypes[675]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39248,7 +39588,7 @@ func (x *CompetitionGetResponse_Stage) String() string {
 func (*CompetitionGetResponse_Stage) ProtoMessage() {}
 
 func (x *CompetitionGetResponse_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[670]
+	mi := &file_papi_proto_msgTypes[675]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39351,7 +39691,7 @@ type CompetitionListDeckProduceCardRankingResponse_ProduceCardRank struct {
 
 func (x *CompetitionListDeckProduceCardRankingResponse_ProduceCardRank) Reset() {
 	*x = CompetitionListDeckProduceCardRankingResponse_ProduceCardRank{}
-	mi := &file_papi_proto_msgTypes[671]
+	mi := &file_papi_proto_msgTypes[676]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39363,7 +39703,7 @@ func (x *CompetitionListDeckProduceCardRankingResponse_ProduceCardRank) String()
 func (*CompetitionListDeckProduceCardRankingResponse_ProduceCardRank) ProtoMessage() {}
 
 func (x *CompetitionListDeckProduceCardRankingResponse_ProduceCardRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[671]
+	mi := &file_papi_proto_msgTypes[676]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39404,7 +39744,7 @@ type CompetitionListDeckProduceCardRankingResponse_Ranking struct {
 
 func (x *CompetitionListDeckProduceCardRankingResponse_Ranking) Reset() {
 	*x = CompetitionListDeckProduceCardRankingResponse_Ranking{}
-	mi := &file_papi_proto_msgTypes[672]
+	mi := &file_papi_proto_msgTypes[677]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39416,7 +39756,7 @@ func (x *CompetitionListDeckProduceCardRankingResponse_Ranking) String() string 
 func (*CompetitionListDeckProduceCardRankingResponse_Ranking) ProtoMessage() {}
 
 func (x *CompetitionListDeckProduceCardRankingResponse_Ranking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[672]
+	mi := &file_papi_proto_msgTypes[677]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39469,7 +39809,7 @@ type CompetitionListHistoryResponse_History struct {
 
 func (x *CompetitionListHistoryResponse_History) Reset() {
 	*x = CompetitionListHistoryResponse_History{}
-	mi := &file_papi_proto_msgTypes[673]
+	mi := &file_papi_proto_msgTypes[678]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39481,7 +39821,7 @@ func (x *CompetitionListHistoryResponse_History) String() string {
 func (*CompetitionListHistoryResponse_History) ProtoMessage() {}
 
 func (x *CompetitionListHistoryResponse_History) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[673]
+	mi := &file_papi_proto_msgTypes[678]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39565,7 +39905,7 @@ type CompetitionListHistoryResponse_Stage struct {
 
 func (x *CompetitionListHistoryResponse_Stage) Reset() {
 	*x = CompetitionListHistoryResponse_Stage{}
-	mi := &file_papi_proto_msgTypes[674]
+	mi := &file_papi_proto_msgTypes[679]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39577,7 +39917,7 @@ func (x *CompetitionListHistoryResponse_Stage) String() string {
 func (*CompetitionListHistoryResponse_Stage) ProtoMessage() {}
 
 func (x *CompetitionListHistoryResponse_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[674]
+	mi := &file_papi_proto_msgTypes[679]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39633,7 +39973,7 @@ type CostumeSetRandomRequest_RandomCharacterCostume struct {
 
 func (x *CostumeSetRandomRequest_RandomCharacterCostume) Reset() {
 	*x = CostumeSetRandomRequest_RandomCharacterCostume{}
-	mi := &file_papi_proto_msgTypes[675]
+	mi := &file_papi_proto_msgTypes[680]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39645,7 +39985,7 @@ func (x *CostumeSetRandomRequest_RandomCharacterCostume) String() string {
 func (*CostumeSetRandomRequest_RandomCharacterCostume) ProtoMessage() {}
 
 func (x *CostumeSetRandomRequest_RandomCharacterCostume) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[675]
+	mi := &file_papi_proto_msgTypes[680]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39699,7 +40039,7 @@ type ExchangeItem_ConsumptionResource struct {
 
 func (x *ExchangeItem_ConsumptionResource) Reset() {
 	*x = ExchangeItem_ConsumptionResource{}
-	mi := &file_papi_proto_msgTypes[676]
+	mi := &file_papi_proto_msgTypes[681]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39711,7 +40051,7 @@ func (x *ExchangeItem_ConsumptionResource) String() string {
 func (*ExchangeItem_ConsumptionResource) ProtoMessage() {}
 
 func (x *ExchangeItem_ConsumptionResource) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[676]
+	mi := &file_papi_proto_msgTypes[681]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39752,7 +40092,7 @@ type FriendInfo_SupportCard struct {
 
 func (x *FriendInfo_SupportCard) Reset() {
 	*x = FriendInfo_SupportCard{}
-	mi := &file_papi_proto_msgTypes[677]
+	mi := &file_papi_proto_msgTypes[682]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39764,7 +40104,7 @@ func (x *FriendInfo_SupportCard) String() string {
 func (*FriendInfo_SupportCard) ProtoMessage() {}
 
 func (x *FriendInfo_SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[677]
+	mi := &file_papi_proto_msgTypes[682]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39812,7 +40152,7 @@ type GashaExpirePointResponse_GashaBanner struct {
 
 func (x *GashaExpirePointResponse_GashaBanner) Reset() {
 	*x = GashaExpirePointResponse_GashaBanner{}
-	mi := &file_papi_proto_msgTypes[678]
+	mi := &file_papi_proto_msgTypes[683]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39824,7 +40164,7 @@ func (x *GashaExpirePointResponse_GashaBanner) String() string {
 func (*GashaExpirePointResponse_GashaBanner) ProtoMessage() {}
 
 func (x *GashaExpirePointResponse_GashaBanner) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[678]
+	mi := &file_papi_proto_msgTypes[683]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39874,7 +40214,7 @@ type GashaExpirePointResponse_GashaPoint struct {
 
 func (x *GashaExpirePointResponse_GashaPoint) Reset() {
 	*x = GashaExpirePointResponse_GashaPoint{}
-	mi := &file_papi_proto_msgTypes[679]
+	mi := &file_papi_proto_msgTypes[684]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39886,7 +40226,7 @@ func (x *GashaExpirePointResponse_GashaPoint) String() string {
 func (*GashaExpirePointResponse_GashaPoint) ProtoMessage() {}
 
 func (x *GashaExpirePointResponse_GashaPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[679]
+	mi := &file_papi_proto_msgTypes[684]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39948,7 +40288,7 @@ type GashaGetPointExchangeResponse_ExchangeResource struct {
 
 func (x *GashaGetPointExchangeResponse_ExchangeResource) Reset() {
 	*x = GashaGetPointExchangeResponse_ExchangeResource{}
-	mi := &file_papi_proto_msgTypes[680]
+	mi := &file_papi_proto_msgTypes[685]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39960,7 +40300,7 @@ func (x *GashaGetPointExchangeResponse_ExchangeResource) String() string {
 func (*GashaGetPointExchangeResponse_ExchangeResource) ProtoMessage() {}
 
 func (x *GashaGetPointExchangeResponse_ExchangeResource) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[680]
+	mi := &file_papi_proto_msgTypes[685]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40012,7 +40352,7 @@ type GiftListHistoryResponse_UserGiftHistory struct {
 
 func (x *GiftListHistoryResponse_UserGiftHistory) Reset() {
 	*x = GiftListHistoryResponse_UserGiftHistory{}
-	mi := &file_papi_proto_msgTypes[681]
+	mi := &file_papi_proto_msgTypes[686]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40024,7 +40364,7 @@ func (x *GiftListHistoryResponse_UserGiftHistory) String() string {
 func (*GiftListHistoryResponse_UserGiftHistory) ProtoMessage() {}
 
 func (x *GiftListHistoryResponse_UserGiftHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[681]
+	mi := &file_papi_proto_msgTypes[686]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40105,7 +40445,7 @@ type GiftListResponse_UserGift struct {
 
 func (x *GiftListResponse_UserGift) Reset() {
 	*x = GiftListResponse_UserGift{}
-	mi := &file_papi_proto_msgTypes[682]
+	mi := &file_papi_proto_msgTypes[687]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40117,7 +40457,7 @@ func (x *GiftListResponse_UserGift) String() string {
 func (*GiftListResponse_UserGift) ProtoMessage() {}
 
 func (x *GiftListResponse_UserGift) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[682]
+	mi := &file_papi_proto_msgTypes[687]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40213,7 +40553,7 @@ type GuildTopResponse_HomeInfo struct {
 
 func (x *GuildTopResponse_HomeInfo) Reset() {
 	*x = GuildTopResponse_HomeInfo{}
-	mi := &file_papi_proto_msgTypes[683]
+	mi := &file_papi_proto_msgTypes[688]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40225,7 +40565,7 @@ func (x *GuildTopResponse_HomeInfo) String() string {
 func (*GuildTopResponse_HomeInfo) ProtoMessage() {}
 
 func (x *GuildTopResponse_HomeInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[683]
+	mi := &file_papi_proto_msgTypes[688]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40364,7 +40704,7 @@ type GuildTopResponse_HomeInfo_ReceivedDonationInfo struct {
 
 func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) Reset() {
 	*x = GuildTopResponse_HomeInfo_ReceivedDonationInfo{}
-	mi := &file_papi_proto_msgTypes[684]
+	mi := &file_papi_proto_msgTypes[689]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40376,7 +40716,7 @@ func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) String() string {
 func (*GuildTopResponse_HomeInfo_ReceivedDonationInfo) ProtoMessage() {}
 
 func (x *GuildTopResponse_HomeInfo_ReceivedDonationInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[684]
+	mi := &file_papi_proto_msgTypes[689]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40449,7 +40789,7 @@ type GvgRaidTopResponse_Stage struct {
 
 func (x *GvgRaidTopResponse_Stage) Reset() {
 	*x = GvgRaidTopResponse_Stage{}
-	mi := &file_papi_proto_msgTypes[685]
+	mi := &file_papi_proto_msgTypes[690]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40461,7 +40801,7 @@ func (x *GvgRaidTopResponse_Stage) String() string {
 func (*GvgRaidTopResponse_Stage) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[685]
+	mi := &file_papi_proto_msgTypes[690]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40684,7 +41024,7 @@ type GvgRaidTopResponse_StageClearResult struct {
 
 func (x *GvgRaidTopResponse_StageClearResult) Reset() {
 	*x = GvgRaidTopResponse_StageClearResult{}
-	mi := &file_papi_proto_msgTypes[686]
+	mi := &file_papi_proto_msgTypes[691]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40696,7 +41036,7 @@ func (x *GvgRaidTopResponse_StageClearResult) String() string {
 func (*GvgRaidTopResponse_StageClearResult) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[686]
+	mi := &file_papi_proto_msgTypes[691]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40743,7 +41083,7 @@ type GvgRaidTopResponse_StageClearReward struct {
 
 func (x *GvgRaidTopResponse_StageClearReward) Reset() {
 	*x = GvgRaidTopResponse_StageClearReward{}
-	mi := &file_papi_proto_msgTypes[687]
+	mi := &file_papi_proto_msgTypes[692]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40755,7 +41095,7 @@ func (x *GvgRaidTopResponse_StageClearReward) String() string {
 func (*GvgRaidTopResponse_StageClearReward) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[687]
+	mi := &file_papi_proto_msgTypes[692]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40796,7 +41136,7 @@ type GvgRaidTopResponse_StageClearReward_ClearReward struct {
 
 func (x *GvgRaidTopResponse_StageClearReward_ClearReward) Reset() {
 	*x = GvgRaidTopResponse_StageClearReward_ClearReward{}
-	mi := &file_papi_proto_msgTypes[688]
+	mi := &file_papi_proto_msgTypes[693]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40808,7 +41148,7 @@ func (x *GvgRaidTopResponse_StageClearReward_ClearReward) String() string {
 func (*GvgRaidTopResponse_StageClearReward_ClearReward) ProtoMessage() {}
 
 func (x *GvgRaidTopResponse_StageClearReward_ClearReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[688]
+	mi := &file_papi_proto_msgTypes[693]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40855,7 +41195,7 @@ type GvgRaidUserRankingResponse_StageMvp struct {
 
 func (x *GvgRaidUserRankingResponse_StageMvp) Reset() {
 	*x = GvgRaidUserRankingResponse_StageMvp{}
-	mi := &file_papi_proto_msgTypes[689]
+	mi := &file_papi_proto_msgTypes[694]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40867,7 +41207,7 @@ func (x *GvgRaidUserRankingResponse_StageMvp) String() string {
 func (*GvgRaidUserRankingResponse_StageMvp) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageMvp) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[689]
+	mi := &file_papi_proto_msgTypes[694]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40907,7 +41247,7 @@ type GvgRaidUserRankingResponse_StageRanking struct {
 
 func (x *GvgRaidUserRankingResponse_StageRanking) Reset() {
 	*x = GvgRaidUserRankingResponse_StageRanking{}
-	mi := &file_papi_proto_msgTypes[690]
+	mi := &file_papi_proto_msgTypes[695]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40919,7 +41259,7 @@ func (x *GvgRaidUserRankingResponse_StageRanking) String() string {
 func (*GvgRaidUserRankingResponse_StageRanking) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageRanking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[690]
+	mi := &file_papi_proto_msgTypes[695]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40959,7 +41299,7 @@ type GvgRaidUserRankingResponse_StageMvp_MvpUser struct {
 
 func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) Reset() {
 	*x = GvgRaidUserRankingResponse_StageMvp_MvpUser{}
-	mi := &file_papi_proto_msgTypes[691]
+	mi := &file_papi_proto_msgTypes[696]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40971,7 +41311,7 @@ func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) String() string {
 func (*GvgRaidUserRankingResponse_StageMvp_MvpUser) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageMvp_MvpUser) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[691]
+	mi := &file_papi_proto_msgTypes[696]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41011,7 +41351,7 @@ type GvgRaidUserRankingResponse_StageRanking_Rank struct {
 
 func (x *GvgRaidUserRankingResponse_StageRanking_Rank) Reset() {
 	*x = GvgRaidUserRankingResponse_StageRanking_Rank{}
-	mi := &file_papi_proto_msgTypes[692]
+	mi := &file_papi_proto_msgTypes[697]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41023,7 +41363,7 @@ func (x *GvgRaidUserRankingResponse_StageRanking_Rank) String() string {
 func (*GvgRaidUserRankingResponse_StageRanking_Rank) ProtoMessage() {}
 
 func (x *GvgRaidUserRankingResponse_StageRanking_Rank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[692]
+	mi := &file_papi_proto_msgTypes[697]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41065,7 +41405,7 @@ type HomeEnterResponse_FeatureMaintenance struct {
 
 func (x *HomeEnterResponse_FeatureMaintenance) Reset() {
 	*x = HomeEnterResponse_FeatureMaintenance{}
-	mi := &file_papi_proto_msgTypes[693]
+	mi := &file_papi_proto_msgTypes[698]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41077,7 +41417,7 @@ func (x *HomeEnterResponse_FeatureMaintenance) String() string {
 func (*HomeEnterResponse_FeatureMaintenance) ProtoMessage() {}
 
 func (x *HomeEnterResponse_FeatureMaintenance) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[693]
+	mi := &file_papi_proto_msgTypes[698]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41132,7 +41472,7 @@ type HomeLoginResponse_FriendResult struct {
 
 func (x *HomeLoginResponse_FriendResult) Reset() {
 	*x = HomeLoginResponse_FriendResult{}
-	mi := &file_papi_proto_msgTypes[694]
+	mi := &file_papi_proto_msgTypes[699]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41144,7 +41484,7 @@ func (x *HomeLoginResponse_FriendResult) String() string {
 func (*HomeLoginResponse_FriendResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_FriendResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[694]
+	mi := &file_papi_proto_msgTypes[699]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41191,7 +41531,7 @@ type HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult struct {
 
 func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) Reset() {
 	*x = HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult{}
-	mi := &file_papi_proto_msgTypes[695]
+	mi := &file_papi_proto_msgTypes[700]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41203,7 +41543,7 @@ func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) String() s
 func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[695]
+	mi := &file_papi_proto_msgTypes[700]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41243,7 +41583,7 @@ type HomeLoginResponse_ProducerRankingResult struct {
 
 func (x *HomeLoginResponse_ProducerRankingResult) Reset() {
 	*x = HomeLoginResponse_ProducerRankingResult{}
-	mi := &file_papi_proto_msgTypes[696]
+	mi := &file_papi_proto_msgTypes[701]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41255,7 +41595,7 @@ func (x *HomeLoginResponse_ProducerRankingResult) String() string {
 func (*HomeLoginResponse_ProducerRankingResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_ProducerRankingResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[696]
+	mi := &file_papi_proto_msgTypes[701]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41297,7 +41637,7 @@ type HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult
 
 func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) Reset() {
 	*x = HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult{}
-	mi := &file_papi_proto_msgTypes[697]
+	mi := &file_papi_proto_msgTypes[702]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41309,7 +41649,7 @@ func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterRe
 func (*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[697]
+	mi := &file_papi_proto_msgTypes[702]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41365,7 +41705,7 @@ type HomeLoginResponse_ProducerRankingResult_CharacterResult struct {
 
 func (x *HomeLoginResponse_ProducerRankingResult_CharacterResult) Reset() {
 	*x = HomeLoginResponse_ProducerRankingResult_CharacterResult{}
-	mi := &file_papi_proto_msgTypes[698]
+	mi := &file_papi_proto_msgTypes[703]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41377,7 +41717,7 @@ func (x *HomeLoginResponse_ProducerRankingResult_CharacterResult) String() strin
 func (*HomeLoginResponse_ProducerRankingResult_CharacterResult) ProtoMessage() {}
 
 func (x *HomeLoginResponse_ProducerRankingResult_CharacterResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[698]
+	mi := &file_papi_proto_msgTypes[703]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41432,7 +41772,7 @@ type HomeSetCharactersRequest_HomeCharacter struct {
 
 func (x *HomeSetCharactersRequest_HomeCharacter) Reset() {
 	*x = HomeSetCharactersRequest_HomeCharacter{}
-	mi := &file_papi_proto_msgTypes[699]
+	mi := &file_papi_proto_msgTypes[704]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41444,7 +41784,7 @@ func (x *HomeSetCharactersRequest_HomeCharacter) String() string {
 func (*HomeSetCharactersRequest_HomeCharacter) ProtoMessage() {}
 
 func (x *HomeSetCharactersRequest_HomeCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[699]
+	mi := &file_papi_proto_msgTypes[704]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41499,7 +41839,7 @@ type LoginBonusCheckResponse_Info struct {
 
 func (x *LoginBonusCheckResponse_Info) Reset() {
 	*x = LoginBonusCheckResponse_Info{}
-	mi := &file_papi_proto_msgTypes[700]
+	mi := &file_papi_proto_msgTypes[705]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41511,7 +41851,7 @@ func (x *LoginBonusCheckResponse_Info) String() string {
 func (*LoginBonusCheckResponse_Info) ProtoMessage() {}
 
 func (x *LoginBonusCheckResponse_Info) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[700]
+	mi := &file_papi_proto_msgTypes[705]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41611,7 +41951,7 @@ type LoginBonusCheckResponse_TotalInfo struct {
 
 func (x *LoginBonusCheckResponse_TotalInfo) Reset() {
 	*x = LoginBonusCheckResponse_TotalInfo{}
-	mi := &file_papi_proto_msgTypes[701]
+	mi := &file_papi_proto_msgTypes[706]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41623,7 +41963,7 @@ func (x *LoginBonusCheckResponse_TotalInfo) String() string {
 func (*LoginBonusCheckResponse_TotalInfo) ProtoMessage() {}
 
 func (x *LoginBonusCheckResponse_TotalInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[701]
+	mi := &file_papi_proto_msgTypes[706]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41694,7 +42034,7 @@ type MasterGetResponse_MasterTagPack struct {
 
 func (x *MasterGetResponse_MasterTagPack) Reset() {
 	*x = MasterGetResponse_MasterTagPack{}
-	mi := &file_papi_proto_msgTypes[702]
+	mi := &file_papi_proto_msgTypes[707]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41706,7 +42046,7 @@ func (x *MasterGetResponse_MasterTagPack) String() string {
 func (*MasterGetResponse_MasterTagPack) ProtoMessage() {}
 
 func (x *MasterGetResponse_MasterTagPack) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[702]
+	mi := &file_papi_proto_msgTypes[707]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41767,7 +42107,7 @@ type MasterGetResponse_MasterTag struct {
 
 func (x *MasterGetResponse_MasterTag) Reset() {
 	*x = MasterGetResponse_MasterTag{}
-	mi := &file_papi_proto_msgTypes[703]
+	mi := &file_papi_proto_msgTypes[708]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41779,7 +42119,7 @@ func (x *MasterGetResponse_MasterTag) String() string {
 func (*MasterGetResponse_MasterTag) ProtoMessage() {}
 
 func (x *MasterGetResponse_MasterTag) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[703]
+	mi := &file_papi_proto_msgTypes[708]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41815,13 +42155,14 @@ type MeishiListFollowResponse_Follow struct {
 	FollowTime    int64                  `protobuf:"varint,2,opt,name=followTime,proto3" json:"followTime,omitempty"`
 	LastLoginTime int64                  `protobuf:"varint,3,opt,name=lastLoginTime,proto3" json:"lastLoginTime,omitempty"`
 	UserName      string                 `protobuf:"bytes,4,opt,name=userName,proto3" json:"userName,omitempty"`
+	IsBlocked     bool                   `protobuf:"varint,5,opt,name=isBlocked,proto3" json:"isBlocked,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MeishiListFollowResponse_Follow) Reset() {
 	*x = MeishiListFollowResponse_Follow{}
-	mi := &file_papi_proto_msgTypes[704]
+	mi := &file_papi_proto_msgTypes[709]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41833,7 +42174,7 @@ func (x *MeishiListFollowResponse_Follow) String() string {
 func (*MeishiListFollowResponse_Follow) ProtoMessage() {}
 
 func (x *MeishiListFollowResponse_Follow) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[704]
+	mi := &file_papi_proto_msgTypes[709]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41877,6 +42218,13 @@ func (x *MeishiListFollowResponse_Follow) GetUserName() string {
 	return ""
 }
 
+func (x *MeishiListFollowResponse_Follow) GetIsBlocked() bool {
+	if x != nil {
+		return x.IsBlocked
+	}
+	return false
+}
+
 type MeishiListResponse_MeishiInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Number        int32                  `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
@@ -41888,7 +42236,7 @@ type MeishiListResponse_MeishiInfo struct {
 
 func (x *MeishiListResponse_MeishiInfo) Reset() {
 	*x = MeishiListResponse_MeishiInfo{}
-	mi := &file_papi_proto_msgTypes[705]
+	mi := &file_papi_proto_msgTypes[710]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41900,7 +42248,7 @@ func (x *MeishiListResponse_MeishiInfo) String() string {
 func (*MeishiListResponse_MeishiInfo) ProtoMessage() {}
 
 func (x *MeishiListResponse_MeishiInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[705]
+	mi := &file_papi_proto_msgTypes[710]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -41957,7 +42305,7 @@ type MeishiUpdateRequest_MeishiBase struct {
 
 func (x *MeishiUpdateRequest_MeishiBase) Reset() {
 	*x = MeishiUpdateRequest_MeishiBase{}
-	mi := &file_papi_proto_msgTypes[706]
+	mi := &file_papi_proto_msgTypes[711]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41969,7 +42317,7 @@ func (x *MeishiUpdateRequest_MeishiBase) String() string {
 func (*MeishiUpdateRequest_MeishiBase) ProtoMessage() {}
 
 func (x *MeishiUpdateRequest_MeishiBase) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[706]
+	mi := &file_papi_proto_msgTypes[711]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42103,7 +42451,7 @@ type MeishiUpdateRequest_Object struct {
 
 func (x *MeishiUpdateRequest_Object) Reset() {
 	*x = MeishiUpdateRequest_Object{}
-	mi := &file_papi_proto_msgTypes[707]
+	mi := &file_papi_proto_msgTypes[712]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42115,7 +42463,7 @@ func (x *MeishiUpdateRequest_Object) String() string {
 func (*MeishiUpdateRequest_Object) ProtoMessage() {}
 
 func (x *MeishiUpdateRequest_Object) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[707]
+	mi := &file_papi_proto_msgTypes[712]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42323,7 +42671,7 @@ type MissionReceiveRequest_Mission struct {
 
 func (x *MissionReceiveRequest_Mission) Reset() {
 	*x = MissionReceiveRequest_Mission{}
-	mi := &file_papi_proto_msgTypes[708]
+	mi := &file_papi_proto_msgTypes[713]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42335,7 +42683,7 @@ func (x *MissionReceiveRequest_Mission) String() string {
 func (*MissionReceiveRequest_Mission) ProtoMessage() {}
 
 func (x *MissionReceiveRequest_Mission) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[708]
+	mi := &file_papi_proto_msgTypes[713]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42375,7 +42723,7 @@ type MissionReceiveRequest_MissionPoint struct {
 
 func (x *MissionReceiveRequest_MissionPoint) Reset() {
 	*x = MissionReceiveRequest_MissionPoint{}
-	mi := &file_papi_proto_msgTypes[709]
+	mi := &file_papi_proto_msgTypes[714]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42387,7 +42735,7 @@ func (x *MissionReceiveRequest_MissionPoint) String() string {
 func (*MissionReceiveRequest_MissionPoint) ProtoMessage() {}
 
 func (x *MissionReceiveRequest_MissionPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[709]
+	mi := &file_papi_proto_msgTypes[714]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42429,7 +42777,7 @@ type MissionReceiveResponse_MasterAchievementProgress struct {
 
 func (x *MissionReceiveResponse_MasterAchievementProgress) Reset() {
 	*x = MissionReceiveResponse_MasterAchievementProgress{}
-	mi := &file_papi_proto_msgTypes[710]
+	mi := &file_papi_proto_msgTypes[715]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42441,7 +42789,7 @@ func (x *MissionReceiveResponse_MasterAchievementProgress) String() string {
 func (*MissionReceiveResponse_MasterAchievementProgress) ProtoMessage() {}
 
 func (x *MissionReceiveResponse_MasterAchievementProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[710]
+	mi := &file_papi_proto_msgTypes[715]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42497,7 +42845,7 @@ type MissionReceiveResponse_MasterAchievementProgressResult struct {
 
 func (x *MissionReceiveResponse_MasterAchievementProgressResult) Reset() {
 	*x = MissionReceiveResponse_MasterAchievementProgressResult{}
-	mi := &file_papi_proto_msgTypes[711]
+	mi := &file_papi_proto_msgTypes[716]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42509,7 +42857,7 @@ func (x *MissionReceiveResponse_MasterAchievementProgressResult) String() string
 func (*MissionReceiveResponse_MasterAchievementProgressResult) ProtoMessage() {}
 
 func (x *MissionReceiveResponse_MasterAchievementProgressResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[711]
+	mi := &file_papi_proto_msgTypes[716]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42564,7 +42912,7 @@ type PhotoCreateIdolRequest_CharacterSetting struct {
 
 func (x *PhotoCreateIdolRequest_CharacterSetting) Reset() {
 	*x = PhotoCreateIdolRequest_CharacterSetting{}
-	mi := &file_papi_proto_msgTypes[712]
+	mi := &file_papi_proto_msgTypes[717]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42576,7 +42924,7 @@ func (x *PhotoCreateIdolRequest_CharacterSetting) String() string {
 func (*PhotoCreateIdolRequest_CharacterSetting) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_CharacterSetting) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[712]
+	mi := &file_papi_proto_msgTypes[717]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42623,7 +42971,7 @@ type PhotoCreateIdolRequest_Photo struct {
 
 func (x *PhotoCreateIdolRequest_Photo) Reset() {
 	*x = PhotoCreateIdolRequest_Photo{}
-	mi := &file_papi_proto_msgTypes[713]
+	mi := &file_papi_proto_msgTypes[718]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42635,7 +42983,7 @@ func (x *PhotoCreateIdolRequest_Photo) String() string {
 func (*PhotoCreateIdolRequest_Photo) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_Photo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[713]
+	mi := &file_papi_proto_msgTypes[718]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42676,7 +43024,7 @@ type PhotoCreateIdolRequest_Photo_CharacterSetting struct {
 
 func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) Reset() {
 	*x = PhotoCreateIdolRequest_Photo_CharacterSetting{}
-	mi := &file_papi_proto_msgTypes[714]
+	mi := &file_papi_proto_msgTypes[719]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42688,7 +43036,7 @@ func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) String() string {
 func (*PhotoCreateIdolRequest_Photo_CharacterSetting) ProtoMessage() {}
 
 func (x *PhotoCreateIdolRequest_Photo_CharacterSetting) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[714]
+	mi := &file_papi_proto_msgTypes[719]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42736,7 +43084,7 @@ type PhotoCreateRequest_UnitCharacter struct {
 
 func (x *PhotoCreateRequest_UnitCharacter) Reset() {
 	*x = PhotoCreateRequest_UnitCharacter{}
-	mi := &file_papi_proto_msgTypes[715]
+	mi := &file_papi_proto_msgTypes[720]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42748,7 +43096,7 @@ func (x *PhotoCreateRequest_UnitCharacter) String() string {
 func (*PhotoCreateRequest_UnitCharacter) ProtoMessage() {}
 
 func (x *PhotoCreateRequest_UnitCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[715]
+	mi := &file_papi_proto_msgTypes[720]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42800,7 +43148,7 @@ type ProduceHighScoreRankingResponse_Rank struct {
 
 func (x *ProduceHighScoreRankingResponse_Rank) Reset() {
 	*x = ProduceHighScoreRankingResponse_Rank{}
-	mi := &file_papi_proto_msgTypes[716]
+	mi := &file_papi_proto_msgTypes[721]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42812,7 +43160,7 @@ func (x *ProduceHighScoreRankingResponse_Rank) String() string {
 func (*ProduceHighScoreRankingResponse_Rank) ProtoMessage() {}
 
 func (x *ProduceHighScoreRankingResponse_Rank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[716]
+	mi := &file_papi_proto_msgTypes[721]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42892,7 +43240,7 @@ type ProduceListRentalMemoryResponse_RentalMemory struct {
 
 func (x *ProduceListRentalMemoryResponse_RentalMemory) Reset() {
 	*x = ProduceListRentalMemoryResponse_RentalMemory{}
-	mi := &file_papi_proto_msgTypes[717]
+	mi := &file_papi_proto_msgTypes[722]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42904,7 +43252,7 @@ func (x *ProduceListRentalMemoryResponse_RentalMemory) String() string {
 func (*ProduceListRentalMemoryResponse_RentalMemory) ProtoMessage() {}
 
 func (x *ProduceListRentalMemoryResponse_RentalMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[717]
+	mi := &file_papi_proto_msgTypes[722]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -42984,7 +43332,7 @@ type ProduceListRentalSupportCardResponse_RentalSupportCard struct {
 
 func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) Reset() {
 	*x = ProduceListRentalSupportCardResponse_RentalSupportCard{}
-	mi := &file_papi_proto_msgTypes[718]
+	mi := &file_papi_proto_msgTypes[723]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42996,7 +43344,7 @@ func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) String() string
 func (*ProduceListRentalSupportCardResponse_RentalSupportCard) ProtoMessage() {}
 
 func (x *ProduceListRentalSupportCardResponse_RentalSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[718]
+	mi := &file_papi_proto_msgTypes[723]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43075,7 +43423,7 @@ type ProduceRankingTopResponse_Ranking struct {
 
 func (x *ProduceRankingTopResponse_Ranking) Reset() {
 	*x = ProduceRankingTopResponse_Ranking{}
-	mi := &file_papi_proto_msgTypes[719]
+	mi := &file_papi_proto_msgTypes[724]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43087,7 +43435,7 @@ func (x *ProduceRankingTopResponse_Ranking) String() string {
 func (*ProduceRankingTopResponse_Ranking) ProtoMessage() {}
 
 func (x *ProduceRankingTopResponse_Ranking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[719]
+	mi := &file_papi_proto_msgTypes[724]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43155,7 +43503,7 @@ type ProduceResultResponse_HighScoreReward struct {
 
 func (x *ProduceResultResponse_HighScoreReward) Reset() {
 	*x = ProduceResultResponse_HighScoreReward{}
-	mi := &file_papi_proto_msgTypes[720]
+	mi := &file_papi_proto_msgTypes[725]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43167,7 +43515,7 @@ func (x *ProduceResultResponse_HighScoreReward) String() string {
 func (*ProduceResultResponse_HighScoreReward) ProtoMessage() {}
 
 func (x *ProduceResultResponse_HighScoreReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[720]
+	mi := &file_papi_proto_msgTypes[725]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43217,7 +43565,7 @@ type ProduceResultResponse_HighScoreUpdateResult struct {
 
 func (x *ProduceResultResponse_HighScoreUpdateResult) Reset() {
 	*x = ProduceResultResponse_HighScoreUpdateResult{}
-	mi := &file_papi_proto_msgTypes[721]
+	mi := &file_papi_proto_msgTypes[726]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43229,7 +43577,7 @@ func (x *ProduceResultResponse_HighScoreUpdateResult) String() string {
 func (*ProduceResultResponse_HighScoreUpdateResult) ProtoMessage() {}
 
 func (x *ProduceResultResponse_HighScoreUpdateResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[721]
+	mi := &file_papi_proto_msgTypes[726]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43340,7 +43688,7 @@ type ProduceResultResponse_ResearchResult struct {
 
 func (x *ProduceResultResponse_ResearchResult) Reset() {
 	*x = ProduceResultResponse_ResearchResult{}
-	mi := &file_papi_proto_msgTypes[722]
+	mi := &file_papi_proto_msgTypes[727]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43352,7 +43700,7 @@ func (x *ProduceResultResponse_ResearchResult) String() string {
 func (*ProduceResultResponse_ResearchResult) ProtoMessage() {}
 
 func (x *ProduceResultResponse_ResearchResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[722]
+	mi := &file_papi_proto_msgTypes[727]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43389,6 +43737,90 @@ func (x *ProduceResultResponse_ResearchResult) GetProduceGradeRewardResults() []
 	return nil
 }
 
+type ProduceResultResponse_TourResult struct {
+	state                     protoimpl.MessageState  `protogen:"open.v1"`
+	ResourceType              penum.ResourceType      `protobuf:"varint,1,opt,name=resourceType,proto3,enum=penum.ResourceType" json:"resourceType,omitempty"`
+	ResourceId                string                  `protobuf:"bytes,2,opt,name=resourceId,proto3" json:"resourceId,omitempty"`
+	BaseExchangeCoinQuantity  int32                   `protobuf:"varint,3,opt,name=baseExchangeCoinQuantity,proto3" json:"baseExchangeCoinQuantity,omitempty"`
+	BonusExchangeCoinQuantity int32                   `protobuf:"varint,4,opt,name=bonusExchangeCoinQuantity,proto3" json:"bonusExchangeCoinQuantity,omitempty"`
+	ExchangeCoinBonusPermil   int32                   `protobuf:"varint,5,opt,name=exchangeCoinBonusPermil,proto3" json:"exchangeCoinBonusPermil,omitempty"`
+	RewardResults             []*pcommon.RewardResult `protobuf:"bytes,6,rep,name=rewardResults,proto3" json:"rewardResults,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *ProduceResultResponse_TourResult) Reset() {
+	*x = ProduceResultResponse_TourResult{}
+	mi := &file_papi_proto_msgTypes[728]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceResultResponse_TourResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceResultResponse_TourResult) ProtoMessage() {}
+
+func (x *ProduceResultResponse_TourResult) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[728]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceResultResponse_TourResult.ProtoReflect.Descriptor instead.
+func (*ProduceResultResponse_TourResult) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{360, 3}
+}
+
+func (x *ProduceResultResponse_TourResult) GetResourceType() penum.ResourceType {
+	if x != nil {
+		return x.ResourceType
+	}
+	return penum.ResourceType(0)
+}
+
+func (x *ProduceResultResponse_TourResult) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+func (x *ProduceResultResponse_TourResult) GetBaseExchangeCoinQuantity() int32 {
+	if x != nil {
+		return x.BaseExchangeCoinQuantity
+	}
+	return 0
+}
+
+func (x *ProduceResultResponse_TourResult) GetBonusExchangeCoinQuantity() int32 {
+	if x != nil {
+		return x.BonusExchangeCoinQuantity
+	}
+	return 0
+}
+
+func (x *ProduceResultResponse_TourResult) GetExchangeCoinBonusPermil() int32 {
+	if x != nil {
+		return x.ExchangeCoinBonusPermil
+	}
+	return 0
+}
+
+func (x *ProduceResultResponse_TourResult) GetRewardResults() []*pcommon.RewardResult {
+	if x != nil {
+		return x.RewardResults
+	}
+	return nil
+}
+
 type ProduceStartRequest_Memory struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	UserMemoryId       string                 `protobuf:"bytes,1,opt,name=userMemoryId,proto3" json:"userMemoryId,omitempty"`
@@ -43399,7 +43831,7 @@ type ProduceStartRequest_Memory struct {
 
 func (x *ProduceStartRequest_Memory) Reset() {
 	*x = ProduceStartRequest_Memory{}
-	mi := &file_papi_proto_msgTypes[723]
+	mi := &file_papi_proto_msgTypes[729]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43411,7 +43843,7 @@ func (x *ProduceStartRequest_Memory) String() string {
 func (*ProduceStartRequest_Memory) ProtoMessage() {}
 
 func (x *ProduceStartRequest_Memory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[723]
+	mi := &file_papi_proto_msgTypes[729]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43451,7 +43883,7 @@ type ProduceStartRequest_SupportCard struct {
 
 func (x *ProduceStartRequest_SupportCard) Reset() {
 	*x = ProduceStartRequest_SupportCard{}
-	mi := &file_papi_proto_msgTypes[724]
+	mi := &file_papi_proto_msgTypes[730]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43463,7 +43895,7 @@ func (x *ProduceStartRequest_SupportCard) String() string {
 func (*ProduceStartRequest_SupportCard) ProtoMessage() {}
 
 func (x *ProduceStartRequest_SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[724]
+	mi := &file_papi_proto_msgTypes[730]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43508,7 +43940,7 @@ type ProduceTopResponse_ProduceHighScore struct {
 
 func (x *ProduceTopResponse_ProduceHighScore) Reset() {
 	*x = ProduceTopResponse_ProduceHighScore{}
-	mi := &file_papi_proto_msgTypes[725]
+	mi := &file_papi_proto_msgTypes[731]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43520,7 +43952,7 @@ func (x *ProduceTopResponse_ProduceHighScore) String() string {
 func (*ProduceTopResponse_ProduceHighScore) ProtoMessage() {}
 
 func (x *ProduceTopResponse_ProduceHighScore) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[725]
+	mi := &file_papi_proto_msgTypes[731]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43600,7 +44032,7 @@ type ProduceTopResponse_Research struct {
 
 func (x *ProduceTopResponse_Research) Reset() {
 	*x = ProduceTopResponse_Research{}
-	mi := &file_papi_proto_msgTypes[726]
+	mi := &file_papi_proto_msgTypes[732]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43612,7 +44044,7 @@ func (x *ProduceTopResponse_Research) String() string {
 func (*ProduceTopResponse_Research) ProtoMessage() {}
 
 func (x *ProduceTopResponse_Research) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[726]
+	mi := &file_papi_proto_msgTypes[732]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43677,6 +44109,66 @@ func (x *ProduceTopResponse_Research) GetEndTime() int64 {
 	return 0
 }
 
+type ProduceTopResponse_Tour struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	ExchangeCoinItemId    string                 `protobuf:"bytes,1,opt,name=exchangeCoinItemId,proto3" json:"exchangeCoinItemId,omitempty"`
+	EventBonus            *pcommon.EventBonus    `protobuf:"bytes,2,opt,name=eventBonus,proto3" json:"eventBonus,omitempty"`
+	ProduceTopLogoAssetId string                 `protobuf:"bytes,3,opt,name=produceTopLogoAssetId,proto3" json:"produceTopLogoAssetId,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *ProduceTopResponse_Tour) Reset() {
+	*x = ProduceTopResponse_Tour{}
+	mi := &file_papi_proto_msgTypes[733]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceTopResponse_Tour) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceTopResponse_Tour) ProtoMessage() {}
+
+func (x *ProduceTopResponse_Tour) ProtoReflect() protoreflect.Message {
+	mi := &file_papi_proto_msgTypes[733]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceTopResponse_Tour.ProtoReflect.Descriptor instead.
+func (*ProduceTopResponse_Tour) Descriptor() ([]byte, []int) {
+	return file_papi_proto_rawDescGZIP(), []int{424, 2}
+}
+
+func (x *ProduceTopResponse_Tour) GetExchangeCoinItemId() string {
+	if x != nil {
+		return x.ExchangeCoinItemId
+	}
+	return ""
+}
+
+func (x *ProduceTopResponse_Tour) GetEventBonus() *pcommon.EventBonus {
+	if x != nil {
+		return x.EventBonus
+	}
+	return nil
+}
+
+func (x *ProduceTopResponse_Tour) GetProduceTopLogoAssetId() string {
+	if x != nil {
+		return x.ProduceTopLogoAssetId
+	}
+	return ""
+}
+
 type ProfileGetResponse_ProduceRecord struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProduceType   penum.ProduceType      `protobuf:"varint,1,opt,name=produceType,proto3,enum=penum.ProduceType" json:"produceType,omitempty"`
@@ -43688,7 +44180,7 @@ type ProfileGetResponse_ProduceRecord struct {
 
 func (x *ProfileGetResponse_ProduceRecord) Reset() {
 	*x = ProfileGetResponse_ProduceRecord{}
-	mi := &file_papi_proto_msgTypes[727]
+	mi := &file_papi_proto_msgTypes[734]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43700,7 +44192,7 @@ func (x *ProfileGetResponse_ProduceRecord) String() string {
 func (*ProfileGetResponse_ProduceRecord) ProtoMessage() {}
 
 func (x *ProfileGetResponse_ProduceRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[727]
+	mi := &file_papi_proto_msgTypes[734]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43753,7 +44245,7 @@ type PvpRateListHistoryResponse_PvpRateHistory struct {
 
 func (x *PvpRateListHistoryResponse_PvpRateHistory) Reset() {
 	*x = PvpRateListHistoryResponse_PvpRateHistory{}
-	mi := &file_papi_proto_msgTypes[728]
+	mi := &file_papi_proto_msgTypes[735]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43765,7 +44257,7 @@ func (x *PvpRateListHistoryResponse_PvpRateHistory) String() string {
 func (*PvpRateListHistoryResponse_PvpRateHistory) ProtoMessage() {}
 
 func (x *PvpRateListHistoryResponse_PvpRateHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[728]
+	mi := &file_papi_proto_msgTypes[735]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43850,7 +44342,7 @@ type PvpRateUnitStageFormation_Slot struct {
 
 func (x *PvpRateUnitStageFormation_Slot) Reset() {
 	*x = PvpRateUnitStageFormation_Slot{}
-	mi := &file_papi_proto_msgTypes[729]
+	mi := &file_papi_proto_msgTypes[736]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43862,7 +44354,7 @@ func (x *PvpRateUnitStageFormation_Slot) String() string {
 func (*PvpRateUnitStageFormation_Slot) ProtoMessage() {}
 
 func (x *PvpRateUnitStageFormation_Slot) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[729]
+	mi := &file_papi_proto_msgTypes[736]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -43927,7 +44419,7 @@ type ResearchRankingResponse_Rank struct {
 
 func (x *ResearchRankingResponse_Rank) Reset() {
 	*x = ResearchRankingResponse_Rank{}
-	mi := &file_papi_proto_msgTypes[730]
+	mi := &file_papi_proto_msgTypes[737]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43939,7 +44431,7 @@ func (x *ResearchRankingResponse_Rank) String() string {
 func (*ResearchRankingResponse_Rank) ProtoMessage() {}
 
 func (x *ResearchRankingResponse_Rank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[730]
+	mi := &file_papi_proto_msgTypes[737]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44008,7 +44500,7 @@ type SeminarEndExamRequest_Turn struct {
 
 func (x *SeminarEndExamRequest_Turn) Reset() {
 	*x = SeminarEndExamRequest_Turn{}
-	mi := &file_papi_proto_msgTypes[731]
+	mi := &file_papi_proto_msgTypes[738]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44020,7 +44512,7 @@ func (x *SeminarEndExamRequest_Turn) String() string {
 func (*SeminarEndExamRequest_Turn) ProtoMessage() {}
 
 func (x *SeminarEndExamRequest_Turn) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[731]
+	mi := &file_papi_proto_msgTypes[738]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44068,7 +44560,7 @@ type SeminarGetExamResponse_TurnNavigationStep struct {
 
 func (x *SeminarGetExamResponse_TurnNavigationStep) Reset() {
 	*x = SeminarGetExamResponse_TurnNavigationStep{}
-	mi := &file_papi_proto_msgTypes[732]
+	mi := &file_papi_proto_msgTypes[739]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44080,7 +44572,7 @@ func (x *SeminarGetExamResponse_TurnNavigationStep) String() string {
 func (*SeminarGetExamResponse_TurnNavigationStep) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_TurnNavigationStep) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[732]
+	mi := &file_papi_proto_msgTypes[739]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44131,7 +44623,7 @@ type SeminarGetExamResponse_FailureNavigation struct {
 
 func (x *SeminarGetExamResponse_FailureNavigation) Reset() {
 	*x = SeminarGetExamResponse_FailureNavigation{}
-	mi := &file_papi_proto_msgTypes[733]
+	mi := &file_papi_proto_msgTypes[740]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44143,7 +44635,7 @@ func (x *SeminarGetExamResponse_FailureNavigation) String() string {
 func (*SeminarGetExamResponse_FailureNavigation) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_FailureNavigation) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[733]
+	mi := &file_papi_proto_msgTypes[740]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44214,7 +44706,7 @@ type SeminarGetExamResponse_TurnNavigation struct {
 
 func (x *SeminarGetExamResponse_TurnNavigation) Reset() {
 	*x = SeminarGetExamResponse_TurnNavigation{}
-	mi := &file_papi_proto_msgTypes[734]
+	mi := &file_papi_proto_msgTypes[741]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44226,7 +44718,7 @@ func (x *SeminarGetExamResponse_TurnNavigation) String() string {
 func (*SeminarGetExamResponse_TurnNavigation) ProtoMessage() {}
 
 func (x *SeminarGetExamResponse_TurnNavigation) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[734]
+	mi := &file_papi_proto_msgTypes[741]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44294,7 +44786,7 @@ type SeminarListExamResponse_Exam struct {
 
 func (x *SeminarListExamResponse_Exam) Reset() {
 	*x = SeminarListExamResponse_Exam{}
-	mi := &file_papi_proto_msgTypes[735]
+	mi := &file_papi_proto_msgTypes[742]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44306,7 +44798,7 @@ func (x *SeminarListExamResponse_Exam) String() string {
 func (*SeminarListExamResponse_Exam) ProtoMessage() {}
 
 func (x *SeminarListExamResponse_Exam) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[735]
+	mi := &file_papi_proto_msgTypes[742]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44399,7 +44891,7 @@ type SeminarListExamResponse_ExamGroup struct {
 
 func (x *SeminarListExamResponse_ExamGroup) Reset() {
 	*x = SeminarListExamResponse_ExamGroup{}
-	mi := &file_papi_proto_msgTypes[736]
+	mi := &file_papi_proto_msgTypes[743]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44411,7 +44903,7 @@ func (x *SeminarListExamResponse_ExamGroup) String() string {
 func (*SeminarListExamResponse_ExamGroup) ProtoMessage() {}
 
 func (x *SeminarListExamResponse_ExamGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[736]
+	mi := &file_papi_proto_msgTypes[743]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44479,7 +44971,7 @@ type ShopGetPurchasePlatformTransactionResponse_PlatformTransaction struct {
 
 func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) Reset() {
 	*x = ShopGetPurchasePlatformTransactionResponse_PlatformTransaction{}
-	mi := &file_papi_proto_msgTypes[737]
+	mi := &file_papi_proto_msgTypes[744]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44491,7 +44983,7 @@ func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) String(
 func (*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) ProtoMessage() {}
 
 func (x *ShopGetPurchasePlatformTransactionResponse_PlatformTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[737]
+	mi := &file_papi_proto_msgTypes[744]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44533,7 +45025,7 @@ type ShopTopResponse_Shop struct {
 
 func (x *ShopTopResponse_Shop) Reset() {
 	*x = ShopTopResponse_Shop{}
-	mi := &file_papi_proto_msgTypes[738]
+	mi := &file_papi_proto_msgTypes[745]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44545,7 +45037,7 @@ func (x *ShopTopResponse_Shop) String() string {
 func (*ShopTopResponse_Shop) ProtoMessage() {}
 
 func (x *ShopTopResponse_Shop) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[738]
+	mi := &file_papi_proto_msgTypes[745]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44599,7 +45091,7 @@ type StartupConfirmRequest_Notification struct {
 
 func (x *StartupConfirmRequest_Notification) Reset() {
 	*x = StartupConfirmRequest_Notification{}
-	mi := &file_papi_proto_msgTypes[739]
+	mi := &file_papi_proto_msgTypes[746]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44611,7 +45103,7 @@ func (x *StartupConfirmRequest_Notification) String() string {
 func (*StartupConfirmRequest_Notification) ProtoMessage() {}
 
 func (x *StartupConfirmRequest_Notification) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[739]
+	mi := &file_papi_proto_msgTypes[746]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44651,7 +45143,7 @@ type StoryEventReceiveGuildMissionResponse_ReceiveResult struct {
 
 func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) Reset() {
 	*x = StoryEventReceiveGuildMissionResponse_ReceiveResult{}
-	mi := &file_papi_proto_msgTypes[740]
+	mi := &file_papi_proto_msgTypes[747]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44663,7 +45155,7 @@ func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) String() string {
 func (*StoryEventReceiveGuildMissionResponse_ReceiveResult) ProtoMessage() {}
 
 func (x *StoryEventReceiveGuildMissionResponse_ReceiveResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[740]
+	mi := &file_papi_proto_msgTypes[747]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44711,7 +45203,7 @@ type StoryEventTopResponse_Motion struct {
 
 func (x *StoryEventTopResponse_Motion) Reset() {
 	*x = StoryEventTopResponse_Motion{}
-	mi := &file_papi_proto_msgTypes[741]
+	mi := &file_papi_proto_msgTypes[748]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44723,7 +45215,7 @@ func (x *StoryEventTopResponse_Motion) String() string {
 func (*StoryEventTopResponse_Motion) ProtoMessage() {}
 
 func (x *StoryEventTopResponse_Motion) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[741]
+	mi := &file_papi_proto_msgTypes[748]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44819,7 +45311,7 @@ type SupportCardExchangeRequest_Parameter struct {
 
 func (x *SupportCardExchangeRequest_Parameter) Reset() {
 	*x = SupportCardExchangeRequest_Parameter{}
-	mi := &file_papi_proto_msgTypes[742]
+	mi := &file_papi_proto_msgTypes[749]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44831,7 +45323,7 @@ func (x *SupportCardExchangeRequest_Parameter) String() string {
 func (*SupportCardExchangeRequest_Parameter) ProtoMessage() {}
 
 func (x *SupportCardExchangeRequest_Parameter) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[742]
+	mi := &file_papi_proto_msgTypes[749]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44871,7 +45363,7 @@ type SupportCardListDeckRankingResponse_SupportCardRank struct {
 
 func (x *SupportCardListDeckRankingResponse_SupportCardRank) Reset() {
 	*x = SupportCardListDeckRankingResponse_SupportCardRank{}
-	mi := &file_papi_proto_msgTypes[743]
+	mi := &file_papi_proto_msgTypes[750]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44883,7 +45375,7 @@ func (x *SupportCardListDeckRankingResponse_SupportCardRank) String() string {
 func (*SupportCardListDeckRankingResponse_SupportCardRank) ProtoMessage() {}
 
 func (x *SupportCardListDeckRankingResponse_SupportCardRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[743]
+	mi := &file_papi_proto_msgTypes[750]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44923,7 +45415,7 @@ type SupportCardListDeckRankingResponse_Ranking struct {
 
 func (x *SupportCardListDeckRankingResponse_Ranking) Reset() {
 	*x = SupportCardListDeckRankingResponse_Ranking{}
-	mi := &file_papi_proto_msgTypes[744]
+	mi := &file_papi_proto_msgTypes[751]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44935,7 +45427,7 @@ func (x *SupportCardListDeckRankingResponse_Ranking) String() string {
 func (*SupportCardListDeckRankingResponse_Ranking) ProtoMessage() {}
 
 func (x *SupportCardListDeckRankingResponse_Ranking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[744]
+	mi := &file_papi_proto_msgTypes[751]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -44981,7 +45473,7 @@ type SystemCheckResponse_MaintenanceInfo struct {
 
 func (x *SystemCheckResponse_MaintenanceInfo) Reset() {
 	*x = SystemCheckResponse_MaintenanceInfo{}
-	mi := &file_papi_proto_msgTypes[745]
+	mi := &file_papi_proto_msgTypes[752]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44993,7 +45485,7 @@ func (x *SystemCheckResponse_MaintenanceInfo) String() string {
 func (*SystemCheckResponse_MaintenanceInfo) ProtoMessage() {}
 
 func (x *SystemCheckResponse_MaintenanceInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[745]
+	mi := &file_papi_proto_msgTypes[752]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45077,7 +45569,7 @@ type SystemCheckResponse_ReviewInfo struct {
 
 func (x *SystemCheckResponse_ReviewInfo) Reset() {
 	*x = SystemCheckResponse_ReviewInfo{}
-	mi := &file_papi_proto_msgTypes[746]
+	mi := &file_papi_proto_msgTypes[753]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45089,7 +45581,7 @@ func (x *SystemCheckResponse_ReviewInfo) String() string {
 func (*SystemCheckResponse_ReviewInfo) ProtoMessage() {}
 
 func (x *SystemCheckResponse_ReviewInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[746]
+	mi := &file_papi_proto_msgTypes[753]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45148,7 +45640,7 @@ type TourGetProgressResponse_ExamEnd struct {
 
 func (x *TourGetProgressResponse_ExamEnd) Reset() {
 	*x = TourGetProgressResponse_ExamEnd{}
-	mi := &file_papi_proto_msgTypes[747]
+	mi := &file_papi_proto_msgTypes[754]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45160,7 +45652,7 @@ func (x *TourGetProgressResponse_ExamEnd) String() string {
 func (*TourGetProgressResponse_ExamEnd) ProtoMessage() {}
 
 func (x *TourGetProgressResponse_ExamEnd) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[747]
+	mi := &file_papi_proto_msgTypes[754]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45236,7 +45728,7 @@ type TourGetProgressResponse_Progress struct {
 
 func (x *TourGetProgressResponse_Progress) Reset() {
 	*x = TourGetProgressResponse_Progress{}
-	mi := &file_papi_proto_msgTypes[748]
+	mi := &file_papi_proto_msgTypes[755]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45248,7 +45740,7 @@ func (x *TourGetProgressResponse_Progress) String() string {
 func (*TourGetProgressResponse_Progress) ProtoMessage() {}
 
 func (x *TourGetProgressResponse_Progress) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[748]
+	mi := &file_papi_proto_msgTypes[755]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45295,7 +45787,7 @@ type TourResultResponse_TotalPointRewardResult struct {
 
 func (x *TourResultResponse_TotalPointRewardResult) Reset() {
 	*x = TourResultResponse_TotalPointRewardResult{}
-	mi := &file_papi_proto_msgTypes[749]
+	mi := &file_papi_proto_msgTypes[756]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45307,7 +45799,7 @@ func (x *TourResultResponse_TotalPointRewardResult) String() string {
 func (*TourResultResponse_TotalPointRewardResult) ProtoMessage() {}
 
 func (x *TourResultResponse_TotalPointRewardResult) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[749]
+	mi := &file_papi_proto_msgTypes[756]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45349,7 +45841,7 @@ type TourStageRankingResponse_UserRank struct {
 
 func (x *TourStageRankingResponse_UserRank) Reset() {
 	*x = TourStageRankingResponse_UserRank{}
-	mi := &file_papi_proto_msgTypes[750]
+	mi := &file_papi_proto_msgTypes[757]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45361,7 +45853,7 @@ func (x *TourStageRankingResponse_UserRank) String() string {
 func (*TourStageRankingResponse_UserRank) ProtoMessage() {}
 
 func (x *TourStageRankingResponse_UserRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[750]
+	mi := &file_papi_proto_msgTypes[757]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45415,7 +45907,7 @@ type TourStageRankingResponse_SelfStageRank struct {
 
 func (x *TourStageRankingResponse_SelfStageRank) Reset() {
 	*x = TourStageRankingResponse_SelfStageRank{}
-	mi := &file_papi_proto_msgTypes[751]
+	mi := &file_papi_proto_msgTypes[758]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45427,7 +45919,7 @@ func (x *TourStageRankingResponse_SelfStageRank) String() string {
 func (*TourStageRankingResponse_SelfStageRank) ProtoMessage() {}
 
 func (x *TourStageRankingResponse_SelfStageRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[751]
+	mi := &file_papi_proto_msgTypes[758]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45467,7 +45959,7 @@ type TourStageRankingResponse_StageRanking struct {
 
 func (x *TourStageRankingResponse_StageRanking) Reset() {
 	*x = TourStageRankingResponse_StageRanking{}
-	mi := &file_papi_proto_msgTypes[752]
+	mi := &file_papi_proto_msgTypes[759]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45479,7 +45971,7 @@ func (x *TourStageRankingResponse_StageRanking) String() string {
 func (*TourStageRankingResponse_StageRanking) ProtoMessage() {}
 
 func (x *TourStageRankingResponse_StageRanking) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[752]
+	mi := &file_papi_proto_msgTypes[759]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45535,13 +46027,15 @@ type TourTopResponse_Stage struct {
 	IconSizeType                    penum.TourStageIconSizeType               `protobuf:"varint,22,opt,name=iconSizeType,proto3,enum=penum.TourStageIconSizeType" json:"iconSizeType,omitempty"`
 	SceneLayoutHeightCorrection     int64                                     `protobuf:"varint,25,opt,name=sceneLayoutHeightCorrection,proto3" json:"sceneLayoutHeightCorrection,omitempty"`
 	NameLogoAssetId                 string                                    `protobuf:"bytes,26,opt,name=nameLogoAssetId,proto3" json:"nameLogoAssetId,omitempty"`
+	EmbedProduceCardId              string                                    `protobuf:"bytes,27,opt,name=embedProduceCardId,proto3" json:"embedProduceCardId,omitempty"`
+	NeedProduceCardCount            int32                                     `protobuf:"varint,28,opt,name=needProduceCardCount,proto3" json:"needProduceCardCount,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *TourTopResponse_Stage) Reset() {
 	*x = TourTopResponse_Stage{}
-	mi := &file_papi_proto_msgTypes[753]
+	mi := &file_papi_proto_msgTypes[760]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45553,7 +46047,7 @@ func (x *TourTopResponse_Stage) String() string {
 func (*TourTopResponse_Stage) ProtoMessage() {}
 
 func (x *TourTopResponse_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[753]
+	mi := &file_papi_proto_msgTypes[760]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45737,6 +46231,20 @@ func (x *TourTopResponse_Stage) GetNameLogoAssetId() string {
 	return ""
 }
 
+func (x *TourTopResponse_Stage) GetEmbedProduceCardId() string {
+	if x != nil {
+		return x.EmbedProduceCardId
+	}
+	return ""
+}
+
+func (x *TourTopResponse_Stage) GetNeedProduceCardCount() int32 {
+	if x != nil {
+		return x.NeedProduceCardCount
+	}
+	return 0
+}
+
 type TourTopResponse_Stage_StageLevelReward struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Level          int32                  `protobuf:"varint,1,opt,name=level,proto3" json:"level,omitempty"`
@@ -45748,7 +46256,7 @@ type TourTopResponse_Stage_StageLevelReward struct {
 
 func (x *TourTopResponse_Stage_StageLevelReward) Reset() {
 	*x = TourTopResponse_Stage_StageLevelReward{}
-	mi := &file_papi_proto_msgTypes[754]
+	mi := &file_papi_proto_msgTypes[761]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45760,7 +46268,7 @@ func (x *TourTopResponse_Stage_StageLevelReward) String() string {
 func (*TourTopResponse_Stage_StageLevelReward) ProtoMessage() {}
 
 func (x *TourTopResponse_Stage_StageLevelReward) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[754]
+	mi := &file_papi_proto_msgTypes[761]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45812,7 +46320,7 @@ type TowerGetLayerResponse_Exam struct {
 
 func (x *TowerGetLayerResponse_Exam) Reset() {
 	*x = TowerGetLayerResponse_Exam{}
-	mi := &file_papi_proto_msgTypes[755]
+	mi := &file_papi_proto_msgTypes[762]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45824,7 +46332,7 @@ func (x *TowerGetLayerResponse_Exam) String() string {
 func (*TowerGetLayerResponse_Exam) ProtoMessage() {}
 
 func (x *TowerGetLayerResponse_Exam) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[755]
+	mi := &file_papi_proto_msgTypes[762]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45901,7 +46409,7 @@ type TowerListLayersResponse_TowerLayerRank struct {
 
 func (x *TowerListLayersResponse_TowerLayerRank) Reset() {
 	*x = TowerListLayersResponse_TowerLayerRank{}
-	mi := &file_papi_proto_msgTypes[756]
+	mi := &file_papi_proto_msgTypes[763]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45913,7 +46421,7 @@ func (x *TowerListLayersResponse_TowerLayerRank) String() string {
 func (*TowerListLayersResponse_TowerLayerRank) ProtoMessage() {}
 
 func (x *TowerListLayersResponse_TowerLayerRank) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[756]
+	mi := &file_papi_proto_msgTypes[763]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -45970,7 +46478,7 @@ type TowerListLayersResponse_TowerLayer struct {
 
 func (x *TowerListLayersResponse_TowerLayer) Reset() {
 	*x = TowerListLayersResponse_TowerLayer{}
-	mi := &file_papi_proto_msgTypes[757]
+	mi := &file_papi_proto_msgTypes[764]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45982,7 +46490,7 @@ func (x *TowerListLayersResponse_TowerLayer) String() string {
 func (*TowerListLayersResponse_TowerLayer) ProtoMessage() {}
 
 func (x *TowerListLayersResponse_TowerLayer) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[757]
+	mi := &file_papi_proto_msgTypes[764]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -46044,7 +46552,7 @@ type TowerTopResponse_Tower struct {
 
 func (x *TowerTopResponse_Tower) Reset() {
 	*x = TowerTopResponse_Tower{}
-	mi := &file_papi_proto_msgTypes[758]
+	mi := &file_papi_proto_msgTypes[765]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46056,7 +46564,7 @@ func (x *TowerTopResponse_Tower) String() string {
 func (*TowerTopResponse_Tower) ProtoMessage() {}
 
 func (x *TowerTopResponse_Tower) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[758]
+	mi := &file_papi_proto_msgTypes[765]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -46103,7 +46611,7 @@ type UserListMessageResponse_PersonalMessage struct {
 
 func (x *UserListMessageResponse_PersonalMessage) Reset() {
 	*x = UserListMessageResponse_PersonalMessage{}
-	mi := &file_papi_proto_msgTypes[759]
+	mi := &file_papi_proto_msgTypes[766]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46115,7 +46623,7 @@ func (x *UserListMessageResponse_PersonalMessage) String() string {
 func (*UserListMessageResponse_PersonalMessage) ProtoMessage() {}
 
 func (x *UserListMessageResponse_PersonalMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_papi_proto_msgTypes[759]
+	mi := &file_papi_proto_msgTypes[766]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -46128,7 +46636,7 @@ func (x *UserListMessageResponse_PersonalMessage) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UserListMessageResponse_PersonalMessage.ProtoReflect.Descriptor instead.
 func (*UserListMessageResponse_PersonalMessage) Descriptor() ([]byte, []int) {
-	return file_papi_proto_rawDescGZIP(), []int{652, 0}
+	return file_papi_proto_rawDescGZIP(), []int{657, 0}
 }
 
 func (x *UserListMessageResponse_PersonalMessage) GetUserPersonalMessageId() string {
@@ -46615,14 +47123,16 @@ const file_papi_proto_rawDesc = "" +
 	"\bstepType\x18\x01 \x01(\x0e2\x1e.penum.GashaContinuousStepTypeR\bstepType\x12=\n" +
 	"\vdrawResults\x18\x02 \x03(\v2\x1b.client.api.GashaDrawResultR\vdrawResults\x126\n" +
 	"\vgashaButton\x18\x03 \x01(\v2\x14.pcommon.GashaButtonR\vgashaButton\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\x9f\x02\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xe3\x02\n" +
 	"\x10GashaDrawRequest\x12\x18\n" +
 	"\agashaId\x18\x01 \x01(\tR\agashaId\x12$\n" +
 	"\rgashaButtonId\x18\x02 \x01(\tR\rgashaButtonId\x12\x1c\n" +
 	"\tdrawCount\x18\x03 \x01(\x05R\tdrawCount\x12E\n" +
 	"\x13consumeResourceType\x18\x04 \x01(\x0e2\x13.penum.ResourceTypeR\x13consumeResourceType\x12,\n" +
 	"\x11consumeResourceId\x18\x05 \x01(\tR\x11consumeResourceId\x128\n" +
-	"\x17consumeResourceQuantity\x18\x06 \x01(\x05R\x17consumeResourceQuantity\"\xb3\x02\n" +
+	"\x17consumeResourceQuantity\x18\x06 \x01(\x05R\x17consumeResourceQuantity\x12 \n" +
+	"\vfreeBalance\x182 \x01(\x05R\vfreeBalance\x12 \n" +
+	"\vpaidBalance\x183 \x01(\x05R\vpaidBalance\"\xb3\x02\n" +
 	"\x11GashaDrawResponse\x12=\n" +
 	"\vdrawResults\x18\x01 \x03(\v2\x1b.client.api.GashaDrawResultR\vdrawResults\x126\n" +
 	"\vgashaButton\x18\x02 \x01(\v2\x14.pcommon.GashaButtonR\vgashaButton\x123\n" +
@@ -46635,13 +47145,15 @@ const file_papi_proto_rawDesc = "" +
 	"\x06result\x18\x01 \x01(\v2\x15.pcommon.RewardResultR\x06result\x12=\n" +
 	"\x0eprovidedResult\x18\x02 \x01(\v2\x15.pcommon.RewardResultR\x0eprovidedResult\x12M\n" +
 	"\x16cardBonusRewardResults\x18\x03 \x03(\v2\x15.pcommon.RewardResultR\x16cardBonusRewardResults\x12\x1a\n" +
-	"\bisPickup\x18\x04 \x01(\bR\bisPickup\"\x8d\x02\n" +
+	"\bisPickup\x18\x04 \x01(\bR\bisPickup\"\xd1\x02\n" +
 	"\x1cGashaDrawSelectPickupRequest\x12\x18\n" +
 	"\agashaId\x18\x01 \x01(\tR\agashaId\x12$\n" +
 	"\rgashaButtonId\x18\x02 \x01(\tR\rgashaButtonId\x12E\n" +
 	"\x13consumeResourceType\x18\x03 \x01(\x0e2\x13.penum.ResourceTypeR\x13consumeResourceType\x12,\n" +
 	"\x11consumeResourceId\x18\x04 \x01(\tR\x11consumeResourceId\x128\n" +
-	"\x17consumeResourceQuantity\x18\x05 \x01(\x05R\x17consumeResourceQuantity\"\xbf\x02\n" +
+	"\x17consumeResourceQuantity\x18\x05 \x01(\x05R\x17consumeResourceQuantity\x12 \n" +
+	"\vfreeBalance\x182 \x01(\x05R\vfreeBalance\x12 \n" +
+	"\vpaidBalance\x183 \x01(\x05R\vpaidBalance\"\xbf\x02\n" +
 	"\x1dGashaDrawSelectPickupResponse\x12=\n" +
 	"\vdrawResults\x18\x01 \x03(\v2\x1b.client.api.GashaDrawResultR\vdrawResults\x126\n" +
 	"\vgashaButton\x18\x02 \x01(\v2\x14.pcommon.GashaButtonR\vgashaButton\x123\n" +
@@ -46649,13 +47161,15 @@ const file_papi_proto_rawDesc = "" +
 	"\n" +
 	"gashaPoint\x18\x04 \x01(\v2\x13.pcommon.GashaPointR\n" +
 	"gashaPoint\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\x87\x02\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xcb\x02\n" +
 	"\x16GashaDrawStepUpRequest\x12\x18\n" +
 	"\agashaId\x18\x01 \x01(\tR\agashaId\x12$\n" +
 	"\rgashaButtonId\x18\x02 \x01(\tR\rgashaButtonId\x12E\n" +
 	"\x13consumeResourceType\x18\x03 \x01(\x0e2\x13.penum.ResourceTypeR\x13consumeResourceType\x12,\n" +
 	"\x11consumeResourceId\x18\x04 \x01(\tR\x11consumeResourceId\x128\n" +
-	"\x17consumeResourceQuantity\x18\x05 \x01(\x05R\x17consumeResourceQuantity\"\xf9\x02\n" +
+	"\x17consumeResourceQuantity\x18\x05 \x01(\x05R\x17consumeResourceQuantity\x12 \n" +
+	"\vfreeBalance\x182 \x01(\x05R\vfreeBalance\x12 \n" +
+	"\vpaidBalance\x183 \x01(\x05R\vpaidBalance\"\xf9\x02\n" +
 	"\x17GashaDrawStepUpResponse\x12=\n" +
 	"\vdrawResults\x18\x01 \x03(\v2\x1b.client.api.GashaDrawResultR\vdrawResults\x126\n" +
 	"\vgashaButton\x18\x02 \x01(\v2\x14.pcommon.GashaButtonR\vgashaButton\x12>\n" +
@@ -47381,17 +47895,18 @@ const file_papi_proto_rawDesc = "" +
 	"\n" +
 	"followable\x18\x02 \x01(\bR\n" +
 	"followable\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xb6\x02\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xd4\x02\n" +
 	"\x18MeishiListFollowResponse\x12E\n" +
 	"\afollows\x18\x01 \x03(\v2+.client.api.MeishiListFollowResponse.FollowR\afollows\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\x93\x01\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xb1\x01\n" +
 	"\x06Follow\x12'\n" +
 	"\x06meishi\x18\x01 \x01(\v2\x0f.pcommon.MeishiR\x06meishi\x12\x1e\n" +
 	"\n" +
 	"followTime\x18\x02 \x01(\x03R\n" +
 	"followTime\x12$\n" +
 	"\rlastLoginTime\x18\x03 \x01(\x03R\rlastLoginTime\x12\x1a\n" +
-	"\buserName\x18\x04 \x01(\tR\buserName\"\x83\x02\n" +
+	"\buserName\x18\x04 \x01(\tR\buserName\x12\x1c\n" +
+	"\tisBlocked\x18\x05 \x01(\bR\tisBlocked\"\x83\x02\n" +
 	"\x12MeishiListResponse\x12I\n" +
 	"\n" +
 	"meishiList\x18\x01 \x03(\v2).client.api.MeishiListResponse.MeishiInfoR\n" +
@@ -47972,14 +48487,17 @@ const file_papi_proto_rawDesc = "" +
 	"\x17useCharacterFocusCamera\x18\b \x01(\bR\x17useCharacterFocusCamera\x12:\n" +
 	"\x18isMemoryResearchFavorite\x18\t \x01(\bR\x18isMemoryResearchFavorite\x12,\n" +
 	"\x11deviceProduceUuid\x18\n" +
-	" \x01(\tR\x11deviceProduceUuid\"\xf4\f\n" +
+	" \x01(\tR\x11deviceProduceUuid\"\x9b\x10\n" +
 	"\x15ProduceResultResponse\x12;\n" +
 	"\rrewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12Z\n" +
 	"\x17storyEventProduceResult\x18\x02 \x01(\v2 .pcommon.StoryEventProduceResultR\x17storyEventProduceResult\x12m\n" +
 	"\x15highScoreUpdateResult\x18\x03 \x01(\v27.client.api.ProduceResultResponse.HighScoreUpdateResultR\x15highScoreUpdateResult\x12>\n" +
 	"\x1aunlockChallengeSlotNumbers\x18\x04 \x03(\x05R\x1aunlockChallengeSlotNumbers\x12X\n" +
 	"\x0eresearchResult\x18\x05 \x01(\v20.client.api.ProduceResultResponse.ResearchResultR\x0eresearchResult\x12T\n" +
-	"\x15producerRankingResult\x18\x06 \x01(\v2\x1e.pcommon.ProducerRankingResultR\x15producerRankingResult\x12=\n" +
+	"\x15producerRankingResult\x18\x06 \x01(\v2\x1e.pcommon.ProducerRankingResultR\x15producerRankingResult\x12L\n" +
+	"\n" +
+	"tourResult\x18\a \x01(\v2,.client.api.ProduceResultResponse.TourResultR\n" +
+	"tourResult\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1aP\n" +
 	"\x0fHighScoreReward\x12\x14\n" +
 	"\x05score\x18\x01 \x01(\x05R\x05score\x12'\n" +
@@ -48001,7 +48519,17 @@ const file_papi_proto_rawDesc = "" +
 	"\x0eResearchResult\x12$\n" +
 	"\rauditionScore\x18\x01 \x01(\x05R\rauditionScore\x12U\n" +
 	"\x1aauditionScoreRewardResults\x18\x02 \x03(\v2\x15.pcommon.RewardResultR\x1aauditionScoreRewardResults\x12S\n" +
-	"\x19produceGradeRewardResults\x18\x03 \x03(\v2\x15.pcommon.RewardResultR\x19produceGradeRewardResults\"V\n" +
+	"\x19produceGradeRewardResults\x18\x03 \x03(\v2\x15.pcommon.RewardResultR\x19produceGradeRewardResults\x1a\xd6\x02\n" +
+	"\n" +
+	"TourResult\x127\n" +
+	"\fresourceType\x18\x01 \x01(\x0e2\x13.penum.ResourceTypeR\fresourceType\x12\x1e\n" +
+	"\n" +
+	"resourceId\x18\x02 \x01(\tR\n" +
+	"resourceId\x12:\n" +
+	"\x18baseExchangeCoinQuantity\x18\x03 \x01(\x05R\x18baseExchangeCoinQuantity\x12<\n" +
+	"\x19bonusExchangeCoinQuantity\x18\x04 \x01(\x05R\x19bonusExchangeCoinQuantity\x128\n" +
+	"\x17exchangeCoinBonusPermil\x18\x05 \x01(\x05R\x17exchangeCoinBonusPermil\x12;\n" +
+	"\rrewardResults\x18\x06 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\"V\n" +
 	"\x15ProduceRetireResponse\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"B\n" +
 	"\x12ProduceSaveRequest\x12,\n" +
@@ -48235,8 +48763,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x17ProduceStepSkipResponse\x12$\n" +
 	"\rbeforeStamina\x18\x01 \x01(\x05R\rbeforeStamina\x12\"\n" +
 	"\fafterStamina\x18\x02 \x01(\x05R\fafterStamina\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xed\n" +
-	"\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xca\f\n" +
 	"\x12ProduceTopResponse\x12&\n" +
 	"\x0enewSeminarExam\x18\x01 \x01(\bR\x0enewSeminarExam\x124\n" +
 	"\x15isClearAllSeminarExam\x18\x02 \x01(\bR\x15isClearAllSeminarExam\x126\n" +
@@ -48246,7 +48773,9 @@ const file_papi_proto_rawDesc = "" +
 	"\x0fstoryEventBonus\x18\x06 \x01(\v2\x18.pcommon.StoryEventBonusR\x0fstoryEventBonus\x12[\n" +
 	"\x10produceHighScore\x18\b \x01(\v2/.client.api.ProduceTopResponse.ProduceHighScoreR\x10produceHighScore\x12B\n" +
 	"\x1cproduceHighScoreCharacterIds\x18\a \x03(\tR\x1cproduceHighScoreCharacterIds\x12C\n" +
-	"\bresearch\x18\t \x01(\v2'.client.api.ProduceTopResponse.ResearchR\bresearch\x12=\n" +
+	"\bresearch\x18\t \x01(\v2'.client.api.ProduceTopResponse.ResearchR\bresearch\x127\n" +
+	"\x04tour\x18\n" +
+	" \x01(\v2#.client.api.ProduceTopResponse.TourR\x04tour\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xef\x02\n" +
 	"\x10ProduceHighScore\x12>\n" +
 	"\teventType\x18\x01 \x01(\x0e2 .penum.ProduceHighScoreEventTypeR\teventType\x12\"\n" +
@@ -48263,7 +48792,13 @@ const file_papi_proto_rawDesc = "" +
 	"\x1amemoryPickupProduceCardIds\x18\x04 \x03(\tR\x1amemoryPickupProduceCardIds\x12&\n" +
 	"\x0eproduceItemIds\x18\x05 \x03(\tR\x0eproduceItemIds\x12\x1c\n" +
 	"\tstartTime\x18d \x01(\x03R\tstartTime\x12\x18\n" +
-	"\aendTime\x18e \x01(\x03R\aendTime\"?\n" +
+	"\aendTime\x18e \x01(\x03R\aendTime\x1a\xa1\x01\n" +
+	"\x04Tour\x12.\n" +
+	"\x12exchangeCoinItemId\x18\x01 \x01(\tR\x12exchangeCoinItemId\x123\n" +
+	"\n" +
+	"eventBonus\x18\x02 \x01(\v2\x13.pcommon.EventBonusR\n" +
+	"eventBonus\x124\n" +
+	"\x15produceTopLogoAssetId\x18\x03 \x01(\tR\x15produceTopLogoAssetId\"?\n" +
 	"#ProduceUnlockPictureBookLiveRequest\x12\x18\n" +
 	"\amusicId\x18\x01 \x01(\tR\amusicId\"e\n" +
 	"$ProduceUnlockPictureBookLiveResponse\x12=\n" +
@@ -48393,7 +48928,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x05month\x18\x01 \x01(\x05R\x05month\x12\x10\n" +
 	"\x03day\x18\x02 \x01(\x05R\x03day\"7\n" +
 	"\x11ProfileGetRequest\x12\"\n" +
-	"\fpublicUserId\x18\x01 \x01(\tR\fpublicUserId\"\x9b\v\n" +
+	"\fpublicUserId\x18\x01 \x01(\tR\fpublicUserId\"\xb9\v\n" +
 	"\x12ProfileGetResponse\x12\"\n" +
 	"\fpublicUserId\x18\x01 \x01(\tR\fpublicUserId\x12$\n" +
 	"\rproducerLevel\x18\x02 \x01(\x05R\rproducerLevel\x12\x12\n" +
@@ -48404,7 +48939,8 @@ const file_papi_proto_rawDesc = "" +
 	"\n" +
 	"followable\x18\a \x01(\bR\n" +
 	"followable\x12(\n" +
-	"\x0fjoinedGuildName\x18\b \x01(\tR\x0fjoinedGuildName\x12$\n" +
+	"\x0fjoinedGuildName\x18\b \x01(\tR\x0fjoinedGuildName\x12\x1c\n" +
+	"\tisBlocked\x18\t \x01(\bR\tisBlocked\x12$\n" +
 	"\rtotalFanCount\x18d \x01(\x03R\rtotalFanCount\x12*\n" +
 	"\x10achievementCount\x18e \x01(\x05R\x10achievementCount\x12@\n" +
 	"\x1bmainTaskMainStoryClearCount\x18f \x01(\x05R\x1bmainTaskMainStoryClearCount\x12>\n" +
@@ -48760,11 +49296,13 @@ const file_papi_proto_rawDesc = "" +
 	"\x10accountSignature\x18\t \x01(\tR\x10accountSignature\"\x97\x01\n" +
 	"\x19ShopPurchaseJewelResponse\x12;\n" +
 	"\rrewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"5\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"y\n" +
 	"\x13ShopPurchaseRequest\x12\x1e\n" +
 	"\n" +
 	"shopItemId\x18\x01 \x01(\tR\n" +
-	"shopItemId\"\x92\x01\n" +
+	"shopItemId\x12 \n" +
+	"\vfreeBalance\x182 \x01(\x05R\vfreeBalance\x12 \n" +
+	"\vpaidBalance\x183 \x01(\x05R\vpaidBalance\"\x92\x01\n" +
 	"\x14ShopPurchaseResponse\x12;\n" +
 	"\rrewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"n\n" +
@@ -49100,7 +49638,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x11TourResultRequest\x12\x1e\n" +
 	"\n" +
 	"clientUuid\x18\x01 \x01(\tR\n" +
-	"clientUuid\"\xdb\x05\n" +
+	"clientUuid\"\xb1\x06\n" +
 	"\x12TourResultResponse\x12*\n" +
 	"\x10beforeTotalPoint\x18\x01 \x01(\x05R\x10beforeTotalPoint\x12\x1c\n" +
 	"\tbasePoint\x18\x02 \x01(\x05R\tbasePoint\x12(\n" +
@@ -49108,7 +49646,9 @@ const file_papi_proto_rawDesc = "" +
 	"\x14scoreGradeBonusPoint\x18\x04 \x01(\x05R\x14scoreGradeBonusPoint\x12N\n" +
 	"\x11totalPointRewards\x18\x05 \x03(\v2 .client.api.TourTotalPointRewardR\x11totalPointRewards\x12m\n" +
 	"\x16totalPointRewardResult\x18\x06 \x01(\v25.client.api.TourResultResponse.TotalPointRewardResultR\x16totalPointRewardResult\x12Y\n" +
-	"\x1cstageLevelClearRewardResults\x18\a \x03(\v2\x15.pcommon.RewardResultR\x1cstageLevelClearRewardResults\x12=\n" +
+	"\x1cstageLevelClearRewardResults\x18\a \x03(\v2\x15.pcommon.RewardResultR\x1cstageLevelClearRewardResults\x12(\n" +
+	"\x0feventBonusPoint\x18\b \x01(\x05R\x0feventBonusPoint\x12*\n" +
+	"\x10eventBonusPermil\x18\t \x01(\x05R\x10eventBonusPermil\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xc3\x01\n" +
 	"\x16TotalPointRewardResult\x12O\n" +
 	"\x17totalPointRewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\x17totalPointRewardResults\x12X\n" +
@@ -49153,7 +49693,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x0eTourTopRequest\x12\x1e\n" +
 	"\n" +
 	"clientUuid\x18\x01 \x01(\tR\n" +
-	"clientUuid\"\xd6\x13\n" +
+	"clientUuid\"\xef\x14\n" +
 	"\x0fTourTopResponse\x12\x16\n" +
 	"\x06tourId\x18\x01 \x01(\tR\x06tourId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\"\n" +
@@ -49190,11 +49730,14 @@ const file_papi_proto_rawDesc = "" +
 	"\x0fgradationColor2\x18\x18 \x01(\tR\x0fgradationColor2\x12&\n" +
 	"\x0eliveTicketName\x18\x19 \x01(\tR\x0eliveTicketName\x122\n" +
 	"\x14initialPlayItemCount\x18\x1a \x01(\x05R\x14initialPlayItemCount\x12.\n" +
-	"\x12dailyPlayItemCount\x18\x1b \x01(\x05R\x12dailyPlayItemCount\x12\x1c\n" +
+	"\x12dailyPlayItemCount\x18\x1b \x01(\x05R\x12dailyPlayItemCount\x123\n" +
+	"\n" +
+	"eventBonus\x18\x1c \x01(\v2\x13.pcommon.EventBonusR\n" +
+	"eventBonus\x12\x1c\n" +
 	"\tstartTime\x18d \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18e \x01(\x03R\aendTime\x12\x1c\n" +
 	"\tcloseTime\x18f \x01(\x03R\tcloseTime\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xee\b\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1a\xd2\t\n" +
 	"\x05Stage\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\x05R\x06number\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -49220,7 +49763,9 @@ const file_papi_proto_rawDesc = "" +
 	"\x05iconY\x18\x15 \x01(\x03R\x05iconY\x12@\n" +
 	"\ficonSizeType\x18\x16 \x01(\x0e2\x1c.penum.TourStageIconSizeTypeR\ficonSizeType\x12@\n" +
 	"\x1bsceneLayoutHeightCorrection\x18\x19 \x01(\x03R\x1bsceneLayoutHeightCorrection\x12(\n" +
-	"\x0fnameLogoAssetId\x18\x1a \x01(\tR\x0fnameLogoAssetId\x1a{\n" +
+	"\x0fnameLogoAssetId\x18\x1a \x01(\tR\x0fnameLogoAssetId\x12.\n" +
+	"\x12embedProduceCardId\x18\x1b \x01(\tR\x12embedProduceCardId\x122\n" +
+	"\x14needProduceCardCount\x18\x1c \x01(\x05R\x14needProduceCardCount\x1a{\n" +
 	"\x10StageLevelReward\x12\x14\n" +
 	"\x05level\x18\x01 \x01(\x05R\x05level\x12&\n" +
 	"\x0escoreThreshold\x18\x02 \x01(\x05R\x0escoreThreshold\x12)\n" +
@@ -49498,6 +50043,17 @@ const file_papi_proto_rawDesc = "" +
 	"\x1cTutorialUnlockFeatureRequest\x12'\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x13.penum.TutorialTypeR\x04type\"^\n" +
 	"\x1dTutorialUnlockFeatureResponse\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\";\n" +
+	"\x15UserBlockBlockRequest\x12\"\n" +
+	"\fpublicUserId\x18\x01 \x01(\tR\fpublicUserId\"W\n" +
+	"\x16UserBlockBlockResponse\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xa1\x01\n" +
+	"\x1aUserBlockListBlockResponse\x12D\n" +
+	"\x11blockUserProfiles\x18\x01 \x03(\v2\x16.pcommon.SimpleProfileR\x11blockUserProfiles\x12=\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"=\n" +
+	"\x17UserBlockUnblockRequest\x12\"\n" +
+	"\fpublicUserId\x18\x01 \x01(\tR\fpublicUserId\"Y\n" +
+	"\x18UserBlockUnblockResponse\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xcd\x01\n" +
 	"\x16UserGetBalanceResponse\x12 \n" +
 	"\vfreeBalance\x18\x01 \x01(\x05R\vfreeBalance\x12 \n" +
@@ -49949,7 +50505,11 @@ const file_papi_proto_rawDesc = "" +
 	"\x1aProduceStepAuditionExamEnd\x125.client.api.TutorialProduceStepAuditionExamEndRequest\x1a6.client.api.TutorialProduceStepAuditionExamEndResponse\x12_\n" +
 	"\x16ProduceStepAuditionEnd\x12\x11.client.api.Empty\x1a2.client.api.TutorialProduceStepAuditionEndResponse\x12s\n" +
 	" CheckBeforeLiveProduceEvaluation\x12\x11.client.api.Empty\x1a<.client.api.TutorialCheckBeforeLiveProduceEvaluationResponse\x12d\n" +
-	"\rProduceResult\x12(.client.api.TutorialProduceResultRequest\x1a).client.api.TutorialProduceResultResponse2\xbe\x03\n" +
+	"\rProduceResult\x12(.client.api.TutorialProduceResultRequest\x1a).client.api.TutorialProduceResultResponse2\xf9\x01\n" +
+	"\tUserBlock\x12N\n" +
+	"\x05Block\x12!.client.api.UserBlockBlockRequest\x1a\".client.api.UserBlockBlockResponse\x12T\n" +
+	"\aUnblock\x12#.client.api.UserBlockUnblockRequest\x1a$.client.api.UserBlockUnblockResponse\x12F\n" +
+	"\tListBlock\x12\x11.client.api.Empty\x1a&.client.api.UserBlockListBlockResponse2\xbe\x03\n" +
 	"\x04User\x125\n" +
 	"\x03Get\x12\x11.client.api.Empty\x1a\x1b.client.api.UserGetResponse\x12C\n" +
 	"\n" +
@@ -49976,7 +50536,7 @@ func file_papi_proto_rawDescGZIP() []byte {
 	return file_papi_proto_rawDescData
 }
 
-var file_papi_proto_msgTypes = make([]protoimpl.MessageInfo, 760)
+var file_papi_proto_msgTypes = make([]protoimpl.MessageInfo, 767)
 var file_papi_proto_goTypes = []any{
 	(*Empty)(nil),                                                                       // 0: client.api.Empty
 	(*AuthAgreeTermsRequest)(nil),                                                       // 1: client.api.AuthAgreeTermsRequest
@@ -50627,1899 +51187,1923 @@ var file_papi_proto_goTypes = []any{
 	(*TutorialSkipResponse)(nil),                                                        // 646: client.api.TutorialSkipResponse
 	(*TutorialUnlockFeatureRequest)(nil),                                                // 647: client.api.TutorialUnlockFeatureRequest
 	(*TutorialUnlockFeatureResponse)(nil),                                               // 648: client.api.TutorialUnlockFeatureResponse
-	(*UserGetBalanceResponse)(nil),                                                      // 649: client.api.UserGetBalanceResponse
-	(*UserGetResponse)(nil),                                                             // 650: client.api.UserGetResponse
-	(*UserListMessageRequest)(nil),                                                      // 651: client.api.UserListMessageRequest
-	(*UserListMessageResponse)(nil),                                                     // 652: client.api.UserListMessageResponse
-	(*UserReadForceTitleTransitionTimeRequest)(nil),                                     // 653: client.api.UserReadForceTitleTransitionTimeRequest
-	(*UserReadForceTitleTransitionTimeResponse)(nil),                                    // 654: client.api.UserReadForceTitleTransitionTimeResponse
-	(*UserReadMessageRequest)(nil),                                                      // 655: client.api.UserReadMessageRequest
-	(*UserReadMessageResponse)(nil),                                                     // 656: client.api.UserReadMessageResponse
-	(*WorkFinishResponse)(nil),                                                          // 657: client.api.WorkFinishResponse
-	(*WorkFinishResult)(nil),                                                            // 658: client.api.WorkFinishResult
-	(*WorkSkipRequest)(nil),                                                             // 659: client.api.WorkSkipRequest
-	(*WorkSkipResponse)(nil),                                                            // 660: client.api.WorkSkipResponse
-	(*WorkStartRequest)(nil),                                                            // 661: client.api.WorkStartRequest
-	(*WorkStartResponse)(nil),                                                           // 662: client.api.WorkStartResponse
-	(*WorkStopRequest)(nil),                                                             // 663: client.api.WorkStopRequest
-	(*WorkStopResponse)(nil),                                                            // 664: client.api.WorkStopResponse
-	(*WorkTopResponse)(nil),                                                             // 665: client.api.WorkTopResponse
-	(*AuthLoginResponse_Term)(nil),                                                      // 666: client.api.AuthLoginResponse.Term
-	(*AuthSendConsentRequest_Consent)(nil),                                              // 667: client.api.AuthSendConsentRequest.Consent
-	(*CompetitionGetResponse_Section)(nil),                                              // 668: client.api.CompetitionGetResponse.Section
-	(*CompetitionGetResponse_PlayTestStage)(nil),                                        // 669: client.api.CompetitionGetResponse.PlayTestStage
-	(*CompetitionGetResponse_Stage)(nil),                                                // 670: client.api.CompetitionGetResponse.Stage
-	(*CompetitionListDeckProduceCardRankingResponse_ProduceCardRank)(nil),               // 671: client.api.CompetitionListDeckProduceCardRankingResponse.ProduceCardRank
-	(*CompetitionListDeckProduceCardRankingResponse_Ranking)(nil),                       // 672: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking
-	(*CompetitionListHistoryResponse_History)(nil),                                      // 673: client.api.CompetitionListHistoryResponse.History
-	(*CompetitionListHistoryResponse_Stage)(nil),                                        // 674: client.api.CompetitionListHistoryResponse.Stage
-	(*CostumeSetRandomRequest_RandomCharacterCostume)(nil),                              // 675: client.api.CostumeSetRandomRequest.RandomCharacterCostume
-	(*ExchangeItem_ConsumptionResource)(nil),                                            // 676: client.api.ExchangeItem.ConsumptionResource
-	(*FriendInfo_SupportCard)(nil),                                                      // 677: client.api.FriendInfo.SupportCard
-	(*GashaExpirePointResponse_GashaBanner)(nil),                                        // 678: client.api.GashaExpirePointResponse.GashaBanner
-	(*GashaExpirePointResponse_GashaPoint)(nil),                                         // 679: client.api.GashaExpirePointResponse.GashaPoint
-	(*GashaGetPointExchangeResponse_ExchangeResource)(nil),                              // 680: client.api.GashaGetPointExchangeResponse.ExchangeResource
-	(*GiftListHistoryResponse_UserGiftHistory)(nil),                                     // 681: client.api.GiftListHistoryResponse.UserGiftHistory
-	(*GiftListResponse_UserGift)(nil),                                                   // 682: client.api.GiftListResponse.UserGift
-	(*GuildTopResponse_HomeInfo)(nil),                                                   // 683: client.api.GuildTopResponse.HomeInfo
-	(*GuildTopResponse_HomeInfo_ReceivedDonationInfo)(nil),                              // 684: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
-	(*GvgRaidTopResponse_Stage)(nil),                                                    // 685: client.api.GvgRaidTopResponse.Stage
-	(*GvgRaidTopResponse_StageClearResult)(nil),                                         // 686: client.api.GvgRaidTopResponse.StageClearResult
-	(*GvgRaidTopResponse_StageClearReward)(nil),                                         // 687: client.api.GvgRaidTopResponse.StageClearReward
-	(*GvgRaidTopResponse_StageClearReward_ClearReward)(nil),                             // 688: client.api.GvgRaidTopResponse.StageClearReward.ClearReward
-	(*GvgRaidUserRankingResponse_StageMvp)(nil),                                         // 689: client.api.GvgRaidUserRankingResponse.StageMvp
-	(*GvgRaidUserRankingResponse_StageRanking)(nil),                                     // 690: client.api.GvgRaidUserRankingResponse.StageRanking
-	(*GvgRaidUserRankingResponse_StageMvp_MvpUser)(nil),                                 // 691: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
-	(*GvgRaidUserRankingResponse_StageRanking_Rank)(nil),                                // 692: client.api.GvgRaidUserRankingResponse.StageRanking.Rank
-	(*HomeEnterResponse_FeatureMaintenance)(nil),                                        // 693: client.api.HomeEnterResponse.FeatureMaintenance
-	(*HomeLoginResponse_FriendResult)(nil),                                              // 694: client.api.HomeLoginResponse.FriendResult
-	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult)(nil),                 // 695: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
-	(*HomeLoginResponse_ProducerRankingResult)(nil),                                     // 696: client.api.HomeLoginResponse.ProducerRankingResult
-	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult)(nil), // 697: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
-	(*HomeLoginResponse_ProducerRankingResult_CharacterResult)(nil),                     // 698: client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult
-	(*HomeSetCharactersRequest_HomeCharacter)(nil),                                      // 699: client.api.HomeSetCharactersRequest.HomeCharacter
-	(*LoginBonusCheckResponse_Info)(nil),                                                // 700: client.api.LoginBonusCheckResponse.Info
-	(*LoginBonusCheckResponse_TotalInfo)(nil),                                           // 701: client.api.LoginBonusCheckResponse.TotalInfo
-	(*MasterGetResponse_MasterTagPack)(nil),                                             // 702: client.api.MasterGetResponse.MasterTagPack
-	(*MasterGetResponse_MasterTag)(nil),                                                 // 703: client.api.MasterGetResponse.MasterTag
-	(*MeishiListFollowResponse_Follow)(nil),                                             // 704: client.api.MeishiListFollowResponse.Follow
-	(*MeishiListResponse_MeishiInfo)(nil),                                               // 705: client.api.MeishiListResponse.MeishiInfo
-	(*MeishiUpdateRequest_MeishiBase)(nil),                                              // 706: client.api.MeishiUpdateRequest.MeishiBase
-	(*MeishiUpdateRequest_Object)(nil),                                                  // 707: client.api.MeishiUpdateRequest.Object
-	(*MissionReceiveRequest_Mission)(nil),                                               // 708: client.api.MissionReceiveRequest.Mission
-	(*MissionReceiveRequest_MissionPoint)(nil),                                          // 709: client.api.MissionReceiveRequest.MissionPoint
-	(*MissionReceiveResponse_MasterAchievementProgress)(nil),                            // 710: client.api.MissionReceiveResponse.MasterAchievementProgress
-	(*MissionReceiveResponse_MasterAchievementProgressResult)(nil),                      // 711: client.api.MissionReceiveResponse.MasterAchievementProgressResult
-	(*PhotoCreateIdolRequest_CharacterSetting)(nil),                                     // 712: client.api.PhotoCreateIdolRequest.CharacterSetting
-	(*PhotoCreateIdolRequest_Photo)(nil),                                                // 713: client.api.PhotoCreateIdolRequest.Photo
-	(*PhotoCreateIdolRequest_Photo_CharacterSetting)(nil),                               // 714: client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
-	(*PhotoCreateRequest_UnitCharacter)(nil),                                            // 715: client.api.PhotoCreateRequest.UnitCharacter
-	(*ProduceHighScoreRankingResponse_Rank)(nil),                                        // 716: client.api.ProduceHighScoreRankingResponse.Rank
-	(*ProduceListRentalMemoryResponse_RentalMemory)(nil),                                // 717: client.api.ProduceListRentalMemoryResponse.RentalMemory
-	(*ProduceListRentalSupportCardResponse_RentalSupportCard)(nil),                      // 718: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	(*ProduceRankingTopResponse_Ranking)(nil),                                           // 719: client.api.ProduceRankingTopResponse.Ranking
-	(*ProduceResultResponse_HighScoreReward)(nil),                                       // 720: client.api.ProduceResultResponse.HighScoreReward
-	(*ProduceResultResponse_HighScoreUpdateResult)(nil),                                 // 721: client.api.ProduceResultResponse.HighScoreUpdateResult
-	(*ProduceResultResponse_ResearchResult)(nil),                                        // 722: client.api.ProduceResultResponse.ResearchResult
-	(*ProduceStartRequest_Memory)(nil),                                                  // 723: client.api.ProduceStartRequest.Memory
-	(*ProduceStartRequest_SupportCard)(nil),                                             // 724: client.api.ProduceStartRequest.SupportCard
-	(*ProduceTopResponse_ProduceHighScore)(nil),                                         // 725: client.api.ProduceTopResponse.ProduceHighScore
-	(*ProduceTopResponse_Research)(nil),                                                 // 726: client.api.ProduceTopResponse.Research
-	(*ProfileGetResponse_ProduceRecord)(nil),                                            // 727: client.api.ProfileGetResponse.ProduceRecord
-	(*PvpRateListHistoryResponse_PvpRateHistory)(nil),                                   // 728: client.api.PvpRateListHistoryResponse.PvpRateHistory
-	(*PvpRateUnitStageFormation_Slot)(nil),                                              // 729: client.api.PvpRateUnitStageFormation.Slot
-	(*ResearchRankingResponse_Rank)(nil),                                                // 730: client.api.ResearchRankingResponse.Rank
-	(*SeminarEndExamRequest_Turn)(nil),                                                  // 731: client.api.SeminarEndExamRequest.Turn
-	(*SeminarGetExamResponse_TurnNavigationStep)(nil),                                   // 732: client.api.SeminarGetExamResponse.TurnNavigationStep
-	(*SeminarGetExamResponse_FailureNavigation)(nil),                                    // 733: client.api.SeminarGetExamResponse.FailureNavigation
-	(*SeminarGetExamResponse_TurnNavigation)(nil),                                       // 734: client.api.SeminarGetExamResponse.TurnNavigation
-	(*SeminarListExamResponse_Exam)(nil),                                                // 735: client.api.SeminarListExamResponse.Exam
-	(*SeminarListExamResponse_ExamGroup)(nil),                                           // 736: client.api.SeminarListExamResponse.ExamGroup
-	(*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction)(nil),              // 737: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
-	(*ShopTopResponse_Shop)(nil),                                                        // 738: client.api.ShopTopResponse.Shop
-	(*StartupConfirmRequest_Notification)(nil),                                          // 739: client.api.StartupConfirmRequest.Notification
-	(*StoryEventReceiveGuildMissionResponse_ReceiveResult)(nil),                         // 740: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
-	(*StoryEventTopResponse_Motion)(nil),                                                // 741: client.api.StoryEventTopResponse.Motion
-	(*SupportCardExchangeRequest_Parameter)(nil),                                        // 742: client.api.SupportCardExchangeRequest.Parameter
-	(*SupportCardListDeckRankingResponse_SupportCardRank)(nil),                          // 743: client.api.SupportCardListDeckRankingResponse.SupportCardRank
-	(*SupportCardListDeckRankingResponse_Ranking)(nil),                                  // 744: client.api.SupportCardListDeckRankingResponse.Ranking
-	(*SystemCheckResponse_MaintenanceInfo)(nil),                                         // 745: client.api.SystemCheckResponse.MaintenanceInfo
-	(*SystemCheckResponse_ReviewInfo)(nil),                                              // 746: client.api.SystemCheckResponse.ReviewInfo
-	(*TourGetProgressResponse_ExamEnd)(nil),                                             // 747: client.api.TourGetProgressResponse.ExamEnd
-	(*TourGetProgressResponse_Progress)(nil),                                            // 748: client.api.TourGetProgressResponse.Progress
-	(*TourResultResponse_TotalPointRewardResult)(nil),                                   // 749: client.api.TourResultResponse.TotalPointRewardResult
-	(*TourStageRankingResponse_UserRank)(nil),                                           // 750: client.api.TourStageRankingResponse.UserRank
-	(*TourStageRankingResponse_SelfStageRank)(nil),                                      // 751: client.api.TourStageRankingResponse.SelfStageRank
-	(*TourStageRankingResponse_StageRanking)(nil),                                       // 752: client.api.TourStageRankingResponse.StageRanking
-	(*TourTopResponse_Stage)(nil),                                                       // 753: client.api.TourTopResponse.Stage
-	(*TourTopResponse_Stage_StageLevelReward)(nil),                                      // 754: client.api.TourTopResponse.Stage.StageLevelReward
-	(*TowerGetLayerResponse_Exam)(nil),                                                  // 755: client.api.TowerGetLayerResponse.Exam
-	(*TowerListLayersResponse_TowerLayerRank)(nil),                                      // 756: client.api.TowerListLayersResponse.TowerLayerRank
-	(*TowerListLayersResponse_TowerLayer)(nil),                                          // 757: client.api.TowerListLayersResponse.TowerLayer
-	(*TowerTopResponse_Tower)(nil),                                                      // 758: client.api.TowerTopResponse.Tower
-	(*UserListMessageResponse_PersonalMessage)(nil),                                     // 759: client.api.UserListMessageResponse.PersonalMessage
-	(penum.TermsType)(0),                                                                // 760: penum.TermsType
-	(*papicommon.Response)(nil),                                                         // 761: papicommon.Response
-	(*pcommon.RewardResult)(nil),                                                        // 762: pcommon.RewardResult
-	(*pcommon.CoinGasha)(nil),                                                           // 763: pcommon.CoinGasha
-	(*pcommon.ExamContestSituation)(nil),                                                // 764: pcommon.ExamContestSituation
-	(*pcommon.ExamContestResult)(nil),                                                   // 765: pcommon.ExamContestResult
-	(*pcommon.Meishi)(nil),                                                              // 766: pcommon.Meishi
-	(penum.CompetitionStageType)(0),                                                     // 767: penum.CompetitionStageType
-	(*pcommon.SimpleProfile)(nil),                                                       // 768: pcommon.SimpleProfile
-	(*pcommon.CompetitionDeck)(nil),                                                     // 769: pcommon.CompetitionDeck
-	(*pcommon.Reward)(nil),                                                              // 770: pcommon.Reward
-	(penum.CompetitionGrade)(0),                                                         // 771: penum.CompetitionGrade
-	(*pcommon.CompetitionDeckSetupMemorySlot)(nil),                                      // 772: pcommon.CompetitionDeckSetupMemorySlot
-	(penum.DeckRecommendType)(0),                                                        // 773: penum.DeckRecommendType
-	(penum.ConsentType)(0),                                                              // 774: penum.ConsentType
-	(penum.ConsentAgreementType)(0),                                                     // 775: penum.ConsentAgreementType
-	(penum.CostumeSetType)(0),                                                           // 776: penum.CostumeSetType
-	(penum.ExchangeType)(0),                                                             // 777: penum.ExchangeType
-	(penum.ResourceType)(0),                                                             // 778: penum.ResourceType
-	(penum.ResetTimingType)(0),                                                          // 779: penum.ResetTimingType
-	(*pcommon.Memory)(nil),                                                              // 780: pcommon.Memory
-	(penum.GashaContinuousStepType)(0),                                                  // 781: penum.GashaContinuousStepType
-	(*pcommon.GashaButton)(nil),                                                         // 782: pcommon.GashaButton
-	(*pcommon.GashaPoint)(nil),                                                          // 783: pcommon.GashaPoint
-	(*pcommon.GashaStepUp)(nil),                                                         // 784: pcommon.GashaStepUp
-	(*pcommon.Gasha)(nil),                                                               // 785: pcommon.Gasha
-	(penum.GiftFilterType)(0),                                                           // 786: penum.GiftFilterType
-	(penum.GuildJoinRequestRouteType)(0),                                                // 787: penum.GuildJoinRequestRouteType
-	(penum.GuildActivityPolicyType)(0),                                                  // 788: penum.GuildActivityPolicyType
-	(*pcommon.Achievement)(nil),                                                         // 789: pcommon.Achievement
-	(penum.GuildSearchMemberCountRangeType)(0),                                          // 790: penum.GuildSearchMemberCountRangeType
-	(penum.GuildRoleType)(0),                                                            // 791: penum.GuildRoleType
-	(penum.GuildNotificationType)(0),                                                    // 792: penum.GuildNotificationType
-	(*pcommon.GvgRaidSlot)(nil),                                                         // 793: pcommon.GvgRaidSlot
-	(*pcommon.ExamBattleAutoStageResult)(nil),                                           // 794: pcommon.ExamBattleAutoStageResult
-	(*pcommon.ExamBattleAutoRequest)(nil),                                               // 795: pcommon.ExamBattleAutoRequest
-	(penum.ProducePlanType)(0),                                                          // 796: penum.ProducePlanType
-	(penum.GvgRaidStageIconSizeType)(0),                                                 // 797: penum.GvgRaidStageIconSizeType
-	(*pcommon.GvgRaidGuild)(nil),                                                        // 798: pcommon.GvgRaidGuild
-	(*pcommon.StartupNotification)(nil),                                                 // 799: pcommon.StartupNotification
-	(*pcommon.GvgRaidSetUpDeck)(nil),                                                    // 800: pcommon.GvgRaidSetUpDeck
-	(penum.ServingStatus)(0),                                                            // 801: penum.ServingStatus
-	(*pcommon.HomeBanner)(nil),                                                          // 802: pcommon.HomeBanner
-	(*pcommon.HomeNavigation)(nil),                                                      // 803: pcommon.HomeNavigation
-	(*papicommon.PvpRateSeasonTop)(nil),                                                 // 804: papicommon.PvpRateSeasonTop
-	(*pcommon.Event)(nil),                                                               // 805: pcommon.Event
-	(*papicommon.CompetitionSeasonTop)(nil),                                             // 806: papicommon.CompetitionSeasonTop
-	(penum.ShopItemLabelType)(0),                                                        // 807: penum.ShopItemLabelType
-	(*papicommon.CompetitionPreSeasonResult)(nil),                                       // 808: papicommon.CompetitionPreSeasonResult
-	(*papicommon.PvpRateSeasonResult)(nil),                                              // 809: papicommon.PvpRateSeasonResult
-	(*pcommon.ProducerLevelUnlock)(nil),                                                 // 810: pcommon.ProducerLevelUnlock
-	(penum.IdolCardRarity)(0),                                                           // 811: penum.IdolCardRarity
-	(penum.IdolCardLevelLimitRank)(0),                                                   // 812: penum.IdolCardLevelLimitRank
-	(penum.IdolCardPotentialRank)(0),                                                    // 813: penum.IdolCardPotentialRank
-	(penum.FriendStatusType)(0),                                                         // 814: penum.FriendStatusType
-	(*pmaster.Mission)(nil),                                                             // 815: pmaster.Mission
-	(penum.NoticeCategory)(0),                                                           // 816: penum.NoticeCategory
-	(penum.NoticeType)(0),                                                               // 817: penum.NoticeType
-	(penum.PhotoButtonExecuteType)(0),                                                   // 818: penum.PhotoButtonExecuteType
-	(penum.PreferenceType)(0),                                                           // 819: penum.PreferenceType
-	(*pcommon.ProduceEffectResult)(nil),                                                 // 820: pcommon.ProduceEffectResult
-	(penum.ProduceHighScoreEventType)(0),                                                // 821: penum.ProduceHighScoreEventType
-	(*papicommon.ProduceHighScoreRushExternalProduceReward)(nil),                        // 822: papicommon.ProduceHighScoreRushExternalProduceReward
-	(*pcommon.ProduceHistory)(nil),                                                      // 823: pcommon.ProduceHistory
-	(penum.ProduceStepType)(0),                                                          // 824: penum.ProduceStepType
-	(penum.ResultGrade)(0),                                                              // 825: penum.ResultGrade
-	(*pcommon.GuildMission)(nil),                                                        // 826: pcommon.GuildMission
-	(*pcommon.GuildMissionHistory)(nil),                                                 // 827: pcommon.GuildMissionHistory
-	(*pcommon.StoryEventProduceResult)(nil),                                             // 828: pcommon.StoryEventProduceResult
-	(*pcommon.ProducerRankingResult)(nil),                                               // 829: pcommon.ProducerRankingResult
-	(*pcommon.ExamBattleResult)(nil),                                                    // 830: pcommon.ExamBattleResult
-	(*pcommon.ExamTurnEndLog)(nil),                                                      // 831: pcommon.ExamTurnEndLog
-	(*pcommon.ProduceRewardResult)(nil),                                                 // 832: pcommon.ProduceRewardResult
-	(*pcommon.ProduceMemoryRewardResult)(nil),                                           // 833: pcommon.ProduceMemoryRewardResult
-	(penum.ProduceStepBusinessType)(0),                                                  // 834: penum.ProduceStepBusinessType
-	(*pcommon.ProduceConsumptionResult)(nil),                                            // 835: pcommon.ProduceConsumptionResult
-	(*pcommon.ProduceExamEndResult)(nil),                                                // 836: pcommon.ProduceExamEndResult
-	(*pcommon.ProduceCampaign)(nil),                                                     // 837: pcommon.ProduceCampaign
-	(penum.StoryEventType)(0),                                                           // 838: penum.StoryEventType
-	(*pcommon.StoryEventBonus)(nil),                                                     // 839: pcommon.StoryEventBonus
-	(penum.ProduceType)(0),                                                              // 840: penum.ProduceType
-	(*pmaster.ProducerRankingCharacter)(nil),                                            // 841: pmaster.ProducerRankingCharacter
-	(*papicommon.RankReward)(nil),                                                       // 842: papicommon.RankReward
-	(penum.PvpRateGrade)(0),                                                             // 843: penum.PvpRateGrade
-	(*pcommon.SupportCard)(nil),                                                         // 844: pcommon.SupportCard
-	(*pcommon.PvpRateExamBattleResult)(nil),                                             // 845: pcommon.PvpRateExamBattleResult
-	(penum.PvpRateRivalType)(0),                                                         // 846: penum.PvpRateRivalType
-	(penum.PvpRateStageType)(0),                                                         // 847: penum.PvpRateStageType
-	(*pcommon.PvpRateSetupUnitStageFormation)(nil),                                      // 848: pcommon.PvpRateSetupUnitStageFormation
-	(penum.SkillRarity)(0),                                                              // 849: penum.SkillRarity
-	(penum.ProduceExamEffectType)(0),                                                    // 850: penum.ProduceExamEffectType
-	(penum.ProduceParameterType)(0),                                                     // 851: penum.ProduceParameterType
-	(*pcommon.ProduceCard)(nil),                                                         // 852: pcommon.ProduceCard
-	(*pmaster.ShopItem)(nil),                                                            // 853: pmaster.ShopItem
-	(penum.StartupNotificationDisplayType)(0),                                           // 854: penum.StartupNotificationDisplayType
-	(*pcommon.StoryEventPointReward)(nil),                                               // 855: pcommon.StoryEventPointReward
-	(penum.SupportCardRarity)(0),                                                        // 856: penum.SupportCardRarity
-	(penum.SupportCardLevelLimitRank)(0),                                                // 857: penum.SupportCardLevelLimitRank
-	(*pcommon.ProduceCardConversion)(nil),                                               // 858: pcommon.ProduceCardConversion
-	(penum.TourScoreGrade)(0),                                                           // 859: penum.TourScoreGrade
-	(penum.TourProgressPhaseType)(0),                                                    // 860: penum.TourProgressPhaseType
-	(*pcommon.TowerLayerHistory)(nil),                                                   // 861: pcommon.TowerLayerHistory
-	(penum.TutorialType)(0),                                                             // 862: penum.TutorialType
-	(*papicommon.UserData)(nil),                                                         // 863: papicommon.UserData
-	(penum.WorkType)(0),                                                                 // 864: penum.WorkType
-	(penum.CompetitionStageSectionType)(0),                                              // 865: penum.CompetitionStageSectionType
-	(*pcommon.ExamContestSection)(nil),                                                  // 866: pcommon.ExamContestSection
-	(penum.FeatureMaintenanceType)(0),                                                   // 867: penum.FeatureMaintenanceType
-	(penum.HomeType)(0),                                                                 // 868: penum.HomeType
-	(penum.LoginBonusType)(0),                                                           // 869: penum.LoginBonusType
-	(penum.MeishiObjectType)(0),                                                         // 870: penum.MeishiObjectType
-	(penum.TutorialNavigationType)(0),                                                   // 871: penum.TutorialNavigationType
-	(penum.ProduceExamTriggerCheckType)(0),                                              // 872: penum.ProduceExamTriggerCheckType
-	(penum.ProduceExamFieldStatusType)(0),                                               // 873: penum.ProduceExamFieldStatusType
-	(penum.PaymentPendingReceiptDialogTimingType)(0),                                    // 874: penum.PaymentPendingReceiptDialogTimingType
-	(penum.StoryEventMotionType)(0),                                                     // 875: penum.StoryEventMotionType
-	(penum.TourStageIconSizeType)(0),                                                    // 876: penum.TourStageIconSizeType
-	(*pcommon.ExamTriggerCount)(nil),                                                    // 877: pcommon.ExamTriggerCount
+	(*UserBlockBlockRequest)(nil),                                                       // 649: client.api.UserBlockBlockRequest
+	(*UserBlockBlockResponse)(nil),                                                      // 650: client.api.UserBlockBlockResponse
+	(*UserBlockListBlockResponse)(nil),                                                  // 651: client.api.UserBlockListBlockResponse
+	(*UserBlockUnblockRequest)(nil),                                                     // 652: client.api.UserBlockUnblockRequest
+	(*UserBlockUnblockResponse)(nil),                                                    // 653: client.api.UserBlockUnblockResponse
+	(*UserGetBalanceResponse)(nil),                                                      // 654: client.api.UserGetBalanceResponse
+	(*UserGetResponse)(nil),                                                             // 655: client.api.UserGetResponse
+	(*UserListMessageRequest)(nil),                                                      // 656: client.api.UserListMessageRequest
+	(*UserListMessageResponse)(nil),                                                     // 657: client.api.UserListMessageResponse
+	(*UserReadForceTitleTransitionTimeRequest)(nil),                                     // 658: client.api.UserReadForceTitleTransitionTimeRequest
+	(*UserReadForceTitleTransitionTimeResponse)(nil),                                    // 659: client.api.UserReadForceTitleTransitionTimeResponse
+	(*UserReadMessageRequest)(nil),                                                      // 660: client.api.UserReadMessageRequest
+	(*UserReadMessageResponse)(nil),                                                     // 661: client.api.UserReadMessageResponse
+	(*WorkFinishResponse)(nil),                                                          // 662: client.api.WorkFinishResponse
+	(*WorkFinishResult)(nil),                                                            // 663: client.api.WorkFinishResult
+	(*WorkSkipRequest)(nil),                                                             // 664: client.api.WorkSkipRequest
+	(*WorkSkipResponse)(nil),                                                            // 665: client.api.WorkSkipResponse
+	(*WorkStartRequest)(nil),                                                            // 666: client.api.WorkStartRequest
+	(*WorkStartResponse)(nil),                                                           // 667: client.api.WorkStartResponse
+	(*WorkStopRequest)(nil),                                                             // 668: client.api.WorkStopRequest
+	(*WorkStopResponse)(nil),                                                            // 669: client.api.WorkStopResponse
+	(*WorkTopResponse)(nil),                                                             // 670: client.api.WorkTopResponse
+	(*AuthLoginResponse_Term)(nil),                                                      // 671: client.api.AuthLoginResponse.Term
+	(*AuthSendConsentRequest_Consent)(nil),                                              // 672: client.api.AuthSendConsentRequest.Consent
+	(*CompetitionGetResponse_Section)(nil),                                              // 673: client.api.CompetitionGetResponse.Section
+	(*CompetitionGetResponse_PlayTestStage)(nil),                                        // 674: client.api.CompetitionGetResponse.PlayTestStage
+	(*CompetitionGetResponse_Stage)(nil),                                                // 675: client.api.CompetitionGetResponse.Stage
+	(*CompetitionListDeckProduceCardRankingResponse_ProduceCardRank)(nil),               // 676: client.api.CompetitionListDeckProduceCardRankingResponse.ProduceCardRank
+	(*CompetitionListDeckProduceCardRankingResponse_Ranking)(nil),                       // 677: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking
+	(*CompetitionListHistoryResponse_History)(nil),                                      // 678: client.api.CompetitionListHistoryResponse.History
+	(*CompetitionListHistoryResponse_Stage)(nil),                                        // 679: client.api.CompetitionListHistoryResponse.Stage
+	(*CostumeSetRandomRequest_RandomCharacterCostume)(nil),                              // 680: client.api.CostumeSetRandomRequest.RandomCharacterCostume
+	(*ExchangeItem_ConsumptionResource)(nil),                                            // 681: client.api.ExchangeItem.ConsumptionResource
+	(*FriendInfo_SupportCard)(nil),                                                      // 682: client.api.FriendInfo.SupportCard
+	(*GashaExpirePointResponse_GashaBanner)(nil),                                        // 683: client.api.GashaExpirePointResponse.GashaBanner
+	(*GashaExpirePointResponse_GashaPoint)(nil),                                         // 684: client.api.GashaExpirePointResponse.GashaPoint
+	(*GashaGetPointExchangeResponse_ExchangeResource)(nil),                              // 685: client.api.GashaGetPointExchangeResponse.ExchangeResource
+	(*GiftListHistoryResponse_UserGiftHistory)(nil),                                     // 686: client.api.GiftListHistoryResponse.UserGiftHistory
+	(*GiftListResponse_UserGift)(nil),                                                   // 687: client.api.GiftListResponse.UserGift
+	(*GuildTopResponse_HomeInfo)(nil),                                                   // 688: client.api.GuildTopResponse.HomeInfo
+	(*GuildTopResponse_HomeInfo_ReceivedDonationInfo)(nil),                              // 689: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
+	(*GvgRaidTopResponse_Stage)(nil),                                                    // 690: client.api.GvgRaidTopResponse.Stage
+	(*GvgRaidTopResponse_StageClearResult)(nil),                                         // 691: client.api.GvgRaidTopResponse.StageClearResult
+	(*GvgRaidTopResponse_StageClearReward)(nil),                                         // 692: client.api.GvgRaidTopResponse.StageClearReward
+	(*GvgRaidTopResponse_StageClearReward_ClearReward)(nil),                             // 693: client.api.GvgRaidTopResponse.StageClearReward.ClearReward
+	(*GvgRaidUserRankingResponse_StageMvp)(nil),                                         // 694: client.api.GvgRaidUserRankingResponse.StageMvp
+	(*GvgRaidUserRankingResponse_StageRanking)(nil),                                     // 695: client.api.GvgRaidUserRankingResponse.StageRanking
+	(*GvgRaidUserRankingResponse_StageMvp_MvpUser)(nil),                                 // 696: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
+	(*GvgRaidUserRankingResponse_StageRanking_Rank)(nil),                                // 697: client.api.GvgRaidUserRankingResponse.StageRanking.Rank
+	(*HomeEnterResponse_FeatureMaintenance)(nil),                                        // 698: client.api.HomeEnterResponse.FeatureMaintenance
+	(*HomeLoginResponse_FriendResult)(nil),                                              // 699: client.api.HomeLoginResponse.FriendResult
+	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult)(nil),                 // 700: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
+	(*HomeLoginResponse_ProducerRankingResult)(nil),                                     // 701: client.api.HomeLoginResponse.ProducerRankingResult
+	(*HomeLoginResponse_ProduceNextIdolAuditionMasterSeasonResult_CharacterResult)(nil), // 702: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
+	(*HomeLoginResponse_ProducerRankingResult_CharacterResult)(nil),                     // 703: client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult
+	(*HomeSetCharactersRequest_HomeCharacter)(nil),                                      // 704: client.api.HomeSetCharactersRequest.HomeCharacter
+	(*LoginBonusCheckResponse_Info)(nil),                                                // 705: client.api.LoginBonusCheckResponse.Info
+	(*LoginBonusCheckResponse_TotalInfo)(nil),                                           // 706: client.api.LoginBonusCheckResponse.TotalInfo
+	(*MasterGetResponse_MasterTagPack)(nil),                                             // 707: client.api.MasterGetResponse.MasterTagPack
+	(*MasterGetResponse_MasterTag)(nil),                                                 // 708: client.api.MasterGetResponse.MasterTag
+	(*MeishiListFollowResponse_Follow)(nil),                                             // 709: client.api.MeishiListFollowResponse.Follow
+	(*MeishiListResponse_MeishiInfo)(nil),                                               // 710: client.api.MeishiListResponse.MeishiInfo
+	(*MeishiUpdateRequest_MeishiBase)(nil),                                              // 711: client.api.MeishiUpdateRequest.MeishiBase
+	(*MeishiUpdateRequest_Object)(nil),                                                  // 712: client.api.MeishiUpdateRequest.Object
+	(*MissionReceiveRequest_Mission)(nil),                                               // 713: client.api.MissionReceiveRequest.Mission
+	(*MissionReceiveRequest_MissionPoint)(nil),                                          // 714: client.api.MissionReceiveRequest.MissionPoint
+	(*MissionReceiveResponse_MasterAchievementProgress)(nil),                            // 715: client.api.MissionReceiveResponse.MasterAchievementProgress
+	(*MissionReceiveResponse_MasterAchievementProgressResult)(nil),                      // 716: client.api.MissionReceiveResponse.MasterAchievementProgressResult
+	(*PhotoCreateIdolRequest_CharacterSetting)(nil),                                     // 717: client.api.PhotoCreateIdolRequest.CharacterSetting
+	(*PhotoCreateIdolRequest_Photo)(nil),                                                // 718: client.api.PhotoCreateIdolRequest.Photo
+	(*PhotoCreateIdolRequest_Photo_CharacterSetting)(nil),                               // 719: client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
+	(*PhotoCreateRequest_UnitCharacter)(nil),                                            // 720: client.api.PhotoCreateRequest.UnitCharacter
+	(*ProduceHighScoreRankingResponse_Rank)(nil),                                        // 721: client.api.ProduceHighScoreRankingResponse.Rank
+	(*ProduceListRentalMemoryResponse_RentalMemory)(nil),                                // 722: client.api.ProduceListRentalMemoryResponse.RentalMemory
+	(*ProduceListRentalSupportCardResponse_RentalSupportCard)(nil),                      // 723: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	(*ProduceRankingTopResponse_Ranking)(nil),                                           // 724: client.api.ProduceRankingTopResponse.Ranking
+	(*ProduceResultResponse_HighScoreReward)(nil),                                       // 725: client.api.ProduceResultResponse.HighScoreReward
+	(*ProduceResultResponse_HighScoreUpdateResult)(nil),                                 // 726: client.api.ProduceResultResponse.HighScoreUpdateResult
+	(*ProduceResultResponse_ResearchResult)(nil),                                        // 727: client.api.ProduceResultResponse.ResearchResult
+	(*ProduceResultResponse_TourResult)(nil),                                            // 728: client.api.ProduceResultResponse.TourResult
+	(*ProduceStartRequest_Memory)(nil),                                                  // 729: client.api.ProduceStartRequest.Memory
+	(*ProduceStartRequest_SupportCard)(nil),                                             // 730: client.api.ProduceStartRequest.SupportCard
+	(*ProduceTopResponse_ProduceHighScore)(nil),                                         // 731: client.api.ProduceTopResponse.ProduceHighScore
+	(*ProduceTopResponse_Research)(nil),                                                 // 732: client.api.ProduceTopResponse.Research
+	(*ProduceTopResponse_Tour)(nil),                                                     // 733: client.api.ProduceTopResponse.Tour
+	(*ProfileGetResponse_ProduceRecord)(nil),                                            // 734: client.api.ProfileGetResponse.ProduceRecord
+	(*PvpRateListHistoryResponse_PvpRateHistory)(nil),                                   // 735: client.api.PvpRateListHistoryResponse.PvpRateHistory
+	(*PvpRateUnitStageFormation_Slot)(nil),                                              // 736: client.api.PvpRateUnitStageFormation.Slot
+	(*ResearchRankingResponse_Rank)(nil),                                                // 737: client.api.ResearchRankingResponse.Rank
+	(*SeminarEndExamRequest_Turn)(nil),                                                  // 738: client.api.SeminarEndExamRequest.Turn
+	(*SeminarGetExamResponse_TurnNavigationStep)(nil),                                   // 739: client.api.SeminarGetExamResponse.TurnNavigationStep
+	(*SeminarGetExamResponse_FailureNavigation)(nil),                                    // 740: client.api.SeminarGetExamResponse.FailureNavigation
+	(*SeminarGetExamResponse_TurnNavigation)(nil),                                       // 741: client.api.SeminarGetExamResponse.TurnNavigation
+	(*SeminarListExamResponse_Exam)(nil),                                                // 742: client.api.SeminarListExamResponse.Exam
+	(*SeminarListExamResponse_ExamGroup)(nil),                                           // 743: client.api.SeminarListExamResponse.ExamGroup
+	(*ShopGetPurchasePlatformTransactionResponse_PlatformTransaction)(nil),              // 744: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
+	(*ShopTopResponse_Shop)(nil),                                                        // 745: client.api.ShopTopResponse.Shop
+	(*StartupConfirmRequest_Notification)(nil),                                          // 746: client.api.StartupConfirmRequest.Notification
+	(*StoryEventReceiveGuildMissionResponse_ReceiveResult)(nil),                         // 747: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
+	(*StoryEventTopResponse_Motion)(nil),                                                // 748: client.api.StoryEventTopResponse.Motion
+	(*SupportCardExchangeRequest_Parameter)(nil),                                        // 749: client.api.SupportCardExchangeRequest.Parameter
+	(*SupportCardListDeckRankingResponse_SupportCardRank)(nil),                          // 750: client.api.SupportCardListDeckRankingResponse.SupportCardRank
+	(*SupportCardListDeckRankingResponse_Ranking)(nil),                                  // 751: client.api.SupportCardListDeckRankingResponse.Ranking
+	(*SystemCheckResponse_MaintenanceInfo)(nil),                                         // 752: client.api.SystemCheckResponse.MaintenanceInfo
+	(*SystemCheckResponse_ReviewInfo)(nil),                                              // 753: client.api.SystemCheckResponse.ReviewInfo
+	(*TourGetProgressResponse_ExamEnd)(nil),                                             // 754: client.api.TourGetProgressResponse.ExamEnd
+	(*TourGetProgressResponse_Progress)(nil),                                            // 755: client.api.TourGetProgressResponse.Progress
+	(*TourResultResponse_TotalPointRewardResult)(nil),                                   // 756: client.api.TourResultResponse.TotalPointRewardResult
+	(*TourStageRankingResponse_UserRank)(nil),                                           // 757: client.api.TourStageRankingResponse.UserRank
+	(*TourStageRankingResponse_SelfStageRank)(nil),                                      // 758: client.api.TourStageRankingResponse.SelfStageRank
+	(*TourStageRankingResponse_StageRanking)(nil),                                       // 759: client.api.TourStageRankingResponse.StageRanking
+	(*TourTopResponse_Stage)(nil),                                                       // 760: client.api.TourTopResponse.Stage
+	(*TourTopResponse_Stage_StageLevelReward)(nil),                                      // 761: client.api.TourTopResponse.Stage.StageLevelReward
+	(*TowerGetLayerResponse_Exam)(nil),                                                  // 762: client.api.TowerGetLayerResponse.Exam
+	(*TowerListLayersResponse_TowerLayerRank)(nil),                                      // 763: client.api.TowerListLayersResponse.TowerLayerRank
+	(*TowerListLayersResponse_TowerLayer)(nil),                                          // 764: client.api.TowerListLayersResponse.TowerLayer
+	(*TowerTopResponse_Tower)(nil),                                                      // 765: client.api.TowerTopResponse.Tower
+	(*UserListMessageResponse_PersonalMessage)(nil),                                     // 766: client.api.UserListMessageResponse.PersonalMessage
+	(penum.TermsType)(0),                                                                // 767: penum.TermsType
+	(*papicommon.Response)(nil),                                                         // 768: papicommon.Response
+	(*pcommon.RewardResult)(nil),                                                        // 769: pcommon.RewardResult
+	(*pcommon.CoinGasha)(nil),                                                           // 770: pcommon.CoinGasha
+	(*pcommon.ExamContestSituation)(nil),                                                // 771: pcommon.ExamContestSituation
+	(*pcommon.ExamContestResult)(nil),                                                   // 772: pcommon.ExamContestResult
+	(*pcommon.Meishi)(nil),                                                              // 773: pcommon.Meishi
+	(penum.CompetitionStageType)(0),                                                     // 774: penum.CompetitionStageType
+	(*pcommon.SimpleProfile)(nil),                                                       // 775: pcommon.SimpleProfile
+	(*pcommon.CompetitionDeck)(nil),                                                     // 776: pcommon.CompetitionDeck
+	(*pcommon.Reward)(nil),                                                              // 777: pcommon.Reward
+	(penum.CompetitionGrade)(0),                                                         // 778: penum.CompetitionGrade
+	(*pcommon.CompetitionDeckSetupMemorySlot)(nil),                                      // 779: pcommon.CompetitionDeckSetupMemorySlot
+	(penum.DeckRecommendType)(0),                                                        // 780: penum.DeckRecommendType
+	(penum.ConsentType)(0),                                                              // 781: penum.ConsentType
+	(penum.ConsentAgreementType)(0),                                                     // 782: penum.ConsentAgreementType
+	(penum.CostumeSetType)(0),                                                           // 783: penum.CostumeSetType
+	(penum.ExchangeType)(0),                                                             // 784: penum.ExchangeType
+	(penum.ResourceType)(0),                                                             // 785: penum.ResourceType
+	(penum.ResetTimingType)(0),                                                          // 786: penum.ResetTimingType
+	(*pcommon.Memory)(nil),                                                              // 787: pcommon.Memory
+	(penum.GashaContinuousStepType)(0),                                                  // 788: penum.GashaContinuousStepType
+	(*pcommon.GashaButton)(nil),                                                         // 789: pcommon.GashaButton
+	(*pcommon.GashaPoint)(nil),                                                          // 790: pcommon.GashaPoint
+	(*pcommon.GashaStepUp)(nil),                                                         // 791: pcommon.GashaStepUp
+	(*pcommon.Gasha)(nil),                                                               // 792: pcommon.Gasha
+	(penum.GiftFilterType)(0),                                                           // 793: penum.GiftFilterType
+	(penum.GuildJoinRequestRouteType)(0),                                                // 794: penum.GuildJoinRequestRouteType
+	(penum.GuildActivityPolicyType)(0),                                                  // 795: penum.GuildActivityPolicyType
+	(*pcommon.Achievement)(nil),                                                         // 796: pcommon.Achievement
+	(penum.GuildSearchMemberCountRangeType)(0),                                          // 797: penum.GuildSearchMemberCountRangeType
+	(penum.GuildRoleType)(0),                                                            // 798: penum.GuildRoleType
+	(penum.GuildNotificationType)(0),                                                    // 799: penum.GuildNotificationType
+	(*pcommon.GvgRaidSlot)(nil),                                                         // 800: pcommon.GvgRaidSlot
+	(*pcommon.ExamBattleAutoStageResult)(nil),                                           // 801: pcommon.ExamBattleAutoStageResult
+	(*pcommon.ExamBattleAutoRequest)(nil),                                               // 802: pcommon.ExamBattleAutoRequest
+	(penum.ProducePlanType)(0),                                                          // 803: penum.ProducePlanType
+	(penum.GvgRaidStageIconSizeType)(0),                                                 // 804: penum.GvgRaidStageIconSizeType
+	(*pcommon.GvgRaidGuild)(nil),                                                        // 805: pcommon.GvgRaidGuild
+	(*pcommon.StartupNotification)(nil),                                                 // 806: pcommon.StartupNotification
+	(*pcommon.GvgRaidSetUpDeck)(nil),                                                    // 807: pcommon.GvgRaidSetUpDeck
+	(penum.ServingStatus)(0),                                                            // 808: penum.ServingStatus
+	(*pcommon.HomeBanner)(nil),                                                          // 809: pcommon.HomeBanner
+	(*pcommon.HomeNavigation)(nil),                                                      // 810: pcommon.HomeNavigation
+	(*papicommon.PvpRateSeasonTop)(nil),                                                 // 811: papicommon.PvpRateSeasonTop
+	(*pcommon.Event)(nil),                                                               // 812: pcommon.Event
+	(*papicommon.CompetitionSeasonTop)(nil),                                             // 813: papicommon.CompetitionSeasonTop
+	(penum.ShopItemLabelType)(0),                                                        // 814: penum.ShopItemLabelType
+	(*papicommon.CompetitionPreSeasonResult)(nil),                                       // 815: papicommon.CompetitionPreSeasonResult
+	(*papicommon.PvpRateSeasonResult)(nil),                                              // 816: papicommon.PvpRateSeasonResult
+	(*pcommon.ProducerLevelUnlock)(nil),                                                 // 817: pcommon.ProducerLevelUnlock
+	(penum.IdolCardRarity)(0),                                                           // 818: penum.IdolCardRarity
+	(penum.IdolCardLevelLimitRank)(0),                                                   // 819: penum.IdolCardLevelLimitRank
+	(penum.IdolCardPotentialRank)(0),                                                    // 820: penum.IdolCardPotentialRank
+	(penum.FriendStatusType)(0),                                                         // 821: penum.FriendStatusType
+	(*pmaster.Mission)(nil),                                                             // 822: pmaster.Mission
+	(penum.NoticeCategory)(0),                                                           // 823: penum.NoticeCategory
+	(penum.NoticeType)(0),                                                               // 824: penum.NoticeType
+	(penum.PhotoButtonExecuteType)(0),                                                   // 825: penum.PhotoButtonExecuteType
+	(penum.PreferenceType)(0),                                                           // 826: penum.PreferenceType
+	(*pcommon.ProduceEffectResult)(nil),                                                 // 827: pcommon.ProduceEffectResult
+	(penum.ProduceHighScoreEventType)(0),                                                // 828: penum.ProduceHighScoreEventType
+	(*papicommon.ProduceHighScoreRushExternalProduceReward)(nil),                        // 829: papicommon.ProduceHighScoreRushExternalProduceReward
+	(*pcommon.ProduceHistory)(nil),                                                      // 830: pcommon.ProduceHistory
+	(penum.ProduceStepType)(0),                                                          // 831: penum.ProduceStepType
+	(penum.ResultGrade)(0),                                                              // 832: penum.ResultGrade
+	(*pcommon.GuildMission)(nil),                                                        // 833: pcommon.GuildMission
+	(*pcommon.GuildMissionHistory)(nil),                                                 // 834: pcommon.GuildMissionHistory
+	(*pcommon.StoryEventProduceResult)(nil),                                             // 835: pcommon.StoryEventProduceResult
+	(*pcommon.ProducerRankingResult)(nil),                                               // 836: pcommon.ProducerRankingResult
+	(*pcommon.ExamBattleResult)(nil),                                                    // 837: pcommon.ExamBattleResult
+	(*pcommon.ExamTurnEndLog)(nil),                                                      // 838: pcommon.ExamTurnEndLog
+	(*pcommon.ProduceRewardResult)(nil),                                                 // 839: pcommon.ProduceRewardResult
+	(*pcommon.ProduceMemoryRewardResult)(nil),                                           // 840: pcommon.ProduceMemoryRewardResult
+	(penum.ProduceStepBusinessType)(0),                                                  // 841: penum.ProduceStepBusinessType
+	(*pcommon.ProduceConsumptionResult)(nil),                                            // 842: pcommon.ProduceConsumptionResult
+	(*pcommon.ProduceExamEndResult)(nil),                                                // 843: pcommon.ProduceExamEndResult
+	(*pcommon.ProduceCampaign)(nil),                                                     // 844: pcommon.ProduceCampaign
+	(penum.StoryEventType)(0),                                                           // 845: penum.StoryEventType
+	(*pcommon.StoryEventBonus)(nil),                                                     // 846: pcommon.StoryEventBonus
+	(penum.ProduceType)(0),                                                              // 847: penum.ProduceType
+	(*pmaster.ProducerRankingCharacter)(nil),                                            // 848: pmaster.ProducerRankingCharacter
+	(*papicommon.RankReward)(nil),                                                       // 849: papicommon.RankReward
+	(penum.PvpRateGrade)(0),                                                             // 850: penum.PvpRateGrade
+	(*pcommon.SupportCard)(nil),                                                         // 851: pcommon.SupportCard
+	(*pcommon.PvpRateExamBattleResult)(nil),                                             // 852: pcommon.PvpRateExamBattleResult
+	(penum.PvpRateRivalType)(0),                                                         // 853: penum.PvpRateRivalType
+	(penum.PvpRateStageType)(0),                                                         // 854: penum.PvpRateStageType
+	(*pcommon.PvpRateSetupUnitStageFormation)(nil),                                      // 855: pcommon.PvpRateSetupUnitStageFormation
+	(penum.SkillRarity)(0),                                                              // 856: penum.SkillRarity
+	(penum.ProduceExamEffectType)(0),                                                    // 857: penum.ProduceExamEffectType
+	(penum.ProduceParameterType)(0),                                                     // 858: penum.ProduceParameterType
+	(*pcommon.ProduceCard)(nil),                                                         // 859: pcommon.ProduceCard
+	(*pmaster.ShopItem)(nil),                                                            // 860: pmaster.ShopItem
+	(penum.StartupNotificationDisplayType)(0),                                           // 861: penum.StartupNotificationDisplayType
+	(*pcommon.StoryEventPointReward)(nil),                                               // 862: pcommon.StoryEventPointReward
+	(penum.SupportCardRarity)(0),                                                        // 863: penum.SupportCardRarity
+	(penum.SupportCardLevelLimitRank)(0),                                                // 864: penum.SupportCardLevelLimitRank
+	(*pcommon.ProduceCardConversion)(nil),                                               // 865: pcommon.ProduceCardConversion
+	(penum.TourScoreGrade)(0),                                                           // 866: penum.TourScoreGrade
+	(penum.TourProgressPhaseType)(0),                                                    // 867: penum.TourProgressPhaseType
+	(*pcommon.EventBonus)(nil),                                                          // 868: pcommon.EventBonus
+	(*pcommon.TowerLayerHistory)(nil),                                                   // 869: pcommon.TowerLayerHistory
+	(penum.TutorialType)(0),                                                             // 870: penum.TutorialType
+	(*papicommon.UserData)(nil),                                                         // 871: papicommon.UserData
+	(penum.WorkType)(0),                                                                 // 872: penum.WorkType
+	(penum.CompetitionStageSectionType)(0),                                              // 873: penum.CompetitionStageSectionType
+	(*pcommon.ExamContestSection)(nil),                                                  // 874: pcommon.ExamContestSection
+	(penum.FeatureMaintenanceType)(0),                                                   // 875: penum.FeatureMaintenanceType
+	(penum.HomeType)(0),                                                                 // 876: penum.HomeType
+	(penum.LoginBonusType)(0),                                                           // 877: penum.LoginBonusType
+	(penum.MeishiObjectType)(0),                                                         // 878: penum.MeishiObjectType
+	(penum.TutorialNavigationType)(0),                                                   // 879: penum.TutorialNavigationType
+	(penum.ProduceExamTriggerCheckType)(0),                                              // 880: penum.ProduceExamTriggerCheckType
+	(penum.ProduceExamFieldStatusType)(0),                                               // 881: penum.ProduceExamFieldStatusType
+	(penum.PaymentPendingReceiptDialogTimingType)(0),                                    // 882: penum.PaymentPendingReceiptDialogTimingType
+	(penum.StoryEventMotionType)(0),                                                     // 883: penum.StoryEventMotionType
+	(penum.TourStageIconSizeType)(0),                                                    // 884: penum.TourStageIconSizeType
+	(*pcommon.ExamTriggerCount)(nil),                                                    // 885: pcommon.ExamTriggerCount
 }
 var file_papi_proto_depIdxs = []int32{
-	760,  // 0: client.api.AuthAgreeTermsRequest.types:type_name -> penum.TermsType
-	761,  // 1: client.api.AuthAgreeTermsResponse.commonResponse:type_name -> papicommon.Response
+	767,  // 0: client.api.AuthAgreeTermsRequest.types:type_name -> penum.TermsType
+	768,  // 1: client.api.AuthAgreeTermsResponse.commonResponse:type_name -> papicommon.Response
 	58,   // 2: client.api.AuthGetConsentResponse.consents:type_name -> client.api.Consent
-	761,  // 3: client.api.AuthGetConsentResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 4: client.api.AuthLinkBandaiNamcoIdResponse.commonResponse:type_name -> papicommon.Response
-	666,  // 5: client.api.AuthLoginResponse.terms:type_name -> client.api.AuthLoginResponse.Term
+	768,  // 3: client.api.AuthGetConsentResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 4: client.api.AuthLinkBandaiNamcoIdResponse.commonResponse:type_name -> papicommon.Response
+	671,  // 5: client.api.AuthLoginResponse.terms:type_name -> client.api.AuthLoginResponse.Term
 	58,   // 6: client.api.AuthLoginResponse.consents:type_name -> client.api.Consent
-	667,  // 7: client.api.AuthSendConsentRequest.consents:type_name -> client.api.AuthSendConsentRequest.Consent
-	761,  // 8: client.api.AuthSendConsentResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 9: client.api.AuthUnlinkResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 10: client.api.CharacterCheckRosterResponse.commonResponse:type_name -> papicommon.Response
+	672,  // 7: client.api.AuthSendConsentRequest.consents:type_name -> client.api.AuthSendConsentRequest.Consent
+	768,  // 8: client.api.AuthSendConsentResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 9: client.api.AuthUnlinkResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 10: client.api.CharacterCheckRosterResponse.commonResponse:type_name -> papicommon.Response
 	21,   // 11: client.api.CoinGashaDrawResponse.drawResults:type_name -> client.api.CoinGashaDrawResult
-	762,  // 12: client.api.CoinGashaDrawResponse.drawCountRewardResults:type_name -> pcommon.RewardResult
-	763,  // 13: client.api.CoinGashaDrawResponse.coinGasha:type_name -> pcommon.CoinGasha
-	761,  // 14: client.api.CoinGashaDrawResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 15: client.api.CoinGashaDrawResult.result:type_name -> pcommon.RewardResult
-	762,  // 16: client.api.CoinGashaDrawResult.providedResult:type_name -> pcommon.RewardResult
-	762,  // 17: client.api.CoinGashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
-	763,  // 18: client.api.CoinGashaGetResponse.coinGasha:type_name -> pcommon.CoinGasha
-	761,  // 19: client.api.CoinGashaGetResponse.commonResponse:type_name -> papicommon.Response
-	763,  // 20: client.api.CoinGashaListResponse.coinGashas:type_name -> pcommon.CoinGasha
-	761,  // 21: client.api.CoinGashaListResponse.commonResponse:type_name -> papicommon.Response
-	763,  // 22: client.api.CoinGashaResetBoxResponse.coinGasha:type_name -> pcommon.CoinGasha
-	761,  // 23: client.api.CoinGashaResetBoxResponse.commonResponse:type_name -> papicommon.Response
-	764,  // 24: client.api.CompetitionContinueResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	761,  // 25: client.api.CompetitionContinueResponse.commonResponse:type_name -> papicommon.Response
-	765,  // 26: client.api.CompetitionEndRequest.examContestResult:type_name -> pcommon.ExamContestResult
-	761,  // 27: client.api.CompetitionEndResponse.commonResponse:type_name -> papicommon.Response
-	766,  // 28: client.api.CompetitionGetResponse.meishi:type_name -> pcommon.Meishi
+	769,  // 12: client.api.CoinGashaDrawResponse.drawCountRewardResults:type_name -> pcommon.RewardResult
+	770,  // 13: client.api.CoinGashaDrawResponse.coinGasha:type_name -> pcommon.CoinGasha
+	768,  // 14: client.api.CoinGashaDrawResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 15: client.api.CoinGashaDrawResult.result:type_name -> pcommon.RewardResult
+	769,  // 16: client.api.CoinGashaDrawResult.providedResult:type_name -> pcommon.RewardResult
+	769,  // 17: client.api.CoinGashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
+	770,  // 18: client.api.CoinGashaGetResponse.coinGasha:type_name -> pcommon.CoinGasha
+	768,  // 19: client.api.CoinGashaGetResponse.commonResponse:type_name -> papicommon.Response
+	770,  // 20: client.api.CoinGashaListResponse.coinGashas:type_name -> pcommon.CoinGasha
+	768,  // 21: client.api.CoinGashaListResponse.commonResponse:type_name -> papicommon.Response
+	770,  // 22: client.api.CoinGashaResetBoxResponse.coinGasha:type_name -> pcommon.CoinGasha
+	768,  // 23: client.api.CoinGashaResetBoxResponse.commonResponse:type_name -> papicommon.Response
+	771,  // 24: client.api.CompetitionContinueResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	768,  // 25: client.api.CompetitionContinueResponse.commonResponse:type_name -> papicommon.Response
+	772,  // 26: client.api.CompetitionEndRequest.examContestResult:type_name -> pcommon.ExamContestResult
+	768,  // 27: client.api.CompetitionEndResponse.commonResponse:type_name -> papicommon.Response
+	773,  // 28: client.api.CompetitionGetResponse.meishi:type_name -> pcommon.Meishi
 	57,   // 29: client.api.CompetitionGetResponse.nextWinCountReward:type_name -> client.api.CompetitionWinCountReward
-	670,  // 30: client.api.CompetitionGetResponse.stages:type_name -> client.api.CompetitionGetResponse.Stage
-	669,  // 31: client.api.CompetitionGetResponse.playTestStages:type_name -> client.api.CompetitionGetResponse.PlayTestStage
-	764,  // 32: client.api.CompetitionGetResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	761,  // 33: client.api.CompetitionGetResponse.commonResponse:type_name -> papicommon.Response
+	675,  // 30: client.api.CompetitionGetResponse.stages:type_name -> client.api.CompetitionGetResponse.Stage
+	674,  // 31: client.api.CompetitionGetResponse.playTestStages:type_name -> client.api.CompetitionGetResponse.PlayTestStage
+	771,  // 32: client.api.CompetitionGetResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	768,  // 33: client.api.CompetitionGetResponse.commonResponse:type_name -> papicommon.Response
 	48,   // 34: client.api.CompetitionInitializeResponse.previousSeasonResult:type_name -> client.api.CompetitionSeasonResult
-	761,  // 35: client.api.CompetitionInitializeResponse.commonResponse:type_name -> papicommon.Response
-	672,  // 36: client.api.CompetitionListDeckProduceCardRankingResponse.rankings:type_name -> client.api.CompetitionListDeckProduceCardRankingResponse.Ranking
-	761,  // 37: client.api.CompetitionListDeckProduceCardRankingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 35: client.api.CompetitionInitializeResponse.commonResponse:type_name -> papicommon.Response
+	677,  // 36: client.api.CompetitionListDeckProduceCardRankingResponse.rankings:type_name -> client.api.CompetitionListDeckProduceCardRankingResponse.Ranking
+	768,  // 37: client.api.CompetitionListDeckProduceCardRankingResponse.commonResponse:type_name -> papicommon.Response
 	41,   // 38: client.api.CompetitionListHighScoreRankingResponse.ranks:type_name -> client.api.CompetitionRank
 	41,   // 39: client.api.CompetitionListHighScoreRankingResponse.selfRank:type_name -> client.api.CompetitionRank
-	761,  // 40: client.api.CompetitionListHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
-	673,  // 41: client.api.CompetitionListHistoryResponse.histories:type_name -> client.api.CompetitionListHistoryResponse.History
-	674,  // 42: client.api.CompetitionListHistoryResponse.stages:type_name -> client.api.CompetitionListHistoryResponse.Stage
-	761,  // 43: client.api.CompetitionListHistoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 40: client.api.CompetitionListHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
+	678,  // 41: client.api.CompetitionListHistoryResponse.histories:type_name -> client.api.CompetitionListHistoryResponse.History
+	679,  // 42: client.api.CompetitionListHistoryResponse.stages:type_name -> client.api.CompetitionListHistoryResponse.Stage
+	768,  // 43: client.api.CompetitionListHistoryResponse.commonResponse:type_name -> papicommon.Response
 	57,   // 44: client.api.CompetitionListRewardResponse.winCountRewards:type_name -> client.api.CompetitionWinCountReward
 	42,   // 45: client.api.CompetitionListRewardResponse.rankingRewards:type_name -> client.api.CompetitionRankingReward
-	761,  // 46: client.api.CompetitionListRewardResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 46: client.api.CompetitionListRewardResponse.commonResponse:type_name -> papicommon.Response
 	41,   // 47: client.api.CompetitionListWinCountRankingResponse.ranks:type_name -> client.api.CompetitionRank
 	41,   // 48: client.api.CompetitionListWinCountRankingResponse.selfRank:type_name -> client.api.CompetitionRank
-	761,  // 49: client.api.CompetitionListWinCountRankingResponse.commonResponse:type_name -> papicommon.Response
-	767,  // 50: client.api.CompetitionPlayTestRequest.stageType:type_name -> penum.CompetitionStageType
-	764,  // 51: client.api.CompetitionPlayTestResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	761,  // 52: client.api.CompetitionPlayTestResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 53: client.api.CompetitionRank.profile:type_name -> pcommon.SimpleProfile
-	769,  // 54: client.api.CompetitionRank.deck:type_name -> pcommon.CompetitionDeck
-	770,  // 55: client.api.CompetitionRankingReward.rewards:type_name -> pcommon.Reward
-	765,  // 56: client.api.CompetitionResultPlayTestRequest.examContestResult:type_name -> pcommon.ExamContestResult
-	761,  // 57: client.api.CompetitionResultPlayTestResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 58: client.api.CompetitionResultResponse.playRewards:type_name -> pcommon.RewardResult
-	762,  // 59: client.api.CompetitionResultResponse.winRewards:type_name -> pcommon.RewardResult
-	762,  // 60: client.api.CompetitionResultResponse.winCountRewards:type_name -> pcommon.RewardResult
-	761,  // 61: client.api.CompetitionResultResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 62: client.api.CompetitionRetireResponse.commonResponse:type_name -> papicommon.Response
-	771,  // 63: client.api.CompetitionSeasonResult.beforeGrade:type_name -> penum.CompetitionGrade
-	771,  // 64: client.api.CompetitionSeasonResult.afterGrade:type_name -> penum.CompetitionGrade
-	771,  // 65: client.api.CompetitionSeasonResult.prevSeasonGrade:type_name -> penum.CompetitionGrade
-	770,  // 66: client.api.CompetitionSeasonResult.rewards:type_name -> pcommon.Reward
-	761,  // 67: client.api.CompetitionSelectAutoResponse.commonResponse:type_name -> papicommon.Response
-	767,  // 68: client.api.CompetitionStartRequest.stageType:type_name -> penum.CompetitionStageType
-	764,  // 69: client.api.CompetitionStartResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	761,  // 70: client.api.CompetitionStartResponse.commonResponse:type_name -> papicommon.Response
-	772,  // 71: client.api.CompetitionUpdateDeckRequest.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
-	773,  // 72: client.api.CompetitionUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 73: client.api.CompetitionUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
-	767,  // 74: client.api.CompetitionUpdateSeasonDeckRequest.stageType:type_name -> penum.CompetitionStageType
-	772,  // 75: client.api.CompetitionUpdateSeasonDeckRequest.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
-	773,  // 76: client.api.CompetitionUpdateSeasonDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 77: client.api.CompetitionUpdateSeasonDeckResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 78: client.api.CompetitionWinCountReward.rewards:type_name -> pcommon.Reward
-	774,  // 79: client.api.Consent.consentType:type_name -> penum.ConsentType
-	775,  // 80: client.api.Consent.agreementType:type_name -> penum.ConsentAgreementType
-	761,  // 81: client.api.CostumeCheckResponse.commonResponse:type_name -> papicommon.Response
-	776,  // 82: client.api.CostumeSetRandomRequest.setType:type_name -> penum.CostumeSetType
-	675,  // 83: client.api.CostumeSetRandomRequest.randomCharacterCostumes:type_name -> client.api.CostumeSetRandomRequest.RandomCharacterCostume
-	761,  // 84: client.api.CostumeSetRandomResponse.commonResponse:type_name -> papicommon.Response
-	776,  // 85: client.api.CostumeSetRequest.setType:type_name -> penum.CostumeSetType
-	761,  // 86: client.api.CostumeSetResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 49: client.api.CompetitionListWinCountRankingResponse.commonResponse:type_name -> papicommon.Response
+	774,  // 50: client.api.CompetitionPlayTestRequest.stageType:type_name -> penum.CompetitionStageType
+	771,  // 51: client.api.CompetitionPlayTestResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	768,  // 52: client.api.CompetitionPlayTestResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 53: client.api.CompetitionRank.profile:type_name -> pcommon.SimpleProfile
+	776,  // 54: client.api.CompetitionRank.deck:type_name -> pcommon.CompetitionDeck
+	777,  // 55: client.api.CompetitionRankingReward.rewards:type_name -> pcommon.Reward
+	772,  // 56: client.api.CompetitionResultPlayTestRequest.examContestResult:type_name -> pcommon.ExamContestResult
+	768,  // 57: client.api.CompetitionResultPlayTestResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 58: client.api.CompetitionResultResponse.playRewards:type_name -> pcommon.RewardResult
+	769,  // 59: client.api.CompetitionResultResponse.winRewards:type_name -> pcommon.RewardResult
+	769,  // 60: client.api.CompetitionResultResponse.winCountRewards:type_name -> pcommon.RewardResult
+	768,  // 61: client.api.CompetitionResultResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 62: client.api.CompetitionRetireResponse.commonResponse:type_name -> papicommon.Response
+	778,  // 63: client.api.CompetitionSeasonResult.beforeGrade:type_name -> penum.CompetitionGrade
+	778,  // 64: client.api.CompetitionSeasonResult.afterGrade:type_name -> penum.CompetitionGrade
+	778,  // 65: client.api.CompetitionSeasonResult.prevSeasonGrade:type_name -> penum.CompetitionGrade
+	777,  // 66: client.api.CompetitionSeasonResult.rewards:type_name -> pcommon.Reward
+	768,  // 67: client.api.CompetitionSelectAutoResponse.commonResponse:type_name -> papicommon.Response
+	774,  // 68: client.api.CompetitionStartRequest.stageType:type_name -> penum.CompetitionStageType
+	771,  // 69: client.api.CompetitionStartResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	768,  // 70: client.api.CompetitionStartResponse.commonResponse:type_name -> papicommon.Response
+	779,  // 71: client.api.CompetitionUpdateDeckRequest.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
+	780,  // 72: client.api.CompetitionUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 73: client.api.CompetitionUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
+	774,  // 74: client.api.CompetitionUpdateSeasonDeckRequest.stageType:type_name -> penum.CompetitionStageType
+	779,  // 75: client.api.CompetitionUpdateSeasonDeckRequest.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
+	780,  // 76: client.api.CompetitionUpdateSeasonDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 77: client.api.CompetitionUpdateSeasonDeckResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 78: client.api.CompetitionWinCountReward.rewards:type_name -> pcommon.Reward
+	781,  // 79: client.api.Consent.consentType:type_name -> penum.ConsentType
+	782,  // 80: client.api.Consent.agreementType:type_name -> penum.ConsentAgreementType
+	768,  // 81: client.api.CostumeCheckResponse.commonResponse:type_name -> papicommon.Response
+	783,  // 82: client.api.CostumeSetRandomRequest.setType:type_name -> penum.CostumeSetType
+	680,  // 83: client.api.CostumeSetRandomRequest.randomCharacterCostumes:type_name -> client.api.CostumeSetRandomRequest.RandomCharacterCostume
+	768,  // 84: client.api.CostumeSetRandomResponse.commonResponse:type_name -> papicommon.Response
+	783,  // 85: client.api.CostumeSetRequest.setType:type_name -> penum.CostumeSetType
+	768,  // 86: client.api.CostumeSetResponse.commonResponse:type_name -> papicommon.Response
 	118,  // 87: client.api.DefaultGashaProbability.probability:type_name -> client.api.GashaProbability
 	118,  // 88: client.api.DefaultGashaProbability.fixProbability:type_name -> client.api.GashaProbability
 	146,  // 89: client.api.DonationRequest.donationList:type_name -> client.api.GuildDonationInfo
 	72,   // 90: client.api.ExchangeExecuteResponse.exchangeItem:type_name -> client.api.ExchangeItem
-	762,  // 91: client.api.ExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 92: client.api.ExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 91: client.api.ExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 92: client.api.ExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
 	71,   // 93: client.api.ExchangeGetResponse.exchange:type_name -> client.api.ExchangeInfo
-	761,  // 94: client.api.ExchangeGetResponse.commonResponse:type_name -> papicommon.Response
-	777,  // 95: client.api.ExchangeInfo.exchangeType:type_name -> penum.ExchangeType
-	778,  // 96: client.api.ExchangeInfo.consumptionResourceType:type_name -> penum.ResourceType
-	779,  // 97: client.api.ExchangeInfo.resetTimingType:type_name -> penum.ResetTimingType
+	768,  // 94: client.api.ExchangeGetResponse.commonResponse:type_name -> papicommon.Response
+	784,  // 95: client.api.ExchangeInfo.exchangeType:type_name -> penum.ExchangeType
+	785,  // 96: client.api.ExchangeInfo.consumptionResourceType:type_name -> penum.ResourceType
+	786,  // 97: client.api.ExchangeInfo.resetTimingType:type_name -> penum.ResetTimingType
 	72,   // 98: client.api.ExchangeInfo.items:type_name -> client.api.ExchangeItem
-	779,  // 99: client.api.ExchangeItem.resetTimingType:type_name -> penum.ResetTimingType
-	770,  // 100: client.api.ExchangeItem.reward:type_name -> pcommon.Reward
-	676,  // 101: client.api.ExchangeItem.consumptionResources:type_name -> client.api.ExchangeItem.ConsumptionResource
+	786,  // 99: client.api.ExchangeItem.resetTimingType:type_name -> penum.ResetTimingType
+	777,  // 100: client.api.ExchangeItem.reward:type_name -> pcommon.Reward
+	681,  // 101: client.api.ExchangeItem.consumptionResources:type_name -> client.api.ExchangeItem.ConsumptionResource
 	71,   // 102: client.api.ExchangeListResponse.exchanges:type_name -> client.api.ExchangeInfo
-	761,  // 103: client.api.ExchangeListResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 103: client.api.ExchangeListResponse.commonResponse:type_name -> papicommon.Response
 	71,   // 104: client.api.ExchangeResetResponse.exchange:type_name -> client.api.ExchangeInfo
-	761,  // 105: client.api.ExchangeResetResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 106: client.api.FriendDeleteFollowerResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 107: client.api.FriendFollowResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 108: client.api.FriendInfo.profile:type_name -> pcommon.SimpleProfile
-	677,  // 109: client.api.FriendInfo.supportCard:type_name -> client.api.FriendInfo.SupportCard
-	780,  // 110: client.api.FriendInfo.memory:type_name -> pcommon.Memory
+	768,  // 105: client.api.ExchangeResetResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 106: client.api.FriendDeleteFollowerResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 107: client.api.FriendFollowResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 108: client.api.FriendInfo.profile:type_name -> pcommon.SimpleProfile
+	682,  // 109: client.api.FriendInfo.supportCard:type_name -> client.api.FriendInfo.SupportCard
+	787,  // 110: client.api.FriendInfo.memory:type_name -> pcommon.Memory
 	81,   // 111: client.api.FriendListResponse.friendList:type_name -> client.api.FriendInfo
 	81,   // 112: client.api.FriendListResponse.followerList:type_name -> client.api.FriendInfo
 	81,   // 113: client.api.FriendListResponse.suggestionList:type_name -> client.api.FriendInfo
-	761,  // 114: client.api.FriendListResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 114: client.api.FriendListResponse.commonResponse:type_name -> papicommon.Response
 	81,   // 115: client.api.FriendListSuggestionResponse.list:type_name -> client.api.FriendInfo
-	761,  // 116: client.api.FriendListSuggestionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 117: client.api.FriendUnFollowResponse.commonResponse:type_name -> papicommon.Response
-	781,  // 118: client.api.GashaContinueDrawContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
+	768,  // 116: client.api.FriendListSuggestionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 117: client.api.FriendUnFollowResponse.commonResponse:type_name -> papicommon.Response
+	788,  // 118: client.api.GashaContinueDrawContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
 	93,   // 119: client.api.GashaContinueDrawContinuousResponse.drawResults:type_name -> client.api.GashaDrawResult
-	761,  // 120: client.api.GashaContinueDrawContinuousResponse.commonResponse:type_name -> papicommon.Response
-	778,  // 121: client.api.GashaDrawContinuousRequest.consumeResourceType:type_name -> penum.ResourceType
-	781,  // 122: client.api.GashaDrawContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
+	768,  // 120: client.api.GashaContinueDrawContinuousResponse.commonResponse:type_name -> papicommon.Response
+	785,  // 121: client.api.GashaDrawContinuousRequest.consumeResourceType:type_name -> penum.ResourceType
+	788,  // 122: client.api.GashaDrawContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
 	93,   // 123: client.api.GashaDrawContinuousResponse.drawResults:type_name -> client.api.GashaDrawResult
-	782,  // 124: client.api.GashaDrawContinuousResponse.gashaButton:type_name -> pcommon.GashaButton
-	761,  // 125: client.api.GashaDrawContinuousResponse.commonResponse:type_name -> papicommon.Response
-	778,  // 126: client.api.GashaDrawRequest.consumeResourceType:type_name -> penum.ResourceType
+	789,  // 124: client.api.GashaDrawContinuousResponse.gashaButton:type_name -> pcommon.GashaButton
+	768,  // 125: client.api.GashaDrawContinuousResponse.commonResponse:type_name -> papicommon.Response
+	785,  // 126: client.api.GashaDrawRequest.consumeResourceType:type_name -> penum.ResourceType
 	93,   // 127: client.api.GashaDrawResponse.drawResults:type_name -> client.api.GashaDrawResult
-	782,  // 128: client.api.GashaDrawResponse.gashaButton:type_name -> pcommon.GashaButton
-	770,  // 129: client.api.GashaDrawResponse.bonusRewards:type_name -> pcommon.Reward
-	783,  // 130: client.api.GashaDrawResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	761,  // 131: client.api.GashaDrawResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 132: client.api.GashaDrawResult.result:type_name -> pcommon.RewardResult
-	762,  // 133: client.api.GashaDrawResult.providedResult:type_name -> pcommon.RewardResult
-	762,  // 134: client.api.GashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
-	778,  // 135: client.api.GashaDrawSelectPickupRequest.consumeResourceType:type_name -> penum.ResourceType
+	789,  // 128: client.api.GashaDrawResponse.gashaButton:type_name -> pcommon.GashaButton
+	777,  // 129: client.api.GashaDrawResponse.bonusRewards:type_name -> pcommon.Reward
+	790,  // 130: client.api.GashaDrawResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	768,  // 131: client.api.GashaDrawResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 132: client.api.GashaDrawResult.result:type_name -> pcommon.RewardResult
+	769,  // 133: client.api.GashaDrawResult.providedResult:type_name -> pcommon.RewardResult
+	769,  // 134: client.api.GashaDrawResult.cardBonusRewardResults:type_name -> pcommon.RewardResult
+	785,  // 135: client.api.GashaDrawSelectPickupRequest.consumeResourceType:type_name -> penum.ResourceType
 	93,   // 136: client.api.GashaDrawSelectPickupResponse.drawResults:type_name -> client.api.GashaDrawResult
-	782,  // 137: client.api.GashaDrawSelectPickupResponse.gashaButton:type_name -> pcommon.GashaButton
-	770,  // 138: client.api.GashaDrawSelectPickupResponse.bonusRewards:type_name -> pcommon.Reward
-	783,  // 139: client.api.GashaDrawSelectPickupResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	761,  // 140: client.api.GashaDrawSelectPickupResponse.commonResponse:type_name -> papicommon.Response
-	778,  // 141: client.api.GashaDrawStepUpRequest.consumeResourceType:type_name -> penum.ResourceType
+	789,  // 137: client.api.GashaDrawSelectPickupResponse.gashaButton:type_name -> pcommon.GashaButton
+	777,  // 138: client.api.GashaDrawSelectPickupResponse.bonusRewards:type_name -> pcommon.Reward
+	790,  // 139: client.api.GashaDrawSelectPickupResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	768,  // 140: client.api.GashaDrawSelectPickupResponse.commonResponse:type_name -> papicommon.Response
+	785,  // 141: client.api.GashaDrawStepUpRequest.consumeResourceType:type_name -> penum.ResourceType
 	93,   // 142: client.api.GashaDrawStepUpResponse.drawResults:type_name -> client.api.GashaDrawResult
-	782,  // 143: client.api.GashaDrawStepUpResponse.gashaButton:type_name -> pcommon.GashaButton
-	784,  // 144: client.api.GashaDrawStepUpResponse.nextGashaStepUp:type_name -> pcommon.GashaStepUp
-	770,  // 145: client.api.GashaDrawStepUpResponse.bonusRewards:type_name -> pcommon.Reward
-	783,  // 146: client.api.GashaDrawStepUpResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	761,  // 147: client.api.GashaDrawStepUpResponse.commonResponse:type_name -> papicommon.Response
-	783,  // 148: client.api.GashaExchangePointResponse.gashaPoint:type_name -> pcommon.GashaPoint
-	761,  // 149: client.api.GashaExchangePointResponse.commonResponse:type_name -> papicommon.Response
-	679,  // 150: client.api.GashaExpirePointResponse.gashaPoints:type_name -> client.api.GashaExpirePointResponse.GashaPoint
-	762,  // 151: client.api.GashaExpirePointResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 152: client.api.GashaExpirePointResponse.commonResponse:type_name -> papicommon.Response
-	781,  // 153: client.api.GashaFinishContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
-	761,  // 154: client.api.GashaFinishContinuousResponse.commonResponse:type_name -> papicommon.Response
+	789,  // 143: client.api.GashaDrawStepUpResponse.gashaButton:type_name -> pcommon.GashaButton
+	791,  // 144: client.api.GashaDrawStepUpResponse.nextGashaStepUp:type_name -> pcommon.GashaStepUp
+	777,  // 145: client.api.GashaDrawStepUpResponse.bonusRewards:type_name -> pcommon.Reward
+	790,  // 146: client.api.GashaDrawStepUpResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	768,  // 147: client.api.GashaDrawStepUpResponse.commonResponse:type_name -> papicommon.Response
+	790,  // 148: client.api.GashaExchangePointResponse.gashaPoint:type_name -> pcommon.GashaPoint
+	768,  // 149: client.api.GashaExchangePointResponse.commonResponse:type_name -> papicommon.Response
+	684,  // 150: client.api.GashaExpirePointResponse.gashaPoints:type_name -> client.api.GashaExpirePointResponse.GashaPoint
+	769,  // 151: client.api.GashaExpirePointResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 152: client.api.GashaExpirePointResponse.commonResponse:type_name -> papicommon.Response
+	788,  // 153: client.api.GashaFinishContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
+	768,  // 154: client.api.GashaFinishContinuousResponse.commonResponse:type_name -> papicommon.Response
 	65,   // 155: client.api.GashaGetContinuousProbabilityResponse.probability:type_name -> client.api.DefaultGashaProbability
-	761,  // 156: client.api.GashaGetContinuousProbabilityResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 157: client.api.GashaGetPointExchangeResponse.expireReward:type_name -> pcommon.Reward
-	680,  // 158: client.api.GashaGetPointExchangeResponse.exchangeResources:type_name -> client.api.GashaGetPointExchangeResponse.ExchangeResource
-	761,  // 159: client.api.GashaGetPointExchangeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 160: client.api.GashaGetPrecautionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 156: client.api.GashaGetContinuousProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 157: client.api.GashaGetPointExchangeResponse.expireReward:type_name -> pcommon.Reward
+	685,  // 158: client.api.GashaGetPointExchangeResponse.exchangeResources:type_name -> client.api.GashaGetPointExchangeResponse.ExchangeResource
+	768,  // 159: client.api.GashaGetPointExchangeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 160: client.api.GashaGetPrecautionResponse.commonResponse:type_name -> papicommon.Response
 	65,   // 161: client.api.GashaGetProbabilityResponse.probability:type_name -> client.api.DefaultGashaProbability
-	761,  // 162: client.api.GashaGetProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 162: client.api.GashaGetProbabilityResponse.commonResponse:type_name -> papicommon.Response
 	65,   // 163: client.api.GashaGetSelectPickupProbabilityResponse.probability:type_name -> client.api.DefaultGashaProbability
-	761,  // 164: client.api.GashaGetSelectPickupProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 164: client.api.GashaGetSelectPickupProbabilityResponse.commonResponse:type_name -> papicommon.Response
 	529,  // 165: client.api.GashaGetStepUpProbabilityResponse.probabilities:type_name -> client.api.StepUpGashaProbability
-	761,  // 166: client.api.GashaGetStepUpProbabilityResponse.commonResponse:type_name -> papicommon.Response
-	785,  // 167: client.api.GashaListResponse.gashas:type_name -> pcommon.Gasha
-	761,  // 168: client.api.GashaListResponse.commonResponse:type_name -> papicommon.Response
-	781,  // 169: client.api.GashaPickContinuousDrawRewardCountResponse.stepType:type_name -> penum.GashaContinuousStepType
+	768,  // 166: client.api.GashaGetStepUpProbabilityResponse.commonResponse:type_name -> papicommon.Response
+	792,  // 167: client.api.GashaListResponse.gashas:type_name -> pcommon.Gasha
+	768,  // 168: client.api.GashaListResponse.commonResponse:type_name -> papicommon.Response
+	788,  // 169: client.api.GashaPickContinuousDrawRewardCountResponse.stepType:type_name -> penum.GashaContinuousStepType
 	88,   // 170: client.api.GashaPickContinuousDrawRewardCountResponse.continuousProgress:type_name -> client.api.GashaContinuousProgress
-	770,  // 171: client.api.GashaPickContinuousDrawRewardCountResponse.shareRewards:type_name -> pcommon.Reward
-	761,  // 172: client.api.GashaPickContinuousDrawRewardCountResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 171: client.api.GashaPickContinuousDrawRewardCountResponse.shareRewards:type_name -> pcommon.Reward
+	768,  // 172: client.api.GashaPickContinuousDrawRewardCountResponse.commonResponse:type_name -> papicommon.Response
 	119,  // 173: client.api.GashaProbability.gashaRarityProbabilities:type_name -> client.api.GashaRarityProbability
 	201,  // 174: client.api.GashaProbability.idolCardRarityProbabilities:type_name -> client.api.IdolCardRarityProbability
 	554,  // 175: client.api.GashaProbability.supportCardRarityProbabilities:type_name -> client.api.SupportCardRarityProbability
-	761,  // 176: client.api.GashaReportShareSnsContinuousMissionResponse.commonResponse:type_name -> papicommon.Response
-	781,  // 177: client.api.GashaResumeContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
+	768,  // 176: client.api.GashaReportShareSnsContinuousMissionResponse.commonResponse:type_name -> papicommon.Response
+	788,  // 177: client.api.GashaResumeContinuousResponse.stepType:type_name -> penum.GashaContinuousStepType
 	93,   // 178: client.api.GashaResumeContinuousResponse.drawResults:type_name -> client.api.GashaDrawResult
 	88,   // 179: client.api.GashaResumeContinuousResponse.continuousProgress:type_name -> client.api.GashaContinuousProgress
-	770,  // 180: client.api.GashaResumeContinuousResponse.shareRewards:type_name -> pcommon.Reward
-	761,  // 181: client.api.GashaResumeContinuousResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 182: client.api.GashaSelectPickupRequest.pickupRewards:type_name -> pcommon.Reward
-	761,  // 183: client.api.GashaSelectPickupResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 184: client.api.GiftCountResponse.commonResponse:type_name -> papicommon.Response
-	786,  // 185: client.api.GiftListHistoryRequest.filters:type_name -> penum.GiftFilterType
-	681,  // 186: client.api.GiftListHistoryResponse.userGiftHistories:type_name -> client.api.GiftListHistoryResponse.UserGiftHistory
-	761,  // 187: client.api.GiftListHistoryResponse.commonResponse:type_name -> papicommon.Response
-	682,  // 188: client.api.GiftListResponse.userGifts:type_name -> client.api.GiftListResponse.UserGift
-	761,  // 189: client.api.GiftListResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 190: client.api.GiftOpenResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 191: client.api.GiftOpenResponse.commonResponse:type_name -> papicommon.Response
-	787,  // 192: client.api.GuildApplyJoinRequestRequest.routeType:type_name -> penum.GuildJoinRequestRouteType
-	761,  // 193: client.api.GuildApplyJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 194: client.api.GuildApproveJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 195: client.api.GuildCancelJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 196: client.api.GuildChangeLeaderResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 197: client.api.GuildDismissResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 198: client.api.GuildDissolveResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 199: client.api.GuildDonateResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 200: client.api.GuildDonateResponse.commonResponse:type_name -> papicommon.Response
-	788,  // 201: client.api.GuildEditDetailRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	761,  // 202: client.api.GuildEditDetailResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 203: client.api.GuildEditLeaderMessageResponse.commonResponse:type_name -> papicommon.Response
-	788,  // 204: client.api.GuildEstablishRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	761,  // 205: client.api.GuildEstablishResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 180: client.api.GashaResumeContinuousResponse.shareRewards:type_name -> pcommon.Reward
+	768,  // 181: client.api.GashaResumeContinuousResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 182: client.api.GashaSelectPickupRequest.pickupRewards:type_name -> pcommon.Reward
+	768,  // 183: client.api.GashaSelectPickupResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 184: client.api.GiftCountResponse.commonResponse:type_name -> papicommon.Response
+	793,  // 185: client.api.GiftListHistoryRequest.filters:type_name -> penum.GiftFilterType
+	686,  // 186: client.api.GiftListHistoryResponse.userGiftHistories:type_name -> client.api.GiftListHistoryResponse.UserGiftHistory
+	768,  // 187: client.api.GiftListHistoryResponse.commonResponse:type_name -> papicommon.Response
+	687,  // 188: client.api.GiftListResponse.userGifts:type_name -> client.api.GiftListResponse.UserGift
+	768,  // 189: client.api.GiftListResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 190: client.api.GiftOpenResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 191: client.api.GiftOpenResponse.commonResponse:type_name -> papicommon.Response
+	794,  // 192: client.api.GuildApplyJoinRequestRequest.routeType:type_name -> penum.GuildJoinRequestRouteType
+	768,  // 193: client.api.GuildApplyJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 194: client.api.GuildApproveJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 195: client.api.GuildCancelJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 196: client.api.GuildChangeLeaderResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 197: client.api.GuildDismissResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 198: client.api.GuildDissolveResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 199: client.api.GuildDonateResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 200: client.api.GuildDonateResponse.commonResponse:type_name -> papicommon.Response
+	795,  // 201: client.api.GuildEditDetailRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	768,  // 202: client.api.GuildEditDetailResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 203: client.api.GuildEditLeaderMessageResponse.commonResponse:type_name -> papicommon.Response
+	795,  // 204: client.api.GuildEstablishRequest.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	768,  // 205: client.api.GuildEstablishResponse.commonResponse:type_name -> papicommon.Response
 	155,  // 206: client.api.GuildGetResponse.info:type_name -> client.api.GuildInfo
-	761,  // 207: client.api.GuildGetResponse.commonResponse:type_name -> papicommon.Response
-	789,  // 208: client.api.GuildInfo.achievement:type_name -> pcommon.Achievement
-	788,  // 209: client.api.GuildInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	790,  // 210: client.api.GuildInfo.memberCountRangeType:type_name -> penum.GuildSearchMemberCountRangeType
-	761,  // 211: client.api.GuildLeaveResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 207: client.api.GuildGetResponse.commonResponse:type_name -> papicommon.Response
+	796,  // 208: client.api.GuildInfo.achievement:type_name -> pcommon.Achievement
+	795,  // 209: client.api.GuildInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	797,  // 210: client.api.GuildInfo.memberCountRangeType:type_name -> penum.GuildSearchMemberCountRangeType
+	768,  // 211: client.api.GuildLeaveResponse.commonResponse:type_name -> papicommon.Response
 	66,   // 212: client.api.GuildListDonationRequestResponse.requestList:type_name -> client.api.DonationRequest
 	160,  // 213: client.api.GuildListDonationRequestResponse.memberList:type_name -> client.api.GuildMemberInfo
-	761,  // 214: client.api.GuildListDonationRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 214: client.api.GuildListDonationRequestResponse.commonResponse:type_name -> papicommon.Response
 	155,  // 215: client.api.GuildListJoinRequestResponse.list:type_name -> client.api.GuildInfo
-	761,  // 216: client.api.GuildListJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 216: client.api.GuildListJoinRequestResponse.commonResponse:type_name -> papicommon.Response
 	160,  // 217: client.api.GuildListMemberResponse.list:type_name -> client.api.GuildMemberInfo
 	160,  // 218: client.api.GuildListMemberResponse.joinRequestList:type_name -> client.api.GuildMemberInfo
-	761,  // 219: client.api.GuildListMemberResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 220: client.api.GuildMemberInfo.profile:type_name -> pcommon.SimpleProfile
-	791,  // 221: client.api.GuildMemberInfo.roleType:type_name -> penum.GuildRoleType
+	768,  // 219: client.api.GuildListMemberResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 220: client.api.GuildMemberInfo.profile:type_name -> pcommon.SimpleProfile
+	798,  // 221: client.api.GuildMemberInfo.roleType:type_name -> penum.GuildRoleType
 	146,  // 222: client.api.GuildReceiveDonationResponse.list:type_name -> client.api.GuildDonationInfo
-	761,  // 223: client.api.GuildReceiveDonationResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 224: client.api.GuildRejectJoinRequestResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 225: client.api.GuildRequestDonationResponse.commonResponse:type_name -> papicommon.Response
-	788,  // 226: client.api.GuildSearchRequest.activityPolicyTypes:type_name -> penum.GuildActivityPolicyType
-	790,  // 227: client.api.GuildSearchRequest.memberCountRangeTypes:type_name -> penum.GuildSearchMemberCountRangeType
+	768,  // 223: client.api.GuildReceiveDonationResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 224: client.api.GuildRejectJoinRequestResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 225: client.api.GuildRequestDonationResponse.commonResponse:type_name -> papicommon.Response
+	795,  // 226: client.api.GuildSearchRequest.activityPolicyTypes:type_name -> penum.GuildActivityPolicyType
+	797,  // 227: client.api.GuildSearchRequest.memberCountRangeTypes:type_name -> penum.GuildSearchMemberCountRangeType
 	155,  // 228: client.api.GuildSearchResponse.list:type_name -> client.api.GuildInfo
-	761,  // 229: client.api.GuildSearchResponse.commonResponse:type_name -> papicommon.Response
-	683,  // 230: client.api.GuildTopResponse.homeInfo:type_name -> client.api.GuildTopResponse.HomeInfo
+	768,  // 229: client.api.GuildSearchResponse.commonResponse:type_name -> papicommon.Response
+	688,  // 230: client.api.GuildTopResponse.homeInfo:type_name -> client.api.GuildTopResponse.HomeInfo
 	155,  // 231: client.api.GuildTopResponse.list:type_name -> client.api.GuildInfo
 	155,  // 232: client.api.GuildTopResponse.joinRequestList:type_name -> client.api.GuildInfo
-	792,  // 233: client.api.GuildTopResponse.notificationType:type_name -> penum.GuildNotificationType
-	761,  // 234: client.api.GuildTopResponse.commonResponse:type_name -> papicommon.Response
+	799,  // 233: client.api.GuildTopResponse.notificationType:type_name -> penum.GuildNotificationType
+	768,  // 234: client.api.GuildTopResponse.commonResponse:type_name -> papicommon.Response
 	161,  // 235: client.api.GuildUpdateLeaderMessageReactionResponse.reactionList:type_name -> client.api.GuildReactionInfo
-	761,  // 236: client.api.GuildUpdateLeaderMessageReactionResponse.commonResponse:type_name -> papicommon.Response
-	793,  // 237: client.api.GvgRaidDeck.slots:type_name -> pcommon.GvgRaidSlot
-	794,  // 238: client.api.GvgRaidEndRequest.stage:type_name -> pcommon.ExamBattleAutoStageResult
+	768,  // 236: client.api.GuildUpdateLeaderMessageReactionResponse.commonResponse:type_name -> papicommon.Response
+	800,  // 237: client.api.GvgRaidDeck.slots:type_name -> pcommon.GvgRaidSlot
+	801,  // 238: client.api.GvgRaidEndRequest.stage:type_name -> pcommon.ExamBattleAutoStageResult
 	180,  // 239: client.api.GvgRaidEndResponse.totalPointRewards:type_name -> client.api.GvgRaidPointReward
-	770,  // 240: client.api.GvgRaidEndResponse.challengeResults:type_name -> pcommon.Reward
-	770,  // 241: client.api.GvgRaidEndResponse.clearResults:type_name -> pcommon.Reward
-	762,  // 242: client.api.GvgRaidEndResponse.totalPointResults:type_name -> pcommon.RewardResult
+	777,  // 240: client.api.GvgRaidEndResponse.challengeResults:type_name -> pcommon.Reward
+	777,  // 241: client.api.GvgRaidEndResponse.clearResults:type_name -> pcommon.Reward
+	769,  // 242: client.api.GvgRaidEndResponse.totalPointResults:type_name -> pcommon.RewardResult
 	188,  // 243: client.api.GvgRaidEndResponse.mvpUsers:type_name -> client.api.GvgRaidUser
-	761,  // 244: client.api.GvgRaidEndResponse.commonResponse:type_name -> papicommon.Response
-	795,  // 245: client.api.GvgRaidGetProgressResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	768,  // 244: client.api.GvgRaidEndResponse.commonResponse:type_name -> papicommon.Response
+	802,  // 245: client.api.GvgRaidGetProgressResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	172,  // 246: client.api.GvgRaidGetProgressResponse.deck:type_name -> client.api.GvgRaidDeck
-	796,  // 247: client.api.GvgRaidGetProgressResponse.planType:type_name -> penum.ProducePlanType
-	797,  // 248: client.api.GvgRaidGetProgressResponse.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
-	761,  // 249: client.api.GvgRaidGetProgressResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 250: client.api.GvgRaidGuildRankReward.rewards:type_name -> pcommon.Reward
-	798,  // 251: client.api.GvgRaidGuildRankingResponse.guildRanking:type_name -> pcommon.GvgRaidGuild
-	798,  // 252: client.api.GvgRaidGuildRankingResponse.selfGuildRank:type_name -> pcommon.GvgRaidGuild
-	761,  // 253: client.api.GvgRaidGuildRankingResponse.commonResponse:type_name -> papicommon.Response
-	795,  // 254: client.api.GvgRaidPlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	803,  // 247: client.api.GvgRaidGetProgressResponse.planType:type_name -> penum.ProducePlanType
+	804,  // 248: client.api.GvgRaidGetProgressResponse.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
+	768,  // 249: client.api.GvgRaidGetProgressResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 250: client.api.GvgRaidGuildRankReward.rewards:type_name -> pcommon.Reward
+	805,  // 251: client.api.GvgRaidGuildRankingResponse.guildRanking:type_name -> pcommon.GvgRaidGuild
+	805,  // 252: client.api.GvgRaidGuildRankingResponse.selfGuildRank:type_name -> pcommon.GvgRaidGuild
+	768,  // 253: client.api.GvgRaidGuildRankingResponse.commonResponse:type_name -> papicommon.Response
+	802,  // 254: client.api.GvgRaidPlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	172,  // 255: client.api.GvgRaidPlayTestResponse.deck:type_name -> client.api.GvgRaidDeck
-	761,  // 256: client.api.GvgRaidPlayTestResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 257: client.api.GvgRaidPointReward.rewards:type_name -> pcommon.Reward
-	780,  // 258: client.api.GvgRaidSlot.mainMemory:type_name -> pcommon.Memory
-	780,  // 259: client.api.GvgRaidSlot.subMemories:type_name -> pcommon.Memory
-	770,  // 260: client.api.GvgRaidStageChallengeReward.rewards:type_name -> pcommon.Reward
-	795,  // 261: client.api.GvgRaidStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	768,  // 256: client.api.GvgRaidPlayTestResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 257: client.api.GvgRaidPointReward.rewards:type_name -> pcommon.Reward
+	787,  // 258: client.api.GvgRaidSlot.mainMemory:type_name -> pcommon.Memory
+	787,  // 259: client.api.GvgRaidSlot.subMemories:type_name -> pcommon.Memory
+	777,  // 260: client.api.GvgRaidStageChallengeReward.rewards:type_name -> pcommon.Reward
+	802,  // 261: client.api.GvgRaidStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
 	172,  // 262: client.api.GvgRaidStartResponse.deck:type_name -> client.api.GvgRaidDeck
-	761,  // 263: client.api.GvgRaidStartResponse.commonResponse:type_name -> papicommon.Response
-	685,  // 264: client.api.GvgRaidTopResponse.stages:type_name -> client.api.GvgRaidTopResponse.Stage
-	798,  // 265: client.api.GvgRaidTopResponse.guild:type_name -> pcommon.GvgRaidGuild
+	768,  // 263: client.api.GvgRaidStartResponse.commonResponse:type_name -> papicommon.Response
+	690,  // 264: client.api.GvgRaidTopResponse.stages:type_name -> client.api.GvgRaidTopResponse.Stage
+	805,  // 265: client.api.GvgRaidTopResponse.guild:type_name -> pcommon.GvgRaidGuild
 	180,  // 266: client.api.GvgRaidTopResponse.userTotalPointRewards:type_name -> client.api.GvgRaidPointReward
-	687,  // 267: client.api.GvgRaidTopResponse.stageClearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward
+	692,  // 267: client.api.GvgRaidTopResponse.stageClearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward
 	176,  // 268: client.api.GvgRaidTopResponse.rankRewards:type_name -> client.api.GvgRaidGuildRankReward
-	770,  // 269: client.api.GvgRaidTopResponse.nextUserRewards:type_name -> pcommon.Reward
-	686,  // 270: client.api.GvgRaidTopResponse.stageResults:type_name -> client.api.GvgRaidTopResponse.StageClearResult
+	777,  // 269: client.api.GvgRaidTopResponse.nextUserRewards:type_name -> pcommon.Reward
+	691,  // 270: client.api.GvgRaidTopResponse.stageResults:type_name -> client.api.GvgRaidTopResponse.StageClearResult
 	176,  // 271: client.api.GvgRaidTopResponse.rankResult:type_name -> client.api.GvgRaidGuildRankReward
-	799,  // 272: client.api.GvgRaidTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	761,  // 273: client.api.GvgRaidTopResponse.commonResponse:type_name -> papicommon.Response
-	800,  // 274: client.api.GvgRaidUpdateDeckRequest.deck:type_name -> pcommon.GvgRaidSetUpDeck
-	773,  // 275: client.api.GvgRaidUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 276: client.api.GvgRaidUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 277: client.api.GvgRaidUser.profile:type_name -> pcommon.SimpleProfile
+	806,  // 272: client.api.GvgRaidTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	768,  // 273: client.api.GvgRaidTopResponse.commonResponse:type_name -> papicommon.Response
+	807,  // 274: client.api.GvgRaidUpdateDeckRequest.deck:type_name -> pcommon.GvgRaidSetUpDeck
+	780,  // 275: client.api.GvgRaidUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 276: client.api.GvgRaidUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 277: client.api.GvgRaidUser.profile:type_name -> pcommon.SimpleProfile
 	172,  // 278: client.api.GvgRaidUser.deck:type_name -> client.api.GvgRaidDeck
-	690,  // 279: client.api.GvgRaidUserRankingResponse.userRankings:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking
-	689,  // 280: client.api.GvgRaidUserRankingResponse.stageMvps:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp
-	761,  // 281: client.api.GvgRaidUserRankingResponse.commonResponse:type_name -> papicommon.Response
-	801,  // 282: client.api.HealthCheckResponse.status:type_name -> penum.ServingStatus
-	761,  // 283: client.api.HomeConfirmBanWarningResponse.commonResponse:type_name -> papicommon.Response
-	802,  // 284: client.api.HomeEnterResponse.homeBanners:type_name -> pcommon.HomeBanner
-	803,  // 285: client.api.HomeEnterResponse.homeNavigations:type_name -> pcommon.HomeNavigation
-	693,  // 286: client.api.HomeEnterResponse.featureMaintenances:type_name -> client.api.HomeEnterResponse.FeatureMaintenance
-	785,  // 287: client.api.HomeEnterResponse.gashas:type_name -> pcommon.Gasha
-	804,  // 288: client.api.HomeEnterResponse.pvpRateSeasonTop:type_name -> papicommon.PvpRateSeasonTop
-	805,  // 289: client.api.HomeEnterResponse.events:type_name -> pcommon.Event
-	806,  // 290: client.api.HomeEnterResponse.competitionSeasonTop:type_name -> papicommon.CompetitionSeasonTop
-	807,  // 291: client.api.HomeEnterResponse.shopItemLabelType:type_name -> penum.ShopItemLabelType
-	808,  // 292: client.api.HomeEnterResponse.competitionPreSeasonResult:type_name -> papicommon.CompetitionPreSeasonResult
-	809,  // 293: client.api.HomeEnterResponse.pvpRateSeasonResult:type_name -> papicommon.PvpRateSeasonResult
-	761,  // 294: client.api.HomeEnterResponse.commonResponse:type_name -> papicommon.Response
-	805,  // 295: client.api.HomeListEventResponse.events:type_name -> pcommon.Event
-	761,  // 296: client.api.HomeListEventResponse.commonResponse:type_name -> papicommon.Response
-	694,  // 297: client.api.HomeLoginResponse.friendResult:type_name -> client.api.HomeLoginResponse.FriendResult
-	810,  // 298: client.api.HomeLoginResponse.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
-	695,  // 299: client.api.HomeLoginResponse.produceNextIdolAuditionMasterSeasonResult:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
-	696,  // 300: client.api.HomeLoginResponse.producerRankingResult:type_name -> client.api.HomeLoginResponse.ProducerRankingResult
-	761,  // 301: client.api.HomeLoginResponse.commonResponse:type_name -> papicommon.Response
-	699,  // 302: client.api.HomeSetCharactersRequest.characters:type_name -> client.api.HomeSetCharactersRequest.HomeCharacter
-	761,  // 303: client.api.HomeSetCharactersResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 304: client.api.IdolCardChangeSkinResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 305: client.api.IdolCardProbability.rewards:type_name -> pcommon.Reward
-	811,  // 306: client.api.IdolCardRarityProbability.rarity:type_name -> penum.IdolCardRarity
+	695,  // 279: client.api.GvgRaidUserRankingResponse.userRankings:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking
+	694,  // 280: client.api.GvgRaidUserRankingResponse.stageMvps:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp
+	768,  // 281: client.api.GvgRaidUserRankingResponse.commonResponse:type_name -> papicommon.Response
+	808,  // 282: client.api.HealthCheckResponse.status:type_name -> penum.ServingStatus
+	768,  // 283: client.api.HomeConfirmBanWarningResponse.commonResponse:type_name -> papicommon.Response
+	809,  // 284: client.api.HomeEnterResponse.homeBanners:type_name -> pcommon.HomeBanner
+	810,  // 285: client.api.HomeEnterResponse.homeNavigations:type_name -> pcommon.HomeNavigation
+	698,  // 286: client.api.HomeEnterResponse.featureMaintenances:type_name -> client.api.HomeEnterResponse.FeatureMaintenance
+	792,  // 287: client.api.HomeEnterResponse.gashas:type_name -> pcommon.Gasha
+	811,  // 288: client.api.HomeEnterResponse.pvpRateSeasonTop:type_name -> papicommon.PvpRateSeasonTop
+	812,  // 289: client.api.HomeEnterResponse.events:type_name -> pcommon.Event
+	813,  // 290: client.api.HomeEnterResponse.competitionSeasonTop:type_name -> papicommon.CompetitionSeasonTop
+	814,  // 291: client.api.HomeEnterResponse.shopItemLabelType:type_name -> penum.ShopItemLabelType
+	815,  // 292: client.api.HomeEnterResponse.competitionPreSeasonResult:type_name -> papicommon.CompetitionPreSeasonResult
+	816,  // 293: client.api.HomeEnterResponse.pvpRateSeasonResult:type_name -> papicommon.PvpRateSeasonResult
+	768,  // 294: client.api.HomeEnterResponse.commonResponse:type_name -> papicommon.Response
+	812,  // 295: client.api.HomeListEventResponse.events:type_name -> pcommon.Event
+	768,  // 296: client.api.HomeListEventResponse.commonResponse:type_name -> papicommon.Response
+	699,  // 297: client.api.HomeLoginResponse.friendResult:type_name -> client.api.HomeLoginResponse.FriendResult
+	817,  // 298: client.api.HomeLoginResponse.producerLevelUnlocks:type_name -> pcommon.ProducerLevelUnlock
+	700,  // 299: client.api.HomeLoginResponse.produceNextIdolAuditionMasterSeasonResult:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult
+	701,  // 300: client.api.HomeLoginResponse.producerRankingResult:type_name -> client.api.HomeLoginResponse.ProducerRankingResult
+	768,  // 301: client.api.HomeLoginResponse.commonResponse:type_name -> papicommon.Response
+	704,  // 302: client.api.HomeSetCharactersRequest.characters:type_name -> client.api.HomeSetCharactersRequest.HomeCharacter
+	768,  // 303: client.api.HomeSetCharactersResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 304: client.api.IdolCardChangeSkinResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 305: client.api.IdolCardProbability.rewards:type_name -> pcommon.Reward
+	818,  // 306: client.api.IdolCardRarityProbability.rarity:type_name -> penum.IdolCardRarity
 	200,  // 307: client.api.IdolCardRarityProbability.probabilities:type_name -> client.api.IdolCardProbability
-	761,  // 308: client.api.IdolCardReleaseResponse.commonResponse:type_name -> papicommon.Response
-	812,  // 309: client.api.IdolCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.IdolCardLevelLimitRank
-	761,  // 310: client.api.IdolCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
-	813,  // 311: client.api.IdolCardUpgradePotentialRankRequest.afterRank:type_name -> penum.IdolCardPotentialRank
-	761,  // 312: client.api.IdolCardUpgradePotentialRankResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 313: client.api.InvitationEnterInvitationCodeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 308: client.api.IdolCardReleaseResponse.commonResponse:type_name -> papicommon.Response
+	819,  // 309: client.api.IdolCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.IdolCardLevelLimitRank
+	768,  // 310: client.api.IdolCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
+	820,  // 311: client.api.IdolCardUpgradePotentialRankRequest.afterRank:type_name -> penum.IdolCardPotentialRank
+	768,  // 312: client.api.IdolCardUpgradePotentialRankResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 313: client.api.InvitationEnterInvitationCodeResponse.commonResponse:type_name -> papicommon.Response
 	213,  // 314: client.api.InvitationListInviteUserResponse.list:type_name -> client.api.InviteUser
-	761,  // 315: client.api.InvitationListInviteUserResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 315: client.api.InvitationListInviteUserResponse.commonResponse:type_name -> papicommon.Response
 	213,  // 316: client.api.InvitationReceiveInvitationPointResponse.list:type_name -> client.api.InviteUser
-	762,  // 317: client.api.InvitationReceiveInvitationPointResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 318: client.api.InvitationReceiveInvitationPointResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 319: client.api.InviteUser.profile:type_name -> pcommon.SimpleProfile
-	814,  // 320: client.api.InviteUser.friendStatusType:type_name -> penum.FriendStatusType
-	762,  // 321: client.api.ItemExchangeIdolCardPieceResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 322: client.api.ItemExchangeIdolCardPieceResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 323: client.api.ItemSellResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 324: client.api.ItemUseActionPointRecoveryResponse.commonResponse:type_name -> papicommon.Response
-	700,  // 325: client.api.LoginBonusCheckResponse.list:type_name -> client.api.LoginBonusCheckResponse.Info
-	701,  // 326: client.api.LoginBonusCheckResponse.totalInfo:type_name -> client.api.LoginBonusCheckResponse.TotalInfo
-	799,  // 327: client.api.LoginBonusCheckResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	761,  // 328: client.api.LoginBonusCheckResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 329: client.api.LoginBonusConfirmResponse.commonResponse:type_name -> papicommon.Response
-	703,  // 330: client.api.MasterGetResponse.masterTag:type_name -> client.api.MasterGetResponse.MasterTag
-	761,  // 331: client.api.MediaPlayResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 332: client.api.MeishiDeleteResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 333: client.api.MeishiFollowResponse.commonResponse:type_name -> papicommon.Response
-	766,  // 334: client.api.MeishiGetDetailResponse.meishi:type_name -> pcommon.Meishi
-	761,  // 335: client.api.MeishiGetDetailResponse.commonResponse:type_name -> papicommon.Response
-	766,  // 336: client.api.MeishiGetResponse.meishi:type_name -> pcommon.Meishi
-	761,  // 337: client.api.MeishiGetResponse.commonResponse:type_name -> papicommon.Response
-	704,  // 338: client.api.MeishiListFollowResponse.follows:type_name -> client.api.MeishiListFollowResponse.Follow
-	761,  // 339: client.api.MeishiListFollowResponse.commonResponse:type_name -> papicommon.Response
-	705,  // 340: client.api.MeishiListResponse.meishiList:type_name -> client.api.MeishiListResponse.MeishiInfo
-	761,  // 341: client.api.MeishiListResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 342: client.api.MeishiReportXPostMissionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 343: client.api.MeishiSetResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 344: client.api.MeishiUnfollowResponse.commonResponse:type_name -> papicommon.Response
-	706,  // 345: client.api.MeishiUpdateRequest.meishiBase:type_name -> client.api.MeishiUpdateRequest.MeishiBase
-	707,  // 346: client.api.MeishiUpdateRequest.objects:type_name -> client.api.MeishiUpdateRequest.Object
-	761,  // 347: client.api.MeishiUpdateResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 348: client.api.MemoryExchangeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 349: client.api.MemoryFixInheritResponse.commonResponse:type_name -> papicommon.Response
-	780,  // 350: client.api.MemoryInheritResponse.beforeMemory:type_name -> pcommon.Memory
-	780,  // 351: client.api.MemoryInheritResponse.afterMemory:type_name -> pcommon.Memory
-	761,  // 352: client.api.MemoryInheritResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 353: client.api.MemoryReshootingResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 354: client.api.MemoryUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 355: client.api.MemoryUpdateResearchFavoriteResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 356: client.api.MemoryUpdateTagSettingResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 357: client.api.MissionExchangePassPointResponse.commonResponse:type_name -> papicommon.Response
-	805,  // 358: client.api.MissionListEventResponse.events:type_name -> pcommon.Event
-	761,  // 359: client.api.MissionListEventResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 360: client.api.MissionReceiveGroupAllResponse.groupResults:type_name -> pcommon.RewardResult
-	762,  // 361: client.api.MissionReceiveGroupAllResponse.results:type_name -> pcommon.RewardResult
-	761,  // 362: client.api.MissionReceiveGroupAllResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 363: client.api.MissionReceiveGroupResponse.results:type_name -> pcommon.RewardResult
-	761,  // 364: client.api.MissionReceiveGroupResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 365: client.api.MissionReceivePassResponse.commonResponse:type_name -> papicommon.Response
-	708,  // 366: client.api.MissionReceiveRequest.missions:type_name -> client.api.MissionReceiveRequest.Mission
-	709,  // 367: client.api.MissionReceiveRequest.missionPoints:type_name -> client.api.MissionReceiveRequest.MissionPoint
-	762,  // 368: client.api.MissionReceiveResponse.results:type_name -> pcommon.RewardResult
-	762,  // 369: client.api.MissionReceiveResponse.missionPointResults:type_name -> pcommon.RewardResult
-	711,  // 370: client.api.MissionReceiveResponse.masterAchievementProgressResults:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgressResult
-	815,  // 371: client.api.MissionReceiveResponse.mainTaskResults:type_name -> pmaster.Mission
-	761,  // 372: client.api.MissionReceiveResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 373: client.api.MissionUrlTransitionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 374: client.api.MoneyReceiveResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 375: client.api.MovieCreateResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 376: client.api.MovieDeleteResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 377: client.api.MovieRetakeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 378: client.api.MusicSendActionLogResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 379: client.api.MusicSendBuyActionLogResponse.commonResponse:type_name -> papicommon.Response
-	816,  // 380: client.api.NoticeFetchListRequest.category:type_name -> penum.NoticeCategory
+	769,  // 317: client.api.InvitationReceiveInvitationPointResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 318: client.api.InvitationReceiveInvitationPointResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 319: client.api.InviteUser.profile:type_name -> pcommon.SimpleProfile
+	821,  // 320: client.api.InviteUser.friendStatusType:type_name -> penum.FriendStatusType
+	769,  // 321: client.api.ItemExchangeIdolCardPieceResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 322: client.api.ItemExchangeIdolCardPieceResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 323: client.api.ItemSellResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 324: client.api.ItemUseActionPointRecoveryResponse.commonResponse:type_name -> papicommon.Response
+	705,  // 325: client.api.LoginBonusCheckResponse.list:type_name -> client.api.LoginBonusCheckResponse.Info
+	706,  // 326: client.api.LoginBonusCheckResponse.totalInfo:type_name -> client.api.LoginBonusCheckResponse.TotalInfo
+	806,  // 327: client.api.LoginBonusCheckResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	768,  // 328: client.api.LoginBonusCheckResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 329: client.api.LoginBonusConfirmResponse.commonResponse:type_name -> papicommon.Response
+	708,  // 330: client.api.MasterGetResponse.masterTag:type_name -> client.api.MasterGetResponse.MasterTag
+	768,  // 331: client.api.MediaPlayResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 332: client.api.MeishiDeleteResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 333: client.api.MeishiFollowResponse.commonResponse:type_name -> papicommon.Response
+	773,  // 334: client.api.MeishiGetDetailResponse.meishi:type_name -> pcommon.Meishi
+	768,  // 335: client.api.MeishiGetDetailResponse.commonResponse:type_name -> papicommon.Response
+	773,  // 336: client.api.MeishiGetResponse.meishi:type_name -> pcommon.Meishi
+	768,  // 337: client.api.MeishiGetResponse.commonResponse:type_name -> papicommon.Response
+	709,  // 338: client.api.MeishiListFollowResponse.follows:type_name -> client.api.MeishiListFollowResponse.Follow
+	768,  // 339: client.api.MeishiListFollowResponse.commonResponse:type_name -> papicommon.Response
+	710,  // 340: client.api.MeishiListResponse.meishiList:type_name -> client.api.MeishiListResponse.MeishiInfo
+	768,  // 341: client.api.MeishiListResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 342: client.api.MeishiReportXPostMissionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 343: client.api.MeishiSetResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 344: client.api.MeishiUnfollowResponse.commonResponse:type_name -> papicommon.Response
+	711,  // 345: client.api.MeishiUpdateRequest.meishiBase:type_name -> client.api.MeishiUpdateRequest.MeishiBase
+	712,  // 346: client.api.MeishiUpdateRequest.objects:type_name -> client.api.MeishiUpdateRequest.Object
+	768,  // 347: client.api.MeishiUpdateResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 348: client.api.MemoryExchangeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 349: client.api.MemoryFixInheritResponse.commonResponse:type_name -> papicommon.Response
+	787,  // 350: client.api.MemoryInheritResponse.beforeMemory:type_name -> pcommon.Memory
+	787,  // 351: client.api.MemoryInheritResponse.afterMemory:type_name -> pcommon.Memory
+	768,  // 352: client.api.MemoryInheritResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 353: client.api.MemoryReshootingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 354: client.api.MemoryUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 355: client.api.MemoryUpdateResearchFavoriteResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 356: client.api.MemoryUpdateTagSettingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 357: client.api.MissionExchangePassPointResponse.commonResponse:type_name -> papicommon.Response
+	812,  // 358: client.api.MissionListEventResponse.events:type_name -> pcommon.Event
+	768,  // 359: client.api.MissionListEventResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 360: client.api.MissionReceiveGroupAllResponse.groupResults:type_name -> pcommon.RewardResult
+	769,  // 361: client.api.MissionReceiveGroupAllResponse.results:type_name -> pcommon.RewardResult
+	768,  // 362: client.api.MissionReceiveGroupAllResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 363: client.api.MissionReceiveGroupResponse.results:type_name -> pcommon.RewardResult
+	768,  // 364: client.api.MissionReceiveGroupResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 365: client.api.MissionReceivePassResponse.commonResponse:type_name -> papicommon.Response
+	713,  // 366: client.api.MissionReceiveRequest.missions:type_name -> client.api.MissionReceiveRequest.Mission
+	714,  // 367: client.api.MissionReceiveRequest.missionPoints:type_name -> client.api.MissionReceiveRequest.MissionPoint
+	769,  // 368: client.api.MissionReceiveResponse.results:type_name -> pcommon.RewardResult
+	769,  // 369: client.api.MissionReceiveResponse.missionPointResults:type_name -> pcommon.RewardResult
+	716,  // 370: client.api.MissionReceiveResponse.masterAchievementProgressResults:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgressResult
+	822,  // 371: client.api.MissionReceiveResponse.mainTaskResults:type_name -> pmaster.Mission
+	768,  // 372: client.api.MissionReceiveResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 373: client.api.MissionUrlTransitionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 374: client.api.MoneyReceiveResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 375: client.api.MovieCreateResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 376: client.api.MovieDeleteResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 377: client.api.MovieRetakeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 378: client.api.MusicSendActionLogResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 379: client.api.MusicSendBuyActionLogResponse.commonResponse:type_name -> papicommon.Response
+	823,  // 380: client.api.NoticeFetchListRequest.category:type_name -> penum.NoticeCategory
 	285,  // 381: client.api.NoticeFetchListResponse.list:type_name -> client.api.NoticeInfo
-	761,  // 382: client.api.NoticeFetchListResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 382: client.api.NoticeFetchListResponse.commonResponse:type_name -> papicommon.Response
 	285,  // 383: client.api.NoticeGetResponse.info:type_name -> client.api.NoticeInfo
-	761,  // 384: client.api.NoticeGetResponse.commonResponse:type_name -> papicommon.Response
-	816,  // 385: client.api.NoticeInfo.category:type_name -> penum.NoticeCategory
-	817,  // 386: client.api.NoticeInfo.type:type_name -> penum.NoticeType
+	768,  // 384: client.api.NoticeGetResponse.commonResponse:type_name -> papicommon.Response
+	823,  // 385: client.api.NoticeInfo.category:type_name -> penum.NoticeCategory
+	824,  // 386: client.api.NoticeInfo.type:type_name -> penum.NoticeType
 	285,  // 387: client.api.NoticeListAllResponse.infoList:type_name -> client.api.NoticeInfo
 	285,  // 388: client.api.NoticeListAllResponse.bugList:type_name -> client.api.NoticeInfo
 	285,  // 389: client.api.NoticeListAllResponse.prList:type_name -> client.api.NoticeInfo
-	761,  // 390: client.api.NoticeListAllResponse.commonResponse:type_name -> papicommon.Response
-	816,  // 391: client.api.NoticeUpdateCategoryTimeRequest.categories:type_name -> penum.NoticeCategory
-	761,  // 392: client.api.NoticeUpdateCategoryTimeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 393: client.api.NoticeUpdateDetailTimeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 394: client.api.PhotoCreateByMemoryResponse.commonResponse:type_name -> papicommon.Response
-	712,  // 395: client.api.PhotoCreateIdolRequest.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.CharacterSetting
-	713,  // 396: client.api.PhotoCreateIdolRequest.photos:type_name -> client.api.PhotoCreateIdolRequest.Photo
-	761,  // 397: client.api.PhotoCreateIdolResponse.commonResponse:type_name -> papicommon.Response
-	715,  // 398: client.api.PhotoCreateRequest.unitCharacters:type_name -> client.api.PhotoCreateRequest.UnitCharacter
-	761,  // 399: client.api.PhotoCreateResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 400: client.api.PhotoDeleteResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 401: client.api.PhotoUpdateNameResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 402: client.api.PhotoUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
-	818,  // 403: client.api.PreferenceUpdateRequest.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
-	819,  // 404: client.api.PreferenceUpdateRequest.preferenceTypes:type_name -> penum.PreferenceType
-	761,  // 405: client.api.PreferenceUpdateResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 406: client.api.ProduceActivateEffectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 407: client.api.ProduceActivateEffectResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 408: client.api.ProduceChangeCostumeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 409: client.api.ProduceChangeForceLiveCommonResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 410: client.api.ProduceChangeProduceCardConversionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 411: client.api.ProduceCheckProgressResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 412: client.api.ProduceContinueResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 413: client.api.ProduceDiscardDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 414: client.api.ProduceDiscardDrinkResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 415: client.api.ProduceEndBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	780,  // 416: client.api.ProduceEndResponse.memory:type_name -> pcommon.Memory
-	761,  // 417: client.api.ProduceEndResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 418: client.api.ProduceExcludeProduceCardResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 390: client.api.NoticeListAllResponse.commonResponse:type_name -> papicommon.Response
+	823,  // 391: client.api.NoticeUpdateCategoryTimeRequest.categories:type_name -> penum.NoticeCategory
+	768,  // 392: client.api.NoticeUpdateCategoryTimeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 393: client.api.NoticeUpdateDetailTimeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 394: client.api.PhotoCreateByMemoryResponse.commonResponse:type_name -> papicommon.Response
+	717,  // 395: client.api.PhotoCreateIdolRequest.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.CharacterSetting
+	718,  // 396: client.api.PhotoCreateIdolRequest.photos:type_name -> client.api.PhotoCreateIdolRequest.Photo
+	768,  // 397: client.api.PhotoCreateIdolResponse.commonResponse:type_name -> papicommon.Response
+	720,  // 398: client.api.PhotoCreateRequest.unitCharacters:type_name -> client.api.PhotoCreateRequest.UnitCharacter
+	768,  // 399: client.api.PhotoCreateResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 400: client.api.PhotoDeleteResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 401: client.api.PhotoUpdateNameResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 402: client.api.PhotoUpdateProtectionResponse.commonResponse:type_name -> papicommon.Response
+	825,  // 403: client.api.PreferenceUpdateRequest.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
+	826,  // 404: client.api.PreferenceUpdateRequest.preferenceTypes:type_name -> penum.PreferenceType
+	768,  // 405: client.api.PreferenceUpdateResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 406: client.api.ProduceActivateEffectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 407: client.api.ProduceActivateEffectResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 408: client.api.ProduceChangeCostumeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 409: client.api.ProduceChangeForceLiveCommonResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 410: client.api.ProduceChangeProduceCardConversionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 411: client.api.ProduceCheckProgressResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 412: client.api.ProduceContinueResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 413: client.api.ProduceDiscardDrinkResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 414: client.api.ProduceDiscardDrinkResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 415: client.api.ProduceEndBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	787,  // 416: client.api.ProduceEndResponse.memory:type_name -> pcommon.Memory
+	768,  // 417: client.api.ProduceEndResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 418: client.api.ProduceExcludeProduceCardResponse.commonResponse:type_name -> papicommon.Response
 	329,  // 419: client.api.ProduceHighScoreCharacter.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
 	333,  // 420: client.api.ProduceHighScoreCharacter.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
-	821,  // 421: client.api.ProduceHighScoreGetResponse.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
+	828,  // 421: client.api.ProduceHighScoreGetResponse.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
 	333,  // 422: client.api.ProduceHighScoreGetResponse.highScoreRewards:type_name -> client.api.ProduceHighScoreReward
 	329,  // 423: client.api.ProduceHighScoreGetResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
 	326,  // 424: client.api.ProduceHighScoreGetResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
-	763,  // 425: client.api.ProduceHighScoreGetResponse.coinGasha:type_name -> pcommon.CoinGasha
-	822,  // 426: client.api.ProduceHighScoreGetResponse.externalProduceRewards:type_name -> papicommon.ProduceHighScoreRushExternalProduceReward
+	770,  // 425: client.api.ProduceHighScoreGetResponse.coinGasha:type_name -> pcommon.CoinGasha
+	829,  // 426: client.api.ProduceHighScoreGetResponse.externalProduceRewards:type_name -> papicommon.ProduceHighScoreRushExternalProduceReward
 	332,  // 427: client.api.ProduceHighScoreGetResponse.result:type_name -> client.api.ProduceHighScoreResult
-	799,  // 428: client.api.ProduceHighScoreGetResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	761,  // 429: client.api.ProduceHighScoreGetResponse.commonResponse:type_name -> papicommon.Response
+	806,  // 428: client.api.ProduceHighScoreGetResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	768,  // 429: client.api.ProduceHighScoreGetResponse.commonResponse:type_name -> papicommon.Response
 	329,  // 430: client.api.ProduceHighScoreListRankRewardResponse.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
 	326,  // 431: client.api.ProduceHighScoreListRankRewardResponse.characters:type_name -> client.api.ProduceHighScoreCharacter
-	761,  // 432: client.api.ProduceHighScoreListRankRewardResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 433: client.api.ProduceHighScoreRankReward.rewards:type_name -> pcommon.Reward
-	716,  // 434: client.api.ProduceHighScoreRankingResponse.selfRank:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
-	716,  // 435: client.api.ProduceHighScoreRankingResponse.ranks:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
-	761,  // 436: client.api.ProduceHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 432: client.api.ProduceHighScoreListRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 433: client.api.ProduceHighScoreRankReward.rewards:type_name -> pcommon.Reward
+	721,  // 434: client.api.ProduceHighScoreRankingResponse.selfRank:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
+	721,  // 435: client.api.ProduceHighScoreRankingResponse.ranks:type_name -> client.api.ProduceHighScoreRankingResponse.Rank
+	768,  // 436: client.api.ProduceHighScoreRankingResponse.commonResponse:type_name -> papicommon.Response
 	329,  // 437: client.api.ProduceHighScoreResult.rankRewards:type_name -> client.api.ProduceHighScoreRankReward
 	326,  // 438: client.api.ProduceHighScoreResult.characters:type_name -> client.api.ProduceHighScoreCharacter
-	762,  // 439: client.api.ProduceHighScoreResult.rewardResults:type_name -> pcommon.RewardResult
-	770,  // 440: client.api.ProduceHighScoreReward.reward:type_name -> pcommon.Reward
-	823,  // 441: client.api.ProduceHistoryResponse.produceHistory:type_name -> pcommon.ProduceHistory
-	768,  // 442: client.api.ProduceHistoryResponse.profile:type_name -> pcommon.SimpleProfile
-	761,  // 443: client.api.ProduceHistoryResponse.commonResponse:type_name -> papicommon.Response
-	717,  // 444: client.api.ProduceListRentalMemoryResponse.memories:type_name -> client.api.ProduceListRentalMemoryResponse.RentalMemory
-	761,  // 445: client.api.ProduceListRentalMemoryResponse.commonResponse:type_name -> papicommon.Response
-	718,  // 446: client.api.ProduceListRentalSupportCardResponse.supportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	718,  // 447: client.api.ProduceListRentalSupportCardResponse.suggestionSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	718,  // 448: client.api.ProduceListRentalSupportCardResponse.npcSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
-	761,  // 449: client.api.ProduceListRentalSupportCardResponse.commonResponse:type_name -> papicommon.Response
-	824,  // 450: client.api.ProduceNextRequest.stepType:type_name -> penum.ProduceStepType
-	820,  // 451: client.api.ProduceNextResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 452: client.api.ProduceNextResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 453: client.api.ProduceRank.profile:type_name -> pcommon.SimpleProfile
-	825,  // 454: client.api.ProduceRank.grade:type_name -> penum.ResultGrade
+	769,  // 439: client.api.ProduceHighScoreResult.rewardResults:type_name -> pcommon.RewardResult
+	777,  // 440: client.api.ProduceHighScoreReward.reward:type_name -> pcommon.Reward
+	830,  // 441: client.api.ProduceHistoryResponse.produceHistory:type_name -> pcommon.ProduceHistory
+	775,  // 442: client.api.ProduceHistoryResponse.profile:type_name -> pcommon.SimpleProfile
+	768,  // 443: client.api.ProduceHistoryResponse.commonResponse:type_name -> papicommon.Response
+	722,  // 444: client.api.ProduceListRentalMemoryResponse.memories:type_name -> client.api.ProduceListRentalMemoryResponse.RentalMemory
+	768,  // 445: client.api.ProduceListRentalMemoryResponse.commonResponse:type_name -> papicommon.Response
+	723,  // 446: client.api.ProduceListRentalSupportCardResponse.supportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	723,  // 447: client.api.ProduceListRentalSupportCardResponse.suggestionSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	723,  // 448: client.api.ProduceListRentalSupportCardResponse.npcSupportCards:type_name -> client.api.ProduceListRentalSupportCardResponse.RentalSupportCard
+	768,  // 449: client.api.ProduceListRentalSupportCardResponse.commonResponse:type_name -> papicommon.Response
+	831,  // 450: client.api.ProduceNextRequest.stepType:type_name -> penum.ProduceStepType
+	827,  // 451: client.api.ProduceNextResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 452: client.api.ProduceNextResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 453: client.api.ProduceRank.profile:type_name -> pcommon.SimpleProfile
+	832,  // 454: client.api.ProduceRank.grade:type_name -> penum.ResultGrade
 	341,  // 455: client.api.ProduceRankingResponse.ranks:type_name -> client.api.ProduceRank
-	825,  // 456: client.api.ProduceRankingResponse.selfGrade:type_name -> penum.ResultGrade
-	761,  // 457: client.api.ProduceRankingResponse.commonResponse:type_name -> papicommon.Response
-	719,  // 458: client.api.ProduceRankingTopResponse.rankings:type_name -> client.api.ProduceRankingTopResponse.Ranking
-	761,  // 459: client.api.ProduceRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 460: client.api.ProduceReadAdvResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 461: client.api.ProduceReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
-	820,  // 462: client.api.ProduceReadDearnessStoryResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 463: client.api.ProduceReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	815,  // 464: client.api.ProduceReportDearnessBoostEventResponse.missions:type_name -> pmaster.Mission
-	762,  // 465: client.api.ProduceReportDearnessBoostEventResponse.groupRewardResults:type_name -> pcommon.RewardResult
-	762,  // 466: client.api.ProduceReportDearnessBoostEventResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 467: client.api.ProduceReportDearnessBoostEventResponse.commonResponse:type_name -> papicommon.Response
-	826,  // 468: client.api.ProduceReportGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
-	827,  // 469: client.api.ProduceReportGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
-	828,  // 470: client.api.ProduceReportGuildMissionResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
-	761,  // 471: client.api.ProduceReportGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 472: client.api.ProduceRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 473: client.api.ProduceRerollSelectProduceCardResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 474: client.api.ProduceRestartResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 475: client.api.ProduceResultResponse.rewardResults:type_name -> pcommon.RewardResult
-	828,  // 476: client.api.ProduceResultResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
-	721,  // 477: client.api.ProduceResultResponse.highScoreUpdateResult:type_name -> client.api.ProduceResultResponse.HighScoreUpdateResult
-	722,  // 478: client.api.ProduceResultResponse.researchResult:type_name -> client.api.ProduceResultResponse.ResearchResult
-	829,  // 479: client.api.ProduceResultResponse.producerRankingResult:type_name -> pcommon.ProducerRankingResult
-	761,  // 480: client.api.ProduceResultResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 481: client.api.ProduceRetireResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 482: client.api.ProduceSaveResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 483: client.api.ProduceSeasonRank.profile:type_name -> pcommon.SimpleProfile
-	825,  // 484: client.api.ProduceSeasonRank.grade:type_name -> penum.ResultGrade
-	364,  // 485: client.api.ProduceSeasonRanking.selfRank:type_name -> client.api.ProduceSeasonRank
-	364,  // 486: client.api.ProduceSeasonRanking.topRanks:type_name -> client.api.ProduceSeasonRank
-	364,  // 487: client.api.ProduceSeasonRankingHistoryResponse.selfRank:type_name -> client.api.ProduceSeasonRank
-	364,  // 488: client.api.ProduceSeasonRankingHistoryResponse.ranks:type_name -> client.api.ProduceSeasonRank
-	761,  // 489: client.api.ProduceSeasonRankingHistoryResponse.commonResponse:type_name -> papicommon.Response
-	364,  // 490: client.api.ProduceSeasonRankingResponse.selfRank:type_name -> client.api.ProduceSeasonRank
-	364,  // 491: client.api.ProduceSeasonRankingResponse.ranks:type_name -> client.api.ProduceSeasonRank
-	761,  // 492: client.api.ProduceSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
-	365,  // 493: client.api.ProduceSeasonRankingTopHistoryResponse.rankings:type_name -> client.api.ProduceSeasonRanking
-	761,  // 494: client.api.ProduceSeasonRankingTopHistoryResponse.commonResponse:type_name -> papicommon.Response
-	365,  // 495: client.api.ProduceSeasonRankingTopResponse.rankings:type_name -> client.api.ProduceSeasonRanking
-	761,  // 496: client.api.ProduceSeasonRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 497: client.api.ProduceStartBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	724,  // 498: client.api.ProduceStartRequest.supportCards:type_name -> client.api.ProduceStartRequest.SupportCard
-	723,  // 499: client.api.ProduceStartRequest.memories:type_name -> client.api.ProduceStartRequest.Memory
-	820,  // 500: client.api.ProduceStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 501: client.api.ProduceStartResponse.commonResponse:type_name -> papicommon.Response
-	830,  // 502: client.api.ProduceStepAuditionEndExamBattleRequest.result:type_name -> pcommon.ExamBattleResult
-	831,  // 503: client.api.ProduceStepAuditionEndExamBattleRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	761,  // 504: client.api.ProduceStepAuditionEndExamBattleResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 505: client.api.ProduceStepAuditionEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	833,  // 506: client.api.ProduceStepAuditionEndResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
-	820,  // 507: client.api.ProduceStepAuditionEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 508: client.api.ProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 509: client.api.ProduceStepAuditionRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 510: client.api.ProduceStepAuditionRefreshResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 511: client.api.ProduceStepAuditionStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 512: client.api.ProduceStepAuditionStartResponse.commonResponse:type_name -> papicommon.Response
-	834,  // 513: client.api.ProduceStepBusinessSelectRequest.businessType:type_name -> penum.ProduceStepBusinessType
-	835,  // 514: client.api.ProduceStepBusinessSelectResponse.consumptionResults:type_name -> pcommon.ProduceConsumptionResult
-	820,  // 515: client.api.ProduceStepBusinessSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 516: client.api.ProduceStepBusinessSelectResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 517: client.api.ProduceStepBusinessStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 518: client.api.ProduceStepBusinessStartResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 519: client.api.ProduceStepCustomizeEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 520: client.api.ProduceStepCustomizeEndResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 521: client.api.ProduceStepCustomizeSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 522: client.api.ProduceStepCustomizeSelectResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 523: client.api.ProduceStepCustomizeStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 524: client.api.ProduceStepCustomizeStartResponse.commonResponse:type_name -> papicommon.Response
-	833,  // 525: client.api.ProduceStepEventResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
-	820,  // 526: client.api.ProduceStepEventResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 527: client.api.ProduceStepEventResponse.commonResponse:type_name -> papicommon.Response
-	836,  // 528: client.api.ProduceStepLessonEndRequest.examEndResult:type_name -> pcommon.ProduceExamEndResult
-	831,  // 529: client.api.ProduceStepLessonEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	820,  // 530: client.api.ProduceStepLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 531: client.api.ProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 532: client.api.ProduceStepLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 533: client.api.ProduceStepLessonStartResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 534: client.api.ProduceStepPresentEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	820,  // 535: client.api.ProduceStepPresentEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 536: client.api.ProduceStepPresentEndResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 537: client.api.ProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	820,  // 538: client.api.ProduceStepPresentReceiveResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 539: client.api.ProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 540: client.api.ProduceStepPresentStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 541: client.api.ProduceStepPresentStartResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 542: client.api.ProduceStepRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 543: client.api.ProduceStepRefreshResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 544: client.api.ProduceStepSelfLessonEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
-	820,  // 545: client.api.ProduceStepSelfLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 546: client.api.ProduceStepSelfLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 547: client.api.ProduceStepSelfLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 548: client.api.ProduceStepSelfLessonStartResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 549: client.api.ProduceStepShopBuyResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	820,  // 550: client.api.ProduceStepShopBuyResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 551: client.api.ProduceStepShopBuyResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 552: client.api.ProduceStepShopEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 553: client.api.ProduceStepShopEndResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 554: client.api.ProduceStepShopRerollResponse.commonResponse:type_name -> papicommon.Response
-	820,  // 555: client.api.ProduceStepShopStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
-	761,  // 556: client.api.ProduceStepShopStartResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 557: client.api.ProduceStepSkipResponse.commonResponse:type_name -> papicommon.Response
-	837,  // 558: client.api.ProduceTopResponse.campaigns:type_name -> pcommon.ProduceCampaign
-	838,  // 559: client.api.ProduceTopResponse.storyEventType:type_name -> penum.StoryEventType
-	839,  // 560: client.api.ProduceTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
-	725,  // 561: client.api.ProduceTopResponse.produceHighScore:type_name -> client.api.ProduceTopResponse.ProduceHighScore
-	726,  // 562: client.api.ProduceTopResponse.research:type_name -> client.api.ProduceTopResponse.Research
-	761,  // 563: client.api.ProduceTopResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 564: client.api.ProduceUnlockPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
-	840,  // 565: client.api.ProduceUpdateMemoryDeck.produceType:type_name -> penum.ProduceType
-	773,  // 566: client.api.ProduceUpdateMemoryDeck.recommendType:type_name -> penum.DeckRecommendType
-	427,  // 567: client.api.ProduceUpdateMemoryDeckRequest.decks:type_name -> client.api.ProduceUpdateMemoryDeck
-	761,  // 568: client.api.ProduceUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
-	840,  // 569: client.api.ProduceUpdateSupportCardDeck.produceType:type_name -> penum.ProduceType
-	773,  // 570: client.api.ProduceUpdateSupportCardDeck.recommendType:type_name -> penum.DeckRecommendType
-	430,  // 571: client.api.ProduceUpdateSupportCardDeckRequest.decks:type_name -> client.api.ProduceUpdateSupportCardDeck
-	761,  // 572: client.api.ProduceUpdateSupportCardDeckResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 573: client.api.ProduceViewPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
-	438,  // 574: client.api.ProducerRankingCharacter.produce:type_name -> client.api.ProducerRankingCharacterProduce
-	441,  // 575: client.api.ProducerRankingCharacter.towers:type_name -> client.api.ProducerRankingCharacterTower
-	841,  // 576: client.api.ProducerRankingCharacterHistoryResponse.character:type_name -> pmaster.ProducerRankingCharacter
-	768,  // 577: client.api.ProducerRankingCharacterHistoryResponse.profile:type_name -> pcommon.SimpleProfile
-	761,  // 578: client.api.ProducerRankingCharacterHistoryResponse.commonResponse:type_name -> papicommon.Response
-	841,  // 579: client.api.ProducerRankingCharacterResponse.character:type_name -> pmaster.ProducerRankingCharacter
-	768,  // 580: client.api.ProducerRankingCharacterResponse.profile:type_name -> pcommon.SimpleProfile
-	761,  // 581: client.api.ProducerRankingCharacterResponse.commonResponse:type_name -> papicommon.Response
-	454,  // 582: client.api.ProducerRankingCharacterTower.layers:type_name -> client.api.ProducerRankingTowerLayer
-	761,  // 583: client.api.ProducerRankingGetTowerLayerResponse.commonResponse:type_name -> papicommon.Response
-	842,  // 584: client.api.ProducerRankingListRankRewardResponse.rankRewards:type_name -> papicommon.RankReward
-	761,  // 585: client.api.ProducerRankingListRankRewardResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 586: client.api.ProducerRankingRank.profile:type_name -> pcommon.SimpleProfile
-	446,  // 587: client.api.ProducerRankingRankingHistoryResponse.selfRank:type_name -> client.api.ProducerRankingRank
-	446,  // 588: client.api.ProducerRankingRankingHistoryResponse.ranks:type_name -> client.api.ProducerRankingRank
-	761,  // 589: client.api.ProducerRankingRankingHistoryResponse.commonResponse:type_name -> papicommon.Response
-	446,  // 590: client.api.ProducerRankingRankingResponse.selfRank:type_name -> client.api.ProducerRankingRank
-	446,  // 591: client.api.ProducerRankingRankingResponse.ranks:type_name -> client.api.ProducerRankingRank
-	761,  // 592: client.api.ProducerRankingRankingResponse.commonResponse:type_name -> papicommon.Response
-	841,  // 593: client.api.ProducerRankingTopHistoryResponse.characters:type_name -> pmaster.ProducerRankingCharacter
-	761,  // 594: client.api.ProducerRankingTopHistoryResponse.commonResponse:type_name -> papicommon.Response
-	841,  // 595: client.api.ProducerRankingTopResponse.characters:type_name -> pmaster.ProducerRankingCharacter
-	761,  // 596: client.api.ProducerRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	455,  // 597: client.api.ProfileGetResponse.birthday:type_name -> client.api.ProfileBirthday
-	814,  // 598: client.api.ProfileGetResponse.friendStatus:type_name -> penum.FriendStatusType
-	727,  // 599: client.api.ProfileGetResponse.produceRecords:type_name -> client.api.ProfileGetResponse.ProduceRecord
-	843,  // 600: client.api.ProfileGetResponse.pvpRateGrade:type_name -> penum.PvpRateGrade
-	771,  // 601: client.api.ProfileGetResponse.competitionGrade:type_name -> penum.CompetitionGrade
-	844,  // 602: client.api.ProfileGetResponse.supportCard:type_name -> pcommon.SupportCard
-	780,  // 603: client.api.ProfileGetResponse.memory:type_name -> pcommon.Memory
-	766,  // 604: client.api.ProfileGetResponse.meishi:type_name -> pcommon.Meishi
-	761,  // 605: client.api.ProfileGetResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 606: client.api.ProfileUpdateBadgeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 607: client.api.ProfileUpdateBirthdayResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 608: client.api.ProfileUpdateCommentResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 609: client.api.ProfileUpdateMemoryResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 610: client.api.ProfileUpdateNameResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 611: client.api.ProfileUpdateSupportCardResponse.commonResponse:type_name -> papicommon.Response
-	794,  // 612: client.api.PvpRateEndRequest.stages:type_name -> pcommon.ExamBattleAutoStageResult
-	762,  // 613: client.api.PvpRateEndResponse.playReward:type_name -> pcommon.RewardResult
-	482,  // 614: client.api.PvpRateEndResponse.rateRewards:type_name -> client.api.PvpRateRateReward
-	761,  // 615: client.api.PvpRateEndResponse.commonResponse:type_name -> papicommon.Response
-	845,  // 616: client.api.PvpRateGetHistoryResponse.examBattleResult:type_name -> pcommon.PvpRateExamBattleResult
-	761,  // 617: client.api.PvpRateGetHistoryResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 618: client.api.PvpRateGetResponse.playReward:type_name -> pcommon.Reward
-	482,  // 619: client.api.PvpRateGetResponse.rateRewards:type_name -> client.api.PvpRateRateReward
-	480,  // 620: client.api.PvpRateGetResponse.rankRewards:type_name -> client.api.PvpRateRankReward
-	843,  // 621: client.api.PvpRateGetResponse.grade:type_name -> penum.PvpRateGrade
-	766,  // 622: client.api.PvpRateGetResponse.meishi:type_name -> pcommon.Meishi
-	483,  // 623: client.api.PvpRateGetResponse.rivals:type_name -> client.api.PvpRateRival
-	795,  // 624: client.api.PvpRateGetResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	487,  // 625: client.api.PvpRateGetResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	483,  // 626: client.api.PvpRateGetResponse.currentRival:type_name -> client.api.PvpRateRival
-	761,  // 627: client.api.PvpRateGetResponse.commonResponse:type_name -> papicommon.Response
-	809,  // 628: client.api.PvpRateInitializeResponse.previousSeasonResult:type_name -> papicommon.PvpRateSeasonResult
-	761,  // 629: client.api.PvpRateInitializeResponse.commonResponse:type_name -> papicommon.Response
-	728,  // 630: client.api.PvpRateListHistoryResponse.histories:type_name -> client.api.PvpRateListHistoryResponse.PvpRateHistory
-	761,  // 631: client.api.PvpRateListHistoryResponse.commonResponse:type_name -> papicommon.Response
-	481,  // 632: client.api.PvpRateListRankingResponse.users:type_name -> client.api.PvpRateRankingUser
-	481,  // 633: client.api.PvpRateListRankingResponse.self:type_name -> client.api.PvpRateRankingUser
-	761,  // 634: client.api.PvpRateListRankingResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 635: client.api.PvpRatePlayExamBattleResponse.commonResponse:type_name -> papicommon.Response
-	795,  // 636: client.api.PvpRatePlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	487,  // 637: client.api.PvpRatePlayTestResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	761,  // 638: client.api.PvpRatePlayTestResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 639: client.api.PvpRateRankReward.rewards:type_name -> pcommon.Reward
-	768,  // 640: client.api.PvpRateRankingUser.profile:type_name -> pcommon.SimpleProfile
-	487,  // 641: client.api.PvpRateRankingUser.formations:type_name -> client.api.PvpRateUnitStageFormation
-	770,  // 642: client.api.PvpRateRateReward.reward:type_name -> pcommon.Reward
-	768,  // 643: client.api.PvpRateRival.profile:type_name -> pcommon.SimpleProfile
-	846,  // 644: client.api.PvpRateRival.rivalType:type_name -> penum.PvpRateRivalType
-	487,  // 645: client.api.PvpRateRival.formations:type_name -> client.api.PvpRateUnitStageFormation
-	843,  // 646: client.api.PvpRateSeasonResult.beforeGrade:type_name -> penum.PvpRateGrade
-	843,  // 647: client.api.PvpRateSeasonResult.afterGrade:type_name -> penum.PvpRateGrade
-	770,  // 648: client.api.PvpRateSeasonResult.rewards:type_name -> pcommon.Reward
-	843,  // 649: client.api.PvpRateSeasonResult.prevSeasonGrade:type_name -> penum.PvpRateGrade
-	846,  // 650: client.api.PvpRateStartRequest.rivalType:type_name -> penum.PvpRateRivalType
-	795,  // 651: client.api.PvpRateStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
-	487,  // 652: client.api.PvpRateStartResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	483,  // 653: client.api.PvpRateStartResponse.rival:type_name -> client.api.PvpRateRival
-	761,  // 654: client.api.PvpRateStartResponse.commonResponse:type_name -> papicommon.Response
-	847,  // 655: client.api.PvpRateUnitStageFormation.stage:type_name -> penum.PvpRateStageType
-	729,  // 656: client.api.PvpRateUnitStageFormation.slots:type_name -> client.api.PvpRateUnitStageFormation.Slot
-	848,  // 657: client.api.PvpRateUpdateUserPvpRateUnitRequest.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
-	773,  // 658: client.api.PvpRateUpdateUserPvpRateUnitRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 659: client.api.PvpRateUpdateUserPvpRateUnitResponse.commonResponse:type_name -> papicommon.Response
-	849,  // 660: client.api.ResearchGetResponse.ignoreMemoryAbilityRarity:type_name -> penum.SkillRarity
-	850,  // 661: client.api.ResearchGetResponse.playableExamEffectTypes:type_name -> penum.ProduceExamEffectType
-	761,  // 662: client.api.ResearchGetResponse.commonResponse:type_name -> papicommon.Response
-	730,  // 663: client.api.ResearchRankingResponse.selfRank:type_name -> client.api.ResearchRankingResponse.Rank
-	730,  // 664: client.api.ResearchRankingResponse.ranks:type_name -> client.api.ResearchRankingResponse.Rank
-	761,  // 665: client.api.ResearchRankingResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 666: client.api.ResearchRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
-	731,  // 667: client.api.SeminarEndExamRequest.turns:type_name -> client.api.SeminarEndExamRequest.Turn
-	761,  // 668: client.api.SeminarEndExamResponse.commonResponse:type_name -> papicommon.Response
-	824,  // 669: client.api.SeminarGetExamResponse.stepType:type_name -> penum.ProduceStepType
-	851,  // 670: client.api.SeminarGetExamResponse.examBattleParameterTypes:type_name -> penum.ProduceParameterType
-	852,  // 671: client.api.SeminarGetExamResponse.produceCards:type_name -> pcommon.ProduceCard
-	734,  // 672: client.api.SeminarGetExamResponse.turnNavigations:type_name -> client.api.SeminarGetExamResponse.TurnNavigation
-	733,  // 673: client.api.SeminarGetExamResponse.failureNavigations:type_name -> client.api.SeminarGetExamResponse.FailureNavigation
-	761,  // 674: client.api.SeminarGetExamResponse.commonResponse:type_name -> papicommon.Response
-	736,  // 675: client.api.SeminarListExamResponse.groups:type_name -> client.api.SeminarListExamResponse.ExamGroup
-	761,  // 676: client.api.SeminarListExamResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 677: client.api.ShopCancelPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 678: client.api.ShopCheckBirthdayResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 679: client.api.ShopCheckPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	737,  // 680: client.api.ShopGetPurchasePlatformTransactionResponse.platformTransactions:type_name -> client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
-	761,  // 681: client.api.ShopGetPurchasePlatformTransactionResponse.commonResponse:type_name -> papicommon.Response
-	807,  // 682: client.api.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
-	853,  // 683: client.api.ShopListItemsResponse.list:type_name -> pmaster.ShopItem
-	761,  // 684: client.api.ShopListItemsResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 685: client.api.ShopPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 686: client.api.ShopPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 687: client.api.ShopPurchaseResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 688: client.api.ShopPurchaseResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 689: client.api.ShopReadWebStoreUserPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 690: client.api.ShopRecoverPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 691: client.api.ShopRecoverPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 692: client.api.ShopRegisterBirthdayResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 693: client.api.ShopRegisterDelayPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 694: client.api.ShopRegisterPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
-	738,  // 695: client.api.ShopTopResponse.shopList:type_name -> client.api.ShopTopResponse.Shop
-	853,  // 696: client.api.ShopTopResponse.shopItemList:type_name -> pmaster.ShopItem
-	799,  // 697: client.api.ShopTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	761,  // 698: client.api.ShopTopResponse.commonResponse:type_name -> papicommon.Response
-	739,  // 699: client.api.StartupConfirmRequest.notifications:type_name -> client.api.StartupConfirmRequest.Notification
-	762,  // 700: client.api.StartupConfirmResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 701: client.api.StartupConfirmResponse.commonResponse:type_name -> papicommon.Response
-	854,  // 702: client.api.StartupListNotificationsRequest.displayType:type_name -> penum.StartupNotificationDisplayType
-	799,  // 703: client.api.StartupListNotificationsResponse.notifications:type_name -> pcommon.StartupNotification
-	761,  // 704: client.api.StartupListNotificationsResponse.commonResponse:type_name -> papicommon.Response
-	65,   // 705: client.api.StepUpGashaProbability.defaultGashaProbability:type_name -> client.api.DefaultGashaProbability
-	826,  // 706: client.api.StoryEventListGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
-	827,  // 707: client.api.StoryEventListGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
-	761,  // 708: client.api.StoryEventListGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	740,  // 709: client.api.StoryEventReceiveGuildMissionResponse.receiveResults:type_name -> client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
-	761,  // 710: client.api.StoryEventReceiveGuildMissionResponse.commonResponse:type_name -> papicommon.Response
-	741,  // 711: client.api.StoryEventTopResponse.motions:type_name -> client.api.StoryEventTopResponse.Motion
-	838,  // 712: client.api.StoryEventTopResponse.storyEventType:type_name -> penum.StoryEventType
-	839,  // 713: client.api.StoryEventTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
-	763,  // 714: client.api.StoryEventTopResponse.boxGasha:type_name -> pcommon.CoinGasha
-	813,  // 715: client.api.StoryEventTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
-	855,  // 716: client.api.StoryEventTopResponse.storyEventPointRewards:type_name -> pcommon.StoryEventPointReward
-	799,  // 717: client.api.StoryEventTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	761,  // 718: client.api.StoryEventTopResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 719: client.api.StoryReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 720: client.api.StoryReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 721: client.api.StoryReadProduceStoryResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 722: client.api.StoryReadResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 723: client.api.StoryReadResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 724: client.api.StoryUnlockDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 725: client.api.StoryUnlockProduceStoryResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 726: client.api.StoryUnlockResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 727: client.api.SupportCardEnhanceResponse.commonResponse:type_name -> papicommon.Response
-	742,  // 728: client.api.SupportCardExchangeRequest.parameters:type_name -> client.api.SupportCardExchangeRequest.Parameter
-	761,  // 729: client.api.SupportCardExchangeResponse.commonResponse:type_name -> papicommon.Response
-	744,  // 730: client.api.SupportCardListDeckRankingResponse.rankings:type_name -> client.api.SupportCardListDeckRankingResponse.Ranking
-	761,  // 731: client.api.SupportCardListDeckRankingResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 732: client.api.SupportCardProbability.rewards:type_name -> pcommon.Reward
-	856,  // 733: client.api.SupportCardRarityProbability.rarity:type_name -> penum.SupportCardRarity
-	553,  // 734: client.api.SupportCardRarityProbability.probabilities:type_name -> client.api.SupportCardProbability
-	857,  // 735: client.api.SupportCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.SupportCardLevelLimitRank
-	761,  // 736: client.api.SupportCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
-	745,  // 737: client.api.SystemCheckResponse.maintenanceInfo:type_name -> client.api.SystemCheckResponse.MaintenanceInfo
-	746,  // 738: client.api.SystemCheckResponse.reviewInfo:type_name -> client.api.SystemCheckResponse.ReviewInfo
-	561,  // 739: client.api.TicketExchangeExecuteResponse.item:type_name -> client.api.TicketExchangeItem
-	762,  // 740: client.api.TicketExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
-	761,  // 741: client.api.TicketExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 742: client.api.TicketExchangeItem.rewards:type_name -> pcommon.Reward
-	561,  // 743: client.api.TicketExchangeListItemsResponse.items:type_name -> client.api.TicketExchangeItem
-	761,  // 744: client.api.TicketExchangeListItemsResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 745: client.api.TourContinueResponse.commonResponse:type_name -> papicommon.Response
-	780,  // 746: client.api.TourDeck.mainMemory:type_name -> pcommon.Memory
-	780,  // 747: client.api.TourDeck.subMemories:type_name -> pcommon.Memory
-	858,  // 748: client.api.TourDeck.produceCardConversions:type_name -> pcommon.ProduceCardConversion
-	765,  // 749: client.api.TourEndRequest.result:type_name -> pcommon.ExamContestResult
-	859,  // 750: client.api.TourEndResponse.grade:type_name -> penum.TourScoreGrade
-	578,  // 751: client.api.TourEndResponse.levels:type_name -> client.api.TourStageLevel
-	761,  // 752: client.api.TourEndResponse.commonResponse:type_name -> papicommon.Response
-	860,  // 753: client.api.TourGetProgressResponse.phase:type_name -> penum.TourProgressPhaseType
-	748,  // 754: client.api.TourGetProgressResponse.progress:type_name -> client.api.TourGetProgressResponse.Progress
-	747,  // 755: client.api.TourGetProgressResponse.examEnd:type_name -> client.api.TourGetProgressResponse.ExamEnd
-	761,  // 756: client.api.TourGetProgressResponse.commonResponse:type_name -> papicommon.Response
-	764,  // 757: client.api.TourPlayTestResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	566,  // 758: client.api.TourPlayTestResponse.deck:type_name -> client.api.TourDeck
-	576,  // 759: client.api.TourPlayTestResponse.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
-	761,  // 760: client.api.TourPlayTestResponse.commonResponse:type_name -> papicommon.Response
-	584,  // 761: client.api.TourResultResponse.totalPointRewards:type_name -> client.api.TourTotalPointReward
-	749,  // 762: client.api.TourResultResponse.totalPointRewardResult:type_name -> client.api.TourResultResponse.TotalPointRewardResult
-	762,  // 763: client.api.TourResultResponse.stageLevelClearRewardResults:type_name -> pcommon.RewardResult
-	761,  // 764: client.api.TourResultResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 765: client.api.TourRetireResponse.commonResponse:type_name -> papicommon.Response
-	859,  // 766: client.api.TourScoreGradePattern.grade:type_name -> penum.TourScoreGrade
-	752,  // 767: client.api.TourStageRankingResponse.stageRankings:type_name -> client.api.TourStageRankingResponse.StageRanking
-	751,  // 768: client.api.TourStageRankingResponse.selfStageRanks:type_name -> client.api.TourStageRankingResponse.SelfStageRank
-	761,  // 769: client.api.TourStageRankingResponse.commonResponse:type_name -> papicommon.Response
-	764,  // 770: client.api.TourStartResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
-	566,  // 771: client.api.TourStartResponse.deck:type_name -> client.api.TourDeck
-	576,  // 772: client.api.TourStartResponse.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
-	761,  // 773: client.api.TourStartResponse.commonResponse:type_name -> papicommon.Response
-	584,  // 774: client.api.TourTopResponse.totalPointRewards:type_name -> client.api.TourTotalPointReward
-	753,  // 775: client.api.TourTopResponse.stages:type_name -> client.api.TourTopResponse.Stage
-	813,  // 776: client.api.TourTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
-	761,  // 777: client.api.TourTopResponse.commonResponse:type_name -> papicommon.Response
-	770,  // 778: client.api.TourTotalPointReward.rewards:type_name -> pcommon.Reward
-	577,  // 779: client.api.TourUpdateDeckRequest.deck:type_name -> client.api.TourSetUpDeck
-	773,  // 780: client.api.TourUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 781: client.api.TourUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 782: client.api.TowerCheckResponse.commonResponse:type_name -> papicommon.Response
-	830,  // 783: client.api.TowerEndRequest.result:type_name -> pcommon.ExamBattleResult
-	831,  // 784: client.api.TowerEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
-	762,  // 785: client.api.TowerEndResponse.results:type_name -> pcommon.RewardResult
-	829,  // 786: client.api.TowerEndResponse.producerRankingResult:type_name -> pcommon.ProducerRankingResult
-	761,  // 787: client.api.TowerEndResponse.commonResponse:type_name -> papicommon.Response
-	613,  // 788: client.api.TowerGetLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	761,  // 789: client.api.TowerGetLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
-	612,  // 790: client.api.TowerGetLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
-	761,  // 791: client.api.TowerGetLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	755,  // 792: client.api.TowerGetLayerResponse.exams:type_name -> client.api.TowerGetLayerResponse.Exam
-	761,  // 793: client.api.TowerGetLayerResponse.commonResponse:type_name -> papicommon.Response
-	613,  // 794: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	761,  // 795: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
-	612,  // 796: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
-	761,  // 797: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
-	613,  // 798: client.api.TowerGetPastSeasonRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	761,  // 799: client.api.TowerGetPastSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
-	780,  // 800: client.api.TowerGetRankingDeckResponse.memories:type_name -> pcommon.Memory
-	858,  // 801: client.api.TowerGetRankingDeckResponse.produceCardConversions:type_name -> pcommon.ProduceCardConversion
-	761,  // 802: client.api.TowerGetRankingDeckResponse.commonResponse:type_name -> papicommon.Response
-	613,  // 803: client.api.TowerGetRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
-	761,  // 804: client.api.TowerGetRankingResponse.commonResponse:type_name -> papicommon.Response
-	861,  // 805: client.api.TowerListLayerPlayerHistoriesResponse.histories:type_name -> pcommon.TowerLayerHistory
-	761,  // 806: client.api.TowerListLayerPlayerHistoriesResponse.commonResponse:type_name -> papicommon.Response
-	757,  // 807: client.api.TowerListLayersResponse.layers:type_name -> client.api.TowerListLayersResponse.TowerLayer
-	614,  // 808: client.api.TowerListLayersResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
-	761,  // 809: client.api.TowerListLayersResponse.commonResponse:type_name -> papicommon.Response
-	768,  // 810: client.api.TowerRank.profile:type_name -> pcommon.SimpleProfile
-	611,  // 811: client.api.TowerRankingCache.ranks:type_name -> client.api.TowerRank
-	611,  // 812: client.api.TowerRankingResult.towerRanks:type_name -> client.api.TowerRank
-	762,  // 813: client.api.TowerReceiveLayerCountRewardResponse.result:type_name -> pcommon.RewardResult
-	761,  // 814: client.api.TowerReceiveLayerCountRewardResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 815: client.api.TowerReceiveTotalClearRankRewardResponse.result:type_name -> pcommon.RewardResult
-	761,  // 816: client.api.TowerReceiveTotalClearRankRewardResponse.commonResponse:type_name -> papicommon.Response
-	852,  // 817: client.api.TowerStartResponse.produceCards:type_name -> pcommon.ProduceCard
-	761,  // 818: client.api.TowerStartResponse.commonResponse:type_name -> papicommon.Response
-	758,  // 819: client.api.TowerTopResponse.towers:type_name -> client.api.TowerTopResponse.Tower
-	770,  // 820: client.api.TowerTopResponse.nextReward:type_name -> pcommon.Reward
-	799,  // 821: client.api.TowerTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
-	614,  // 822: client.api.TowerTopResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
-	761,  // 823: client.api.TowerTopResponse.commonResponse:type_name -> papicommon.Response
-	773,  // 824: client.api.TowerUpdateMemoryDeckRequest.recommendType:type_name -> penum.DeckRecommendType
-	761,  // 825: client.api.TowerUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 826: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 827: client.api.TutorialProduceNextResponse.commonResponse:type_name -> papicommon.Response
-	780,  // 828: client.api.TutorialProduceResultResponse.memory:type_name -> pcommon.Memory
-	761,  // 829: client.api.TutorialProduceResultResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 830: client.api.TutorialProduceStartResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 831: client.api.TutorialProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 832: client.api.TutorialProduceStepAuditionExamEndResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 833: client.api.TutorialProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
-	832,  // 834: client.api.TutorialProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
-	761,  // 835: client.api.TutorialProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
-	862,  // 836: client.api.TutorialProgressRequest.type:type_name -> penum.TutorialType
-	761,  // 837: client.api.TutorialProgressResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 838: client.api.TutorialReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
-	762,  // 839: client.api.TutorialReceiveIdolCardResponse.results:type_name -> pcommon.RewardResult
-	761,  // 840: client.api.TutorialReceiveIdolCardResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 841: client.api.TutorialSetNameResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 842: client.api.TutorialSkipResponse.commonResponse:type_name -> papicommon.Response
-	862,  // 843: client.api.TutorialUnlockFeatureRequest.type:type_name -> penum.TutorialType
-	761,  // 844: client.api.TutorialUnlockFeatureResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 845: client.api.UserGetBalanceResponse.commonResponse:type_name -> papicommon.Response
-	863,  // 846: client.api.UserGetResponse.userData:type_name -> papicommon.UserData
-	759,  // 847: client.api.UserListMessageResponse.personalMessages:type_name -> client.api.UserListMessageResponse.PersonalMessage
-	761,  // 848: client.api.UserListMessageResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 849: client.api.UserReadForceTitleTransitionTimeResponse.commonResponse:type_name -> papicommon.Response
-	761,  // 850: client.api.UserReadMessageResponse.commonResponse:type_name -> papicommon.Response
-	658,  // 851: client.api.WorkFinishResponse.finishResults:type_name -> client.api.WorkFinishResult
-	761,  // 852: client.api.WorkFinishResponse.commonResponse:type_name -> papicommon.Response
-	864,  // 853: client.api.WorkFinishResult.type:type_name -> penum.WorkType
-	762,  // 854: client.api.WorkFinishResult.rewardResults:type_name -> pcommon.RewardResult
-	864,  // 855: client.api.WorkSkipRequest.type:type_name -> penum.WorkType
-	658,  // 856: client.api.WorkSkipResponse.finishResult:type_name -> client.api.WorkFinishResult
-	761,  // 857: client.api.WorkSkipResponse.commonResponse:type_name -> papicommon.Response
-	864,  // 858: client.api.WorkStartRequest.type:type_name -> penum.WorkType
-	761,  // 859: client.api.WorkStartResponse.commonResponse:type_name -> papicommon.Response
-	864,  // 860: client.api.WorkStopRequest.type:type_name -> penum.WorkType
-	761,  // 861: client.api.WorkStopResponse.commonResponse:type_name -> papicommon.Response
-	658,  // 862: client.api.WorkTopResponse.finishResults:type_name -> client.api.WorkFinishResult
-	761,  // 863: client.api.WorkTopResponse.commonResponse:type_name -> papicommon.Response
-	760,  // 864: client.api.AuthLoginResponse.Term.type:type_name -> penum.TermsType
-	774,  // 865: client.api.AuthSendConsentRequest.Consent.consentType:type_name -> penum.ConsentType
-	775,  // 866: client.api.AuthSendConsentRequest.Consent.agreementType:type_name -> penum.ConsentAgreementType
-	865,  // 867: client.api.CompetitionGetResponse.Section.sectionType:type_name -> penum.CompetitionStageSectionType
-	767,  // 868: client.api.CompetitionGetResponse.PlayTestStage.stageType:type_name -> penum.CompetitionStageType
-	767,  // 869: client.api.CompetitionGetResponse.Stage.stageType:type_name -> penum.CompetitionStageType
-	796,  // 870: client.api.CompetitionGetResponse.Stage.planType:type_name -> penum.ProducePlanType
-	850,  // 871: client.api.CompetitionGetResponse.Stage.examEffectType:type_name -> penum.ProduceExamEffectType
-	768,  // 872: client.api.CompetitionGetResponse.Stage.rivalProfile:type_name -> pcommon.SimpleProfile
-	866,  // 873: client.api.CompetitionGetResponse.Stage.rivalSections:type_name -> pcommon.ExamContestSection
-	668,  // 874: client.api.CompetitionGetResponse.Stage.sections:type_name -> client.api.CompetitionGetResponse.Section
-	767,  // 875: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.stageType:type_name -> penum.CompetitionStageType
-	865,  // 876: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.sectionType:type_name -> penum.CompetitionStageSectionType
-	671,  // 877: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.produceCardRanks:type_name -> client.api.CompetitionListDeckProduceCardRankingResponse.ProduceCardRank
-	767,  // 878: client.api.CompetitionListHistoryResponse.History.stageType:type_name -> penum.CompetitionStageType
-	768,  // 879: client.api.CompetitionListHistoryResponse.History.rivalProfile:type_name -> pcommon.SimpleProfile
-	764,  // 880: client.api.CompetitionListHistoryResponse.History.examContestSituation:type_name -> pcommon.ExamContestSituation
-	767,  // 881: client.api.CompetitionListHistoryResponse.Stage.stageType:type_name -> penum.CompetitionStageType
-	764,  // 882: client.api.CompetitionListHistoryResponse.Stage.examContestSituation:type_name -> pcommon.ExamContestSituation
-	857,  // 883: client.api.FriendInfo.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	770,  // 884: client.api.GashaExpirePointResponse.GashaPoint.reward:type_name -> pcommon.Reward
-	678,  // 885: client.api.GashaExpirePointResponse.GashaPoint.gashaBanners:type_name -> client.api.GashaExpirePointResponse.GashaBanner
-	770,  // 886: client.api.GashaGetPointExchangeResponse.ExchangeResource.rewards:type_name -> pcommon.Reward
-	778,  // 887: client.api.GiftListHistoryResponse.UserGiftHistory.resourceType:type_name -> penum.ResourceType
-	778,  // 888: client.api.GiftListResponse.UserGift.resourceType:type_name -> penum.ResourceType
-	789,  // 889: client.api.GuildTopResponse.HomeInfo.achievement:type_name -> pcommon.Achievement
-	788,  // 890: client.api.GuildTopResponse.HomeInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
-	161,  // 891: client.api.GuildTopResponse.HomeInfo.leaderMessageReactionList:type_name -> client.api.GuildReactionInfo
-	160,  // 892: client.api.GuildTopResponse.HomeInfo.memberList:type_name -> client.api.GuildMemberInfo
-	160,  // 893: client.api.GuildTopResponse.HomeInfo.joinRequestList:type_name -> client.api.GuildMemberInfo
-	66,   // 894: client.api.GuildTopResponse.HomeInfo.donationRequestList:type_name -> client.api.DonationRequest
-	684,  // 895: client.api.GuildTopResponse.HomeInfo.receivedDonationInfo:type_name -> client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
-	146,  // 896: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo.donationList:type_name -> client.api.GuildDonationInfo
-	796,  // 897: client.api.GvgRaidTopResponse.Stage.planType:type_name -> penum.ProducePlanType
-	768,  // 898: client.api.GvgRaidTopResponse.Stage.mvpProfile:type_name -> pcommon.SimpleProfile
-	172,  // 899: client.api.GvgRaidTopResponse.Stage.mvpDeck:type_name -> client.api.GvgRaidDeck
-	800,  // 900: client.api.GvgRaidTopResponse.Stage.deck:type_name -> pcommon.GvgRaidSetUpDeck
-	182,  // 901: client.api.GvgRaidTopResponse.Stage.challengeRewards:type_name -> client.api.GvgRaidStageChallengeReward
-	770,  // 902: client.api.GvgRaidTopResponse.Stage.clearRewards:type_name -> pcommon.Reward
-	797,  // 903: client.api.GvgRaidTopResponse.Stage.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
-	770,  // 904: client.api.GvgRaidTopResponse.StageClearResult.rewards:type_name -> pcommon.Reward
-	688,  // 905: client.api.GvgRaidTopResponse.StageClearReward.clearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward.ClearReward
-	770,  // 906: client.api.GvgRaidTopResponse.StageClearReward.ClearReward.rewards:type_name -> pcommon.Reward
-	691,  // 907: client.api.GvgRaidUserRankingResponse.StageMvp.mvpUsers:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
-	692,  // 908: client.api.GvgRaidUserRankingResponse.StageRanking.ranks:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking.Rank
-	188,  // 909: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser.user:type_name -> client.api.GvgRaidUser
-	188,  // 910: client.api.GvgRaidUserRankingResponse.StageRanking.Rank.user:type_name -> client.api.GvgRaidUser
-	867,  // 911: client.api.HomeEnterResponse.FeatureMaintenance.type:type_name -> penum.FeatureMaintenanceType
-	697,  // 912: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.characterResults:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
-	698,  // 913: client.api.HomeLoginResponse.ProducerRankingResult.characterResults:type_name -> client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult
-	770,  // 914: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult.rewards:type_name -> pcommon.Reward
-	770,  // 915: client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult.rewards:type_name -> pcommon.Reward
-	868,  // 916: client.api.HomeSetCharactersRequest.HomeCharacter.homeType:type_name -> penum.HomeType
-	869,  // 917: client.api.LoginBonusCheckResponse.Info.type:type_name -> penum.LoginBonusType
-	770,  // 918: client.api.LoginBonusCheckResponse.Info.rewards:type_name -> pcommon.Reward
-	770,  // 919: client.api.LoginBonusCheckResponse.TotalInfo.reward:type_name -> pcommon.Reward
-	770,  // 920: client.api.LoginBonusCheckResponse.TotalInfo.nextReward:type_name -> pcommon.Reward
-	702,  // 921: client.api.MasterGetResponse.MasterTag.masterTagPacks:type_name -> client.api.MasterGetResponse.MasterTagPack
-	766,  // 922: client.api.MeishiListFollowResponse.Follow.meishi:type_name -> pcommon.Meishi
-	766,  // 923: client.api.MeishiListResponse.MeishiInfo.meishi:type_name -> pcommon.Meishi
-	870,  // 924: client.api.MeishiUpdateRequest.Object.objectType:type_name -> penum.MeishiObjectType
-	710,  // 925: client.api.MissionReceiveResponse.MasterAchievementProgressResult.masterAchievementProgresses:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgress
-	714,  // 926: client.api.PhotoCreateIdolRequest.Photo.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
-	825,  // 927: client.api.ProduceHighScoreRankingResponse.Rank.grade:type_name -> penum.ResultGrade
-	768,  // 928: client.api.ProduceHighScoreRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
-	768,  // 929: client.api.ProduceListRentalMemoryResponse.RentalMemory.profile:type_name -> pcommon.SimpleProfile
-	780,  // 930: client.api.ProduceListRentalMemoryResponse.RentalMemory.memory:type_name -> pcommon.Memory
-	768,  // 931: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.profile:type_name -> pcommon.SimpleProfile
-	857,  // 932: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	341,  // 933: client.api.ProduceRankingTopResponse.Ranking.topRanks:type_name -> client.api.ProduceRank
-	825,  // 934: client.api.ProduceRankingTopResponse.Ranking.selfHighestGrade:type_name -> penum.ResultGrade
-	770,  // 935: client.api.ProduceResultResponse.HighScoreReward.reward:type_name -> pcommon.Reward
-	720,  // 936: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
-	720,  // 937: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
-	762,  // 938: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewardResults:type_name -> pcommon.RewardResult
-	762,  // 939: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewardResults:type_name -> pcommon.RewardResult
-	762,  // 940: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRushGoldRewardResults:type_name -> pcommon.RewardResult
-	762,  // 941: client.api.ProduceResultResponse.ResearchResult.auditionScoreRewardResults:type_name -> pcommon.RewardResult
-	762,  // 942: client.api.ProduceResultResponse.ResearchResult.produceGradeRewardResults:type_name -> pcommon.RewardResult
-	821,  // 943: client.api.ProduceTopResponse.ProduceHighScore.eventType:type_name -> penum.ProduceHighScoreEventType
-	822,  // 944: client.api.ProduceTopResponse.ProduceHighScore.externalProduceRewards:type_name -> papicommon.ProduceHighScoreRushExternalProduceReward
-	850,  // 945: client.api.ProduceTopResponse.Research.playableExamEffectTypes:type_name -> penum.ProduceExamEffectType
-	840,  // 946: client.api.ProfileGetResponse.ProduceRecord.produceType:type_name -> penum.ProduceType
-	487,  // 947: client.api.PvpRateListHistoryResponse.PvpRateHistory.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
-	487,  // 948: client.api.PvpRateListHistoryResponse.PvpRateHistory.rivalFormations:type_name -> client.api.PvpRateUnitStageFormation
-	780,  // 949: client.api.PvpRateUnitStageFormation.Slot.mainMemory:type_name -> pcommon.Memory
-	780,  // 950: client.api.PvpRateUnitStageFormation.Slot.subMemory:type_name -> pcommon.Memory
-	858,  // 951: client.api.PvpRateUnitStageFormation.Slot.produceCardConversions:type_name -> pcommon.ProduceCardConversion
-	768,  // 952: client.api.ResearchRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
-	871,  // 953: client.api.SeminarGetExamResponse.TurnNavigationStep.navigationType:type_name -> penum.TutorialNavigationType
-	852,  // 954: client.api.SeminarGetExamResponse.FailureNavigation.produceCards1:type_name -> pcommon.ProduceCard
-	852,  // 955: client.api.SeminarGetExamResponse.FailureNavigation.produceCards2:type_name -> pcommon.ProduceCard
-	872,  // 956: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
-	873,  // 957: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
-	732,  // 958: client.api.SeminarGetExamResponse.TurnNavigation.steps:type_name -> client.api.SeminarGetExamResponse.TurnNavigationStep
-	770,  // 959: client.api.SeminarListExamResponse.Exam.rewards:type_name -> pcommon.Reward
-	735,  // 960: client.api.SeminarListExamResponse.ExamGroup.exams:type_name -> client.api.SeminarListExamResponse.Exam
-	874,  // 961: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction.paymentPendingReceiptDialogTimingType:type_name -> penum.PaymentPendingReceiptDialogTimingType
-	853,  // 962: client.api.ShopTopResponse.Shop.shopItems:type_name -> pmaster.ShopItem
-	827,  // 963: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.guildMissionHistory:type_name -> pcommon.GuildMissionHistory
-	762,  // 964: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.rewardResult:type_name -> pcommon.RewardResult
-	875,  // 965: client.api.StoryEventTopResponse.Motion.motionType:type_name -> penum.StoryEventMotionType
-	743,  // 966: client.api.SupportCardListDeckRankingResponse.Ranking.supportCardRanks:type_name -> client.api.SupportCardListDeckRankingResponse.SupportCardRank
-	859,  // 967: client.api.TourGetProgressResponse.ExamEnd.grade:type_name -> penum.TourScoreGrade
-	578,  // 968: client.api.TourGetProgressResponse.ExamEnd.levels:type_name -> client.api.TourStageLevel
-	764,  // 969: client.api.TourGetProgressResponse.Progress.examContestSituation:type_name -> pcommon.ExamContestSituation
-	566,  // 970: client.api.TourGetProgressResponse.Progress.deck:type_name -> client.api.TourDeck
-	576,  // 971: client.api.TourGetProgressResponse.Progress.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
-	762,  // 972: client.api.TourResultResponse.TotalPointRewardResult.totalPointRewardResults:type_name -> pcommon.RewardResult
-	584,  // 973: client.api.TourResultResponse.TotalPointRewardResult.totalPointRewardRanges:type_name -> client.api.TourTotalPointReward
-	768,  // 974: client.api.TourStageRankingResponse.UserRank.profile:type_name -> pcommon.SimpleProfile
-	566,  // 975: client.api.TourStageRankingResponse.UserRank.deck:type_name -> client.api.TourDeck
-	750,  // 976: client.api.TourStageRankingResponse.SelfStageRank.userRank:type_name -> client.api.TourStageRankingResponse.UserRank
-	750,  // 977: client.api.TourStageRankingResponse.StageRanking.userRanks:type_name -> client.api.TourStageRankingResponse.UserRank
-	796,  // 978: client.api.TourTopResponse.Stage.planType:type_name -> penum.ProducePlanType
-	577,  // 979: client.api.TourTopResponse.Stage.deck:type_name -> client.api.TourSetUpDeck
-	859,  // 980: client.api.TourTopResponse.Stage.highScoreGrade:type_name -> penum.TourScoreGrade
-	754,  // 981: client.api.TourTopResponse.Stage.levels:type_name -> client.api.TourTopResponse.Stage.StageLevelReward
-	876,  // 982: client.api.TourTopResponse.Stage.iconSizeType:type_name -> penum.TourStageIconSizeType
-	770,  // 983: client.api.TourTopResponse.Stage.StageLevelReward.rewards:type_name -> pcommon.Reward
-	850,  // 984: client.api.TowerGetLayerResponse.Exam.examEffectType:type_name -> penum.ProduceExamEffectType
-	877,  // 985: client.api.TowerListLayersResponse.TowerLayerRank.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
-	770,  // 986: client.api.TowerListLayersResponse.TowerLayerRank.reward:type_name -> pcommon.Reward
-	756,  // 987: client.api.TowerListLayersResponse.TowerLayer.ranks:type_name -> client.api.TowerListLayersResponse.TowerLayerRank
-	770,  // 988: client.api.TowerListLayersResponse.TowerLayer.rewards:type_name -> pcommon.Reward
-	0,    // 989: client.api.Auth.Create:input_type -> client.api.Empty
-	7,    // 990: client.api.Auth.Login:input_type -> client.api.AuthLoginRequest
-	5,    // 991: client.api.Auth.LinkBandaiNamcoId:input_type -> client.api.AuthLinkBandaiNamcoIdRequest
-	0,    // 992: client.api.Auth.Unlink:input_type -> client.api.Empty
-	12,   // 993: client.api.Auth.PrepareMigrationBandaiNamcoId:input_type -> client.api.AuthPrepareMigrationBandaiNamcoIdRequest
-	10,   // 994: client.api.Auth.Migrate:input_type -> client.api.AuthMigrateRequest
-	0,    // 995: client.api.Auth.MigrateDmmGamesId:input_type -> client.api.Empty
-	1,    // 996: client.api.Auth.AgreeTerms:input_type -> client.api.AuthAgreeTermsRequest
-	0,    // 997: client.api.Auth.GetConsent:input_type -> client.api.Empty
-	14,   // 998: client.api.Auth.SendConsent:input_type -> client.api.AuthSendConsentRequest
-	17,   // 999: client.api.Character.CheckRoster:input_type -> client.api.CharacterCheckRosterRequest
-	22,   // 1000: client.api.CoinGasha.Get:input_type -> client.api.CoinGashaGetRequest
-	0,    // 1001: client.api.CoinGasha.List:input_type -> client.api.Empty
-	19,   // 1002: client.api.CoinGasha.Draw:input_type -> client.api.CoinGashaDrawRequest
-	25,   // 1003: client.api.CoinGasha.ResetBox:input_type -> client.api.CoinGashaResetBoxRequest
-	0,    // 1004: client.api.Competition.Initialize:input_type -> client.api.Empty
-	31,   // 1005: client.api.Competition.Get:input_type -> client.api.CompetitionGetRequest
-	0,    // 1006: client.api.Competition.ListReward:input_type -> client.api.Empty
-	51,   // 1007: client.api.Competition.Start:input_type -> client.api.CompetitionStartRequest
-	49,   // 1008: client.api.Competition.SelectAuto:input_type -> client.api.CompetitionSelectAutoRequest
-	29,   // 1009: client.api.Competition.End:input_type -> client.api.CompetitionEndRequest
-	0,    // 1010: client.api.Competition.Retire:input_type -> client.api.Empty
-	27,   // 1011: client.api.Competition.Continue:input_type -> client.api.CompetitionContinueRequest
-	45,   // 1012: client.api.Competition.Result:input_type -> client.api.CompetitionResultRequest
-	39,   // 1013: client.api.Competition.PlayTest:input_type -> client.api.CompetitionPlayTestRequest
-	43,   // 1014: client.api.Competition.ResultPlayTest:input_type -> client.api.CompetitionResultPlayTestRequest
-	53,   // 1015: client.api.Competition.UpdateDeck:input_type -> client.api.CompetitionUpdateDeckRequest
-	55,   // 1016: client.api.Competition.UpdateSeasonDeck:input_type -> client.api.CompetitionUpdateSeasonDeckRequest
-	0,    // 1017: client.api.Competition.ListHighScoreRanking:input_type -> client.api.Empty
-	0,    // 1018: client.api.Competition.ListWinCountRanking:input_type -> client.api.Empty
-	0,    // 1019: client.api.Competition.ListHistory:input_type -> client.api.Empty
-	0,    // 1020: client.api.Competition.ListDeckProduceCardRanking:input_type -> client.api.Empty
-	63,   // 1021: client.api.Costume.Set:input_type -> client.api.CostumeSetRequest
-	59,   // 1022: client.api.Costume.Check:input_type -> client.api.CostumeCheckRequest
-	61,   // 1023: client.api.Costume.SetRandom:input_type -> client.api.CostumeSetRandomRequest
-	69,   // 1024: client.api.Exchange.Get:input_type -> client.api.ExchangeGetRequest
-	73,   // 1025: client.api.Exchange.List:input_type -> client.api.ExchangeListRequest
-	67,   // 1026: client.api.Exchange.Execute:input_type -> client.api.ExchangeExecuteRequest
-	75,   // 1027: client.api.Exchange.Reset:input_type -> client.api.ExchangeResetRequest
-	0,    // 1028: client.api.Friend.List:input_type -> client.api.Empty
-	0,    // 1029: client.api.Friend.ListSuggestion:input_type -> client.api.Empty
-	79,   // 1030: client.api.Friend.Follow:input_type -> client.api.FriendFollowRequest
-	84,   // 1031: client.api.Friend.UnFollow:input_type -> client.api.FriendUnFollowRequest
-	77,   // 1032: client.api.Friend.DeleteFollower:input_type -> client.api.FriendDeleteFollowerRequest
-	0,    // 1033: client.api.Gasha.List:input_type -> client.api.Empty
-	91,   // 1034: client.api.Gasha.Draw:input_type -> client.api.GashaDrawRequest
-	109,  // 1035: client.api.Gasha.GetProbability:input_type -> client.api.GashaGetProbabilityRequest
-	124,  // 1036: client.api.Gasha.SelectPickup:input_type -> client.api.GashaSelectPickupRequest
-	94,   // 1037: client.api.Gasha.DrawSelectPickup:input_type -> client.api.GashaDrawSelectPickupRequest
-	111,  // 1038: client.api.Gasha.GetSelectPickupProbability:input_type -> client.api.GashaGetSelectPickupProbabilityRequest
-	96,   // 1039: client.api.Gasha.DrawStepUp:input_type -> client.api.GashaDrawStepUpRequest
-	113,  // 1040: client.api.Gasha.GetStepUpProbability:input_type -> client.api.GashaGetStepUpProbabilityRequest
-	89,   // 1041: client.api.Gasha.DrawContinuous:input_type -> client.api.GashaDrawContinuousRequest
-	86,   // 1042: client.api.Gasha.ContinueDrawContinuous:input_type -> client.api.GashaContinueDrawContinuousRequest
-	116,  // 1043: client.api.Gasha.PickContinuousDrawRewardCount:input_type -> client.api.GashaPickContinuousDrawRewardCountRequest
-	122,  // 1044: client.api.Gasha.ResumeContinuous:input_type -> client.api.GashaResumeContinuousRequest
-	101,  // 1045: client.api.Gasha.FinishContinuous:input_type -> client.api.GashaFinishContinuousRequest
-	120,  // 1046: client.api.Gasha.ReportShareSnsContinuousMission:input_type -> client.api.GashaReportShareSnsContinuousMissionRequest
-	103,  // 1047: client.api.Gasha.GetContinuousProbability:input_type -> client.api.GashaGetContinuousProbabilityRequest
-	105,  // 1048: client.api.Gasha.GetPointExchange:input_type -> client.api.GashaGetPointExchangeRequest
-	98,   // 1049: client.api.Gasha.ExchangePoint:input_type -> client.api.GashaExchangePointRequest
-	0,    // 1050: client.api.Gasha.ExpirePoint:input_type -> client.api.Empty
-	107,  // 1051: client.api.Gasha.GetPrecaution:input_type -> client.api.GashaGetPrecautionRequest
-	129,  // 1052: client.api.Gift.List:input_type -> client.api.GiftListRequest
-	0,    // 1053: client.api.Gift.Count:input_type -> client.api.Empty
-	127,  // 1054: client.api.Gift.ListHistory:input_type -> client.api.GiftListHistoryRequest
-	131,  // 1055: client.api.Gift.Open:input_type -> client.api.GiftOpenRequest
-	0,    // 1056: client.api.Guild.Top:input_type -> client.api.Empty
-	167,  // 1057: client.api.Guild.Search:input_type -> client.api.GuildSearchRequest
-	153,  // 1058: client.api.Guild.Get:input_type -> client.api.GuildGetRequest
-	151,  // 1059: client.api.Guild.Establish:input_type -> client.api.GuildEstablishRequest
-	147,  // 1060: client.api.Guild.EditDetail:input_type -> client.api.GuildEditDetailRequest
-	149,  // 1061: client.api.Guild.EditLeaderMessage:input_type -> client.api.GuildEditLeaderMessageRequest
-	133,  // 1062: client.api.Guild.ApplyJoinRequest:input_type -> client.api.GuildApplyJoinRequestRequest
-	137,  // 1063: client.api.Guild.CancelJoinRequest:input_type -> client.api.GuildCancelJoinRequestRequest
-	0,    // 1064: client.api.Guild.ListJoinRequest:input_type -> client.api.Empty
-	135,  // 1065: client.api.Guild.ApproveJoinRequest:input_type -> client.api.GuildApproveJoinRequestRequest
-	163,  // 1066: client.api.Guild.RejectJoinRequest:input_type -> client.api.GuildRejectJoinRequestRequest
-	0,    // 1067: client.api.Guild.Leave:input_type -> client.api.Empty
-	141,  // 1068: client.api.Guild.Dismiss:input_type -> client.api.GuildDismissRequest
-	139,  // 1069: client.api.Guild.ChangeLeader:input_type -> client.api.GuildChangeLeaderRequest
-	0,    // 1070: client.api.Guild.ListMember:input_type -> client.api.Empty
-	0,    // 1071: client.api.Guild.Dissolve:input_type -> client.api.Empty
-	0,    // 1072: client.api.Guild.ListDonationRequest:input_type -> client.api.Empty
-	165,  // 1073: client.api.Guild.RequestDonation:input_type -> client.api.GuildRequestDonationRequest
-	144,  // 1074: client.api.Guild.Donate:input_type -> client.api.GuildDonateRequest
-	0,    // 1075: client.api.Guild.ReceiveDonation:input_type -> client.api.Empty
-	170,  // 1076: client.api.Guild.UpdateLeaderMessageReaction:input_type -> client.api.GuildUpdateLeaderMessageReactionRequest
-	0,    // 1077: client.api.GvgRaid.Top:input_type -> client.api.Empty
-	0,    // 1078: client.api.GvgRaid.GetProgress:input_type -> client.api.Empty
-	183,  // 1079: client.api.GvgRaid.Start:input_type -> client.api.GvgRaidStartRequest
-	173,  // 1080: client.api.GvgRaid.End:input_type -> client.api.GvgRaidEndRequest
-	178,  // 1081: client.api.GvgRaid.PlayTest:input_type -> client.api.GvgRaidPlayTestRequest
-	0,    // 1082: client.api.GvgRaid.GuildRanking:input_type -> client.api.Empty
-	0,    // 1083: client.api.GvgRaid.UserRanking:input_type -> client.api.Empty
-	186,  // 1084: client.api.GvgRaid.UpdateDeck:input_type -> client.api.GvgRaidUpdateDeckRequest
-	190,  // 1085: client.api.Health.Check:input_type -> client.api.HealthCheckRequest
-	0,    // 1086: client.api.Home.Login:input_type -> client.api.Empty
-	0,    // 1087: client.api.Home.Enter:input_type -> client.api.Empty
-	0,    // 1088: client.api.Home.ListEvent:input_type -> client.api.Empty
-	0,    // 1089: client.api.Home.ConfirmBanWarning:input_type -> client.api.Empty
-	196,  // 1090: client.api.Home.SetCharacters:input_type -> client.api.HomeSetCharactersRequest
-	204,  // 1091: client.api.IdolCard.UpgradeLevelLimitRank:input_type -> client.api.IdolCardUpgradeLevelLimitRankRequest
-	206,  // 1092: client.api.IdolCard.UpgradePotentialRank:input_type -> client.api.IdolCardUpgradePotentialRankRequest
-	202,  // 1093: client.api.IdolCard.Release:input_type -> client.api.IdolCardReleaseRequest
-	198,  // 1094: client.api.IdolCard.ChangeSkin:input_type -> client.api.IdolCardChangeSkinRequest
-	208,  // 1095: client.api.Invitation.EnterInvitationCode:input_type -> client.api.InvitationEnterInvitationCodeRequest
-	0,    // 1096: client.api.Invitation.ListInviteUser:input_type -> client.api.Empty
-	211,  // 1097: client.api.Invitation.ReceiveInvitationPoint:input_type -> client.api.InvitationReceiveInvitationPointRequest
-	216,  // 1098: client.api.Item.Sell:input_type -> client.api.ItemSellRequest
-	214,  // 1099: client.api.Item.ExchangeIdolCardPiece:input_type -> client.api.ItemExchangeIdolCardPieceRequest
-	218,  // 1100: client.api.Item.UseActionPointRecovery:input_type -> client.api.ItemUseActionPointRecoveryRequest
-	0,    // 1101: client.api.LoginBonus.Check:input_type -> client.api.Empty
-	0,    // 1102: client.api.LoginBonus.Confirm:input_type -> client.api.Empty
-	0,    // 1103: client.api.Master.Get:input_type -> client.api.Empty
-	223,  // 1104: client.api.Media.Play:input_type -> client.api.MediaPlayRequest
-	231,  // 1105: client.api.Meishi.Get:input_type -> client.api.MeishiGetRequest
-	229,  // 1106: client.api.Meishi.GetDetail:input_type -> client.api.MeishiGetDetailRequest
-	0,    // 1107: client.api.Meishi.List:input_type -> client.api.Empty
-	0,    // 1108: client.api.Meishi.ListFollow:input_type -> client.api.Empty
-	237,  // 1109: client.api.Meishi.Set:input_type -> client.api.MeishiSetRequest
-	241,  // 1110: client.api.Meishi.Update:input_type -> client.api.MeishiUpdateRequest
-	225,  // 1111: client.api.Meishi.Delete:input_type -> client.api.MeishiDeleteRequest
-	227,  // 1112: client.api.Meishi.Follow:input_type -> client.api.MeishiFollowRequest
-	239,  // 1113: client.api.Meishi.Unfollow:input_type -> client.api.MeishiUnfollowRequest
-	235,  // 1114: client.api.Meishi.ReportXPostMission:input_type -> client.api.MeishiReportXPostMissionRequest
-	247,  // 1115: client.api.Memory.Inherit:input_type -> client.api.MemoryInheritRequest
-	245,  // 1116: client.api.Memory.FixInherit:input_type -> client.api.MemoryFixInheritRequest
-	243,  // 1117: client.api.Memory.Exchange:input_type -> client.api.MemoryExchangeRequest
-	251,  // 1118: client.api.Memory.UpdateProtection:input_type -> client.api.MemoryUpdateProtectionRequest
-	253,  // 1119: client.api.Memory.UpdateResearchFavorite:input_type -> client.api.MemoryUpdateResearchFavoriteRequest
-	255,  // 1120: client.api.Memory.UpdateTagSetting:input_type -> client.api.MemoryUpdateTagSettingRequest
-	249,  // 1121: client.api.Memory.Reshooting:input_type -> client.api.MemoryReshootingRequest
-	0,    // 1122: client.api.Mission.ListEvent:input_type -> client.api.Empty
-	266,  // 1123: client.api.Mission.Receive:input_type -> client.api.MissionReceiveRequest
-	262,  // 1124: client.api.Mission.ReceiveGroup:input_type -> client.api.MissionReceiveGroupRequest
-	260,  // 1125: client.api.Mission.ReceiveGroupAll:input_type -> client.api.MissionReceiveGroupAllRequest
-	264,  // 1126: client.api.Mission.ReceivePass:input_type -> client.api.MissionReceivePassRequest
-	257,  // 1127: client.api.Mission.ExchangePassPoint:input_type -> client.api.MissionExchangePassPointRequest
-	268,  // 1128: client.api.Mission.UrlTransition:input_type -> client.api.MissionUrlTransitionRequest
-	0,    // 1129: client.api.Money.Receive:input_type -> client.api.Empty
-	271,  // 1130: client.api.Movie.Create:input_type -> client.api.MovieCreateRequest
-	273,  // 1131: client.api.Movie.Delete:input_type -> client.api.MovieDeleteRequest
-	275,  // 1132: client.api.Movie.Retake:input_type -> client.api.MovieRetakeRequest
-	277,  // 1133: client.api.Music.SendActionLog:input_type -> client.api.MusicSendActionLogRequest
-	279,  // 1134: client.api.Music.SendBuyActionLog:input_type -> client.api.MusicSendBuyActionLogRequest
-	0,    // 1135: client.api.Notice.ListAll:input_type -> client.api.Empty
-	281,  // 1136: client.api.Notice.FetchList:input_type -> client.api.NoticeFetchListRequest
-	283,  // 1137: client.api.Notice.Get:input_type -> client.api.NoticeGetRequest
-	287,  // 1138: client.api.Notice.UpdateCategoryTime:input_type -> client.api.NoticeUpdateCategoryTimeRequest
-	289,  // 1139: client.api.Notice.UpdateDetailTime:input_type -> client.api.NoticeUpdateDetailTimeRequest
-	295,  // 1140: client.api.Photo.Create:input_type -> client.api.PhotoCreateRequest
-	293,  // 1141: client.api.Photo.CreateIdol:input_type -> client.api.PhotoCreateIdolRequest
-	291,  // 1142: client.api.Photo.CreateByMemory:input_type -> client.api.PhotoCreateByMemoryRequest
-	299,  // 1143: client.api.Photo.UpdateName:input_type -> client.api.PhotoUpdateNameRequest
-	301,  // 1144: client.api.Photo.UpdateProtection:input_type -> client.api.PhotoUpdateProtectionRequest
-	297,  // 1145: client.api.Photo.Delete:input_type -> client.api.PhotoDeleteRequest
-	303,  // 1146: client.api.Preference.Update:input_type -> client.api.PreferenceUpdateRequest
-	0,    // 1147: client.api.Produce.Top:input_type -> client.api.Empty
-	309,  // 1148: client.api.Produce.ChangeForceLiveCommon:input_type -> client.api.ProduceChangeForceLiveCommonRequest
-	431,  // 1149: client.api.Produce.UpdateSupportCardDeck:input_type -> client.api.ProduceUpdateSupportCardDeckRequest
-	428,  // 1150: client.api.Produce.UpdateMemoryDeck:input_type -> client.api.ProduceUpdateMemoryDeckRequest
-	0,    // 1151: client.api.Produce.ListRentalSupportCard:input_type -> client.api.Empty
-	336,  // 1152: client.api.Produce.ListRentalMemory:input_type -> client.api.ProduceListRentalMemoryRequest
-	313,  // 1153: client.api.Produce.CheckProgress:input_type -> client.api.ProduceCheckProgressRequest
-	376,  // 1154: client.api.Produce.Start:input_type -> client.api.ProduceStartRequest
-	0,    // 1155: client.api.Produce.Restart:input_type -> client.api.Empty
-	362,  // 1156: client.api.Produce.Save:input_type -> client.api.ProduceSaveRequest
-	339,  // 1157: client.api.Produce.Next:input_type -> client.api.ProduceNextRequest
-	422,  // 1158: client.api.Produce.StepSkip:input_type -> client.api.ProduceStepSkipRequest
-	396,  // 1159: client.api.Produce.StepEvent:input_type -> client.api.ProduceStepEventRequest
-	388,  // 1160: client.api.Produce.StepBusinessStart:input_type -> client.api.ProduceStepBusinessStartRequest
-	386,  // 1161: client.api.Produce.StepBusinessSelect:input_type -> client.api.ProduceStepBusinessSelectRequest
-	394,  // 1162: client.api.Produce.StepCustomizeStart:input_type -> client.api.ProduceStepCustomizeStartRequest
-	392,  // 1163: client.api.Produce.StepCustomizeSelect:input_type -> client.api.ProduceStepCustomizeSelectRequest
-	390,  // 1164: client.api.Produce.StepCustomizeEnd:input_type -> client.api.ProduceStepCustomizeEndRequest
-	408,  // 1165: client.api.Produce.StepRefresh:input_type -> client.api.ProduceStepRefreshRequest
-	420,  // 1166: client.api.Produce.StepShopStart:input_type -> client.api.ProduceStepShopStartRequest
-	418,  // 1167: client.api.Produce.StepShopReroll:input_type -> client.api.ProduceStepShopRerollRequest
-	414,  // 1168: client.api.Produce.StepShopBuy:input_type -> client.api.ProduceStepShopBuyRequest
-	416,  // 1169: client.api.Produce.StepShopEnd:input_type -> client.api.ProduceStepShopEndRequest
-	406,  // 1170: client.api.Produce.StepPresentStart:input_type -> client.api.ProduceStepPresentStartRequest
-	404,  // 1171: client.api.Produce.StepPresentReceive:input_type -> client.api.ProduceStepPresentReceiveRequest
-	402,  // 1172: client.api.Produce.StepPresentEnd:input_type -> client.api.ProduceStepPresentEndRequest
-	400,  // 1173: client.api.Produce.StepLessonStart:input_type -> client.api.ProduceStepLessonStartRequest
-	398,  // 1174: client.api.Produce.StepLessonEnd:input_type -> client.api.ProduceStepLessonEndRequest
-	412,  // 1175: client.api.Produce.StepSelfLessonStart:input_type -> client.api.ProduceStepSelfLessonStartRequest
-	410,  // 1176: client.api.Produce.StepSelfLessonEnd:input_type -> client.api.ProduceStepSelfLessonEndRequest
-	382,  // 1177: client.api.Produce.StepAuditionRefresh:input_type -> client.api.ProduceStepAuditionRefreshRequest
-	384,  // 1178: client.api.Produce.StepAuditionStart:input_type -> client.api.ProduceStepAuditionStartRequest
-	378,  // 1179: client.api.Produce.StepAuditionEndExamBattle:input_type -> client.api.ProduceStepAuditionEndExamBattleRequest
-	380,  // 1180: client.api.Produce.StepAuditionEnd:input_type -> client.api.ProduceStepAuditionEndRequest
-	317,  // 1181: client.api.Produce.DiscardDrink:input_type -> client.api.ProduceDiscardDrinkRequest
-	356,  // 1182: client.api.Produce.RerollSelectProduceCard:input_type -> client.api.ProduceRerollSelectProduceCardRequest
-	323,  // 1183: client.api.Produce.ExcludeProduceCard:input_type -> client.api.ProduceExcludeProduceCardRequest
-	305,  // 1184: client.api.Produce.ActivateEffect:input_type -> client.api.ProduceActivateEffectRequest
-	348,  // 1185: client.api.Produce.ReadDearnessStory:input_type -> client.api.ProduceReadDearnessStoryRequest
-	346,  // 1186: client.api.Produce.ReadAdv:input_type -> client.api.ProduceReadAdvRequest
-	374,  // 1187: client.api.Produce.StartBeforeLiveEvaluation:input_type -> client.api.ProduceStartBeforeLiveEvaluationRequest
-	319,  // 1188: client.api.Produce.EndBeforeLiveEvaluation:input_type -> client.api.ProduceEndBeforeLiveEvaluationRequest
-	354,  // 1189: client.api.Produce.RerollMemory:input_type -> client.api.ProduceRerollMemoryRequest
-	321,  // 1190: client.api.Produce.End:input_type -> client.api.ProduceEndRequest
-	359,  // 1191: client.api.Produce.Result:input_type -> client.api.ProduceResultRequest
-	352,  // 1192: client.api.Produce.ReportGuildMission:input_type -> client.api.ProduceReportGuildMissionRequest
-	350,  // 1193: client.api.Produce.ReportDearnessBoostEvent:input_type -> client.api.ProduceReportDearnessBoostEventRequest
-	315,  // 1194: client.api.Produce.Continue:input_type -> client.api.ProduceContinueRequest
-	0,    // 1195: client.api.Produce.Retire:input_type -> client.api.Empty
-	334,  // 1196: client.api.Produce.History:input_type -> client.api.ProduceHistoryRequest
-	344,  // 1197: client.api.Produce.RankingTop:input_type -> client.api.ProduceRankingTopRequest
-	342,  // 1198: client.api.Produce.Ranking:input_type -> client.api.ProduceRankingRequest
-	307,  // 1199: client.api.Produce.ChangeCostume:input_type -> client.api.ProduceChangeCostumeRequest
-	433,  // 1200: client.api.Produce.ViewPictureBookLive:input_type -> client.api.ProduceViewPictureBookLiveRequest
-	425,  // 1201: client.api.Produce.UnlockPictureBookLive:input_type -> client.api.ProduceUnlockPictureBookLiveRequest
-	311,  // 1202: client.api.Produce.ChangeProduceCardConversion:input_type -> client.api.ProduceChangeProduceCardConversionRequest
-	0,    // 1203: client.api.ProduceHighScore.Get:input_type -> client.api.Empty
-	330,  // 1204: client.api.ProduceHighScore.Ranking:input_type -> client.api.ProduceHighScoreRankingRequest
-	0,    // 1205: client.api.ProduceHighScore.ListRankReward:input_type -> client.api.Empty
-	0,    // 1206: client.api.ProducerRanking.Top:input_type -> client.api.Empty
-	449,  // 1207: client.api.ProducerRanking.Ranking:input_type -> client.api.ProducerRankingRankingRequest
-	439,  // 1208: client.api.ProducerRanking.Character:input_type -> client.api.ProducerRankingCharacterRequest
-	444,  // 1209: client.api.ProducerRanking.ListRankReward:input_type -> client.api.ProducerRankingListRankRewardRequest
-	451,  // 1210: client.api.ProducerRanking.TopHistory:input_type -> client.api.ProducerRankingTopHistoryRequest
-	447,  // 1211: client.api.ProducerRanking.RankingHistory:input_type -> client.api.ProducerRankingRankingHistoryRequest
-	436,  // 1212: client.api.ProducerRanking.CharacterHistory:input_type -> client.api.ProducerRankingCharacterHistoryRequest
-	442,  // 1213: client.api.ProducerRanking.GetTowerLayer:input_type -> client.api.ProducerRankingGetTowerLayerRequest
-	372,  // 1214: client.api.ProduceSeason.RankingTop:input_type -> client.api.ProduceSeasonRankingTopRequest
-	370,  // 1215: client.api.ProduceSeason.RankingTopHistory:input_type -> client.api.ProduceSeasonRankingTopHistoryRequest
-	368,  // 1216: client.api.ProduceSeason.Ranking:input_type -> client.api.ProduceSeasonRankingRequest
-	366,  // 1217: client.api.ProduceSeason.RankingHistory:input_type -> client.api.ProduceSeasonRankingHistoryRequest
-	456,  // 1218: client.api.Profile.Get:input_type -> client.api.ProfileGetRequest
-	466,  // 1219: client.api.Profile.UpdateName:input_type -> client.api.ProfileUpdateNameRequest
-	462,  // 1220: client.api.Profile.UpdateComment:input_type -> client.api.ProfileUpdateCommentRequest
-	460,  // 1221: client.api.Profile.UpdateBirthday:input_type -> client.api.ProfileUpdateBirthdayRequest
-	468,  // 1222: client.api.Profile.UpdateSupportCard:input_type -> client.api.ProfileUpdateSupportCardRequest
-	464,  // 1223: client.api.Profile.UpdateMemory:input_type -> client.api.ProfileUpdateMemoryRequest
-	458,  // 1224: client.api.Profile.UpdateBadge:input_type -> client.api.ProfileUpdateBadgeRequest
-	0,    // 1225: client.api.PvpRate.Initialize:input_type -> client.api.Empty
-	0,    // 1226: client.api.PvpRate.Get:input_type -> client.api.Empty
-	485,  // 1227: client.api.PvpRate.Start:input_type -> client.api.PvpRateStartRequest
-	0,    // 1228: client.api.PvpRate.PlayExamBattle:input_type -> client.api.Empty
-	470,  // 1229: client.api.PvpRate.End:input_type -> client.api.PvpRateEndRequest
-	0,    // 1230: client.api.PvpRate.PlayTest:input_type -> client.api.Empty
-	0,    // 1231: client.api.PvpRate.ListRanking:input_type -> client.api.Empty
-	0,    // 1232: client.api.PvpRate.ListHistory:input_type -> client.api.Empty
-	472,  // 1233: client.api.PvpRate.GetHistory:input_type -> client.api.PvpRateGetHistoryRequest
-	488,  // 1234: client.api.PvpRate.UpdateUserPvpRateUnit:input_type -> client.api.PvpRateUpdateUserPvpRateUnitRequest
-	0,    // 1235: client.api.Research.Get:input_type -> client.api.Empty
-	491,  // 1236: client.api.Research.Ranking:input_type -> client.api.ResearchRankingRequest
-	493,  // 1237: client.api.Research.RerollMemory:input_type -> client.api.ResearchRerollMemoryRequest
-	0,    // 1238: client.api.Seminar.ListExam:input_type -> client.api.Empty
-	497,  // 1239: client.api.Seminar.GetExam:input_type -> client.api.SeminarGetExamRequest
-	495,  // 1240: client.api.Seminar.EndExam:input_type -> client.api.SeminarEndExamRequest
-	0,    // 1241: client.api.Shop.Top:input_type -> client.api.Empty
-	508,  // 1242: client.api.Shop.ListItems:input_type -> client.api.ShopListItemsRequest
-	512,  // 1243: client.api.Shop.Purchase:input_type -> client.api.ShopPurchaseRequest
-	503,  // 1244: client.api.Shop.CheckPurchaseJewel:input_type -> client.api.ShopCheckPurchaseJewelRequest
-	0,    // 1245: client.api.Shop.CheckBirthday:input_type -> client.api.Empty
-	518,  // 1246: client.api.Shop.RegisterBirthday:input_type -> client.api.ShopRegisterBirthdayRequest
-	522,  // 1247: client.api.Shop.RegisterPurchaseTransaction:input_type -> client.api.ShopRegisterPurchaseTransactionRequest
-	500,  // 1248: client.api.Shop.CancelPurchaseTransaction:input_type -> client.api.ShopCancelPurchaseTransactionRequest
-	510,  // 1249: client.api.Shop.PurchaseJewel:input_type -> client.api.ShopPurchaseJewelRequest
-	516,  // 1250: client.api.Shop.RecoverPurchaseJewel:input_type -> client.api.ShopRecoverPurchaseJewelRequest
-	520,  // 1251: client.api.Shop.RegisterDelayPurchaseTransaction:input_type -> client.api.ShopRegisterDelayPurchaseTransactionRequest
-	505,  // 1252: client.api.Shop.GetPurchasePlatformTransaction:input_type -> client.api.ShopGetPurchasePlatformTransactionRequest
-	514,  // 1253: client.api.Shop.ReadWebStoreUserPurchaseTransaction:input_type -> client.api.ShopReadWebStoreUserPurchaseTransactionRequest
-	527,  // 1254: client.api.Startup.ListNotifications:input_type -> client.api.StartupListNotificationsRequest
-	525,  // 1255: client.api.Startup.Confirm:input_type -> client.api.StartupConfirmRequest
-	534,  // 1256: client.api.StoryEvent.Top:input_type -> client.api.StoryEventTopRequest
-	530,  // 1257: client.api.StoryEvent.ListGuildMission:input_type -> client.api.StoryEventListGuildMissionRequest
-	532,  // 1258: client.api.StoryEvent.ReceiveGuildMission:input_type -> client.api.StoryEventReceiveGuildMissionRequest
-	540,  // 1259: client.api.Story.Read:input_type -> client.api.StoryReadRequest
-	538,  // 1260: client.api.Story.ReadProduceStory:input_type -> client.api.StoryReadProduceStoryRequest
-	536,  // 1261: client.api.Story.ReadDearnessStory:input_type -> client.api.StoryReadDearnessStoryRequest
-	546,  // 1262: client.api.Story.Unlock:input_type -> client.api.StoryUnlockRequest
-	544,  // 1263: client.api.Story.UnlockProduceStory:input_type -> client.api.StoryUnlockProduceStoryRequest
-	542,  // 1264: client.api.Story.UnlockDearnessStory:input_type -> client.api.StoryUnlockDearnessStoryRequest
-	548,  // 1265: client.api.SupportCard.Enhance:input_type -> client.api.SupportCardEnhanceRequest
-	555,  // 1266: client.api.SupportCard.UpgradeLevelLimitRank:input_type -> client.api.SupportCardUpgradeLevelLimitRankRequest
-	550,  // 1267: client.api.SupportCard.Exchange:input_type -> client.api.SupportCardExchangeRequest
-	0,    // 1268: client.api.SupportCard.ListDeckRanking:input_type -> client.api.Empty
-	557,  // 1269: client.api.System.Check:input_type -> client.api.SystemCheckRequest
-	562,  // 1270: client.api.TicketExchange.ListItems:input_type -> client.api.TicketExchangeListItemsRequest
-	559,  // 1271: client.api.TicketExchange.Execute:input_type -> client.api.TicketExchangeExecuteRequest
-	582,  // 1272: client.api.Tour.Top:input_type -> client.api.TourTopRequest
-	569,  // 1273: client.api.Tour.GetProgress:input_type -> client.api.TourGetProgressRequest
-	580,  // 1274: client.api.Tour.Start:input_type -> client.api.TourStartRequest
-	567,  // 1275: client.api.Tour.End:input_type -> client.api.TourEndRequest
-	573,  // 1276: client.api.Tour.Result:input_type -> client.api.TourResultRequest
-	564,  // 1277: client.api.Tour.Continue:input_type -> client.api.TourContinueRequest
-	0,    // 1278: client.api.Tour.Retire:input_type -> client.api.Empty
-	571,  // 1279: client.api.Tour.PlayTest:input_type -> client.api.TourPlayTestRequest
-	585,  // 1280: client.api.Tour.UpdateDeck:input_type -> client.api.TourUpdateDeckRequest
-	0,    // 1281: client.api.Tour.StageRanking:input_type -> client.api.Empty
-	0,    // 1282: client.api.Tower.Top:input_type -> client.api.Empty
-	609,  // 1283: client.api.Tower.ListLayers:input_type -> client.api.TowerListLayersRequest
-	595,  // 1284: client.api.Tower.GetLayer:input_type -> client.api.TowerGetLayerRequest
-	619,  // 1285: client.api.Tower.Start:input_type -> client.api.TowerStartRequest
-	589,  // 1286: client.api.Tower.End:input_type -> client.api.TowerEndRequest
-	587,  // 1287: client.api.Tower.Check:input_type -> client.api.TowerCheckRequest
-	622,  // 1288: client.api.Tower.UpdateMemoryDeck:input_type -> client.api.TowerUpdateMemoryDeckRequest
-	615,  // 1289: client.api.Tower.ReceiveLayerCountReward:input_type -> client.api.TowerReceiveLayerCountRewardRequest
-	617,  // 1290: client.api.Tower.ReceiveTotalClearRankReward:input_type -> client.api.TowerReceiveTotalClearRankRewardRequest
-	607,  // 1291: client.api.Tower.ListLayerPlayerHistories:input_type -> client.api.TowerListLayerPlayerHistoriesRequest
-	605,  // 1292: client.api.Tower.GetRanking:input_type -> client.api.TowerGetRankingRequest
-	601,  // 1293: client.api.Tower.GetPastSeasonRanking:input_type -> client.api.TowerGetPastSeasonRankingRequest
-	591,  // 1294: client.api.Tower.GetLayerIdolCardRanking:input_type -> client.api.TowerGetLayerIdolCardRankingRequest
-	597,  // 1295: client.api.Tower.GetPastSeasonLayerIdolCardRanking:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
-	593,  // 1296: client.api.Tower.GetLayerIdolCardRankingTop:input_type -> client.api.TowerGetLayerIdolCardRankingTopRequest
-	599,  // 1297: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
-	603,  // 1298: client.api.Tower.GetRankingDeck:input_type -> client.api.TowerGetRankingDeckRequest
-	647,  // 1299: client.api.Tutorial.UnlockFeature:input_type -> client.api.TutorialUnlockFeatureRequest
-	643,  // 1300: client.api.Tutorial.SetName:input_type -> client.api.TutorialSetNameRequest
-	637,  // 1301: client.api.Tutorial.Progress:input_type -> client.api.TutorialProgressRequest
-	645,  // 1302: client.api.Tutorial.Skip:input_type -> client.api.TutorialSkipRequest
-	639,  // 1303: client.api.Tutorial.ReadDearnessStory:input_type -> client.api.TutorialReadDearnessStoryRequest
-	641,  // 1304: client.api.Tutorial.ReceiveIdolCard:input_type -> client.api.TutorialReceiveIdolCardRequest
-	628,  // 1305: client.api.Tutorial.ProduceStart:input_type -> client.api.TutorialProduceStartRequest
-	0,    // 1306: client.api.Tutorial.ProduceNext:input_type -> client.api.Empty
-	633,  // 1307: client.api.Tutorial.ProduceStepLessonEnd:input_type -> client.api.TutorialProduceStepLessonEndRequest
-	635,  // 1308: client.api.Tutorial.ProduceStepPresentReceive:input_type -> client.api.TutorialProduceStepPresentReceiveRequest
-	631,  // 1309: client.api.Tutorial.ProduceStepAuditionExamEnd:input_type -> client.api.TutorialProduceStepAuditionExamEndRequest
-	0,    // 1310: client.api.Tutorial.ProduceStepAuditionEnd:input_type -> client.api.Empty
-	0,    // 1311: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:input_type -> client.api.Empty
-	626,  // 1312: client.api.Tutorial.ProduceResult:input_type -> client.api.TutorialProduceResultRequest
-	0,    // 1313: client.api.User.Get:input_type -> client.api.Empty
-	0,    // 1314: client.api.User.GetBalance:input_type -> client.api.Empty
-	653,  // 1315: client.api.User.ReadForceTitleTransitionTime:input_type -> client.api.UserReadForceTitleTransitionTimeRequest
-	651,  // 1316: client.api.User.ListMessage:input_type -> client.api.UserListMessageRequest
-	655,  // 1317: client.api.User.ReadMessage:input_type -> client.api.UserReadMessageRequest
-	0,    // 1318: client.api.Work.Top:input_type -> client.api.Empty
-	661,  // 1319: client.api.Work.Start:input_type -> client.api.WorkStartRequest
-	663,  // 1320: client.api.Work.Stop:input_type -> client.api.WorkStopRequest
-	659,  // 1321: client.api.Work.Skip:input_type -> client.api.WorkSkipRequest
-	0,    // 1322: client.api.Work.Finish:input_type -> client.api.Empty
-	3,    // 1323: client.api.Auth.Create:output_type -> client.api.AuthCreateResponse
-	8,    // 1324: client.api.Auth.Login:output_type -> client.api.AuthLoginResponse
-	6,    // 1325: client.api.Auth.LinkBandaiNamcoId:output_type -> client.api.AuthLinkBandaiNamcoIdResponse
-	16,   // 1326: client.api.Auth.Unlink:output_type -> client.api.AuthUnlinkResponse
-	13,   // 1327: client.api.Auth.PrepareMigrationBandaiNamcoId:output_type -> client.api.AuthPrepareMigrationBandaiNamcoIdResponse
-	11,   // 1328: client.api.Auth.Migrate:output_type -> client.api.AuthMigrateResponse
-	9,    // 1329: client.api.Auth.MigrateDmmGamesId:output_type -> client.api.AuthMigrateDmmGamesIdResponse
-	2,    // 1330: client.api.Auth.AgreeTerms:output_type -> client.api.AuthAgreeTermsResponse
-	4,    // 1331: client.api.Auth.GetConsent:output_type -> client.api.AuthGetConsentResponse
-	15,   // 1332: client.api.Auth.SendConsent:output_type -> client.api.AuthSendConsentResponse
-	18,   // 1333: client.api.Character.CheckRoster:output_type -> client.api.CharacterCheckRosterResponse
-	23,   // 1334: client.api.CoinGasha.Get:output_type -> client.api.CoinGashaGetResponse
-	24,   // 1335: client.api.CoinGasha.List:output_type -> client.api.CoinGashaListResponse
-	20,   // 1336: client.api.CoinGasha.Draw:output_type -> client.api.CoinGashaDrawResponse
-	26,   // 1337: client.api.CoinGasha.ResetBox:output_type -> client.api.CoinGashaResetBoxResponse
-	33,   // 1338: client.api.Competition.Initialize:output_type -> client.api.CompetitionInitializeResponse
-	32,   // 1339: client.api.Competition.Get:output_type -> client.api.CompetitionGetResponse
-	37,   // 1340: client.api.Competition.ListReward:output_type -> client.api.CompetitionListRewardResponse
-	52,   // 1341: client.api.Competition.Start:output_type -> client.api.CompetitionStartResponse
-	50,   // 1342: client.api.Competition.SelectAuto:output_type -> client.api.CompetitionSelectAutoResponse
-	30,   // 1343: client.api.Competition.End:output_type -> client.api.CompetitionEndResponse
-	47,   // 1344: client.api.Competition.Retire:output_type -> client.api.CompetitionRetireResponse
-	28,   // 1345: client.api.Competition.Continue:output_type -> client.api.CompetitionContinueResponse
-	46,   // 1346: client.api.Competition.Result:output_type -> client.api.CompetitionResultResponse
-	40,   // 1347: client.api.Competition.PlayTest:output_type -> client.api.CompetitionPlayTestResponse
-	44,   // 1348: client.api.Competition.ResultPlayTest:output_type -> client.api.CompetitionResultPlayTestResponse
-	54,   // 1349: client.api.Competition.UpdateDeck:output_type -> client.api.CompetitionUpdateDeckResponse
-	56,   // 1350: client.api.Competition.UpdateSeasonDeck:output_type -> client.api.CompetitionUpdateSeasonDeckResponse
-	35,   // 1351: client.api.Competition.ListHighScoreRanking:output_type -> client.api.CompetitionListHighScoreRankingResponse
-	38,   // 1352: client.api.Competition.ListWinCountRanking:output_type -> client.api.CompetitionListWinCountRankingResponse
-	36,   // 1353: client.api.Competition.ListHistory:output_type -> client.api.CompetitionListHistoryResponse
-	34,   // 1354: client.api.Competition.ListDeckProduceCardRanking:output_type -> client.api.CompetitionListDeckProduceCardRankingResponse
-	64,   // 1355: client.api.Costume.Set:output_type -> client.api.CostumeSetResponse
-	60,   // 1356: client.api.Costume.Check:output_type -> client.api.CostumeCheckResponse
-	62,   // 1357: client.api.Costume.SetRandom:output_type -> client.api.CostumeSetRandomResponse
-	70,   // 1358: client.api.Exchange.Get:output_type -> client.api.ExchangeGetResponse
-	74,   // 1359: client.api.Exchange.List:output_type -> client.api.ExchangeListResponse
-	68,   // 1360: client.api.Exchange.Execute:output_type -> client.api.ExchangeExecuteResponse
-	76,   // 1361: client.api.Exchange.Reset:output_type -> client.api.ExchangeResetResponse
-	82,   // 1362: client.api.Friend.List:output_type -> client.api.FriendListResponse
-	83,   // 1363: client.api.Friend.ListSuggestion:output_type -> client.api.FriendListSuggestionResponse
-	80,   // 1364: client.api.Friend.Follow:output_type -> client.api.FriendFollowResponse
-	85,   // 1365: client.api.Friend.UnFollow:output_type -> client.api.FriendUnFollowResponse
-	78,   // 1366: client.api.Friend.DeleteFollower:output_type -> client.api.FriendDeleteFollowerResponse
-	115,  // 1367: client.api.Gasha.List:output_type -> client.api.GashaListResponse
-	92,   // 1368: client.api.Gasha.Draw:output_type -> client.api.GashaDrawResponse
-	110,  // 1369: client.api.Gasha.GetProbability:output_type -> client.api.GashaGetProbabilityResponse
-	125,  // 1370: client.api.Gasha.SelectPickup:output_type -> client.api.GashaSelectPickupResponse
-	95,   // 1371: client.api.Gasha.DrawSelectPickup:output_type -> client.api.GashaDrawSelectPickupResponse
-	112,  // 1372: client.api.Gasha.GetSelectPickupProbability:output_type -> client.api.GashaGetSelectPickupProbabilityResponse
-	97,   // 1373: client.api.Gasha.DrawStepUp:output_type -> client.api.GashaDrawStepUpResponse
-	114,  // 1374: client.api.Gasha.GetStepUpProbability:output_type -> client.api.GashaGetStepUpProbabilityResponse
-	90,   // 1375: client.api.Gasha.DrawContinuous:output_type -> client.api.GashaDrawContinuousResponse
-	87,   // 1376: client.api.Gasha.ContinueDrawContinuous:output_type -> client.api.GashaContinueDrawContinuousResponse
-	117,  // 1377: client.api.Gasha.PickContinuousDrawRewardCount:output_type -> client.api.GashaPickContinuousDrawRewardCountResponse
-	123,  // 1378: client.api.Gasha.ResumeContinuous:output_type -> client.api.GashaResumeContinuousResponse
-	102,  // 1379: client.api.Gasha.FinishContinuous:output_type -> client.api.GashaFinishContinuousResponse
-	121,  // 1380: client.api.Gasha.ReportShareSnsContinuousMission:output_type -> client.api.GashaReportShareSnsContinuousMissionResponse
-	104,  // 1381: client.api.Gasha.GetContinuousProbability:output_type -> client.api.GashaGetContinuousProbabilityResponse
-	106,  // 1382: client.api.Gasha.GetPointExchange:output_type -> client.api.GashaGetPointExchangeResponse
-	99,   // 1383: client.api.Gasha.ExchangePoint:output_type -> client.api.GashaExchangePointResponse
-	100,  // 1384: client.api.Gasha.ExpirePoint:output_type -> client.api.GashaExpirePointResponse
-	108,  // 1385: client.api.Gasha.GetPrecaution:output_type -> client.api.GashaGetPrecautionResponse
-	130,  // 1386: client.api.Gift.List:output_type -> client.api.GiftListResponse
-	126,  // 1387: client.api.Gift.Count:output_type -> client.api.GiftCountResponse
-	128,  // 1388: client.api.Gift.ListHistory:output_type -> client.api.GiftListHistoryResponse
-	132,  // 1389: client.api.Gift.Open:output_type -> client.api.GiftOpenResponse
-	169,  // 1390: client.api.Guild.Top:output_type -> client.api.GuildTopResponse
-	168,  // 1391: client.api.Guild.Search:output_type -> client.api.GuildSearchResponse
-	154,  // 1392: client.api.Guild.Get:output_type -> client.api.GuildGetResponse
-	152,  // 1393: client.api.Guild.Establish:output_type -> client.api.GuildEstablishResponse
-	148,  // 1394: client.api.Guild.EditDetail:output_type -> client.api.GuildEditDetailResponse
-	150,  // 1395: client.api.Guild.EditLeaderMessage:output_type -> client.api.GuildEditLeaderMessageResponse
-	134,  // 1396: client.api.Guild.ApplyJoinRequest:output_type -> client.api.GuildApplyJoinRequestResponse
-	138,  // 1397: client.api.Guild.CancelJoinRequest:output_type -> client.api.GuildCancelJoinRequestResponse
-	158,  // 1398: client.api.Guild.ListJoinRequest:output_type -> client.api.GuildListJoinRequestResponse
-	136,  // 1399: client.api.Guild.ApproveJoinRequest:output_type -> client.api.GuildApproveJoinRequestResponse
-	164,  // 1400: client.api.Guild.RejectJoinRequest:output_type -> client.api.GuildRejectJoinRequestResponse
-	156,  // 1401: client.api.Guild.Leave:output_type -> client.api.GuildLeaveResponse
-	142,  // 1402: client.api.Guild.Dismiss:output_type -> client.api.GuildDismissResponse
-	140,  // 1403: client.api.Guild.ChangeLeader:output_type -> client.api.GuildChangeLeaderResponse
-	159,  // 1404: client.api.Guild.ListMember:output_type -> client.api.GuildListMemberResponse
-	143,  // 1405: client.api.Guild.Dissolve:output_type -> client.api.GuildDissolveResponse
-	157,  // 1406: client.api.Guild.ListDonationRequest:output_type -> client.api.GuildListDonationRequestResponse
-	166,  // 1407: client.api.Guild.RequestDonation:output_type -> client.api.GuildRequestDonationResponse
-	145,  // 1408: client.api.Guild.Donate:output_type -> client.api.GuildDonateResponse
-	162,  // 1409: client.api.Guild.ReceiveDonation:output_type -> client.api.GuildReceiveDonationResponse
-	171,  // 1410: client.api.Guild.UpdateLeaderMessageReaction:output_type -> client.api.GuildUpdateLeaderMessageReactionResponse
-	185,  // 1411: client.api.GvgRaid.Top:output_type -> client.api.GvgRaidTopResponse
-	175,  // 1412: client.api.GvgRaid.GetProgress:output_type -> client.api.GvgRaidGetProgressResponse
-	184,  // 1413: client.api.GvgRaid.Start:output_type -> client.api.GvgRaidStartResponse
-	174,  // 1414: client.api.GvgRaid.End:output_type -> client.api.GvgRaidEndResponse
-	179,  // 1415: client.api.GvgRaid.PlayTest:output_type -> client.api.GvgRaidPlayTestResponse
-	177,  // 1416: client.api.GvgRaid.GuildRanking:output_type -> client.api.GvgRaidGuildRankingResponse
-	189,  // 1417: client.api.GvgRaid.UserRanking:output_type -> client.api.GvgRaidUserRankingResponse
-	187,  // 1418: client.api.GvgRaid.UpdateDeck:output_type -> client.api.GvgRaidUpdateDeckResponse
-	191,  // 1419: client.api.Health.Check:output_type -> client.api.HealthCheckResponse
-	195,  // 1420: client.api.Home.Login:output_type -> client.api.HomeLoginResponse
-	193,  // 1421: client.api.Home.Enter:output_type -> client.api.HomeEnterResponse
-	194,  // 1422: client.api.Home.ListEvent:output_type -> client.api.HomeListEventResponse
-	192,  // 1423: client.api.Home.ConfirmBanWarning:output_type -> client.api.HomeConfirmBanWarningResponse
-	197,  // 1424: client.api.Home.SetCharacters:output_type -> client.api.HomeSetCharactersResponse
-	205,  // 1425: client.api.IdolCard.UpgradeLevelLimitRank:output_type -> client.api.IdolCardUpgradeLevelLimitRankResponse
-	207,  // 1426: client.api.IdolCard.UpgradePotentialRank:output_type -> client.api.IdolCardUpgradePotentialRankResponse
-	203,  // 1427: client.api.IdolCard.Release:output_type -> client.api.IdolCardReleaseResponse
-	199,  // 1428: client.api.IdolCard.ChangeSkin:output_type -> client.api.IdolCardChangeSkinResponse
-	209,  // 1429: client.api.Invitation.EnterInvitationCode:output_type -> client.api.InvitationEnterInvitationCodeResponse
-	210,  // 1430: client.api.Invitation.ListInviteUser:output_type -> client.api.InvitationListInviteUserResponse
-	212,  // 1431: client.api.Invitation.ReceiveInvitationPoint:output_type -> client.api.InvitationReceiveInvitationPointResponse
-	217,  // 1432: client.api.Item.Sell:output_type -> client.api.ItemSellResponse
-	215,  // 1433: client.api.Item.ExchangeIdolCardPiece:output_type -> client.api.ItemExchangeIdolCardPieceResponse
-	219,  // 1434: client.api.Item.UseActionPointRecovery:output_type -> client.api.ItemUseActionPointRecoveryResponse
-	220,  // 1435: client.api.LoginBonus.Check:output_type -> client.api.LoginBonusCheckResponse
-	221,  // 1436: client.api.LoginBonus.Confirm:output_type -> client.api.LoginBonusConfirmResponse
-	222,  // 1437: client.api.Master.Get:output_type -> client.api.MasterGetResponse
-	224,  // 1438: client.api.Media.Play:output_type -> client.api.MediaPlayResponse
-	232,  // 1439: client.api.Meishi.Get:output_type -> client.api.MeishiGetResponse
-	230,  // 1440: client.api.Meishi.GetDetail:output_type -> client.api.MeishiGetDetailResponse
-	234,  // 1441: client.api.Meishi.List:output_type -> client.api.MeishiListResponse
-	233,  // 1442: client.api.Meishi.ListFollow:output_type -> client.api.MeishiListFollowResponse
-	238,  // 1443: client.api.Meishi.Set:output_type -> client.api.MeishiSetResponse
-	242,  // 1444: client.api.Meishi.Update:output_type -> client.api.MeishiUpdateResponse
-	226,  // 1445: client.api.Meishi.Delete:output_type -> client.api.MeishiDeleteResponse
-	228,  // 1446: client.api.Meishi.Follow:output_type -> client.api.MeishiFollowResponse
-	240,  // 1447: client.api.Meishi.Unfollow:output_type -> client.api.MeishiUnfollowResponse
-	236,  // 1448: client.api.Meishi.ReportXPostMission:output_type -> client.api.MeishiReportXPostMissionResponse
-	248,  // 1449: client.api.Memory.Inherit:output_type -> client.api.MemoryInheritResponse
-	246,  // 1450: client.api.Memory.FixInherit:output_type -> client.api.MemoryFixInheritResponse
-	244,  // 1451: client.api.Memory.Exchange:output_type -> client.api.MemoryExchangeResponse
-	252,  // 1452: client.api.Memory.UpdateProtection:output_type -> client.api.MemoryUpdateProtectionResponse
-	254,  // 1453: client.api.Memory.UpdateResearchFavorite:output_type -> client.api.MemoryUpdateResearchFavoriteResponse
-	256,  // 1454: client.api.Memory.UpdateTagSetting:output_type -> client.api.MemoryUpdateTagSettingResponse
-	250,  // 1455: client.api.Memory.Reshooting:output_type -> client.api.MemoryReshootingResponse
-	259,  // 1456: client.api.Mission.ListEvent:output_type -> client.api.MissionListEventResponse
-	267,  // 1457: client.api.Mission.Receive:output_type -> client.api.MissionReceiveResponse
-	263,  // 1458: client.api.Mission.ReceiveGroup:output_type -> client.api.MissionReceiveGroupResponse
-	261,  // 1459: client.api.Mission.ReceiveGroupAll:output_type -> client.api.MissionReceiveGroupAllResponse
-	265,  // 1460: client.api.Mission.ReceivePass:output_type -> client.api.MissionReceivePassResponse
-	258,  // 1461: client.api.Mission.ExchangePassPoint:output_type -> client.api.MissionExchangePassPointResponse
-	269,  // 1462: client.api.Mission.UrlTransition:output_type -> client.api.MissionUrlTransitionResponse
-	270,  // 1463: client.api.Money.Receive:output_type -> client.api.MoneyReceiveResponse
-	272,  // 1464: client.api.Movie.Create:output_type -> client.api.MovieCreateResponse
-	274,  // 1465: client.api.Movie.Delete:output_type -> client.api.MovieDeleteResponse
-	276,  // 1466: client.api.Movie.Retake:output_type -> client.api.MovieRetakeResponse
-	278,  // 1467: client.api.Music.SendActionLog:output_type -> client.api.MusicSendActionLogResponse
-	280,  // 1468: client.api.Music.SendBuyActionLog:output_type -> client.api.MusicSendBuyActionLogResponse
-	286,  // 1469: client.api.Notice.ListAll:output_type -> client.api.NoticeListAllResponse
-	282,  // 1470: client.api.Notice.FetchList:output_type -> client.api.NoticeFetchListResponse
-	284,  // 1471: client.api.Notice.Get:output_type -> client.api.NoticeGetResponse
-	288,  // 1472: client.api.Notice.UpdateCategoryTime:output_type -> client.api.NoticeUpdateCategoryTimeResponse
-	290,  // 1473: client.api.Notice.UpdateDetailTime:output_type -> client.api.NoticeUpdateDetailTimeResponse
-	296,  // 1474: client.api.Photo.Create:output_type -> client.api.PhotoCreateResponse
-	294,  // 1475: client.api.Photo.CreateIdol:output_type -> client.api.PhotoCreateIdolResponse
-	292,  // 1476: client.api.Photo.CreateByMemory:output_type -> client.api.PhotoCreateByMemoryResponse
-	300,  // 1477: client.api.Photo.UpdateName:output_type -> client.api.PhotoUpdateNameResponse
-	302,  // 1478: client.api.Photo.UpdateProtection:output_type -> client.api.PhotoUpdateProtectionResponse
-	298,  // 1479: client.api.Photo.Delete:output_type -> client.api.PhotoDeleteResponse
-	304,  // 1480: client.api.Preference.Update:output_type -> client.api.PreferenceUpdateResponse
-	424,  // 1481: client.api.Produce.Top:output_type -> client.api.ProduceTopResponse
-	310,  // 1482: client.api.Produce.ChangeForceLiveCommon:output_type -> client.api.ProduceChangeForceLiveCommonResponse
-	432,  // 1483: client.api.Produce.UpdateSupportCardDeck:output_type -> client.api.ProduceUpdateSupportCardDeckResponse
-	429,  // 1484: client.api.Produce.UpdateMemoryDeck:output_type -> client.api.ProduceUpdateMemoryDeckResponse
-	338,  // 1485: client.api.Produce.ListRentalSupportCard:output_type -> client.api.ProduceListRentalSupportCardResponse
-	337,  // 1486: client.api.Produce.ListRentalMemory:output_type -> client.api.ProduceListRentalMemoryResponse
-	314,  // 1487: client.api.Produce.CheckProgress:output_type -> client.api.ProduceCheckProgressResponse
-	377,  // 1488: client.api.Produce.Start:output_type -> client.api.ProduceStartResponse
-	358,  // 1489: client.api.Produce.Restart:output_type -> client.api.ProduceRestartResponse
-	363,  // 1490: client.api.Produce.Save:output_type -> client.api.ProduceSaveResponse
-	340,  // 1491: client.api.Produce.Next:output_type -> client.api.ProduceNextResponse
-	423,  // 1492: client.api.Produce.StepSkip:output_type -> client.api.ProduceStepSkipResponse
-	397,  // 1493: client.api.Produce.StepEvent:output_type -> client.api.ProduceStepEventResponse
-	389,  // 1494: client.api.Produce.StepBusinessStart:output_type -> client.api.ProduceStepBusinessStartResponse
-	387,  // 1495: client.api.Produce.StepBusinessSelect:output_type -> client.api.ProduceStepBusinessSelectResponse
-	395,  // 1496: client.api.Produce.StepCustomizeStart:output_type -> client.api.ProduceStepCustomizeStartResponse
-	393,  // 1497: client.api.Produce.StepCustomizeSelect:output_type -> client.api.ProduceStepCustomizeSelectResponse
-	391,  // 1498: client.api.Produce.StepCustomizeEnd:output_type -> client.api.ProduceStepCustomizeEndResponse
-	409,  // 1499: client.api.Produce.StepRefresh:output_type -> client.api.ProduceStepRefreshResponse
-	421,  // 1500: client.api.Produce.StepShopStart:output_type -> client.api.ProduceStepShopStartResponse
-	419,  // 1501: client.api.Produce.StepShopReroll:output_type -> client.api.ProduceStepShopRerollResponse
-	415,  // 1502: client.api.Produce.StepShopBuy:output_type -> client.api.ProduceStepShopBuyResponse
-	417,  // 1503: client.api.Produce.StepShopEnd:output_type -> client.api.ProduceStepShopEndResponse
-	407,  // 1504: client.api.Produce.StepPresentStart:output_type -> client.api.ProduceStepPresentStartResponse
-	405,  // 1505: client.api.Produce.StepPresentReceive:output_type -> client.api.ProduceStepPresentReceiveResponse
-	403,  // 1506: client.api.Produce.StepPresentEnd:output_type -> client.api.ProduceStepPresentEndResponse
-	401,  // 1507: client.api.Produce.StepLessonStart:output_type -> client.api.ProduceStepLessonStartResponse
-	399,  // 1508: client.api.Produce.StepLessonEnd:output_type -> client.api.ProduceStepLessonEndResponse
-	413,  // 1509: client.api.Produce.StepSelfLessonStart:output_type -> client.api.ProduceStepSelfLessonStartResponse
-	411,  // 1510: client.api.Produce.StepSelfLessonEnd:output_type -> client.api.ProduceStepSelfLessonEndResponse
-	383,  // 1511: client.api.Produce.StepAuditionRefresh:output_type -> client.api.ProduceStepAuditionRefreshResponse
-	385,  // 1512: client.api.Produce.StepAuditionStart:output_type -> client.api.ProduceStepAuditionStartResponse
-	379,  // 1513: client.api.Produce.StepAuditionEndExamBattle:output_type -> client.api.ProduceStepAuditionEndExamBattleResponse
-	381,  // 1514: client.api.Produce.StepAuditionEnd:output_type -> client.api.ProduceStepAuditionEndResponse
-	318,  // 1515: client.api.Produce.DiscardDrink:output_type -> client.api.ProduceDiscardDrinkResponse
-	357,  // 1516: client.api.Produce.RerollSelectProduceCard:output_type -> client.api.ProduceRerollSelectProduceCardResponse
-	324,  // 1517: client.api.Produce.ExcludeProduceCard:output_type -> client.api.ProduceExcludeProduceCardResponse
-	306,  // 1518: client.api.Produce.ActivateEffect:output_type -> client.api.ProduceActivateEffectResponse
-	349,  // 1519: client.api.Produce.ReadDearnessStory:output_type -> client.api.ProduceReadDearnessStoryResponse
-	347,  // 1520: client.api.Produce.ReadAdv:output_type -> client.api.ProduceReadAdvResponse
-	375,  // 1521: client.api.Produce.StartBeforeLiveEvaluation:output_type -> client.api.ProduceStartBeforeLiveEvaluationResponse
-	320,  // 1522: client.api.Produce.EndBeforeLiveEvaluation:output_type -> client.api.ProduceEndBeforeLiveEvaluationResponse
-	355,  // 1523: client.api.Produce.RerollMemory:output_type -> client.api.ProduceRerollMemoryResponse
-	322,  // 1524: client.api.Produce.End:output_type -> client.api.ProduceEndResponse
-	360,  // 1525: client.api.Produce.Result:output_type -> client.api.ProduceResultResponse
-	353,  // 1526: client.api.Produce.ReportGuildMission:output_type -> client.api.ProduceReportGuildMissionResponse
-	351,  // 1527: client.api.Produce.ReportDearnessBoostEvent:output_type -> client.api.ProduceReportDearnessBoostEventResponse
-	316,  // 1528: client.api.Produce.Continue:output_type -> client.api.ProduceContinueResponse
-	361,  // 1529: client.api.Produce.Retire:output_type -> client.api.ProduceRetireResponse
-	335,  // 1530: client.api.Produce.History:output_type -> client.api.ProduceHistoryResponse
-	345,  // 1531: client.api.Produce.RankingTop:output_type -> client.api.ProduceRankingTopResponse
-	343,  // 1532: client.api.Produce.Ranking:output_type -> client.api.ProduceRankingResponse
-	308,  // 1533: client.api.Produce.ChangeCostume:output_type -> client.api.ProduceChangeCostumeResponse
-	434,  // 1534: client.api.Produce.ViewPictureBookLive:output_type -> client.api.ProduceViewPictureBookLiveResponse
-	426,  // 1535: client.api.Produce.UnlockPictureBookLive:output_type -> client.api.ProduceUnlockPictureBookLiveResponse
-	312,  // 1536: client.api.Produce.ChangeProduceCardConversion:output_type -> client.api.ProduceChangeProduceCardConversionResponse
-	327,  // 1537: client.api.ProduceHighScore.Get:output_type -> client.api.ProduceHighScoreGetResponse
-	331,  // 1538: client.api.ProduceHighScore.Ranking:output_type -> client.api.ProduceHighScoreRankingResponse
-	328,  // 1539: client.api.ProduceHighScore.ListRankReward:output_type -> client.api.ProduceHighScoreListRankRewardResponse
-	453,  // 1540: client.api.ProducerRanking.Top:output_type -> client.api.ProducerRankingTopResponse
-	450,  // 1541: client.api.ProducerRanking.Ranking:output_type -> client.api.ProducerRankingRankingResponse
-	440,  // 1542: client.api.ProducerRanking.Character:output_type -> client.api.ProducerRankingCharacterResponse
-	445,  // 1543: client.api.ProducerRanking.ListRankReward:output_type -> client.api.ProducerRankingListRankRewardResponse
-	452,  // 1544: client.api.ProducerRanking.TopHistory:output_type -> client.api.ProducerRankingTopHistoryResponse
-	448,  // 1545: client.api.ProducerRanking.RankingHistory:output_type -> client.api.ProducerRankingRankingHistoryResponse
-	437,  // 1546: client.api.ProducerRanking.CharacterHistory:output_type -> client.api.ProducerRankingCharacterHistoryResponse
-	443,  // 1547: client.api.ProducerRanking.GetTowerLayer:output_type -> client.api.ProducerRankingGetTowerLayerResponse
-	373,  // 1548: client.api.ProduceSeason.RankingTop:output_type -> client.api.ProduceSeasonRankingTopResponse
-	371,  // 1549: client.api.ProduceSeason.RankingTopHistory:output_type -> client.api.ProduceSeasonRankingTopHistoryResponse
-	369,  // 1550: client.api.ProduceSeason.Ranking:output_type -> client.api.ProduceSeasonRankingResponse
-	367,  // 1551: client.api.ProduceSeason.RankingHistory:output_type -> client.api.ProduceSeasonRankingHistoryResponse
-	457,  // 1552: client.api.Profile.Get:output_type -> client.api.ProfileGetResponse
-	467,  // 1553: client.api.Profile.UpdateName:output_type -> client.api.ProfileUpdateNameResponse
-	463,  // 1554: client.api.Profile.UpdateComment:output_type -> client.api.ProfileUpdateCommentResponse
-	461,  // 1555: client.api.Profile.UpdateBirthday:output_type -> client.api.ProfileUpdateBirthdayResponse
-	469,  // 1556: client.api.Profile.UpdateSupportCard:output_type -> client.api.ProfileUpdateSupportCardResponse
-	465,  // 1557: client.api.Profile.UpdateMemory:output_type -> client.api.ProfileUpdateMemoryResponse
-	459,  // 1558: client.api.Profile.UpdateBadge:output_type -> client.api.ProfileUpdateBadgeResponse
-	475,  // 1559: client.api.PvpRate.Initialize:output_type -> client.api.PvpRateInitializeResponse
-	474,  // 1560: client.api.PvpRate.Get:output_type -> client.api.PvpRateGetResponse
-	486,  // 1561: client.api.PvpRate.Start:output_type -> client.api.PvpRateStartResponse
-	478,  // 1562: client.api.PvpRate.PlayExamBattle:output_type -> client.api.PvpRatePlayExamBattleResponse
-	471,  // 1563: client.api.PvpRate.End:output_type -> client.api.PvpRateEndResponse
-	479,  // 1564: client.api.PvpRate.PlayTest:output_type -> client.api.PvpRatePlayTestResponse
-	477,  // 1565: client.api.PvpRate.ListRanking:output_type -> client.api.PvpRateListRankingResponse
-	476,  // 1566: client.api.PvpRate.ListHistory:output_type -> client.api.PvpRateListHistoryResponse
-	473,  // 1567: client.api.PvpRate.GetHistory:output_type -> client.api.PvpRateGetHistoryResponse
-	489,  // 1568: client.api.PvpRate.UpdateUserPvpRateUnit:output_type -> client.api.PvpRateUpdateUserPvpRateUnitResponse
-	490,  // 1569: client.api.Research.Get:output_type -> client.api.ResearchGetResponse
-	492,  // 1570: client.api.Research.Ranking:output_type -> client.api.ResearchRankingResponse
-	494,  // 1571: client.api.Research.RerollMemory:output_type -> client.api.ResearchRerollMemoryResponse
-	499,  // 1572: client.api.Seminar.ListExam:output_type -> client.api.SeminarListExamResponse
-	498,  // 1573: client.api.Seminar.GetExam:output_type -> client.api.SeminarGetExamResponse
-	496,  // 1574: client.api.Seminar.EndExam:output_type -> client.api.SeminarEndExamResponse
-	524,  // 1575: client.api.Shop.Top:output_type -> client.api.ShopTopResponse
-	509,  // 1576: client.api.Shop.ListItems:output_type -> client.api.ShopListItemsResponse
-	513,  // 1577: client.api.Shop.Purchase:output_type -> client.api.ShopPurchaseResponse
-	504,  // 1578: client.api.Shop.CheckPurchaseJewel:output_type -> client.api.ShopCheckPurchaseJewelResponse
-	502,  // 1579: client.api.Shop.CheckBirthday:output_type -> client.api.ShopCheckBirthdayResponse
-	519,  // 1580: client.api.Shop.RegisterBirthday:output_type -> client.api.ShopRegisterBirthdayResponse
-	523,  // 1581: client.api.Shop.RegisterPurchaseTransaction:output_type -> client.api.ShopRegisterPurchaseTransactionResponse
-	501,  // 1582: client.api.Shop.CancelPurchaseTransaction:output_type -> client.api.ShopCancelPurchaseTransactionResponse
-	511,  // 1583: client.api.Shop.PurchaseJewel:output_type -> client.api.ShopPurchaseJewelResponse
-	517,  // 1584: client.api.Shop.RecoverPurchaseJewel:output_type -> client.api.ShopRecoverPurchaseJewelResponse
-	521,  // 1585: client.api.Shop.RegisterDelayPurchaseTransaction:output_type -> client.api.ShopRegisterDelayPurchaseTransactionResponse
-	506,  // 1586: client.api.Shop.GetPurchasePlatformTransaction:output_type -> client.api.ShopGetPurchasePlatformTransactionResponse
-	515,  // 1587: client.api.Shop.ReadWebStoreUserPurchaseTransaction:output_type -> client.api.ShopReadWebStoreUserPurchaseTransactionResponse
-	528,  // 1588: client.api.Startup.ListNotifications:output_type -> client.api.StartupListNotificationsResponse
-	526,  // 1589: client.api.Startup.Confirm:output_type -> client.api.StartupConfirmResponse
-	535,  // 1590: client.api.StoryEvent.Top:output_type -> client.api.StoryEventTopResponse
-	531,  // 1591: client.api.StoryEvent.ListGuildMission:output_type -> client.api.StoryEventListGuildMissionResponse
-	533,  // 1592: client.api.StoryEvent.ReceiveGuildMission:output_type -> client.api.StoryEventReceiveGuildMissionResponse
-	541,  // 1593: client.api.Story.Read:output_type -> client.api.StoryReadResponse
-	539,  // 1594: client.api.Story.ReadProduceStory:output_type -> client.api.StoryReadProduceStoryResponse
-	537,  // 1595: client.api.Story.ReadDearnessStory:output_type -> client.api.StoryReadDearnessStoryResponse
-	547,  // 1596: client.api.Story.Unlock:output_type -> client.api.StoryUnlockResponse
-	545,  // 1597: client.api.Story.UnlockProduceStory:output_type -> client.api.StoryUnlockProduceStoryResponse
-	543,  // 1598: client.api.Story.UnlockDearnessStory:output_type -> client.api.StoryUnlockDearnessStoryResponse
-	549,  // 1599: client.api.SupportCard.Enhance:output_type -> client.api.SupportCardEnhanceResponse
-	556,  // 1600: client.api.SupportCard.UpgradeLevelLimitRank:output_type -> client.api.SupportCardUpgradeLevelLimitRankResponse
-	551,  // 1601: client.api.SupportCard.Exchange:output_type -> client.api.SupportCardExchangeResponse
-	552,  // 1602: client.api.SupportCard.ListDeckRanking:output_type -> client.api.SupportCardListDeckRankingResponse
-	558,  // 1603: client.api.System.Check:output_type -> client.api.SystemCheckResponse
-	563,  // 1604: client.api.TicketExchange.ListItems:output_type -> client.api.TicketExchangeListItemsResponse
-	560,  // 1605: client.api.TicketExchange.Execute:output_type -> client.api.TicketExchangeExecuteResponse
-	583,  // 1606: client.api.Tour.Top:output_type -> client.api.TourTopResponse
-	570,  // 1607: client.api.Tour.GetProgress:output_type -> client.api.TourGetProgressResponse
-	581,  // 1608: client.api.Tour.Start:output_type -> client.api.TourStartResponse
-	568,  // 1609: client.api.Tour.End:output_type -> client.api.TourEndResponse
-	574,  // 1610: client.api.Tour.Result:output_type -> client.api.TourResultResponse
-	565,  // 1611: client.api.Tour.Continue:output_type -> client.api.TourContinueResponse
-	575,  // 1612: client.api.Tour.Retire:output_type -> client.api.TourRetireResponse
-	572,  // 1613: client.api.Tour.PlayTest:output_type -> client.api.TourPlayTestResponse
-	586,  // 1614: client.api.Tour.UpdateDeck:output_type -> client.api.TourUpdateDeckResponse
-	579,  // 1615: client.api.Tour.StageRanking:output_type -> client.api.TourStageRankingResponse
-	621,  // 1616: client.api.Tower.Top:output_type -> client.api.TowerTopResponse
-	610,  // 1617: client.api.Tower.ListLayers:output_type -> client.api.TowerListLayersResponse
-	596,  // 1618: client.api.Tower.GetLayer:output_type -> client.api.TowerGetLayerResponse
-	620,  // 1619: client.api.Tower.Start:output_type -> client.api.TowerStartResponse
-	590,  // 1620: client.api.Tower.End:output_type -> client.api.TowerEndResponse
-	588,  // 1621: client.api.Tower.Check:output_type -> client.api.TowerCheckResponse
-	623,  // 1622: client.api.Tower.UpdateMemoryDeck:output_type -> client.api.TowerUpdateMemoryDeckResponse
-	616,  // 1623: client.api.Tower.ReceiveLayerCountReward:output_type -> client.api.TowerReceiveLayerCountRewardResponse
-	618,  // 1624: client.api.Tower.ReceiveTotalClearRankReward:output_type -> client.api.TowerReceiveTotalClearRankRewardResponse
-	608,  // 1625: client.api.Tower.ListLayerPlayerHistories:output_type -> client.api.TowerListLayerPlayerHistoriesResponse
-	606,  // 1626: client.api.Tower.GetRanking:output_type -> client.api.TowerGetRankingResponse
-	602,  // 1627: client.api.Tower.GetPastSeasonRanking:output_type -> client.api.TowerGetPastSeasonRankingResponse
-	592,  // 1628: client.api.Tower.GetLayerIdolCardRanking:output_type -> client.api.TowerGetLayerIdolCardRankingResponse
-	598,  // 1629: client.api.Tower.GetPastSeasonLayerIdolCardRanking:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
-	594,  // 1630: client.api.Tower.GetLayerIdolCardRankingTop:output_type -> client.api.TowerGetLayerIdolCardRankingTopResponse
-	600,  // 1631: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
-	604,  // 1632: client.api.Tower.GetRankingDeck:output_type -> client.api.TowerGetRankingDeckResponse
-	648,  // 1633: client.api.Tutorial.UnlockFeature:output_type -> client.api.TutorialUnlockFeatureResponse
-	644,  // 1634: client.api.Tutorial.SetName:output_type -> client.api.TutorialSetNameResponse
-	638,  // 1635: client.api.Tutorial.Progress:output_type -> client.api.TutorialProgressResponse
-	646,  // 1636: client.api.Tutorial.Skip:output_type -> client.api.TutorialSkipResponse
-	640,  // 1637: client.api.Tutorial.ReadDearnessStory:output_type -> client.api.TutorialReadDearnessStoryResponse
-	642,  // 1638: client.api.Tutorial.ReceiveIdolCard:output_type -> client.api.TutorialReceiveIdolCardResponse
-	629,  // 1639: client.api.Tutorial.ProduceStart:output_type -> client.api.TutorialProduceStartResponse
-	625,  // 1640: client.api.Tutorial.ProduceNext:output_type -> client.api.TutorialProduceNextResponse
-	634,  // 1641: client.api.Tutorial.ProduceStepLessonEnd:output_type -> client.api.TutorialProduceStepLessonEndResponse
-	636,  // 1642: client.api.Tutorial.ProduceStepPresentReceive:output_type -> client.api.TutorialProduceStepPresentReceiveResponse
-	632,  // 1643: client.api.Tutorial.ProduceStepAuditionExamEnd:output_type -> client.api.TutorialProduceStepAuditionExamEndResponse
-	630,  // 1644: client.api.Tutorial.ProduceStepAuditionEnd:output_type -> client.api.TutorialProduceStepAuditionEndResponse
-	624,  // 1645: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:output_type -> client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
-	627,  // 1646: client.api.Tutorial.ProduceResult:output_type -> client.api.TutorialProduceResultResponse
-	650,  // 1647: client.api.User.Get:output_type -> client.api.UserGetResponse
-	649,  // 1648: client.api.User.GetBalance:output_type -> client.api.UserGetBalanceResponse
-	654,  // 1649: client.api.User.ReadForceTitleTransitionTime:output_type -> client.api.UserReadForceTitleTransitionTimeResponse
-	652,  // 1650: client.api.User.ListMessage:output_type -> client.api.UserListMessageResponse
-	656,  // 1651: client.api.User.ReadMessage:output_type -> client.api.UserReadMessageResponse
-	665,  // 1652: client.api.Work.Top:output_type -> client.api.WorkTopResponse
-	662,  // 1653: client.api.Work.Start:output_type -> client.api.WorkStartResponse
-	664,  // 1654: client.api.Work.Stop:output_type -> client.api.WorkStopResponse
-	660,  // 1655: client.api.Work.Skip:output_type -> client.api.WorkSkipResponse
-	657,  // 1656: client.api.Work.Finish:output_type -> client.api.WorkFinishResponse
-	1323, // [1323:1657] is the sub-list for method output_type
-	989,  // [989:1323] is the sub-list for method input_type
-	989,  // [989:989] is the sub-list for extension type_name
-	989,  // [989:989] is the sub-list for extension extendee
-	0,    // [0:989] is the sub-list for field type_name
+	832,  // 456: client.api.ProduceRankingResponse.selfGrade:type_name -> penum.ResultGrade
+	768,  // 457: client.api.ProduceRankingResponse.commonResponse:type_name -> papicommon.Response
+	724,  // 458: client.api.ProduceRankingTopResponse.rankings:type_name -> client.api.ProduceRankingTopResponse.Ranking
+	768,  // 459: client.api.ProduceRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 460: client.api.ProduceReadAdvResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 461: client.api.ProduceReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
+	827,  // 462: client.api.ProduceReadDearnessStoryResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 463: client.api.ProduceReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	822,  // 464: client.api.ProduceReportDearnessBoostEventResponse.missions:type_name -> pmaster.Mission
+	769,  // 465: client.api.ProduceReportDearnessBoostEventResponse.groupRewardResults:type_name -> pcommon.RewardResult
+	769,  // 466: client.api.ProduceReportDearnessBoostEventResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 467: client.api.ProduceReportDearnessBoostEventResponse.commonResponse:type_name -> papicommon.Response
+	833,  // 468: client.api.ProduceReportGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
+	834,  // 469: client.api.ProduceReportGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
+	835,  // 470: client.api.ProduceReportGuildMissionResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
+	768,  // 471: client.api.ProduceReportGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 472: client.api.ProduceRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 473: client.api.ProduceRerollSelectProduceCardResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 474: client.api.ProduceRestartResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 475: client.api.ProduceResultResponse.rewardResults:type_name -> pcommon.RewardResult
+	835,  // 476: client.api.ProduceResultResponse.storyEventProduceResult:type_name -> pcommon.StoryEventProduceResult
+	726,  // 477: client.api.ProduceResultResponse.highScoreUpdateResult:type_name -> client.api.ProduceResultResponse.HighScoreUpdateResult
+	727,  // 478: client.api.ProduceResultResponse.researchResult:type_name -> client.api.ProduceResultResponse.ResearchResult
+	836,  // 479: client.api.ProduceResultResponse.producerRankingResult:type_name -> pcommon.ProducerRankingResult
+	728,  // 480: client.api.ProduceResultResponse.tourResult:type_name -> client.api.ProduceResultResponse.TourResult
+	768,  // 481: client.api.ProduceResultResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 482: client.api.ProduceRetireResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 483: client.api.ProduceSaveResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 484: client.api.ProduceSeasonRank.profile:type_name -> pcommon.SimpleProfile
+	832,  // 485: client.api.ProduceSeasonRank.grade:type_name -> penum.ResultGrade
+	364,  // 486: client.api.ProduceSeasonRanking.selfRank:type_name -> client.api.ProduceSeasonRank
+	364,  // 487: client.api.ProduceSeasonRanking.topRanks:type_name -> client.api.ProduceSeasonRank
+	364,  // 488: client.api.ProduceSeasonRankingHistoryResponse.selfRank:type_name -> client.api.ProduceSeasonRank
+	364,  // 489: client.api.ProduceSeasonRankingHistoryResponse.ranks:type_name -> client.api.ProduceSeasonRank
+	768,  // 490: client.api.ProduceSeasonRankingHistoryResponse.commonResponse:type_name -> papicommon.Response
+	364,  // 491: client.api.ProduceSeasonRankingResponse.selfRank:type_name -> client.api.ProduceSeasonRank
+	364,  // 492: client.api.ProduceSeasonRankingResponse.ranks:type_name -> client.api.ProduceSeasonRank
+	768,  // 493: client.api.ProduceSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
+	365,  // 494: client.api.ProduceSeasonRankingTopHistoryResponse.rankings:type_name -> client.api.ProduceSeasonRanking
+	768,  // 495: client.api.ProduceSeasonRankingTopHistoryResponse.commonResponse:type_name -> papicommon.Response
+	365,  // 496: client.api.ProduceSeasonRankingTopResponse.rankings:type_name -> client.api.ProduceSeasonRanking
+	768,  // 497: client.api.ProduceSeasonRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 498: client.api.ProduceStartBeforeLiveEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	730,  // 499: client.api.ProduceStartRequest.supportCards:type_name -> client.api.ProduceStartRequest.SupportCard
+	729,  // 500: client.api.ProduceStartRequest.memories:type_name -> client.api.ProduceStartRequest.Memory
+	827,  // 501: client.api.ProduceStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 502: client.api.ProduceStartResponse.commonResponse:type_name -> papicommon.Response
+	837,  // 503: client.api.ProduceStepAuditionEndExamBattleRequest.result:type_name -> pcommon.ExamBattleResult
+	838,  // 504: client.api.ProduceStepAuditionEndExamBattleRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	768,  // 505: client.api.ProduceStepAuditionEndExamBattleResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 506: client.api.ProduceStepAuditionEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	840,  // 507: client.api.ProduceStepAuditionEndResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
+	827,  // 508: client.api.ProduceStepAuditionEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 509: client.api.ProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 510: client.api.ProduceStepAuditionRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 511: client.api.ProduceStepAuditionRefreshResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 512: client.api.ProduceStepAuditionStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 513: client.api.ProduceStepAuditionStartResponse.commonResponse:type_name -> papicommon.Response
+	841,  // 514: client.api.ProduceStepBusinessSelectRequest.businessType:type_name -> penum.ProduceStepBusinessType
+	842,  // 515: client.api.ProduceStepBusinessSelectResponse.consumptionResults:type_name -> pcommon.ProduceConsumptionResult
+	827,  // 516: client.api.ProduceStepBusinessSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 517: client.api.ProduceStepBusinessSelectResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 518: client.api.ProduceStepBusinessStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 519: client.api.ProduceStepBusinessStartResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 520: client.api.ProduceStepCustomizeEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 521: client.api.ProduceStepCustomizeEndResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 522: client.api.ProduceStepCustomizeSelectResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 523: client.api.ProduceStepCustomizeSelectResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 524: client.api.ProduceStepCustomizeStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 525: client.api.ProduceStepCustomizeStartResponse.commonResponse:type_name -> papicommon.Response
+	840,  // 526: client.api.ProduceStepEventResponse.memoryRewardResults:type_name -> pcommon.ProduceMemoryRewardResult
+	827,  // 527: client.api.ProduceStepEventResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 528: client.api.ProduceStepEventResponse.commonResponse:type_name -> papicommon.Response
+	843,  // 529: client.api.ProduceStepLessonEndRequest.examEndResult:type_name -> pcommon.ProduceExamEndResult
+	838,  // 530: client.api.ProduceStepLessonEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	827,  // 531: client.api.ProduceStepLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 532: client.api.ProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 533: client.api.ProduceStepLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 534: client.api.ProduceStepLessonStartResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 535: client.api.ProduceStepPresentEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	827,  // 536: client.api.ProduceStepPresentEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 537: client.api.ProduceStepPresentEndResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 538: client.api.ProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	827,  // 539: client.api.ProduceStepPresentReceiveResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 540: client.api.ProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 541: client.api.ProduceStepPresentStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 542: client.api.ProduceStepPresentStartResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 543: client.api.ProduceStepRefreshResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 544: client.api.ProduceStepRefreshResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 545: client.api.ProduceStepSelfLessonEndResponse.rewardResults:type_name -> pcommon.ProduceRewardResult
+	827,  // 546: client.api.ProduceStepSelfLessonEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 547: client.api.ProduceStepSelfLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 548: client.api.ProduceStepSelfLessonStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 549: client.api.ProduceStepSelfLessonStartResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 550: client.api.ProduceStepShopBuyResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	827,  // 551: client.api.ProduceStepShopBuyResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 552: client.api.ProduceStepShopBuyResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 553: client.api.ProduceStepShopEndResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 554: client.api.ProduceStepShopEndResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 555: client.api.ProduceStepShopRerollResponse.commonResponse:type_name -> papicommon.Response
+	827,  // 556: client.api.ProduceStepShopStartResponse.effectResults:type_name -> pcommon.ProduceEffectResult
+	768,  // 557: client.api.ProduceStepShopStartResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 558: client.api.ProduceStepSkipResponse.commonResponse:type_name -> papicommon.Response
+	844,  // 559: client.api.ProduceTopResponse.campaigns:type_name -> pcommon.ProduceCampaign
+	845,  // 560: client.api.ProduceTopResponse.storyEventType:type_name -> penum.StoryEventType
+	846,  // 561: client.api.ProduceTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
+	731,  // 562: client.api.ProduceTopResponse.produceHighScore:type_name -> client.api.ProduceTopResponse.ProduceHighScore
+	732,  // 563: client.api.ProduceTopResponse.research:type_name -> client.api.ProduceTopResponse.Research
+	733,  // 564: client.api.ProduceTopResponse.tour:type_name -> client.api.ProduceTopResponse.Tour
+	768,  // 565: client.api.ProduceTopResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 566: client.api.ProduceUnlockPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
+	847,  // 567: client.api.ProduceUpdateMemoryDeck.produceType:type_name -> penum.ProduceType
+	780,  // 568: client.api.ProduceUpdateMemoryDeck.recommendType:type_name -> penum.DeckRecommendType
+	427,  // 569: client.api.ProduceUpdateMemoryDeckRequest.decks:type_name -> client.api.ProduceUpdateMemoryDeck
+	768,  // 570: client.api.ProduceUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
+	847,  // 571: client.api.ProduceUpdateSupportCardDeck.produceType:type_name -> penum.ProduceType
+	780,  // 572: client.api.ProduceUpdateSupportCardDeck.recommendType:type_name -> penum.DeckRecommendType
+	430,  // 573: client.api.ProduceUpdateSupportCardDeckRequest.decks:type_name -> client.api.ProduceUpdateSupportCardDeck
+	768,  // 574: client.api.ProduceUpdateSupportCardDeckResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 575: client.api.ProduceViewPictureBookLiveResponse.commonResponse:type_name -> papicommon.Response
+	438,  // 576: client.api.ProducerRankingCharacter.produce:type_name -> client.api.ProducerRankingCharacterProduce
+	441,  // 577: client.api.ProducerRankingCharacter.towers:type_name -> client.api.ProducerRankingCharacterTower
+	848,  // 578: client.api.ProducerRankingCharacterHistoryResponse.character:type_name -> pmaster.ProducerRankingCharacter
+	775,  // 579: client.api.ProducerRankingCharacterHistoryResponse.profile:type_name -> pcommon.SimpleProfile
+	768,  // 580: client.api.ProducerRankingCharacterHistoryResponse.commonResponse:type_name -> papicommon.Response
+	848,  // 581: client.api.ProducerRankingCharacterResponse.character:type_name -> pmaster.ProducerRankingCharacter
+	775,  // 582: client.api.ProducerRankingCharacterResponse.profile:type_name -> pcommon.SimpleProfile
+	768,  // 583: client.api.ProducerRankingCharacterResponse.commonResponse:type_name -> papicommon.Response
+	454,  // 584: client.api.ProducerRankingCharacterTower.layers:type_name -> client.api.ProducerRankingTowerLayer
+	768,  // 585: client.api.ProducerRankingGetTowerLayerResponse.commonResponse:type_name -> papicommon.Response
+	849,  // 586: client.api.ProducerRankingListRankRewardResponse.rankRewards:type_name -> papicommon.RankReward
+	768,  // 587: client.api.ProducerRankingListRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 588: client.api.ProducerRankingRank.profile:type_name -> pcommon.SimpleProfile
+	446,  // 589: client.api.ProducerRankingRankingHistoryResponse.selfRank:type_name -> client.api.ProducerRankingRank
+	446,  // 590: client.api.ProducerRankingRankingHistoryResponse.ranks:type_name -> client.api.ProducerRankingRank
+	768,  // 591: client.api.ProducerRankingRankingHistoryResponse.commonResponse:type_name -> papicommon.Response
+	446,  // 592: client.api.ProducerRankingRankingResponse.selfRank:type_name -> client.api.ProducerRankingRank
+	446,  // 593: client.api.ProducerRankingRankingResponse.ranks:type_name -> client.api.ProducerRankingRank
+	768,  // 594: client.api.ProducerRankingRankingResponse.commonResponse:type_name -> papicommon.Response
+	848,  // 595: client.api.ProducerRankingTopHistoryResponse.characters:type_name -> pmaster.ProducerRankingCharacter
+	768,  // 596: client.api.ProducerRankingTopHistoryResponse.commonResponse:type_name -> papicommon.Response
+	848,  // 597: client.api.ProducerRankingTopResponse.characters:type_name -> pmaster.ProducerRankingCharacter
+	768,  // 598: client.api.ProducerRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	455,  // 599: client.api.ProfileGetResponse.birthday:type_name -> client.api.ProfileBirthday
+	821,  // 600: client.api.ProfileGetResponse.friendStatus:type_name -> penum.FriendStatusType
+	734,  // 601: client.api.ProfileGetResponse.produceRecords:type_name -> client.api.ProfileGetResponse.ProduceRecord
+	850,  // 602: client.api.ProfileGetResponse.pvpRateGrade:type_name -> penum.PvpRateGrade
+	778,  // 603: client.api.ProfileGetResponse.competitionGrade:type_name -> penum.CompetitionGrade
+	851,  // 604: client.api.ProfileGetResponse.supportCard:type_name -> pcommon.SupportCard
+	787,  // 605: client.api.ProfileGetResponse.memory:type_name -> pcommon.Memory
+	773,  // 606: client.api.ProfileGetResponse.meishi:type_name -> pcommon.Meishi
+	768,  // 607: client.api.ProfileGetResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 608: client.api.ProfileUpdateBadgeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 609: client.api.ProfileUpdateBirthdayResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 610: client.api.ProfileUpdateCommentResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 611: client.api.ProfileUpdateMemoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 612: client.api.ProfileUpdateNameResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 613: client.api.ProfileUpdateSupportCardResponse.commonResponse:type_name -> papicommon.Response
+	801,  // 614: client.api.PvpRateEndRequest.stages:type_name -> pcommon.ExamBattleAutoStageResult
+	769,  // 615: client.api.PvpRateEndResponse.playReward:type_name -> pcommon.RewardResult
+	482,  // 616: client.api.PvpRateEndResponse.rateRewards:type_name -> client.api.PvpRateRateReward
+	768,  // 617: client.api.PvpRateEndResponse.commonResponse:type_name -> papicommon.Response
+	852,  // 618: client.api.PvpRateGetHistoryResponse.examBattleResult:type_name -> pcommon.PvpRateExamBattleResult
+	768,  // 619: client.api.PvpRateGetHistoryResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 620: client.api.PvpRateGetResponse.playReward:type_name -> pcommon.Reward
+	482,  // 621: client.api.PvpRateGetResponse.rateRewards:type_name -> client.api.PvpRateRateReward
+	480,  // 622: client.api.PvpRateGetResponse.rankRewards:type_name -> client.api.PvpRateRankReward
+	850,  // 623: client.api.PvpRateGetResponse.grade:type_name -> penum.PvpRateGrade
+	773,  // 624: client.api.PvpRateGetResponse.meishi:type_name -> pcommon.Meishi
+	483,  // 625: client.api.PvpRateGetResponse.rivals:type_name -> client.api.PvpRateRival
+	802,  // 626: client.api.PvpRateGetResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	487,  // 627: client.api.PvpRateGetResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	483,  // 628: client.api.PvpRateGetResponse.currentRival:type_name -> client.api.PvpRateRival
+	768,  // 629: client.api.PvpRateGetResponse.commonResponse:type_name -> papicommon.Response
+	816,  // 630: client.api.PvpRateInitializeResponse.previousSeasonResult:type_name -> papicommon.PvpRateSeasonResult
+	768,  // 631: client.api.PvpRateInitializeResponse.commonResponse:type_name -> papicommon.Response
+	735,  // 632: client.api.PvpRateListHistoryResponse.histories:type_name -> client.api.PvpRateListHistoryResponse.PvpRateHistory
+	768,  // 633: client.api.PvpRateListHistoryResponse.commonResponse:type_name -> papicommon.Response
+	481,  // 634: client.api.PvpRateListRankingResponse.users:type_name -> client.api.PvpRateRankingUser
+	481,  // 635: client.api.PvpRateListRankingResponse.self:type_name -> client.api.PvpRateRankingUser
+	768,  // 636: client.api.PvpRateListRankingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 637: client.api.PvpRatePlayExamBattleResponse.commonResponse:type_name -> papicommon.Response
+	802,  // 638: client.api.PvpRatePlayTestResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	487,  // 639: client.api.PvpRatePlayTestResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	768,  // 640: client.api.PvpRatePlayTestResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 641: client.api.PvpRateRankReward.rewards:type_name -> pcommon.Reward
+	775,  // 642: client.api.PvpRateRankingUser.profile:type_name -> pcommon.SimpleProfile
+	487,  // 643: client.api.PvpRateRankingUser.formations:type_name -> client.api.PvpRateUnitStageFormation
+	777,  // 644: client.api.PvpRateRateReward.reward:type_name -> pcommon.Reward
+	775,  // 645: client.api.PvpRateRival.profile:type_name -> pcommon.SimpleProfile
+	853,  // 646: client.api.PvpRateRival.rivalType:type_name -> penum.PvpRateRivalType
+	487,  // 647: client.api.PvpRateRival.formations:type_name -> client.api.PvpRateUnitStageFormation
+	850,  // 648: client.api.PvpRateSeasonResult.beforeGrade:type_name -> penum.PvpRateGrade
+	850,  // 649: client.api.PvpRateSeasonResult.afterGrade:type_name -> penum.PvpRateGrade
+	777,  // 650: client.api.PvpRateSeasonResult.rewards:type_name -> pcommon.Reward
+	850,  // 651: client.api.PvpRateSeasonResult.prevSeasonGrade:type_name -> penum.PvpRateGrade
+	853,  // 652: client.api.PvpRateStartRequest.rivalType:type_name -> penum.PvpRateRivalType
+	802,  // 653: client.api.PvpRateStartResponse.examBattleAutoRequest:type_name -> pcommon.ExamBattleAutoRequest
+	487,  // 654: client.api.PvpRateStartResponse.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	483,  // 655: client.api.PvpRateStartResponse.rival:type_name -> client.api.PvpRateRival
+	768,  // 656: client.api.PvpRateStartResponse.commonResponse:type_name -> papicommon.Response
+	854,  // 657: client.api.PvpRateUnitStageFormation.stage:type_name -> penum.PvpRateStageType
+	736,  // 658: client.api.PvpRateUnitStageFormation.slots:type_name -> client.api.PvpRateUnitStageFormation.Slot
+	855,  // 659: client.api.PvpRateUpdateUserPvpRateUnitRequest.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
+	780,  // 660: client.api.PvpRateUpdateUserPvpRateUnitRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 661: client.api.PvpRateUpdateUserPvpRateUnitResponse.commonResponse:type_name -> papicommon.Response
+	856,  // 662: client.api.ResearchGetResponse.ignoreMemoryAbilityRarity:type_name -> penum.SkillRarity
+	857,  // 663: client.api.ResearchGetResponse.playableExamEffectTypes:type_name -> penum.ProduceExamEffectType
+	768,  // 664: client.api.ResearchGetResponse.commonResponse:type_name -> papicommon.Response
+	737,  // 665: client.api.ResearchRankingResponse.selfRank:type_name -> client.api.ResearchRankingResponse.Rank
+	737,  // 666: client.api.ResearchRankingResponse.ranks:type_name -> client.api.ResearchRankingResponse.Rank
+	768,  // 667: client.api.ResearchRankingResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 668: client.api.ResearchRerollMemoryResponse.commonResponse:type_name -> papicommon.Response
+	738,  // 669: client.api.SeminarEndExamRequest.turns:type_name -> client.api.SeminarEndExamRequest.Turn
+	768,  // 670: client.api.SeminarEndExamResponse.commonResponse:type_name -> papicommon.Response
+	831,  // 671: client.api.SeminarGetExamResponse.stepType:type_name -> penum.ProduceStepType
+	858,  // 672: client.api.SeminarGetExamResponse.examBattleParameterTypes:type_name -> penum.ProduceParameterType
+	859,  // 673: client.api.SeminarGetExamResponse.produceCards:type_name -> pcommon.ProduceCard
+	741,  // 674: client.api.SeminarGetExamResponse.turnNavigations:type_name -> client.api.SeminarGetExamResponse.TurnNavigation
+	740,  // 675: client.api.SeminarGetExamResponse.failureNavigations:type_name -> client.api.SeminarGetExamResponse.FailureNavigation
+	768,  // 676: client.api.SeminarGetExamResponse.commonResponse:type_name -> papicommon.Response
+	743,  // 677: client.api.SeminarListExamResponse.groups:type_name -> client.api.SeminarListExamResponse.ExamGroup
+	768,  // 678: client.api.SeminarListExamResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 679: client.api.ShopCancelPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 680: client.api.ShopCheckBirthdayResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 681: client.api.ShopCheckPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	744,  // 682: client.api.ShopGetPurchasePlatformTransactionResponse.platformTransactions:type_name -> client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction
+	768,  // 683: client.api.ShopGetPurchasePlatformTransactionResponse.commonResponse:type_name -> papicommon.Response
+	814,  // 684: client.api.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
+	860,  // 685: client.api.ShopListItemsResponse.list:type_name -> pmaster.ShopItem
+	768,  // 686: client.api.ShopListItemsResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 687: client.api.ShopPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 688: client.api.ShopPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 689: client.api.ShopPurchaseResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 690: client.api.ShopPurchaseResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 691: client.api.ShopReadWebStoreUserPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 692: client.api.ShopRecoverPurchaseJewelResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 693: client.api.ShopRecoverPurchaseJewelResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 694: client.api.ShopRegisterBirthdayResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 695: client.api.ShopRegisterDelayPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 696: client.api.ShopRegisterPurchaseTransactionResponse.commonResponse:type_name -> papicommon.Response
+	745,  // 697: client.api.ShopTopResponse.shopList:type_name -> client.api.ShopTopResponse.Shop
+	860,  // 698: client.api.ShopTopResponse.shopItemList:type_name -> pmaster.ShopItem
+	806,  // 699: client.api.ShopTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	768,  // 700: client.api.ShopTopResponse.commonResponse:type_name -> papicommon.Response
+	746,  // 701: client.api.StartupConfirmRequest.notifications:type_name -> client.api.StartupConfirmRequest.Notification
+	769,  // 702: client.api.StartupConfirmResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 703: client.api.StartupConfirmResponse.commonResponse:type_name -> papicommon.Response
+	861,  // 704: client.api.StartupListNotificationsRequest.displayType:type_name -> penum.StartupNotificationDisplayType
+	806,  // 705: client.api.StartupListNotificationsResponse.notifications:type_name -> pcommon.StartupNotification
+	768,  // 706: client.api.StartupListNotificationsResponse.commonResponse:type_name -> papicommon.Response
+	65,   // 707: client.api.StepUpGashaProbability.defaultGashaProbability:type_name -> client.api.DefaultGashaProbability
+	833,  // 708: client.api.StoryEventListGuildMissionResponse.guildMissions:type_name -> pcommon.GuildMission
+	834,  // 709: client.api.StoryEventListGuildMissionResponse.guildMissionHistories:type_name -> pcommon.GuildMissionHistory
+	768,  // 710: client.api.StoryEventListGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	747,  // 711: client.api.StoryEventReceiveGuildMissionResponse.receiveResults:type_name -> client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult
+	768,  // 712: client.api.StoryEventReceiveGuildMissionResponse.commonResponse:type_name -> papicommon.Response
+	748,  // 713: client.api.StoryEventTopResponse.motions:type_name -> client.api.StoryEventTopResponse.Motion
+	845,  // 714: client.api.StoryEventTopResponse.storyEventType:type_name -> penum.StoryEventType
+	846,  // 715: client.api.StoryEventTopResponse.storyEventBonus:type_name -> pcommon.StoryEventBonus
+	770,  // 716: client.api.StoryEventTopResponse.boxGasha:type_name -> pcommon.CoinGasha
+	820,  // 717: client.api.StoryEventTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	862,  // 718: client.api.StoryEventTopResponse.storyEventPointRewards:type_name -> pcommon.StoryEventPointReward
+	806,  // 719: client.api.StoryEventTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	768,  // 720: client.api.StoryEventTopResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 721: client.api.StoryReadDearnessStoryResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 722: client.api.StoryReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 723: client.api.StoryReadProduceStoryResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 724: client.api.StoryReadResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 725: client.api.StoryReadResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 726: client.api.StoryUnlockDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 727: client.api.StoryUnlockProduceStoryResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 728: client.api.StoryUnlockResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 729: client.api.SupportCardEnhanceResponse.commonResponse:type_name -> papicommon.Response
+	749,  // 730: client.api.SupportCardExchangeRequest.parameters:type_name -> client.api.SupportCardExchangeRequest.Parameter
+	768,  // 731: client.api.SupportCardExchangeResponse.commonResponse:type_name -> papicommon.Response
+	751,  // 732: client.api.SupportCardListDeckRankingResponse.rankings:type_name -> client.api.SupportCardListDeckRankingResponse.Ranking
+	768,  // 733: client.api.SupportCardListDeckRankingResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 734: client.api.SupportCardProbability.rewards:type_name -> pcommon.Reward
+	863,  // 735: client.api.SupportCardRarityProbability.rarity:type_name -> penum.SupportCardRarity
+	553,  // 736: client.api.SupportCardRarityProbability.probabilities:type_name -> client.api.SupportCardProbability
+	864,  // 737: client.api.SupportCardUpgradeLevelLimitRankRequest.afterRank:type_name -> penum.SupportCardLevelLimitRank
+	768,  // 738: client.api.SupportCardUpgradeLevelLimitRankResponse.commonResponse:type_name -> papicommon.Response
+	752,  // 739: client.api.SystemCheckResponse.maintenanceInfo:type_name -> client.api.SystemCheckResponse.MaintenanceInfo
+	753,  // 740: client.api.SystemCheckResponse.reviewInfo:type_name -> client.api.SystemCheckResponse.ReviewInfo
+	561,  // 741: client.api.TicketExchangeExecuteResponse.item:type_name -> client.api.TicketExchangeItem
+	769,  // 742: client.api.TicketExchangeExecuteResponse.rewardResults:type_name -> pcommon.RewardResult
+	768,  // 743: client.api.TicketExchangeExecuteResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 744: client.api.TicketExchangeItem.rewards:type_name -> pcommon.Reward
+	561,  // 745: client.api.TicketExchangeListItemsResponse.items:type_name -> client.api.TicketExchangeItem
+	768,  // 746: client.api.TicketExchangeListItemsResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 747: client.api.TourContinueResponse.commonResponse:type_name -> papicommon.Response
+	787,  // 748: client.api.TourDeck.mainMemory:type_name -> pcommon.Memory
+	787,  // 749: client.api.TourDeck.subMemories:type_name -> pcommon.Memory
+	865,  // 750: client.api.TourDeck.produceCardConversions:type_name -> pcommon.ProduceCardConversion
+	772,  // 751: client.api.TourEndRequest.result:type_name -> pcommon.ExamContestResult
+	866,  // 752: client.api.TourEndResponse.grade:type_name -> penum.TourScoreGrade
+	578,  // 753: client.api.TourEndResponse.levels:type_name -> client.api.TourStageLevel
+	768,  // 754: client.api.TourEndResponse.commonResponse:type_name -> papicommon.Response
+	867,  // 755: client.api.TourGetProgressResponse.phase:type_name -> penum.TourProgressPhaseType
+	755,  // 756: client.api.TourGetProgressResponse.progress:type_name -> client.api.TourGetProgressResponse.Progress
+	754,  // 757: client.api.TourGetProgressResponse.examEnd:type_name -> client.api.TourGetProgressResponse.ExamEnd
+	768,  // 758: client.api.TourGetProgressResponse.commonResponse:type_name -> papicommon.Response
+	771,  // 759: client.api.TourPlayTestResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	566,  // 760: client.api.TourPlayTestResponse.deck:type_name -> client.api.TourDeck
+	576,  // 761: client.api.TourPlayTestResponse.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
+	768,  // 762: client.api.TourPlayTestResponse.commonResponse:type_name -> papicommon.Response
+	584,  // 763: client.api.TourResultResponse.totalPointRewards:type_name -> client.api.TourTotalPointReward
+	756,  // 764: client.api.TourResultResponse.totalPointRewardResult:type_name -> client.api.TourResultResponse.TotalPointRewardResult
+	769,  // 765: client.api.TourResultResponse.stageLevelClearRewardResults:type_name -> pcommon.RewardResult
+	768,  // 766: client.api.TourResultResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 767: client.api.TourRetireResponse.commonResponse:type_name -> papicommon.Response
+	866,  // 768: client.api.TourScoreGradePattern.grade:type_name -> penum.TourScoreGrade
+	759,  // 769: client.api.TourStageRankingResponse.stageRankings:type_name -> client.api.TourStageRankingResponse.StageRanking
+	758,  // 770: client.api.TourStageRankingResponse.selfStageRanks:type_name -> client.api.TourStageRankingResponse.SelfStageRank
+	768,  // 771: client.api.TourStageRankingResponse.commonResponse:type_name -> papicommon.Response
+	771,  // 772: client.api.TourStartResponse.examContestSituation:type_name -> pcommon.ExamContestSituation
+	566,  // 773: client.api.TourStartResponse.deck:type_name -> client.api.TourDeck
+	576,  // 774: client.api.TourStartResponse.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
+	768,  // 775: client.api.TourStartResponse.commonResponse:type_name -> papicommon.Response
+	584,  // 776: client.api.TourTopResponse.totalPointRewards:type_name -> client.api.TourTotalPointReward
+	760,  // 777: client.api.TourTopResponse.stages:type_name -> client.api.TourTopResponse.Stage
+	820,  // 778: client.api.TourTopResponse.maxIdolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	868,  // 779: client.api.TourTopResponse.eventBonus:type_name -> pcommon.EventBonus
+	768,  // 780: client.api.TourTopResponse.commonResponse:type_name -> papicommon.Response
+	777,  // 781: client.api.TourTotalPointReward.rewards:type_name -> pcommon.Reward
+	577,  // 782: client.api.TourUpdateDeckRequest.deck:type_name -> client.api.TourSetUpDeck
+	780,  // 783: client.api.TourUpdateDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 784: client.api.TourUpdateDeckResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 785: client.api.TowerCheckResponse.commonResponse:type_name -> papicommon.Response
+	837,  // 786: client.api.TowerEndRequest.result:type_name -> pcommon.ExamBattleResult
+	838,  // 787: client.api.TowerEndRequest.turnEndLogs:type_name -> pcommon.ExamTurnEndLog
+	769,  // 788: client.api.TowerEndResponse.results:type_name -> pcommon.RewardResult
+	836,  // 789: client.api.TowerEndResponse.producerRankingResult:type_name -> pcommon.ProducerRankingResult
+	768,  // 790: client.api.TowerEndResponse.commonResponse:type_name -> papicommon.Response
+	613,  // 791: client.api.TowerGetLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	768,  // 792: client.api.TowerGetLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
+	612,  // 793: client.api.TowerGetLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
+	768,  // 794: client.api.TowerGetLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	762,  // 795: client.api.TowerGetLayerResponse.exams:type_name -> client.api.TowerGetLayerResponse.Exam
+	768,  // 796: client.api.TowerGetLayerResponse.commonResponse:type_name -> papicommon.Response
+	613,  // 797: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	768,  // 798: client.api.TowerGetPastSeasonLayerIdolCardRankingResponse.commonResponse:type_name -> papicommon.Response
+	612,  // 799: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.rankingCaches:type_name -> client.api.TowerRankingCache
+	768,  // 800: client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse.commonResponse:type_name -> papicommon.Response
+	613,  // 801: client.api.TowerGetPastSeasonRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	768,  // 802: client.api.TowerGetPastSeasonRankingResponse.commonResponse:type_name -> papicommon.Response
+	787,  // 803: client.api.TowerGetRankingDeckResponse.memories:type_name -> pcommon.Memory
+	865,  // 804: client.api.TowerGetRankingDeckResponse.produceCardConversions:type_name -> pcommon.ProduceCardConversion
+	768,  // 805: client.api.TowerGetRankingDeckResponse.commonResponse:type_name -> papicommon.Response
+	613,  // 806: client.api.TowerGetRankingResponse.towerRankingResult:type_name -> client.api.TowerRankingResult
+	768,  // 807: client.api.TowerGetRankingResponse.commonResponse:type_name -> papicommon.Response
+	869,  // 808: client.api.TowerListLayerPlayerHistoriesResponse.histories:type_name -> pcommon.TowerLayerHistory
+	768,  // 809: client.api.TowerListLayerPlayerHistoriesResponse.commonResponse:type_name -> papicommon.Response
+	764,  // 810: client.api.TowerListLayersResponse.layers:type_name -> client.api.TowerListLayersResponse.TowerLayer
+	614,  // 811: client.api.TowerListLayersResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
+	768,  // 812: client.api.TowerListLayersResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 813: client.api.TowerRank.profile:type_name -> pcommon.SimpleProfile
+	611,  // 814: client.api.TowerRankingCache.ranks:type_name -> client.api.TowerRank
+	611,  // 815: client.api.TowerRankingResult.towerRanks:type_name -> client.api.TowerRank
+	769,  // 816: client.api.TowerReceiveLayerCountRewardResponse.result:type_name -> pcommon.RewardResult
+	768,  // 817: client.api.TowerReceiveLayerCountRewardResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 818: client.api.TowerReceiveTotalClearRankRewardResponse.result:type_name -> pcommon.RewardResult
+	768,  // 819: client.api.TowerReceiveTotalClearRankRewardResponse.commonResponse:type_name -> papicommon.Response
+	859,  // 820: client.api.TowerStartResponse.produceCards:type_name -> pcommon.ProduceCard
+	768,  // 821: client.api.TowerStartResponse.commonResponse:type_name -> papicommon.Response
+	765,  // 822: client.api.TowerTopResponse.towers:type_name -> client.api.TowerTopResponse.Tower
+	777,  // 823: client.api.TowerTopResponse.nextReward:type_name -> pcommon.Reward
+	806,  // 824: client.api.TowerTopResponse.startupNotifications:type_name -> pcommon.StartupNotification
+	614,  // 825: client.api.TowerTopResponse.towerRankingSeasons:type_name -> client.api.TowerRankingSeason
+	768,  // 826: client.api.TowerTopResponse.commonResponse:type_name -> papicommon.Response
+	780,  // 827: client.api.TowerUpdateMemoryDeckRequest.recommendType:type_name -> penum.DeckRecommendType
+	768,  // 828: client.api.TowerUpdateMemoryDeckResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 829: client.api.TutorialCheckBeforeLiveProduceEvaluationResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 830: client.api.TutorialProduceNextResponse.commonResponse:type_name -> papicommon.Response
+	787,  // 831: client.api.TutorialProduceResultResponse.memory:type_name -> pcommon.Memory
+	768,  // 832: client.api.TutorialProduceResultResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 833: client.api.TutorialProduceStartResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 834: client.api.TutorialProduceStepAuditionEndResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 835: client.api.TutorialProduceStepAuditionExamEndResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 836: client.api.TutorialProduceStepLessonEndResponse.commonResponse:type_name -> papicommon.Response
+	839,  // 837: client.api.TutorialProduceStepPresentReceiveResponse.providedRewards:type_name -> pcommon.ProduceRewardResult
+	768,  // 838: client.api.TutorialProduceStepPresentReceiveResponse.commonResponse:type_name -> papicommon.Response
+	870,  // 839: client.api.TutorialProgressRequest.type:type_name -> penum.TutorialType
+	768,  // 840: client.api.TutorialProgressResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 841: client.api.TutorialReadDearnessStoryResponse.commonResponse:type_name -> papicommon.Response
+	769,  // 842: client.api.TutorialReceiveIdolCardResponse.results:type_name -> pcommon.RewardResult
+	768,  // 843: client.api.TutorialReceiveIdolCardResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 844: client.api.TutorialSetNameResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 845: client.api.TutorialSkipResponse.commonResponse:type_name -> papicommon.Response
+	870,  // 846: client.api.TutorialUnlockFeatureRequest.type:type_name -> penum.TutorialType
+	768,  // 847: client.api.TutorialUnlockFeatureResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 848: client.api.UserBlockBlockResponse.commonResponse:type_name -> papicommon.Response
+	775,  // 849: client.api.UserBlockListBlockResponse.blockUserProfiles:type_name -> pcommon.SimpleProfile
+	768,  // 850: client.api.UserBlockListBlockResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 851: client.api.UserBlockUnblockResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 852: client.api.UserGetBalanceResponse.commonResponse:type_name -> papicommon.Response
+	871,  // 853: client.api.UserGetResponse.userData:type_name -> papicommon.UserData
+	766,  // 854: client.api.UserListMessageResponse.personalMessages:type_name -> client.api.UserListMessageResponse.PersonalMessage
+	768,  // 855: client.api.UserListMessageResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 856: client.api.UserReadForceTitleTransitionTimeResponse.commonResponse:type_name -> papicommon.Response
+	768,  // 857: client.api.UserReadMessageResponse.commonResponse:type_name -> papicommon.Response
+	663,  // 858: client.api.WorkFinishResponse.finishResults:type_name -> client.api.WorkFinishResult
+	768,  // 859: client.api.WorkFinishResponse.commonResponse:type_name -> papicommon.Response
+	872,  // 860: client.api.WorkFinishResult.type:type_name -> penum.WorkType
+	769,  // 861: client.api.WorkFinishResult.rewardResults:type_name -> pcommon.RewardResult
+	872,  // 862: client.api.WorkSkipRequest.type:type_name -> penum.WorkType
+	663,  // 863: client.api.WorkSkipResponse.finishResult:type_name -> client.api.WorkFinishResult
+	768,  // 864: client.api.WorkSkipResponse.commonResponse:type_name -> papicommon.Response
+	872,  // 865: client.api.WorkStartRequest.type:type_name -> penum.WorkType
+	768,  // 866: client.api.WorkStartResponse.commonResponse:type_name -> papicommon.Response
+	872,  // 867: client.api.WorkStopRequest.type:type_name -> penum.WorkType
+	768,  // 868: client.api.WorkStopResponse.commonResponse:type_name -> papicommon.Response
+	663,  // 869: client.api.WorkTopResponse.finishResults:type_name -> client.api.WorkFinishResult
+	768,  // 870: client.api.WorkTopResponse.commonResponse:type_name -> papicommon.Response
+	767,  // 871: client.api.AuthLoginResponse.Term.type:type_name -> penum.TermsType
+	781,  // 872: client.api.AuthSendConsentRequest.Consent.consentType:type_name -> penum.ConsentType
+	782,  // 873: client.api.AuthSendConsentRequest.Consent.agreementType:type_name -> penum.ConsentAgreementType
+	873,  // 874: client.api.CompetitionGetResponse.Section.sectionType:type_name -> penum.CompetitionStageSectionType
+	774,  // 875: client.api.CompetitionGetResponse.PlayTestStage.stageType:type_name -> penum.CompetitionStageType
+	774,  // 876: client.api.CompetitionGetResponse.Stage.stageType:type_name -> penum.CompetitionStageType
+	803,  // 877: client.api.CompetitionGetResponse.Stage.planType:type_name -> penum.ProducePlanType
+	857,  // 878: client.api.CompetitionGetResponse.Stage.examEffectType:type_name -> penum.ProduceExamEffectType
+	775,  // 879: client.api.CompetitionGetResponse.Stage.rivalProfile:type_name -> pcommon.SimpleProfile
+	874,  // 880: client.api.CompetitionGetResponse.Stage.rivalSections:type_name -> pcommon.ExamContestSection
+	673,  // 881: client.api.CompetitionGetResponse.Stage.sections:type_name -> client.api.CompetitionGetResponse.Section
+	774,  // 882: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.stageType:type_name -> penum.CompetitionStageType
+	873,  // 883: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.sectionType:type_name -> penum.CompetitionStageSectionType
+	676,  // 884: client.api.CompetitionListDeckProduceCardRankingResponse.Ranking.produceCardRanks:type_name -> client.api.CompetitionListDeckProduceCardRankingResponse.ProduceCardRank
+	774,  // 885: client.api.CompetitionListHistoryResponse.History.stageType:type_name -> penum.CompetitionStageType
+	775,  // 886: client.api.CompetitionListHistoryResponse.History.rivalProfile:type_name -> pcommon.SimpleProfile
+	771,  // 887: client.api.CompetitionListHistoryResponse.History.examContestSituation:type_name -> pcommon.ExamContestSituation
+	774,  // 888: client.api.CompetitionListHistoryResponse.Stage.stageType:type_name -> penum.CompetitionStageType
+	771,  // 889: client.api.CompetitionListHistoryResponse.Stage.examContestSituation:type_name -> pcommon.ExamContestSituation
+	864,  // 890: client.api.FriendInfo.SupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	777,  // 891: client.api.GashaExpirePointResponse.GashaPoint.reward:type_name -> pcommon.Reward
+	683,  // 892: client.api.GashaExpirePointResponse.GashaPoint.gashaBanners:type_name -> client.api.GashaExpirePointResponse.GashaBanner
+	777,  // 893: client.api.GashaGetPointExchangeResponse.ExchangeResource.rewards:type_name -> pcommon.Reward
+	785,  // 894: client.api.GiftListHistoryResponse.UserGiftHistory.resourceType:type_name -> penum.ResourceType
+	785,  // 895: client.api.GiftListResponse.UserGift.resourceType:type_name -> penum.ResourceType
+	796,  // 896: client.api.GuildTopResponse.HomeInfo.achievement:type_name -> pcommon.Achievement
+	795,  // 897: client.api.GuildTopResponse.HomeInfo.activityPolicyType:type_name -> penum.GuildActivityPolicyType
+	161,  // 898: client.api.GuildTopResponse.HomeInfo.leaderMessageReactionList:type_name -> client.api.GuildReactionInfo
+	160,  // 899: client.api.GuildTopResponse.HomeInfo.memberList:type_name -> client.api.GuildMemberInfo
+	160,  // 900: client.api.GuildTopResponse.HomeInfo.joinRequestList:type_name -> client.api.GuildMemberInfo
+	66,   // 901: client.api.GuildTopResponse.HomeInfo.donationRequestList:type_name -> client.api.DonationRequest
+	689,  // 902: client.api.GuildTopResponse.HomeInfo.receivedDonationInfo:type_name -> client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo
+	146,  // 903: client.api.GuildTopResponse.HomeInfo.ReceivedDonationInfo.donationList:type_name -> client.api.GuildDonationInfo
+	803,  // 904: client.api.GvgRaidTopResponse.Stage.planType:type_name -> penum.ProducePlanType
+	775,  // 905: client.api.GvgRaidTopResponse.Stage.mvpProfile:type_name -> pcommon.SimpleProfile
+	172,  // 906: client.api.GvgRaidTopResponse.Stage.mvpDeck:type_name -> client.api.GvgRaidDeck
+	807,  // 907: client.api.GvgRaidTopResponse.Stage.deck:type_name -> pcommon.GvgRaidSetUpDeck
+	182,  // 908: client.api.GvgRaidTopResponse.Stage.challengeRewards:type_name -> client.api.GvgRaidStageChallengeReward
+	777,  // 909: client.api.GvgRaidTopResponse.Stage.clearRewards:type_name -> pcommon.Reward
+	804,  // 910: client.api.GvgRaidTopResponse.Stage.iconSizeType:type_name -> penum.GvgRaidStageIconSizeType
+	777,  // 911: client.api.GvgRaidTopResponse.StageClearResult.rewards:type_name -> pcommon.Reward
+	693,  // 912: client.api.GvgRaidTopResponse.StageClearReward.clearRewards:type_name -> client.api.GvgRaidTopResponse.StageClearReward.ClearReward
+	777,  // 913: client.api.GvgRaidTopResponse.StageClearReward.ClearReward.rewards:type_name -> pcommon.Reward
+	696,  // 914: client.api.GvgRaidUserRankingResponse.StageMvp.mvpUsers:type_name -> client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser
+	697,  // 915: client.api.GvgRaidUserRankingResponse.StageRanking.ranks:type_name -> client.api.GvgRaidUserRankingResponse.StageRanking.Rank
+	188,  // 916: client.api.GvgRaidUserRankingResponse.StageMvp.MvpUser.user:type_name -> client.api.GvgRaidUser
+	188,  // 917: client.api.GvgRaidUserRankingResponse.StageRanking.Rank.user:type_name -> client.api.GvgRaidUser
+	875,  // 918: client.api.HomeEnterResponse.FeatureMaintenance.type:type_name -> penum.FeatureMaintenanceType
+	702,  // 919: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.characterResults:type_name -> client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult
+	703,  // 920: client.api.HomeLoginResponse.ProducerRankingResult.characterResults:type_name -> client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult
+	777,  // 921: client.api.HomeLoginResponse.ProduceNextIdolAuditionMasterSeasonResult.CharacterResult.rewards:type_name -> pcommon.Reward
+	777,  // 922: client.api.HomeLoginResponse.ProducerRankingResult.CharacterResult.rewards:type_name -> pcommon.Reward
+	876,  // 923: client.api.HomeSetCharactersRequest.HomeCharacter.homeType:type_name -> penum.HomeType
+	877,  // 924: client.api.LoginBonusCheckResponse.Info.type:type_name -> penum.LoginBonusType
+	777,  // 925: client.api.LoginBonusCheckResponse.Info.rewards:type_name -> pcommon.Reward
+	777,  // 926: client.api.LoginBonusCheckResponse.TotalInfo.reward:type_name -> pcommon.Reward
+	777,  // 927: client.api.LoginBonusCheckResponse.TotalInfo.nextReward:type_name -> pcommon.Reward
+	707,  // 928: client.api.MasterGetResponse.MasterTag.masterTagPacks:type_name -> client.api.MasterGetResponse.MasterTagPack
+	773,  // 929: client.api.MeishiListFollowResponse.Follow.meishi:type_name -> pcommon.Meishi
+	773,  // 930: client.api.MeishiListResponse.MeishiInfo.meishi:type_name -> pcommon.Meishi
+	878,  // 931: client.api.MeishiUpdateRequest.Object.objectType:type_name -> penum.MeishiObjectType
+	715,  // 932: client.api.MissionReceiveResponse.MasterAchievementProgressResult.masterAchievementProgresses:type_name -> client.api.MissionReceiveResponse.MasterAchievementProgress
+	719,  // 933: client.api.PhotoCreateIdolRequest.Photo.characterSettings:type_name -> client.api.PhotoCreateIdolRequest.Photo.CharacterSetting
+	832,  // 934: client.api.ProduceHighScoreRankingResponse.Rank.grade:type_name -> penum.ResultGrade
+	775,  // 935: client.api.ProduceHighScoreRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
+	775,  // 936: client.api.ProduceListRentalMemoryResponse.RentalMemory.profile:type_name -> pcommon.SimpleProfile
+	787,  // 937: client.api.ProduceListRentalMemoryResponse.RentalMemory.memory:type_name -> pcommon.Memory
+	775,  // 938: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.profile:type_name -> pcommon.SimpleProfile
+	864,  // 939: client.api.ProduceListRentalSupportCardResponse.RentalSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	341,  // 940: client.api.ProduceRankingTopResponse.Ranking.topRanks:type_name -> client.api.ProduceRank
+	832,  // 941: client.api.ProduceRankingTopResponse.Ranking.selfHighestGrade:type_name -> penum.ResultGrade
+	777,  // 942: client.api.ProduceResultResponse.HighScoreReward.reward:type_name -> pcommon.Reward
+	725,  // 943: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
+	725,  // 944: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewards:type_name -> client.api.ProduceResultResponse.HighScoreReward
+	769,  // 945: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRewardResults:type_name -> pcommon.RewardResult
+	769,  // 946: client.api.ProduceResultResponse.HighScoreUpdateResult.characterHighScoreRewardResults:type_name -> pcommon.RewardResult
+	769,  // 947: client.api.ProduceResultResponse.HighScoreUpdateResult.highScoreRushGoldRewardResults:type_name -> pcommon.RewardResult
+	769,  // 948: client.api.ProduceResultResponse.ResearchResult.auditionScoreRewardResults:type_name -> pcommon.RewardResult
+	769,  // 949: client.api.ProduceResultResponse.ResearchResult.produceGradeRewardResults:type_name -> pcommon.RewardResult
+	785,  // 950: client.api.ProduceResultResponse.TourResult.resourceType:type_name -> penum.ResourceType
+	769,  // 951: client.api.ProduceResultResponse.TourResult.rewardResults:type_name -> pcommon.RewardResult
+	828,  // 952: client.api.ProduceTopResponse.ProduceHighScore.eventType:type_name -> penum.ProduceHighScoreEventType
+	829,  // 953: client.api.ProduceTopResponse.ProduceHighScore.externalProduceRewards:type_name -> papicommon.ProduceHighScoreRushExternalProduceReward
+	857,  // 954: client.api.ProduceTopResponse.Research.playableExamEffectTypes:type_name -> penum.ProduceExamEffectType
+	868,  // 955: client.api.ProduceTopResponse.Tour.eventBonus:type_name -> pcommon.EventBonus
+	847,  // 956: client.api.ProfileGetResponse.ProduceRecord.produceType:type_name -> penum.ProduceType
+	487,  // 957: client.api.PvpRateListHistoryResponse.PvpRateHistory.selfFormations:type_name -> client.api.PvpRateUnitStageFormation
+	487,  // 958: client.api.PvpRateListHistoryResponse.PvpRateHistory.rivalFormations:type_name -> client.api.PvpRateUnitStageFormation
+	787,  // 959: client.api.PvpRateUnitStageFormation.Slot.mainMemory:type_name -> pcommon.Memory
+	787,  // 960: client.api.PvpRateUnitStageFormation.Slot.subMemory:type_name -> pcommon.Memory
+	865,  // 961: client.api.PvpRateUnitStageFormation.Slot.produceCardConversions:type_name -> pcommon.ProduceCardConversion
+	775,  // 962: client.api.ResearchRankingResponse.Rank.profile:type_name -> pcommon.SimpleProfile
+	879,  // 963: client.api.SeminarGetExamResponse.TurnNavigationStep.navigationType:type_name -> penum.TutorialNavigationType
+	859,  // 964: client.api.SeminarGetExamResponse.FailureNavigation.produceCards1:type_name -> pcommon.ProduceCard
+	859,  // 965: client.api.SeminarGetExamResponse.FailureNavigation.produceCards2:type_name -> pcommon.ProduceCard
+	880,  // 966: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
+	881,  // 967: client.api.SeminarGetExamResponse.TurnNavigation.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
+	739,  // 968: client.api.SeminarGetExamResponse.TurnNavigation.steps:type_name -> client.api.SeminarGetExamResponse.TurnNavigationStep
+	777,  // 969: client.api.SeminarListExamResponse.Exam.rewards:type_name -> pcommon.Reward
+	742,  // 970: client.api.SeminarListExamResponse.ExamGroup.exams:type_name -> client.api.SeminarListExamResponse.Exam
+	882,  // 971: client.api.ShopGetPurchasePlatformTransactionResponse.PlatformTransaction.paymentPendingReceiptDialogTimingType:type_name -> penum.PaymentPendingReceiptDialogTimingType
+	860,  // 972: client.api.ShopTopResponse.Shop.shopItems:type_name -> pmaster.ShopItem
+	834,  // 973: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.guildMissionHistory:type_name -> pcommon.GuildMissionHistory
+	769,  // 974: client.api.StoryEventReceiveGuildMissionResponse.ReceiveResult.rewardResult:type_name -> pcommon.RewardResult
+	883,  // 975: client.api.StoryEventTopResponse.Motion.motionType:type_name -> penum.StoryEventMotionType
+	750,  // 976: client.api.SupportCardListDeckRankingResponse.Ranking.supportCardRanks:type_name -> client.api.SupportCardListDeckRankingResponse.SupportCardRank
+	866,  // 977: client.api.TourGetProgressResponse.ExamEnd.grade:type_name -> penum.TourScoreGrade
+	578,  // 978: client.api.TourGetProgressResponse.ExamEnd.levels:type_name -> client.api.TourStageLevel
+	771,  // 979: client.api.TourGetProgressResponse.Progress.examContestSituation:type_name -> pcommon.ExamContestSituation
+	566,  // 980: client.api.TourGetProgressResponse.Progress.deck:type_name -> client.api.TourDeck
+	576,  // 981: client.api.TourGetProgressResponse.Progress.scoreGradePatterns:type_name -> client.api.TourScoreGradePattern
+	769,  // 982: client.api.TourResultResponse.TotalPointRewardResult.totalPointRewardResults:type_name -> pcommon.RewardResult
+	584,  // 983: client.api.TourResultResponse.TotalPointRewardResult.totalPointRewardRanges:type_name -> client.api.TourTotalPointReward
+	775,  // 984: client.api.TourStageRankingResponse.UserRank.profile:type_name -> pcommon.SimpleProfile
+	566,  // 985: client.api.TourStageRankingResponse.UserRank.deck:type_name -> client.api.TourDeck
+	757,  // 986: client.api.TourStageRankingResponse.SelfStageRank.userRank:type_name -> client.api.TourStageRankingResponse.UserRank
+	757,  // 987: client.api.TourStageRankingResponse.StageRanking.userRanks:type_name -> client.api.TourStageRankingResponse.UserRank
+	803,  // 988: client.api.TourTopResponse.Stage.planType:type_name -> penum.ProducePlanType
+	577,  // 989: client.api.TourTopResponse.Stage.deck:type_name -> client.api.TourSetUpDeck
+	866,  // 990: client.api.TourTopResponse.Stage.highScoreGrade:type_name -> penum.TourScoreGrade
+	761,  // 991: client.api.TourTopResponse.Stage.levels:type_name -> client.api.TourTopResponse.Stage.StageLevelReward
+	884,  // 992: client.api.TourTopResponse.Stage.iconSizeType:type_name -> penum.TourStageIconSizeType
+	777,  // 993: client.api.TourTopResponse.Stage.StageLevelReward.rewards:type_name -> pcommon.Reward
+	857,  // 994: client.api.TowerGetLayerResponse.Exam.examEffectType:type_name -> penum.ProduceExamEffectType
+	885,  // 995: client.api.TowerListLayersResponse.TowerLayerRank.examTriggerCounts:type_name -> pcommon.ExamTriggerCount
+	777,  // 996: client.api.TowerListLayersResponse.TowerLayerRank.reward:type_name -> pcommon.Reward
+	763,  // 997: client.api.TowerListLayersResponse.TowerLayer.ranks:type_name -> client.api.TowerListLayersResponse.TowerLayerRank
+	777,  // 998: client.api.TowerListLayersResponse.TowerLayer.rewards:type_name -> pcommon.Reward
+	0,    // 999: client.api.Auth.Create:input_type -> client.api.Empty
+	7,    // 1000: client.api.Auth.Login:input_type -> client.api.AuthLoginRequest
+	5,    // 1001: client.api.Auth.LinkBandaiNamcoId:input_type -> client.api.AuthLinkBandaiNamcoIdRequest
+	0,    // 1002: client.api.Auth.Unlink:input_type -> client.api.Empty
+	12,   // 1003: client.api.Auth.PrepareMigrationBandaiNamcoId:input_type -> client.api.AuthPrepareMigrationBandaiNamcoIdRequest
+	10,   // 1004: client.api.Auth.Migrate:input_type -> client.api.AuthMigrateRequest
+	0,    // 1005: client.api.Auth.MigrateDmmGamesId:input_type -> client.api.Empty
+	1,    // 1006: client.api.Auth.AgreeTerms:input_type -> client.api.AuthAgreeTermsRequest
+	0,    // 1007: client.api.Auth.GetConsent:input_type -> client.api.Empty
+	14,   // 1008: client.api.Auth.SendConsent:input_type -> client.api.AuthSendConsentRequest
+	17,   // 1009: client.api.Character.CheckRoster:input_type -> client.api.CharacterCheckRosterRequest
+	22,   // 1010: client.api.CoinGasha.Get:input_type -> client.api.CoinGashaGetRequest
+	0,    // 1011: client.api.CoinGasha.List:input_type -> client.api.Empty
+	19,   // 1012: client.api.CoinGasha.Draw:input_type -> client.api.CoinGashaDrawRequest
+	25,   // 1013: client.api.CoinGasha.ResetBox:input_type -> client.api.CoinGashaResetBoxRequest
+	0,    // 1014: client.api.Competition.Initialize:input_type -> client.api.Empty
+	31,   // 1015: client.api.Competition.Get:input_type -> client.api.CompetitionGetRequest
+	0,    // 1016: client.api.Competition.ListReward:input_type -> client.api.Empty
+	51,   // 1017: client.api.Competition.Start:input_type -> client.api.CompetitionStartRequest
+	49,   // 1018: client.api.Competition.SelectAuto:input_type -> client.api.CompetitionSelectAutoRequest
+	29,   // 1019: client.api.Competition.End:input_type -> client.api.CompetitionEndRequest
+	0,    // 1020: client.api.Competition.Retire:input_type -> client.api.Empty
+	27,   // 1021: client.api.Competition.Continue:input_type -> client.api.CompetitionContinueRequest
+	45,   // 1022: client.api.Competition.Result:input_type -> client.api.CompetitionResultRequest
+	39,   // 1023: client.api.Competition.PlayTest:input_type -> client.api.CompetitionPlayTestRequest
+	43,   // 1024: client.api.Competition.ResultPlayTest:input_type -> client.api.CompetitionResultPlayTestRequest
+	53,   // 1025: client.api.Competition.UpdateDeck:input_type -> client.api.CompetitionUpdateDeckRequest
+	55,   // 1026: client.api.Competition.UpdateSeasonDeck:input_type -> client.api.CompetitionUpdateSeasonDeckRequest
+	0,    // 1027: client.api.Competition.ListHighScoreRanking:input_type -> client.api.Empty
+	0,    // 1028: client.api.Competition.ListWinCountRanking:input_type -> client.api.Empty
+	0,    // 1029: client.api.Competition.ListHistory:input_type -> client.api.Empty
+	0,    // 1030: client.api.Competition.ListDeckProduceCardRanking:input_type -> client.api.Empty
+	63,   // 1031: client.api.Costume.Set:input_type -> client.api.CostumeSetRequest
+	59,   // 1032: client.api.Costume.Check:input_type -> client.api.CostumeCheckRequest
+	61,   // 1033: client.api.Costume.SetRandom:input_type -> client.api.CostumeSetRandomRequest
+	69,   // 1034: client.api.Exchange.Get:input_type -> client.api.ExchangeGetRequest
+	73,   // 1035: client.api.Exchange.List:input_type -> client.api.ExchangeListRequest
+	67,   // 1036: client.api.Exchange.Execute:input_type -> client.api.ExchangeExecuteRequest
+	75,   // 1037: client.api.Exchange.Reset:input_type -> client.api.ExchangeResetRequest
+	0,    // 1038: client.api.Friend.List:input_type -> client.api.Empty
+	0,    // 1039: client.api.Friend.ListSuggestion:input_type -> client.api.Empty
+	79,   // 1040: client.api.Friend.Follow:input_type -> client.api.FriendFollowRequest
+	84,   // 1041: client.api.Friend.UnFollow:input_type -> client.api.FriendUnFollowRequest
+	77,   // 1042: client.api.Friend.DeleteFollower:input_type -> client.api.FriendDeleteFollowerRequest
+	0,    // 1043: client.api.Gasha.List:input_type -> client.api.Empty
+	91,   // 1044: client.api.Gasha.Draw:input_type -> client.api.GashaDrawRequest
+	109,  // 1045: client.api.Gasha.GetProbability:input_type -> client.api.GashaGetProbabilityRequest
+	124,  // 1046: client.api.Gasha.SelectPickup:input_type -> client.api.GashaSelectPickupRequest
+	94,   // 1047: client.api.Gasha.DrawSelectPickup:input_type -> client.api.GashaDrawSelectPickupRequest
+	111,  // 1048: client.api.Gasha.GetSelectPickupProbability:input_type -> client.api.GashaGetSelectPickupProbabilityRequest
+	96,   // 1049: client.api.Gasha.DrawStepUp:input_type -> client.api.GashaDrawStepUpRequest
+	113,  // 1050: client.api.Gasha.GetStepUpProbability:input_type -> client.api.GashaGetStepUpProbabilityRequest
+	89,   // 1051: client.api.Gasha.DrawContinuous:input_type -> client.api.GashaDrawContinuousRequest
+	86,   // 1052: client.api.Gasha.ContinueDrawContinuous:input_type -> client.api.GashaContinueDrawContinuousRequest
+	116,  // 1053: client.api.Gasha.PickContinuousDrawRewardCount:input_type -> client.api.GashaPickContinuousDrawRewardCountRequest
+	122,  // 1054: client.api.Gasha.ResumeContinuous:input_type -> client.api.GashaResumeContinuousRequest
+	101,  // 1055: client.api.Gasha.FinishContinuous:input_type -> client.api.GashaFinishContinuousRequest
+	120,  // 1056: client.api.Gasha.ReportShareSnsContinuousMission:input_type -> client.api.GashaReportShareSnsContinuousMissionRequest
+	103,  // 1057: client.api.Gasha.GetContinuousProbability:input_type -> client.api.GashaGetContinuousProbabilityRequest
+	105,  // 1058: client.api.Gasha.GetPointExchange:input_type -> client.api.GashaGetPointExchangeRequest
+	98,   // 1059: client.api.Gasha.ExchangePoint:input_type -> client.api.GashaExchangePointRequest
+	0,    // 1060: client.api.Gasha.ExpirePoint:input_type -> client.api.Empty
+	107,  // 1061: client.api.Gasha.GetPrecaution:input_type -> client.api.GashaGetPrecautionRequest
+	129,  // 1062: client.api.Gift.List:input_type -> client.api.GiftListRequest
+	0,    // 1063: client.api.Gift.Count:input_type -> client.api.Empty
+	127,  // 1064: client.api.Gift.ListHistory:input_type -> client.api.GiftListHistoryRequest
+	131,  // 1065: client.api.Gift.Open:input_type -> client.api.GiftOpenRequest
+	0,    // 1066: client.api.Guild.Top:input_type -> client.api.Empty
+	167,  // 1067: client.api.Guild.Search:input_type -> client.api.GuildSearchRequest
+	153,  // 1068: client.api.Guild.Get:input_type -> client.api.GuildGetRequest
+	151,  // 1069: client.api.Guild.Establish:input_type -> client.api.GuildEstablishRequest
+	147,  // 1070: client.api.Guild.EditDetail:input_type -> client.api.GuildEditDetailRequest
+	149,  // 1071: client.api.Guild.EditLeaderMessage:input_type -> client.api.GuildEditLeaderMessageRequest
+	133,  // 1072: client.api.Guild.ApplyJoinRequest:input_type -> client.api.GuildApplyJoinRequestRequest
+	137,  // 1073: client.api.Guild.CancelJoinRequest:input_type -> client.api.GuildCancelJoinRequestRequest
+	0,    // 1074: client.api.Guild.ListJoinRequest:input_type -> client.api.Empty
+	135,  // 1075: client.api.Guild.ApproveJoinRequest:input_type -> client.api.GuildApproveJoinRequestRequest
+	163,  // 1076: client.api.Guild.RejectJoinRequest:input_type -> client.api.GuildRejectJoinRequestRequest
+	0,    // 1077: client.api.Guild.Leave:input_type -> client.api.Empty
+	141,  // 1078: client.api.Guild.Dismiss:input_type -> client.api.GuildDismissRequest
+	139,  // 1079: client.api.Guild.ChangeLeader:input_type -> client.api.GuildChangeLeaderRequest
+	0,    // 1080: client.api.Guild.ListMember:input_type -> client.api.Empty
+	0,    // 1081: client.api.Guild.Dissolve:input_type -> client.api.Empty
+	0,    // 1082: client.api.Guild.ListDonationRequest:input_type -> client.api.Empty
+	165,  // 1083: client.api.Guild.RequestDonation:input_type -> client.api.GuildRequestDonationRequest
+	144,  // 1084: client.api.Guild.Donate:input_type -> client.api.GuildDonateRequest
+	0,    // 1085: client.api.Guild.ReceiveDonation:input_type -> client.api.Empty
+	170,  // 1086: client.api.Guild.UpdateLeaderMessageReaction:input_type -> client.api.GuildUpdateLeaderMessageReactionRequest
+	0,    // 1087: client.api.GvgRaid.Top:input_type -> client.api.Empty
+	0,    // 1088: client.api.GvgRaid.GetProgress:input_type -> client.api.Empty
+	183,  // 1089: client.api.GvgRaid.Start:input_type -> client.api.GvgRaidStartRequest
+	173,  // 1090: client.api.GvgRaid.End:input_type -> client.api.GvgRaidEndRequest
+	178,  // 1091: client.api.GvgRaid.PlayTest:input_type -> client.api.GvgRaidPlayTestRequest
+	0,    // 1092: client.api.GvgRaid.GuildRanking:input_type -> client.api.Empty
+	0,    // 1093: client.api.GvgRaid.UserRanking:input_type -> client.api.Empty
+	186,  // 1094: client.api.GvgRaid.UpdateDeck:input_type -> client.api.GvgRaidUpdateDeckRequest
+	190,  // 1095: client.api.Health.Check:input_type -> client.api.HealthCheckRequest
+	0,    // 1096: client.api.Home.Login:input_type -> client.api.Empty
+	0,    // 1097: client.api.Home.Enter:input_type -> client.api.Empty
+	0,    // 1098: client.api.Home.ListEvent:input_type -> client.api.Empty
+	0,    // 1099: client.api.Home.ConfirmBanWarning:input_type -> client.api.Empty
+	196,  // 1100: client.api.Home.SetCharacters:input_type -> client.api.HomeSetCharactersRequest
+	204,  // 1101: client.api.IdolCard.UpgradeLevelLimitRank:input_type -> client.api.IdolCardUpgradeLevelLimitRankRequest
+	206,  // 1102: client.api.IdolCard.UpgradePotentialRank:input_type -> client.api.IdolCardUpgradePotentialRankRequest
+	202,  // 1103: client.api.IdolCard.Release:input_type -> client.api.IdolCardReleaseRequest
+	198,  // 1104: client.api.IdolCard.ChangeSkin:input_type -> client.api.IdolCardChangeSkinRequest
+	208,  // 1105: client.api.Invitation.EnterInvitationCode:input_type -> client.api.InvitationEnterInvitationCodeRequest
+	0,    // 1106: client.api.Invitation.ListInviteUser:input_type -> client.api.Empty
+	211,  // 1107: client.api.Invitation.ReceiveInvitationPoint:input_type -> client.api.InvitationReceiveInvitationPointRequest
+	216,  // 1108: client.api.Item.Sell:input_type -> client.api.ItemSellRequest
+	214,  // 1109: client.api.Item.ExchangeIdolCardPiece:input_type -> client.api.ItemExchangeIdolCardPieceRequest
+	218,  // 1110: client.api.Item.UseActionPointRecovery:input_type -> client.api.ItemUseActionPointRecoveryRequest
+	0,    // 1111: client.api.LoginBonus.Check:input_type -> client.api.Empty
+	0,    // 1112: client.api.LoginBonus.Confirm:input_type -> client.api.Empty
+	0,    // 1113: client.api.Master.Get:input_type -> client.api.Empty
+	223,  // 1114: client.api.Media.Play:input_type -> client.api.MediaPlayRequest
+	231,  // 1115: client.api.Meishi.Get:input_type -> client.api.MeishiGetRequest
+	229,  // 1116: client.api.Meishi.GetDetail:input_type -> client.api.MeishiGetDetailRequest
+	0,    // 1117: client.api.Meishi.List:input_type -> client.api.Empty
+	0,    // 1118: client.api.Meishi.ListFollow:input_type -> client.api.Empty
+	237,  // 1119: client.api.Meishi.Set:input_type -> client.api.MeishiSetRequest
+	241,  // 1120: client.api.Meishi.Update:input_type -> client.api.MeishiUpdateRequest
+	225,  // 1121: client.api.Meishi.Delete:input_type -> client.api.MeishiDeleteRequest
+	227,  // 1122: client.api.Meishi.Follow:input_type -> client.api.MeishiFollowRequest
+	239,  // 1123: client.api.Meishi.Unfollow:input_type -> client.api.MeishiUnfollowRequest
+	235,  // 1124: client.api.Meishi.ReportXPostMission:input_type -> client.api.MeishiReportXPostMissionRequest
+	247,  // 1125: client.api.Memory.Inherit:input_type -> client.api.MemoryInheritRequest
+	245,  // 1126: client.api.Memory.FixInherit:input_type -> client.api.MemoryFixInheritRequest
+	243,  // 1127: client.api.Memory.Exchange:input_type -> client.api.MemoryExchangeRequest
+	251,  // 1128: client.api.Memory.UpdateProtection:input_type -> client.api.MemoryUpdateProtectionRequest
+	253,  // 1129: client.api.Memory.UpdateResearchFavorite:input_type -> client.api.MemoryUpdateResearchFavoriteRequest
+	255,  // 1130: client.api.Memory.UpdateTagSetting:input_type -> client.api.MemoryUpdateTagSettingRequest
+	249,  // 1131: client.api.Memory.Reshooting:input_type -> client.api.MemoryReshootingRequest
+	0,    // 1132: client.api.Mission.ListEvent:input_type -> client.api.Empty
+	266,  // 1133: client.api.Mission.Receive:input_type -> client.api.MissionReceiveRequest
+	262,  // 1134: client.api.Mission.ReceiveGroup:input_type -> client.api.MissionReceiveGroupRequest
+	260,  // 1135: client.api.Mission.ReceiveGroupAll:input_type -> client.api.MissionReceiveGroupAllRequest
+	264,  // 1136: client.api.Mission.ReceivePass:input_type -> client.api.MissionReceivePassRequest
+	257,  // 1137: client.api.Mission.ExchangePassPoint:input_type -> client.api.MissionExchangePassPointRequest
+	268,  // 1138: client.api.Mission.UrlTransition:input_type -> client.api.MissionUrlTransitionRequest
+	0,    // 1139: client.api.Money.Receive:input_type -> client.api.Empty
+	271,  // 1140: client.api.Movie.Create:input_type -> client.api.MovieCreateRequest
+	273,  // 1141: client.api.Movie.Delete:input_type -> client.api.MovieDeleteRequest
+	275,  // 1142: client.api.Movie.Retake:input_type -> client.api.MovieRetakeRequest
+	277,  // 1143: client.api.Music.SendActionLog:input_type -> client.api.MusicSendActionLogRequest
+	279,  // 1144: client.api.Music.SendBuyActionLog:input_type -> client.api.MusicSendBuyActionLogRequest
+	0,    // 1145: client.api.Notice.ListAll:input_type -> client.api.Empty
+	281,  // 1146: client.api.Notice.FetchList:input_type -> client.api.NoticeFetchListRequest
+	283,  // 1147: client.api.Notice.Get:input_type -> client.api.NoticeGetRequest
+	287,  // 1148: client.api.Notice.UpdateCategoryTime:input_type -> client.api.NoticeUpdateCategoryTimeRequest
+	289,  // 1149: client.api.Notice.UpdateDetailTime:input_type -> client.api.NoticeUpdateDetailTimeRequest
+	295,  // 1150: client.api.Photo.Create:input_type -> client.api.PhotoCreateRequest
+	293,  // 1151: client.api.Photo.CreateIdol:input_type -> client.api.PhotoCreateIdolRequest
+	291,  // 1152: client.api.Photo.CreateByMemory:input_type -> client.api.PhotoCreateByMemoryRequest
+	299,  // 1153: client.api.Photo.UpdateName:input_type -> client.api.PhotoUpdateNameRequest
+	301,  // 1154: client.api.Photo.UpdateProtection:input_type -> client.api.PhotoUpdateProtectionRequest
+	297,  // 1155: client.api.Photo.Delete:input_type -> client.api.PhotoDeleteRequest
+	303,  // 1156: client.api.Preference.Update:input_type -> client.api.PreferenceUpdateRequest
+	0,    // 1157: client.api.Produce.Top:input_type -> client.api.Empty
+	309,  // 1158: client.api.Produce.ChangeForceLiveCommon:input_type -> client.api.ProduceChangeForceLiveCommonRequest
+	431,  // 1159: client.api.Produce.UpdateSupportCardDeck:input_type -> client.api.ProduceUpdateSupportCardDeckRequest
+	428,  // 1160: client.api.Produce.UpdateMemoryDeck:input_type -> client.api.ProduceUpdateMemoryDeckRequest
+	0,    // 1161: client.api.Produce.ListRentalSupportCard:input_type -> client.api.Empty
+	336,  // 1162: client.api.Produce.ListRentalMemory:input_type -> client.api.ProduceListRentalMemoryRequest
+	313,  // 1163: client.api.Produce.CheckProgress:input_type -> client.api.ProduceCheckProgressRequest
+	376,  // 1164: client.api.Produce.Start:input_type -> client.api.ProduceStartRequest
+	0,    // 1165: client.api.Produce.Restart:input_type -> client.api.Empty
+	362,  // 1166: client.api.Produce.Save:input_type -> client.api.ProduceSaveRequest
+	339,  // 1167: client.api.Produce.Next:input_type -> client.api.ProduceNextRequest
+	422,  // 1168: client.api.Produce.StepSkip:input_type -> client.api.ProduceStepSkipRequest
+	396,  // 1169: client.api.Produce.StepEvent:input_type -> client.api.ProduceStepEventRequest
+	388,  // 1170: client.api.Produce.StepBusinessStart:input_type -> client.api.ProduceStepBusinessStartRequest
+	386,  // 1171: client.api.Produce.StepBusinessSelect:input_type -> client.api.ProduceStepBusinessSelectRequest
+	394,  // 1172: client.api.Produce.StepCustomizeStart:input_type -> client.api.ProduceStepCustomizeStartRequest
+	392,  // 1173: client.api.Produce.StepCustomizeSelect:input_type -> client.api.ProduceStepCustomizeSelectRequest
+	390,  // 1174: client.api.Produce.StepCustomizeEnd:input_type -> client.api.ProduceStepCustomizeEndRequest
+	408,  // 1175: client.api.Produce.StepRefresh:input_type -> client.api.ProduceStepRefreshRequest
+	420,  // 1176: client.api.Produce.StepShopStart:input_type -> client.api.ProduceStepShopStartRequest
+	418,  // 1177: client.api.Produce.StepShopReroll:input_type -> client.api.ProduceStepShopRerollRequest
+	414,  // 1178: client.api.Produce.StepShopBuy:input_type -> client.api.ProduceStepShopBuyRequest
+	416,  // 1179: client.api.Produce.StepShopEnd:input_type -> client.api.ProduceStepShopEndRequest
+	406,  // 1180: client.api.Produce.StepPresentStart:input_type -> client.api.ProduceStepPresentStartRequest
+	404,  // 1181: client.api.Produce.StepPresentReceive:input_type -> client.api.ProduceStepPresentReceiveRequest
+	402,  // 1182: client.api.Produce.StepPresentEnd:input_type -> client.api.ProduceStepPresentEndRequest
+	400,  // 1183: client.api.Produce.StepLessonStart:input_type -> client.api.ProduceStepLessonStartRequest
+	398,  // 1184: client.api.Produce.StepLessonEnd:input_type -> client.api.ProduceStepLessonEndRequest
+	412,  // 1185: client.api.Produce.StepSelfLessonStart:input_type -> client.api.ProduceStepSelfLessonStartRequest
+	410,  // 1186: client.api.Produce.StepSelfLessonEnd:input_type -> client.api.ProduceStepSelfLessonEndRequest
+	382,  // 1187: client.api.Produce.StepAuditionRefresh:input_type -> client.api.ProduceStepAuditionRefreshRequest
+	384,  // 1188: client.api.Produce.StepAuditionStart:input_type -> client.api.ProduceStepAuditionStartRequest
+	378,  // 1189: client.api.Produce.StepAuditionEndExamBattle:input_type -> client.api.ProduceStepAuditionEndExamBattleRequest
+	380,  // 1190: client.api.Produce.StepAuditionEnd:input_type -> client.api.ProduceStepAuditionEndRequest
+	317,  // 1191: client.api.Produce.DiscardDrink:input_type -> client.api.ProduceDiscardDrinkRequest
+	356,  // 1192: client.api.Produce.RerollSelectProduceCard:input_type -> client.api.ProduceRerollSelectProduceCardRequest
+	323,  // 1193: client.api.Produce.ExcludeProduceCard:input_type -> client.api.ProduceExcludeProduceCardRequest
+	305,  // 1194: client.api.Produce.ActivateEffect:input_type -> client.api.ProduceActivateEffectRequest
+	348,  // 1195: client.api.Produce.ReadDearnessStory:input_type -> client.api.ProduceReadDearnessStoryRequest
+	346,  // 1196: client.api.Produce.ReadAdv:input_type -> client.api.ProduceReadAdvRequest
+	374,  // 1197: client.api.Produce.StartBeforeLiveEvaluation:input_type -> client.api.ProduceStartBeforeLiveEvaluationRequest
+	319,  // 1198: client.api.Produce.EndBeforeLiveEvaluation:input_type -> client.api.ProduceEndBeforeLiveEvaluationRequest
+	354,  // 1199: client.api.Produce.RerollMemory:input_type -> client.api.ProduceRerollMemoryRequest
+	321,  // 1200: client.api.Produce.End:input_type -> client.api.ProduceEndRequest
+	359,  // 1201: client.api.Produce.Result:input_type -> client.api.ProduceResultRequest
+	352,  // 1202: client.api.Produce.ReportGuildMission:input_type -> client.api.ProduceReportGuildMissionRequest
+	350,  // 1203: client.api.Produce.ReportDearnessBoostEvent:input_type -> client.api.ProduceReportDearnessBoostEventRequest
+	315,  // 1204: client.api.Produce.Continue:input_type -> client.api.ProduceContinueRequest
+	0,    // 1205: client.api.Produce.Retire:input_type -> client.api.Empty
+	334,  // 1206: client.api.Produce.History:input_type -> client.api.ProduceHistoryRequest
+	344,  // 1207: client.api.Produce.RankingTop:input_type -> client.api.ProduceRankingTopRequest
+	342,  // 1208: client.api.Produce.Ranking:input_type -> client.api.ProduceRankingRequest
+	307,  // 1209: client.api.Produce.ChangeCostume:input_type -> client.api.ProduceChangeCostumeRequest
+	433,  // 1210: client.api.Produce.ViewPictureBookLive:input_type -> client.api.ProduceViewPictureBookLiveRequest
+	425,  // 1211: client.api.Produce.UnlockPictureBookLive:input_type -> client.api.ProduceUnlockPictureBookLiveRequest
+	311,  // 1212: client.api.Produce.ChangeProduceCardConversion:input_type -> client.api.ProduceChangeProduceCardConversionRequest
+	0,    // 1213: client.api.ProduceHighScore.Get:input_type -> client.api.Empty
+	330,  // 1214: client.api.ProduceHighScore.Ranking:input_type -> client.api.ProduceHighScoreRankingRequest
+	0,    // 1215: client.api.ProduceHighScore.ListRankReward:input_type -> client.api.Empty
+	0,    // 1216: client.api.ProducerRanking.Top:input_type -> client.api.Empty
+	449,  // 1217: client.api.ProducerRanking.Ranking:input_type -> client.api.ProducerRankingRankingRequest
+	439,  // 1218: client.api.ProducerRanking.Character:input_type -> client.api.ProducerRankingCharacterRequest
+	444,  // 1219: client.api.ProducerRanking.ListRankReward:input_type -> client.api.ProducerRankingListRankRewardRequest
+	451,  // 1220: client.api.ProducerRanking.TopHistory:input_type -> client.api.ProducerRankingTopHistoryRequest
+	447,  // 1221: client.api.ProducerRanking.RankingHistory:input_type -> client.api.ProducerRankingRankingHistoryRequest
+	436,  // 1222: client.api.ProducerRanking.CharacterHistory:input_type -> client.api.ProducerRankingCharacterHistoryRequest
+	442,  // 1223: client.api.ProducerRanking.GetTowerLayer:input_type -> client.api.ProducerRankingGetTowerLayerRequest
+	372,  // 1224: client.api.ProduceSeason.RankingTop:input_type -> client.api.ProduceSeasonRankingTopRequest
+	370,  // 1225: client.api.ProduceSeason.RankingTopHistory:input_type -> client.api.ProduceSeasonRankingTopHistoryRequest
+	368,  // 1226: client.api.ProduceSeason.Ranking:input_type -> client.api.ProduceSeasonRankingRequest
+	366,  // 1227: client.api.ProduceSeason.RankingHistory:input_type -> client.api.ProduceSeasonRankingHistoryRequest
+	456,  // 1228: client.api.Profile.Get:input_type -> client.api.ProfileGetRequest
+	466,  // 1229: client.api.Profile.UpdateName:input_type -> client.api.ProfileUpdateNameRequest
+	462,  // 1230: client.api.Profile.UpdateComment:input_type -> client.api.ProfileUpdateCommentRequest
+	460,  // 1231: client.api.Profile.UpdateBirthday:input_type -> client.api.ProfileUpdateBirthdayRequest
+	468,  // 1232: client.api.Profile.UpdateSupportCard:input_type -> client.api.ProfileUpdateSupportCardRequest
+	464,  // 1233: client.api.Profile.UpdateMemory:input_type -> client.api.ProfileUpdateMemoryRequest
+	458,  // 1234: client.api.Profile.UpdateBadge:input_type -> client.api.ProfileUpdateBadgeRequest
+	0,    // 1235: client.api.PvpRate.Initialize:input_type -> client.api.Empty
+	0,    // 1236: client.api.PvpRate.Get:input_type -> client.api.Empty
+	485,  // 1237: client.api.PvpRate.Start:input_type -> client.api.PvpRateStartRequest
+	0,    // 1238: client.api.PvpRate.PlayExamBattle:input_type -> client.api.Empty
+	470,  // 1239: client.api.PvpRate.End:input_type -> client.api.PvpRateEndRequest
+	0,    // 1240: client.api.PvpRate.PlayTest:input_type -> client.api.Empty
+	0,    // 1241: client.api.PvpRate.ListRanking:input_type -> client.api.Empty
+	0,    // 1242: client.api.PvpRate.ListHistory:input_type -> client.api.Empty
+	472,  // 1243: client.api.PvpRate.GetHistory:input_type -> client.api.PvpRateGetHistoryRequest
+	488,  // 1244: client.api.PvpRate.UpdateUserPvpRateUnit:input_type -> client.api.PvpRateUpdateUserPvpRateUnitRequest
+	0,    // 1245: client.api.Research.Get:input_type -> client.api.Empty
+	491,  // 1246: client.api.Research.Ranking:input_type -> client.api.ResearchRankingRequest
+	493,  // 1247: client.api.Research.RerollMemory:input_type -> client.api.ResearchRerollMemoryRequest
+	0,    // 1248: client.api.Seminar.ListExam:input_type -> client.api.Empty
+	497,  // 1249: client.api.Seminar.GetExam:input_type -> client.api.SeminarGetExamRequest
+	495,  // 1250: client.api.Seminar.EndExam:input_type -> client.api.SeminarEndExamRequest
+	0,    // 1251: client.api.Shop.Top:input_type -> client.api.Empty
+	508,  // 1252: client.api.Shop.ListItems:input_type -> client.api.ShopListItemsRequest
+	512,  // 1253: client.api.Shop.Purchase:input_type -> client.api.ShopPurchaseRequest
+	503,  // 1254: client.api.Shop.CheckPurchaseJewel:input_type -> client.api.ShopCheckPurchaseJewelRequest
+	0,    // 1255: client.api.Shop.CheckBirthday:input_type -> client.api.Empty
+	518,  // 1256: client.api.Shop.RegisterBirthday:input_type -> client.api.ShopRegisterBirthdayRequest
+	522,  // 1257: client.api.Shop.RegisterPurchaseTransaction:input_type -> client.api.ShopRegisterPurchaseTransactionRequest
+	500,  // 1258: client.api.Shop.CancelPurchaseTransaction:input_type -> client.api.ShopCancelPurchaseTransactionRequest
+	510,  // 1259: client.api.Shop.PurchaseJewel:input_type -> client.api.ShopPurchaseJewelRequest
+	516,  // 1260: client.api.Shop.RecoverPurchaseJewel:input_type -> client.api.ShopRecoverPurchaseJewelRequest
+	520,  // 1261: client.api.Shop.RegisterDelayPurchaseTransaction:input_type -> client.api.ShopRegisterDelayPurchaseTransactionRequest
+	505,  // 1262: client.api.Shop.GetPurchasePlatformTransaction:input_type -> client.api.ShopGetPurchasePlatformTransactionRequest
+	514,  // 1263: client.api.Shop.ReadWebStoreUserPurchaseTransaction:input_type -> client.api.ShopReadWebStoreUserPurchaseTransactionRequest
+	527,  // 1264: client.api.Startup.ListNotifications:input_type -> client.api.StartupListNotificationsRequest
+	525,  // 1265: client.api.Startup.Confirm:input_type -> client.api.StartupConfirmRequest
+	534,  // 1266: client.api.StoryEvent.Top:input_type -> client.api.StoryEventTopRequest
+	530,  // 1267: client.api.StoryEvent.ListGuildMission:input_type -> client.api.StoryEventListGuildMissionRequest
+	532,  // 1268: client.api.StoryEvent.ReceiveGuildMission:input_type -> client.api.StoryEventReceiveGuildMissionRequest
+	540,  // 1269: client.api.Story.Read:input_type -> client.api.StoryReadRequest
+	538,  // 1270: client.api.Story.ReadProduceStory:input_type -> client.api.StoryReadProduceStoryRequest
+	536,  // 1271: client.api.Story.ReadDearnessStory:input_type -> client.api.StoryReadDearnessStoryRequest
+	546,  // 1272: client.api.Story.Unlock:input_type -> client.api.StoryUnlockRequest
+	544,  // 1273: client.api.Story.UnlockProduceStory:input_type -> client.api.StoryUnlockProduceStoryRequest
+	542,  // 1274: client.api.Story.UnlockDearnessStory:input_type -> client.api.StoryUnlockDearnessStoryRequest
+	548,  // 1275: client.api.SupportCard.Enhance:input_type -> client.api.SupportCardEnhanceRequest
+	555,  // 1276: client.api.SupportCard.UpgradeLevelLimitRank:input_type -> client.api.SupportCardUpgradeLevelLimitRankRequest
+	550,  // 1277: client.api.SupportCard.Exchange:input_type -> client.api.SupportCardExchangeRequest
+	0,    // 1278: client.api.SupportCard.ListDeckRanking:input_type -> client.api.Empty
+	557,  // 1279: client.api.System.Check:input_type -> client.api.SystemCheckRequest
+	562,  // 1280: client.api.TicketExchange.ListItems:input_type -> client.api.TicketExchangeListItemsRequest
+	559,  // 1281: client.api.TicketExchange.Execute:input_type -> client.api.TicketExchangeExecuteRequest
+	582,  // 1282: client.api.Tour.Top:input_type -> client.api.TourTopRequest
+	569,  // 1283: client.api.Tour.GetProgress:input_type -> client.api.TourGetProgressRequest
+	580,  // 1284: client.api.Tour.Start:input_type -> client.api.TourStartRequest
+	567,  // 1285: client.api.Tour.End:input_type -> client.api.TourEndRequest
+	573,  // 1286: client.api.Tour.Result:input_type -> client.api.TourResultRequest
+	564,  // 1287: client.api.Tour.Continue:input_type -> client.api.TourContinueRequest
+	0,    // 1288: client.api.Tour.Retire:input_type -> client.api.Empty
+	571,  // 1289: client.api.Tour.PlayTest:input_type -> client.api.TourPlayTestRequest
+	585,  // 1290: client.api.Tour.UpdateDeck:input_type -> client.api.TourUpdateDeckRequest
+	0,    // 1291: client.api.Tour.StageRanking:input_type -> client.api.Empty
+	0,    // 1292: client.api.Tower.Top:input_type -> client.api.Empty
+	609,  // 1293: client.api.Tower.ListLayers:input_type -> client.api.TowerListLayersRequest
+	595,  // 1294: client.api.Tower.GetLayer:input_type -> client.api.TowerGetLayerRequest
+	619,  // 1295: client.api.Tower.Start:input_type -> client.api.TowerStartRequest
+	589,  // 1296: client.api.Tower.End:input_type -> client.api.TowerEndRequest
+	587,  // 1297: client.api.Tower.Check:input_type -> client.api.TowerCheckRequest
+	622,  // 1298: client.api.Tower.UpdateMemoryDeck:input_type -> client.api.TowerUpdateMemoryDeckRequest
+	615,  // 1299: client.api.Tower.ReceiveLayerCountReward:input_type -> client.api.TowerReceiveLayerCountRewardRequest
+	617,  // 1300: client.api.Tower.ReceiveTotalClearRankReward:input_type -> client.api.TowerReceiveTotalClearRankRewardRequest
+	607,  // 1301: client.api.Tower.ListLayerPlayerHistories:input_type -> client.api.TowerListLayerPlayerHistoriesRequest
+	605,  // 1302: client.api.Tower.GetRanking:input_type -> client.api.TowerGetRankingRequest
+	601,  // 1303: client.api.Tower.GetPastSeasonRanking:input_type -> client.api.TowerGetPastSeasonRankingRequest
+	591,  // 1304: client.api.Tower.GetLayerIdolCardRanking:input_type -> client.api.TowerGetLayerIdolCardRankingRequest
+	597,  // 1305: client.api.Tower.GetPastSeasonLayerIdolCardRanking:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingRequest
+	593,  // 1306: client.api.Tower.GetLayerIdolCardRankingTop:input_type -> client.api.TowerGetLayerIdolCardRankingTopRequest
+	599,  // 1307: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:input_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopRequest
+	603,  // 1308: client.api.Tower.GetRankingDeck:input_type -> client.api.TowerGetRankingDeckRequest
+	647,  // 1309: client.api.Tutorial.UnlockFeature:input_type -> client.api.TutorialUnlockFeatureRequest
+	643,  // 1310: client.api.Tutorial.SetName:input_type -> client.api.TutorialSetNameRequest
+	637,  // 1311: client.api.Tutorial.Progress:input_type -> client.api.TutorialProgressRequest
+	645,  // 1312: client.api.Tutorial.Skip:input_type -> client.api.TutorialSkipRequest
+	639,  // 1313: client.api.Tutorial.ReadDearnessStory:input_type -> client.api.TutorialReadDearnessStoryRequest
+	641,  // 1314: client.api.Tutorial.ReceiveIdolCard:input_type -> client.api.TutorialReceiveIdolCardRequest
+	628,  // 1315: client.api.Tutorial.ProduceStart:input_type -> client.api.TutorialProduceStartRequest
+	0,    // 1316: client.api.Tutorial.ProduceNext:input_type -> client.api.Empty
+	633,  // 1317: client.api.Tutorial.ProduceStepLessonEnd:input_type -> client.api.TutorialProduceStepLessonEndRequest
+	635,  // 1318: client.api.Tutorial.ProduceStepPresentReceive:input_type -> client.api.TutorialProduceStepPresentReceiveRequest
+	631,  // 1319: client.api.Tutorial.ProduceStepAuditionExamEnd:input_type -> client.api.TutorialProduceStepAuditionExamEndRequest
+	0,    // 1320: client.api.Tutorial.ProduceStepAuditionEnd:input_type -> client.api.Empty
+	0,    // 1321: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:input_type -> client.api.Empty
+	626,  // 1322: client.api.Tutorial.ProduceResult:input_type -> client.api.TutorialProduceResultRequest
+	649,  // 1323: client.api.UserBlock.Block:input_type -> client.api.UserBlockBlockRequest
+	652,  // 1324: client.api.UserBlock.Unblock:input_type -> client.api.UserBlockUnblockRequest
+	0,    // 1325: client.api.UserBlock.ListBlock:input_type -> client.api.Empty
+	0,    // 1326: client.api.User.Get:input_type -> client.api.Empty
+	0,    // 1327: client.api.User.GetBalance:input_type -> client.api.Empty
+	658,  // 1328: client.api.User.ReadForceTitleTransitionTime:input_type -> client.api.UserReadForceTitleTransitionTimeRequest
+	656,  // 1329: client.api.User.ListMessage:input_type -> client.api.UserListMessageRequest
+	660,  // 1330: client.api.User.ReadMessage:input_type -> client.api.UserReadMessageRequest
+	0,    // 1331: client.api.Work.Top:input_type -> client.api.Empty
+	666,  // 1332: client.api.Work.Start:input_type -> client.api.WorkStartRequest
+	668,  // 1333: client.api.Work.Stop:input_type -> client.api.WorkStopRequest
+	664,  // 1334: client.api.Work.Skip:input_type -> client.api.WorkSkipRequest
+	0,    // 1335: client.api.Work.Finish:input_type -> client.api.Empty
+	3,    // 1336: client.api.Auth.Create:output_type -> client.api.AuthCreateResponse
+	8,    // 1337: client.api.Auth.Login:output_type -> client.api.AuthLoginResponse
+	6,    // 1338: client.api.Auth.LinkBandaiNamcoId:output_type -> client.api.AuthLinkBandaiNamcoIdResponse
+	16,   // 1339: client.api.Auth.Unlink:output_type -> client.api.AuthUnlinkResponse
+	13,   // 1340: client.api.Auth.PrepareMigrationBandaiNamcoId:output_type -> client.api.AuthPrepareMigrationBandaiNamcoIdResponse
+	11,   // 1341: client.api.Auth.Migrate:output_type -> client.api.AuthMigrateResponse
+	9,    // 1342: client.api.Auth.MigrateDmmGamesId:output_type -> client.api.AuthMigrateDmmGamesIdResponse
+	2,    // 1343: client.api.Auth.AgreeTerms:output_type -> client.api.AuthAgreeTermsResponse
+	4,    // 1344: client.api.Auth.GetConsent:output_type -> client.api.AuthGetConsentResponse
+	15,   // 1345: client.api.Auth.SendConsent:output_type -> client.api.AuthSendConsentResponse
+	18,   // 1346: client.api.Character.CheckRoster:output_type -> client.api.CharacterCheckRosterResponse
+	23,   // 1347: client.api.CoinGasha.Get:output_type -> client.api.CoinGashaGetResponse
+	24,   // 1348: client.api.CoinGasha.List:output_type -> client.api.CoinGashaListResponse
+	20,   // 1349: client.api.CoinGasha.Draw:output_type -> client.api.CoinGashaDrawResponse
+	26,   // 1350: client.api.CoinGasha.ResetBox:output_type -> client.api.CoinGashaResetBoxResponse
+	33,   // 1351: client.api.Competition.Initialize:output_type -> client.api.CompetitionInitializeResponse
+	32,   // 1352: client.api.Competition.Get:output_type -> client.api.CompetitionGetResponse
+	37,   // 1353: client.api.Competition.ListReward:output_type -> client.api.CompetitionListRewardResponse
+	52,   // 1354: client.api.Competition.Start:output_type -> client.api.CompetitionStartResponse
+	50,   // 1355: client.api.Competition.SelectAuto:output_type -> client.api.CompetitionSelectAutoResponse
+	30,   // 1356: client.api.Competition.End:output_type -> client.api.CompetitionEndResponse
+	47,   // 1357: client.api.Competition.Retire:output_type -> client.api.CompetitionRetireResponse
+	28,   // 1358: client.api.Competition.Continue:output_type -> client.api.CompetitionContinueResponse
+	46,   // 1359: client.api.Competition.Result:output_type -> client.api.CompetitionResultResponse
+	40,   // 1360: client.api.Competition.PlayTest:output_type -> client.api.CompetitionPlayTestResponse
+	44,   // 1361: client.api.Competition.ResultPlayTest:output_type -> client.api.CompetitionResultPlayTestResponse
+	54,   // 1362: client.api.Competition.UpdateDeck:output_type -> client.api.CompetitionUpdateDeckResponse
+	56,   // 1363: client.api.Competition.UpdateSeasonDeck:output_type -> client.api.CompetitionUpdateSeasonDeckResponse
+	35,   // 1364: client.api.Competition.ListHighScoreRanking:output_type -> client.api.CompetitionListHighScoreRankingResponse
+	38,   // 1365: client.api.Competition.ListWinCountRanking:output_type -> client.api.CompetitionListWinCountRankingResponse
+	36,   // 1366: client.api.Competition.ListHistory:output_type -> client.api.CompetitionListHistoryResponse
+	34,   // 1367: client.api.Competition.ListDeckProduceCardRanking:output_type -> client.api.CompetitionListDeckProduceCardRankingResponse
+	64,   // 1368: client.api.Costume.Set:output_type -> client.api.CostumeSetResponse
+	60,   // 1369: client.api.Costume.Check:output_type -> client.api.CostumeCheckResponse
+	62,   // 1370: client.api.Costume.SetRandom:output_type -> client.api.CostumeSetRandomResponse
+	70,   // 1371: client.api.Exchange.Get:output_type -> client.api.ExchangeGetResponse
+	74,   // 1372: client.api.Exchange.List:output_type -> client.api.ExchangeListResponse
+	68,   // 1373: client.api.Exchange.Execute:output_type -> client.api.ExchangeExecuteResponse
+	76,   // 1374: client.api.Exchange.Reset:output_type -> client.api.ExchangeResetResponse
+	82,   // 1375: client.api.Friend.List:output_type -> client.api.FriendListResponse
+	83,   // 1376: client.api.Friend.ListSuggestion:output_type -> client.api.FriendListSuggestionResponse
+	80,   // 1377: client.api.Friend.Follow:output_type -> client.api.FriendFollowResponse
+	85,   // 1378: client.api.Friend.UnFollow:output_type -> client.api.FriendUnFollowResponse
+	78,   // 1379: client.api.Friend.DeleteFollower:output_type -> client.api.FriendDeleteFollowerResponse
+	115,  // 1380: client.api.Gasha.List:output_type -> client.api.GashaListResponse
+	92,   // 1381: client.api.Gasha.Draw:output_type -> client.api.GashaDrawResponse
+	110,  // 1382: client.api.Gasha.GetProbability:output_type -> client.api.GashaGetProbabilityResponse
+	125,  // 1383: client.api.Gasha.SelectPickup:output_type -> client.api.GashaSelectPickupResponse
+	95,   // 1384: client.api.Gasha.DrawSelectPickup:output_type -> client.api.GashaDrawSelectPickupResponse
+	112,  // 1385: client.api.Gasha.GetSelectPickupProbability:output_type -> client.api.GashaGetSelectPickupProbabilityResponse
+	97,   // 1386: client.api.Gasha.DrawStepUp:output_type -> client.api.GashaDrawStepUpResponse
+	114,  // 1387: client.api.Gasha.GetStepUpProbability:output_type -> client.api.GashaGetStepUpProbabilityResponse
+	90,   // 1388: client.api.Gasha.DrawContinuous:output_type -> client.api.GashaDrawContinuousResponse
+	87,   // 1389: client.api.Gasha.ContinueDrawContinuous:output_type -> client.api.GashaContinueDrawContinuousResponse
+	117,  // 1390: client.api.Gasha.PickContinuousDrawRewardCount:output_type -> client.api.GashaPickContinuousDrawRewardCountResponse
+	123,  // 1391: client.api.Gasha.ResumeContinuous:output_type -> client.api.GashaResumeContinuousResponse
+	102,  // 1392: client.api.Gasha.FinishContinuous:output_type -> client.api.GashaFinishContinuousResponse
+	121,  // 1393: client.api.Gasha.ReportShareSnsContinuousMission:output_type -> client.api.GashaReportShareSnsContinuousMissionResponse
+	104,  // 1394: client.api.Gasha.GetContinuousProbability:output_type -> client.api.GashaGetContinuousProbabilityResponse
+	106,  // 1395: client.api.Gasha.GetPointExchange:output_type -> client.api.GashaGetPointExchangeResponse
+	99,   // 1396: client.api.Gasha.ExchangePoint:output_type -> client.api.GashaExchangePointResponse
+	100,  // 1397: client.api.Gasha.ExpirePoint:output_type -> client.api.GashaExpirePointResponse
+	108,  // 1398: client.api.Gasha.GetPrecaution:output_type -> client.api.GashaGetPrecautionResponse
+	130,  // 1399: client.api.Gift.List:output_type -> client.api.GiftListResponse
+	126,  // 1400: client.api.Gift.Count:output_type -> client.api.GiftCountResponse
+	128,  // 1401: client.api.Gift.ListHistory:output_type -> client.api.GiftListHistoryResponse
+	132,  // 1402: client.api.Gift.Open:output_type -> client.api.GiftOpenResponse
+	169,  // 1403: client.api.Guild.Top:output_type -> client.api.GuildTopResponse
+	168,  // 1404: client.api.Guild.Search:output_type -> client.api.GuildSearchResponse
+	154,  // 1405: client.api.Guild.Get:output_type -> client.api.GuildGetResponse
+	152,  // 1406: client.api.Guild.Establish:output_type -> client.api.GuildEstablishResponse
+	148,  // 1407: client.api.Guild.EditDetail:output_type -> client.api.GuildEditDetailResponse
+	150,  // 1408: client.api.Guild.EditLeaderMessage:output_type -> client.api.GuildEditLeaderMessageResponse
+	134,  // 1409: client.api.Guild.ApplyJoinRequest:output_type -> client.api.GuildApplyJoinRequestResponse
+	138,  // 1410: client.api.Guild.CancelJoinRequest:output_type -> client.api.GuildCancelJoinRequestResponse
+	158,  // 1411: client.api.Guild.ListJoinRequest:output_type -> client.api.GuildListJoinRequestResponse
+	136,  // 1412: client.api.Guild.ApproveJoinRequest:output_type -> client.api.GuildApproveJoinRequestResponse
+	164,  // 1413: client.api.Guild.RejectJoinRequest:output_type -> client.api.GuildRejectJoinRequestResponse
+	156,  // 1414: client.api.Guild.Leave:output_type -> client.api.GuildLeaveResponse
+	142,  // 1415: client.api.Guild.Dismiss:output_type -> client.api.GuildDismissResponse
+	140,  // 1416: client.api.Guild.ChangeLeader:output_type -> client.api.GuildChangeLeaderResponse
+	159,  // 1417: client.api.Guild.ListMember:output_type -> client.api.GuildListMemberResponse
+	143,  // 1418: client.api.Guild.Dissolve:output_type -> client.api.GuildDissolveResponse
+	157,  // 1419: client.api.Guild.ListDonationRequest:output_type -> client.api.GuildListDonationRequestResponse
+	166,  // 1420: client.api.Guild.RequestDonation:output_type -> client.api.GuildRequestDonationResponse
+	145,  // 1421: client.api.Guild.Donate:output_type -> client.api.GuildDonateResponse
+	162,  // 1422: client.api.Guild.ReceiveDonation:output_type -> client.api.GuildReceiveDonationResponse
+	171,  // 1423: client.api.Guild.UpdateLeaderMessageReaction:output_type -> client.api.GuildUpdateLeaderMessageReactionResponse
+	185,  // 1424: client.api.GvgRaid.Top:output_type -> client.api.GvgRaidTopResponse
+	175,  // 1425: client.api.GvgRaid.GetProgress:output_type -> client.api.GvgRaidGetProgressResponse
+	184,  // 1426: client.api.GvgRaid.Start:output_type -> client.api.GvgRaidStartResponse
+	174,  // 1427: client.api.GvgRaid.End:output_type -> client.api.GvgRaidEndResponse
+	179,  // 1428: client.api.GvgRaid.PlayTest:output_type -> client.api.GvgRaidPlayTestResponse
+	177,  // 1429: client.api.GvgRaid.GuildRanking:output_type -> client.api.GvgRaidGuildRankingResponse
+	189,  // 1430: client.api.GvgRaid.UserRanking:output_type -> client.api.GvgRaidUserRankingResponse
+	187,  // 1431: client.api.GvgRaid.UpdateDeck:output_type -> client.api.GvgRaidUpdateDeckResponse
+	191,  // 1432: client.api.Health.Check:output_type -> client.api.HealthCheckResponse
+	195,  // 1433: client.api.Home.Login:output_type -> client.api.HomeLoginResponse
+	193,  // 1434: client.api.Home.Enter:output_type -> client.api.HomeEnterResponse
+	194,  // 1435: client.api.Home.ListEvent:output_type -> client.api.HomeListEventResponse
+	192,  // 1436: client.api.Home.ConfirmBanWarning:output_type -> client.api.HomeConfirmBanWarningResponse
+	197,  // 1437: client.api.Home.SetCharacters:output_type -> client.api.HomeSetCharactersResponse
+	205,  // 1438: client.api.IdolCard.UpgradeLevelLimitRank:output_type -> client.api.IdolCardUpgradeLevelLimitRankResponse
+	207,  // 1439: client.api.IdolCard.UpgradePotentialRank:output_type -> client.api.IdolCardUpgradePotentialRankResponse
+	203,  // 1440: client.api.IdolCard.Release:output_type -> client.api.IdolCardReleaseResponse
+	199,  // 1441: client.api.IdolCard.ChangeSkin:output_type -> client.api.IdolCardChangeSkinResponse
+	209,  // 1442: client.api.Invitation.EnterInvitationCode:output_type -> client.api.InvitationEnterInvitationCodeResponse
+	210,  // 1443: client.api.Invitation.ListInviteUser:output_type -> client.api.InvitationListInviteUserResponse
+	212,  // 1444: client.api.Invitation.ReceiveInvitationPoint:output_type -> client.api.InvitationReceiveInvitationPointResponse
+	217,  // 1445: client.api.Item.Sell:output_type -> client.api.ItemSellResponse
+	215,  // 1446: client.api.Item.ExchangeIdolCardPiece:output_type -> client.api.ItemExchangeIdolCardPieceResponse
+	219,  // 1447: client.api.Item.UseActionPointRecovery:output_type -> client.api.ItemUseActionPointRecoveryResponse
+	220,  // 1448: client.api.LoginBonus.Check:output_type -> client.api.LoginBonusCheckResponse
+	221,  // 1449: client.api.LoginBonus.Confirm:output_type -> client.api.LoginBonusConfirmResponse
+	222,  // 1450: client.api.Master.Get:output_type -> client.api.MasterGetResponse
+	224,  // 1451: client.api.Media.Play:output_type -> client.api.MediaPlayResponse
+	232,  // 1452: client.api.Meishi.Get:output_type -> client.api.MeishiGetResponse
+	230,  // 1453: client.api.Meishi.GetDetail:output_type -> client.api.MeishiGetDetailResponse
+	234,  // 1454: client.api.Meishi.List:output_type -> client.api.MeishiListResponse
+	233,  // 1455: client.api.Meishi.ListFollow:output_type -> client.api.MeishiListFollowResponse
+	238,  // 1456: client.api.Meishi.Set:output_type -> client.api.MeishiSetResponse
+	242,  // 1457: client.api.Meishi.Update:output_type -> client.api.MeishiUpdateResponse
+	226,  // 1458: client.api.Meishi.Delete:output_type -> client.api.MeishiDeleteResponse
+	228,  // 1459: client.api.Meishi.Follow:output_type -> client.api.MeishiFollowResponse
+	240,  // 1460: client.api.Meishi.Unfollow:output_type -> client.api.MeishiUnfollowResponse
+	236,  // 1461: client.api.Meishi.ReportXPostMission:output_type -> client.api.MeishiReportXPostMissionResponse
+	248,  // 1462: client.api.Memory.Inherit:output_type -> client.api.MemoryInheritResponse
+	246,  // 1463: client.api.Memory.FixInherit:output_type -> client.api.MemoryFixInheritResponse
+	244,  // 1464: client.api.Memory.Exchange:output_type -> client.api.MemoryExchangeResponse
+	252,  // 1465: client.api.Memory.UpdateProtection:output_type -> client.api.MemoryUpdateProtectionResponse
+	254,  // 1466: client.api.Memory.UpdateResearchFavorite:output_type -> client.api.MemoryUpdateResearchFavoriteResponse
+	256,  // 1467: client.api.Memory.UpdateTagSetting:output_type -> client.api.MemoryUpdateTagSettingResponse
+	250,  // 1468: client.api.Memory.Reshooting:output_type -> client.api.MemoryReshootingResponse
+	259,  // 1469: client.api.Mission.ListEvent:output_type -> client.api.MissionListEventResponse
+	267,  // 1470: client.api.Mission.Receive:output_type -> client.api.MissionReceiveResponse
+	263,  // 1471: client.api.Mission.ReceiveGroup:output_type -> client.api.MissionReceiveGroupResponse
+	261,  // 1472: client.api.Mission.ReceiveGroupAll:output_type -> client.api.MissionReceiveGroupAllResponse
+	265,  // 1473: client.api.Mission.ReceivePass:output_type -> client.api.MissionReceivePassResponse
+	258,  // 1474: client.api.Mission.ExchangePassPoint:output_type -> client.api.MissionExchangePassPointResponse
+	269,  // 1475: client.api.Mission.UrlTransition:output_type -> client.api.MissionUrlTransitionResponse
+	270,  // 1476: client.api.Money.Receive:output_type -> client.api.MoneyReceiveResponse
+	272,  // 1477: client.api.Movie.Create:output_type -> client.api.MovieCreateResponse
+	274,  // 1478: client.api.Movie.Delete:output_type -> client.api.MovieDeleteResponse
+	276,  // 1479: client.api.Movie.Retake:output_type -> client.api.MovieRetakeResponse
+	278,  // 1480: client.api.Music.SendActionLog:output_type -> client.api.MusicSendActionLogResponse
+	280,  // 1481: client.api.Music.SendBuyActionLog:output_type -> client.api.MusicSendBuyActionLogResponse
+	286,  // 1482: client.api.Notice.ListAll:output_type -> client.api.NoticeListAllResponse
+	282,  // 1483: client.api.Notice.FetchList:output_type -> client.api.NoticeFetchListResponse
+	284,  // 1484: client.api.Notice.Get:output_type -> client.api.NoticeGetResponse
+	288,  // 1485: client.api.Notice.UpdateCategoryTime:output_type -> client.api.NoticeUpdateCategoryTimeResponse
+	290,  // 1486: client.api.Notice.UpdateDetailTime:output_type -> client.api.NoticeUpdateDetailTimeResponse
+	296,  // 1487: client.api.Photo.Create:output_type -> client.api.PhotoCreateResponse
+	294,  // 1488: client.api.Photo.CreateIdol:output_type -> client.api.PhotoCreateIdolResponse
+	292,  // 1489: client.api.Photo.CreateByMemory:output_type -> client.api.PhotoCreateByMemoryResponse
+	300,  // 1490: client.api.Photo.UpdateName:output_type -> client.api.PhotoUpdateNameResponse
+	302,  // 1491: client.api.Photo.UpdateProtection:output_type -> client.api.PhotoUpdateProtectionResponse
+	298,  // 1492: client.api.Photo.Delete:output_type -> client.api.PhotoDeleteResponse
+	304,  // 1493: client.api.Preference.Update:output_type -> client.api.PreferenceUpdateResponse
+	424,  // 1494: client.api.Produce.Top:output_type -> client.api.ProduceTopResponse
+	310,  // 1495: client.api.Produce.ChangeForceLiveCommon:output_type -> client.api.ProduceChangeForceLiveCommonResponse
+	432,  // 1496: client.api.Produce.UpdateSupportCardDeck:output_type -> client.api.ProduceUpdateSupportCardDeckResponse
+	429,  // 1497: client.api.Produce.UpdateMemoryDeck:output_type -> client.api.ProduceUpdateMemoryDeckResponse
+	338,  // 1498: client.api.Produce.ListRentalSupportCard:output_type -> client.api.ProduceListRentalSupportCardResponse
+	337,  // 1499: client.api.Produce.ListRentalMemory:output_type -> client.api.ProduceListRentalMemoryResponse
+	314,  // 1500: client.api.Produce.CheckProgress:output_type -> client.api.ProduceCheckProgressResponse
+	377,  // 1501: client.api.Produce.Start:output_type -> client.api.ProduceStartResponse
+	358,  // 1502: client.api.Produce.Restart:output_type -> client.api.ProduceRestartResponse
+	363,  // 1503: client.api.Produce.Save:output_type -> client.api.ProduceSaveResponse
+	340,  // 1504: client.api.Produce.Next:output_type -> client.api.ProduceNextResponse
+	423,  // 1505: client.api.Produce.StepSkip:output_type -> client.api.ProduceStepSkipResponse
+	397,  // 1506: client.api.Produce.StepEvent:output_type -> client.api.ProduceStepEventResponse
+	389,  // 1507: client.api.Produce.StepBusinessStart:output_type -> client.api.ProduceStepBusinessStartResponse
+	387,  // 1508: client.api.Produce.StepBusinessSelect:output_type -> client.api.ProduceStepBusinessSelectResponse
+	395,  // 1509: client.api.Produce.StepCustomizeStart:output_type -> client.api.ProduceStepCustomizeStartResponse
+	393,  // 1510: client.api.Produce.StepCustomizeSelect:output_type -> client.api.ProduceStepCustomizeSelectResponse
+	391,  // 1511: client.api.Produce.StepCustomizeEnd:output_type -> client.api.ProduceStepCustomizeEndResponse
+	409,  // 1512: client.api.Produce.StepRefresh:output_type -> client.api.ProduceStepRefreshResponse
+	421,  // 1513: client.api.Produce.StepShopStart:output_type -> client.api.ProduceStepShopStartResponse
+	419,  // 1514: client.api.Produce.StepShopReroll:output_type -> client.api.ProduceStepShopRerollResponse
+	415,  // 1515: client.api.Produce.StepShopBuy:output_type -> client.api.ProduceStepShopBuyResponse
+	417,  // 1516: client.api.Produce.StepShopEnd:output_type -> client.api.ProduceStepShopEndResponse
+	407,  // 1517: client.api.Produce.StepPresentStart:output_type -> client.api.ProduceStepPresentStartResponse
+	405,  // 1518: client.api.Produce.StepPresentReceive:output_type -> client.api.ProduceStepPresentReceiveResponse
+	403,  // 1519: client.api.Produce.StepPresentEnd:output_type -> client.api.ProduceStepPresentEndResponse
+	401,  // 1520: client.api.Produce.StepLessonStart:output_type -> client.api.ProduceStepLessonStartResponse
+	399,  // 1521: client.api.Produce.StepLessonEnd:output_type -> client.api.ProduceStepLessonEndResponse
+	413,  // 1522: client.api.Produce.StepSelfLessonStart:output_type -> client.api.ProduceStepSelfLessonStartResponse
+	411,  // 1523: client.api.Produce.StepSelfLessonEnd:output_type -> client.api.ProduceStepSelfLessonEndResponse
+	383,  // 1524: client.api.Produce.StepAuditionRefresh:output_type -> client.api.ProduceStepAuditionRefreshResponse
+	385,  // 1525: client.api.Produce.StepAuditionStart:output_type -> client.api.ProduceStepAuditionStartResponse
+	379,  // 1526: client.api.Produce.StepAuditionEndExamBattle:output_type -> client.api.ProduceStepAuditionEndExamBattleResponse
+	381,  // 1527: client.api.Produce.StepAuditionEnd:output_type -> client.api.ProduceStepAuditionEndResponse
+	318,  // 1528: client.api.Produce.DiscardDrink:output_type -> client.api.ProduceDiscardDrinkResponse
+	357,  // 1529: client.api.Produce.RerollSelectProduceCard:output_type -> client.api.ProduceRerollSelectProduceCardResponse
+	324,  // 1530: client.api.Produce.ExcludeProduceCard:output_type -> client.api.ProduceExcludeProduceCardResponse
+	306,  // 1531: client.api.Produce.ActivateEffect:output_type -> client.api.ProduceActivateEffectResponse
+	349,  // 1532: client.api.Produce.ReadDearnessStory:output_type -> client.api.ProduceReadDearnessStoryResponse
+	347,  // 1533: client.api.Produce.ReadAdv:output_type -> client.api.ProduceReadAdvResponse
+	375,  // 1534: client.api.Produce.StartBeforeLiveEvaluation:output_type -> client.api.ProduceStartBeforeLiveEvaluationResponse
+	320,  // 1535: client.api.Produce.EndBeforeLiveEvaluation:output_type -> client.api.ProduceEndBeforeLiveEvaluationResponse
+	355,  // 1536: client.api.Produce.RerollMemory:output_type -> client.api.ProduceRerollMemoryResponse
+	322,  // 1537: client.api.Produce.End:output_type -> client.api.ProduceEndResponse
+	360,  // 1538: client.api.Produce.Result:output_type -> client.api.ProduceResultResponse
+	353,  // 1539: client.api.Produce.ReportGuildMission:output_type -> client.api.ProduceReportGuildMissionResponse
+	351,  // 1540: client.api.Produce.ReportDearnessBoostEvent:output_type -> client.api.ProduceReportDearnessBoostEventResponse
+	316,  // 1541: client.api.Produce.Continue:output_type -> client.api.ProduceContinueResponse
+	361,  // 1542: client.api.Produce.Retire:output_type -> client.api.ProduceRetireResponse
+	335,  // 1543: client.api.Produce.History:output_type -> client.api.ProduceHistoryResponse
+	345,  // 1544: client.api.Produce.RankingTop:output_type -> client.api.ProduceRankingTopResponse
+	343,  // 1545: client.api.Produce.Ranking:output_type -> client.api.ProduceRankingResponse
+	308,  // 1546: client.api.Produce.ChangeCostume:output_type -> client.api.ProduceChangeCostumeResponse
+	434,  // 1547: client.api.Produce.ViewPictureBookLive:output_type -> client.api.ProduceViewPictureBookLiveResponse
+	426,  // 1548: client.api.Produce.UnlockPictureBookLive:output_type -> client.api.ProduceUnlockPictureBookLiveResponse
+	312,  // 1549: client.api.Produce.ChangeProduceCardConversion:output_type -> client.api.ProduceChangeProduceCardConversionResponse
+	327,  // 1550: client.api.ProduceHighScore.Get:output_type -> client.api.ProduceHighScoreGetResponse
+	331,  // 1551: client.api.ProduceHighScore.Ranking:output_type -> client.api.ProduceHighScoreRankingResponse
+	328,  // 1552: client.api.ProduceHighScore.ListRankReward:output_type -> client.api.ProduceHighScoreListRankRewardResponse
+	453,  // 1553: client.api.ProducerRanking.Top:output_type -> client.api.ProducerRankingTopResponse
+	450,  // 1554: client.api.ProducerRanking.Ranking:output_type -> client.api.ProducerRankingRankingResponse
+	440,  // 1555: client.api.ProducerRanking.Character:output_type -> client.api.ProducerRankingCharacterResponse
+	445,  // 1556: client.api.ProducerRanking.ListRankReward:output_type -> client.api.ProducerRankingListRankRewardResponse
+	452,  // 1557: client.api.ProducerRanking.TopHistory:output_type -> client.api.ProducerRankingTopHistoryResponse
+	448,  // 1558: client.api.ProducerRanking.RankingHistory:output_type -> client.api.ProducerRankingRankingHistoryResponse
+	437,  // 1559: client.api.ProducerRanking.CharacterHistory:output_type -> client.api.ProducerRankingCharacterHistoryResponse
+	443,  // 1560: client.api.ProducerRanking.GetTowerLayer:output_type -> client.api.ProducerRankingGetTowerLayerResponse
+	373,  // 1561: client.api.ProduceSeason.RankingTop:output_type -> client.api.ProduceSeasonRankingTopResponse
+	371,  // 1562: client.api.ProduceSeason.RankingTopHistory:output_type -> client.api.ProduceSeasonRankingTopHistoryResponse
+	369,  // 1563: client.api.ProduceSeason.Ranking:output_type -> client.api.ProduceSeasonRankingResponse
+	367,  // 1564: client.api.ProduceSeason.RankingHistory:output_type -> client.api.ProduceSeasonRankingHistoryResponse
+	457,  // 1565: client.api.Profile.Get:output_type -> client.api.ProfileGetResponse
+	467,  // 1566: client.api.Profile.UpdateName:output_type -> client.api.ProfileUpdateNameResponse
+	463,  // 1567: client.api.Profile.UpdateComment:output_type -> client.api.ProfileUpdateCommentResponse
+	461,  // 1568: client.api.Profile.UpdateBirthday:output_type -> client.api.ProfileUpdateBirthdayResponse
+	469,  // 1569: client.api.Profile.UpdateSupportCard:output_type -> client.api.ProfileUpdateSupportCardResponse
+	465,  // 1570: client.api.Profile.UpdateMemory:output_type -> client.api.ProfileUpdateMemoryResponse
+	459,  // 1571: client.api.Profile.UpdateBadge:output_type -> client.api.ProfileUpdateBadgeResponse
+	475,  // 1572: client.api.PvpRate.Initialize:output_type -> client.api.PvpRateInitializeResponse
+	474,  // 1573: client.api.PvpRate.Get:output_type -> client.api.PvpRateGetResponse
+	486,  // 1574: client.api.PvpRate.Start:output_type -> client.api.PvpRateStartResponse
+	478,  // 1575: client.api.PvpRate.PlayExamBattle:output_type -> client.api.PvpRatePlayExamBattleResponse
+	471,  // 1576: client.api.PvpRate.End:output_type -> client.api.PvpRateEndResponse
+	479,  // 1577: client.api.PvpRate.PlayTest:output_type -> client.api.PvpRatePlayTestResponse
+	477,  // 1578: client.api.PvpRate.ListRanking:output_type -> client.api.PvpRateListRankingResponse
+	476,  // 1579: client.api.PvpRate.ListHistory:output_type -> client.api.PvpRateListHistoryResponse
+	473,  // 1580: client.api.PvpRate.GetHistory:output_type -> client.api.PvpRateGetHistoryResponse
+	489,  // 1581: client.api.PvpRate.UpdateUserPvpRateUnit:output_type -> client.api.PvpRateUpdateUserPvpRateUnitResponse
+	490,  // 1582: client.api.Research.Get:output_type -> client.api.ResearchGetResponse
+	492,  // 1583: client.api.Research.Ranking:output_type -> client.api.ResearchRankingResponse
+	494,  // 1584: client.api.Research.RerollMemory:output_type -> client.api.ResearchRerollMemoryResponse
+	499,  // 1585: client.api.Seminar.ListExam:output_type -> client.api.SeminarListExamResponse
+	498,  // 1586: client.api.Seminar.GetExam:output_type -> client.api.SeminarGetExamResponse
+	496,  // 1587: client.api.Seminar.EndExam:output_type -> client.api.SeminarEndExamResponse
+	524,  // 1588: client.api.Shop.Top:output_type -> client.api.ShopTopResponse
+	509,  // 1589: client.api.Shop.ListItems:output_type -> client.api.ShopListItemsResponse
+	513,  // 1590: client.api.Shop.Purchase:output_type -> client.api.ShopPurchaseResponse
+	504,  // 1591: client.api.Shop.CheckPurchaseJewel:output_type -> client.api.ShopCheckPurchaseJewelResponse
+	502,  // 1592: client.api.Shop.CheckBirthday:output_type -> client.api.ShopCheckBirthdayResponse
+	519,  // 1593: client.api.Shop.RegisterBirthday:output_type -> client.api.ShopRegisterBirthdayResponse
+	523,  // 1594: client.api.Shop.RegisterPurchaseTransaction:output_type -> client.api.ShopRegisterPurchaseTransactionResponse
+	501,  // 1595: client.api.Shop.CancelPurchaseTransaction:output_type -> client.api.ShopCancelPurchaseTransactionResponse
+	511,  // 1596: client.api.Shop.PurchaseJewel:output_type -> client.api.ShopPurchaseJewelResponse
+	517,  // 1597: client.api.Shop.RecoverPurchaseJewel:output_type -> client.api.ShopRecoverPurchaseJewelResponse
+	521,  // 1598: client.api.Shop.RegisterDelayPurchaseTransaction:output_type -> client.api.ShopRegisterDelayPurchaseTransactionResponse
+	506,  // 1599: client.api.Shop.GetPurchasePlatformTransaction:output_type -> client.api.ShopGetPurchasePlatformTransactionResponse
+	515,  // 1600: client.api.Shop.ReadWebStoreUserPurchaseTransaction:output_type -> client.api.ShopReadWebStoreUserPurchaseTransactionResponse
+	528,  // 1601: client.api.Startup.ListNotifications:output_type -> client.api.StartupListNotificationsResponse
+	526,  // 1602: client.api.Startup.Confirm:output_type -> client.api.StartupConfirmResponse
+	535,  // 1603: client.api.StoryEvent.Top:output_type -> client.api.StoryEventTopResponse
+	531,  // 1604: client.api.StoryEvent.ListGuildMission:output_type -> client.api.StoryEventListGuildMissionResponse
+	533,  // 1605: client.api.StoryEvent.ReceiveGuildMission:output_type -> client.api.StoryEventReceiveGuildMissionResponse
+	541,  // 1606: client.api.Story.Read:output_type -> client.api.StoryReadResponse
+	539,  // 1607: client.api.Story.ReadProduceStory:output_type -> client.api.StoryReadProduceStoryResponse
+	537,  // 1608: client.api.Story.ReadDearnessStory:output_type -> client.api.StoryReadDearnessStoryResponse
+	547,  // 1609: client.api.Story.Unlock:output_type -> client.api.StoryUnlockResponse
+	545,  // 1610: client.api.Story.UnlockProduceStory:output_type -> client.api.StoryUnlockProduceStoryResponse
+	543,  // 1611: client.api.Story.UnlockDearnessStory:output_type -> client.api.StoryUnlockDearnessStoryResponse
+	549,  // 1612: client.api.SupportCard.Enhance:output_type -> client.api.SupportCardEnhanceResponse
+	556,  // 1613: client.api.SupportCard.UpgradeLevelLimitRank:output_type -> client.api.SupportCardUpgradeLevelLimitRankResponse
+	551,  // 1614: client.api.SupportCard.Exchange:output_type -> client.api.SupportCardExchangeResponse
+	552,  // 1615: client.api.SupportCard.ListDeckRanking:output_type -> client.api.SupportCardListDeckRankingResponse
+	558,  // 1616: client.api.System.Check:output_type -> client.api.SystemCheckResponse
+	563,  // 1617: client.api.TicketExchange.ListItems:output_type -> client.api.TicketExchangeListItemsResponse
+	560,  // 1618: client.api.TicketExchange.Execute:output_type -> client.api.TicketExchangeExecuteResponse
+	583,  // 1619: client.api.Tour.Top:output_type -> client.api.TourTopResponse
+	570,  // 1620: client.api.Tour.GetProgress:output_type -> client.api.TourGetProgressResponse
+	581,  // 1621: client.api.Tour.Start:output_type -> client.api.TourStartResponse
+	568,  // 1622: client.api.Tour.End:output_type -> client.api.TourEndResponse
+	574,  // 1623: client.api.Tour.Result:output_type -> client.api.TourResultResponse
+	565,  // 1624: client.api.Tour.Continue:output_type -> client.api.TourContinueResponse
+	575,  // 1625: client.api.Tour.Retire:output_type -> client.api.TourRetireResponse
+	572,  // 1626: client.api.Tour.PlayTest:output_type -> client.api.TourPlayTestResponse
+	586,  // 1627: client.api.Tour.UpdateDeck:output_type -> client.api.TourUpdateDeckResponse
+	579,  // 1628: client.api.Tour.StageRanking:output_type -> client.api.TourStageRankingResponse
+	621,  // 1629: client.api.Tower.Top:output_type -> client.api.TowerTopResponse
+	610,  // 1630: client.api.Tower.ListLayers:output_type -> client.api.TowerListLayersResponse
+	596,  // 1631: client.api.Tower.GetLayer:output_type -> client.api.TowerGetLayerResponse
+	620,  // 1632: client.api.Tower.Start:output_type -> client.api.TowerStartResponse
+	590,  // 1633: client.api.Tower.End:output_type -> client.api.TowerEndResponse
+	588,  // 1634: client.api.Tower.Check:output_type -> client.api.TowerCheckResponse
+	623,  // 1635: client.api.Tower.UpdateMemoryDeck:output_type -> client.api.TowerUpdateMemoryDeckResponse
+	616,  // 1636: client.api.Tower.ReceiveLayerCountReward:output_type -> client.api.TowerReceiveLayerCountRewardResponse
+	618,  // 1637: client.api.Tower.ReceiveTotalClearRankReward:output_type -> client.api.TowerReceiveTotalClearRankRewardResponse
+	608,  // 1638: client.api.Tower.ListLayerPlayerHistories:output_type -> client.api.TowerListLayerPlayerHistoriesResponse
+	606,  // 1639: client.api.Tower.GetRanking:output_type -> client.api.TowerGetRankingResponse
+	602,  // 1640: client.api.Tower.GetPastSeasonRanking:output_type -> client.api.TowerGetPastSeasonRankingResponse
+	592,  // 1641: client.api.Tower.GetLayerIdolCardRanking:output_type -> client.api.TowerGetLayerIdolCardRankingResponse
+	598,  // 1642: client.api.Tower.GetPastSeasonLayerIdolCardRanking:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingResponse
+	594,  // 1643: client.api.Tower.GetLayerIdolCardRankingTop:output_type -> client.api.TowerGetLayerIdolCardRankingTopResponse
+	600,  // 1644: client.api.Tower.GetPastSeasonLayerIdolCardRankingTop:output_type -> client.api.TowerGetPastSeasonLayerIdolCardRankingTopResponse
+	604,  // 1645: client.api.Tower.GetRankingDeck:output_type -> client.api.TowerGetRankingDeckResponse
+	648,  // 1646: client.api.Tutorial.UnlockFeature:output_type -> client.api.TutorialUnlockFeatureResponse
+	644,  // 1647: client.api.Tutorial.SetName:output_type -> client.api.TutorialSetNameResponse
+	638,  // 1648: client.api.Tutorial.Progress:output_type -> client.api.TutorialProgressResponse
+	646,  // 1649: client.api.Tutorial.Skip:output_type -> client.api.TutorialSkipResponse
+	640,  // 1650: client.api.Tutorial.ReadDearnessStory:output_type -> client.api.TutorialReadDearnessStoryResponse
+	642,  // 1651: client.api.Tutorial.ReceiveIdolCard:output_type -> client.api.TutorialReceiveIdolCardResponse
+	629,  // 1652: client.api.Tutorial.ProduceStart:output_type -> client.api.TutorialProduceStartResponse
+	625,  // 1653: client.api.Tutorial.ProduceNext:output_type -> client.api.TutorialProduceNextResponse
+	634,  // 1654: client.api.Tutorial.ProduceStepLessonEnd:output_type -> client.api.TutorialProduceStepLessonEndResponse
+	636,  // 1655: client.api.Tutorial.ProduceStepPresentReceive:output_type -> client.api.TutorialProduceStepPresentReceiveResponse
+	632,  // 1656: client.api.Tutorial.ProduceStepAuditionExamEnd:output_type -> client.api.TutorialProduceStepAuditionExamEndResponse
+	630,  // 1657: client.api.Tutorial.ProduceStepAuditionEnd:output_type -> client.api.TutorialProduceStepAuditionEndResponse
+	624,  // 1658: client.api.Tutorial.CheckBeforeLiveProduceEvaluation:output_type -> client.api.TutorialCheckBeforeLiveProduceEvaluationResponse
+	627,  // 1659: client.api.Tutorial.ProduceResult:output_type -> client.api.TutorialProduceResultResponse
+	650,  // 1660: client.api.UserBlock.Block:output_type -> client.api.UserBlockBlockResponse
+	653,  // 1661: client.api.UserBlock.Unblock:output_type -> client.api.UserBlockUnblockResponse
+	651,  // 1662: client.api.UserBlock.ListBlock:output_type -> client.api.UserBlockListBlockResponse
+	655,  // 1663: client.api.User.Get:output_type -> client.api.UserGetResponse
+	654,  // 1664: client.api.User.GetBalance:output_type -> client.api.UserGetBalanceResponse
+	659,  // 1665: client.api.User.ReadForceTitleTransitionTime:output_type -> client.api.UserReadForceTitleTransitionTimeResponse
+	657,  // 1666: client.api.User.ListMessage:output_type -> client.api.UserListMessageResponse
+	661,  // 1667: client.api.User.ReadMessage:output_type -> client.api.UserReadMessageResponse
+	670,  // 1668: client.api.Work.Top:output_type -> client.api.WorkTopResponse
+	667,  // 1669: client.api.Work.Start:output_type -> client.api.WorkStartResponse
+	669,  // 1670: client.api.Work.Stop:output_type -> client.api.WorkStopResponse
+	665,  // 1671: client.api.Work.Skip:output_type -> client.api.WorkSkipResponse
+	662,  // 1672: client.api.Work.Finish:output_type -> client.api.WorkFinishResponse
+	1336, // [1336:1673] is the sub-list for method output_type
+	999,  // [999:1336] is the sub-list for method input_type
+	999,  // [999:999] is the sub-list for extension type_name
+	999,  // [999:999] is the sub-list for extension extendee
+	0,    // [0:999] is the sub-list for field type_name
 }
 
 func init() { file_papi_proto_init() }
@@ -52533,9 +53117,9 @@ func file_papi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_papi_proto_rawDesc), len(file_papi_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   760,
+			NumMessages:   767,
 			NumExtensions: 0,
-			NumServices:   48,
+			NumServices:   49,
 		},
 		GoTypes:           file_papi_proto_goTypes,
 		DependencyIndexes: file_papi_proto_depIdxs,
