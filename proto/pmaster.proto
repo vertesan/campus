@@ -107,10 +107,12 @@ message Character {
   string liveCostumeId = 25;
   string dearnessMissionGroupId = 28;
   string dearnessStoryUnlockItemId = 29;
+  repeated string produceCardIds = 30;
   repeated string otherStoryIds = 34;
   string potentialRank1VoiceAssetId = 40;
   string potentialRank3VoiceAssetId = 41;
   string potentialRank4VoiceAssetId = 42;
+  string useProduceCardVoiceAssetId = 43;
   float standingListPositionX = 50;
   float standingListPositionY = 51;
   float rosterDetailPositionX = 52;
@@ -1627,6 +1629,9 @@ message Produce {
   string produceNavigationLoseId = 28;
   string gradientColor1 = 30;
   string gradientColor2 = 31;
+  repeated string easyProduceItemIds = 32;
+  string easyConditionSetId = 33;
+  string easyProduceConditionSetId = 34;
   int32 order = 99;
 }
 message ProduceAdv {
@@ -1644,6 +1649,7 @@ message ProduceCard {
   string name = 3;
   string assetId = 5;
   bool isCharacterAsset = 6;
+  string voiceAssetId = 48;
   penum.ProduceCardRarity rarity = 7;
   penum.ProducePlanType planType = 8;
   penum.ProduceCardCategory category = 9;
@@ -1676,6 +1682,7 @@ message ProduceCard {
   int32 maxCustomizeCount = 44;
   bool isConversion = 45;
   repeated string moveProduceExamTriggerIds = 46;
+  string originCharacterId = 47;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -2156,6 +2163,7 @@ message ProduceExamEffect {
   int32 pickCountMin = 15;
   int32 pickCountMax = 16;
   string chainProduceExamEffectId = 17;
+  repeated string chainProduceExamEffectIds = 20;
   string produceExamStatusEnchantId = 18;
   string produceCardStatusEnchantId = 19;
   repeated string produceCardGrowEffectIds = 21;
@@ -2343,6 +2351,7 @@ message ProduceItem {
   bool isChallenge = 22;
   bool isHighScoreRush = 23;
   bool isResearch = 25;
+  bool isEasy = 26;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -2415,6 +2424,8 @@ message ProduceLive {
   repeated string unitLiveThumbnailAssetIds = 14;
   string liveOverrideAssetId = 15;
   repeated string additionalActorAssetIds = 16;
+  string costumeId = 20;
+  string costumeHeadId = 21;
 }
 message ProduceLiveList {
   repeated ProduceLive list = 1;
@@ -2965,15 +2976,10 @@ message Setting {
   repeated string storyEventTipsAssetIDs = 94;
   int32 storyEventPointLimit = 95;
   string seminarGuidanceViewConditionSetID = 96;
-  string officialWebSiteURL = 97;
-  string iPPortalWebSiteURL = 98;
   int32 photoNameLengthLimit = 99;
   int32 homeEventEndTimeDisplayHour = 100;
   string idolCardPieceExchangeItemID = 101;
   repeated string storyEventMainStoryTipsAssetIDs = 103;
-  string officialDiscordURL = 105;
-  string officialYouTubeIdolMasterURL = 106;
-  string officialYouTubeHatsuBoshiURL = 107;
   repeated string storyEventGuildMissionTipAssetIDs = 108;
   int32 photoPoseWaitVoicePlayIntervalSeconds = 109;
   string photoBackgroundDefaultBGMAssetID = 110;
@@ -3048,6 +3054,7 @@ message Setting {
   bool produceAuditionTrendAssessmentPermilSeparateEnable = 1051;
   int32 produceMaxMemoryDeckCount = 1052;
   int32 produceMaxSupportCardDeckCount = 1053;
+  string produceNextIdolAuditionProEasyModeConditionSetID = 1056;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -3094,6 +3101,7 @@ message Setting {
   int32 pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay = 1907;
   string aprilFool2025TransitionStoryID = 2001;
   string aprilFool2025ProduceLiveMusicID = 2002;
+  string aprilFool2026ProduceLiveMusicID = 2003;
   string produceNextIdolAuditionMasterRankingUnlockConditionSetID = 2101;
   string producerRankingUnlockConditionSetID = 2201;
   string producerRankingBGMAssetID = 2202;
@@ -3405,6 +3413,7 @@ message Tour {
   string examSettingId = 17;
   string tourStageTimelineId = 26;
   string tourMotionId = 35;
+  repeated string aprilFoolAssetIds = 51;
   int32 order = 103;
 }
 message TourList {

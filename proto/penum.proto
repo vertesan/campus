@@ -460,6 +460,8 @@ enum ExamDescriptionType {
   ExamDescriptionType_ExamProduceCardSearch = 17;
   ExamDescriptionType_CustomizeEffectValuePercent1 = 20;
   ExamDescriptionType_CustomizeEffectValuePercent2 = 21;
+  ExamDescriptionType_ExamEndTurnTimer = 22;
+  ExamDescriptionType_ExamTurnMinus = 23;
 }
 enum ExamGameType {
   ExamGameType_Unknown = 0;
@@ -585,6 +587,11 @@ enum ExamStatusEffectType {
   ExamStatusEffectType_GrowEffectLessonAddAdditive = 62;
   ExamStatusEffectType_ReviewMultiple = 63;
   ExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive = 64;
+  ExamStatusEffectType_StanceLockConcentration = 65;
+  ExamStatusEffectType_StanceLockFullPower = 66;
+  ExamStatusEffectType_StanceLockPreservation = 67;
+  ExamStatusEffectType_ReviewCountAdd = 68;
+  ExamStatusEffectType_EffectTimerEndTurn = 69;
 }
 enum ExchangeItemCategoryType {
   ExchangeItemCategoryType_Unknown = 0;
@@ -1213,6 +1220,7 @@ enum PreferenceType {
   PreferenceType_Unknown = 0;
   PreferenceType_PhotoButtonExecuteType = 1;
   PreferenceType_ProduceDisableForceLiveCommon = 2;
+  PreferenceType_ProduceNextIdolAuditionProEasyMode = 3;
 }
 enum ProduceAdvType {
   ProduceAdvType_Unknown = 0;
@@ -1599,6 +1607,7 @@ enum ProduceEffectType {
   ProduceEffectType_LegendProduceCardCountAddition = 125;
   ProduceEffectType_ExamPermanentLessonStatusEnchant = 126;
   ProduceEffectType_ExamPermanentAuditionStatusEnchant = 127;
+  ProduceEffectType_AuditionNpcWeaken = 128;
 }
 enum ProduceEventCharacterType {
   ProduceEventCharacterType_Unknown = 0;
@@ -1685,6 +1694,10 @@ enum ProduceExamAutoEvaluationType {
   ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive = 43;
   ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive = 44;
   ProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive = 45;
+  ProduceExamAutoEvaluationType_StanceLockConcentration = 46;
+  ProduceExamAutoEvaluationType_StanceLockFullPower = 47;
+  ProduceExamAutoEvaluationType_StanceLockPreservation = 48;
+  ProduceExamAutoEvaluationType_ExamReviewCountAdd = 49;
 }
 enum ProduceExamEffectType {
   ProduceExamEffectType_Unknown = 0;
@@ -1824,6 +1837,14 @@ enum ProduceExamEffectType {
   ProduceExamEffectType_ExamMultipleFullPowerLesson = 185;
   ProduceExamEffectType_ExamLessonDependBlockConsumptionSum = 186;
   ProduceExamEffectType_ExamForcePlayCardSearchWithCost = 187;
+  ProduceExamEffectType_ExamBlockDependBlockConsumptionSum = 188;
+  ProduceExamEffectType_ExamEnthusiasticTurnAdd = 189;
+  ProduceExamEffectType_ExamEffectTimerEndTurn = 190;
+  ProduceExamEffectType_ExamStanceLockConcentration = 191;
+  ProduceExamEffectType_ExamStanceLockFullPower = 192;
+  ProduceExamEffectType_ExamStanceLockPreservation = 193;
+  ProduceExamEffectType_ExamCardShuffleDeckGrave = 194;
+  ProduceExamEffectType_ExamReviewCountAdd = 195;
 }
 enum ProduceExamFieldStatusType {
   ProduceExamFieldStatusType_Unknown = 0;
@@ -2082,6 +2103,7 @@ enum ProduceResourceOriginType {
   ProduceResourceOriginType_MemoryAbility = 4;
   ProduceResourceOriginType_ProduceCard = 5;
   ProduceResourceOriginType_ProduceItem = 6;
+  ProduceResourceOriginType_Character = 8;
   ProduceResourceOriginType_StepAudition = 10;
   ProduceResourceOriginType_StepEvent = 11;
   ProduceResourceOriginType_StepPresent = 12;

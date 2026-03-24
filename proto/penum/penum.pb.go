@@ -2613,6 +2613,8 @@ const (
 	ExamDescriptionType_ExamDescriptionType_ExamProduceCardSearch                        ExamDescriptionType = 17
 	ExamDescriptionType_ExamDescriptionType_CustomizeEffectValuePercent1                 ExamDescriptionType = 20
 	ExamDescriptionType_ExamDescriptionType_CustomizeEffectValuePercent2                 ExamDescriptionType = 21
+	ExamDescriptionType_ExamDescriptionType_ExamEndTurnTimer                             ExamDescriptionType = 22
+	ExamDescriptionType_ExamDescriptionType_ExamTurnMinus                                ExamDescriptionType = 23
 )
 
 // Enum value maps for ExamDescriptionType.
@@ -2638,6 +2640,8 @@ var (
 		17: "ExamDescriptionType_ExamProduceCardSearch",
 		20: "ExamDescriptionType_CustomizeEffectValuePercent1",
 		21: "ExamDescriptionType_CustomizeEffectValuePercent2",
+		22: "ExamDescriptionType_ExamEndTurnTimer",
+		23: "ExamDescriptionType_ExamTurnMinus",
 	}
 	ExamDescriptionType_value = map[string]int32{
 		"ExamDescriptionType_Unknown":                                      0,
@@ -2660,6 +2664,8 @@ var (
 		"ExamDescriptionType_ExamProduceCardSearch":                        17,
 		"ExamDescriptionType_CustomizeEffectValuePercent1":                 20,
 		"ExamDescriptionType_CustomizeEffectValuePercent2":                 21,
+		"ExamDescriptionType_ExamEndTurnTimer":                             22,
+		"ExamDescriptionType_ExamTurnMinus":                                23,
 	}
 )
 
@@ -3186,6 +3192,11 @@ const (
 	ExamStatusEffectType_ExamStatusEffectType_GrowEffectLessonAddAdditive                     ExamStatusEffectType = 62
 	ExamStatusEffectType_ExamStatusEffectType_ReviewMultiple                                  ExamStatusEffectType = 63
 	ExamStatusEffectType_ExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive ExamStatusEffectType = 64
+	ExamStatusEffectType_ExamStatusEffectType_StanceLockConcentration                         ExamStatusEffectType = 65
+	ExamStatusEffectType_ExamStatusEffectType_StanceLockFullPower                             ExamStatusEffectType = 66
+	ExamStatusEffectType_ExamStatusEffectType_StanceLockPreservation                          ExamStatusEffectType = 67
+	ExamStatusEffectType_ExamStatusEffectType_ReviewCountAdd                                  ExamStatusEffectType = 68
+	ExamStatusEffectType_ExamStatusEffectType_EffectTimerEndTurn                              ExamStatusEffectType = 69
 )
 
 // Enum value maps for ExamStatusEffectType.
@@ -3248,6 +3259,11 @@ var (
 		62: "ExamStatusEffectType_GrowEffectLessonAddAdditive",
 		63: "ExamStatusEffectType_ReviewMultiple",
 		64: "ExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive",
+		65: "ExamStatusEffectType_StanceLockConcentration",
+		66: "ExamStatusEffectType_StanceLockFullPower",
+		67: "ExamStatusEffectType_StanceLockPreservation",
+		68: "ExamStatusEffectType_ReviewCountAdd",
+		69: "ExamStatusEffectType_EffectTimerEndTurn",
 	}
 	ExamStatusEffectType_value = map[string]int32{
 		"ExamStatusEffectType_Unknown":                                         0,
@@ -3307,6 +3323,11 @@ var (
 		"ExamStatusEffectType_GrowEffectLessonAddAdditive":                     62,
 		"ExamStatusEffectType_ReviewMultiple":                                  63,
 		"ExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive": 64,
+		"ExamStatusEffectType_StanceLockConcentration":                         65,
+		"ExamStatusEffectType_StanceLockFullPower":                             66,
+		"ExamStatusEffectType_StanceLockPreservation":                          67,
+		"ExamStatusEffectType_ReviewCountAdd":                                  68,
+		"ExamStatusEffectType_EffectTimerEndTurn":                              69,
 	}
 )
 
@@ -7181,9 +7202,10 @@ func (PlatformType) EnumDescriptor() ([]byte, []int) {
 type PreferenceType int32
 
 const (
-	PreferenceType_PreferenceType_Unknown                       PreferenceType = 0
-	PreferenceType_PreferenceType_PhotoButtonExecuteType        PreferenceType = 1
-	PreferenceType_PreferenceType_ProduceDisableForceLiveCommon PreferenceType = 2
+	PreferenceType_PreferenceType_Unknown                            PreferenceType = 0
+	PreferenceType_PreferenceType_PhotoButtonExecuteType             PreferenceType = 1
+	PreferenceType_PreferenceType_ProduceDisableForceLiveCommon      PreferenceType = 2
+	PreferenceType_PreferenceType_ProduceNextIdolAuditionProEasyMode PreferenceType = 3
 )
 
 // Enum value maps for PreferenceType.
@@ -7192,11 +7214,13 @@ var (
 		0: "PreferenceType_Unknown",
 		1: "PreferenceType_PhotoButtonExecuteType",
 		2: "PreferenceType_ProduceDisableForceLiveCommon",
+		3: "PreferenceType_ProduceNextIdolAuditionProEasyMode",
 	}
 	PreferenceType_value = map[string]int32{
-		"PreferenceType_Unknown":                       0,
-		"PreferenceType_PhotoButtonExecuteType":        1,
-		"PreferenceType_ProduceDisableForceLiveCommon": 2,
+		"PreferenceType_Unknown":                            0,
+		"PreferenceType_PhotoButtonExecuteType":             1,
+		"PreferenceType_ProduceDisableForceLiveCommon":      2,
+		"PreferenceType_ProduceNextIdolAuditionProEasyMode": 3,
 	}
 )
 
@@ -8668,6 +8692,7 @@ const (
 	ProduceEffectType_ProduceEffectType_LegendProduceCardCountAddition               ProduceEffectType = 125
 	ProduceEffectType_ProduceEffectType_ExamPermanentLessonStatusEnchant             ProduceEffectType = 126
 	ProduceEffectType_ProduceEffectType_ExamPermanentAuditionStatusEnchant           ProduceEffectType = 127
+	ProduceEffectType_ProduceEffectType_AuditionNpcWeaken                            ProduceEffectType = 128
 )
 
 // Enum value maps for ProduceEffectType.
@@ -8785,6 +8810,7 @@ var (
 		125: "ProduceEffectType_LegendProduceCardCountAddition",
 		126: "ProduceEffectType_ExamPermanentLessonStatusEnchant",
 		127: "ProduceEffectType_ExamPermanentAuditionStatusEnchant",
+		128: "ProduceEffectType_AuditionNpcWeaken",
 	}
 	ProduceEffectType_value = map[string]int32{
 		"ProduceEffectType_Unknown":                                      0,
@@ -8899,6 +8925,7 @@ var (
 		"ProduceEffectType_LegendProduceCardCountAddition":               125,
 		"ProduceEffectType_ExamPermanentLessonStatusEnchant":             126,
 		"ProduceEffectType_ExamPermanentAuditionStatusEnchant":           127,
+		"ProduceEffectType_AuditionNpcWeaken":                            128,
 	}
 )
 
@@ -9228,6 +9255,10 @@ const (
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive                      ProduceExamAutoEvaluationType = 43
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive                 ProduceExamAutoEvaluationType = 44
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive ProduceExamAutoEvaluationType = 45
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_StanceLockConcentration                         ProduceExamAutoEvaluationType = 46
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_StanceLockFullPower                             ProduceExamAutoEvaluationType = 47
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_StanceLockPreservation                          ProduceExamAutoEvaluationType = 48
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamReviewCountAdd                              ProduceExamAutoEvaluationType = 49
 )
 
 // Enum value maps for ProduceExamAutoEvaluationType.
@@ -9279,6 +9310,10 @@ var (
 		43: "ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive",
 		44: "ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive",
 		45: "ProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive",
+		46: "ProduceExamAutoEvaluationType_StanceLockConcentration",
+		47: "ProduceExamAutoEvaluationType_StanceLockFullPower",
+		48: "ProduceExamAutoEvaluationType_StanceLockPreservation",
+		49: "ProduceExamAutoEvaluationType_ExamReviewCountAdd",
 	}
 	ProduceExamAutoEvaluationType_value = map[string]int32{
 		"ProduceExamAutoEvaluationType_Unknown":                                         0,
@@ -9327,6 +9362,10 @@ var (
 		"ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive":                      43,
 		"ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive":                 44,
 		"ProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive": 45,
+		"ProduceExamAutoEvaluationType_StanceLockConcentration":                         46,
+		"ProduceExamAutoEvaluationType_StanceLockFullPower":                             47,
+		"ProduceExamAutoEvaluationType_StanceLockPreservation":                          48,
+		"ProduceExamAutoEvaluationType_ExamReviewCountAdd":                              49,
 	}
 )
 
@@ -9497,6 +9536,14 @@ const (
 	ProduceExamEffectType_ProduceExamEffectType_ExamMultipleFullPowerLesson                     ProduceExamEffectType = 185
 	ProduceExamEffectType_ProduceExamEffectType_ExamLessonDependBlockConsumptionSum             ProduceExamEffectType = 186
 	ProduceExamEffectType_ProduceExamEffectType_ExamForcePlayCardSearchWithCost                 ProduceExamEffectType = 187
+	ProduceExamEffectType_ProduceExamEffectType_ExamBlockDependBlockConsumptionSum              ProduceExamEffectType = 188
+	ProduceExamEffectType_ProduceExamEffectType_ExamEnthusiasticTurnAdd                         ProduceExamEffectType = 189
+	ProduceExamEffectType_ProduceExamEffectType_ExamEffectTimerEndTurn                          ProduceExamEffectType = 190
+	ProduceExamEffectType_ProduceExamEffectType_ExamStanceLockConcentration                     ProduceExamEffectType = 191
+	ProduceExamEffectType_ProduceExamEffectType_ExamStanceLockFullPower                         ProduceExamEffectType = 192
+	ProduceExamEffectType_ProduceExamEffectType_ExamStanceLockPreservation                      ProduceExamEffectType = 193
+	ProduceExamEffectType_ProduceExamEffectType_ExamCardShuffleDeckGrave                        ProduceExamEffectType = 194
+	ProduceExamEffectType_ProduceExamEffectType_ExamReviewCountAdd                              ProduceExamEffectType = 195
 )
 
 // Enum value maps for ProduceExamEffectType.
@@ -9639,6 +9686,14 @@ var (
 		185: "ProduceExamEffectType_ExamMultipleFullPowerLesson",
 		186: "ProduceExamEffectType_ExamLessonDependBlockConsumptionSum",
 		187: "ProduceExamEffectType_ExamForcePlayCardSearchWithCost",
+		188: "ProduceExamEffectType_ExamBlockDependBlockConsumptionSum",
+		189: "ProduceExamEffectType_ExamEnthusiasticTurnAdd",
+		190: "ProduceExamEffectType_ExamEffectTimerEndTurn",
+		191: "ProduceExamEffectType_ExamStanceLockConcentration",
+		192: "ProduceExamEffectType_ExamStanceLockFullPower",
+		193: "ProduceExamEffectType_ExamStanceLockPreservation",
+		194: "ProduceExamEffectType_ExamCardShuffleDeckGrave",
+		195: "ProduceExamEffectType_ExamReviewCountAdd",
 	}
 	ProduceExamEffectType_value = map[string]int32{
 		"ProduceExamEffectType_Unknown":                                         0,
@@ -9778,6 +9833,14 @@ var (
 		"ProduceExamEffectType_ExamMultipleFullPowerLesson":                     185,
 		"ProduceExamEffectType_ExamLessonDependBlockConsumptionSum":             186,
 		"ProduceExamEffectType_ExamForcePlayCardSearchWithCost":                 187,
+		"ProduceExamEffectType_ExamBlockDependBlockConsumptionSum":              188,
+		"ProduceExamEffectType_ExamEnthusiasticTurnAdd":                         189,
+		"ProduceExamEffectType_ExamEffectTimerEndTurn":                          190,
+		"ProduceExamEffectType_ExamStanceLockConcentration":                     191,
+		"ProduceExamEffectType_ExamStanceLockFullPower":                         192,
+		"ProduceExamEffectType_ExamStanceLockPreservation":                      193,
+		"ProduceExamEffectType_ExamCardShuffleDeckGrave":                        194,
+		"ProduceExamEffectType_ExamReviewCountAdd":                              195,
 	}
 )
 
@@ -11143,6 +11206,7 @@ const (
 	ProduceResourceOriginType_ProduceResourceOriginType_MemoryAbility ProduceResourceOriginType = 4
 	ProduceResourceOriginType_ProduceResourceOriginType_ProduceCard   ProduceResourceOriginType = 5
 	ProduceResourceOriginType_ProduceResourceOriginType_ProduceItem   ProduceResourceOriginType = 6
+	ProduceResourceOriginType_ProduceResourceOriginType_Character     ProduceResourceOriginType = 8
 	ProduceResourceOriginType_ProduceResourceOriginType_StepAudition  ProduceResourceOriginType = 10
 	ProduceResourceOriginType_ProduceResourceOriginType_StepEvent     ProduceResourceOriginType = 11
 	ProduceResourceOriginType_ProduceResourceOriginType_StepPresent   ProduceResourceOriginType = 12
@@ -11160,6 +11224,7 @@ var (
 		4:  "ProduceResourceOriginType_MemoryAbility",
 		5:  "ProduceResourceOriginType_ProduceCard",
 		6:  "ProduceResourceOriginType_ProduceItem",
+		8:  "ProduceResourceOriginType_Character",
 		10: "ProduceResourceOriginType_StepAudition",
 		11: "ProduceResourceOriginType_StepEvent",
 		12: "ProduceResourceOriginType_StepPresent",
@@ -11174,6 +11239,7 @@ var (
 		"ProduceResourceOriginType_MemoryAbility": 4,
 		"ProduceResourceOriginType_ProduceCard":   5,
 		"ProduceResourceOriginType_ProduceItem":   6,
+		"ProduceResourceOriginType_Character":     8,
 		"ProduceResourceOriginType_StepAudition":  10,
 		"ProduceResourceOriginType_StepEvent":     11,
 		"ProduceResourceOriginType_StepPresent":   12,
@@ -15999,7 +16065,7 @@ const file_penum_proto_rawDesc = "" +
 	"#ExamCostType_ExamCardPlayAggressive\x10\x03\x12\"\n" +
 	"\x1eExamCostType_ExamParameterBuff\x10\x04\x12#\n" +
 	"\x1fExamCostType_ExamFullPowerPoint\x10\x05\x121\n" +
-	"-ExamCostType_ExamParameterBuffMultiplePerTurn\x10\x06*\x99\a\n" +
+	"-ExamCostType_ExamParameterBuffMultiplePerTurn\x10\x06*\xea\a\n" +
 	"\x13ExamDescriptionType\x12\x1f\n" +
 	"\x1bExamDescriptionType_Unknown\x10\x00\x12-\n" +
 	")ExamDescriptionType_CustomizeEffectValue1\x10\x01\x12-\n" +
@@ -16021,7 +16087,9 @@ const file_penum_proto_rawDesc = "" +
 	")ExamDescriptionType_ExamProduceExamEffect\x10\x10\x12-\n" +
 	")ExamDescriptionType_ExamProduceCardSearch\x10\x11\x124\n" +
 	"0ExamDescriptionType_CustomizeEffectValuePercent1\x10\x14\x124\n" +
-	"0ExamDescriptionType_CustomizeEffectValuePercent2\x10\x15*\xcd\x01\n" +
+	"0ExamDescriptionType_CustomizeEffectValuePercent2\x10\x15\x12(\n" +
+	"$ExamDescriptionType_ExamEndTurnTimer\x10\x16\x12%\n" +
+	"!ExamDescriptionType_ExamTurnMinus\x10\x17*\xcd\x01\n" +
 	"\fExamGameType\x12\x18\n" +
 	"\x14ExamGameType_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aExamGameType_ProduceLesson\x10\x01\x12 \n" +
@@ -16081,7 +16149,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1dExamPlayType_ManualPlayLesson\x10\x02\x12%\n" +
 	"!ExamPlayType_ManualPlayLessonHard\x10\x03\x12#\n" +
 	"\x1fExamPlayType_ManualPlayAudition\x10\x04\x12$\n" +
-	" ExamPlayType_AutoPlayCompetition\x10\x05*\xc6\x14\n" +
+	" ExamPlayType_AutoPlayCompetition\x10\x05*\xad\x16\n" +
 	"\x14ExamStatusEffectType\x12 \n" +
 	"\x1cExamStatusEffectType_Unknown\x10\x00\x12&\n" +
 	"\"ExamStatusEffectType_ParameterBuff\x10\x01\x12(\n" +
@@ -16140,7 +16208,12 @@ const file_penum_proto_rawDesc = "" +
 	"+ExamStatusEffectType_FullPowerPointAdditive\x10=\x124\n" +
 	"0ExamStatusEffectType_GrowEffectLessonAddAdditive\x10>\x12'\n" +
 	"#ExamStatusEffectType_ReviewMultiple\x10?\x12H\n" +
-	"DExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive\x10@*\xd9\x01\n" +
+	"DExamStatusEffectType_LessonParameterMultipleDependReviewOrAggressive\x10@\x120\n" +
+	",ExamStatusEffectType_StanceLockConcentration\x10A\x12,\n" +
+	"(ExamStatusEffectType_StanceLockFullPower\x10B\x12/\n" +
+	"+ExamStatusEffectType_StanceLockPreservation\x10C\x12'\n" +
+	"#ExamStatusEffectType_ReviewCountAdd\x10D\x12+\n" +
+	"'ExamStatusEffectType_EffectTimerEndTurn\x10E*\xd9\x01\n" +
 	"\x18ExchangeItemCategoryType\x12$\n" +
 	" ExchangeItemCategoryType_Unknown\x10\x00\x12 \n" +
 	"\x1cExchangeItemCategoryType_All\x10\x01\x12)\n" +
@@ -16712,11 +16785,12 @@ const file_penum_proto_rawDesc = "" +
 	"\x14PlatformType_Android\x10\x02\x12\x14\n" +
 	"\x10PlatformType_Dmm\x10\x03\x12\x15\n" +
 	"\x11PlatformType_Sbps\x10\x04\x12\x17\n" +
-	"\x12PlatformType_Other\x10\xe7\a*\x89\x01\n" +
+	"\x12PlatformType_Other\x10\xe7\a*\xc0\x01\n" +
 	"\x0ePreferenceType\x12\x1a\n" +
 	"\x16PreferenceType_Unknown\x10\x00\x12)\n" +
 	"%PreferenceType_PhotoButtonExecuteType\x10\x01\x120\n" +
-	",PreferenceType_ProduceDisableForceLiveCommon\x10\x02*\xac\x06\n" +
+	",PreferenceType_ProduceDisableForceLiveCommon\x10\x02\x125\n" +
+	"1PreferenceType_ProduceNextIdolAuditionProEasyMode\x10\x03*\xac\x06\n" +
 	"\x0eProduceAdvType\x12\x1a\n" +
 	"\x16ProduceAdvType_Unknown\x10\x00\x12(\n" +
 	"$ProduceAdvType_BeforeFinalLessonHard\x10\x01\x12'\n" +
@@ -16977,7 +17051,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ProduceDrinkRarity_N\x10\x01\x12\x18\n" +
 	"\x14ProduceDrinkRarity_R\x10\x02\x12\x19\n" +
 	"\x15ProduceDrinkRarity_Sr\x10\x03\x12\x1a\n" +
-	"\x16ProduceDrinkRarity_Ssr\x10\x04*\x87+\n" +
+	"\x16ProduceDrinkRarity_Ssr\x10\x04*\xb1+\n" +
 	"\x11ProduceEffectType\x12\x1d\n" +
 	"\x19ProduceEffectType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceEffectType_VocalAddition\x10\x01\x12#\n" +
@@ -17091,7 +17165,8 @@ const file_penum_proto_rawDesc = "" +
 	"4ProduceEffectType_IdolCardProduceCardCustomizeEnable\x10|\x124\n" +
 	"0ProduceEffectType_LegendProduceCardCountAddition\x10}\x126\n" +
 	"2ProduceEffectType_ExamPermanentLessonStatusEnchant\x10~\x128\n" +
-	"4ProduceEffectType_ExamPermanentAuditionStatusEnchant\x10\x7f*\xe7\x05\n" +
+	"4ProduceEffectType_ExamPermanentAuditionStatusEnchant\x10\x7f\x12(\n" +
+	"#ProduceEffectType_AuditionNpcWeaken\x10\x80\x01*\xe7\x05\n" +
 	"\x19ProduceEventCharacterType\x12%\n" +
 	"!ProduceEventCharacterType_Unknown\x10\x00\x12%\n" +
 	"!ProduceEventCharacterType_Opening\x10\x01\x12(\n" +
@@ -17126,7 +17201,7 @@ const file_penum_proto_rawDesc = "" +
 	"/ProduceExamAutoCardSelectEvaluationType_Unknown\x10\x00\x12=\n" +
 	"9ProduceExamAutoCardSelectEvaluationType_LessonCoefficient\x10\x01\x12E\n" +
 	"AProduceExamAutoCardSelectEvaluationType_FullPowerPointCoefficient\x10\x02\x12K\n" +
-	"GProduceExamAutoCardSelectEvaluationType_FullPowerPointValue2Coefficient\x10\x03*\xa2\x14\n" +
+	"GProduceExamAutoCardSelectEvaluationType_FullPowerPointValue2Coefficient\x10\x03*\x84\x16\n" +
 	"\x1dProduceExamAutoEvaluationType\x12)\n" +
 	"%ProduceExamAutoEvaluationType_Unknown\x10\x00\x12+\n" +
 	"'ProduceExamAutoEvaluationType_Parameter\x10\x01\x12'\n" +
@@ -17174,7 +17249,11 @@ const file_penum_proto_rawDesc = "" +
 	"0ProduceExamAutoEvaluationType_ExamReviewAdditive\x10*\x12<\n" +
 	"8ProduceExamAutoEvaluationType_ExamFullPowerPointAdditive\x10+\x12A\n" +
 	"=ProduceExamAutoEvaluationType_ExamGrowEffectLessonAddAdditive\x10,\x12Q\n" +
-	"MProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive\x10-*\xf17\n" +
+	"MProduceExamAutoEvaluationType_ExamLessonValueMultipleDependReviewOrAggressive\x10-\x129\n" +
+	"5ProduceExamAutoEvaluationType_StanceLockConcentration\x10.\x125\n" +
+	"1ProduceExamAutoEvaluationType_StanceLockFullPower\x10/\x128\n" +
+	"4ProduceExamAutoEvaluationType_StanceLockPreservation\x100\x124\n" +
+	"0ProduceExamAutoEvaluationType_ExamReviewCountAdd\x101*\x9e;\n" +
 	"\x15ProduceExamEffectType\x12!\n" +
 	"\x1dProduceExamEffectType_Unknown\x10\x00\x12$\n" +
 	" ProduceExamEffectType_ExamLesson\x10\x01\x12+\n" +
@@ -17313,7 +17392,15 @@ const file_penum_proto_rawDesc = "" +
 	"5ProduceExamEffectType_ExamMultipleConcentrationLesson\x10\xb8\x01\x126\n" +
 	"1ProduceExamEffectType_ExamMultipleFullPowerLesson\x10\xb9\x01\x12>\n" +
 	"9ProduceExamEffectType_ExamLessonDependBlockConsumptionSum\x10\xba\x01\x12:\n" +
-	"5ProduceExamEffectType_ExamForcePlayCardSearchWithCost\x10\xbb\x01*\xf9\x0e\n" +
+	"5ProduceExamEffectType_ExamForcePlayCardSearchWithCost\x10\xbb\x01\x12=\n" +
+	"8ProduceExamEffectType_ExamBlockDependBlockConsumptionSum\x10\xbc\x01\x122\n" +
+	"-ProduceExamEffectType_ExamEnthusiasticTurnAdd\x10\xbd\x01\x121\n" +
+	",ProduceExamEffectType_ExamEffectTimerEndTurn\x10\xbe\x01\x126\n" +
+	"1ProduceExamEffectType_ExamStanceLockConcentration\x10\xbf\x01\x122\n" +
+	"-ProduceExamEffectType_ExamStanceLockFullPower\x10\xc0\x01\x125\n" +
+	"0ProduceExamEffectType_ExamStanceLockPreservation\x10\xc1\x01\x123\n" +
+	".ProduceExamEffectType_ExamCardShuffleDeckGrave\x10\xc2\x01\x12-\n" +
+	"(ProduceExamEffectType_ExamReviewCountAdd\x10\xc3\x01*\xf9\x0e\n" +
 	"\x1aProduceExamFieldStatusType\x12&\n" +
 	"\"ProduceExamFieldStatusType_Unknown\x10\x00\x12,\n" +
 	"(ProduceExamFieldStatusType_ParameterBuff\x10\x01\x120\n" +
@@ -17550,7 +17637,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceProgressStatus_GuildMission\x10 \x126\n" +
 	"2ProduceProgressStatus_EndingCharacterDearnessStory\x10!\x12'\n" +
 	"#ProduceProgressStatus_DearnessBoost\x10\"\x12\"\n" +
-	"\x1eProduceProgressStatus_Finished\x10c*\x92\x04\n" +
+	"\x1eProduceProgressStatus_Finished\x10c*\xbb\x04\n" +
 	"\x19ProduceResourceOriginType\x12%\n" +
 	"!ProduceResourceOriginType_Unknown\x10\x00\x12%\n" +
 	"!ProduceResourceOriginType_Produce\x10\x01\x12&\n" +
@@ -17558,7 +17645,8 @@ const file_penum_proto_rawDesc = "" +
 	"%ProduceResourceOriginType_SupportCard\x10\x03\x12+\n" +
 	"'ProduceResourceOriginType_MemoryAbility\x10\x04\x12)\n" +
 	"%ProduceResourceOriginType_ProduceCard\x10\x05\x12)\n" +
-	"%ProduceResourceOriginType_ProduceItem\x10\x06\x12*\n" +
+	"%ProduceResourceOriginType_ProduceItem\x10\x06\x12'\n" +
+	"#ProduceResourceOriginType_Character\x10\b\x12*\n" +
 	"&ProduceResourceOriginType_StepAudition\x10\n" +
 	"\x12'\n" +
 	"#ProduceResourceOriginType_StepEvent\x10\v\x12)\n" +

@@ -17390,12 +17390,13 @@ func (x *PhotoUpdateProtectionResponse) GetCommonResponse() *papicommon.Response
 }
 
 type PreferenceUpdateRequest struct {
-	state                         protoimpl.MessageState       `protogen:"open.v1"`
-	PhotoButtonExecuteType        penum.PhotoButtonExecuteType `protobuf:"varint,1,opt,name=photoButtonExecuteType,proto3,enum=penum.PhotoButtonExecuteType" json:"photoButtonExecuteType,omitempty"`
-	ProduceDisableForceLiveCommon bool                         `protobuf:"varint,2,opt,name=produceDisableForceLiveCommon,proto3" json:"produceDisableForceLiveCommon,omitempty"`
-	PreferenceTypes               []penum.PreferenceType       `protobuf:"varint,999,rep,packed,name=preferenceTypes,proto3,enum=penum.PreferenceType" json:"preferenceTypes,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
+	state                              protoimpl.MessageState       `protogen:"open.v1"`
+	PhotoButtonExecuteType             penum.PhotoButtonExecuteType `protobuf:"varint,1,opt,name=photoButtonExecuteType,proto3,enum=penum.PhotoButtonExecuteType" json:"photoButtonExecuteType,omitempty"`
+	ProduceDisableForceLiveCommon      bool                         `protobuf:"varint,2,opt,name=produceDisableForceLiveCommon,proto3" json:"produceDisableForceLiveCommon,omitempty"`
+	ProduceNextIdolAuditionProEasyMode bool                         `protobuf:"varint,3,opt,name=produceNextIdolAuditionProEasyMode,proto3" json:"produceNextIdolAuditionProEasyMode,omitempty"`
+	PreferenceTypes                    []penum.PreferenceType       `protobuf:"varint,999,rep,packed,name=preferenceTypes,proto3,enum=penum.PreferenceType" json:"preferenceTypes,omitempty"`
+	unknownFields                      protoimpl.UnknownFields
+	sizeCache                          protoimpl.SizeCache
 }
 
 func (x *PreferenceUpdateRequest) Reset() {
@@ -17438,6 +17439,13 @@ func (x *PreferenceUpdateRequest) GetPhotoButtonExecuteType() penum.PhotoButtonE
 func (x *PreferenceUpdateRequest) GetProduceDisableForceLiveCommon() bool {
 	if x != nil {
 		return x.ProduceDisableForceLiveCommon
+	}
+	return false
+}
+
+func (x *PreferenceUpdateRequest) GetProduceNextIdolAuditionProEasyMode() bool {
+	if x != nil {
+		return x.ProduceNextIdolAuditionProEasyMode
 	}
 	return false
 }
@@ -20826,6 +20834,7 @@ type ProduceResultResponse struct {
 	ResearchResult             *ProduceResultResponse_ResearchResult        `protobuf:"bytes,5,opt,name=researchResult,proto3" json:"researchResult,omitempty"`
 	ProducerRankingResult      *pcommon.ProducerRankingResult               `protobuf:"bytes,6,opt,name=producerRankingResult,proto3" json:"producerRankingResult,omitempty"`
 	TourResult                 *ProduceResultResponse_TourResult            `protobuf:"bytes,7,opt,name=tourResult,proto3" json:"tourResult,omitempty"`
+	RecommendEasyMode          bool                                         `protobuf:"varint,50,opt,name=recommendEasyMode,proto3" json:"recommendEasyMode,omitempty"`
 	CommonResponse             *papicommon.Response                         `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
@@ -20908,6 +20917,13 @@ func (x *ProduceResultResponse) GetTourResult() *ProduceResultResponse_TourResul
 		return x.TourResult
 	}
 	return nil
+}
+
+func (x *ProduceResultResponse) GetRecommendEasyMode() bool {
+	if x != nil {
+		return x.RecommendEasyMode
+	}
+	return false
 }
 
 func (x *ProduceResultResponse) GetCommonResponse() *papicommon.Response {
@@ -34334,41 +34350,43 @@ func (x *TourTopRequest) GetClientUuid() string {
 }
 
 type TourTopResponse struct {
-	state                     protoimpl.MessageState      `protogen:"open.v1"`
-	TourId                    string                      `protobuf:"bytes,1,opt,name=tourId,proto3" json:"tourId,omitempty"`
-	Name                      string                      `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	TitleAssetId              string                      `protobuf:"bytes,3,opt,name=titleAssetId,proto3" json:"titleAssetId,omitempty"`
-	RewardAssetId             string                      `protobuf:"bytes,4,opt,name=rewardAssetId,proto3" json:"rewardAssetId,omitempty"`
-	ColorCode                 string                      `protobuf:"bytes,5,opt,name=colorCode,proto3" json:"colorCode,omitempty"`
-	BgmAssetId                string                      `protobuf:"bytes,6,opt,name=bgmAssetId,proto3" json:"bgmAssetId,omitempty"`
-	BackgroundAssetId         string                      `protobuf:"bytes,7,opt,name=backgroundAssetId,proto3" json:"backgroundAssetId,omitempty"`
-	StoryGroupId              string                      `protobuf:"bytes,8,opt,name=storyGroupId,proto3" json:"storyGroupId,omitempty"`
-	MissionGroupId            string                      `protobuf:"bytes,9,opt,name=missionGroupId,proto3" json:"missionGroupId,omitempty"`
-	ExchangeId                string                      `protobuf:"bytes,10,opt,name=exchangeId,proto3" json:"exchangeId,omitempty"`
-	ExchangeConsumptionItemId string                      `protobuf:"bytes,11,opt,name=exchangeConsumptionItemId,proto3" json:"exchangeConsumptionItemId,omitempty"`
-	PlayItemId                string                      `protobuf:"bytes,12,opt,name=playItemId,proto3" json:"playItemId,omitempty"`
-	TotalPointRewards         []*TourTotalPointReward     `protobuf:"bytes,13,rep,name=totalPointRewards,proto3" json:"totalPointRewards,omitempty"`
-	CurrentTotalPoint         int32                       `protobuf:"varint,14,opt,name=currentTotalPoint,proto3" json:"currentTotalPoint,omitempty"`
-	Stages                    []*TourTopResponse_Stage    `protobuf:"bytes,15,rep,name=stages,proto3" json:"stages,omitempty"`
-	InProgress                bool                        `protobuf:"varint,16,opt,name=inProgress,proto3" json:"inProgress,omitempty"`
-	IsCurrentClientUuid       bool                        `protobuf:"varint,17,opt,name=isCurrentClientUuid,proto3" json:"isCurrentClientUuid,omitempty"`
-	MinStageScoreThreshold    int32                       `protobuf:"varint,18,opt,name=minStageScoreThreshold,proto3" json:"minStageScoreThreshold,omitempty"`
-	MaxStageScoreThreshold    int32                       `protobuf:"varint,19,opt,name=maxStageScoreThreshold,proto3" json:"maxStageScoreThreshold,omitempty"`
-	MaxIdolCardPotentialRank  penum.IdolCardPotentialRank `protobuf:"varint,20,opt,name=maxIdolCardPotentialRank,proto3,enum=penum.IdolCardPotentialRank" json:"maxIdolCardPotentialRank,omitempty"`
-	IdolCardPieceItemId       string                      `protobuf:"bytes,21,opt,name=idolCardPieceItemId,proto3" json:"idolCardPieceItemId,omitempty"`
-	MaxContinueCount          int32                       `protobuf:"varint,22,opt,name=maxContinueCount,proto3" json:"maxContinueCount,omitempty"`
-	GradationColor1           string                      `protobuf:"bytes,23,opt,name=gradationColor1,proto3" json:"gradationColor1,omitempty"`
-	GradationColor2           string                      `protobuf:"bytes,24,opt,name=gradationColor2,proto3" json:"gradationColor2,omitempty"`
-	LiveTicketName            string                      `protobuf:"bytes,25,opt,name=liveTicketName,proto3" json:"liveTicketName,omitempty"`
-	InitialPlayItemCount      int32                       `protobuf:"varint,26,opt,name=initialPlayItemCount,proto3" json:"initialPlayItemCount,omitempty"`
-	DailyPlayItemCount        int32                       `protobuf:"varint,27,opt,name=dailyPlayItemCount,proto3" json:"dailyPlayItemCount,omitempty"`
-	EventBonus                *pcommon.EventBonus         `protobuf:"bytes,28,opt,name=eventBonus,proto3" json:"eventBonus,omitempty"`
-	StartTime                 int64                       `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
-	EndTime                   int64                       `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
-	CloseTime                 int64                       `protobuf:"varint,102,opt,name=closeTime,proto3" json:"closeTime,omitempty"`
-	CommonResponse            *papicommon.Response        `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
-	unknownFields             protoimpl.UnknownFields
-	sizeCache                 protoimpl.SizeCache
+	state                        protoimpl.MessageState      `protogen:"open.v1"`
+	TourId                       string                      `protobuf:"bytes,1,opt,name=tourId,proto3" json:"tourId,omitempty"`
+	Name                         string                      `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	TitleAssetId                 string                      `protobuf:"bytes,3,opt,name=titleAssetId,proto3" json:"titleAssetId,omitempty"`
+	RewardAssetId                string                      `protobuf:"bytes,4,opt,name=rewardAssetId,proto3" json:"rewardAssetId,omitempty"`
+	ColorCode                    string                      `protobuf:"bytes,5,opt,name=colorCode,proto3" json:"colorCode,omitempty"`
+	BgmAssetId                   string                      `protobuf:"bytes,6,opt,name=bgmAssetId,proto3" json:"bgmAssetId,omitempty"`
+	BackgroundAssetId            string                      `protobuf:"bytes,7,opt,name=backgroundAssetId,proto3" json:"backgroundAssetId,omitempty"`
+	StoryGroupId                 string                      `protobuf:"bytes,8,opt,name=storyGroupId,proto3" json:"storyGroupId,omitempty"`
+	MissionGroupId               string                      `protobuf:"bytes,9,opt,name=missionGroupId,proto3" json:"missionGroupId,omitempty"`
+	ExchangeId                   string                      `protobuf:"bytes,10,opt,name=exchangeId,proto3" json:"exchangeId,omitempty"`
+	ExchangeConsumptionItemId    string                      `protobuf:"bytes,11,opt,name=exchangeConsumptionItemId,proto3" json:"exchangeConsumptionItemId,omitempty"`
+	PlayItemId                   string                      `protobuf:"bytes,12,opt,name=playItemId,proto3" json:"playItemId,omitempty"`
+	TotalPointRewards            []*TourTotalPointReward     `protobuf:"bytes,13,rep,name=totalPointRewards,proto3" json:"totalPointRewards,omitempty"`
+	CurrentTotalPoint            int32                       `protobuf:"varint,14,opt,name=currentTotalPoint,proto3" json:"currentTotalPoint,omitempty"`
+	Stages                       []*TourTopResponse_Stage    `protobuf:"bytes,15,rep,name=stages,proto3" json:"stages,omitempty"`
+	InProgress                   bool                        `protobuf:"varint,16,opt,name=inProgress,proto3" json:"inProgress,omitempty"`
+	IsCurrentClientUuid          bool                        `protobuf:"varint,17,opt,name=isCurrentClientUuid,proto3" json:"isCurrentClientUuid,omitempty"`
+	MinStageScoreThreshold       int32                       `protobuf:"varint,18,opt,name=minStageScoreThreshold,proto3" json:"minStageScoreThreshold,omitempty"`
+	MaxStageScoreThreshold       int32                       `protobuf:"varint,19,opt,name=maxStageScoreThreshold,proto3" json:"maxStageScoreThreshold,omitempty"`
+	MaxIdolCardPotentialRank     penum.IdolCardPotentialRank `protobuf:"varint,20,opt,name=maxIdolCardPotentialRank,proto3,enum=penum.IdolCardPotentialRank" json:"maxIdolCardPotentialRank,omitempty"`
+	IdolCardPieceItemId          string                      `protobuf:"bytes,21,opt,name=idolCardPieceItemId,proto3" json:"idolCardPieceItemId,omitempty"`
+	MaxContinueCount             int32                       `protobuf:"varint,22,opt,name=maxContinueCount,proto3" json:"maxContinueCount,omitempty"`
+	GradationColor1              string                      `protobuf:"bytes,23,opt,name=gradationColor1,proto3" json:"gradationColor1,omitempty"`
+	GradationColor2              string                      `protobuf:"bytes,24,opt,name=gradationColor2,proto3" json:"gradationColor2,omitempty"`
+	LiveTicketName               string                      `protobuf:"bytes,25,opt,name=liveTicketName,proto3" json:"liveTicketName,omitempty"`
+	InitialPlayItemCount         int32                       `protobuf:"varint,26,opt,name=initialPlayItemCount,proto3" json:"initialPlayItemCount,omitempty"`
+	DailyPlayItemCount           int32                       `protobuf:"varint,27,opt,name=dailyPlayItemCount,proto3" json:"dailyPlayItemCount,omitempty"`
+	EventBonus                   *pcommon.EventBonus         `protobuf:"bytes,28,opt,name=eventBonus,proto3" json:"eventBonus,omitempty"`
+	AprilFoolOverrideCharacterId string                      `protobuf:"bytes,50,opt,name=aprilFoolOverrideCharacterId,proto3" json:"aprilFoolOverrideCharacterId,omitempty"`
+	AprilFoolAssetIds            []string                    `protobuf:"bytes,51,rep,name=aprilFoolAssetIds,proto3" json:"aprilFoolAssetIds,omitempty"`
+	StartTime                    int64                       `protobuf:"varint,100,opt,name=startTime,proto3" json:"startTime,omitempty"`
+	EndTime                      int64                       `protobuf:"varint,101,opt,name=endTime,proto3" json:"endTime,omitempty"`
+	CloseTime                    int64                       `protobuf:"varint,102,opt,name=closeTime,proto3" json:"closeTime,omitempty"`
+	CommonResponse               *papicommon.Response        `protobuf:"bytes,9999,opt,name=commonResponse,proto3" json:"commonResponse,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *TourTopResponse) Reset() {
@@ -34593,6 +34611,20 @@ func (x *TourTopResponse) GetDailyPlayItemCount() int32 {
 func (x *TourTopResponse) GetEventBonus() *pcommon.EventBonus {
 	if x != nil {
 		return x.EventBonus
+	}
+	return nil
+}
+
+func (x *TourTopResponse) GetAprilFoolOverrideCharacterId() string {
+	if x != nil {
+		return x.AprilFoolOverrideCharacterId
+	}
+	return ""
+}
+
+func (x *TourTopResponse) GetAprilFoolAssetIds() []string {
+	if x != nil {
+		return x.AprilFoolAssetIds
 	}
 	return nil
 }
@@ -48203,10 +48235,11 @@ const file_papi_proto_rawDesc = "" +
 	"\vuserPhotoId\x18\x01 \x01(\tR\vuserPhotoId\x12 \n" +
 	"\visProtected\x18\x02 \x01(\bR\visProtected\"^\n" +
 	"\x1dPhotoUpdateProtectionResponse\x12=\n" +
-	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xf8\x01\n" +
+	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"\xc8\x02\n" +
 	"\x17PreferenceUpdateRequest\x12U\n" +
 	"\x16photoButtonExecuteType\x18\x01 \x01(\x0e2\x1d.penum.PhotoButtonExecuteTypeR\x16photoButtonExecuteType\x12D\n" +
-	"\x1dproduceDisableForceLiveCommon\x18\x02 \x01(\bR\x1dproduceDisableForceLiveCommon\x12@\n" +
+	"\x1dproduceDisableForceLiveCommon\x18\x02 \x01(\bR\x1dproduceDisableForceLiveCommon\x12N\n" +
+	"\"produceNextIdolAuditionProEasyMode\x18\x03 \x01(\bR\"produceNextIdolAuditionProEasyMode\x12@\n" +
 	"\x0fpreferenceTypes\x18\xe7\a \x03(\x0e2\x15.penum.PreferenceTypeR\x0fpreferenceTypes\"Y\n" +
 	"\x18PreferenceUpdateResponse\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\"n\n" +
@@ -48487,7 +48520,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x17useCharacterFocusCamera\x18\b \x01(\bR\x17useCharacterFocusCamera\x12:\n" +
 	"\x18isMemoryResearchFavorite\x18\t \x01(\bR\x18isMemoryResearchFavorite\x12,\n" +
 	"\x11deviceProduceUuid\x18\n" +
-	" \x01(\tR\x11deviceProduceUuid\"\x9b\x10\n" +
+	" \x01(\tR\x11deviceProduceUuid\"\xc9\x10\n" +
 	"\x15ProduceResultResponse\x12;\n" +
 	"\rrewardResults\x18\x01 \x03(\v2\x15.pcommon.RewardResultR\rrewardResults\x12Z\n" +
 	"\x17storyEventProduceResult\x18\x02 \x01(\v2 .pcommon.StoryEventProduceResultR\x17storyEventProduceResult\x12m\n" +
@@ -48497,7 +48530,8 @@ const file_papi_proto_rawDesc = "" +
 	"\x15producerRankingResult\x18\x06 \x01(\v2\x1e.pcommon.ProducerRankingResultR\x15producerRankingResult\x12L\n" +
 	"\n" +
 	"tourResult\x18\a \x01(\v2,.client.api.ProduceResultResponse.TourResultR\n" +
-	"tourResult\x12=\n" +
+	"tourResult\x12,\n" +
+	"\x11recommendEasyMode\x182 \x01(\bR\x11recommendEasyMode\x12=\n" +
 	"\x0ecommonResponse\x18\x8fN \x01(\v2\x14.papicommon.ResponseR\x0ecommonResponse\x1aP\n" +
 	"\x0fHighScoreReward\x12\x14\n" +
 	"\x05score\x18\x01 \x01(\x05R\x05score\x12'\n" +
@@ -49693,7 +49727,7 @@ const file_papi_proto_rawDesc = "" +
 	"\x0eTourTopRequest\x12\x1e\n" +
 	"\n" +
 	"clientUuid\x18\x01 \x01(\tR\n" +
-	"clientUuid\"\xef\x14\n" +
+	"clientUuid\"\xe1\x15\n" +
 	"\x0fTourTopResponse\x12\x16\n" +
 	"\x06tourId\x18\x01 \x01(\tR\x06tourId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\"\n" +
@@ -49733,7 +49767,9 @@ const file_papi_proto_rawDesc = "" +
 	"\x12dailyPlayItemCount\x18\x1b \x01(\x05R\x12dailyPlayItemCount\x123\n" +
 	"\n" +
 	"eventBonus\x18\x1c \x01(\v2\x13.pcommon.EventBonusR\n" +
-	"eventBonus\x12\x1c\n" +
+	"eventBonus\x12B\n" +
+	"\x1caprilFoolOverrideCharacterId\x182 \x01(\tR\x1caprilFoolOverrideCharacterId\x12,\n" +
+	"\x11aprilFoolAssetIds\x183 \x03(\tR\x11aprilFoolAssetIds\x12\x1c\n" +
 	"\tstartTime\x18d \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18e \x01(\x03R\aendTime\x12\x1c\n" +
 	"\tcloseTime\x18f \x01(\x03R\tcloseTime\x12=\n" +

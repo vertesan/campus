@@ -927,10 +927,12 @@ type Character struct {
 	LiveCostumeId                 string                         `protobuf:"bytes,25,opt,name=liveCostumeId,proto3" json:"liveCostumeId,omitempty"`
 	DearnessMissionGroupId        string                         `protobuf:"bytes,28,opt,name=dearnessMissionGroupId,proto3" json:"dearnessMissionGroupId,omitempty"`
 	DearnessStoryUnlockItemId     string                         `protobuf:"bytes,29,opt,name=dearnessStoryUnlockItemId,proto3" json:"dearnessStoryUnlockItemId,omitempty"`
+	ProduceCardIds                []string                       `protobuf:"bytes,30,rep,name=produceCardIds,proto3" json:"produceCardIds,omitempty"`
 	OtherStoryIds                 []string                       `protobuf:"bytes,34,rep,name=otherStoryIds,proto3" json:"otherStoryIds,omitempty"`
 	PotentialRank1VoiceAssetId    string                         `protobuf:"bytes,40,opt,name=potentialRank1VoiceAssetId,proto3" json:"potentialRank1VoiceAssetId,omitempty"`
 	PotentialRank3VoiceAssetId    string                         `protobuf:"bytes,41,opt,name=potentialRank3VoiceAssetId,proto3" json:"potentialRank3VoiceAssetId,omitempty"`
 	PotentialRank4VoiceAssetId    string                         `protobuf:"bytes,42,opt,name=potentialRank4VoiceAssetId,proto3" json:"potentialRank4VoiceAssetId,omitempty"`
+	UseProduceCardVoiceAssetId    string                         `protobuf:"bytes,43,opt,name=useProduceCardVoiceAssetId,proto3" json:"useProduceCardVoiceAssetId,omitempty"`
 	StandingListPositionX         float32                        `protobuf:"fixed32,50,opt,name=standingListPositionX,proto3" json:"standingListPositionX,omitempty"`
 	StandingListPositionY         float32                        `protobuf:"fixed32,51,opt,name=standingListPositionY,proto3" json:"standingListPositionY,omitempty"`
 	RosterDetailPositionX         float32                        `protobuf:"fixed32,52,opt,name=rosterDetailPositionX,proto3" json:"rosterDetailPositionX,omitempty"`
@@ -1130,6 +1132,13 @@ func (x *Character) GetDearnessStoryUnlockItemId() string {
 	return ""
 }
 
+func (x *Character) GetProduceCardIds() []string {
+	if x != nil {
+		return x.ProduceCardIds
+	}
+	return nil
+}
+
 func (x *Character) GetOtherStoryIds() []string {
 	if x != nil {
 		return x.OtherStoryIds
@@ -1154,6 +1163,13 @@ func (x *Character) GetPotentialRank3VoiceAssetId() string {
 func (x *Character) GetPotentialRank4VoiceAssetId() string {
 	if x != nil {
 		return x.PotentialRank4VoiceAssetId
+	}
+	return ""
+}
+
+func (x *Character) GetUseProduceCardVoiceAssetId() string {
+	if x != nil {
+		return x.UseProduceCardVoiceAssetId
 	}
 	return ""
 }
@@ -17461,6 +17477,9 @@ type Produce struct {
 	ProduceNavigationLoseId              string                             `protobuf:"bytes,28,opt,name=produceNavigationLoseId,proto3" json:"produceNavigationLoseId,omitempty"`
 	GradientColor1                       string                             `protobuf:"bytes,30,opt,name=gradientColor1,proto3" json:"gradientColor1,omitempty"`
 	GradientColor2                       string                             `protobuf:"bytes,31,opt,name=gradientColor2,proto3" json:"gradientColor2,omitempty"`
+	EasyProduceItemIds                   []string                           `protobuf:"bytes,32,rep,name=easyProduceItemIds,proto3" json:"easyProduceItemIds,omitempty"`
+	EasyConditionSetId                   string                             `protobuf:"bytes,33,opt,name=easyConditionSetId,proto3" json:"easyConditionSetId,omitempty"`
+	EasyProduceConditionSetId            string                             `protobuf:"bytes,34,opt,name=easyProduceConditionSetId,proto3" json:"easyProduceConditionSetId,omitempty"`
 	Order                                int32                              `protobuf:"varint,99,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields                        protoimpl.UnknownFields
 	sizeCache                            protoimpl.SizeCache
@@ -17636,6 +17655,27 @@ func (x *Produce) GetGradientColor2() string {
 	return ""
 }
 
+func (x *Produce) GetEasyProduceItemIds() []string {
+	if x != nil {
+		return x.EasyProduceItemIds
+	}
+	return nil
+}
+
+func (x *Produce) GetEasyConditionSetId() string {
+	if x != nil {
+		return x.EasyConditionSetId
+	}
+	return ""
+}
+
+func (x *Produce) GetEasyProduceConditionSetId() string {
+	if x != nil {
+		return x.EasyProduceConditionSetId
+	}
+	return ""
+}
+
 func (x *Produce) GetOrder() int32 {
 	if x != nil {
 		return x.Order
@@ -17762,6 +17802,7 @@ type ProduceCard struct {
 	Name                       string                                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	AssetId                    string                                 `protobuf:"bytes,5,opt,name=assetId,proto3" json:"assetId,omitempty"`
 	IsCharacterAsset           bool                                   `protobuf:"varint,6,opt,name=isCharacterAsset,proto3" json:"isCharacterAsset,omitempty"`
+	VoiceAssetId               string                                 `protobuf:"bytes,48,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
 	Rarity                     penum.ProduceCardRarity                `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.ProduceCardRarity" json:"rarity,omitempty"`
 	PlanType                   penum.ProducePlanType                  `protobuf:"varint,8,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
 	Category                   penum.ProduceCardCategory              `protobuf:"varint,9,opt,name=category,proto3,enum=penum.ProduceCardCategory" json:"category,omitempty"`
@@ -17794,6 +17835,7 @@ type ProduceCard struct {
 	MaxCustomizeCount          int32                                  `protobuf:"varint,44,opt,name=maxCustomizeCount,proto3" json:"maxCustomizeCount,omitempty"`
 	IsConversion               bool                                   `protobuf:"varint,45,opt,name=isConversion,proto3" json:"isConversion,omitempty"`
 	MoveProduceExamTriggerIds  []string                               `protobuf:"bytes,46,rep,name=moveProduceExamTriggerIds,proto3" json:"moveProduceExamTriggerIds,omitempty"`
+	OriginCharacterId          string                                 `protobuf:"bytes,47,opt,name=originCharacterId,proto3" json:"originCharacterId,omitempty"`
 	ViewStartTime              int64                                  `protobuf:"varint,97,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
 	IsLimited                  bool                                   `protobuf:"varint,99,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
 	Order                      int64                                  `protobuf:"varint,100,opt,name=order,proto3" json:"order,omitempty"`
@@ -17864,6 +17906,13 @@ func (x *ProduceCard) GetIsCharacterAsset() bool {
 		return x.IsCharacterAsset
 	}
 	return false
+}
+
+func (x *ProduceCard) GetVoiceAssetId() string {
+	if x != nil {
+		return x.VoiceAssetId
+	}
+	return ""
 }
 
 func (x *ProduceCard) GetRarity() penum.ProduceCardRarity {
@@ -18088,6 +18137,13 @@ func (x *ProduceCard) GetMoveProduceExamTriggerIds() []string {
 		return x.MoveProduceExamTriggerIds
 	}
 	return nil
+}
+
+func (x *ProduceCard) GetOriginCharacterId() string {
+	if x != nil {
+		return x.OriginCharacterId
+	}
+	return ""
 }
 
 func (x *ProduceCard) GetViewStartTime() int64 {
@@ -23334,6 +23390,7 @@ type ProduceExamEffect struct {
 	PickCountMin                          int32                                `protobuf:"varint,15,opt,name=pickCountMin,proto3" json:"pickCountMin,omitempty"`
 	PickCountMax                          int32                                `protobuf:"varint,16,opt,name=pickCountMax,proto3" json:"pickCountMax,omitempty"`
 	ChainProduceExamEffectId              string                               `protobuf:"bytes,17,opt,name=chainProduceExamEffectId,proto3" json:"chainProduceExamEffectId,omitempty"`
+	ChainProduceExamEffectIds             []string                             `protobuf:"bytes,20,rep,name=chainProduceExamEffectIds,proto3" json:"chainProduceExamEffectIds,omitempty"`
 	ProduceExamStatusEnchantId            string                               `protobuf:"bytes,18,opt,name=produceExamStatusEnchantId,proto3" json:"produceExamStatusEnchantId,omitempty"`
 	ProduceCardStatusEnchantId            string                               `protobuf:"bytes,19,opt,name=produceCardStatusEnchantId,proto3" json:"produceCardStatusEnchantId,omitempty"`
 	ProduceCardGrowEffectIds              []string                             `protobuf:"bytes,21,rep,name=produceCardGrowEffectIds,proto3" json:"produceCardGrowEffectIds,omitempty"`
@@ -23491,6 +23548,13 @@ func (x *ProduceExamEffect) GetChainProduceExamEffectId() string {
 		return x.ChainProduceExamEffectId
 	}
 	return ""
+}
+
+func (x *ProduceExamEffect) GetChainProduceExamEffectIds() []string {
+	if x != nil {
+		return x.ChainProduceExamEffectIds
+	}
+	return nil
 }
 
 func (x *ProduceExamEffect) GetProduceExamStatusEnchantId() string {
@@ -25355,6 +25419,7 @@ type ProduceItem struct {
 	IsChallenge          bool                                 `protobuf:"varint,22,opt,name=isChallenge,proto3" json:"isChallenge,omitempty"`
 	IsHighScoreRush      bool                                 `protobuf:"varint,23,opt,name=isHighScoreRush,proto3" json:"isHighScoreRush,omitempty"`
 	IsResearch           bool                                 `protobuf:"varint,25,opt,name=isResearch,proto3" json:"isResearch,omitempty"`
+	IsEasy               bool                                 `protobuf:"varint,26,opt,name=isEasy,proto3" json:"isEasy,omitempty"`
 	ViewStartTime        int64                                `protobuf:"varint,97,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
 	IsLimited            bool                                 `protobuf:"varint,99,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
 	Order                int64                                `protobuf:"varint,100,opt,name=order,proto3" json:"order,omitempty"`
@@ -25542,6 +25607,13 @@ func (x *ProduceItem) GetIsHighScoreRush() bool {
 func (x *ProduceItem) GetIsResearch() bool {
 	if x != nil {
 		return x.IsResearch
+	}
+	return false
+}
+
+func (x *ProduceItem) GetIsEasy() bool {
+	if x != nil {
+		return x.IsEasy
 	}
 	return false
 }
@@ -26208,6 +26280,8 @@ type ProduceLive struct {
 	UnitLiveThumbnailAssetIds          []string               `protobuf:"bytes,14,rep,name=unitLiveThumbnailAssetIds,proto3" json:"unitLiveThumbnailAssetIds,omitempty"`
 	LiveOverrideAssetId                string                 `protobuf:"bytes,15,opt,name=liveOverrideAssetId,proto3" json:"liveOverrideAssetId,omitempty"`
 	AdditionalActorAssetIds            []string               `protobuf:"bytes,16,rep,name=additionalActorAssetIds,proto3" json:"additionalActorAssetIds,omitempty"`
+	CostumeId                          string                 `protobuf:"bytes,20,opt,name=costumeId,proto3" json:"costumeId,omitempty"`
+	CostumeHeadId                      string                 `protobuf:"bytes,21,opt,name=costumeHeadId,proto3" json:"costumeHeadId,omitempty"`
 	unknownFields                      protoimpl.UnknownFields
 	sizeCache                          protoimpl.SizeCache
 }
@@ -26345,6 +26419,20 @@ func (x *ProduceLive) GetAdditionalActorAssetIds() []string {
 		return x.AdditionalActorAssetIds
 	}
 	return nil
+}
+
+func (x *ProduceLive) GetCostumeId() string {
+	if x != nil {
+		return x.CostumeId
+	}
+	return ""
+}
+
+func (x *ProduceLive) GetCostumeHeadId() string {
+	if x != nil {
+		return x.CostumeHeadId
+	}
+	return ""
 }
 
 type ProduceLiveList struct {
@@ -31695,15 +31783,10 @@ type Setting struct {
 	StoryEventTipsAssetIDs                                       []string               `protobuf:"bytes,94,rep,name=storyEventTipsAssetIDs,proto3" json:"storyEventTipsAssetIDs,omitempty"`
 	StoryEventPointLimit                                         int32                  `protobuf:"varint,95,opt,name=storyEventPointLimit,proto3" json:"storyEventPointLimit,omitempty"`
 	SeminarGuidanceViewConditionSetID                            string                 `protobuf:"bytes,96,opt,name=seminarGuidanceViewConditionSetID,proto3" json:"seminarGuidanceViewConditionSetID,omitempty"`
-	OfficialWebSiteURL                                           string                 `protobuf:"bytes,97,opt,name=officialWebSiteURL,proto3" json:"officialWebSiteURL,omitempty"`
-	IPPortalWebSiteURL                                           string                 `protobuf:"bytes,98,opt,name=iPPortalWebSiteURL,proto3" json:"iPPortalWebSiteURL,omitempty"`
 	PhotoNameLengthLimit                                         int32                  `protobuf:"varint,99,opt,name=photoNameLengthLimit,proto3" json:"photoNameLengthLimit,omitempty"`
 	HomeEventEndTimeDisplayHour                                  int32                  `protobuf:"varint,100,opt,name=homeEventEndTimeDisplayHour,proto3" json:"homeEventEndTimeDisplayHour,omitempty"`
 	IdolCardPieceExchangeItemID                                  string                 `protobuf:"bytes,101,opt,name=idolCardPieceExchangeItemID,proto3" json:"idolCardPieceExchangeItemID,omitempty"`
 	StoryEventMainStoryTipsAssetIDs                              []string               `protobuf:"bytes,103,rep,name=storyEventMainStoryTipsAssetIDs,proto3" json:"storyEventMainStoryTipsAssetIDs,omitempty"`
-	OfficialDiscordURL                                           string                 `protobuf:"bytes,105,opt,name=officialDiscordURL,proto3" json:"officialDiscordURL,omitempty"`
-	OfficialYouTubeIdolMasterURL                                 string                 `protobuf:"bytes,106,opt,name=officialYouTubeIdolMasterURL,proto3" json:"officialYouTubeIdolMasterURL,omitempty"`
-	OfficialYouTubeHatsuBoshiURL                                 string                 `protobuf:"bytes,107,opt,name=officialYouTubeHatsuBoshiURL,proto3" json:"officialYouTubeHatsuBoshiURL,omitempty"`
 	StoryEventGuildMissionTipAssetIDs                            []string               `protobuf:"bytes,108,rep,name=storyEventGuildMissionTipAssetIDs,proto3" json:"storyEventGuildMissionTipAssetIDs,omitempty"`
 	PhotoPoseWaitVoicePlayIntervalSeconds                        int32                  `protobuf:"varint,109,opt,name=photoPoseWaitVoicePlayIntervalSeconds,proto3" json:"photoPoseWaitVoicePlayIntervalSeconds,omitempty"`
 	PhotoBackgroundDefaultBGMAssetID                             string                 `protobuf:"bytes,110,opt,name=photoBackgroundDefaultBGMAssetID,proto3" json:"photoBackgroundDefaultBGMAssetID,omitempty"`
@@ -31778,6 +31861,7 @@ type Setting struct {
 	ProduceAuditionTrendAssessmentPermilSeparateEnable           bool                   `protobuf:"varint,1051,opt,name=produceAuditionTrendAssessmentPermilSeparateEnable,proto3" json:"produceAuditionTrendAssessmentPermilSeparateEnable,omitempty"`
 	ProduceMaxMemoryDeckCount                                    int32                  `protobuf:"varint,1052,opt,name=produceMaxMemoryDeckCount,proto3" json:"produceMaxMemoryDeckCount,omitempty"`
 	ProduceMaxSupportCardDeckCount                               int32                  `protobuf:"varint,1053,opt,name=produceMaxSupportCardDeckCount,proto3" json:"produceMaxSupportCardDeckCount,omitempty"`
+	ProduceNextIdolAuditionProEasyModeConditionSetID             string                 `protobuf:"bytes,1056,opt,name=produceNextIdolAuditionProEasyModeConditionSetID,proto3" json:"produceNextIdolAuditionProEasyModeConditionSetID,omitempty"`
 	GashaPickupStoryCampaignCharacterDearnessLevel               int32                  `protobuf:"varint,1101,opt,name=gashaPickupStoryCampaignCharacterDearnessLevel,proto3" json:"gashaPickupStoryCampaignCharacterDearnessLevel,omitempty"`
 	GashaAnimationReversalSsrPermil                              int32                  `protobuf:"varint,1102,opt,name=gashaAnimationReversalSsrPermil,proto3" json:"gashaAnimationReversalSsrPermil,omitempty"`
 	GashaAnimationReversalPickUpProduceIdolSsrPermil             int32                  `protobuf:"varint,1103,opt,name=gashaAnimationReversalPickUpProduceIdolSsrPermil,proto3" json:"gashaAnimationReversalPickUpProduceIdolSsrPermil,omitempty"`
@@ -31824,6 +31908,7 @@ type Setting struct {
 	PushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay           int32                  `protobuf:"varint,1907,opt,name=pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay,proto3" json:"pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay,omitempty"`
 	AprilFool2025TransitionStoryID                               string                 `protobuf:"bytes,2001,opt,name=aprilFool2025TransitionStoryID,proto3" json:"aprilFool2025TransitionStoryID,omitempty"`
 	AprilFool2025ProduceLiveMusicID                              string                 `protobuf:"bytes,2002,opt,name=aprilFool2025ProduceLiveMusicID,proto3" json:"aprilFool2025ProduceLiveMusicID,omitempty"`
+	AprilFool2026ProduceLiveMusicID                              string                 `protobuf:"bytes,2003,opt,name=aprilFool2026ProduceLiveMusicID,proto3" json:"aprilFool2026ProduceLiveMusicID,omitempty"`
 	ProduceNextIdolAuditionMasterRankingUnlockConditionSetID     string                 `protobuf:"bytes,2101,opt,name=produceNextIdolAuditionMasterRankingUnlockConditionSetID,proto3" json:"produceNextIdolAuditionMasterRankingUnlockConditionSetID,omitempty"`
 	ProducerRankingUnlockConditionSetID                          string                 `protobuf:"bytes,2201,opt,name=producerRankingUnlockConditionSetID,proto3" json:"producerRankingUnlockConditionSetID,omitempty"`
 	ProducerRankingBGMAssetID                                    string                 `protobuf:"bytes,2202,opt,name=producerRankingBGMAssetID,proto3" json:"producerRankingBGMAssetID,omitempty"`
@@ -32369,20 +32454,6 @@ func (x *Setting) GetSeminarGuidanceViewConditionSetID() string {
 	return ""
 }
 
-func (x *Setting) GetOfficialWebSiteURL() string {
-	if x != nil {
-		return x.OfficialWebSiteURL
-	}
-	return ""
-}
-
-func (x *Setting) GetIPPortalWebSiteURL() string {
-	if x != nil {
-		return x.IPPortalWebSiteURL
-	}
-	return ""
-}
-
 func (x *Setting) GetPhotoNameLengthLimit() int32 {
 	if x != nil {
 		return x.PhotoNameLengthLimit
@@ -32409,27 +32480,6 @@ func (x *Setting) GetStoryEventMainStoryTipsAssetIDs() []string {
 		return x.StoryEventMainStoryTipsAssetIDs
 	}
 	return nil
-}
-
-func (x *Setting) GetOfficialDiscordURL() string {
-	if x != nil {
-		return x.OfficialDiscordURL
-	}
-	return ""
-}
-
-func (x *Setting) GetOfficialYouTubeIdolMasterURL() string {
-	if x != nil {
-		return x.OfficialYouTubeIdolMasterURL
-	}
-	return ""
-}
-
-func (x *Setting) GetOfficialYouTubeHatsuBoshiURL() string {
-	if x != nil {
-		return x.OfficialYouTubeHatsuBoshiURL
-	}
-	return ""
 }
 
 func (x *Setting) GetStoryEventGuildMissionTipAssetIDs() []string {
@@ -32950,6 +33000,13 @@ func (x *Setting) GetProduceMaxSupportCardDeckCount() int32 {
 	return 0
 }
 
+func (x *Setting) GetProduceNextIdolAuditionProEasyModeConditionSetID() string {
+	if x != nil {
+		return x.ProduceNextIdolAuditionProEasyModeConditionSetID
+	}
+	return ""
+}
+
 func (x *Setting) GetGashaPickupStoryCampaignCharacterDearnessLevel() int32 {
 	if x != nil {
 		return x.GashaPickupStoryCampaignCharacterDearnessLevel
@@ -33268,6 +33325,13 @@ func (x *Setting) GetAprilFool2025TransitionStoryID() string {
 func (x *Setting) GetAprilFool2025ProduceLiveMusicID() string {
 	if x != nil {
 		return x.AprilFool2025ProduceLiveMusicID
+	}
+	return ""
+}
+
+func (x *Setting) GetAprilFool2026ProduceLiveMusicID() string {
+	if x != nil {
+		return x.AprilFool2026ProduceLiveMusicID
 	}
 	return ""
 }
@@ -36569,6 +36633,7 @@ type Tour struct {
 	ExamSettingId       string                 `protobuf:"bytes,17,opt,name=examSettingId,proto3" json:"examSettingId,omitempty"`
 	TourStageTimelineId string                 `protobuf:"bytes,26,opt,name=tourStageTimelineId,proto3" json:"tourStageTimelineId,omitempty"`
 	TourMotionId        string                 `protobuf:"bytes,35,opt,name=tourMotionId,proto3" json:"tourMotionId,omitempty"`
+	AprilFoolAssetIds   []string               `protobuf:"bytes,51,rep,name=aprilFoolAssetIds,proto3" json:"aprilFoolAssetIds,omitempty"`
 	Order               int32                  `protobuf:"varint,103,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -36658,6 +36723,13 @@ func (x *Tour) GetTourMotionId() string {
 		return x.TourMotionId
 	}
 	return ""
+}
+
+func (x *Tour) GetAprilFoolAssetIds() []string {
+	if x != nil {
+		return x.AprilFoolAssetIds
+	}
+	return nil
 }
 
 func (x *Tour) GetOrder() int32 {
@@ -40392,7 +40464,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\rviewStartTime\x18d \x01(\x03R\rviewStartTime\x12 \n" +
 	"\vviewEndTime\x18e \x01(\x03R\vviewEndTime\"+\n" +
 	"\aBgmList\x12 \n" +
-	"\x04list\x18\x01 \x03(\v2\f.pmaster.BgmR\x04list\"\xa0\x0e\n" +
+	"\x04list\x18\x01 \x03(\v2\f.pmaster.BgmR\x04list\"\x88\x0f\n" +
 	"\tCharacter\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\blastName\x18\x02 \x01(\tR\blastName\x12\x1c\n" +
@@ -40417,11 +40489,13 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x11trainingCostumeId\x18\x18 \x01(\tR\x11trainingCostumeId\x12$\n" +
 	"\rliveCostumeId\x18\x19 \x01(\tR\rliveCostumeId\x126\n" +
 	"\x16dearnessMissionGroupId\x18\x1c \x01(\tR\x16dearnessMissionGroupId\x12<\n" +
-	"\x19dearnessStoryUnlockItemId\x18\x1d \x01(\tR\x19dearnessStoryUnlockItemId\x12$\n" +
+	"\x19dearnessStoryUnlockItemId\x18\x1d \x01(\tR\x19dearnessStoryUnlockItemId\x12&\n" +
+	"\x0eproduceCardIds\x18\x1e \x03(\tR\x0eproduceCardIds\x12$\n" +
 	"\rotherStoryIds\x18\" \x03(\tR\rotherStoryIds\x12>\n" +
 	"\x1apotentialRank1VoiceAssetId\x18( \x01(\tR\x1apotentialRank1VoiceAssetId\x12>\n" +
 	"\x1apotentialRank3VoiceAssetId\x18) \x01(\tR\x1apotentialRank3VoiceAssetId\x12>\n" +
-	"\x1apotentialRank4VoiceAssetId\x18* \x01(\tR\x1apotentialRank4VoiceAssetId\x124\n" +
+	"\x1apotentialRank4VoiceAssetId\x18* \x01(\tR\x1apotentialRank4VoiceAssetId\x12>\n" +
+	"\x1auseProduceCardVoiceAssetId\x18+ \x01(\tR\x1auseProduceCardVoiceAssetId\x124\n" +
 	"\x15standingListPositionX\x182 \x01(\x02R\x15standingListPositionX\x124\n" +
 	"\x15standingListPositionY\x183 \x01(\x02R\x15standingListPositionY\x124\n" +
 	"\x15rosterDetailPositionX\x184 \x01(\x02R\x15rosterDetailPositionX\x124\n" +
@@ -41788,7 +41862,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12\"\n" +
 	"\fvoiceAssetId\x18\x03 \x01(\tR\fvoiceAssetId\"K\n" +
 	"\x17PhotoWaitVoiceGroupList\x120\n" +
-	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.PhotoWaitVoiceGroupR\x04list\"\xf8\a\n" +
+	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.PhotoWaitVoiceGroupR\x04list\"\x96\t\n" +
 	"\aProduce\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12$\n" +
@@ -41810,7 +41884,10 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1bproduceNavigationAuditionId\x18\x1b \x01(\tR\x1bproduceNavigationAuditionId\x128\n" +
 	"\x17produceNavigationLoseId\x18\x1c \x01(\tR\x17produceNavigationLoseId\x12&\n" +
 	"\x0egradientColor1\x18\x1e \x01(\tR\x0egradientColor1\x12&\n" +
-	"\x0egradientColor2\x18\x1f \x01(\tR\x0egradientColor2\x12\x14\n" +
+	"\x0egradientColor2\x18\x1f \x01(\tR\x0egradientColor2\x12.\n" +
+	"\x12easyProduceItemIds\x18  \x03(\tR\x12easyProduceItemIds\x12.\n" +
+	"\x12easyConditionSetId\x18! \x01(\tR\x12easyConditionSetId\x12<\n" +
+	"\x19easyProduceConditionSetId\x18\" \x01(\tR\x19easyProduceConditionSetId\x12\x14\n" +
 	"\x05order\x18c \x01(\x05R\x05order\"\x9d\x01\n" +
 	"\n" +
 	"ProduceAdv\x124\n" +
@@ -41819,13 +41896,14 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x18\n" +
 	"\aassetId\x18\x04 \x01(\tR\aassetId\"9\n" +
 	"\x0eProduceAdvList\x12'\n" +
-	"\x04list\x18\x01 \x03(\v2\x13.pmaster.ProduceAdvR\x04list\"\xc7\x0f\n" +
+	"\x04list\x18\x01 \x03(\v2\x13.pmaster.ProduceAdvR\x04list\"\x99\x10\n" +
 	"\vProduceCard\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
 	"\fupgradeCount\x18\x02 \x01(\x05R\fupgradeCount\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x18\n" +
 	"\aassetId\x18\x05 \x01(\tR\aassetId\x12*\n" +
-	"\x10isCharacterAsset\x18\x06 \x01(\bR\x10isCharacterAsset\x120\n" +
+	"\x10isCharacterAsset\x18\x06 \x01(\bR\x10isCharacterAsset\x12\"\n" +
+	"\fvoiceAssetId\x180 \x01(\tR\fvoiceAssetId\x120\n" +
 	"\x06rarity\x18\a \x01(\x0e2\x18.penum.ProduceCardRarityR\x06rarity\x122\n" +
 	"\bplanType\x18\b \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x126\n" +
 	"\bcategory\x18\t \x01(\x0e2\x1a.penum.ProduceCardCategoryR\bcategory\x12\x18\n" +
@@ -41862,7 +41940,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x17produceCardCustomizeIds\x18+ \x03(\tR\x17produceCardCustomizeIds\x12,\n" +
 	"\x11maxCustomizeCount\x18, \x01(\x05R\x11maxCustomizeCount\x12\"\n" +
 	"\fisConversion\x18- \x01(\bR\fisConversion\x12<\n" +
-	"\x19moveProduceExamTriggerIds\x18. \x03(\tR\x19moveProduceExamTriggerIds\x12$\n" +
+	"\x19moveProduceExamTriggerIds\x18. \x03(\tR\x19moveProduceExamTriggerIds\x12,\n" +
+	"\x11originCharacterId\x18/ \x01(\tR\x11originCharacterId\x12$\n" +
 	"\rviewStartTime\x18a \x01(\x03R\rviewStartTime\x12\x1c\n" +
 	"\tisLimited\x18c \x01(\bR\tisLimited\x12\x14\n" +
 	"\x05order\x18d \x01(\x03R\x05order\x1a\x8e\x01\n" +
@@ -42275,7 +42354,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\vdancePermil\x18\x04 \x01(\x05R\vdancePermil\x12\"\n" +
 	"\fvisualPermil\x18\x05 \x01(\x05R\fvisualPermil\"]\n" +
 	" ProduceExamBattleScoreConfigList\x129\n" +
-	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceExamBattleScoreConfigR\x04list\"\xa3\n" +
+	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceExamBattleScoreConfigR\x04list\"\xe1\n" +
 	"\n" +
 	"\x11ProduceExamEffect\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12<\n" +
@@ -42299,7 +42378,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\rpickCountType\x18\x17 \x01(\x0e2\x1b.penum.ProducePickCountTypeR\rpickCountType\x12\"\n" +
 	"\fpickCountMin\x18\x0f \x01(\x05R\fpickCountMin\x12\"\n" +
 	"\fpickCountMax\x18\x10 \x01(\x05R\fpickCountMax\x12:\n" +
-	"\x18chainProduceExamEffectId\x18\x11 \x01(\tR\x18chainProduceExamEffectId\x12>\n" +
+	"\x18chainProduceExamEffectId\x18\x11 \x01(\tR\x18chainProduceExamEffectId\x12<\n" +
+	"\x19chainProduceExamEffectIds\x18\x14 \x03(\tR\x19chainProduceExamEffectIds\x12>\n" +
 	"\x1aproduceExamStatusEnchantId\x18\x12 \x01(\tR\x1aproduceExamStatusEnchantId\x12>\n" +
 	"\x1aproduceCardStatusEnchantId\x18\x13 \x01(\tR\x1aproduceCardStatusEnchantId\x12:\n" +
 	"\x18produceCardGrowEffectIds\x18\x15 \x03(\tR\x18produceCardGrowEffectIds\x12&\n" +
@@ -42451,7 +42531,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0eexamEffectType\x18\x02 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x0eexamEffectType\x12,\n" +
 	"\x11examInitialDeckId\x18\x03 \x01(\tR\x11examInitialDeckId\"I\n" +
 	"\x16ProduceInitialDeckList\x12/\n" +
-	"\x04list\x18\x01 \x03(\v2\x1b.pmaster.ProduceInitialDeckR\x04list\"\xc8\b\n" +
+	"\x04list\x18\x01 \x03(\v2\x1b.pmaster.ProduceInitialDeckR\x04list\"\xe0\b\n" +
 	"\vProduceItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\aassetId\x18\x02 \x01(\tR\aassetId\x120\n" +
@@ -42481,7 +42561,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0fisHighScoreRush\x18\x17 \x01(\bR\x0fisHighScoreRush\x12\x1e\n" +
 	"\n" +
 	"isResearch\x18\x19 \x01(\bR\n" +
-	"isResearch\x12$\n" +
+	"isResearch\x12\x16\n" +
+	"\x06isEasy\x18\x1a \x01(\bR\x06isEasy\x12$\n" +
 	"\rviewStartTime\x18a \x01(\x03R\rviewStartTime\x12\x1c\n" +
 	"\tisLimited\x18c \x01(\bR\tisLimited\x12\x14\n" +
 	"\x05order\x18d \x01(\x03R\x05order\x1ae\n" +
@@ -42527,7 +42608,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1cProduceLegendProduceCardList\x125\n" +
 	"\x04list\x18\x01 \x03(\v2!.pmaster.ProduceLegendProduceCardR\x04list\"3\n" +
 	"\vProduceList\x12$\n" +
-	"\x04list\x18\x01 \x03(\v2\x10.pmaster.ProduceR\x04list\"\xef\x05\n" +
+	"\x04list\x18\x01 \x03(\v2\x10.pmaster.ProduceR\x04list\"\xb3\x06\n" +
 	"\vProduceLive\x12\x18\n" +
 	"\amusicId\x18\x01 \x01(\tR\amusicId\x12*\n" +
 	"\x04type\x18\x02 \x01(\x0e2\x16.penum.ProduceLiveTypeR\x04type\x12<\n" +
@@ -42544,7 +42625,9 @@ const file_pmaster_proto_rawDesc = "" +
 	"\"unitLiveThumbnailAssetCharacterIds\x18\r \x03(\tR\"unitLiveThumbnailAssetCharacterIds\x12<\n" +
 	"\x19unitLiveThumbnailAssetIds\x18\x0e \x03(\tR\x19unitLiveThumbnailAssetIds\x120\n" +
 	"\x13liveOverrideAssetId\x18\x0f \x01(\tR\x13liveOverrideAssetId\x128\n" +
-	"\x17additionalActorAssetIds\x18\x10 \x03(\tR\x17additionalActorAssetIds\";\n" +
+	"\x17additionalActorAssetIds\x18\x10 \x03(\tR\x17additionalActorAssetIds\x12\x1c\n" +
+	"\tcostumeId\x18\x14 \x01(\tR\tcostumeId\x12$\n" +
+	"\rcostumeHeadId\x18\x15 \x01(\tR\rcostumeHeadId\";\n" +
 	"\x0fProduceLiveList\x12(\n" +
 	"\x04list\x18\x01 \x03(\v2\x14.pmaster.ProduceLiveR\x04list\"]\n" +
 	"\x11ProduceNavigation\x12\x0e\n" +
@@ -42977,7 +43060,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\arewards\x18\n" +
 	" \x03(\v2\x0f.pcommon.RewardR\arewards\"O\n" +
 	"\x19SeminarExamTransitionList\x122\n" +
-	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xdd}\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xfd|\n" +
 	"\aSetting\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x124\n" +
 	"\x15giftDefaultLimitCount\x18\x02 \x01(\x05R\x15giftDefaultLimitCount\x12B\n" +
@@ -43049,16 +43132,11 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x19seminarViewConditionSetID\x18] \x01(\tR\x19seminarViewConditionSetID\x126\n" +
 	"\x16storyEventTipsAssetIDs\x18^ \x03(\tR\x16storyEventTipsAssetIDs\x122\n" +
 	"\x14storyEventPointLimit\x18_ \x01(\x05R\x14storyEventPointLimit\x12L\n" +
-	"!seminarGuidanceViewConditionSetID\x18` \x01(\tR!seminarGuidanceViewConditionSetID\x12.\n" +
-	"\x12officialWebSiteURL\x18a \x01(\tR\x12officialWebSiteURL\x12.\n" +
-	"\x12iPPortalWebSiteURL\x18b \x01(\tR\x12iPPortalWebSiteURL\x122\n" +
+	"!seminarGuidanceViewConditionSetID\x18` \x01(\tR!seminarGuidanceViewConditionSetID\x122\n" +
 	"\x14photoNameLengthLimit\x18c \x01(\x05R\x14photoNameLengthLimit\x12@\n" +
 	"\x1bhomeEventEndTimeDisplayHour\x18d \x01(\x05R\x1bhomeEventEndTimeDisplayHour\x12@\n" +
 	"\x1bidolCardPieceExchangeItemID\x18e \x01(\tR\x1bidolCardPieceExchangeItemID\x12H\n" +
-	"\x1fstoryEventMainStoryTipsAssetIDs\x18g \x03(\tR\x1fstoryEventMainStoryTipsAssetIDs\x12.\n" +
-	"\x12officialDiscordURL\x18i \x01(\tR\x12officialDiscordURL\x12B\n" +
-	"\x1cofficialYouTubeIdolMasterURL\x18j \x01(\tR\x1cofficialYouTubeIdolMasterURL\x12B\n" +
-	"\x1cofficialYouTubeHatsuBoshiURL\x18k \x01(\tR\x1cofficialYouTubeHatsuBoshiURL\x12L\n" +
+	"\x1fstoryEventMainStoryTipsAssetIDs\x18g \x03(\tR\x1fstoryEventMainStoryTipsAssetIDs\x12L\n" +
 	"!storyEventGuildMissionTipAssetIDs\x18l \x03(\tR!storyEventGuildMissionTipAssetIDs\x12T\n" +
 	"%photoPoseWaitVoicePlayIntervalSeconds\x18m \x01(\x05R%photoPoseWaitVoicePlayIntervalSeconds\x12J\n" +
 	" photoBackgroundDefaultBGMAssetID\x18n \x01(\tR photoBackgroundDefaultBGMAssetID\x124\n" +
@@ -43132,7 +43210,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"&produceStepShopDiscountRoundDownEnable\x18\x9a\b \x01(\bR&produceStepShopDiscountRoundDownEnable\x12o\n" +
 	"2produceAuditionTrendAssessmentPermilSeparateEnable\x18\x9b\b \x01(\bR2produceAuditionTrendAssessmentPermilSeparateEnable\x12=\n" +
 	"\x19produceMaxMemoryDeckCount\x18\x9c\b \x01(\x05R\x19produceMaxMemoryDeckCount\x12G\n" +
-	"\x1eproduceMaxSupportCardDeckCount\x18\x9d\b \x01(\x05R\x1eproduceMaxSupportCardDeckCount\x12g\n" +
+	"\x1eproduceMaxSupportCardDeckCount\x18\x9d\b \x01(\x05R\x1eproduceMaxSupportCardDeckCount\x12k\n" +
+	"0produceNextIdolAuditionProEasyModeConditionSetID\x18\xa0\b \x01(\tR0produceNextIdolAuditionProEasyModeConditionSetID\x12g\n" +
 	".gashaPickupStoryCampaignCharacterDearnessLevel\x18\xcd\b \x01(\x05R.gashaPickupStoryCampaignCharacterDearnessLevel\x12I\n" +
 	"\x1fgashaAnimationReversalSsrPermil\x18\xce\b \x01(\x05R\x1fgashaAnimationReversalSsrPermil\x12k\n" +
 	"0gashaAnimationReversalPickUpProduceIdolSsrPermil\x18\xcf\b \x01(\x05R0gashaAnimationReversalPickUpProduceIdolSsrPermil\x129\n" +
@@ -43191,7 +43270,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"*pushPvpRateRemainingPlayCountNotifyMinutes\x18\xf2\x0e \x01(\x05R*pushPvpRateRemainingPlayCountNotifyMinutes\x12o\n" +
 	"2pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay\x18\xf3\x0e \x01(\x05R2pushPvpRateRemainingPlayCountDoNotNotifyNoLoginDay\x12G\n" +
 	"\x1eaprilFool2025TransitionStoryID\x18\xd1\x0f \x01(\tR\x1eaprilFool2025TransitionStoryID\x12I\n" +
-	"\x1faprilFool2025ProduceLiveMusicID\x18\xd2\x0f \x01(\tR\x1faprilFool2025ProduceLiveMusicID\x12{\n" +
+	"\x1faprilFool2025ProduceLiveMusicID\x18\xd2\x0f \x01(\tR\x1faprilFool2025ProduceLiveMusicID\x12I\n" +
+	"\x1faprilFool2026ProduceLiveMusicID\x18\xd3\x0f \x01(\tR\x1faprilFool2026ProduceLiveMusicID\x12{\n" +
 	"8produceNextIdolAuditionMasterRankingUnlockConditionSetID\x18\xb5\x10 \x01(\tR8produceNextIdolAuditionMasterRankingUnlockConditionSetID\x12Q\n" +
 	"#producerRankingUnlockConditionSetID\x18\x99\x11 \x01(\tR#producerRankingUnlockConditionSetID\x12=\n" +
 	"\x19producerRankingBGMAssetID\x18\x9a\x11 \x01(\tR\x19producerRankingBGMAssetID\x12i\n" +
@@ -43467,7 +43547,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\tstartTime\x18\x02 \x01(\x03R\tstartTime\x12\x18\n" +
 	"\aendTime\x18\x03 \x01(\x03R\aendTime\"9\n" +
 	"\x0eTitleVoiceList\x12'\n" +
-	"\x04list\x18\x01 \x03(\v2\x13.pmaster.TitleVoiceR\x04list\"\xaa\x02\n" +
+	"\x04list\x18\x01 \x03(\v2\x13.pmaster.TitleVoiceR\x04list\"\xd8\x02\n" +
 	"\x04Tour\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\"\n" +
@@ -43477,7 +43557,8 @@ const file_pmaster_proto_rawDesc = "" +
 	" \x01(\tR\fstoryGroupId\x12$\n" +
 	"\rexamSettingId\x18\x11 \x01(\tR\rexamSettingId\x120\n" +
 	"\x13tourStageTimelineId\x18\x1a \x01(\tR\x13tourStageTimelineId\x12\"\n" +
-	"\ftourMotionId\x18# \x01(\tR\ftourMotionId\x12\x14\n" +
+	"\ftourMotionId\x18# \x01(\tR\ftourMotionId\x12,\n" +
+	"\x11aprilFoolAssetIds\x183 \x03(\tR\x11aprilFoolAssetIds\x12\x14\n" +
 	"\x05order\x18g \x01(\x05R\x05order\"-\n" +
 	"\bTourList\x12!\n" +
 	"\x04list\x18\x01 \x03(\v2\r.pmaster.TourR\x04list\"\x84\x02\n" +
