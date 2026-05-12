@@ -1312,14 +1312,15 @@ func (x *UserHomeCharacter) GetIsRandom() bool {
 }
 
 type UserIdolCard struct {
-	state          protoimpl.MessageState       `protogen:"open.v1"`
-	IdolCardId     string                       `protobuf:"bytes,2,opt,name=idolCardId,proto3" json:"idolCardId,omitempty"`
-	LevelLimitRank penum.IdolCardLevelLimitRank `protobuf:"varint,3,opt,name=levelLimitRank,proto3,enum=penum.IdolCardLevelLimitRank" json:"levelLimitRank,omitempty"`
-	PotentialRank  penum.IdolCardPotentialRank  `protobuf:"varint,4,opt,name=potentialRank,proto3,enum=penum.IdolCardPotentialRank" json:"potentialRank,omitempty"`
-	IdolCardSkinId string                       `protobuf:"bytes,5,opt,name=idolCardSkinId,proto3" json:"idolCardSkinId,omitempty"`
-	CreatedTime    int64                        `protobuf:"varint,999,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                   protoimpl.MessageState       `protogen:"open.v1"`
+	IdolCardId              string                       `protobuf:"bytes,2,opt,name=idolCardId,proto3" json:"idolCardId,omitempty"`
+	LevelLimitRank          penum.IdolCardLevelLimitRank `protobuf:"varint,3,opt,name=levelLimitRank,proto3,enum=penum.IdolCardLevelLimitRank" json:"levelLimitRank,omitempty"`
+	PotentialRank           penum.IdolCardPotentialRank  `protobuf:"varint,4,opt,name=potentialRank,proto3,enum=penum.IdolCardPotentialRank" json:"potentialRank,omitempty"`
+	IdolCardSkinId          string                       `protobuf:"bytes,5,opt,name=idolCardSkinId,proto3" json:"idolCardSkinId,omitempty"`
+	PrimaStellaUpgradedTime int64                        `protobuf:"varint,10,opt,name=primaStellaUpgradedTime,proto3" json:"primaStellaUpgradedTime,omitempty"`
+	CreatedTime             int64                        `protobuf:"varint,999,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *UserIdolCard) Reset() {
@@ -1378,6 +1379,13 @@ func (x *UserIdolCard) GetIdolCardSkinId() string {
 		return x.IdolCardSkinId
 	}
 	return ""
+}
+
+func (x *UserIdolCard) GetPrimaStellaUpgradedTime() int64 {
+	if x != nil {
+		return x.PrimaStellaUpgradedTime
+	}
+	return 0
 }
 
 func (x *UserIdolCard) GetCreatedTime() int64 {
@@ -1794,6 +1802,7 @@ type UserMemory struct {
 	ResearchId               string                                  `protobuf:"bytes,50,opt,name=researchId,proto3" json:"researchId,omitempty"`
 	ResearchRerollCount      int32                                   `protobuf:"varint,51,opt,name=researchRerollCount,proto3" json:"researchRerollCount,omitempty"`
 	IsResearchFavorite       bool                                    `protobuf:"varint,52,opt,name=isResearchFavorite,proto3" json:"isResearchFavorite,omitempty"`
+	IsPrimaStella            bool                                    `protobuf:"varint,60,opt,name=isPrimaStella,proto3" json:"isPrimaStella,omitempty"`
 	EndingLiveType           penum.ProduceLiveType                   `protobuf:"varint,99,opt,name=endingLiveType,proto3,enum=penum.ProduceLiveType" json:"endingLiveType,omitempty"`
 	ProduceLiveType          penum.ProduceLiveType                   `protobuf:"varint,100,opt,name=produceLiveType,proto3,enum=penum.ProduceLiveType" json:"produceLiveType,omitempty"`
 	LiveCostumeId            string                                  `protobuf:"bytes,101,opt,name=liveCostumeId,proto3" json:"liveCostumeId,omitempty"`
@@ -2036,6 +2045,13 @@ func (x *UserMemory) GetResearchRerollCount() int32 {
 func (x *UserMemory) GetIsResearchFavorite() bool {
 	if x != nil {
 		return x.IsResearchFavorite
+	}
+	return false
+}
+
+func (x *UserMemory) GetIsPrimaStella() bool {
+	if x != nil {
+		return x.IsPrimaStella
 	}
 	return false
 }
@@ -3226,6 +3242,7 @@ type UserProduceCharacter struct {
 	PlayCount                 int32                  `protobuf:"varint,5,opt,name=playCount,proto3" json:"playCount,omitempty"`
 	ClearCount                int32                  `protobuf:"varint,6,opt,name=clearCount,proto3" json:"clearCount,omitempty"`
 	UnlockChallengeSlotNumber int32                  `protobuf:"varint,7,opt,name=unlockChallengeSlotNumber,proto3" json:"unlockChallengeSlotNumber,omitempty"`
+	HighestScore              int32                  `protobuf:"varint,8,opt,name=highestScore,proto3" json:"highestScore,omitempty"`
 	unknownFields             protoimpl.UnknownFields
 	sizeCache                 protoimpl.SizeCache
 }
@@ -3291,6 +3308,13 @@ func (x *UserProduceCharacter) GetClearCount() int32 {
 func (x *UserProduceCharacter) GetUnlockChallengeSlotNumber() int32 {
 	if x != nil {
 		return x.UnlockChallengeSlotNumber
+	}
+	return 0
+}
+
+func (x *UserProduceCharacter) GetHighestScore() int32 {
+	if x != nil {
+		return x.HighestScore
 	}
 	return 0
 }
@@ -3415,6 +3439,66 @@ func (x *UserProduceGroupCharacter) GetDisableForceLiveCommon() bool {
 	return false
 }
 
+type UserProduceGrowthPanel struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ProduceGrowthPanelId string                 `protobuf:"bytes,2,opt,name=produceGrowthPanelId,proto3" json:"produceGrowthPanelId,omitempty"`
+	Level                int32                  `protobuf:"varint,3,opt,name=level,proto3" json:"level,omitempty"`
+	Enable               bool                   `protobuf:"varint,4,opt,name=enable,proto3" json:"enable,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *UserProduceGrowthPanel) Reset() {
+	*x = UserProduceGrowthPanel{}
+	mi := &file_ptransaction_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserProduceGrowthPanel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserProduceGrowthPanel) ProtoMessage() {}
+
+func (x *UserProduceGrowthPanel) ProtoReflect() protoreflect.Message {
+	mi := &file_ptransaction_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserProduceGrowthPanel.ProtoReflect.Descriptor instead.
+func (*UserProduceGrowthPanel) Descriptor() ([]byte, []int) {
+	return file_ptransaction_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *UserProduceGrowthPanel) GetProduceGrowthPanelId() string {
+	if x != nil {
+		return x.ProduceGrowthPanelId
+	}
+	return ""
+}
+
+func (x *UserProduceGrowthPanel) GetLevel() int32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+func (x *UserProduceGrowthPanel) GetEnable() bool {
+	if x != nil {
+		return x.Enable
+	}
+	return false
+}
+
 type UserProduceIdolCard struct {
 	state                   protoimpl.MessageState `protogen:"open.v1"`
 	ProduceId               string                 `protobuf:"bytes,2,opt,name=produceId,proto3" json:"produceId,omitempty"`
@@ -3428,7 +3512,7 @@ type UserProduceIdolCard struct {
 
 func (x *UserProduceIdolCard) Reset() {
 	*x = UserProduceIdolCard{}
-	mi := &file_ptransaction_proto_msgTypes[50]
+	mi := &file_ptransaction_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3440,7 +3524,7 @@ func (x *UserProduceIdolCard) String() string {
 func (*UserProduceIdolCard) ProtoMessage() {}
 
 func (x *UserProduceIdolCard) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[50]
+	mi := &file_ptransaction_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3453,7 +3537,7 @@ func (x *UserProduceIdolCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceIdolCard.ProtoReflect.Descriptor instead.
 func (*UserProduceIdolCard) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{50}
+	return file_ptransaction_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *UserProduceIdolCard) GetProduceId() string {
@@ -3500,7 +3584,7 @@ type UserProduceItem struct {
 
 func (x *UserProduceItem) Reset() {
 	*x = UserProduceItem{}
-	mi := &file_ptransaction_proto_msgTypes[51]
+	mi := &file_ptransaction_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3512,7 +3596,7 @@ func (x *UserProduceItem) String() string {
 func (*UserProduceItem) ProtoMessage() {}
 
 func (x *UserProduceItem) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[51]
+	mi := &file_ptransaction_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3525,7 +3609,7 @@ func (x *UserProduceItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceItem.ProtoReflect.Descriptor instead.
 func (*UserProduceItem) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{51}
+	return file_ptransaction_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *UserProduceItem) GetProduceItemId() string {
@@ -3548,7 +3632,7 @@ type UserProduceLive struct {
 
 func (x *UserProduceLive) Reset() {
 	*x = UserProduceLive{}
-	mi := &file_ptransaction_proto_msgTypes[52]
+	mi := &file_ptransaction_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3560,7 +3644,7 @@ func (x *UserProduceLive) String() string {
 func (*UserProduceLive) ProtoMessage() {}
 
 func (x *UserProduceLive) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[52]
+	mi := &file_ptransaction_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3573,7 +3657,7 @@ func (x *UserProduceLive) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceLive.ProtoReflect.Descriptor instead.
 func (*UserProduceLive) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{52}
+	return file_ptransaction_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *UserProduceLive) GetMusicId() string {
@@ -3623,7 +3707,7 @@ type UserProduceMemoryDeck struct {
 
 func (x *UserProduceMemoryDeck) Reset() {
 	*x = UserProduceMemoryDeck{}
-	mi := &file_ptransaction_proto_msgTypes[53]
+	mi := &file_ptransaction_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3635,7 +3719,7 @@ func (x *UserProduceMemoryDeck) String() string {
 func (*UserProduceMemoryDeck) ProtoMessage() {}
 
 func (x *UserProduceMemoryDeck) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[53]
+	mi := &file_ptransaction_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3648,7 +3732,7 @@ func (x *UserProduceMemoryDeck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceMemoryDeck.ProtoReflect.Descriptor instead.
 func (*UserProduceMemoryDeck) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{53}
+	return file_ptransaction_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *UserProduceMemoryDeck) GetProduceType() penum.ProduceType {
@@ -3697,10 +3781,13 @@ type UserProduceProgress struct {
 	IsInterrupted                                 bool                                               `protobuf:"varint,18,opt,name=isInterrupted,proto3" json:"isInterrupted,omitempty"`
 	HasInterruptedBefore                          bool                                               `protobuf:"varint,19,opt,name=hasInterruptedBefore,proto3" json:"hasInterruptedBefore,omitempty"`
 	StartDearnessLevel                            int32                                              `protobuf:"varint,20,opt,name=startDearnessLevel,proto3" json:"startDearnessLevel,omitempty"`
+	IsPrimaStella                                 bool                                               `protobuf:"varint,21,opt,name=isPrimaStella,proto3" json:"isPrimaStella,omitempty"`
+	UserSelectionMemoryId                         string                                             `protobuf:"bytes,24,opt,name=userSelectionMemoryId,proto3" json:"userSelectionMemoryId,omitempty"`
 	IsResearch                                    bool                                               `protobuf:"varint,71,opt,name=isResearch,proto3" json:"isResearch,omitempty"`
 	ResearchExternalProduceCardIds                []string                                           `protobuf:"bytes,72,rep,name=researchExternalProduceCardIds,proto3" json:"researchExternalProduceCardIds,omitempty"`
 	ResearchMemoryPickupProduceCardIds            []string                                           `protobuf:"bytes,73,rep,name=researchMemoryPickupProduceCardIds,proto3" json:"researchMemoryPickupProduceCardIds,omitempty"`
 	ResearchProduceItemIds                        []string                                           `protobuf:"bytes,74,rep,name=researchProduceItemIds,proto3" json:"researchProduceItemIds,omitempty"`
+	ResearchMemoryProduceCardPickupDisable        bool                                               `protobuf:"varint,75,opt,name=researchMemoryProduceCardPickupDisable,proto3" json:"researchMemoryProduceCardPickupDisable,omitempty"`
 	ProduceHighScoreId                            string                                             `protobuf:"bytes,80,opt,name=produceHighScoreId,proto3" json:"produceHighScoreId,omitempty"`
 	ProduceCampaigns                              []*pcommon.ProduceCampaign                         `protobuf:"bytes,91,rep,name=produceCampaigns,proto3" json:"produceCampaigns,omitempty"`
 	Status                                        penum.ProduceProgressStatus                        `protobuf:"varint,100,opt,name=status,proto3,enum=penum.ProduceProgressStatus" json:"status,omitempty"`
@@ -3725,6 +3812,8 @@ type UserProduceProgress struct {
 	IsChangeCostumeTraining                       bool                                               `protobuf:"varint,126,opt,name=isChangeCostumeTraining,proto3" json:"isChangeCostumeTraining,omitempty"`
 	RentalPublicUserId                            string                                             `protobuf:"bytes,125,opt,name=rentalPublicUserId,proto3" json:"rentalPublicUserId,omitempty"`
 	ChangeCostumeLiveUnitCharacterIds             []string                                           `protobuf:"bytes,127,rep,name=changeCostumeLiveUnitCharacterIds,proto3" json:"changeCostumeLiveUnitCharacterIds,omitempty"`
+	ChangeCostumeTrainingUnitCharacterIds         []string                                           `protobuf:"bytes,128,rep,name=changeCostumeTrainingUnitCharacterIds,proto3" json:"changeCostumeTrainingUnitCharacterIds,omitempty"`
+	ResultSelectionMemory                         *pcommon.SelectionMemory                           `protobuf:"bytes,131,opt,name=resultSelectionMemory,proto3" json:"resultSelectionMemory,omitempty"`
 	Vocal                                         int32                                              `protobuf:"varint,200,opt,name=vocal,proto3" json:"vocal,omitempty"`
 	Dance                                         int32                                              `protobuf:"varint,201,opt,name=dance,proto3" json:"dance,omitempty"`
 	Visual                                        int32                                              `protobuf:"varint,202,opt,name=visual,proto3" json:"visual,omitempty"`
@@ -3745,6 +3834,8 @@ type UserProduceProgress struct {
 	ProducePointGetDisableTurn                    int32                                              `protobuf:"varint,233,opt,name=producePointGetDisableTurn,proto3" json:"producePointGetDisableTurn,omitempty"`
 	VoteCount                                     int32                                              `protobuf:"varint,235,opt,name=voteCount,proto3" json:"voteCount,omitempty"`
 	HighScoreGold                                 int32                                              `protobuf:"varint,236,opt,name=highScoreGold,proto3" json:"highScoreGold,omitempty"`
+	Star                                          int32                                              `protobuf:"varint,237,opt,name=star,proto3" json:"star,omitempty"`
+	StarPermil                                    int32                                              `protobuf:"varint,238,opt,name=starPermil,proto3" json:"starPermil,omitempty"`
 	CharacterProduceSkills                        []*UserProduceProgress_ProduceSkill                `protobuf:"bytes,253,rep,name=characterProduceSkills,proto3" json:"characterProduceSkills,omitempty"`
 	DearnessStoryDearnessLevel                    int32                                              `protobuf:"varint,254,opt,name=dearnessStoryDearnessLevel,proto3" json:"dearnessStoryDearnessLevel,omitempty"`
 	IdolCardProduceSkills                         []*UserProduceProgress_ProduceSkill                `protobuf:"bytes,273,rep,name=idolCardProduceSkills,proto3" json:"idolCardProduceSkills,omitempty"`
@@ -3759,9 +3850,11 @@ type UserProduceProgress struct {
 	ProduceItemGetDisableTurn                     int32                                              `protobuf:"varint,354,opt,name=produceItemGetDisableTurn,proto3" json:"produceItemGetDisableTurn,omitempty"`
 	ProduceDrinkIds                               []string                                           `protobuf:"bytes,400,rep,name=produceDrinkIds,proto3" json:"produceDrinkIds,omitempty"`
 	ProduceDrinkGetDisableTurn                    int32                                              `protobuf:"varint,401,opt,name=produceDrinkGetDisableTurn,proto3" json:"produceDrinkGetDisableTurn,omitempty"`
+	ProduceDrinkPossessAdditionalCount            int32                                              `protobuf:"varint,404,opt,name=produceDrinkPossessAdditionalCount,proto3" json:"produceDrinkPossessAdditionalCount,omitempty"`
 	AuditionEffectParameterBonusPermil            int32                                              `protobuf:"varint,504,opt,name=auditionEffectParameterBonusPermil,proto3" json:"auditionEffectParameterBonusPermil,omitempty"`
 	AuditionNpcEnhancePermil                      int32                                              `protobuf:"varint,505,opt,name=auditionNpcEnhancePermil,proto3" json:"auditionNpcEnhancePermil,omitempty"`
 	AuditionParameterGrowthRatePermil             int32                                              `protobuf:"varint,508,opt,name=auditionParameterGrowthRatePermil,proto3" json:"auditionParameterGrowthRatePermil,omitempty"`
+	Auditions                                     []*UserProduceProgress_AuditionResult              `protobuf:"bytes,510,rep,name=auditions,proto3" json:"auditions,omitempty"`
 	EventSchoolStaminaPermil                      int32                                              `protobuf:"varint,550,opt,name=eventSchoolStaminaPermil,proto3" json:"eventSchoolStaminaPermil,omitempty"`
 	EventActivityProducePointPermil               int32                                              `protobuf:"varint,551,opt,name=eventActivityProducePointPermil,proto3" json:"eventActivityProducePointPermil,omitempty"`
 	EventBusinessVoteCountPermil                  int32                                              `protobuf:"varint,552,opt,name=eventBusinessVoteCountPermil,proto3" json:"eventBusinessVoteCountPermil,omitempty"`
@@ -3793,6 +3886,8 @@ type UserProduceProgress struct {
 	ShopProduceDrinkDiscountPermils               []int32                                            `protobuf:"varint,808,rep,packed,name=shopProduceDrinkDiscountPermils,proto3" json:"shopProduceDrinkDiscountPermils,omitempty"`
 	ShopRemainRerollCount                         int32                                              `protobuf:"varint,811,opt,name=shopRemainRerollCount,proto3" json:"shopRemainRerollCount,omitempty"`
 	HiddenShopReroll                              bool                                               `protobuf:"varint,812,opt,name=hiddenShopReroll,proto3" json:"hiddenShopReroll,omitempty"`
+	IntervalCurrentProduceCardUpgradeCount        int32                                              `protobuf:"varint,831,opt,name=intervalCurrentProduceCardUpgradeCount,proto3" json:"intervalCurrentProduceCardUpgradeCount,omitempty"`
+	IntervalRerollPrice                           int32                                              `protobuf:"varint,832,opt,name=intervalRerollPrice,proto3" json:"intervalRerollPrice,omitempty"`
 	SatisfyProduceExamTriggerIds                  []string                                           `protobuf:"bytes,852,rep,name=satisfyProduceExamTriggerIds,proto3" json:"satisfyProduceExamTriggerIds,omitempty"`
 	unknownFields                                 protoimpl.UnknownFields
 	sizeCache                                     protoimpl.SizeCache
@@ -3800,7 +3895,7 @@ type UserProduceProgress struct {
 
 func (x *UserProduceProgress) Reset() {
 	*x = UserProduceProgress{}
-	mi := &file_ptransaction_proto_msgTypes[54]
+	mi := &file_ptransaction_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3812,7 +3907,7 @@ func (x *UserProduceProgress) String() string {
 func (*UserProduceProgress) ProtoMessage() {}
 
 func (x *UserProduceProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[54]
+	mi := &file_ptransaction_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3825,7 +3920,7 @@ func (x *UserProduceProgress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgress.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *UserProduceProgress) GetProduceGroupId() string {
@@ -3940,6 +4035,20 @@ func (x *UserProduceProgress) GetStartDearnessLevel() int32 {
 	return 0
 }
 
+func (x *UserProduceProgress) GetIsPrimaStella() bool {
+	if x != nil {
+		return x.IsPrimaStella
+	}
+	return false
+}
+
+func (x *UserProduceProgress) GetUserSelectionMemoryId() string {
+	if x != nil {
+		return x.UserSelectionMemoryId
+	}
+	return ""
+}
+
 func (x *UserProduceProgress) GetIsResearch() bool {
 	if x != nil {
 		return x.IsResearch
@@ -3966,6 +4075,13 @@ func (x *UserProduceProgress) GetResearchProduceItemIds() []string {
 		return x.ResearchProduceItemIds
 	}
 	return nil
+}
+
+func (x *UserProduceProgress) GetResearchMemoryProduceCardPickupDisable() bool {
+	if x != nil {
+		return x.ResearchMemoryProduceCardPickupDisable
+	}
+	return false
 }
 
 func (x *UserProduceProgress) GetProduceHighScoreId() string {
@@ -4136,6 +4252,20 @@ func (x *UserProduceProgress) GetChangeCostumeLiveUnitCharacterIds() []string {
 	return nil
 }
 
+func (x *UserProduceProgress) GetChangeCostumeTrainingUnitCharacterIds() []string {
+	if x != nil {
+		return x.ChangeCostumeTrainingUnitCharacterIds
+	}
+	return nil
+}
+
+func (x *UserProduceProgress) GetResultSelectionMemory() *pcommon.SelectionMemory {
+	if x != nil {
+		return x.ResultSelectionMemory
+	}
+	return nil
+}
+
 func (x *UserProduceProgress) GetVocal() int32 {
 	if x != nil {
 		return x.Vocal
@@ -4276,6 +4406,20 @@ func (x *UserProduceProgress) GetHighScoreGold() int32 {
 	return 0
 }
 
+func (x *UserProduceProgress) GetStar() int32 {
+	if x != nil {
+		return x.Star
+	}
+	return 0
+}
+
+func (x *UserProduceProgress) GetStarPermil() int32 {
+	if x != nil {
+		return x.StarPermil
+	}
+	return 0
+}
+
 func (x *UserProduceProgress) GetCharacterProduceSkills() []*UserProduceProgress_ProduceSkill {
 	if x != nil {
 		return x.CharacterProduceSkills
@@ -4374,6 +4518,13 @@ func (x *UserProduceProgress) GetProduceDrinkGetDisableTurn() int32 {
 	return 0
 }
 
+func (x *UserProduceProgress) GetProduceDrinkPossessAdditionalCount() int32 {
+	if x != nil {
+		return x.ProduceDrinkPossessAdditionalCount
+	}
+	return 0
+}
+
 func (x *UserProduceProgress) GetAuditionEffectParameterBonusPermil() int32 {
 	if x != nil {
 		return x.AuditionEffectParameterBonusPermil
@@ -4393,6 +4544,13 @@ func (x *UserProduceProgress) GetAuditionParameterGrowthRatePermil() int32 {
 		return x.AuditionParameterGrowthRatePermil
 	}
 	return 0
+}
+
+func (x *UserProduceProgress) GetAuditions() []*UserProduceProgress_AuditionResult {
+	if x != nil {
+		return x.Auditions
+	}
+	return nil
 }
 
 func (x *UserProduceProgress) GetEventSchoolStaminaPermil() int32 {
@@ -4612,6 +4770,20 @@ func (x *UserProduceProgress) GetHiddenShopReroll() bool {
 	return false
 }
 
+func (x *UserProduceProgress) GetIntervalCurrentProduceCardUpgradeCount() int32 {
+	if x != nil {
+		return x.IntervalCurrentProduceCardUpgradeCount
+	}
+	return 0
+}
+
+func (x *UserProduceProgress) GetIntervalRerollPrice() int32 {
+	if x != nil {
+		return x.IntervalRerollPrice
+	}
+	return 0
+}
+
 func (x *UserProduceProgress) GetSatisfyProduceExamTriggerIds() []string {
 	if x != nil {
 		return x.SatisfyProduceExamTriggerIds
@@ -4626,6 +4798,7 @@ type UserProduceProgressAudition struct {
 	DancePermil           int32                                   `protobuf:"varint,4,opt,name=dancePermil,proto3" json:"dancePermil,omitempty"`
 	VisualPermil          int32                                   `protobuf:"varint,5,opt,name=visualPermil,proto3" json:"visualPermil,omitempty"`
 	VoteBonusPermil       int32                                   `protobuf:"varint,6,opt,name=voteBonusPermil,proto3" json:"voteBonusPermil,omitempty"`
+	StarBonusPermil       int32                                   `protobuf:"varint,7,opt,name=starBonusPermil,proto3" json:"starBonusPermil,omitempty"`
 	StepSelectNumber      int32                                   `protobuf:"varint,99,opt,name=stepSelectNumber,proto3" json:"stepSelectNumber,omitempty"`
 	Rank                  int32                                   `protobuf:"varint,100,opt,name=rank,proto3" json:"rank,omitempty"`
 	Score                 int32                                   `protobuf:"varint,101,opt,name=score,proto3" json:"score,omitempty"`
@@ -4634,13 +4807,15 @@ type UserProduceProgressAudition struct {
 	ProduceItemIds        []string                                `protobuf:"bytes,105,rep,name=produceItemIds,proto3" json:"produceItemIds,omitempty"`
 	ProduceItemFireCounts []int32                                 `protobuf:"varint,106,rep,packed,name=produceItemFireCounts,proto3" json:"produceItemFireCounts,omitempty"`
 	ExamSkipCount         int32                                   `protobuf:"varint,107,opt,name=examSkipCount,proto3" json:"examSkipCount,omitempty"`
+	Point                 int32                                   `protobuf:"varint,113,opt,name=point,proto3" json:"point,omitempty"`
+	AuditionNpcs          []*pcommon.AuditionNpcResult            `protobuf:"bytes,117,rep,name=auditionNpcs,proto3" json:"auditionNpcs,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
 
 func (x *UserProduceProgressAudition) Reset() {
 	*x = UserProduceProgressAudition{}
-	mi := &file_ptransaction_proto_msgTypes[55]
+	mi := &file_ptransaction_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4652,7 +4827,7 @@ func (x *UserProduceProgressAudition) String() string {
 func (*UserProduceProgressAudition) ProtoMessage() {}
 
 func (x *UserProduceProgressAudition) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[55]
+	mi := &file_ptransaction_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4665,7 +4840,7 @@ func (x *UserProduceProgressAudition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressAudition.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressAudition) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{55}
+	return file_ptransaction_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *UserProduceProgressAudition) GetStatus() penum.ProduceProgressAuditionStatusType {
@@ -4699,6 +4874,13 @@ func (x *UserProduceProgressAudition) GetVisualPermil() int32 {
 func (x *UserProduceProgressAudition) GetVoteBonusPermil() int32 {
 	if x != nil {
 		return x.VoteBonusPermil
+	}
+	return 0
+}
+
+func (x *UserProduceProgressAudition) GetStarBonusPermil() int32 {
+	if x != nil {
+		return x.StarBonusPermil
 	}
 	return 0
 }
@@ -4759,6 +4941,20 @@ func (x *UserProduceProgressAudition) GetExamSkipCount() int32 {
 	return 0
 }
 
+func (x *UserProduceProgressAudition) GetPoint() int32 {
+	if x != nil {
+		return x.Point
+	}
+	return 0
+}
+
+func (x *UserProduceProgressAudition) GetAuditionNpcs() []*pcommon.AuditionNpcResult {
+	if x != nil {
+		return x.AuditionNpcs
+	}
+	return nil
+}
+
 type UserProduceProgressBusiness struct {
 	state                             protoimpl.MessageState        `protogen:"open.v1"`
 	BusinessType                      penum.ProduceStepBusinessType `protobuf:"varint,2,opt,name=businessType,proto3,enum=penum.ProduceStepBusinessType" json:"businessType,omitempty"`
@@ -4776,7 +4972,7 @@ type UserProduceProgressBusiness struct {
 
 func (x *UserProduceProgressBusiness) Reset() {
 	*x = UserProduceProgressBusiness{}
-	mi := &file_ptransaction_proto_msgTypes[56]
+	mi := &file_ptransaction_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4788,7 +4984,7 @@ func (x *UserProduceProgressBusiness) String() string {
 func (*UserProduceProgressBusiness) ProtoMessage() {}
 
 func (x *UserProduceProgressBusiness) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[56]
+	mi := &file_ptransaction_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4801,7 +4997,7 @@ func (x *UserProduceProgressBusiness) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressBusiness.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressBusiness) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{56}
+	return file_ptransaction_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *UserProduceProgressBusiness) GetBusinessType() penum.ProduceStepBusinessType {
@@ -4879,6 +5075,7 @@ type UserProduceProgressEffect struct {
 	PickCountMin            int32                               `protobuf:"varint,14,opt,name=pickCountMin,proto3" json:"pickCountMin,omitempty"`
 	PickCountMax            int32                               `protobuf:"varint,15,opt,name=pickCountMax,proto3" json:"pickCountMax,omitempty"`
 	PickIndexes             []int32                             `protobuf:"varint,17,rep,packed,name=pickIndexes,proto3" json:"pickIndexes,omitempty"`
+	PickIndexes2            []int32                             `protobuf:"varint,20,rep,packed,name=pickIndexes2,proto3" json:"pickIndexes2,omitempty"`
 	ActivatedProduceItemIds []string                            `protobuf:"bytes,18,rep,name=activatedProduceItemIds,proto3" json:"activatedProduceItemIds,omitempty"`
 	IsNext                  bool                                `protobuf:"varint,26,opt,name=isNext,proto3" json:"isNext,omitempty"`
 	ProduceEffectId         string                              `protobuf:"bytes,27,opt,name=produceEffectId,proto3" json:"produceEffectId,omitempty"`
@@ -4893,7 +5090,7 @@ type UserProduceProgressEffect struct {
 
 func (x *UserProduceProgressEffect) Reset() {
 	*x = UserProduceProgressEffect{}
-	mi := &file_ptransaction_proto_msgTypes[57]
+	mi := &file_ptransaction_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4905,7 +5102,7 @@ func (x *UserProduceProgressEffect) String() string {
 func (*UserProduceProgressEffect) ProtoMessage() {}
 
 func (x *UserProduceProgressEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[57]
+	mi := &file_ptransaction_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4918,7 +5115,7 @@ func (x *UserProduceProgressEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressEffect.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressEffect) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{57}
+	return file_ptransaction_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *UserProduceProgressEffect) GetNumber() int32 {
@@ -4991,6 +5188,13 @@ func (x *UserProduceProgressEffect) GetPickIndexes() []int32 {
 	return nil
 }
 
+func (x *UserProduceProgressEffect) GetPickIndexes2() []int32 {
+	if x != nil {
+		return x.PickIndexes2
+	}
+	return nil
+}
+
 func (x *UserProduceProgressEffect) GetActivatedProduceItemIds() []string {
 	if x != nil {
 		return x.ActivatedProduceItemIds
@@ -5059,7 +5263,7 @@ type UserProduceProgressEvent struct {
 
 func (x *UserProduceProgressEvent) Reset() {
 	*x = UserProduceProgressEvent{}
-	mi := &file_ptransaction_proto_msgTypes[58]
+	mi := &file_ptransaction_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5071,7 +5275,7 @@ func (x *UserProduceProgressEvent) String() string {
 func (*UserProduceProgressEvent) ProtoMessage() {}
 
 func (x *UserProduceProgressEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[58]
+	mi := &file_ptransaction_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5084,7 +5288,7 @@ func (x *UserProduceProgressEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressEvent.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressEvent) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{58}
+	return file_ptransaction_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UserProduceProgressEvent) GetProduceStepEventDetailId() string {
@@ -5115,6 +5319,106 @@ func (x *UserProduceProgressEvent) GetSuccess() bool {
 	return false
 }
 
+type UserProduceProgressInterval struct {
+	state               protoimpl.MessageState    `protogen:"open.v1"`
+	PositionNumber      int32                     `protobuf:"varint,2,opt,name=positionNumber,proto3" json:"positionNumber,omitempty"`
+	Purchased           bool                      `protobuf:"varint,3,opt,name=purchased,proto3" json:"purchased,omitempty"`
+	ResourceType        penum.ProduceResourceType `protobuf:"varint,4,opt,name=resourceType,proto3,enum=penum.ProduceResourceType" json:"resourceType,omitempty"`
+	ResourceId          string                    `protobuf:"bytes,5,opt,name=resourceId,proto3" json:"resourceId,omitempty"`
+	UpgradeCount        int32                     `protobuf:"varint,6,opt,name=upgradeCount,proto3" json:"upgradeCount,omitempty"`
+	StaminaRecoverValue int32                     `protobuf:"varint,7,opt,name=staminaRecoverValue,proto3" json:"staminaRecoverValue,omitempty"`
+	Price               int32                     `protobuf:"varint,8,opt,name=price,proto3" json:"price,omitempty"`
+	NextPrice           int32                     `protobuf:"varint,9,opt,name=nextPrice,proto3" json:"nextPrice,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *UserProduceProgressInterval) Reset() {
+	*x = UserProduceProgressInterval{}
+	mi := &file_ptransaction_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserProduceProgressInterval) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserProduceProgressInterval) ProtoMessage() {}
+
+func (x *UserProduceProgressInterval) ProtoReflect() protoreflect.Message {
+	mi := &file_ptransaction_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserProduceProgressInterval.ProtoReflect.Descriptor instead.
+func (*UserProduceProgressInterval) Descriptor() ([]byte, []int) {
+	return file_ptransaction_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *UserProduceProgressInterval) GetPositionNumber() int32 {
+	if x != nil {
+		return x.PositionNumber
+	}
+	return 0
+}
+
+func (x *UserProduceProgressInterval) GetPurchased() bool {
+	if x != nil {
+		return x.Purchased
+	}
+	return false
+}
+
+func (x *UserProduceProgressInterval) GetResourceType() penum.ProduceResourceType {
+	if x != nil {
+		return x.ResourceType
+	}
+	return penum.ProduceResourceType(0)
+}
+
+func (x *UserProduceProgressInterval) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressInterval) GetUpgradeCount() int32 {
+	if x != nil {
+		return x.UpgradeCount
+	}
+	return 0
+}
+
+func (x *UserProduceProgressInterval) GetStaminaRecoverValue() int32 {
+	if x != nil {
+		return x.StaminaRecoverValue
+	}
+	return 0
+}
+
+func (x *UserProduceProgressInterval) GetPrice() int32 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *UserProduceProgressInterval) GetNextPrice() int32 {
+	if x != nil {
+		return x.NextPrice
+	}
+	return 0
+}
+
 type UserProduceProgressMemory struct {
 	state         protoimpl.MessageState                     `protogen:"open.v1"`
 	Number        int32                                      `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
@@ -5128,7 +5432,7 @@ type UserProduceProgressMemory struct {
 
 func (x *UserProduceProgressMemory) Reset() {
 	*x = UserProduceProgressMemory{}
-	mi := &file_ptransaction_proto_msgTypes[59]
+	mi := &file_ptransaction_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5140,7 +5444,7 @@ func (x *UserProduceProgressMemory) String() string {
 func (*UserProduceProgressMemory) ProtoMessage() {}
 
 func (x *UserProduceProgressMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[59]
+	mi := &file_ptransaction_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5153,7 +5457,7 @@ func (x *UserProduceProgressMemory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressMemory.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressMemory) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{59}
+	return file_ptransaction_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *UserProduceProgressMemory) GetNumber() int32 {
@@ -5208,7 +5512,7 @@ type UserProduceProgressPresent struct {
 
 func (x *UserProduceProgressPresent) Reset() {
 	*x = UserProduceProgressPresent{}
-	mi := &file_ptransaction_proto_msgTypes[60]
+	mi := &file_ptransaction_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5220,7 +5524,7 @@ func (x *UserProduceProgressPresent) String() string {
 func (*UserProduceProgressPresent) ProtoMessage() {}
 
 func (x *UserProduceProgressPresent) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[60]
+	mi := &file_ptransaction_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5233,7 +5537,7 @@ func (x *UserProduceProgressPresent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressPresent.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressPresent) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{60}
+	return file_ptransaction_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *UserProduceProgressPresent) GetPositionNumber() int32 {
@@ -5314,7 +5618,7 @@ type UserProduceProgressProduceCard struct {
 
 func (x *UserProduceProgressProduceCard) Reset() {
 	*x = UserProduceProgressProduceCard{}
-	mi := &file_ptransaction_proto_msgTypes[61]
+	mi := &file_ptransaction_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5326,7 +5630,7 @@ func (x *UserProduceProgressProduceCard) String() string {
 func (*UserProduceProgressProduceCard) ProtoMessage() {}
 
 func (x *UserProduceProgressProduceCard) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[61]
+	mi := &file_ptransaction_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5339,7 +5643,7 @@ func (x *UserProduceProgressProduceCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressProduceCard.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressProduceCard) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{61}
+	return file_ptransaction_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *UserProduceProgressProduceCard) GetNumber() int32 {
@@ -5391,36 +5695,118 @@ func (x *UserProduceProgressProduceCard) GetCustomizing() bool {
 	return false
 }
 
+type UserProduceProgressProduceCustomizeItem struct {
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	Number                 int32                  `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	ProduceCustomizeItemId string                 `protobuf:"bytes,3,opt,name=produceCustomizeItemId,proto3" json:"produceCustomizeItemId,omitempty"`
+	TriggerCount           int32                  `protobuf:"varint,4,opt,name=triggerCount,proto3" json:"triggerCount,omitempty"`
+	ReactionCount          int32                  `protobuf:"varint,5,opt,name=reactionCount,proto3" json:"reactionCount,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) Reset() {
+	*x = UserProduceProgressProduceCustomizeItem{}
+	mi := &file_ptransaction_proto_msgTypes[64]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserProduceProgressProduceCustomizeItem) ProtoMessage() {}
+
+func (x *UserProduceProgressProduceCustomizeItem) ProtoReflect() protoreflect.Message {
+	mi := &file_ptransaction_proto_msgTypes[64]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserProduceProgressProduceCustomizeItem.ProtoReflect.Descriptor instead.
+func (*UserProduceProgressProduceCustomizeItem) Descriptor() ([]byte, []int) {
+	return file_ptransaction_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) GetProduceCustomizeItemId() string {
+	if x != nil {
+		return x.ProduceCustomizeItemId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) GetTriggerCount() int32 {
+	if x != nil {
+		return x.TriggerCount
+	}
+	return 0
+}
+
+func (x *UserProduceProgressProduceCustomizeItem) GetReactionCount() int32 {
+	if x != nil {
+		return x.ReactionCount
+	}
+	return 0
+}
+
 type UserProduceProgressSchedule struct {
-	state                             protoimpl.MessageState      `protogen:"open.v1"`
-	StepNumber                        int32                       `protobuf:"varint,2,opt,name=stepNumber,proto3" json:"stepNumber,omitempty"`
-	AddStepLevel                      int32                       `protobuf:"varint,3,opt,name=addStepLevel,proto3" json:"addStepLevel,omitempty"`
-	VocalProduceStepSelfLessonId      string                      `protobuf:"bytes,30,opt,name=vocalProduceStepSelfLessonId,proto3" json:"vocalProduceStepSelfLessonId,omitempty"`
-	VocalSpProduceStepSelfLessonId    string                      `protobuf:"bytes,31,opt,name=vocalSpProduceStepSelfLessonId,proto3" json:"vocalSpProduceStepSelfLessonId,omitempty"`
-	DanceProduceStepSelfLessonId      string                      `protobuf:"bytes,33,opt,name=danceProduceStepSelfLessonId,proto3" json:"danceProduceStepSelfLessonId,omitempty"`
-	DanceSpProduceStepSelfLessonId    string                      `protobuf:"bytes,34,opt,name=danceSpProduceStepSelfLessonId,proto3" json:"danceSpProduceStepSelfLessonId,omitempty"`
-	VisualProduceStepSelfLessonId     string                      `protobuf:"bytes,36,opt,name=visualProduceStepSelfLessonId,proto3" json:"visualProduceStepSelfLessonId,omitempty"`
-	VisualSpProduceStepSelfLessonId   string                      `protobuf:"bytes,37,opt,name=visualSpProduceStepSelfLessonId,proto3" json:"visualSpProduceStepSelfLessonId,omitempty"`
-	LegendVocalProduceStepLessonId    string                      `protobuf:"bytes,51,opt,name=legendVocalProduceStepLessonId,proto3" json:"legendVocalProduceStepLessonId,omitempty"`
-	LegendVocalSpProduceStepLessonId  string                      `protobuf:"bytes,52,opt,name=legendVocalSpProduceStepLessonId,proto3" json:"legendVocalSpProduceStepLessonId,omitempty"`
-	LegendDanceProduceStepLessonId    string                      `protobuf:"bytes,54,opt,name=legendDanceProduceStepLessonId,proto3" json:"legendDanceProduceStepLessonId,omitempty"`
-	LegendDanceSpProduceStepLessonId  string                      `protobuf:"bytes,55,opt,name=legendDanceSpProduceStepLessonId,proto3" json:"legendDanceSpProduceStepLessonId,omitempty"`
-	LegendVisualProduceStepLessonId   string                      `protobuf:"bytes,57,opt,name=legendVisualProduceStepLessonId,proto3" json:"legendVisualProduceStepLessonId,omitempty"`
-	LegendVisualSpProduceStepLessonId string                      `protobuf:"bytes,58,opt,name=legendVisualSpProduceStepLessonId,proto3" json:"legendVisualSpProduceStepLessonId,omitempty"`
-	StepTypes                         []penum.ProduceStepType     `protobuf:"varint,24,rep,packed,name=stepTypes,proto3,enum=penum.ProduceStepType" json:"stepTypes,omitempty"`
-	SelectedStepType                  penum.ProduceStepType       `protobuf:"varint,25,opt,name=selectedStepType,proto3,enum=penum.ProduceStepType" json:"selectedStepType,omitempty"`
-	ExamResultType                    penum.ProduceExamResultType `protobuf:"varint,26,opt,name=examResultType,proto3,enum=penum.ProduceExamResultType" json:"examResultType,omitempty"`
-	RefreshStamina                    int32                       `protobuf:"varint,27,opt,name=refreshStamina,proto3" json:"refreshStamina,omitempty"`
-	AuditionRank                      int32                       `protobuf:"varint,28,opt,name=auditionRank,proto3" json:"auditionRank,omitempty"`
-	StepSelectNumber                  int32                       `protobuf:"varint,41,opt,name=stepSelectNumber,proto3" json:"stepSelectNumber,omitempty"`
-	MaxAuditionStepSelectNumber       int32                       `protobuf:"varint,42,opt,name=maxAuditionStepSelectNumber,proto3" json:"maxAuditionStepSelectNumber,omitempty"`
-	unknownFields                     protoimpl.UnknownFields
-	sizeCache                         protoimpl.SizeCache
+	state                               protoimpl.MessageState       `protogen:"open.v1"`
+	StepNumber                          int32                        `protobuf:"varint,2,opt,name=stepNumber,proto3" json:"stepNumber,omitempty"`
+	AddStepLevel                        int32                        `protobuf:"varint,3,opt,name=addStepLevel,proto3" json:"addStepLevel,omitempty"`
+	VocalProduceStepSelfLessonId        string                       `protobuf:"bytes,30,opt,name=vocalProduceStepSelfLessonId,proto3" json:"vocalProduceStepSelfLessonId,omitempty"`
+	VocalSpProduceStepSelfLessonId      string                       `protobuf:"bytes,31,opt,name=vocalSpProduceStepSelfLessonId,proto3" json:"vocalSpProduceStepSelfLessonId,omitempty"`
+	DanceProduceStepSelfLessonId        string                       `protobuf:"bytes,33,opt,name=danceProduceStepSelfLessonId,proto3" json:"danceProduceStepSelfLessonId,omitempty"`
+	DanceSpProduceStepSelfLessonId      string                       `protobuf:"bytes,34,opt,name=danceSpProduceStepSelfLessonId,proto3" json:"danceSpProduceStepSelfLessonId,omitempty"`
+	VisualProduceStepSelfLessonId       string                       `protobuf:"bytes,36,opt,name=visualProduceStepSelfLessonId,proto3" json:"visualProduceStepSelfLessonId,omitempty"`
+	VisualSpProduceStepSelfLessonId     string                       `protobuf:"bytes,37,opt,name=visualSpProduceStepSelfLessonId,proto3" json:"visualSpProduceStepSelfLessonId,omitempty"`
+	LegendVocalProduceStepLessonId      string                       `protobuf:"bytes,51,opt,name=legendVocalProduceStepLessonId,proto3" json:"legendVocalProduceStepLessonId,omitempty"`
+	LegendVocalSpProduceStepLessonId    string                       `protobuf:"bytes,52,opt,name=legendVocalSpProduceStepLessonId,proto3" json:"legendVocalSpProduceStepLessonId,omitempty"`
+	LegendDanceProduceStepLessonId      string                       `protobuf:"bytes,54,opt,name=legendDanceProduceStepLessonId,proto3" json:"legendDanceProduceStepLessonId,omitempty"`
+	LegendDanceSpProduceStepLessonId    string                       `protobuf:"bytes,55,opt,name=legendDanceSpProduceStepLessonId,proto3" json:"legendDanceSpProduceStepLessonId,omitempty"`
+	LegendVisualProduceStepLessonId     string                       `protobuf:"bytes,57,opt,name=legendVisualProduceStepLessonId,proto3" json:"legendVisualProduceStepLessonId,omitempty"`
+	LegendVisualSpProduceStepLessonId   string                       `protobuf:"bytes,58,opt,name=legendVisualSpProduceStepLessonId,proto3" json:"legendVisualSpProduceStepLessonId,omitempty"`
+	VocalProduceStepOpenLessonId        string                       `protobuf:"bytes,60,opt,name=vocalProduceStepOpenLessonId,proto3" json:"vocalProduceStepOpenLessonId,omitempty"`
+	VocalSpProduceStepOpenLessonId      string                       `protobuf:"bytes,61,opt,name=vocalSpProduceStepOpenLessonId,proto3" json:"vocalSpProduceStepOpenLessonId,omitempty"`
+	VocalStarProduceStepOpenLessonId    string                       `protobuf:"bytes,62,opt,name=vocalStarProduceStepOpenLessonId,proto3" json:"vocalStarProduceStepOpenLessonId,omitempty"`
+	VocalSpStarProduceStepOpenLessonId  string                       `protobuf:"bytes,63,opt,name=vocalSpStarProduceStepOpenLessonId,proto3" json:"vocalSpStarProduceStepOpenLessonId,omitempty"`
+	DanceProduceStepOpenLessonId        string                       `protobuf:"bytes,65,opt,name=danceProduceStepOpenLessonId,proto3" json:"danceProduceStepOpenLessonId,omitempty"`
+	DanceSpProduceStepOpenLessonId      string                       `protobuf:"bytes,66,opt,name=danceSpProduceStepOpenLessonId,proto3" json:"danceSpProduceStepOpenLessonId,omitempty"`
+	DanceStarProduceStepOpenLessonId    string                       `protobuf:"bytes,67,opt,name=danceStarProduceStepOpenLessonId,proto3" json:"danceStarProduceStepOpenLessonId,omitempty"`
+	DanceSpStarProduceStepOpenLessonId  string                       `protobuf:"bytes,68,opt,name=danceSpStarProduceStepOpenLessonId,proto3" json:"danceSpStarProduceStepOpenLessonId,omitempty"`
+	VisualProduceStepOpenLessonId       string                       `protobuf:"bytes,70,opt,name=visualProduceStepOpenLessonId,proto3" json:"visualProduceStepOpenLessonId,omitempty"`
+	VisualSpProduceStepOpenLessonId     string                       `protobuf:"bytes,71,opt,name=visualSpProduceStepOpenLessonId,proto3" json:"visualSpProduceStepOpenLessonId,omitempty"`
+	VisualStarProduceStepOpenLessonId   string                       `protobuf:"bytes,72,opt,name=visualStarProduceStepOpenLessonId,proto3" json:"visualStarProduceStepOpenLessonId,omitempty"`
+	VisualSpStarProduceStepOpenLessonId string                       `protobuf:"bytes,73,opt,name=visualSpStarProduceStepOpenLessonId,proto3" json:"visualSpStarProduceStepOpenLessonId,omitempty"`
+	StepTypes                           []penum.ProduceStepType      `protobuf:"varint,24,rep,packed,name=stepTypes,proto3,enum=penum.ProduceStepType" json:"stepTypes,omitempty"`
+	StepSubParameterTypes               []penum.ProduceParameterType `protobuf:"varint,23,rep,packed,name=stepSubParameterTypes,proto3,enum=penum.ProduceParameterType" json:"stepSubParameterTypes,omitempty"`
+	SelectedStepType                    penum.ProduceStepType        `protobuf:"varint,25,opt,name=selectedStepType,proto3,enum=penum.ProduceStepType" json:"selectedStepType,omitempty"`
+	ExamResultType                      penum.ProduceExamResultType  `protobuf:"varint,26,opt,name=examResultType,proto3,enum=penum.ProduceExamResultType" json:"examResultType,omitempty"`
+	RefreshStamina                      int32                        `protobuf:"varint,27,opt,name=refreshStamina,proto3" json:"refreshStamina,omitempty"`
+	AuditionRank                        int32                        `protobuf:"varint,28,opt,name=auditionRank,proto3" json:"auditionRank,omitempty"`
+	AuditionNpcs                        []*pcommon.AuditionNpcResult `protobuf:"bytes,83,rep,name=auditionNpcs,proto3" json:"auditionNpcs,omitempty"`
+	StepSelectNumber                    int32                        `protobuf:"varint,41,opt,name=stepSelectNumber,proto3" json:"stepSelectNumber,omitempty"`
+	MaxAuditionStepSelectNumber         int32                        `protobuf:"varint,42,opt,name=maxAuditionStepSelectNumber,proto3" json:"maxAuditionStepSelectNumber,omitempty"`
+	unknownFields                       protoimpl.UnknownFields
+	sizeCache                           protoimpl.SizeCache
 }
 
 func (x *UserProduceProgressSchedule) Reset() {
 	*x = UserProduceProgressSchedule{}
-	mi := &file_ptransaction_proto_msgTypes[62]
+	mi := &file_ptransaction_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5432,7 +5818,7 @@ func (x *UserProduceProgressSchedule) String() string {
 func (*UserProduceProgressSchedule) ProtoMessage() {}
 
 func (x *UserProduceProgressSchedule) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[62]
+	mi := &file_ptransaction_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5445,7 +5831,7 @@ func (x *UserProduceProgressSchedule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressSchedule.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressSchedule) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{62}
+	return file_ptransaction_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *UserProduceProgressSchedule) GetStepNumber() int32 {
@@ -5546,9 +5932,100 @@ func (x *UserProduceProgressSchedule) GetLegendVisualSpProduceStepLessonId() str
 	return ""
 }
 
+func (x *UserProduceProgressSchedule) GetVocalProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VocalProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVocalSpProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VocalSpProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVocalStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VocalStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVocalSpStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VocalSpStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetDanceProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.DanceProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetDanceSpProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.DanceSpProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetDanceStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.DanceStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetDanceSpStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.DanceSpStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVisualProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VisualProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVisualSpProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VisualSpProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVisualStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VisualStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
+func (x *UserProduceProgressSchedule) GetVisualSpStarProduceStepOpenLessonId() string {
+	if x != nil {
+		return x.VisualSpStarProduceStepOpenLessonId
+	}
+	return ""
+}
+
 func (x *UserProduceProgressSchedule) GetStepTypes() []penum.ProduceStepType {
 	if x != nil {
 		return x.StepTypes
+	}
+	return nil
+}
+
+func (x *UserProduceProgressSchedule) GetStepSubParameterTypes() []penum.ProduceParameterType {
+	if x != nil {
+		return x.StepSubParameterTypes
 	}
 	return nil
 }
@@ -5579,6 +6056,13 @@ func (x *UserProduceProgressSchedule) GetAuditionRank() int32 {
 		return x.AuditionRank
 	}
 	return 0
+}
+
+func (x *UserProduceProgressSchedule) GetAuditionNpcs() []*pcommon.AuditionNpcResult {
+	if x != nil {
+		return x.AuditionNpcs
+	}
+	return nil
 }
 
 func (x *UserProduceProgressSchedule) GetStepSelectNumber() int32 {
@@ -5615,7 +6099,7 @@ type UserProduceProgressShop struct {
 
 func (x *UserProduceProgressShop) Reset() {
 	*x = UserProduceProgressShop{}
-	mi := &file_ptransaction_proto_msgTypes[63]
+	mi := &file_ptransaction_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5627,7 +6111,7 @@ func (x *UserProduceProgressShop) String() string {
 func (*UserProduceProgressShop) ProtoMessage() {}
 
 func (x *UserProduceProgressShop) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[63]
+	mi := &file_ptransaction_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5640,7 +6124,7 @@ func (x *UserProduceProgressShop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressShop.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressShop) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{63}
+	return file_ptransaction_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *UserProduceProgressShop) GetPositionNumber() int32 {
@@ -5750,7 +6234,7 @@ type UserProduceProgressSupportCard struct {
 
 func (x *UserProduceProgressSupportCard) Reset() {
 	*x = UserProduceProgressSupportCard{}
-	mi := &file_ptransaction_proto_msgTypes[64]
+	mi := &file_ptransaction_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5762,7 +6246,7 @@ func (x *UserProduceProgressSupportCard) String() string {
 func (*UserProduceProgressSupportCard) ProtoMessage() {}
 
 func (x *UserProduceProgressSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[64]
+	mi := &file_ptransaction_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5775,7 +6259,7 @@ func (x *UserProduceProgressSupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressSupportCard.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressSupportCard) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{64}
+	return file_ptransaction_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *UserProduceProgressSupportCard) GetNumber() int32 {
@@ -5893,7 +6377,7 @@ type UserProduceRerollMemory struct {
 
 func (x *UserProduceRerollMemory) Reset() {
 	*x = UserProduceRerollMemory{}
-	mi := &file_ptransaction_proto_msgTypes[65]
+	mi := &file_ptransaction_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5905,7 +6389,7 @@ func (x *UserProduceRerollMemory) String() string {
 func (*UserProduceRerollMemory) ProtoMessage() {}
 
 func (x *UserProduceRerollMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[65]
+	mi := &file_ptransaction_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5918,7 +6402,7 @@ func (x *UserProduceRerollMemory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceRerollMemory.ProtoReflect.Descriptor instead.
 func (*UserProduceRerollMemory) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{65}
+	return file_ptransaction_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *UserProduceRerollMemory) GetNumber() int32 {
@@ -5945,7 +6429,7 @@ type UserProduceStartAchievement struct {
 
 func (x *UserProduceStartAchievement) Reset() {
 	*x = UserProduceStartAchievement{}
-	mi := &file_ptransaction_proto_msgTypes[66]
+	mi := &file_ptransaction_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5957,7 +6441,7 @@ func (x *UserProduceStartAchievement) String() string {
 func (*UserProduceStartAchievement) ProtoMessage() {}
 
 func (x *UserProduceStartAchievement) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[66]
+	mi := &file_ptransaction_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5970,7 +6454,7 @@ func (x *UserProduceStartAchievement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceStartAchievement.ProtoReflect.Descriptor instead.
 func (*UserProduceStartAchievement) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{66}
+	return file_ptransaction_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *UserProduceStartAchievement) GetAchievementId() string {
@@ -5997,7 +6481,7 @@ type UserProduceStory struct {
 
 func (x *UserProduceStory) Reset() {
 	*x = UserProduceStory{}
-	mi := &file_ptransaction_proto_msgTypes[67]
+	mi := &file_ptransaction_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6009,7 +6493,7 @@ func (x *UserProduceStory) String() string {
 func (*UserProduceStory) ProtoMessage() {}
 
 func (x *UserProduceStory) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[67]
+	mi := &file_ptransaction_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6022,7 +6506,7 @@ func (x *UserProduceStory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceStory.ProtoReflect.Descriptor instead.
 func (*UserProduceStory) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{67}
+	return file_ptransaction_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *UserProduceStory) GetStoryId() string {
@@ -6051,7 +6535,7 @@ type UserProduceSupportCardDeck struct {
 
 func (x *UserProduceSupportCardDeck) Reset() {
 	*x = UserProduceSupportCardDeck{}
-	mi := &file_ptransaction_proto_msgTypes[68]
+	mi := &file_ptransaction_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6063,7 +6547,7 @@ func (x *UserProduceSupportCardDeck) String() string {
 func (*UserProduceSupportCardDeck) ProtoMessage() {}
 
 func (x *UserProduceSupportCardDeck) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[68]
+	mi := &file_ptransaction_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6076,7 +6560,7 @@ func (x *UserProduceSupportCardDeck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceSupportCardDeck.ProtoReflect.Descriptor instead.
 func (*UserProduceSupportCardDeck) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{68}
+	return file_ptransaction_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *UserProduceSupportCardDeck) GetProduceType() penum.ProduceType {
@@ -6129,7 +6613,7 @@ type UserProfile struct {
 
 func (x *UserProfile) Reset() {
 	*x = UserProfile{}
-	mi := &file_ptransaction_proto_msgTypes[69]
+	mi := &file_ptransaction_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6141,7 +6625,7 @@ func (x *UserProfile) String() string {
 func (*UserProfile) ProtoMessage() {}
 
 func (x *UserProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[69]
+	mi := &file_ptransaction_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6154,7 +6638,7 @@ func (x *UserProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProfile.ProtoReflect.Descriptor instead.
 func (*UserProfile) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{69}
+	return file_ptransaction_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *UserProfile) GetName() string {
@@ -6269,7 +6753,7 @@ type UserPvpRate struct {
 
 func (x *UserPvpRate) Reset() {
 	*x = UserPvpRate{}
-	mi := &file_ptransaction_proto_msgTypes[70]
+	mi := &file_ptransaction_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6281,7 +6765,7 @@ func (x *UserPvpRate) String() string {
 func (*UserPvpRate) ProtoMessage() {}
 
 func (x *UserPvpRate) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[70]
+	mi := &file_ptransaction_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6294,7 +6778,7 @@ func (x *UserPvpRate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserPvpRate.ProtoReflect.Descriptor instead.
 func (*UserPvpRate) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{70}
+	return file_ptransaction_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *UserPvpRate) GetGrade() penum.PvpRateGrade {
@@ -6339,6 +6823,74 @@ func (x *UserPvpRate) GetSupportBonusPermyriad() int32 {
 	return 0
 }
 
+type UserPvpRateDeck struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Number           int32                  `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	Name             string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	MainUserMemoryId string                 `protobuf:"bytes,4,opt,name=mainUserMemoryId,proto3" json:"mainUserMemoryId,omitempty"`
+	SubUserMemoryId  string                 `protobuf:"bytes,5,opt,name=subUserMemoryId,proto3" json:"subUserMemoryId,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UserPvpRateDeck) Reset() {
+	*x = UserPvpRateDeck{}
+	mi := &file_ptransaction_proto_msgTypes[74]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserPvpRateDeck) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserPvpRateDeck) ProtoMessage() {}
+
+func (x *UserPvpRateDeck) ProtoReflect() protoreflect.Message {
+	mi := &file_ptransaction_proto_msgTypes[74]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserPvpRateDeck.ProtoReflect.Descriptor instead.
+func (*UserPvpRateDeck) Descriptor() ([]byte, []int) {
+	return file_ptransaction_proto_rawDescGZIP(), []int{74}
+}
+
+func (x *UserPvpRateDeck) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *UserPvpRateDeck) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UserPvpRateDeck) GetMainUserMemoryId() string {
+	if x != nil {
+		return x.MainUserMemoryId
+	}
+	return ""
+}
+
+func (x *UserPvpRateDeck) GetSubUserMemoryId() string {
+	if x != nil {
+		return x.SubUserMemoryId
+	}
+	return ""
+}
+
 type UserPvpRateUnit struct {
 	state           protoimpl.MessageState                    `protogen:"open.v1"`
 	StageFormations []*pcommon.PvpRateSetupUnitStageFormation `protobuf:"bytes,3,rep,name=stageFormations,proto3" json:"stageFormations,omitempty"`
@@ -6348,7 +6900,7 @@ type UserPvpRateUnit struct {
 
 func (x *UserPvpRateUnit) Reset() {
 	*x = UserPvpRateUnit{}
-	mi := &file_ptransaction_proto_msgTypes[71]
+	mi := &file_ptransaction_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6360,7 +6912,7 @@ func (x *UserPvpRateUnit) String() string {
 func (*UserPvpRateUnit) ProtoMessage() {}
 
 func (x *UserPvpRateUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[71]
+	mi := &file_ptransaction_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6373,7 +6925,7 @@ func (x *UserPvpRateUnit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserPvpRateUnit.ProtoReflect.Descriptor instead.
 func (*UserPvpRateUnit) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{71}
+	return file_ptransaction_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *UserPvpRateUnit) GetStageFormations() []*pcommon.PvpRateSetupUnitStageFormation {
@@ -6394,7 +6946,7 @@ type UserShopItem struct {
 
 func (x *UserShopItem) Reset() {
 	*x = UserShopItem{}
-	mi := &file_ptransaction_proto_msgTypes[72]
+	mi := &file_ptransaction_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6406,7 +6958,7 @@ func (x *UserShopItem) String() string {
 func (*UserShopItem) ProtoMessage() {}
 
 func (x *UserShopItem) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[72]
+	mi := &file_ptransaction_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6419,7 +6971,7 @@ func (x *UserShopItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserShopItem.ProtoReflect.Descriptor instead.
 func (*UserShopItem) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{72}
+	return file_ptransaction_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *UserShopItem) GetShopItemId() string {
@@ -6454,7 +7006,7 @@ type UserStory struct {
 
 func (x *UserStory) Reset() {
 	*x = UserStory{}
-	mi := &file_ptransaction_proto_msgTypes[73]
+	mi := &file_ptransaction_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6466,7 +7018,7 @@ func (x *UserStory) String() string {
 func (*UserStory) ProtoMessage() {}
 
 func (x *UserStory) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[73]
+	mi := &file_ptransaction_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6479,7 +7031,7 @@ func (x *UserStory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserStory.ProtoReflect.Descriptor instead.
 func (*UserStory) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{73}
+	return file_ptransaction_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *UserStory) GetStoryId() string {
@@ -6516,7 +7068,7 @@ type UserSupportCard struct {
 
 func (x *UserSupportCard) Reset() {
 	*x = UserSupportCard{}
-	mi := &file_ptransaction_proto_msgTypes[74]
+	mi := &file_ptransaction_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6528,7 +7080,7 @@ func (x *UserSupportCard) String() string {
 func (*UserSupportCard) ProtoMessage() {}
 
 func (x *UserSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[74]
+	mi := &file_ptransaction_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6541,7 +7093,7 @@ func (x *UserSupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserSupportCard.ProtoReflect.Descriptor instead.
 func (*UserSupportCard) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{74}
+	return file_ptransaction_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *UserSupportCard) GetSupportCardId() string {
@@ -6589,7 +7141,7 @@ type UserTime struct {
 
 func (x *UserTime) Reset() {
 	*x = UserTime{}
-	mi := &file_ptransaction_proto_msgTypes[75]
+	mi := &file_ptransaction_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6601,7 +7153,7 @@ func (x *UserTime) String() string {
 func (*UserTime) ProtoMessage() {}
 
 func (x *UserTime) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[75]
+	mi := &file_ptransaction_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6614,7 +7166,7 @@ func (x *UserTime) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserTime.ProtoReflect.Descriptor instead.
 func (*UserTime) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{75}
+	return file_ptransaction_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *UserTime) GetTimeType() penum.TimeType {
@@ -6645,7 +7197,7 @@ type UserTower struct {
 
 func (x *UserTower) Reset() {
 	*x = UserTower{}
-	mi := &file_ptransaction_proto_msgTypes[76]
+	mi := &file_ptransaction_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6657,7 +7209,7 @@ func (x *UserTower) String() string {
 func (*UserTower) ProtoMessage() {}
 
 func (x *UserTower) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[76]
+	mi := &file_ptransaction_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6670,7 +7222,7 @@ func (x *UserTower) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserTower.ProtoReflect.Descriptor instead.
 func (*UserTower) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{76}
+	return file_ptransaction_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *UserTower) GetTowerId() string {
@@ -6725,7 +7277,7 @@ type UserTutorial struct {
 
 func (x *UserTutorial) Reset() {
 	*x = UserTutorial{}
-	mi := &file_ptransaction_proto_msgTypes[77]
+	mi := &file_ptransaction_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6737,7 +7289,7 @@ func (x *UserTutorial) String() string {
 func (*UserTutorial) ProtoMessage() {}
 
 func (x *UserTutorial) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[77]
+	mi := &file_ptransaction_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6750,7 +7302,7 @@ func (x *UserTutorial) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserTutorial.ProtoReflect.Descriptor instead.
 func (*UserTutorial) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{77}
+	return file_ptransaction_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *UserTutorial) GetType() penum.TutorialType {
@@ -6777,7 +7329,7 @@ type UserWebStore struct {
 
 func (x *UserWebStore) Reset() {
 	*x = UserWebStore{}
-	mi := &file_ptransaction_proto_msgTypes[78]
+	mi := &file_ptransaction_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6789,7 +7341,7 @@ func (x *UserWebStore) String() string {
 func (*UserWebStore) ProtoMessage() {}
 
 func (x *UserWebStore) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[78]
+	mi := &file_ptransaction_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6802,7 +7354,7 @@ func (x *UserWebStore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserWebStore.ProtoReflect.Descriptor instead.
 func (*UserWebStore) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{78}
+	return file_ptransaction_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *UserWebStore) GetLatestCompletedUserPurchaseTransactionId() string {
@@ -6837,7 +7389,7 @@ type UserWork struct {
 
 func (x *UserWork) Reset() {
 	*x = UserWork{}
-	mi := &file_ptransaction_proto_msgTypes[79]
+	mi := &file_ptransaction_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6849,7 +7401,7 @@ func (x *UserWork) String() string {
 func (*UserWork) ProtoMessage() {}
 
 func (x *UserWork) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[79]
+	mi := &file_ptransaction_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6862,7 +7414,7 @@ func (x *UserWork) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserWork.ProtoReflect.Descriptor instead.
 func (*UserWork) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{79}
+	return file_ptransaction_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *UserWork) GetType() penum.WorkType {
@@ -6946,7 +7498,7 @@ type UserWorkCharacter struct {
 
 func (x *UserWorkCharacter) Reset() {
 	*x = UserWorkCharacter{}
-	mi := &file_ptransaction_proto_msgTypes[80]
+	mi := &file_ptransaction_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6958,7 +7510,7 @@ func (x *UserWorkCharacter) String() string {
 func (*UserWorkCharacter) ProtoMessage() {}
 
 func (x *UserWorkCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[80]
+	mi := &file_ptransaction_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6971,7 +7523,7 @@ func (x *UserWorkCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserWorkCharacter.ProtoReflect.Descriptor instead.
 func (*UserWorkCharacter) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{80}
+	return file_ptransaction_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *UserWorkCharacter) GetCharacterId() string {
@@ -7005,7 +7557,7 @@ type UserMemory_MemoryAbility struct {
 
 func (x *UserMemory_MemoryAbility) Reset() {
 	*x = UserMemory_MemoryAbility{}
-	mi := &file_ptransaction_proto_msgTypes[81]
+	mi := &file_ptransaction_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7017,7 +7569,7 @@ func (x *UserMemory_MemoryAbility) String() string {
 func (*UserMemory_MemoryAbility) ProtoMessage() {}
 
 func (x *UserMemory_MemoryAbility) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[81]
+	mi := &file_ptransaction_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7058,7 +7610,7 @@ type UserMemory_UnitCharacter struct {
 
 func (x *UserMemory_UnitCharacter) Reset() {
 	*x = UserMemory_UnitCharacter{}
-	mi := &file_ptransaction_proto_msgTypes[82]
+	mi := &file_ptransaction_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7070,7 +7622,7 @@ func (x *UserMemory_UnitCharacter) String() string {
 func (*UserMemory_UnitCharacter) ProtoMessage() {}
 
 func (x *UserMemory_UnitCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[82]
+	mi := &file_ptransaction_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7107,6 +7659,82 @@ func (x *UserMemory_UnitCharacter) GetLiveCostumeHeadId() string {
 	return ""
 }
 
+type UserProduceProgress_AuditionResult struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	AuditionStepType penum.ProduceStepType  `protobuf:"varint,1,opt,name=auditionStepType,proto3,enum=penum.ProduceStepType" json:"auditionStepType,omitempty"`
+	SelectNumber     int32                  `protobuf:"varint,2,opt,name=selectNumber,proto3" json:"selectNumber,omitempty"`
+	Rank             int32                  `protobuf:"varint,3,opt,name=rank,proto3" json:"rank,omitempty"`
+	Score            int32                  `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
+	Point            int32                  `protobuf:"varint,5,opt,name=point,proto3" json:"point,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UserProduceProgress_AuditionResult) Reset() {
+	*x = UserProduceProgress_AuditionResult{}
+	mi := &file_ptransaction_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserProduceProgress_AuditionResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserProduceProgress_AuditionResult) ProtoMessage() {}
+
+func (x *UserProduceProgress_AuditionResult) ProtoReflect() protoreflect.Message {
+	mi := &file_ptransaction_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserProduceProgress_AuditionResult.ProtoReflect.Descriptor instead.
+func (*UserProduceProgress_AuditionResult) Descriptor() ([]byte, []int) {
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 0}
+}
+
+func (x *UserProduceProgress_AuditionResult) GetAuditionStepType() penum.ProduceStepType {
+	if x != nil {
+		return x.AuditionStepType
+	}
+	return penum.ProduceStepType(0)
+}
+
+func (x *UserProduceProgress_AuditionResult) GetSelectNumber() int32 {
+	if x != nil {
+		return x.SelectNumber
+	}
+	return 0
+}
+
+func (x *UserProduceProgress_AuditionResult) GetRank() int32 {
+	if x != nil {
+		return x.Rank
+	}
+	return 0
+}
+
+func (x *UserProduceProgress_AuditionResult) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
+func (x *UserProduceProgress_AuditionResult) GetPoint() int32 {
+	if x != nil {
+		return x.Point
+	}
+	return 0
+}
+
 type UserProduceProgress_ExamStatusEnchant struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
 	OriginType    penum.ProduceTriggerOriginType `protobuf:"varint,1,opt,name=originType,proto3,enum=penum.ProduceTriggerOriginType" json:"originType,omitempty"`
@@ -7120,7 +7748,7 @@ type UserProduceProgress_ExamStatusEnchant struct {
 
 func (x *UserProduceProgress_ExamStatusEnchant) Reset() {
 	*x = UserProduceProgress_ExamStatusEnchant{}
-	mi := &file_ptransaction_proto_msgTypes[83]
+	mi := &file_ptransaction_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7132,7 +7760,7 @@ func (x *UserProduceProgress_ExamStatusEnchant) String() string {
 func (*UserProduceProgress_ExamStatusEnchant) ProtoMessage() {}
 
 func (x *UserProduceProgress_ExamStatusEnchant) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[83]
+	mi := &file_ptransaction_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7145,7 +7773,7 @@ func (x *UserProduceProgress_ExamStatusEnchant) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use UserProduceProgress_ExamStatusEnchant.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress_ExamStatusEnchant) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54, 0}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 1}
 }
 
 func (x *UserProduceProgress_ExamStatusEnchant) GetOriginType() penum.ProduceTriggerOriginType {
@@ -7194,7 +7822,7 @@ type UserProduceProgress_ProduceItem struct {
 
 func (x *UserProduceProgress_ProduceItem) Reset() {
 	*x = UserProduceProgress_ProduceItem{}
-	mi := &file_ptransaction_proto_msgTypes[84]
+	mi := &file_ptransaction_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7206,7 +7834,7 @@ func (x *UserProduceProgress_ProduceItem) String() string {
 func (*UserProduceProgress_ProduceItem) ProtoMessage() {}
 
 func (x *UserProduceProgress_ProduceItem) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[84]
+	mi := &file_ptransaction_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7219,7 +7847,7 @@ func (x *UserProduceProgress_ProduceItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgress_ProduceItem.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress_ProduceItem) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54, 1}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 2}
 }
 
 func (x *UserProduceProgress_ProduceItem) GetProduceItemId() string {
@@ -7254,7 +7882,7 @@ type UserProduceProgress_ProduceSkill struct {
 
 func (x *UserProduceProgress_ProduceSkill) Reset() {
 	*x = UserProduceProgress_ProduceSkill{}
-	mi := &file_ptransaction_proto_msgTypes[85]
+	mi := &file_ptransaction_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7266,7 +7894,7 @@ func (x *UserProduceProgress_ProduceSkill) String() string {
 func (*UserProduceProgress_ProduceSkill) ProtoMessage() {}
 
 func (x *UserProduceProgress_ProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[85]
+	mi := &file_ptransaction_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7279,7 +7907,7 @@ func (x *UserProduceProgress_ProduceSkill) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgress_ProduceSkill.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress_ProduceSkill) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54, 2}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 3}
 }
 
 func (x *UserProduceProgress_ProduceSkill) GetId() string {
@@ -7313,7 +7941,7 @@ type UserProduceProgress_SelfLessonTypeStaminaPermil struct {
 
 func (x *UserProduceProgress_SelfLessonTypeStaminaPermil) Reset() {
 	*x = UserProduceProgress_SelfLessonTypeStaminaPermil{}
-	mi := &file_ptransaction_proto_msgTypes[86]
+	mi := &file_ptransaction_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7325,7 +7953,7 @@ func (x *UserProduceProgress_SelfLessonTypeStaminaPermil) String() string {
 func (*UserProduceProgress_SelfLessonTypeStaminaPermil) ProtoMessage() {}
 
 func (x *UserProduceProgress_SelfLessonTypeStaminaPermil) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[86]
+	mi := &file_ptransaction_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7338,7 +7966,7 @@ func (x *UserProduceProgress_SelfLessonTypeStaminaPermil) ProtoReflect() protore
 
 // Deprecated: Use UserProduceProgress_SelfLessonTypeStaminaPermil.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress_SelfLessonTypeStaminaPermil) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54, 3}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 4}
 }
 
 func (x *UserProduceProgress_SelfLessonTypeStaminaPermil) GetLessonType() penum.ProduceStepLessonType {
@@ -7365,7 +7993,7 @@ type UserProduceProgress_ShopProduceCardDiscount struct {
 
 func (x *UserProduceProgress_ShopProduceCardDiscount) Reset() {
 	*x = UserProduceProgress_ShopProduceCardDiscount{}
-	mi := &file_ptransaction_proto_msgTypes[87]
+	mi := &file_ptransaction_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7377,7 +8005,7 @@ func (x *UserProduceProgress_ShopProduceCardDiscount) String() string {
 func (*UserProduceProgress_ShopProduceCardDiscount) ProtoMessage() {}
 
 func (x *UserProduceProgress_ShopProduceCardDiscount) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[87]
+	mi := &file_ptransaction_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7390,7 +8018,7 @@ func (x *UserProduceProgress_ShopProduceCardDiscount) ProtoReflect() protoreflec
 
 // Deprecated: Use UserProduceProgress_ShopProduceCardDiscount.ProtoReflect.Descriptor instead.
 func (*UserProduceProgress_ShopProduceCardDiscount) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{54, 4}
+	return file_ptransaction_proto_rawDescGZIP(), []int{55, 5}
 }
 
 func (x *UserProduceProgress_ShopProduceCardDiscount) GetProduceCardSearchId() string {
@@ -7419,7 +8047,7 @@ type UserProduceProgressEffect_Reward struct {
 
 func (x *UserProduceProgressEffect_Reward) Reset() {
 	*x = UserProduceProgressEffect_Reward{}
-	mi := &file_ptransaction_proto_msgTypes[88]
+	mi := &file_ptransaction_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7431,7 +8059,7 @@ func (x *UserProduceProgressEffect_Reward) String() string {
 func (*UserProduceProgressEffect_Reward) ProtoMessage() {}
 
 func (x *UserProduceProgressEffect_Reward) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[88]
+	mi := &file_ptransaction_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7444,7 +8072,7 @@ func (x *UserProduceProgressEffect_Reward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProduceProgressEffect_Reward.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressEffect_Reward) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{57, 0}
+	return file_ptransaction_proto_rawDescGZIP(), []int{58, 0}
 }
 
 func (x *UserProduceProgressEffect_Reward) GetResourceType() penum.ProduceResourceType {
@@ -7480,13 +8108,14 @@ type UserProduceProgressMemory_MemoryAbility struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Level         int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
 	TriggerCount  int32                  `protobuf:"varint,3,opt,name=triggerCount,proto3" json:"triggerCount,omitempty"`
+	Disable       bool                   `protobuf:"varint,4,opt,name=disable,proto3" json:"disable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserProduceProgressMemory_MemoryAbility) Reset() {
 	*x = UserProduceProgressMemory_MemoryAbility{}
-	mi := &file_ptransaction_proto_msgTypes[89]
+	mi := &file_ptransaction_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7498,7 +8127,7 @@ func (x *UserProduceProgressMemory_MemoryAbility) String() string {
 func (*UserProduceProgressMemory_MemoryAbility) ProtoMessage() {}
 
 func (x *UserProduceProgressMemory_MemoryAbility) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[89]
+	mi := &file_ptransaction_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7511,7 +8140,7 @@ func (x *UserProduceProgressMemory_MemoryAbility) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UserProduceProgressMemory_MemoryAbility.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressMemory_MemoryAbility) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{59, 0}
+	return file_ptransaction_proto_rawDescGZIP(), []int{61, 0}
 }
 
 func (x *UserProduceProgressMemory_MemoryAbility) GetId() string {
@@ -7535,6 +8164,13 @@ func (x *UserProduceProgressMemory_MemoryAbility) GetTriggerCount() int32 {
 	return 0
 }
 
+func (x *UserProduceProgressMemory_MemoryAbility) GetDisable() bool {
+	if x != nil {
+		return x.Disable
+	}
+	return false
+}
+
 type UserProduceProgressPresent_Reward struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	ResourceType  penum.ProduceResourceType `protobuf:"varint,1,opt,name=resourceType,proto3,enum=penum.ProduceResourceType" json:"resourceType,omitempty"`
@@ -7547,7 +8183,7 @@ type UserProduceProgressPresent_Reward struct {
 
 func (x *UserProduceProgressPresent_Reward) Reset() {
 	*x = UserProduceProgressPresent_Reward{}
-	mi := &file_ptransaction_proto_msgTypes[90]
+	mi := &file_ptransaction_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7559,7 +8195,7 @@ func (x *UserProduceProgressPresent_Reward) String() string {
 func (*UserProduceProgressPresent_Reward) ProtoMessage() {}
 
 func (x *UserProduceProgressPresent_Reward) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[90]
+	mi := &file_ptransaction_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7572,7 +8208,7 @@ func (x *UserProduceProgressPresent_Reward) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UserProduceProgressPresent_Reward.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressPresent_Reward) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{60, 0}
+	return file_ptransaction_proto_rawDescGZIP(), []int{62, 0}
 }
 
 func (x *UserProduceProgressPresent_Reward) GetResourceType() penum.ProduceResourceType {
@@ -7614,7 +8250,7 @@ type UserProduceProgressSupportCard_ProduceSkill struct {
 
 func (x *UserProduceProgressSupportCard_ProduceSkill) Reset() {
 	*x = UserProduceProgressSupportCard_ProduceSkill{}
-	mi := &file_ptransaction_proto_msgTypes[91]
+	mi := &file_ptransaction_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7626,7 +8262,7 @@ func (x *UserProduceProgressSupportCard_ProduceSkill) String() string {
 func (*UserProduceProgressSupportCard_ProduceSkill) ProtoMessage() {}
 
 func (x *UserProduceProgressSupportCard_ProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_ptransaction_proto_msgTypes[91]
+	mi := &file_ptransaction_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7639,7 +8275,7 @@ func (x *UserProduceProgressSupportCard_ProduceSkill) ProtoReflect() protoreflec
 
 // Deprecated: Use UserProduceProgressSupportCard_ProduceSkill.ProtoReflect.Descriptor instead.
 func (*UserProduceProgressSupportCard_ProduceSkill) Descriptor() ([]byte, []int) {
-	return file_ptransaction_proto_rawDescGZIP(), []int{64, 0}
+	return file_ptransaction_proto_rawDescGZIP(), []int{67, 0}
 }
 
 func (x *UserProduceProgressSupportCard_ProduceSkill) GetId() string {
@@ -7769,14 +8405,16 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x11UserHomeCharacter\x12+\n" +
 	"\bhomeType\x18\x02 \x01(\x0e2\x0f.penum.HomeTypeR\bhomeType\x12 \n" +
 	"\vcharacterId\x18\x03 \x01(\tR\vcharacterId\x12\x1a\n" +
-	"\bisRandom\x18\x04 \x01(\bR\bisRandom\"\x84\x02\n" +
+	"\bisRandom\x18\x04 \x01(\bR\bisRandom\"\xbe\x02\n" +
 	"\fUserIdolCard\x12\x1e\n" +
 	"\n" +
 	"idolCardId\x18\x02 \x01(\tR\n" +
 	"idolCardId\x12E\n" +
 	"\x0elevelLimitRank\x18\x03 \x01(\x0e2\x1d.penum.IdolCardLevelLimitRankR\x0elevelLimitRank\x12B\n" +
 	"\rpotentialRank\x18\x04 \x01(\x0e2\x1c.penum.IdolCardPotentialRankR\rpotentialRank\x12&\n" +
-	"\x0eidolCardSkinId\x18\x05 \x01(\tR\x0eidolCardSkinId\x12!\n" +
+	"\x0eidolCardSkinId\x18\x05 \x01(\tR\x0eidolCardSkinId\x128\n" +
+	"\x17primaStellaUpgradedTime\x18\n" +
+	" \x01(\x03R\x17primaStellaUpgradedTime\x12!\n" +
 	"\vcreatedTime\x18\xe7\a \x01(\x03R\vcreatedTime\":\n" +
 	"\x10UserIdolCardSkin\x12&\n" +
 	"\x0eidolCardSkinId\x18\x02 \x01(\tR\x0eidolCardSkinId\"\xee\x01\n" +
@@ -7806,7 +8444,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x13UserMeishiBaseAsset\x12,\n" +
 	"\x11meishiBaseAssetId\x18\x02 \x01(\tR\x11meishiBaseAssetId\"[\n" +
 	"\x1bUserMeishiIllustrationAsset\x12<\n" +
-	"\x19meishiIllustrationAssetId\x18\x02 \x01(\tR\x19meishiIllustrationAssetId\"\x92\x0f\n" +
+	"\x19meishiIllustrationAssetId\x18\x02 \x01(\tR\x19meishiIllustrationAssetId\"\xb8\x0f\n" +
 	"\n" +
 	"UserMemory\x12\"\n" +
 	"\fuserMemoryId\x18\x02 \x01(\tR\fuserMemoryId\x12 \n" +
@@ -7842,7 +8480,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"researchId\x182 \x01(\tR\n" +
 	"researchId\x120\n" +
 	"\x13researchRerollCount\x183 \x01(\x05R\x13researchRerollCount\x12.\n" +
-	"\x12isResearchFavorite\x184 \x01(\bR\x12isResearchFavorite\x12>\n" +
+	"\x12isResearchFavorite\x184 \x01(\bR\x12isResearchFavorite\x12$\n" +
+	"\risPrimaStella\x18< \x01(\bR\risPrimaStella\x12>\n" +
 	"\x0eendingLiveType\x18c \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0eendingLiveType\x12@\n" +
 	"\x0fproduceLiveType\x18d \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0fproduceLiveType\x12$\n" +
 	"\rliveCostumeId\x18e \x01(\tR\rliveCostumeId\x12,\n" +
@@ -7936,7 +8575,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x12afterProduceCardId\x18\x03 \x01(\tR\x12afterProduceCardId\x12\x16\n" +
 	"\x06enable\x18\x04 \x01(\bR\x06enable\"=\n" +
 	"\x15UserProduceCardReward\x12$\n" +
-	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\"\xd2\x01\n" +
+	"\rproduceCardId\x18\x02 \x01(\tR\rproduceCardId\"\xf6\x01\n" +
 	"\x14UserProduceCharacter\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12\x1c\n" +
 	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12\x1c\n" +
@@ -7944,7 +8583,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\n" +
 	"clearCount\x18\x06 \x01(\x05R\n" +
 	"clearCount\x12<\n" +
-	"\x19unlockChallengeSlotNumber\x18\a \x01(\x05R\x19unlockChallengeSlotNumber\":\n" +
+	"\x19unlockChallengeSlotNumber\x18\a \x01(\x05R\x19unlockChallengeSlotNumber\x12\"\n" +
+	"\fhighestScore\x18\b \x01(\x05R\fhighestScore\":\n" +
 	"\x10UserProduceDrink\x12&\n" +
 	"\x0eproduceDrinkId\x18\x02 \x01(\tR\x0eproduceDrinkId\"\xc9\x02\n" +
 	"\x19UserProduceGroupCharacter\x12 \n" +
@@ -7952,7 +8592,11 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0eproduceGroupId\x18\x03 \x01(\tR\x0eproduceGroupId\x12j\n" +
 	" viewUnlockAnimationAuditionTypes\x18\x04 \x03(\x0e2\x1e.penum.ProduceStepAuditionTypeR viewUnlockAnimationAuditionTypes\x12>\n" +
 	"\x0eendingLiveType\x18\x05 \x01(\x0e2\x16.penum.ProduceLiveTypeR\x0eendingLiveType\x126\n" +
-	"\x16disableForceLiveCommon\x18\x06 \x01(\bR\x16disableForceLiveCommon\"\xe1\x01\n" +
+	"\x16disableForceLiveCommon\x18\x06 \x01(\bR\x16disableForceLiveCommon\"z\n" +
+	"\x16UserProduceGrowthPanel\x122\n" +
+	"\x14produceGrowthPanelId\x18\x02 \x01(\tR\x14produceGrowthPanelId\x12\x14\n" +
+	"\x05level\x18\x03 \x01(\x05R\x05level\x12\x16\n" +
+	"\x06enable\x18\x04 \x01(\bR\x06enable\"\xe1\x01\n" +
 	"\x13UserProduceIdolCard\x12\x1c\n" +
 	"\tproduceId\x18\x02 \x01(\tR\tproduceId\x12\x1e\n" +
 	"\n" +
@@ -7976,7 +8620,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\vproduceType\x18\x02 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12$\n" +
 	"\ruserMemoryIds\x18\x04 \x03(\tR\ruserMemoryIds\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\"\xea;\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\"\xe5B\n" +
 	"\x13UserProduceProgress\x12&\n" +
 	"\x0eproduceGroupId\x18\x02 \x01(\tR\x0eproduceGroupId\x12\x1c\n" +
 	"\tproduceId\x18\x03 \x01(\tR\tproduceId\x12$\n" +
@@ -7996,13 +8640,16 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x16disableForceLiveCommon\x18\x10 \x01(\bR\x16disableForceLiveCommon\x12$\n" +
 	"\risInterrupted\x18\x12 \x01(\bR\risInterrupted\x122\n" +
 	"\x14hasInterruptedBefore\x18\x13 \x01(\bR\x14hasInterruptedBefore\x12.\n" +
-	"\x12startDearnessLevel\x18\x14 \x01(\x05R\x12startDearnessLevel\x12\x1e\n" +
+	"\x12startDearnessLevel\x18\x14 \x01(\x05R\x12startDearnessLevel\x12$\n" +
+	"\risPrimaStella\x18\x15 \x01(\bR\risPrimaStella\x124\n" +
+	"\x15userSelectionMemoryId\x18\x18 \x01(\tR\x15userSelectionMemoryId\x12\x1e\n" +
 	"\n" +
 	"isResearch\x18G \x01(\bR\n" +
 	"isResearch\x12F\n" +
 	"\x1eresearchExternalProduceCardIds\x18H \x03(\tR\x1eresearchExternalProduceCardIds\x12N\n" +
 	"\"researchMemoryPickupProduceCardIds\x18I \x03(\tR\"researchMemoryPickupProduceCardIds\x126\n" +
-	"\x16researchProduceItemIds\x18J \x03(\tR\x16researchProduceItemIds\x12.\n" +
+	"\x16researchProduceItemIds\x18J \x03(\tR\x16researchProduceItemIds\x12V\n" +
+	"&researchMemoryProduceCardPickupDisable\x18K \x01(\bR&researchMemoryProduceCardPickupDisable\x12.\n" +
 	"\x12produceHighScoreId\x18P \x01(\tR\x12produceHighScoreId\x12D\n" +
 	"\x10produceCampaigns\x18[ \x03(\v2\x18.pcommon.ProduceCampaignR\x10produceCampaigns\x124\n" +
 	"\x06status\x18d \x01(\x0e2\x1c.penum.ProduceProgressStatusR\x06status\x12\"\n" +
@@ -8028,7 +8675,9 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x13isChangeCostumeLive\x18| \x01(\bR\x13isChangeCostumeLive\x128\n" +
 	"\x17isChangeCostumeTraining\x18~ \x01(\bR\x17isChangeCostumeTraining\x12.\n" +
 	"\x12rentalPublicUserId\x18} \x01(\tR\x12rentalPublicUserId\x12L\n" +
-	"!changeCostumeLiveUnitCharacterIds\x18\x7f \x03(\tR!changeCostumeLiveUnitCharacterIds\x12\x15\n" +
+	"!changeCostumeLiveUnitCharacterIds\x18\x7f \x03(\tR!changeCostumeLiveUnitCharacterIds\x12U\n" +
+	"%changeCostumeTrainingUnitCharacterIds\x18\x80\x01 \x03(\tR%changeCostumeTrainingUnitCharacterIds\x12O\n" +
+	"\x15resultSelectionMemory\x18\x83\x01 \x01(\v2\x18.pcommon.SelectionMemoryR\x15resultSelectionMemory\x12\x15\n" +
 	"\x05vocal\x18\xc8\x01 \x01(\x05R\x05vocal\x12\x15\n" +
 	"\x05dance\x18\xc9\x01 \x01(\x05R\x05dance\x12\x17\n" +
 	"\x06visual\x18\xca\x01 \x01(\x05R\x06visual\x125\n" +
@@ -8050,7 +8699,11 @@ const file_ptransaction_proto_rawDesc = "" +
 	"!producePointReduceValueRatePermil\x18\xe8\x01 \x01(\x05R!producePointReduceValueRatePermil\x12?\n" +
 	"\x1aproducePointGetDisableTurn\x18\xe9\x01 \x01(\x05R\x1aproducePointGetDisableTurn\x12\x1d\n" +
 	"\tvoteCount\x18\xeb\x01 \x01(\x05R\tvoteCount\x12%\n" +
-	"\rhighScoreGold\x18\xec\x01 \x01(\x05R\rhighScoreGold\x12g\n" +
+	"\rhighScoreGold\x18\xec\x01 \x01(\x05R\rhighScoreGold\x12\x13\n" +
+	"\x04star\x18\xed\x01 \x01(\x05R\x04star\x12\x1f\n" +
+	"\n" +
+	"starPermil\x18\xee\x01 \x01(\x05R\n" +
+	"starPermil\x12g\n" +
 	"\x16characterProduceSkills\x18\xfd\x01 \x03(\v2..ptransaction.UserProduceProgress.ProduceSkillR\x16characterProduceSkills\x12?\n" +
 	"\x1adearnessStoryDearnessLevel\x18\xfe\x01 \x01(\x05R\x1adearnessStoryDearnessLevel\x12e\n" +
 	"\x15idolCardProduceSkills\x18\x91\x02 \x03(\v2..ptransaction.UserProduceProgress.ProduceSkillR\x15idolCardProduceSkills\x12O\n" +
@@ -8065,9 +8718,11 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x19produceItemGetDisableTurn\x18\xe2\x02 \x01(\x05R\x19produceItemGetDisableTurn\x12)\n" +
 	"\x0fproduceDrinkIds\x18\x90\x03 \x03(\tR\x0fproduceDrinkIds\x12?\n" +
 	"\x1aproduceDrinkGetDisableTurn\x18\x91\x03 \x01(\x05R\x1aproduceDrinkGetDisableTurn\x12O\n" +
+	"\"produceDrinkPossessAdditionalCount\x18\x94\x03 \x01(\x05R\"produceDrinkPossessAdditionalCount\x12O\n" +
 	"\"auditionEffectParameterBonusPermil\x18\xf8\x03 \x01(\x05R\"auditionEffectParameterBonusPermil\x12;\n" +
 	"\x18auditionNpcEnhancePermil\x18\xf9\x03 \x01(\x05R\x18auditionNpcEnhancePermil\x12M\n" +
-	"!auditionParameterGrowthRatePermil\x18\xfc\x03 \x01(\x05R!auditionParameterGrowthRatePermil\x12;\n" +
+	"!auditionParameterGrowthRatePermil\x18\xfc\x03 \x01(\x05R!auditionParameterGrowthRatePermil\x12O\n" +
+	"\tauditions\x18\xfe\x03 \x03(\v20.ptransaction.UserProduceProgress.AuditionResultR\tauditions\x12;\n" +
 	"\x18eventSchoolStaminaPermil\x18\xa6\x04 \x01(\x05R\x18eventSchoolStaminaPermil\x12I\n" +
 	"\x1feventActivityProducePointPermil\x18\xa7\x04 \x01(\x05R\x1feventActivityProducePointPermil\x12C\n" +
 	"\x1ceventBusinessVoteCountPermil\x18\xa8\x04 \x01(\x05R\x1ceventBusinessVoteCountPermil\x12%\n" +
@@ -8098,8 +8753,16 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x18shopProduceCardDiscounts\x18\xa7\x06 \x03(\v29.ptransaction.UserProduceProgress.ShopProduceCardDiscountR\x18shopProduceCardDiscounts\x12I\n" +
 	"\x1fshopProduceDrinkDiscountPermils\x18\xa8\x06 \x03(\x05R\x1fshopProduceDrinkDiscountPermils\x125\n" +
 	"\x15shopRemainRerollCount\x18\xab\x06 \x01(\x05R\x15shopRemainRerollCount\x12+\n" +
-	"\x10hiddenShopReroll\x18\xac\x06 \x01(\bR\x10hiddenShopReroll\x12C\n" +
-	"\x1csatisfyProduceExamTriggerIds\x18\xd4\x06 \x03(\tR\x1csatisfyProduceExamTriggerIds\x1a\xc8\x01\n" +
+	"\x10hiddenShopReroll\x18\xac\x06 \x01(\bR\x10hiddenShopReroll\x12W\n" +
+	"&intervalCurrentProduceCardUpgradeCount\x18\xbf\x06 \x01(\x05R&intervalCurrentProduceCardUpgradeCount\x121\n" +
+	"\x13intervalRerollPrice\x18\xc0\x06 \x01(\x05R\x13intervalRerollPrice\x12C\n" +
+	"\x1csatisfyProduceExamTriggerIds\x18\xd4\x06 \x03(\tR\x1csatisfyProduceExamTriggerIds\x1a\xb8\x01\n" +
+	"\x0eAuditionResult\x12B\n" +
+	"\x10auditionStepType\x18\x01 \x01(\x0e2\x16.penum.ProduceStepTypeR\x10auditionStepType\x12\"\n" +
+	"\fselectNumber\x18\x02 \x01(\x05R\fselectNumber\x12\x12\n" +
+	"\x04rank\x18\x03 \x01(\x05R\x04rank\x12\x14\n" +
+	"\x05score\x18\x04 \x01(\x05R\x05score\x12\x14\n" +
+	"\x05point\x18\x05 \x01(\x05R\x05point\x1a\xc8\x01\n" +
 	"\x11ExamStatusEnchant\x12?\n" +
 	"\n" +
 	"originType\x18\x01 \x01(\x0e2\x1f.penum.ProduceTriggerOriginTypeR\n" +
@@ -8123,13 +8786,14 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x06permil\x18\x02 \x01(\x05R\x06permil\x1ae\n" +
 	"\x17ShopProduceCardDiscount\x120\n" +
 	"\x13produceCardSearchId\x18\x01 \x01(\tR\x13produceCardSearchId\x12\x18\n" +
-	"\apermils\x18\x02 \x03(\x05R\apermils\"\x8f\x04\n" +
+	"\apermils\x18\x02 \x03(\x05R\apermils\"\x8f\x05\n" +
 	"\x1bUserProduceProgressAudition\x12@\n" +
 	"\x06status\x18\x02 \x01(\x0e2(.penum.ProduceProgressAuditionStatusTypeR\x06status\x12 \n" +
 	"\vvocalPermil\x18\x03 \x01(\x05R\vvocalPermil\x12 \n" +
 	"\vdancePermil\x18\x04 \x01(\x05R\vdancePermil\x12\"\n" +
 	"\fvisualPermil\x18\x05 \x01(\x05R\fvisualPermil\x12(\n" +
-	"\x0fvoteBonusPermil\x18\x06 \x01(\x05R\x0fvoteBonusPermil\x12*\n" +
+	"\x0fvoteBonusPermil\x18\x06 \x01(\x05R\x0fvoteBonusPermil\x12(\n" +
+	"\x0fstarBonusPermil\x18\a \x01(\x05R\x0fstarBonusPermil\x12*\n" +
 	"\x10stepSelectNumber\x18c \x01(\x05R\x10stepSelectNumber\x12\x12\n" +
 	"\x04rank\x18d \x01(\x05R\x04rank\x12\x14\n" +
 	"\x05score\x18e \x01(\x05R\x05score\x12\x18\n" +
@@ -8137,7 +8801,9 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0fproduceDrinkIds\x18h \x03(\tR\x0fproduceDrinkIds\x12&\n" +
 	"\x0eproduceItemIds\x18i \x03(\tR\x0eproduceItemIds\x124\n" +
 	"\x15produceItemFireCounts\x18j \x03(\x05R\x15produceItemFireCounts\x12$\n" +
-	"\rexamSkipCount\x18k \x01(\x05R\rexamSkipCount\"\xad\x03\n" +
+	"\rexamSkipCount\x18k \x01(\x05R\rexamSkipCount\x12\x14\n" +
+	"\x05point\x18q \x01(\x05R\x05point\x12>\n" +
+	"\fauditionNpcs\x18u \x03(\v2\x1a.pcommon.AuditionNpcResultR\fauditionNpcs\"\xad\x03\n" +
 	"\x1bUserProduceProgressBusiness\x12B\n" +
 	"\fbusinessType\x18\x02 \x01(\x0e2\x1e.penum.ProduceStepBusinessTypeR\fbusinessType\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12\x12\n" +
@@ -8148,7 +8814,7 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x0fexcellentPermil\x18\b \x01(\x05R\x0fexcellentPermil\x12:\n" +
 	"\x18produceStepEventDetailId\x18\t \x01(\tR\x18produceStepEventDetailId\x12L\n" +
 	"!excellentProduceStepEventDetailId\x18\n" +
-	" \x01(\tR!excellentProduceStepEventDetailId\"\xca\a\n" +
+	" \x01(\tR!excellentProduceStepEventDetailId\"\xee\a\n" +
 	"\x19UserProduceProgressEffect\x12\x16\n" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12\x18\n" +
 	"\anumbers\x18\x03 \x03(\x05R\anumbers\x12,\n" +
@@ -8160,7 +8826,8 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\rpickRangeType\x18\r \x01(\x0e2\x1b.penum.ProducePickRangeTypeR\rpickRangeType\x12\"\n" +
 	"\fpickCountMin\x18\x0e \x01(\x05R\fpickCountMin\x12\"\n" +
 	"\fpickCountMax\x18\x0f \x01(\x05R\fpickCountMax\x12 \n" +
-	"\vpickIndexes\x18\x11 \x03(\x05R\vpickIndexes\x128\n" +
+	"\vpickIndexes\x18\x11 \x03(\x05R\vpickIndexes\x12\"\n" +
+	"\fpickIndexes2\x18\x14 \x03(\x05R\fpickIndexes2\x128\n" +
 	"\x17activatedProduceItemIds\x18\x12 \x03(\tR\x17activatedProduceItemIds\x12\x16\n" +
 	"\x06isNext\x18\x1a \x01(\bR\x06isNext\x12(\n" +
 	"\x0fproduceEffectId\x18\x1b \x01(\tR\x0fproduceEffectId\x12?\n" +
@@ -8182,17 +8849,29 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x18produceStepEventDetailId\x18\x02 \x01(\tR\x18produceStepEventDetailId\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\x05R\x06number\x12(\n" +
 	"\x0fsuggestionIndex\x18\x04 \x01(\x03R\x0fsuggestionIndex\x12\x18\n" +
-	"\asuccess\x18\x05 \x01(\bR\asuccess\"\xcc\x02\n" +
+	"\asuccess\x18\x05 \x01(\bR\asuccess\"\xcd\x02\n" +
+	"\x1bUserProduceProgressInterval\x12&\n" +
+	"\x0epositionNumber\x18\x02 \x01(\x05R\x0epositionNumber\x12\x1c\n" +
+	"\tpurchased\x18\x03 \x01(\bR\tpurchased\x12>\n" +
+	"\fresourceType\x18\x04 \x01(\x0e2\x1a.penum.ProduceResourceTypeR\fresourceType\x12\x1e\n" +
+	"\n" +
+	"resourceId\x18\x05 \x01(\tR\n" +
+	"resourceId\x12\"\n" +
+	"\fupgradeCount\x18\x06 \x01(\x05R\fupgradeCount\x120\n" +
+	"\x13staminaRecoverValue\x18\a \x01(\x05R\x13staminaRecoverValue\x12\x14\n" +
+	"\x05price\x18\b \x01(\x05R\x05price\x12\x1c\n" +
+	"\tnextPrice\x18\t \x01(\x05R\tnextPrice\"\xe6\x02\n" +
 	"\x19UserProduceProgressMemory\x12\x16\n" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12\"\n" +
 	"\fuserMemoryId\x18\x03 \x01(\tR\fuserMemoryId\x12\x1a\n" +
 	"\bisRental\x18\x05 \x01(\bR\bisRental\x12S\n" +
 	"\tabilities\x18\x1c \x03(\v25.ptransaction.UserProduceProgressMemory.MemoryAbilityR\tabilities\x12'\n" +
-	"\x06memory\x18d \x01(\v2\x0f.pcommon.MemoryR\x06memory\x1aY\n" +
+	"\x06memory\x18d \x01(\v2\x0f.pcommon.MemoryR\x06memory\x1as\n" +
 	"\rMemoryAbility\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\"\n" +
-	"\ftriggerCount\x18\x03 \x01(\x05R\ftriggerCount\"\xd7\x04\n" +
+	"\ftriggerCount\x18\x03 \x01(\x05R\ftriggerCount\x12\x18\n" +
+	"\adisable\x18\x04 \x01(\bR\adisable\"\xd7\x04\n" +
 	"\x1aUserProduceProgressPresent\x12&\n" +
 	"\x0epositionNumber\x18\x02 \x01(\x05R\x0epositionNumber\x12\x1a\n" +
 	"\breceived\x18\x03 \x01(\bR\breceived\x12;\n" +
@@ -8222,8 +8901,12 @@ const file_ptransaction_proto_rawDesc = "" +
 	"customizes\x18\n" +
 	" \x03(\v2\x1d.pcommon.ProduceCardCustomizeR\n" +
 	"customizes\x12 \n" +
-	"\vcustomizing\x18\v \x01(\bR\vcustomizing\"\xc3\n" +
-	"\n" +
+	"\vcustomizing\x18\v \x01(\bR\vcustomizing\"\xc3\x01\n" +
+	"'UserProduceProgressProduceCustomizeItem\x12\x16\n" +
+	"\x06number\x18\x02 \x01(\x05R\x06number\x126\n" +
+	"\x16produceCustomizeItemId\x18\x03 \x01(\tR\x16produceCustomizeItemId\x12\"\n" +
+	"\ftriggerCount\x18\x04 \x01(\x05R\ftriggerCount\x12$\n" +
+	"\rreactionCount\x18\x05 \x01(\x05R\rreactionCount\"\xd6\x12\n" +
 	"\x1bUserProduceProgressSchedule\x12\x1e\n" +
 	"\n" +
 	"stepNumber\x18\x02 \x01(\x05R\n" +
@@ -8240,12 +8923,26 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x1elegendDanceProduceStepLessonId\x186 \x01(\tR\x1elegendDanceProduceStepLessonId\x12J\n" +
 	" legendDanceSpProduceStepLessonId\x187 \x01(\tR legendDanceSpProduceStepLessonId\x12H\n" +
 	"\x1flegendVisualProduceStepLessonId\x189 \x01(\tR\x1flegendVisualProduceStepLessonId\x12L\n" +
-	"!legendVisualSpProduceStepLessonId\x18: \x01(\tR!legendVisualSpProduceStepLessonId\x124\n" +
-	"\tstepTypes\x18\x18 \x03(\x0e2\x16.penum.ProduceStepTypeR\tstepTypes\x12B\n" +
+	"!legendVisualSpProduceStepLessonId\x18: \x01(\tR!legendVisualSpProduceStepLessonId\x12B\n" +
+	"\x1cvocalProduceStepOpenLessonId\x18< \x01(\tR\x1cvocalProduceStepOpenLessonId\x12F\n" +
+	"\x1evocalSpProduceStepOpenLessonId\x18= \x01(\tR\x1evocalSpProduceStepOpenLessonId\x12J\n" +
+	" vocalStarProduceStepOpenLessonId\x18> \x01(\tR vocalStarProduceStepOpenLessonId\x12N\n" +
+	"\"vocalSpStarProduceStepOpenLessonId\x18? \x01(\tR\"vocalSpStarProduceStepOpenLessonId\x12B\n" +
+	"\x1cdanceProduceStepOpenLessonId\x18A \x01(\tR\x1cdanceProduceStepOpenLessonId\x12F\n" +
+	"\x1edanceSpProduceStepOpenLessonId\x18B \x01(\tR\x1edanceSpProduceStepOpenLessonId\x12J\n" +
+	" danceStarProduceStepOpenLessonId\x18C \x01(\tR danceStarProduceStepOpenLessonId\x12N\n" +
+	"\"danceSpStarProduceStepOpenLessonId\x18D \x01(\tR\"danceSpStarProduceStepOpenLessonId\x12D\n" +
+	"\x1dvisualProduceStepOpenLessonId\x18F \x01(\tR\x1dvisualProduceStepOpenLessonId\x12H\n" +
+	"\x1fvisualSpProduceStepOpenLessonId\x18G \x01(\tR\x1fvisualSpProduceStepOpenLessonId\x12L\n" +
+	"!visualStarProduceStepOpenLessonId\x18H \x01(\tR!visualStarProduceStepOpenLessonId\x12P\n" +
+	"#visualSpStarProduceStepOpenLessonId\x18I \x01(\tR#visualSpStarProduceStepOpenLessonId\x124\n" +
+	"\tstepTypes\x18\x18 \x03(\x0e2\x16.penum.ProduceStepTypeR\tstepTypes\x12Q\n" +
+	"\x15stepSubParameterTypes\x18\x17 \x03(\x0e2\x1b.penum.ProduceParameterTypeR\x15stepSubParameterTypes\x12B\n" +
 	"\x10selectedStepType\x18\x19 \x01(\x0e2\x16.penum.ProduceStepTypeR\x10selectedStepType\x12D\n" +
 	"\x0eexamResultType\x18\x1a \x01(\x0e2\x1c.penum.ProduceExamResultTypeR\x0eexamResultType\x12&\n" +
 	"\x0erefreshStamina\x18\x1b \x01(\x05R\x0erefreshStamina\x12\"\n" +
-	"\fauditionRank\x18\x1c \x01(\x05R\fauditionRank\x12*\n" +
+	"\fauditionRank\x18\x1c \x01(\x05R\fauditionRank\x12>\n" +
+	"\fauditionNpcs\x18S \x03(\v2\x1a.pcommon.AuditionNpcResultR\fauditionNpcs\x12*\n" +
 	"\x10stepSelectNumber\x18) \x01(\x05R\x10stepSelectNumber\x12@\n" +
 	"\x1bmaxAuditionStepSelectNumber\x18* \x01(\x05R\x1bmaxAuditionStepSelectNumber\"\xf9\x03\n" +
 	"\x17UserProduceProgressShop\x12&\n" +
@@ -8321,7 +9018,12 @@ const file_ptransaction_proto_rawDesc = "" +
 	"\x1aisInitializedCurrentSeason\x18\x05 \x01(\bR\x1aisInitializedCurrentSeason\x125\n" +
 	"\tphaseType\x18d \x01(\x0e2\x17.penum.PvpRatePhaseTypeR\tphaseType\x12&\n" +
 	"\x0erivalMatchTime\x18e \x01(\x03R\x0erivalMatchTime\x124\n" +
-	"\x15supportBonusPermyriad\x18h \x01(\x05R\x15supportBonusPermyriad\"d\n" +
+	"\x15supportBonusPermyriad\x18h \x01(\x05R\x15supportBonusPermyriad\"\x93\x01\n" +
+	"\x0fUserPvpRateDeck\x12\x16\n" +
+	"\x06number\x18\x02 \x01(\x05R\x06number\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12*\n" +
+	"\x10mainUserMemoryId\x18\x04 \x01(\tR\x10mainUserMemoryId\x12(\n" +
+	"\x0fsubUserMemoryId\x18\x05 \x01(\tR\x0fsubUserMemoryId\"d\n" +
 	"\x0fUserPvpRateUnit\x12Q\n" +
 	"\x0fstageFormations\x18\x03 \x03(\v2'.pcommon.PvpRateSetupUnitStageFormationR\x0fstageFormations\"\x82\x01\n" +
 	"\fUserShopItem\x12\x1e\n" +
@@ -8391,7 +9093,7 @@ func file_ptransaction_proto_rawDescGZIP() []byte {
 	return file_ptransaction_proto_rawDescData
 }
 
-var file_ptransaction_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
+var file_ptransaction_proto_msgTypes = make([]protoimpl.MessageInfo, 97)
 var file_ptransaction_proto_goTypes = []any{
 	(*User)(nil),                                            // 0: ptransaction.User
 	(*UserActionPoint)(nil),                                 // 1: ptransaction.UserActionPoint
@@ -8443,184 +9145,199 @@ var file_ptransaction_proto_goTypes = []any{
 	(*UserProduceCharacter)(nil),                            // 47: ptransaction.UserProduceCharacter
 	(*UserProduceDrink)(nil),                                // 48: ptransaction.UserProduceDrink
 	(*UserProduceGroupCharacter)(nil),                       // 49: ptransaction.UserProduceGroupCharacter
-	(*UserProduceIdolCard)(nil),                             // 50: ptransaction.UserProduceIdolCard
-	(*UserProduceItem)(nil),                                 // 51: ptransaction.UserProduceItem
-	(*UserProduceLive)(nil),                                 // 52: ptransaction.UserProduceLive
-	(*UserProduceMemoryDeck)(nil),                           // 53: ptransaction.UserProduceMemoryDeck
-	(*UserProduceProgress)(nil),                             // 54: ptransaction.UserProduceProgress
-	(*UserProduceProgressAudition)(nil),                     // 55: ptransaction.UserProduceProgressAudition
-	(*UserProduceProgressBusiness)(nil),                     // 56: ptransaction.UserProduceProgressBusiness
-	(*UserProduceProgressEffect)(nil),                       // 57: ptransaction.UserProduceProgressEffect
-	(*UserProduceProgressEvent)(nil),                        // 58: ptransaction.UserProduceProgressEvent
-	(*UserProduceProgressMemory)(nil),                       // 59: ptransaction.UserProduceProgressMemory
-	(*UserProduceProgressPresent)(nil),                      // 60: ptransaction.UserProduceProgressPresent
-	(*UserProduceProgressProduceCard)(nil),                  // 61: ptransaction.UserProduceProgressProduceCard
-	(*UserProduceProgressSchedule)(nil),                     // 62: ptransaction.UserProduceProgressSchedule
-	(*UserProduceProgressShop)(nil),                         // 63: ptransaction.UserProduceProgressShop
-	(*UserProduceProgressSupportCard)(nil),                  // 64: ptransaction.UserProduceProgressSupportCard
-	(*UserProduceRerollMemory)(nil),                         // 65: ptransaction.UserProduceRerollMemory
-	(*UserProduceStartAchievement)(nil),                     // 66: ptransaction.UserProduceStartAchievement
-	(*UserProduceStory)(nil),                                // 67: ptransaction.UserProduceStory
-	(*UserProduceSupportCardDeck)(nil),                      // 68: ptransaction.UserProduceSupportCardDeck
-	(*UserProfile)(nil),                                     // 69: ptransaction.UserProfile
-	(*UserPvpRate)(nil),                                     // 70: ptransaction.UserPvpRate
-	(*UserPvpRateUnit)(nil),                                 // 71: ptransaction.UserPvpRateUnit
-	(*UserShopItem)(nil),                                    // 72: ptransaction.UserShopItem
-	(*UserStory)(nil),                                       // 73: ptransaction.UserStory
-	(*UserSupportCard)(nil),                                 // 74: ptransaction.UserSupportCard
-	(*UserTime)(nil),                                        // 75: ptransaction.UserTime
-	(*UserTower)(nil),                                       // 76: ptransaction.UserTower
-	(*UserTutorial)(nil),                                    // 77: ptransaction.UserTutorial
-	(*UserWebStore)(nil),                                    // 78: ptransaction.UserWebStore
-	(*UserWork)(nil),                                        // 79: ptransaction.UserWork
-	(*UserWorkCharacter)(nil),                               // 80: ptransaction.UserWorkCharacter
-	(*UserMemory_MemoryAbility)(nil),                        // 81: ptransaction.UserMemory.MemoryAbility
-	(*UserMemory_UnitCharacter)(nil),                        // 82: ptransaction.UserMemory.UnitCharacter
-	(*UserProduceProgress_ExamStatusEnchant)(nil),           // 83: ptransaction.UserProduceProgress.ExamStatusEnchant
-	(*UserProduceProgress_ProduceItem)(nil),                 // 84: ptransaction.UserProduceProgress.ProduceItem
-	(*UserProduceProgress_ProduceSkill)(nil),                // 85: ptransaction.UserProduceProgress.ProduceSkill
-	(*UserProduceProgress_SelfLessonTypeStaminaPermil)(nil), // 86: ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil
-	(*UserProduceProgress_ShopProduceCardDiscount)(nil),     // 87: ptransaction.UserProduceProgress.ShopProduceCardDiscount
-	(*UserProduceProgressEffect_Reward)(nil),                // 88: ptransaction.UserProduceProgressEffect.Reward
-	(*UserProduceProgressMemory_MemoryAbility)(nil),         // 89: ptransaction.UserProduceProgressMemory.MemoryAbility
-	(*UserProduceProgressPresent_Reward)(nil),               // 90: ptransaction.UserProduceProgressPresent.Reward
-	(*UserProduceProgressSupportCard_ProduceSkill)(nil),     // 91: ptransaction.UserProduceProgressSupportCard.ProduceSkill
-	(penum.AuthProviderType)(0),                             // 92: penum.AuthProviderType
-	(penum.ProduceType)(0),                                  // 93: penum.ProduceType
-	(penum.CostumeSetType)(0),                               // 94: penum.CostumeSetType
-	(penum.CompetitionGrade)(0),                             // 95: penum.CompetitionGrade
-	(penum.CompetitionStageType)(0),                         // 96: penum.CompetitionStageType
-	(penum.CompetitionPhaseType)(0),                         // 97: penum.CompetitionPhaseType
-	(*pcommon.CompetitionDeckSetupMemorySlot)(nil),          // 98: pcommon.CompetitionDeckSetupMemorySlot
-	(penum.CountType)(0),                                    // 99: penum.CountType
-	(penum.GuildJoinType)(0),                                // 100: penum.GuildJoinType
-	(penum.HomeType)(0),                                     // 101: penum.HomeType
-	(penum.IdolCardLevelLimitRank)(0),                       // 102: penum.IdolCardLevelLimitRank
-	(penum.IdolCardPotentialRank)(0),                        // 103: penum.IdolCardPotentialRank
-	(penum.ResultGrade)(0),                                  // 104: penum.ResultGrade
-	(penum.ProducePlanType)(0),                              // 105: penum.ProducePlanType
-	(*pcommon.ProduceCard)(nil),                             // 106: pcommon.ProduceCard
-	(penum.ProduceMemoryProduceCardPhaseType)(0),            // 107: penum.ProduceMemoryProduceCardPhaseType
-	(penum.ProduceLiveType)(0),                              // 108: penum.ProduceLiveType
-	(penum.PhotoButtonExecuteType)(0),                       // 109: penum.PhotoButtonExecuteType
-	(penum.ProduceStepAuditionType)(0),                      // 110: penum.ProduceStepAuditionType
-	(*pcommon.ProduceCampaign)(nil),                         // 111: pcommon.ProduceCampaign
-	(penum.ProduceProgressStatus)(0),                        // 112: penum.ProduceProgressStatus
-	(penum.ProduceStepType)(0),                              // 113: penum.ProduceStepType
-	(*pcommon.Memory)(nil),                                  // 114: pcommon.Memory
-	(penum.ProduceExamResultType)(0),                        // 115: penum.ProduceExamResultType
-	(*pcommon.ProduceLessonGrowthResult)(nil),               // 116: pcommon.ProduceLessonGrowthResult
-	(*pcommon.ProduceExamEndResult)(nil),                    // 117: pcommon.ProduceExamEndResult
-	(penum.ProduceProgressAuditionStatusType)(0),            // 118: penum.ProduceProgressAuditionStatusType
-	(penum.ProduceStepBusinessType)(0),                      // 119: penum.ProduceStepBusinessType
-	(penum.ProduceEffectType)(0),                            // 120: penum.ProduceEffectType
-	(penum.ProducePickRangeType)(0),                         // 121: penum.ProducePickRangeType
-	(penum.ProduceTriggerOriginType)(0),                     // 122: penum.ProduceTriggerOriginType
-	(penum.ProduceDisplayType)(0),                           // 123: penum.ProduceDisplayType
-	(penum.ProduceResourceOriginType)(0),                    // 124: penum.ProduceResourceOriginType
-	(*pcommon.ProduceCardCustomize)(nil),                    // 125: pcommon.ProduceCardCustomize
-	(penum.ProduceResourceType)(0),                          // 126: penum.ProduceResourceType
-	(penum.SupportCardLevelLimitRank)(0),                    // 127: penum.SupportCardLevelLimitRank
-	(penum.PvpRateGrade)(0),                                 // 128: penum.PvpRateGrade
-	(penum.PvpRatePhaseType)(0),                             // 129: penum.PvpRatePhaseType
-	(*pcommon.PvpRateSetupUnitStageFormation)(nil),          // 130: pcommon.PvpRateSetupUnitStageFormation
-	(penum.TimeType)(0),                                     // 131: penum.TimeType
-	(penum.TutorialType)(0),                                 // 132: penum.TutorialType
-	(penum.WorkType)(0),                                     // 133: penum.WorkType
-	(penum.ProduceStepLessonType)(0),                        // 134: penum.ProduceStepLessonType
+	(*UserProduceGrowthPanel)(nil),                          // 50: ptransaction.UserProduceGrowthPanel
+	(*UserProduceIdolCard)(nil),                             // 51: ptransaction.UserProduceIdolCard
+	(*UserProduceItem)(nil),                                 // 52: ptransaction.UserProduceItem
+	(*UserProduceLive)(nil),                                 // 53: ptransaction.UserProduceLive
+	(*UserProduceMemoryDeck)(nil),                           // 54: ptransaction.UserProduceMemoryDeck
+	(*UserProduceProgress)(nil),                             // 55: ptransaction.UserProduceProgress
+	(*UserProduceProgressAudition)(nil),                     // 56: ptransaction.UserProduceProgressAudition
+	(*UserProduceProgressBusiness)(nil),                     // 57: ptransaction.UserProduceProgressBusiness
+	(*UserProduceProgressEffect)(nil),                       // 58: ptransaction.UserProduceProgressEffect
+	(*UserProduceProgressEvent)(nil),                        // 59: ptransaction.UserProduceProgressEvent
+	(*UserProduceProgressInterval)(nil),                     // 60: ptransaction.UserProduceProgressInterval
+	(*UserProduceProgressMemory)(nil),                       // 61: ptransaction.UserProduceProgressMemory
+	(*UserProduceProgressPresent)(nil),                      // 62: ptransaction.UserProduceProgressPresent
+	(*UserProduceProgressProduceCard)(nil),                  // 63: ptransaction.UserProduceProgressProduceCard
+	(*UserProduceProgressProduceCustomizeItem)(nil),         // 64: ptransaction.UserProduceProgressProduceCustomizeItem
+	(*UserProduceProgressSchedule)(nil),                     // 65: ptransaction.UserProduceProgressSchedule
+	(*UserProduceProgressShop)(nil),                         // 66: ptransaction.UserProduceProgressShop
+	(*UserProduceProgressSupportCard)(nil),                  // 67: ptransaction.UserProduceProgressSupportCard
+	(*UserProduceRerollMemory)(nil),                         // 68: ptransaction.UserProduceRerollMemory
+	(*UserProduceStartAchievement)(nil),                     // 69: ptransaction.UserProduceStartAchievement
+	(*UserProduceStory)(nil),                                // 70: ptransaction.UserProduceStory
+	(*UserProduceSupportCardDeck)(nil),                      // 71: ptransaction.UserProduceSupportCardDeck
+	(*UserProfile)(nil),                                     // 72: ptransaction.UserProfile
+	(*UserPvpRate)(nil),                                     // 73: ptransaction.UserPvpRate
+	(*UserPvpRateDeck)(nil),                                 // 74: ptransaction.UserPvpRateDeck
+	(*UserPvpRateUnit)(nil),                                 // 75: ptransaction.UserPvpRateUnit
+	(*UserShopItem)(nil),                                    // 76: ptransaction.UserShopItem
+	(*UserStory)(nil),                                       // 77: ptransaction.UserStory
+	(*UserSupportCard)(nil),                                 // 78: ptransaction.UserSupportCard
+	(*UserTime)(nil),                                        // 79: ptransaction.UserTime
+	(*UserTower)(nil),                                       // 80: ptransaction.UserTower
+	(*UserTutorial)(nil),                                    // 81: ptransaction.UserTutorial
+	(*UserWebStore)(nil),                                    // 82: ptransaction.UserWebStore
+	(*UserWork)(nil),                                        // 83: ptransaction.UserWork
+	(*UserWorkCharacter)(nil),                               // 84: ptransaction.UserWorkCharacter
+	(*UserMemory_MemoryAbility)(nil),                        // 85: ptransaction.UserMemory.MemoryAbility
+	(*UserMemory_UnitCharacter)(nil),                        // 86: ptransaction.UserMemory.UnitCharacter
+	(*UserProduceProgress_AuditionResult)(nil),              // 87: ptransaction.UserProduceProgress.AuditionResult
+	(*UserProduceProgress_ExamStatusEnchant)(nil),           // 88: ptransaction.UserProduceProgress.ExamStatusEnchant
+	(*UserProduceProgress_ProduceItem)(nil),                 // 89: ptransaction.UserProduceProgress.ProduceItem
+	(*UserProduceProgress_ProduceSkill)(nil),                // 90: ptransaction.UserProduceProgress.ProduceSkill
+	(*UserProduceProgress_SelfLessonTypeStaminaPermil)(nil), // 91: ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil
+	(*UserProduceProgress_ShopProduceCardDiscount)(nil),     // 92: ptransaction.UserProduceProgress.ShopProduceCardDiscount
+	(*UserProduceProgressEffect_Reward)(nil),                // 93: ptransaction.UserProduceProgressEffect.Reward
+	(*UserProduceProgressMemory_MemoryAbility)(nil),         // 94: ptransaction.UserProduceProgressMemory.MemoryAbility
+	(*UserProduceProgressPresent_Reward)(nil),               // 95: ptransaction.UserProduceProgressPresent.Reward
+	(*UserProduceProgressSupportCard_ProduceSkill)(nil),     // 96: ptransaction.UserProduceProgressSupportCard.ProduceSkill
+	(penum.AuthProviderType)(0),                             // 97: penum.AuthProviderType
+	(penum.ProduceType)(0),                                  // 98: penum.ProduceType
+	(penum.CostumeSetType)(0),                               // 99: penum.CostumeSetType
+	(penum.CompetitionGrade)(0),                             // 100: penum.CompetitionGrade
+	(penum.CompetitionStageType)(0),                         // 101: penum.CompetitionStageType
+	(penum.CompetitionPhaseType)(0),                         // 102: penum.CompetitionPhaseType
+	(*pcommon.CompetitionDeckSetupMemorySlot)(nil),          // 103: pcommon.CompetitionDeckSetupMemorySlot
+	(penum.CountType)(0),                                    // 104: penum.CountType
+	(penum.GuildJoinType)(0),                                // 105: penum.GuildJoinType
+	(penum.HomeType)(0),                                     // 106: penum.HomeType
+	(penum.IdolCardLevelLimitRank)(0),                       // 107: penum.IdolCardLevelLimitRank
+	(penum.IdolCardPotentialRank)(0),                        // 108: penum.IdolCardPotentialRank
+	(penum.ResultGrade)(0),                                  // 109: penum.ResultGrade
+	(penum.ProducePlanType)(0),                              // 110: penum.ProducePlanType
+	(*pcommon.ProduceCard)(nil),                             // 111: pcommon.ProduceCard
+	(penum.ProduceMemoryProduceCardPhaseType)(0),            // 112: penum.ProduceMemoryProduceCardPhaseType
+	(penum.ProduceLiveType)(0),                              // 113: penum.ProduceLiveType
+	(penum.PhotoButtonExecuteType)(0),                       // 114: penum.PhotoButtonExecuteType
+	(penum.ProduceStepAuditionType)(0),                      // 115: penum.ProduceStepAuditionType
+	(*pcommon.ProduceCampaign)(nil),                         // 116: pcommon.ProduceCampaign
+	(penum.ProduceProgressStatus)(0),                        // 117: penum.ProduceProgressStatus
+	(penum.ProduceStepType)(0),                              // 118: penum.ProduceStepType
+	(*pcommon.Memory)(nil),                                  // 119: pcommon.Memory
+	(*pcommon.SelectionMemory)(nil),                         // 120: pcommon.SelectionMemory
+	(penum.ProduceExamResultType)(0),                        // 121: penum.ProduceExamResultType
+	(*pcommon.ProduceLessonGrowthResult)(nil),               // 122: pcommon.ProduceLessonGrowthResult
+	(*pcommon.ProduceExamEndResult)(nil),                    // 123: pcommon.ProduceExamEndResult
+	(penum.ProduceProgressAuditionStatusType)(0),            // 124: penum.ProduceProgressAuditionStatusType
+	(*pcommon.AuditionNpcResult)(nil),                       // 125: pcommon.AuditionNpcResult
+	(penum.ProduceStepBusinessType)(0),                      // 126: penum.ProduceStepBusinessType
+	(penum.ProduceEffectType)(0),                            // 127: penum.ProduceEffectType
+	(penum.ProducePickRangeType)(0),                         // 128: penum.ProducePickRangeType
+	(penum.ProduceTriggerOriginType)(0),                     // 129: penum.ProduceTriggerOriginType
+	(penum.ProduceResourceType)(0),                          // 130: penum.ProduceResourceType
+	(penum.ProduceDisplayType)(0),                           // 131: penum.ProduceDisplayType
+	(penum.ProduceResourceOriginType)(0),                    // 132: penum.ProduceResourceOriginType
+	(*pcommon.ProduceCardCustomize)(nil),                    // 133: pcommon.ProduceCardCustomize
+	(penum.ProduceParameterType)(0),                         // 134: penum.ProduceParameterType
+	(penum.SupportCardLevelLimitRank)(0),                    // 135: penum.SupportCardLevelLimitRank
+	(penum.PvpRateGrade)(0),                                 // 136: penum.PvpRateGrade
+	(penum.PvpRatePhaseType)(0),                             // 137: penum.PvpRatePhaseType
+	(*pcommon.PvpRateSetupUnitStageFormation)(nil),          // 138: pcommon.PvpRateSetupUnitStageFormation
+	(penum.TimeType)(0),                                     // 139: penum.TimeType
+	(penum.TutorialType)(0),                                 // 140: penum.TutorialType
+	(penum.WorkType)(0),                                     // 141: penum.WorkType
+	(penum.ProduceStepLessonType)(0),                        // 142: penum.ProduceStepLessonType
 }
 var file_ptransaction_proto_depIdxs = []int32{
-	92,  // 0: ptransaction.UserAuthProvider.authProviderType:type_name -> penum.AuthProviderType
-	93,  // 1: ptransaction.UserCharacter.trueEndProduceTypes:type_name -> penum.ProduceType
-	94,  // 2: ptransaction.UserCharacterCostume.setType:type_name -> penum.CostumeSetType
-	95,  // 3: ptransaction.UserCompetition.grade:type_name -> penum.CompetitionGrade
-	95,  // 4: ptransaction.UserCompetition.bestGrade:type_name -> penum.CompetitionGrade
-	96,  // 5: ptransaction.UserCompetition.stageType:type_name -> penum.CompetitionStageType
-	97,  // 6: ptransaction.UserCompetition.phaseType:type_name -> penum.CompetitionPhaseType
-	98,  // 7: ptransaction.UserCompetitionDeck.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
-	96,  // 8: ptransaction.UserCompetitionSeasonDeck.stageType:type_name -> penum.CompetitionStageType
-	98,  // 9: ptransaction.UserCompetitionSeasonDeck.slots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
-	99,  // 10: ptransaction.UserCount.type:type_name -> penum.CountType
-	100, // 11: ptransaction.UserGuild.joinType:type_name -> penum.GuildJoinType
-	101, // 12: ptransaction.UserHomeCharacter.homeType:type_name -> penum.HomeType
-	102, // 13: ptransaction.UserIdolCard.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	103, // 14: ptransaction.UserIdolCard.potentialRank:type_name -> penum.IdolCardPotentialRank
-	104, // 15: ptransaction.UserMemory.grade:type_name -> penum.ResultGrade
-	105, // 16: ptransaction.UserMemory.planType:type_name -> penum.ProducePlanType
-	102, // 17: ptransaction.UserMemory.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	103, // 18: ptransaction.UserMemory.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
-	106, // 19: ptransaction.UserMemory.produceCard:type_name -> pcommon.ProduceCard
-	107, // 20: ptransaction.UserMemory.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
-	81,  // 21: ptransaction.UserMemory.abilities:type_name -> ptransaction.UserMemory.MemoryAbility
-	106, // 22: ptransaction.UserMemory.examBattleProduceCards:type_name -> pcommon.ProduceCard
-	108, // 23: ptransaction.UserMemory.endingLiveType:type_name -> penum.ProduceLiveType
-	108, // 24: ptransaction.UserMemory.produceLiveType:type_name -> penum.ProduceLiveType
-	82,  // 25: ptransaction.UserMemory.unitCharacters:type_name -> ptransaction.UserMemory.UnitCharacter
-	106, // 26: ptransaction.UserMemoryInherit.examBattleProduceCards:type_name -> pcommon.ProduceCard
-	109, // 27: ptransaction.UserPreference.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
-	110, // 28: ptransaction.UserProduceGroupCharacter.viewUnlockAnimationAuditionTypes:type_name -> penum.ProduceStepAuditionType
-	108, // 29: ptransaction.UserProduceGroupCharacter.endingLiveType:type_name -> penum.ProduceLiveType
-	108, // 30: ptransaction.UserProduceIdolCard.liveType:type_name -> penum.ProduceLiveType
-	108, // 31: ptransaction.UserProduceLive.liveType:type_name -> penum.ProduceLiveType
-	93,  // 32: ptransaction.UserProduceMemoryDeck.produceType:type_name -> penum.ProduceType
-	102, // 33: ptransaction.UserProduceProgress.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	103, // 34: ptransaction.UserProduceProgress.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
-	93,  // 35: ptransaction.UserProduceProgress.trueEndProduceTypes:type_name -> penum.ProduceType
-	111, // 36: ptransaction.UserProduceProgress.produceCampaigns:type_name -> pcommon.ProduceCampaign
-	112, // 37: ptransaction.UserProduceProgress.status:type_name -> penum.ProduceProgressStatus
-	113, // 38: ptransaction.UserProduceProgress.stepType:type_name -> penum.ProduceStepType
-	113, // 39: ptransaction.UserProduceProgress.effectStepType:type_name -> penum.ProduceStepType
-	113, // 40: ptransaction.UserProduceProgress.originStepType:type_name -> penum.ProduceStepType
-	114, // 41: ptransaction.UserProduceProgress.resultMemory:type_name -> pcommon.Memory
-	85,  // 42: ptransaction.UserProduceProgress.characterProduceSkills:type_name -> ptransaction.UserProduceProgress.ProduceSkill
-	85,  // 43: ptransaction.UserProduceProgress.idolCardProduceSkills:type_name -> ptransaction.UserProduceProgress.ProduceSkill
-	84,  // 44: ptransaction.UserProduceProgress.produceItems:type_name -> ptransaction.UserProduceProgress.ProduceItem
-	83,  // 45: ptransaction.UserProduceProgress.examStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
-	115, // 46: ptransaction.UserProduceProgress.examResultType:type_name -> penum.ProduceExamResultType
-	116, // 47: ptransaction.UserProduceProgress.lessonGrowthResult:type_name -> pcommon.ProduceLessonGrowthResult
-	117, // 48: ptransaction.UserProduceProgress.examEndResult:type_name -> pcommon.ProduceExamEndResult
-	86,  // 49: ptransaction.UserProduceProgress.selfLessonTypeStaminaPermils:type_name -> ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil
-	83,  // 50: ptransaction.UserProduceProgress.examPermanentLessonStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
-	83,  // 51: ptransaction.UserProduceProgress.examPermanentAuditionStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
-	108, // 52: ptransaction.UserProduceProgress.liveType:type_name -> penum.ProduceLiveType
-	87,  // 53: ptransaction.UserProduceProgress.shopProduceCardDiscounts:type_name -> ptransaction.UserProduceProgress.ShopProduceCardDiscount
-	118, // 54: ptransaction.UserProduceProgressAudition.status:type_name -> penum.ProduceProgressAuditionStatusType
-	119, // 55: ptransaction.UserProduceProgressBusiness.businessType:type_name -> penum.ProduceStepBusinessType
-	120, // 56: ptransaction.UserProduceProgressEffect.type:type_name -> penum.ProduceEffectType
-	88,  // 57: ptransaction.UserProduceProgressEffect.rewards:type_name -> ptransaction.UserProduceProgressEffect.Reward
-	121, // 58: ptransaction.UserProduceProgressEffect.pickRangeType:type_name -> penum.ProducePickRangeType
-	122, // 59: ptransaction.UserProduceProgressEffect.originType:type_name -> penum.ProduceTriggerOriginType
-	89,  // 60: ptransaction.UserProduceProgressMemory.abilities:type_name -> ptransaction.UserProduceProgressMemory.MemoryAbility
-	114, // 61: ptransaction.UserProduceProgressMemory.memory:type_name -> pcommon.Memory
-	123, // 62: ptransaction.UserProduceProgressPresent.displayType:type_name -> penum.ProduceDisplayType
-	90,  // 63: ptransaction.UserProduceProgressPresent.rewards:type_name -> ptransaction.UserProduceProgressPresent.Reward
-	124, // 64: ptransaction.UserProduceProgressProduceCard.originType:type_name -> penum.ProduceResourceOriginType
-	125, // 65: ptransaction.UserProduceProgressProduceCard.customizes:type_name -> pcommon.ProduceCardCustomize
-	113, // 66: ptransaction.UserProduceProgressSchedule.stepTypes:type_name -> penum.ProduceStepType
-	113, // 67: ptransaction.UserProduceProgressSchedule.selectedStepType:type_name -> penum.ProduceStepType
-	115, // 68: ptransaction.UserProduceProgressSchedule.examResultType:type_name -> penum.ProduceExamResultType
-	126, // 69: ptransaction.UserProduceProgressShop.resourceType:type_name -> penum.ProduceResourceType
-	127, // 70: ptransaction.UserProduceProgressSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	91,  // 71: ptransaction.UserProduceProgressSupportCard.produceSkills:type_name -> ptransaction.UserProduceProgressSupportCard.ProduceSkill
-	114, // 72: ptransaction.UserProduceRerollMemory.resultMemory:type_name -> pcommon.Memory
-	93,  // 73: ptransaction.UserProduceSupportCardDeck.produceType:type_name -> penum.ProduceType
-	128, // 74: ptransaction.UserPvpRate.grade:type_name -> penum.PvpRateGrade
-	128, // 75: ptransaction.UserPvpRate.bestGrade:type_name -> penum.PvpRateGrade
-	129, // 76: ptransaction.UserPvpRate.phaseType:type_name -> penum.PvpRatePhaseType
-	130, // 77: ptransaction.UserPvpRateUnit.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
-	127, // 78: ptransaction.UserSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
-	131, // 79: ptransaction.UserTime.timeType:type_name -> penum.TimeType
-	132, // 80: ptransaction.UserTutorial.type:type_name -> penum.TutorialType
-	133, // 81: ptransaction.UserWork.type:type_name -> penum.WorkType
-	122, // 82: ptransaction.UserProduceProgress.ExamStatusEnchant.originType:type_name -> penum.ProduceTriggerOriginType
-	134, // 83: ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil.lessonType:type_name -> penum.ProduceStepLessonType
-	126, // 84: ptransaction.UserProduceProgressEffect.Reward.resourceType:type_name -> penum.ProduceResourceType
-	126, // 85: ptransaction.UserProduceProgressPresent.Reward.resourceType:type_name -> penum.ProduceResourceType
-	86,  // [86:86] is the sub-list for method output_type
-	86,  // [86:86] is the sub-list for method input_type
-	86,  // [86:86] is the sub-list for extension type_name
-	86,  // [86:86] is the sub-list for extension extendee
-	0,   // [0:86] is the sub-list for field type_name
+	97,  // 0: ptransaction.UserAuthProvider.authProviderType:type_name -> penum.AuthProviderType
+	98,  // 1: ptransaction.UserCharacter.trueEndProduceTypes:type_name -> penum.ProduceType
+	99,  // 2: ptransaction.UserCharacterCostume.setType:type_name -> penum.CostumeSetType
+	100, // 3: ptransaction.UserCompetition.grade:type_name -> penum.CompetitionGrade
+	100, // 4: ptransaction.UserCompetition.bestGrade:type_name -> penum.CompetitionGrade
+	101, // 5: ptransaction.UserCompetition.stageType:type_name -> penum.CompetitionStageType
+	102, // 6: ptransaction.UserCompetition.phaseType:type_name -> penum.CompetitionPhaseType
+	103, // 7: ptransaction.UserCompetitionDeck.memorySlots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
+	101, // 8: ptransaction.UserCompetitionSeasonDeck.stageType:type_name -> penum.CompetitionStageType
+	103, // 9: ptransaction.UserCompetitionSeasonDeck.slots:type_name -> pcommon.CompetitionDeckSetupMemorySlot
+	104, // 10: ptransaction.UserCount.type:type_name -> penum.CountType
+	105, // 11: ptransaction.UserGuild.joinType:type_name -> penum.GuildJoinType
+	106, // 12: ptransaction.UserHomeCharacter.homeType:type_name -> penum.HomeType
+	107, // 13: ptransaction.UserIdolCard.levelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 14: ptransaction.UserIdolCard.potentialRank:type_name -> penum.IdolCardPotentialRank
+	109, // 15: ptransaction.UserMemory.grade:type_name -> penum.ResultGrade
+	110, // 16: ptransaction.UserMemory.planType:type_name -> penum.ProducePlanType
+	107, // 17: ptransaction.UserMemory.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 18: ptransaction.UserMemory.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	111, // 19: ptransaction.UserMemory.produceCard:type_name -> pcommon.ProduceCard
+	112, // 20: ptransaction.UserMemory.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
+	85,  // 21: ptransaction.UserMemory.abilities:type_name -> ptransaction.UserMemory.MemoryAbility
+	111, // 22: ptransaction.UserMemory.examBattleProduceCards:type_name -> pcommon.ProduceCard
+	113, // 23: ptransaction.UserMemory.endingLiveType:type_name -> penum.ProduceLiveType
+	113, // 24: ptransaction.UserMemory.produceLiveType:type_name -> penum.ProduceLiveType
+	86,  // 25: ptransaction.UserMemory.unitCharacters:type_name -> ptransaction.UserMemory.UnitCharacter
+	111, // 26: ptransaction.UserMemoryInherit.examBattleProduceCards:type_name -> pcommon.ProduceCard
+	114, // 27: ptransaction.UserPreference.photoButtonExecuteType:type_name -> penum.PhotoButtonExecuteType
+	115, // 28: ptransaction.UserProduceGroupCharacter.viewUnlockAnimationAuditionTypes:type_name -> penum.ProduceStepAuditionType
+	113, // 29: ptransaction.UserProduceGroupCharacter.endingLiveType:type_name -> penum.ProduceLiveType
+	113, // 30: ptransaction.UserProduceIdolCard.liveType:type_name -> penum.ProduceLiveType
+	113, // 31: ptransaction.UserProduceLive.liveType:type_name -> penum.ProduceLiveType
+	98,  // 32: ptransaction.UserProduceMemoryDeck.produceType:type_name -> penum.ProduceType
+	107, // 33: ptransaction.UserProduceProgress.idolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	108, // 34: ptransaction.UserProduceProgress.idolCardPotentialRank:type_name -> penum.IdolCardPotentialRank
+	98,  // 35: ptransaction.UserProduceProgress.trueEndProduceTypes:type_name -> penum.ProduceType
+	116, // 36: ptransaction.UserProduceProgress.produceCampaigns:type_name -> pcommon.ProduceCampaign
+	117, // 37: ptransaction.UserProduceProgress.status:type_name -> penum.ProduceProgressStatus
+	118, // 38: ptransaction.UserProduceProgress.stepType:type_name -> penum.ProduceStepType
+	118, // 39: ptransaction.UserProduceProgress.effectStepType:type_name -> penum.ProduceStepType
+	118, // 40: ptransaction.UserProduceProgress.originStepType:type_name -> penum.ProduceStepType
+	119, // 41: ptransaction.UserProduceProgress.resultMemory:type_name -> pcommon.Memory
+	120, // 42: ptransaction.UserProduceProgress.resultSelectionMemory:type_name -> pcommon.SelectionMemory
+	90,  // 43: ptransaction.UserProduceProgress.characterProduceSkills:type_name -> ptransaction.UserProduceProgress.ProduceSkill
+	90,  // 44: ptransaction.UserProduceProgress.idolCardProduceSkills:type_name -> ptransaction.UserProduceProgress.ProduceSkill
+	89,  // 45: ptransaction.UserProduceProgress.produceItems:type_name -> ptransaction.UserProduceProgress.ProduceItem
+	87,  // 46: ptransaction.UserProduceProgress.auditions:type_name -> ptransaction.UserProduceProgress.AuditionResult
+	88,  // 47: ptransaction.UserProduceProgress.examStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
+	121, // 48: ptransaction.UserProduceProgress.examResultType:type_name -> penum.ProduceExamResultType
+	122, // 49: ptransaction.UserProduceProgress.lessonGrowthResult:type_name -> pcommon.ProduceLessonGrowthResult
+	123, // 50: ptransaction.UserProduceProgress.examEndResult:type_name -> pcommon.ProduceExamEndResult
+	91,  // 51: ptransaction.UserProduceProgress.selfLessonTypeStaminaPermils:type_name -> ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil
+	88,  // 52: ptransaction.UserProduceProgress.examPermanentLessonStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
+	88,  // 53: ptransaction.UserProduceProgress.examPermanentAuditionStatusEnchants:type_name -> ptransaction.UserProduceProgress.ExamStatusEnchant
+	113, // 54: ptransaction.UserProduceProgress.liveType:type_name -> penum.ProduceLiveType
+	92,  // 55: ptransaction.UserProduceProgress.shopProduceCardDiscounts:type_name -> ptransaction.UserProduceProgress.ShopProduceCardDiscount
+	124, // 56: ptransaction.UserProduceProgressAudition.status:type_name -> penum.ProduceProgressAuditionStatusType
+	125, // 57: ptransaction.UserProduceProgressAudition.auditionNpcs:type_name -> pcommon.AuditionNpcResult
+	126, // 58: ptransaction.UserProduceProgressBusiness.businessType:type_name -> penum.ProduceStepBusinessType
+	127, // 59: ptransaction.UserProduceProgressEffect.type:type_name -> penum.ProduceEffectType
+	93,  // 60: ptransaction.UserProduceProgressEffect.rewards:type_name -> ptransaction.UserProduceProgressEffect.Reward
+	128, // 61: ptransaction.UserProduceProgressEffect.pickRangeType:type_name -> penum.ProducePickRangeType
+	129, // 62: ptransaction.UserProduceProgressEffect.originType:type_name -> penum.ProduceTriggerOriginType
+	130, // 63: ptransaction.UserProduceProgressInterval.resourceType:type_name -> penum.ProduceResourceType
+	94,  // 64: ptransaction.UserProduceProgressMemory.abilities:type_name -> ptransaction.UserProduceProgressMemory.MemoryAbility
+	119, // 65: ptransaction.UserProduceProgressMemory.memory:type_name -> pcommon.Memory
+	131, // 66: ptransaction.UserProduceProgressPresent.displayType:type_name -> penum.ProduceDisplayType
+	95,  // 67: ptransaction.UserProduceProgressPresent.rewards:type_name -> ptransaction.UserProduceProgressPresent.Reward
+	132, // 68: ptransaction.UserProduceProgressProduceCard.originType:type_name -> penum.ProduceResourceOriginType
+	133, // 69: ptransaction.UserProduceProgressProduceCard.customizes:type_name -> pcommon.ProduceCardCustomize
+	118, // 70: ptransaction.UserProduceProgressSchedule.stepTypes:type_name -> penum.ProduceStepType
+	134, // 71: ptransaction.UserProduceProgressSchedule.stepSubParameterTypes:type_name -> penum.ProduceParameterType
+	118, // 72: ptransaction.UserProduceProgressSchedule.selectedStepType:type_name -> penum.ProduceStepType
+	121, // 73: ptransaction.UserProduceProgressSchedule.examResultType:type_name -> penum.ProduceExamResultType
+	125, // 74: ptransaction.UserProduceProgressSchedule.auditionNpcs:type_name -> pcommon.AuditionNpcResult
+	130, // 75: ptransaction.UserProduceProgressShop.resourceType:type_name -> penum.ProduceResourceType
+	135, // 76: ptransaction.UserProduceProgressSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	96,  // 77: ptransaction.UserProduceProgressSupportCard.produceSkills:type_name -> ptransaction.UserProduceProgressSupportCard.ProduceSkill
+	119, // 78: ptransaction.UserProduceRerollMemory.resultMemory:type_name -> pcommon.Memory
+	98,  // 79: ptransaction.UserProduceSupportCardDeck.produceType:type_name -> penum.ProduceType
+	136, // 80: ptransaction.UserPvpRate.grade:type_name -> penum.PvpRateGrade
+	136, // 81: ptransaction.UserPvpRate.bestGrade:type_name -> penum.PvpRateGrade
+	137, // 82: ptransaction.UserPvpRate.phaseType:type_name -> penum.PvpRatePhaseType
+	138, // 83: ptransaction.UserPvpRateUnit.stageFormations:type_name -> pcommon.PvpRateSetupUnitStageFormation
+	135, // 84: ptransaction.UserSupportCard.levelLimitRank:type_name -> penum.SupportCardLevelLimitRank
+	139, // 85: ptransaction.UserTime.timeType:type_name -> penum.TimeType
+	140, // 86: ptransaction.UserTutorial.type:type_name -> penum.TutorialType
+	141, // 87: ptransaction.UserWork.type:type_name -> penum.WorkType
+	118, // 88: ptransaction.UserProduceProgress.AuditionResult.auditionStepType:type_name -> penum.ProduceStepType
+	129, // 89: ptransaction.UserProduceProgress.ExamStatusEnchant.originType:type_name -> penum.ProduceTriggerOriginType
+	142, // 90: ptransaction.UserProduceProgress.SelfLessonTypeStaminaPermil.lessonType:type_name -> penum.ProduceStepLessonType
+	130, // 91: ptransaction.UserProduceProgressEffect.Reward.resourceType:type_name -> penum.ProduceResourceType
+	130, // 92: ptransaction.UserProduceProgressPresent.Reward.resourceType:type_name -> penum.ProduceResourceType
+	93,  // [93:93] is the sub-list for method output_type
+	93,  // [93:93] is the sub-list for method input_type
+	93,  // [93:93] is the sub-list for extension type_name
+	93,  // [93:93] is the sub-list for extension extendee
+	0,   // [0:93] is the sub-list for field type_name
 }
 
 func init() { file_ptransaction_proto_init() }
@@ -8634,7 +9351,7 @@ func file_ptransaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ptransaction_proto_rawDesc), len(file_ptransaction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   92,
+			NumMessages:   97,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

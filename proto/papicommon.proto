@@ -129,6 +129,7 @@ message UserData {
   repeated ptransaction.UserProduceCharacter userProduceCharacterList = 494627662;
   repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;
   repeated ptransaction.UserProduceGroupCharacter userProduceGroupCharacterList = 149373425;
+  repeated ptransaction.UserProduceGrowthPanel userProduceGrowthPanelList = 76941739;
   repeated ptransaction.UserProduceIdolCard userProduceIdolCardList = 110043881;
   repeated ptransaction.UserProduceItem userProduceItemList = 99080460;
   repeated ptransaction.UserProduceLive userProduceLiveList = 317020496;
@@ -138,9 +139,11 @@ message UserData {
   repeated ptransaction.UserProduceProgressBusiness userProduceProgressBusinessList = 84290276;
   repeated ptransaction.UserProduceProgressEffect userProduceProgressEffectList = 315942447;
   repeated ptransaction.UserProduceProgressEvent userProduceProgressEventList = 40225152;
+  repeated ptransaction.UserProduceProgressInterval userProduceProgressIntervalList = 320646343;
   repeated ptransaction.UserProduceProgressMemory userProduceProgressMemoryList = 215423357;
   repeated ptransaction.UserProduceProgressPresent userProduceProgressPresentList = 349962730;
   repeated ptransaction.UserProduceProgressProduceCard userProduceProgressProduceCardList = 309641228;
+  repeated ptransaction.UserProduceProgressProduceCustomizeItem userProduceProgressProduceCustomizeItemList = 233178336;
   repeated ptransaction.UserProduceProgressSchedule userProduceProgressScheduleList = 22482116;
   repeated ptransaction.UserProduceProgressShop userProduceProgressShopList = 498183736;
   repeated ptransaction.UserProduceProgressSupportCard userProduceProgressSupportCardList = 256246388;
@@ -150,6 +153,7 @@ message UserData {
   repeated ptransaction.UserProduceSupportCardDeck userProduceSupportCardDeckList = 286307933;
   ptransaction.UserProfile userProfile = 49977942;
   ptransaction.UserPvpRate userPvpRate = 226209413;
+  repeated ptransaction.UserPvpRateDeck userPvpRateDeckList = 353841253;
   ptransaction.UserPvpRateUnit userPvpRateUnit = 286467793;
   repeated ptransaction.UserShopItem userShopItemList = 455613547;
   repeated ptransaction.UserStory userStoryList = 376356693;

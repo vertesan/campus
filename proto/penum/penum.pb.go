@@ -1269,6 +1269,9 @@ const (
 	ConditionType_ConditionType_ProduceCardConversion              ConditionType = 71
 	ConditionType_ConditionType_CompetitionSeasonGrade             ConditionType = 72
 	ConditionType_ConditionType_CompetitionBestGrade               ConditionType = 73
+	ConditionType_ConditionType_ProduceGrowthPanelLevel            ConditionType = 74
+	ConditionType_ConditionType_ProduceGrowthPanelLevelCount       ConditionType = 75
+	ConditionType_ConditionType_IdolCardPrimaStellaCount           ConditionType = 76
 	ConditionType_ConditionType_Set                                ConditionType = 998
 	ConditionType_ConditionType_NegativeSet                        ConditionType = 999
 )
@@ -1348,6 +1351,9 @@ var (
 		71:  "ConditionType_ProduceCardConversion",
 		72:  "ConditionType_CompetitionSeasonGrade",
 		73:  "ConditionType_CompetitionBestGrade",
+		74:  "ConditionType_ProduceGrowthPanelLevel",
+		75:  "ConditionType_ProduceGrowthPanelLevelCount",
+		76:  "ConditionType_IdolCardPrimaStellaCount",
 		998: "ConditionType_Set",
 		999: "ConditionType_NegativeSet",
 	}
@@ -1424,6 +1430,9 @@ var (
 		"ConditionType_ProduceCardConversion":              71,
 		"ConditionType_CompetitionSeasonGrade":             72,
 		"ConditionType_CompetitionBestGrade":               73,
+		"ConditionType_ProduceGrowthPanelLevel":            74,
+		"ConditionType_ProduceGrowthPanelLevelCount":       75,
+		"ConditionType_IdolCardPrimaStellaCount":           76,
 		"ConditionType_Set":                                998,
 		"ConditionType_NegativeSet":                        999,
 	}
@@ -3197,6 +3206,17 @@ const (
 	ExamStatusEffectType_ExamStatusEffectType_StanceLockPreservation                          ExamStatusEffectType = 67
 	ExamStatusEffectType_ExamStatusEffectType_ReviewCountAdd                                  ExamStatusEffectType = 68
 	ExamStatusEffectType_ExamStatusEffectType_EffectTimerEndTurn                              ExamStatusEffectType = 69
+	ExamStatusEffectType_ExamStatusEffectType_ReviewTurnEndReduceLock                         ExamStatusEffectType = 70
+	ExamStatusEffectType_ExamStatusEffectType_ParameterBuffTurnEndReduceLock                  ExamStatusEffectType = 71
+	ExamStatusEffectType_ExamStatusEffectType_BuffConsumptionDown                             ExamStatusEffectType = 72
+	ExamStatusEffectType_ExamStatusEffectType_BuffConsumptionAdd                              ExamStatusEffectType = 73
+	ExamStatusEffectType_ExamStatusEffectType_SearchPlayCardBuffConsumptionChange             ExamStatusEffectType = 74
+	ExamStatusEffectType_ExamStatusEffectType_PlayCardLimitPlayableValueAdd                   ExamStatusEffectType = 75
+	ExamStatusEffectType_ExamStatusEffectType_ParameterBuffAdditiveFix                        ExamStatusEffectType = 76
+	ExamStatusEffectType_ExamStatusEffectType_LessonBuffAdditiveFix                           ExamStatusEffectType = 77
+	ExamStatusEffectType_ExamStatusEffectType_AggressiveAdditiveFix                           ExamStatusEffectType = 78
+	ExamStatusEffectType_ExamStatusEffectType_ReviewAdditiveFix                               ExamStatusEffectType = 79
+	ExamStatusEffectType_ExamStatusEffectType_FullPowerPointAdditiveFix                       ExamStatusEffectType = 80
 )
 
 // Enum value maps for ExamStatusEffectType.
@@ -3264,6 +3284,17 @@ var (
 		67: "ExamStatusEffectType_StanceLockPreservation",
 		68: "ExamStatusEffectType_ReviewCountAdd",
 		69: "ExamStatusEffectType_EffectTimerEndTurn",
+		70: "ExamStatusEffectType_ReviewTurnEndReduceLock",
+		71: "ExamStatusEffectType_ParameterBuffTurnEndReduceLock",
+		72: "ExamStatusEffectType_BuffConsumptionDown",
+		73: "ExamStatusEffectType_BuffConsumptionAdd",
+		74: "ExamStatusEffectType_SearchPlayCardBuffConsumptionChange",
+		75: "ExamStatusEffectType_PlayCardLimitPlayableValueAdd",
+		76: "ExamStatusEffectType_ParameterBuffAdditiveFix",
+		77: "ExamStatusEffectType_LessonBuffAdditiveFix",
+		78: "ExamStatusEffectType_AggressiveAdditiveFix",
+		79: "ExamStatusEffectType_ReviewAdditiveFix",
+		80: "ExamStatusEffectType_FullPowerPointAdditiveFix",
 	}
 	ExamStatusEffectType_value = map[string]int32{
 		"ExamStatusEffectType_Unknown":                                         0,
@@ -3328,6 +3359,17 @@ var (
 		"ExamStatusEffectType_StanceLockPreservation":                          67,
 		"ExamStatusEffectType_ReviewCountAdd":                                  68,
 		"ExamStatusEffectType_EffectTimerEndTurn":                              69,
+		"ExamStatusEffectType_ReviewTurnEndReduceLock":                         70,
+		"ExamStatusEffectType_ParameterBuffTurnEndReduceLock":                  71,
+		"ExamStatusEffectType_BuffConsumptionDown":                             72,
+		"ExamStatusEffectType_BuffConsumptionAdd":                              73,
+		"ExamStatusEffectType_SearchPlayCardBuffConsumptionChange":             74,
+		"ExamStatusEffectType_PlayCardLimitPlayableValueAdd":                   75,
+		"ExamStatusEffectType_ParameterBuffAdditiveFix":                        76,
+		"ExamStatusEffectType_LessonBuffAdditiveFix":                           77,
+		"ExamStatusEffectType_AggressiveAdditiveFix":                           78,
+		"ExamStatusEffectType_ReviewAdditiveFix":                               79,
+		"ExamStatusEffectType_FullPowerPointAdditiveFix":                       80,
 	}
 )
 
@@ -4976,11 +5018,13 @@ func (IdolCardDifficultyType) EnumDescriptor() ([]byte, []int) {
 type IdolCardLevelLimitEffectType int32
 
 const (
-	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_Unknown            IdolCardLevelLimitEffectType = 0
-	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceCardUpgrade IdolCardLevelLimitEffectType = 1
-	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceVoDaVi      IdolCardLevelLimitEffectType = 2
-	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceStamina     IdolCardLevelLimitEffectType = 3
-	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceSkill       IdolCardLevelLimitEffectType = 4
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_Unknown                  IdolCardLevelLimitEffectType = 0
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceCardUpgrade       IdolCardLevelLimitEffectType = 1
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceVoDaVi            IdolCardLevelLimitEffectType = 2
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceStamina           IdolCardLevelLimitEffectType = 3
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceSkill             IdolCardLevelLimitEffectType = 4
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_SecondProduceCardUpgrade IdolCardLevelLimitEffectType = 5
+	IdolCardLevelLimitEffectType_IdolCardLevelLimitEffectType_ProduceItemUpgrade       IdolCardLevelLimitEffectType = 6
 )
 
 // Enum value maps for IdolCardLevelLimitEffectType.
@@ -4991,13 +5035,17 @@ var (
 		2: "IdolCardLevelLimitEffectType_ProduceVoDaVi",
 		3: "IdolCardLevelLimitEffectType_ProduceStamina",
 		4: "IdolCardLevelLimitEffectType_ProduceSkill",
+		5: "IdolCardLevelLimitEffectType_SecondProduceCardUpgrade",
+		6: "IdolCardLevelLimitEffectType_ProduceItemUpgrade",
 	}
 	IdolCardLevelLimitEffectType_value = map[string]int32{
-		"IdolCardLevelLimitEffectType_Unknown":            0,
-		"IdolCardLevelLimitEffectType_ProduceCardUpgrade": 1,
-		"IdolCardLevelLimitEffectType_ProduceVoDaVi":      2,
-		"IdolCardLevelLimitEffectType_ProduceStamina":     3,
-		"IdolCardLevelLimitEffectType_ProduceSkill":       4,
+		"IdolCardLevelLimitEffectType_Unknown":                  0,
+		"IdolCardLevelLimitEffectType_ProduceCardUpgrade":       1,
+		"IdolCardLevelLimitEffectType_ProduceVoDaVi":            2,
+		"IdolCardLevelLimitEffectType_ProduceStamina":           3,
+		"IdolCardLevelLimitEffectType_ProduceSkill":             4,
+		"IdolCardLevelLimitEffectType_SecondProduceCardUpgrade": 5,
+		"IdolCardLevelLimitEffectType_ProduceItemUpgrade":       6,
 	}
 )
 
@@ -6284,6 +6332,7 @@ const (
 	MissionType_MissionType_AbsoluteSupportCardLevelCount                 MissionType = 316
 	MissionType_MissionType_AbsoluteSupportCardLevelLimitRankCount        MissionType = 317
 	MissionType_MissionType_AbsoluteSupportCardLevel                      MissionType = 319
+	MissionType_MissionType_AbsoluteIdolCardPrimaStellaCount              MissionType = 320
 	MissionType_MissionType_AbsoluteFanCount                              MissionType = 335
 	MissionType_MissionType_AbsoluteDearnessLevel                         MissionType = 337
 	MissionType_MissionType_AbsoluteMeishiUpdateCount                     MissionType = 343
@@ -6319,6 +6368,7 @@ const (
 	MissionType_MissionType_AbsoluteSeminarExamClear                      MissionType = 421
 	MissionType_MissionType_AbsoluteProducePlayCharacterCount             MissionType = 422
 	MissionType_MissionType_AbsoluteProduceStoryRead                      MissionType = 423
+	MissionType_MissionType_AbsoluteProduceGrowthPanelComplete            MissionType = 424
 	MissionType_MissionType_ConditionClear                                MissionType = 998
 	MissionType_MissionType_ProduceConditionClear                         MissionType = 999
 	MissionType_MissionType_ProduceConditionClearBeforeLiveEvaluation     MissionType = 1000
@@ -6414,6 +6464,7 @@ var (
 		316:  "MissionType_AbsoluteSupportCardLevelCount",
 		317:  "MissionType_AbsoluteSupportCardLevelLimitRankCount",
 		319:  "MissionType_AbsoluteSupportCardLevel",
+		320:  "MissionType_AbsoluteIdolCardPrimaStellaCount",
 		335:  "MissionType_AbsoluteFanCount",
 		337:  "MissionType_AbsoluteDearnessLevel",
 		343:  "MissionType_AbsoluteMeishiUpdateCount",
@@ -6449,6 +6500,7 @@ var (
 		421:  "MissionType_AbsoluteSeminarExamClear",
 		422:  "MissionType_AbsoluteProducePlayCharacterCount",
 		423:  "MissionType_AbsoluteProduceStoryRead",
+		424:  "MissionType_AbsoluteProduceGrowthPanelComplete",
 		998:  "MissionType_ConditionClear",
 		999:  "MissionType_ProduceConditionClear",
 		1000: "MissionType_ProduceConditionClearBeforeLiveEvaluation",
@@ -6541,6 +6593,7 @@ var (
 		"MissionType_AbsoluteSupportCardLevelCount":                 316,
 		"MissionType_AbsoluteSupportCardLevelLimitRankCount":        317,
 		"MissionType_AbsoluteSupportCardLevel":                      319,
+		"MissionType_AbsoluteIdolCardPrimaStellaCount":              320,
 		"MissionType_AbsoluteFanCount":                              335,
 		"MissionType_AbsoluteDearnessLevel":                         337,
 		"MissionType_AbsoluteMeishiUpdateCount":                     343,
@@ -6576,6 +6629,7 @@ var (
 		"MissionType_AbsoluteSeminarExamClear":                      421,
 		"MissionType_AbsoluteProducePlayCharacterCount":             422,
 		"MissionType_AbsoluteProduceStoryRead":                      423,
+		"MissionType_AbsoluteProduceGrowthPanelComplete":            424,
 		"MissionType_ConditionClear":                                998,
 		"MissionType_ProduceConditionClear":                         999,
 		"MissionType_ProduceConditionClearBeforeLiveEvaluation":     1000,
@@ -8123,6 +8177,7 @@ const (
 	ProduceConditionType_ProduceConditionType_CurrentAuditionStepType          ProduceConditionType = 80
 	ProduceConditionType_ProduceConditionType_CurrentAuditionStepSelectNumber  ProduceConditionType = 81
 	ProduceConditionType_ProduceConditionType_DearnessPoint                    ProduceConditionType = 82
+	ProduceConditionType_ProduceConditionType_Star                             ProduceConditionType = 83
 	ProduceConditionType_ProduceConditionType_Set                              ProduceConditionType = 998
 	ProduceConditionType_ProduceConditionType_NegativeSet                      ProduceConditionType = 999
 )
@@ -8203,6 +8258,7 @@ var (
 		80:  "ProduceConditionType_CurrentAuditionStepType",
 		81:  "ProduceConditionType_CurrentAuditionStepSelectNumber",
 		82:  "ProduceConditionType_DearnessPoint",
+		83:  "ProduceConditionType_Star",
 		998: "ProduceConditionType_Set",
 		999: "ProduceConditionType_NegativeSet",
 	}
@@ -8280,6 +8336,7 @@ var (
 		"ProduceConditionType_CurrentAuditionStepType":          80,
 		"ProduceConditionType_CurrentAuditionStepSelectNumber":  81,
 		"ProduceConditionType_DearnessPoint":                    82,
+		"ProduceConditionType_Star":                             83,
 		"ProduceConditionType_Set":                              998,
 		"ProduceConditionType_NegativeSet":                      999,
 	}
@@ -8390,6 +8447,7 @@ const (
 	ProduceDescriptionType_ProduceDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName ProduceDescriptionType = 35
 	ProduceDescriptionType_ProduceDescriptionType_ExamProduceExamEffect                        ProduceDescriptionType = 36
 	ProduceDescriptionType_ProduceDescriptionType_ExamProduceCardSearch                        ProduceDescriptionType = 37
+	ProduceDescriptionType_ProduceDescriptionType_IconAsset                                    ProduceDescriptionType = 50
 )
 
 // Enum value maps for ProduceDescriptionType.
@@ -8418,6 +8476,7 @@ var (
 		35: "ProduceDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName",
 		36: "ProduceDescriptionType_ExamProduceExamEffect",
 		37: "ProduceDescriptionType_ExamProduceCardSearch",
+		50: "ProduceDescriptionType_IconAsset",
 	}
 	ProduceDescriptionType_value = map[string]int32{
 		"ProduceDescriptionType_Unknown":                                      0,
@@ -8443,6 +8502,7 @@ var (
 		"ProduceDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName": 35,
 		"ProduceDescriptionType_ExamProduceExamEffect":                        36,
 		"ProduceDescriptionType_ExamProduceCardSearch":                        37,
+		"ProduceDescriptionType_IconAsset":                                    50,
 	}
 )
 
@@ -8580,119 +8640,125 @@ func (ProduceDrinkRarity) EnumDescriptor() ([]byte, []int) {
 type ProduceEffectType int32
 
 const (
-	ProduceEffectType_ProduceEffectType_Unknown                                      ProduceEffectType = 0
-	ProduceEffectType_ProduceEffectType_VocalAddition                                ProduceEffectType = 1
-	ProduceEffectType_ProduceEffectType_DanceAddition                                ProduceEffectType = 2
-	ProduceEffectType_ProduceEffectType_VisualAddition                               ProduceEffectType = 3
-	ProduceEffectType_ProduceEffectType_VocalDown                                    ProduceEffectType = 4
-	ProduceEffectType_ProduceEffectType_DanceDown                                    ProduceEffectType = 5
-	ProduceEffectType_ProduceEffectType_VisualDown                                   ProduceEffectType = 6
-	ProduceEffectType_ProduceEffectType_VocalGrowthRateAddition                      ProduceEffectType = 7
-	ProduceEffectType_ProduceEffectType_DanceGrowthRateAddition                      ProduceEffectType = 8
-	ProduceEffectType_ProduceEffectType_VisualGrowthRateAddition                     ProduceEffectType = 9
-	ProduceEffectType_ProduceEffectType_VocalGrowthRateDown                          ProduceEffectType = 10
-	ProduceEffectType_ProduceEffectType_DanceGrowthRateDown                          ProduceEffectType = 11
-	ProduceEffectType_ProduceEffectType_VisualGrowthRateDown                         ProduceEffectType = 12
-	ProduceEffectType_ProduceEffectType_StaminaRecoverFix                            ProduceEffectType = 13
-	ProduceEffectType_ProduceEffectType_StaminaRecoverMultiple                       ProduceEffectType = 14
-	ProduceEffectType_ProduceEffectType_StaminaReduceFix                             ProduceEffectType = 15
-	ProduceEffectType_ProduceEffectType_StaminaReduceMultiple                        ProduceEffectType = 16
-	ProduceEffectType_ProduceEffectType_StaminaSpecify                               ProduceEffectType = 17
-	ProduceEffectType_ProduceEffectType_StaminaRecoverValueUp                        ProduceEffectType = 18
-	ProduceEffectType_ProduceEffectType_StaminaRecoverValueDown                      ProduceEffectType = 19
-	ProduceEffectType_ProduceEffectType_StaminaReduceValueUp                         ProduceEffectType = 20
-	ProduceEffectType_ProduceEffectType_StaminaReduceValueDown                       ProduceEffectType = 21
-	ProduceEffectType_ProduceEffectType_StaminaRecoverDisable                        ProduceEffectType = 22
-	ProduceEffectType_ProduceEffectType_MaxStaminaAddition                           ProduceEffectType = 23
-	ProduceEffectType_ProduceEffectType_MaxStaminaReduceFix                          ProduceEffectType = 24
-	ProduceEffectType_ProduceEffectType_MaxStaminaReduceMultiple                     ProduceEffectType = 25
-	ProduceEffectType_ProduceEffectType_ProducePointReduceFix                        ProduceEffectType = 26
-	ProduceEffectType_ProduceEffectType_ProducePointReduceMultiple                   ProduceEffectType = 27
-	ProduceEffectType_ProduceEffectType_ProducePointSpecify                          ProduceEffectType = 28
-	ProduceEffectType_ProduceEffectType_ProducePointAdditionValueUp                  ProduceEffectType = 29
-	ProduceEffectType_ProduceEffectType_ProducePointAdditionValueDown                ProduceEffectType = 30
-	ProduceEffectType_ProduceEffectType_ProducePointReduceValueUp                    ProduceEffectType = 31
-	ProduceEffectType_ProduceEffectType_ProducePointReduceValueDown                  ProduceEffectType = 32
-	ProduceEffectType_ProduceEffectType_ProduceCardUpgrade                           ProduceEffectType = 33
-	ProduceEffectType_ProduceEffectType_ProduceCardDuplicate                         ProduceEffectType = 34
-	ProduceEffectType_ProduceEffectType_ProduceCardDuplicateUpgrade                  ProduceEffectType = 35
-	ProduceEffectType_ProduceEffectType_ProduceCardChange                            ProduceEffectType = 36
-	ProduceEffectType_ProduceEffectType_ProduceCardChangeUpgrade                     ProduceEffectType = 37
-	ProduceEffectType_ProduceEffectType_ProduceCardDelete                            ProduceEffectType = 38
-	ProduceEffectType_ProduceEffectType_ProducePointAddition                         ProduceEffectType = 39
-	ProduceEffectType_ProduceEffectType_ProducePointGetDisable                       ProduceEffectType = 40
-	ProduceEffectType_ProduceEffectType_ProduceItemGetDisable                        ProduceEffectType = 41
-	ProduceEffectType_ProduceEffectType_ProduceDrinkGetDisable                       ProduceEffectType = 42
-	ProduceEffectType_ProduceEffectType_ProduceReward                                ProduceEffectType = 43
-	ProduceEffectType_ProduceEffectType_ProduceRewardSet                             ProduceEffectType = 44
-	ProduceEffectType_ProduceEffectType_AuditionParameterBonusMultiple               ProduceEffectType = 53
-	ProduceEffectType_ProduceEffectType_LessonSpChangeRatePermilAddition             ProduceEffectType = 54
-	ProduceEffectType_ProduceEffectType_LessonVocalSpChangeRatePermilAddition        ProduceEffectType = 55
-	ProduceEffectType_ProduceEffectType_LessonDanceSpChangeRatePermilAddition        ProduceEffectType = 56
-	ProduceEffectType_ProduceEffectType_LessonVisualSpChangeRatePermilAddition       ProduceEffectType = 57
-	ProduceEffectType_ProduceEffectType_LessonSpChangeRatePermilDown                 ProduceEffectType = 58
-	ProduceEffectType_ProduceEffectType_ExamStatusEnchant                            ProduceEffectType = 60
-	ProduceEffectType_ProduceEffectType_LessonPresentProduceCardRewardCountUp        ProduceEffectType = 61
-	ProduceEffectType_ProduceEffectType_LessonPresentProduceCardRewardCountDown      ProduceEffectType = 62
-	ProduceEffectType_ProduceEffectType_LessonPresentSearchProduceCardRewardCountUp  ProduceEffectType = 63
-	ProduceEffectType_ProduceEffectType_ShopPriceDiscountMultiple                    ProduceEffectType = 65
-	ProduceEffectType_ProduceEffectType_ShopProduceCardPriceDiscountMultiple         ProduceEffectType = 66
-	ProduceEffectType_ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple        ProduceEffectType = 68
-	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceDiscountMultiple  ProduceEffectType = 69
-	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceSpecify           ProduceEffectType = 70
-	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceDiscountMultiple   ProduceEffectType = 71
-	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceSpecify            ProduceEffectType = 72
-	ProduceEffectType_ProduceEffectType_ProduceResultRewardMoneyUp                   ProduceEffectType = 77
-	ProduceEffectType_ProduceEffectType_ProduceResultRewardSupportCardEnhancePointUp ProduceEffectType = 79
-	ProduceEffectType_ProduceEffectType_SupportCardEventStaminaRecoverUp             ProduceEffectType = 80
-	ProduceEffectType_ProduceEffectType_SupportCardEventProducePointAdditionValueUp  ProduceEffectType = 81
-	ProduceEffectType_ProduceEffectType_SupportCardEventParameterAdditionValueUp     ProduceEffectType = 82
-	ProduceEffectType_ProduceEffectType_SupportCardEventProbabilityUp                ProduceEffectType = 83
-	ProduceEffectType_ProduceEffectType_LessonPresentProducePointUp                  ProduceEffectType = 84
-	ProduceEffectType_ProduceEffectType_LessonPresentProducePointDown                ProduceEffectType = 85
-	ProduceEffectType_ProduceEffectType_SupportCardProduceCardUpgradeProbabilityUp   ProduceEffectType = 86
-	ProduceEffectType_ProduceEffectType_ProduceCardSelectRerollCountUp               ProduceEffectType = 87
-	ProduceEffectType_ProduceEffectType_ProducePointAdditionDisableTrigger           ProduceEffectType = 88
-	ProduceEffectType_ProduceEffectType_LessonLimitUp                                ProduceEffectType = 89
-	ProduceEffectType_ProduceEffectType_ParameterLimitUp                             ProduceEffectType = 90
-	ProduceEffectType_ProduceEffectType_VocalLimitUp                                 ProduceEffectType = 91
-	ProduceEffectType_ProduceEffectType_DanceLimitUp                                 ProduceEffectType = 92
-	ProduceEffectType_ProduceEffectType_VisualLimitUp                                ProduceEffectType = 93
-	ProduceEffectType_ProduceEffectType_SupportCardEventProduceCardUpgrade           ProduceEffectType = 94
-	ProduceEffectType_ProduceEffectType_ExamTurnUp                                   ProduceEffectType = 95
-	ProduceEffectType_ProduceEffectType_ExamTurnDown                                 ProduceEffectType = 96
-	ProduceEffectType_ProduceEffectType_AuditionNpcEnhance                           ProduceEffectType = 97
-	ProduceEffectType_ProduceEffectType_ShopPriceUpMultiple                          ProduceEffectType = 98
-	ProduceEffectType_ProduceEffectType_ShopProduceCardPriceUpMultiple               ProduceEffectType = 99
-	ProduceEffectType_ProduceEffectType_ShopProduceDrinkPriceUpMultiple              ProduceEffectType = 100
-	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceUpMultiple        ProduceEffectType = 101
-	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceUpMultiple         ProduceEffectType = 102
-	ProduceEffectType_ProduceEffectType_EventSchoolStaminaUp                         ProduceEffectType = 103
-	ProduceEffectType_ProduceEffectType_EventSchoolStaminaDown                       ProduceEffectType = 104
-	ProduceEffectType_ProduceEffectType_EventActivityProducePointUp                  ProduceEffectType = 105
-	ProduceEffectType_ProduceEffectType_EventActivityProducePointDown                ProduceEffectType = 106
-	ProduceEffectType_ProduceEffectType_BeforeAuditionRefreshStaminaUp               ProduceEffectType = 107
-	ProduceEffectType_ProduceEffectType_BeforeAuditionRefreshStaminaDown             ProduceEffectType = 108
-	ProduceEffectType_ProduceEffectType_ShopRerollCountUp                            ProduceEffectType = 109
-	ProduceEffectType_ProduceEffectType_ProduceCardExcludeCountUp                    ProduceEffectType = 110
-	ProduceEffectType_ProduceEffectType_CustomizeProduceCardCountUp                  ProduceEffectType = 111
-	ProduceEffectType_ProduceEffectType_CustomizeProduceCardProducePointUpMultiple   ProduceEffectType = 112
-	ProduceEffectType_ProduceEffectType_CustomizeProduceCardProducePointDownMultiple ProduceEffectType = 113
-	ProduceEffectType_ProduceEffectType_VoteCountAddition                            ProduceEffectType = 114
-	ProduceEffectType_ProduceEffectType_EventBusinessVoteCountUp                     ProduceEffectType = 115
-	ProduceEffectType_ProduceEffectType_EventBusinessVoteCountDown                   ProduceEffectType = 116
-	ProduceEffectType_ProduceEffectType_EventBusinessExcellentPermilUp               ProduceEffectType = 117
-	ProduceEffectType_ProduceEffectType_EventBusinessExcellentPermilDown             ProduceEffectType = 118
-	ProduceEffectType_ProduceEffectType_AuditionVoteCountUp                          ProduceEffectType = 119
-	ProduceEffectType_ProduceEffectType_AuditionVoteCountDown                        ProduceEffectType = 120
-	ProduceEffectType_ProduceEffectType_SelfLessonStaminaUp                          ProduceEffectType = 121
-	ProduceEffectType_ProduceEffectType_SelfLessonStaminaDown                        ProduceEffectType = 122
-	ProduceEffectType_ProduceEffectType_HighScoreGoldAddition                        ProduceEffectType = 123
-	ProduceEffectType_ProduceEffectType_IdolCardProduceCardCustomizeEnable           ProduceEffectType = 124
-	ProduceEffectType_ProduceEffectType_LegendProduceCardCountAddition               ProduceEffectType = 125
-	ProduceEffectType_ProduceEffectType_ExamPermanentLessonStatusEnchant             ProduceEffectType = 126
-	ProduceEffectType_ProduceEffectType_ExamPermanentAuditionStatusEnchant           ProduceEffectType = 127
-	ProduceEffectType_ProduceEffectType_AuditionNpcWeaken                            ProduceEffectType = 128
+	ProduceEffectType_ProduceEffectType_Unknown                                       ProduceEffectType = 0
+	ProduceEffectType_ProduceEffectType_VocalAddition                                 ProduceEffectType = 1
+	ProduceEffectType_ProduceEffectType_DanceAddition                                 ProduceEffectType = 2
+	ProduceEffectType_ProduceEffectType_VisualAddition                                ProduceEffectType = 3
+	ProduceEffectType_ProduceEffectType_VocalDown                                     ProduceEffectType = 4
+	ProduceEffectType_ProduceEffectType_DanceDown                                     ProduceEffectType = 5
+	ProduceEffectType_ProduceEffectType_VisualDown                                    ProduceEffectType = 6
+	ProduceEffectType_ProduceEffectType_VocalGrowthRateAddition                       ProduceEffectType = 7
+	ProduceEffectType_ProduceEffectType_DanceGrowthRateAddition                       ProduceEffectType = 8
+	ProduceEffectType_ProduceEffectType_VisualGrowthRateAddition                      ProduceEffectType = 9
+	ProduceEffectType_ProduceEffectType_VocalGrowthRateDown                           ProduceEffectType = 10
+	ProduceEffectType_ProduceEffectType_DanceGrowthRateDown                           ProduceEffectType = 11
+	ProduceEffectType_ProduceEffectType_VisualGrowthRateDown                          ProduceEffectType = 12
+	ProduceEffectType_ProduceEffectType_StaminaRecoverFix                             ProduceEffectType = 13
+	ProduceEffectType_ProduceEffectType_StaminaRecoverMultiple                        ProduceEffectType = 14
+	ProduceEffectType_ProduceEffectType_StaminaReduceFix                              ProduceEffectType = 15
+	ProduceEffectType_ProduceEffectType_StaminaReduceMultiple                         ProduceEffectType = 16
+	ProduceEffectType_ProduceEffectType_StaminaSpecify                                ProduceEffectType = 17
+	ProduceEffectType_ProduceEffectType_StaminaRecoverValueUp                         ProduceEffectType = 18
+	ProduceEffectType_ProduceEffectType_StaminaRecoverValueDown                       ProduceEffectType = 19
+	ProduceEffectType_ProduceEffectType_StaminaReduceValueUp                          ProduceEffectType = 20
+	ProduceEffectType_ProduceEffectType_StaminaReduceValueDown                        ProduceEffectType = 21
+	ProduceEffectType_ProduceEffectType_StaminaRecoverDisable                         ProduceEffectType = 22
+	ProduceEffectType_ProduceEffectType_MaxStaminaAddition                            ProduceEffectType = 23
+	ProduceEffectType_ProduceEffectType_MaxStaminaReduceFix                           ProduceEffectType = 24
+	ProduceEffectType_ProduceEffectType_MaxStaminaReduceMultiple                      ProduceEffectType = 25
+	ProduceEffectType_ProduceEffectType_ProducePointReduceFix                         ProduceEffectType = 26
+	ProduceEffectType_ProduceEffectType_ProducePointReduceMultiple                    ProduceEffectType = 27
+	ProduceEffectType_ProduceEffectType_ProducePointSpecify                           ProduceEffectType = 28
+	ProduceEffectType_ProduceEffectType_ProducePointAdditionValueUp                   ProduceEffectType = 29
+	ProduceEffectType_ProduceEffectType_ProducePointAdditionValueDown                 ProduceEffectType = 30
+	ProduceEffectType_ProduceEffectType_ProducePointReduceValueUp                     ProduceEffectType = 31
+	ProduceEffectType_ProduceEffectType_ProducePointReduceValueDown                   ProduceEffectType = 32
+	ProduceEffectType_ProduceEffectType_ProduceCardUpgrade                            ProduceEffectType = 33
+	ProduceEffectType_ProduceEffectType_ProduceCardDuplicate                          ProduceEffectType = 34
+	ProduceEffectType_ProduceEffectType_ProduceCardDuplicateUpgrade                   ProduceEffectType = 35
+	ProduceEffectType_ProduceEffectType_ProduceCardChange                             ProduceEffectType = 36
+	ProduceEffectType_ProduceEffectType_ProduceCardChangeUpgrade                      ProduceEffectType = 37
+	ProduceEffectType_ProduceEffectType_ProduceCardDelete                             ProduceEffectType = 38
+	ProduceEffectType_ProduceEffectType_ProducePointAddition                          ProduceEffectType = 39
+	ProduceEffectType_ProduceEffectType_ProducePointGetDisable                        ProduceEffectType = 40
+	ProduceEffectType_ProduceEffectType_ProduceItemGetDisable                         ProduceEffectType = 41
+	ProduceEffectType_ProduceEffectType_ProduceDrinkGetDisable                        ProduceEffectType = 42
+	ProduceEffectType_ProduceEffectType_ProduceReward                                 ProduceEffectType = 43
+	ProduceEffectType_ProduceEffectType_ProduceRewardSet                              ProduceEffectType = 44
+	ProduceEffectType_ProduceEffectType_AuditionParameterBonusMultiple                ProduceEffectType = 53
+	ProduceEffectType_ProduceEffectType_LessonSpChangeRatePermilAddition              ProduceEffectType = 54
+	ProduceEffectType_ProduceEffectType_LessonVocalSpChangeRatePermilAddition         ProduceEffectType = 55
+	ProduceEffectType_ProduceEffectType_LessonDanceSpChangeRatePermilAddition         ProduceEffectType = 56
+	ProduceEffectType_ProduceEffectType_LessonVisualSpChangeRatePermilAddition        ProduceEffectType = 57
+	ProduceEffectType_ProduceEffectType_LessonSpChangeRatePermilDown                  ProduceEffectType = 58
+	ProduceEffectType_ProduceEffectType_ExamStatusEnchant                             ProduceEffectType = 60
+	ProduceEffectType_ProduceEffectType_LessonPresentProduceCardRewardCountUp         ProduceEffectType = 61
+	ProduceEffectType_ProduceEffectType_LessonPresentProduceCardRewardCountDown       ProduceEffectType = 62
+	ProduceEffectType_ProduceEffectType_LessonPresentSearchProduceCardRewardCountUp   ProduceEffectType = 63
+	ProduceEffectType_ProduceEffectType_ShopPriceDiscountMultiple                     ProduceEffectType = 65
+	ProduceEffectType_ProduceEffectType_ShopProduceCardPriceDiscountMultiple          ProduceEffectType = 66
+	ProduceEffectType_ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple         ProduceEffectType = 68
+	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceDiscountMultiple   ProduceEffectType = 69
+	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceSpecify            ProduceEffectType = 70
+	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceDiscountMultiple    ProduceEffectType = 71
+	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceSpecify             ProduceEffectType = 72
+	ProduceEffectType_ProduceEffectType_ProduceResultRewardMoneyUp                    ProduceEffectType = 77
+	ProduceEffectType_ProduceEffectType_ProduceResultRewardSupportCardEnhancePointUp  ProduceEffectType = 79
+	ProduceEffectType_ProduceEffectType_SupportCardEventStaminaRecoverUp              ProduceEffectType = 80
+	ProduceEffectType_ProduceEffectType_SupportCardEventProducePointAdditionValueUp   ProduceEffectType = 81
+	ProduceEffectType_ProduceEffectType_SupportCardEventParameterAdditionValueUp      ProduceEffectType = 82
+	ProduceEffectType_ProduceEffectType_SupportCardEventProbabilityUp                 ProduceEffectType = 83
+	ProduceEffectType_ProduceEffectType_LessonPresentProducePointUp                   ProduceEffectType = 84
+	ProduceEffectType_ProduceEffectType_LessonPresentProducePointDown                 ProduceEffectType = 85
+	ProduceEffectType_ProduceEffectType_SupportCardProduceCardUpgradeProbabilityUp    ProduceEffectType = 86
+	ProduceEffectType_ProduceEffectType_ProduceCardSelectRerollCountUp                ProduceEffectType = 87
+	ProduceEffectType_ProduceEffectType_ProducePointAdditionDisableTrigger            ProduceEffectType = 88
+	ProduceEffectType_ProduceEffectType_LessonLimitUp                                 ProduceEffectType = 89
+	ProduceEffectType_ProduceEffectType_ParameterLimitUp                              ProduceEffectType = 90
+	ProduceEffectType_ProduceEffectType_VocalLimitUp                                  ProduceEffectType = 91
+	ProduceEffectType_ProduceEffectType_DanceLimitUp                                  ProduceEffectType = 92
+	ProduceEffectType_ProduceEffectType_VisualLimitUp                                 ProduceEffectType = 93
+	ProduceEffectType_ProduceEffectType_SupportCardEventProduceCardUpgrade            ProduceEffectType = 94
+	ProduceEffectType_ProduceEffectType_ExamTurnUp                                    ProduceEffectType = 95
+	ProduceEffectType_ProduceEffectType_ExamTurnDown                                  ProduceEffectType = 96
+	ProduceEffectType_ProduceEffectType_AuditionNpcEnhance                            ProduceEffectType = 97
+	ProduceEffectType_ProduceEffectType_ShopPriceUpMultiple                           ProduceEffectType = 98
+	ProduceEffectType_ProduceEffectType_ShopProduceCardPriceUpMultiple                ProduceEffectType = 99
+	ProduceEffectType_ProduceEffectType_ShopProduceDrinkPriceUpMultiple               ProduceEffectType = 100
+	ProduceEffectType_ProduceEffectType_ShopProduceCardUpgradePriceUpMultiple         ProduceEffectType = 101
+	ProduceEffectType_ProduceEffectType_ShopProduceCardDeletePriceUpMultiple          ProduceEffectType = 102
+	ProduceEffectType_ProduceEffectType_EventSchoolStaminaUp                          ProduceEffectType = 103
+	ProduceEffectType_ProduceEffectType_EventSchoolStaminaDown                        ProduceEffectType = 104
+	ProduceEffectType_ProduceEffectType_EventActivityProducePointUp                   ProduceEffectType = 105
+	ProduceEffectType_ProduceEffectType_EventActivityProducePointDown                 ProduceEffectType = 106
+	ProduceEffectType_ProduceEffectType_BeforeAuditionRefreshStaminaUp                ProduceEffectType = 107
+	ProduceEffectType_ProduceEffectType_BeforeAuditionRefreshStaminaDown              ProduceEffectType = 108
+	ProduceEffectType_ProduceEffectType_ShopRerollCountUp                             ProduceEffectType = 109
+	ProduceEffectType_ProduceEffectType_ProduceCardExcludeCountUp                     ProduceEffectType = 110
+	ProduceEffectType_ProduceEffectType_CustomizeProduceCardCountUp                   ProduceEffectType = 111
+	ProduceEffectType_ProduceEffectType_CustomizeProduceCardProducePointUpMultiple    ProduceEffectType = 112
+	ProduceEffectType_ProduceEffectType_CustomizeProduceCardProducePointDownMultiple  ProduceEffectType = 113
+	ProduceEffectType_ProduceEffectType_VoteCountAddition                             ProduceEffectType = 114
+	ProduceEffectType_ProduceEffectType_EventBusinessVoteCountUp                      ProduceEffectType = 115
+	ProduceEffectType_ProduceEffectType_EventBusinessVoteCountDown                    ProduceEffectType = 116
+	ProduceEffectType_ProduceEffectType_EventBusinessExcellentPermilUp                ProduceEffectType = 117
+	ProduceEffectType_ProduceEffectType_EventBusinessExcellentPermilDown              ProduceEffectType = 118
+	ProduceEffectType_ProduceEffectType_AuditionVoteCountUp                           ProduceEffectType = 119
+	ProduceEffectType_ProduceEffectType_AuditionVoteCountDown                         ProduceEffectType = 120
+	ProduceEffectType_ProduceEffectType_SelfLessonStaminaUp                           ProduceEffectType = 121
+	ProduceEffectType_ProduceEffectType_SelfLessonStaminaDown                         ProduceEffectType = 122
+	ProduceEffectType_ProduceEffectType_HighScoreGoldAddition                         ProduceEffectType = 123
+	ProduceEffectType_ProduceEffectType_IdolCardProduceCardCustomizeEnable            ProduceEffectType = 124
+	ProduceEffectType_ProduceEffectType_LegendProduceCardCountAddition                ProduceEffectType = 125
+	ProduceEffectType_ProduceEffectType_ExamPermanentLessonStatusEnchant              ProduceEffectType = 126
+	ProduceEffectType_ProduceEffectType_ExamPermanentAuditionStatusEnchant            ProduceEffectType = 127
+	ProduceEffectType_ProduceEffectType_AuditionNpcWeaken                             ProduceEffectType = 128
+	ProduceEffectType_ProduceEffectType_ProduceCustomizeItemUpgrade                   ProduceEffectType = 129
+	ProduceEffectType_ProduceEffectType_StarPermilUp                                  ProduceEffectType = 130
+	ProduceEffectType_ProduceEffectType_StarAddition                                  ProduceEffectType = 131
+	ProduceEffectType_ProduceEffectType_ProduceCardChangeSelect                       ProduceEffectType = 132
+	ProduceEffectType_ProduceEffectType_ProduceDrinkPossessLimitUp                    ProduceEffectType = 133
+	ProduceEffectType_ProduceEffectType_ShopProduceCardPriceDiscountMultiplePermanent ProduceEffectType = 134
 )
 
 // Enum value maps for ProduceEffectType.
@@ -8811,121 +8877,133 @@ var (
 		126: "ProduceEffectType_ExamPermanentLessonStatusEnchant",
 		127: "ProduceEffectType_ExamPermanentAuditionStatusEnchant",
 		128: "ProduceEffectType_AuditionNpcWeaken",
+		129: "ProduceEffectType_ProduceCustomizeItemUpgrade",
+		130: "ProduceEffectType_StarPermilUp",
+		131: "ProduceEffectType_StarAddition",
+		132: "ProduceEffectType_ProduceCardChangeSelect",
+		133: "ProduceEffectType_ProduceDrinkPossessLimitUp",
+		134: "ProduceEffectType_ShopProduceCardPriceDiscountMultiplePermanent",
 	}
 	ProduceEffectType_value = map[string]int32{
-		"ProduceEffectType_Unknown":                                      0,
-		"ProduceEffectType_VocalAddition":                                1,
-		"ProduceEffectType_DanceAddition":                                2,
-		"ProduceEffectType_VisualAddition":                               3,
-		"ProduceEffectType_VocalDown":                                    4,
-		"ProduceEffectType_DanceDown":                                    5,
-		"ProduceEffectType_VisualDown":                                   6,
-		"ProduceEffectType_VocalGrowthRateAddition":                      7,
-		"ProduceEffectType_DanceGrowthRateAddition":                      8,
-		"ProduceEffectType_VisualGrowthRateAddition":                     9,
-		"ProduceEffectType_VocalGrowthRateDown":                          10,
-		"ProduceEffectType_DanceGrowthRateDown":                          11,
-		"ProduceEffectType_VisualGrowthRateDown":                         12,
-		"ProduceEffectType_StaminaRecoverFix":                            13,
-		"ProduceEffectType_StaminaRecoverMultiple":                       14,
-		"ProduceEffectType_StaminaReduceFix":                             15,
-		"ProduceEffectType_StaminaReduceMultiple":                        16,
-		"ProduceEffectType_StaminaSpecify":                               17,
-		"ProduceEffectType_StaminaRecoverValueUp":                        18,
-		"ProduceEffectType_StaminaRecoverValueDown":                      19,
-		"ProduceEffectType_StaminaReduceValueUp":                         20,
-		"ProduceEffectType_StaminaReduceValueDown":                       21,
-		"ProduceEffectType_StaminaRecoverDisable":                        22,
-		"ProduceEffectType_MaxStaminaAddition":                           23,
-		"ProduceEffectType_MaxStaminaReduceFix":                          24,
-		"ProduceEffectType_MaxStaminaReduceMultiple":                     25,
-		"ProduceEffectType_ProducePointReduceFix":                        26,
-		"ProduceEffectType_ProducePointReduceMultiple":                   27,
-		"ProduceEffectType_ProducePointSpecify":                          28,
-		"ProduceEffectType_ProducePointAdditionValueUp":                  29,
-		"ProduceEffectType_ProducePointAdditionValueDown":                30,
-		"ProduceEffectType_ProducePointReduceValueUp":                    31,
-		"ProduceEffectType_ProducePointReduceValueDown":                  32,
-		"ProduceEffectType_ProduceCardUpgrade":                           33,
-		"ProduceEffectType_ProduceCardDuplicate":                         34,
-		"ProduceEffectType_ProduceCardDuplicateUpgrade":                  35,
-		"ProduceEffectType_ProduceCardChange":                            36,
-		"ProduceEffectType_ProduceCardChangeUpgrade":                     37,
-		"ProduceEffectType_ProduceCardDelete":                            38,
-		"ProduceEffectType_ProducePointAddition":                         39,
-		"ProduceEffectType_ProducePointGetDisable":                       40,
-		"ProduceEffectType_ProduceItemGetDisable":                        41,
-		"ProduceEffectType_ProduceDrinkGetDisable":                       42,
-		"ProduceEffectType_ProduceReward":                                43,
-		"ProduceEffectType_ProduceRewardSet":                             44,
-		"ProduceEffectType_AuditionParameterBonusMultiple":               53,
-		"ProduceEffectType_LessonSpChangeRatePermilAddition":             54,
-		"ProduceEffectType_LessonVocalSpChangeRatePermilAddition":        55,
-		"ProduceEffectType_LessonDanceSpChangeRatePermilAddition":        56,
-		"ProduceEffectType_LessonVisualSpChangeRatePermilAddition":       57,
-		"ProduceEffectType_LessonSpChangeRatePermilDown":                 58,
-		"ProduceEffectType_ExamStatusEnchant":                            60,
-		"ProduceEffectType_LessonPresentProduceCardRewardCountUp":        61,
-		"ProduceEffectType_LessonPresentProduceCardRewardCountDown":      62,
-		"ProduceEffectType_LessonPresentSearchProduceCardRewardCountUp":  63,
-		"ProduceEffectType_ShopPriceDiscountMultiple":                    65,
-		"ProduceEffectType_ShopProduceCardPriceDiscountMultiple":         66,
-		"ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple":        68,
-		"ProduceEffectType_ShopProduceCardUpgradePriceDiscountMultiple":  69,
-		"ProduceEffectType_ShopProduceCardUpgradePriceSpecify":           70,
-		"ProduceEffectType_ShopProduceCardDeletePriceDiscountMultiple":   71,
-		"ProduceEffectType_ShopProduceCardDeletePriceSpecify":            72,
-		"ProduceEffectType_ProduceResultRewardMoneyUp":                   77,
-		"ProduceEffectType_ProduceResultRewardSupportCardEnhancePointUp": 79,
-		"ProduceEffectType_SupportCardEventStaminaRecoverUp":             80,
-		"ProduceEffectType_SupportCardEventProducePointAdditionValueUp":  81,
-		"ProduceEffectType_SupportCardEventParameterAdditionValueUp":     82,
-		"ProduceEffectType_SupportCardEventProbabilityUp":                83,
-		"ProduceEffectType_LessonPresentProducePointUp":                  84,
-		"ProduceEffectType_LessonPresentProducePointDown":                85,
-		"ProduceEffectType_SupportCardProduceCardUpgradeProbabilityUp":   86,
-		"ProduceEffectType_ProduceCardSelectRerollCountUp":               87,
-		"ProduceEffectType_ProducePointAdditionDisableTrigger":           88,
-		"ProduceEffectType_LessonLimitUp":                                89,
-		"ProduceEffectType_ParameterLimitUp":                             90,
-		"ProduceEffectType_VocalLimitUp":                                 91,
-		"ProduceEffectType_DanceLimitUp":                                 92,
-		"ProduceEffectType_VisualLimitUp":                                93,
-		"ProduceEffectType_SupportCardEventProduceCardUpgrade":           94,
-		"ProduceEffectType_ExamTurnUp":                                   95,
-		"ProduceEffectType_ExamTurnDown":                                 96,
-		"ProduceEffectType_AuditionNpcEnhance":                           97,
-		"ProduceEffectType_ShopPriceUpMultiple":                          98,
-		"ProduceEffectType_ShopProduceCardPriceUpMultiple":               99,
-		"ProduceEffectType_ShopProduceDrinkPriceUpMultiple":              100,
-		"ProduceEffectType_ShopProduceCardUpgradePriceUpMultiple":        101,
-		"ProduceEffectType_ShopProduceCardDeletePriceUpMultiple":         102,
-		"ProduceEffectType_EventSchoolStaminaUp":                         103,
-		"ProduceEffectType_EventSchoolStaminaDown":                       104,
-		"ProduceEffectType_EventActivityProducePointUp":                  105,
-		"ProduceEffectType_EventActivityProducePointDown":                106,
-		"ProduceEffectType_BeforeAuditionRefreshStaminaUp":               107,
-		"ProduceEffectType_BeforeAuditionRefreshStaminaDown":             108,
-		"ProduceEffectType_ShopRerollCountUp":                            109,
-		"ProduceEffectType_ProduceCardExcludeCountUp":                    110,
-		"ProduceEffectType_CustomizeProduceCardCountUp":                  111,
-		"ProduceEffectType_CustomizeProduceCardProducePointUpMultiple":   112,
-		"ProduceEffectType_CustomizeProduceCardProducePointDownMultiple": 113,
-		"ProduceEffectType_VoteCountAddition":                            114,
-		"ProduceEffectType_EventBusinessVoteCountUp":                     115,
-		"ProduceEffectType_EventBusinessVoteCountDown":                   116,
-		"ProduceEffectType_EventBusinessExcellentPermilUp":               117,
-		"ProduceEffectType_EventBusinessExcellentPermilDown":             118,
-		"ProduceEffectType_AuditionVoteCountUp":                          119,
-		"ProduceEffectType_AuditionVoteCountDown":                        120,
-		"ProduceEffectType_SelfLessonStaminaUp":                          121,
-		"ProduceEffectType_SelfLessonStaminaDown":                        122,
-		"ProduceEffectType_HighScoreGoldAddition":                        123,
-		"ProduceEffectType_IdolCardProduceCardCustomizeEnable":           124,
-		"ProduceEffectType_LegendProduceCardCountAddition":               125,
-		"ProduceEffectType_ExamPermanentLessonStatusEnchant":             126,
-		"ProduceEffectType_ExamPermanentAuditionStatusEnchant":           127,
-		"ProduceEffectType_AuditionNpcWeaken":                            128,
+		"ProduceEffectType_Unknown":                                       0,
+		"ProduceEffectType_VocalAddition":                                 1,
+		"ProduceEffectType_DanceAddition":                                 2,
+		"ProduceEffectType_VisualAddition":                                3,
+		"ProduceEffectType_VocalDown":                                     4,
+		"ProduceEffectType_DanceDown":                                     5,
+		"ProduceEffectType_VisualDown":                                    6,
+		"ProduceEffectType_VocalGrowthRateAddition":                       7,
+		"ProduceEffectType_DanceGrowthRateAddition":                       8,
+		"ProduceEffectType_VisualGrowthRateAddition":                      9,
+		"ProduceEffectType_VocalGrowthRateDown":                           10,
+		"ProduceEffectType_DanceGrowthRateDown":                           11,
+		"ProduceEffectType_VisualGrowthRateDown":                          12,
+		"ProduceEffectType_StaminaRecoverFix":                             13,
+		"ProduceEffectType_StaminaRecoverMultiple":                        14,
+		"ProduceEffectType_StaminaReduceFix":                              15,
+		"ProduceEffectType_StaminaReduceMultiple":                         16,
+		"ProduceEffectType_StaminaSpecify":                                17,
+		"ProduceEffectType_StaminaRecoverValueUp":                         18,
+		"ProduceEffectType_StaminaRecoverValueDown":                       19,
+		"ProduceEffectType_StaminaReduceValueUp":                          20,
+		"ProduceEffectType_StaminaReduceValueDown":                        21,
+		"ProduceEffectType_StaminaRecoverDisable":                         22,
+		"ProduceEffectType_MaxStaminaAddition":                            23,
+		"ProduceEffectType_MaxStaminaReduceFix":                           24,
+		"ProduceEffectType_MaxStaminaReduceMultiple":                      25,
+		"ProduceEffectType_ProducePointReduceFix":                         26,
+		"ProduceEffectType_ProducePointReduceMultiple":                    27,
+		"ProduceEffectType_ProducePointSpecify":                           28,
+		"ProduceEffectType_ProducePointAdditionValueUp":                   29,
+		"ProduceEffectType_ProducePointAdditionValueDown":                 30,
+		"ProduceEffectType_ProducePointReduceValueUp":                     31,
+		"ProduceEffectType_ProducePointReduceValueDown":                   32,
+		"ProduceEffectType_ProduceCardUpgrade":                            33,
+		"ProduceEffectType_ProduceCardDuplicate":                          34,
+		"ProduceEffectType_ProduceCardDuplicateUpgrade":                   35,
+		"ProduceEffectType_ProduceCardChange":                             36,
+		"ProduceEffectType_ProduceCardChangeUpgrade":                      37,
+		"ProduceEffectType_ProduceCardDelete":                             38,
+		"ProduceEffectType_ProducePointAddition":                          39,
+		"ProduceEffectType_ProducePointGetDisable":                        40,
+		"ProduceEffectType_ProduceItemGetDisable":                         41,
+		"ProduceEffectType_ProduceDrinkGetDisable":                        42,
+		"ProduceEffectType_ProduceReward":                                 43,
+		"ProduceEffectType_ProduceRewardSet":                              44,
+		"ProduceEffectType_AuditionParameterBonusMultiple":                53,
+		"ProduceEffectType_LessonSpChangeRatePermilAddition":              54,
+		"ProduceEffectType_LessonVocalSpChangeRatePermilAddition":         55,
+		"ProduceEffectType_LessonDanceSpChangeRatePermilAddition":         56,
+		"ProduceEffectType_LessonVisualSpChangeRatePermilAddition":        57,
+		"ProduceEffectType_LessonSpChangeRatePermilDown":                  58,
+		"ProduceEffectType_ExamStatusEnchant":                             60,
+		"ProduceEffectType_LessonPresentProduceCardRewardCountUp":         61,
+		"ProduceEffectType_LessonPresentProduceCardRewardCountDown":       62,
+		"ProduceEffectType_LessonPresentSearchProduceCardRewardCountUp":   63,
+		"ProduceEffectType_ShopPriceDiscountMultiple":                     65,
+		"ProduceEffectType_ShopProduceCardPriceDiscountMultiple":          66,
+		"ProduceEffectType_ShopProduceDrinkPriceDiscountMultiple":         68,
+		"ProduceEffectType_ShopProduceCardUpgradePriceDiscountMultiple":   69,
+		"ProduceEffectType_ShopProduceCardUpgradePriceSpecify":            70,
+		"ProduceEffectType_ShopProduceCardDeletePriceDiscountMultiple":    71,
+		"ProduceEffectType_ShopProduceCardDeletePriceSpecify":             72,
+		"ProduceEffectType_ProduceResultRewardMoneyUp":                    77,
+		"ProduceEffectType_ProduceResultRewardSupportCardEnhancePointUp":  79,
+		"ProduceEffectType_SupportCardEventStaminaRecoverUp":              80,
+		"ProduceEffectType_SupportCardEventProducePointAdditionValueUp":   81,
+		"ProduceEffectType_SupportCardEventParameterAdditionValueUp":      82,
+		"ProduceEffectType_SupportCardEventProbabilityUp":                 83,
+		"ProduceEffectType_LessonPresentProducePointUp":                   84,
+		"ProduceEffectType_LessonPresentProducePointDown":                 85,
+		"ProduceEffectType_SupportCardProduceCardUpgradeProbabilityUp":    86,
+		"ProduceEffectType_ProduceCardSelectRerollCountUp":                87,
+		"ProduceEffectType_ProducePointAdditionDisableTrigger":            88,
+		"ProduceEffectType_LessonLimitUp":                                 89,
+		"ProduceEffectType_ParameterLimitUp":                              90,
+		"ProduceEffectType_VocalLimitUp":                                  91,
+		"ProduceEffectType_DanceLimitUp":                                  92,
+		"ProduceEffectType_VisualLimitUp":                                 93,
+		"ProduceEffectType_SupportCardEventProduceCardUpgrade":            94,
+		"ProduceEffectType_ExamTurnUp":                                    95,
+		"ProduceEffectType_ExamTurnDown":                                  96,
+		"ProduceEffectType_AuditionNpcEnhance":                            97,
+		"ProduceEffectType_ShopPriceUpMultiple":                           98,
+		"ProduceEffectType_ShopProduceCardPriceUpMultiple":                99,
+		"ProduceEffectType_ShopProduceDrinkPriceUpMultiple":               100,
+		"ProduceEffectType_ShopProduceCardUpgradePriceUpMultiple":         101,
+		"ProduceEffectType_ShopProduceCardDeletePriceUpMultiple":          102,
+		"ProduceEffectType_EventSchoolStaminaUp":                          103,
+		"ProduceEffectType_EventSchoolStaminaDown":                        104,
+		"ProduceEffectType_EventActivityProducePointUp":                   105,
+		"ProduceEffectType_EventActivityProducePointDown":                 106,
+		"ProduceEffectType_BeforeAuditionRefreshStaminaUp":                107,
+		"ProduceEffectType_BeforeAuditionRefreshStaminaDown":              108,
+		"ProduceEffectType_ShopRerollCountUp":                             109,
+		"ProduceEffectType_ProduceCardExcludeCountUp":                     110,
+		"ProduceEffectType_CustomizeProduceCardCountUp":                   111,
+		"ProduceEffectType_CustomizeProduceCardProducePointUpMultiple":    112,
+		"ProduceEffectType_CustomizeProduceCardProducePointDownMultiple":  113,
+		"ProduceEffectType_VoteCountAddition":                             114,
+		"ProduceEffectType_EventBusinessVoteCountUp":                      115,
+		"ProduceEffectType_EventBusinessVoteCountDown":                    116,
+		"ProduceEffectType_EventBusinessExcellentPermilUp":                117,
+		"ProduceEffectType_EventBusinessExcellentPermilDown":              118,
+		"ProduceEffectType_AuditionVoteCountUp":                           119,
+		"ProduceEffectType_AuditionVoteCountDown":                         120,
+		"ProduceEffectType_SelfLessonStaminaUp":                           121,
+		"ProduceEffectType_SelfLessonStaminaDown":                         122,
+		"ProduceEffectType_HighScoreGoldAddition":                         123,
+		"ProduceEffectType_IdolCardProduceCardCustomizeEnable":            124,
+		"ProduceEffectType_LegendProduceCardCountAddition":                125,
+		"ProduceEffectType_ExamPermanentLessonStatusEnchant":              126,
+		"ProduceEffectType_ExamPermanentAuditionStatusEnchant":            127,
+		"ProduceEffectType_AuditionNpcWeaken":                             128,
+		"ProduceEffectType_ProduceCustomizeItemUpgrade":                   129,
+		"ProduceEffectType_StarPermilUp":                                  130,
+		"ProduceEffectType_StarAddition":                                  131,
+		"ProduceEffectType_ProduceCardChangeSelect":                       132,
+		"ProduceEffectType_ProduceDrinkPossessLimitUp":                    133,
+		"ProduceEffectType_ShopProduceCardPriceDiscountMultiplePermanent": 134,
 	}
 )
 
@@ -9259,6 +9337,10 @@ const (
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_StanceLockFullPower                             ProduceExamAutoEvaluationType = 47
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_StanceLockPreservation                          ProduceExamAutoEvaluationType = 48
 	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamReviewCountAdd                              ProduceExamAutoEvaluationType = 49
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamReviewTurnEndReduceLock                     ProduceExamAutoEvaluationType = 50
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamParameterBuffTurnEndReduceLock              ProduceExamAutoEvaluationType = 51
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamBuffConsumptionDown                         ProduceExamAutoEvaluationType = 52
+	ProduceExamAutoEvaluationType_ProduceExamAutoEvaluationType_ExamBuffConsumptionAdd                          ProduceExamAutoEvaluationType = 53
 )
 
 // Enum value maps for ProduceExamAutoEvaluationType.
@@ -9314,6 +9396,10 @@ var (
 		47: "ProduceExamAutoEvaluationType_StanceLockFullPower",
 		48: "ProduceExamAutoEvaluationType_StanceLockPreservation",
 		49: "ProduceExamAutoEvaluationType_ExamReviewCountAdd",
+		50: "ProduceExamAutoEvaluationType_ExamReviewTurnEndReduceLock",
+		51: "ProduceExamAutoEvaluationType_ExamParameterBuffTurnEndReduceLock",
+		52: "ProduceExamAutoEvaluationType_ExamBuffConsumptionDown",
+		53: "ProduceExamAutoEvaluationType_ExamBuffConsumptionAdd",
 	}
 	ProduceExamAutoEvaluationType_value = map[string]int32{
 		"ProduceExamAutoEvaluationType_Unknown":                                         0,
@@ -9366,6 +9452,10 @@ var (
 		"ProduceExamAutoEvaluationType_StanceLockFullPower":                             47,
 		"ProduceExamAutoEvaluationType_StanceLockPreservation":                          48,
 		"ProduceExamAutoEvaluationType_ExamReviewCountAdd":                              49,
+		"ProduceExamAutoEvaluationType_ExamReviewTurnEndReduceLock":                     50,
+		"ProduceExamAutoEvaluationType_ExamParameterBuffTurnEndReduceLock":              51,
+		"ProduceExamAutoEvaluationType_ExamBuffConsumptionDown":                         52,
+		"ProduceExamAutoEvaluationType_ExamBuffConsumptionAdd":                          53,
 	}
 )
 
@@ -9544,6 +9634,30 @@ const (
 	ProduceExamEffectType_ProduceExamEffectType_ExamStanceLockPreservation                      ProduceExamEffectType = 193
 	ProduceExamEffectType_ProduceExamEffectType_ExamCardShuffleDeckGrave                        ProduceExamEffectType = 194
 	ProduceExamEffectType_ProduceExamEffectType_ExamReviewCountAdd                              ProduceExamEffectType = 195
+	ProduceExamEffectType_ProduceExamEffectType_ExamReviewTurnEndReduceLock                     ProduceExamEffectType = 196
+	ProduceExamEffectType_ProduceExamEffectType_ExamParameterBuffTurnEndReduceLock              ProduceExamEffectType = 197
+	ProduceExamEffectType_ProduceExamEffectType_ExamBuffConsumptionDown                         ProduceExamEffectType = 198
+	ProduceExamEffectType_ProduceExamEffectType_ExamBuffConsumptionAdd                          ProduceExamEffectType = 199
+	ProduceExamEffectType_ProduceExamEffectType_ExamSearchPlayCardBuffConsumptionChange         ProduceExamEffectType = 200
+	ProduceExamEffectType_ProduceExamEffectType_ExamPlayCardLimitPlayableValueAdd               ProduceExamEffectType = 201
+	ProduceExamEffectType_ProduceExamEffectType_ExamReviewDependReviewConsumptionSum            ProduceExamEffectType = 202
+	ProduceExamEffectType_ProduceExamEffectType_ExamLessonBuffReduceCancellable                 ProduceExamEffectType = 203
+	ProduceExamEffectType_ProduceExamEffectType_ExamParameterBuffReduceCancellable              ProduceExamEffectType = 204
+	ProduceExamEffectType_ProduceExamEffectType_ExamAggressiveReduceCancellable                 ProduceExamEffectType = 205
+	ProduceExamEffectType_ProduceExamEffectType_ExamReviewReduceCancellable                     ProduceExamEffectType = 206
+	ProduceExamEffectType_ProduceExamEffectType_ExamFullPowerPointReduceCancellable             ProduceExamEffectType = 207
+	ProduceExamEffectType_ProduceExamEffectType_ExamStatusEnchantTurnAdd                        ProduceExamEffectType = 208
+	ProduceExamEffectType_ProduceExamEffectType_ExamStatusEnchantCountAdd                       ProduceExamEffectType = 209
+	ProduceExamEffectType_ProduceExamEffectType_ExamParameterBuffAdditiveFix                    ProduceExamEffectType = 210
+	ProduceExamEffectType_ProduceExamEffectType_ExamLessonBuffAdditiveFix                       ProduceExamEffectType = 211
+	ProduceExamEffectType_ProduceExamEffectType_ExamAggressiveAdditiveFix                       ProduceExamEffectType = 212
+	ProduceExamEffectType_ProduceExamEffectType_ExamReviewAdditiveFix                           ProduceExamEffectType = 213
+	ProduceExamEffectType_ProduceExamEffectType_ExamFullPowerPointAdditiveFix                   ProduceExamEffectType = 214
+	ProduceExamEffectType_ProduceExamEffectType_ExamMoveGrowEffect                              ProduceExamEffectType = 215
+	ProduceExamEffectType_ProduceExamEffectType_ExamLessonDependEnthusiasticGetSum              ProduceExamEffectType = 216
+	ProduceExamEffectType_ProduceExamEffectType_ExamCardShuffleDeckLost                         ProduceExamEffectType = 217
+	ProduceExamEffectType_ProduceExamEffectType_ExamFullPowerPointDependFullPowerPointGetSum    ProduceExamEffectType = 218
+	ProduceExamEffectType_ProduceExamEffectType_ExamStatusEnchantEncore                         ProduceExamEffectType = 219
 )
 
 // Enum value maps for ProduceExamEffectType.
@@ -9694,6 +9808,30 @@ var (
 		193: "ProduceExamEffectType_ExamStanceLockPreservation",
 		194: "ProduceExamEffectType_ExamCardShuffleDeckGrave",
 		195: "ProduceExamEffectType_ExamReviewCountAdd",
+		196: "ProduceExamEffectType_ExamReviewTurnEndReduceLock",
+		197: "ProduceExamEffectType_ExamParameterBuffTurnEndReduceLock",
+		198: "ProduceExamEffectType_ExamBuffConsumptionDown",
+		199: "ProduceExamEffectType_ExamBuffConsumptionAdd",
+		200: "ProduceExamEffectType_ExamSearchPlayCardBuffConsumptionChange",
+		201: "ProduceExamEffectType_ExamPlayCardLimitPlayableValueAdd",
+		202: "ProduceExamEffectType_ExamReviewDependReviewConsumptionSum",
+		203: "ProduceExamEffectType_ExamLessonBuffReduceCancellable",
+		204: "ProduceExamEffectType_ExamParameterBuffReduceCancellable",
+		205: "ProduceExamEffectType_ExamAggressiveReduceCancellable",
+		206: "ProduceExamEffectType_ExamReviewReduceCancellable",
+		207: "ProduceExamEffectType_ExamFullPowerPointReduceCancellable",
+		208: "ProduceExamEffectType_ExamStatusEnchantTurnAdd",
+		209: "ProduceExamEffectType_ExamStatusEnchantCountAdd",
+		210: "ProduceExamEffectType_ExamParameterBuffAdditiveFix",
+		211: "ProduceExamEffectType_ExamLessonBuffAdditiveFix",
+		212: "ProduceExamEffectType_ExamAggressiveAdditiveFix",
+		213: "ProduceExamEffectType_ExamReviewAdditiveFix",
+		214: "ProduceExamEffectType_ExamFullPowerPointAdditiveFix",
+		215: "ProduceExamEffectType_ExamMoveGrowEffect",
+		216: "ProduceExamEffectType_ExamLessonDependEnthusiasticGetSum",
+		217: "ProduceExamEffectType_ExamCardShuffleDeckLost",
+		218: "ProduceExamEffectType_ExamFullPowerPointDependFullPowerPointGetSum",
+		219: "ProduceExamEffectType_ExamStatusEnchantEncore",
 	}
 	ProduceExamEffectType_value = map[string]int32{
 		"ProduceExamEffectType_Unknown":                                         0,
@@ -9841,6 +9979,30 @@ var (
 		"ProduceExamEffectType_ExamStanceLockPreservation":                      193,
 		"ProduceExamEffectType_ExamCardShuffleDeckGrave":                        194,
 		"ProduceExamEffectType_ExamReviewCountAdd":                              195,
+		"ProduceExamEffectType_ExamReviewTurnEndReduceLock":                     196,
+		"ProduceExamEffectType_ExamParameterBuffTurnEndReduceLock":              197,
+		"ProduceExamEffectType_ExamBuffConsumptionDown":                         198,
+		"ProduceExamEffectType_ExamBuffConsumptionAdd":                          199,
+		"ProduceExamEffectType_ExamSearchPlayCardBuffConsumptionChange":         200,
+		"ProduceExamEffectType_ExamPlayCardLimitPlayableValueAdd":               201,
+		"ProduceExamEffectType_ExamReviewDependReviewConsumptionSum":            202,
+		"ProduceExamEffectType_ExamLessonBuffReduceCancellable":                 203,
+		"ProduceExamEffectType_ExamParameterBuffReduceCancellable":              204,
+		"ProduceExamEffectType_ExamAggressiveReduceCancellable":                 205,
+		"ProduceExamEffectType_ExamReviewReduceCancellable":                     206,
+		"ProduceExamEffectType_ExamFullPowerPointReduceCancellable":             207,
+		"ProduceExamEffectType_ExamStatusEnchantTurnAdd":                        208,
+		"ProduceExamEffectType_ExamStatusEnchantCountAdd":                       209,
+		"ProduceExamEffectType_ExamParameterBuffAdditiveFix":                    210,
+		"ProduceExamEffectType_ExamLessonBuffAdditiveFix":                       211,
+		"ProduceExamEffectType_ExamAggressiveAdditiveFix":                       212,
+		"ProduceExamEffectType_ExamReviewAdditiveFix":                           213,
+		"ProduceExamEffectType_ExamFullPowerPointAdditiveFix":                   214,
+		"ProduceExamEffectType_ExamMoveGrowEffect":                              215,
+		"ProduceExamEffectType_ExamLessonDependEnthusiasticGetSum":              216,
+		"ProduceExamEffectType_ExamCardShuffleDeckLost":                         217,
+		"ProduceExamEffectType_ExamFullPowerPointDependFullPowerPointGetSum":    218,
+		"ProduceExamEffectType_ExamStatusEnchantEncore":                         219,
 	}
 )
 
@@ -9912,6 +10074,10 @@ const (
 	ProduceExamFieldStatusType_ProduceExamFieldStatusType_PlayCardSearch                 ProduceExamFieldStatusType = 52
 	ProduceExamFieldStatusType_ProduceExamFieldStatusType_ParameterBuffMultiplePerTurnUp ProduceExamFieldStatusType = 53
 	ProduceExamFieldStatusType_ProduceExamFieldStatusType_EnthusiasticUp                 ProduceExamFieldStatusType = 54
+	ProduceExamFieldStatusType_ProduceExamFieldStatusType_EnchantCountUp                 ProduceExamFieldStatusType = 55
+	ProduceExamFieldStatusType_ProduceExamFieldStatusType_TurnPlayCardCountUp            ProduceExamFieldStatusType = 56
+	ProduceExamFieldStatusType_ProduceExamFieldStatusType_DeckCardAllNoDuplicate         ProduceExamFieldStatusType = 57
+	ProduceExamFieldStatusType_ProduceExamFieldStatusType_DebuffCountUp                  ProduceExamFieldStatusType = 58
 )
 
 // Enum value maps for ProduceExamFieldStatusType.
@@ -9955,6 +10121,10 @@ var (
 		52: "ProduceExamFieldStatusType_PlayCardSearch",
 		53: "ProduceExamFieldStatusType_ParameterBuffMultiplePerTurnUp",
 		54: "ProduceExamFieldStatusType_EnthusiasticUp",
+		55: "ProduceExamFieldStatusType_EnchantCountUp",
+		56: "ProduceExamFieldStatusType_TurnPlayCardCountUp",
+		57: "ProduceExamFieldStatusType_DeckCardAllNoDuplicate",
+		58: "ProduceExamFieldStatusType_DebuffCountUp",
 	}
 	ProduceExamFieldStatusType_value = map[string]int32{
 		"ProduceExamFieldStatusType_Unknown":                        0,
@@ -9995,6 +10165,10 @@ var (
 		"ProduceExamFieldStatusType_PlayCardSearch":                 52,
 		"ProduceExamFieldStatusType_ParameterBuffMultiplePerTurnUp": 53,
 		"ProduceExamFieldStatusType_EnthusiasticUp":                 54,
+		"ProduceExamFieldStatusType_EnchantCountUp":                 55,
+		"ProduceExamFieldStatusType_TurnPlayCardCountUp":            56,
+		"ProduceExamFieldStatusType_DeckCardAllNoDuplicate":         57,
+		"ProduceExamFieldStatusType_DebuffCountUp":                  58,
 	}
 )
 
@@ -10028,51 +10202,63 @@ func (ProduceExamFieldStatusType) EnumDescriptor() ([]byte, []int) {
 type ProduceExamPhaseType int32
 
 const (
-	ProduceExamPhaseType_ProduceExamPhaseType_Unknown                           ProduceExamPhaseType = 0
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardDraw                      ProduceExamPhaseType = 1
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardPlay                      ProduceExamPhaseType = 2
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardPlayAfter                 ProduceExamPhaseType = 3
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStartTurn                     ProduceExamPhaseType = 4
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurn                       ProduceExamPhaseType = 5
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStartExam                     ProduceExamPhaseType = 6
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMove                      ProduceExamPhaseType = 7
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardAdd                       ProduceExamPhaseType = 8
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamLesson                        ProduceExamPhaseType = 9
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamForecast                      ProduceExamPhaseType = 10
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamSearchCardPlay                ProduceExamPhaseType = 11
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChange                  ProduceExamPhaseType = 12
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStatusChange                  ProduceExamPhaseType = 13
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnCheck                     ProduceExamPhaseType = 16
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamUseDrink                      ProduceExamPhaseType = 17
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamGetPoint                      ProduceExamPhaseType = 18
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamShuffle                       ProduceExamPhaseType = 19
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStaminaReduce                 ProduceExamPhaseType = 20
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnTimer                     ProduceExamPhaseType = 21
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnInterval                  ProduceExamPhaseType = 22
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayCountInterval             ProduceExamPhaseType = 23
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStaminaReduceCard             ProduceExamPhaseType = 24
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayTurnCountInterval         ProduceExamPhaseType = 25
-	ProduceExamPhaseType_ProduceExamPhaseType_StartPlay                         ProduceExamPhaseType = 27
-	ProduceExamPhaseType_ProduceExamPhaseType_StartExamPlay                     ProduceExamPhaseType = 28
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveHand                  ProduceExamPhaseType = 29
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveGrave                 ProduceExamPhaseType = 30
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveLost                  ProduceExamPhaseType = 31
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamLessonParameterUp             ProduceExamPhaseType = 33
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamBuffConsume                   ProduceExamPhaseType = 34
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeCountInterval     ProduceExamPhaseType = 35
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeCount             ProduceExamPhaseType = 36
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeConcentration     ProduceExamPhaseType = 37
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangePreservation      ProduceExamPhaseType = 38
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFullPower         ProduceExamPhaseType = 39
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceReset                   ProduceExamPhaseType = 40
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnSkip                      ProduceExamPhaseType = 41
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurnTimer                  ProduceExamPhaseType = 42
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurnInterval               ProduceExamPhaseType = 43
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayCountIntervalAfter        ProduceExamPhaseType = 44
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromConcentration ProduceExamPhaseType = 45
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromPreservation  ProduceExamPhaseType = 46
-	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromFullPower     ProduceExamPhaseType = 47
-	ProduceExamPhaseType_ProduceExamPhaseType_None                              ProduceExamPhaseType = 999
+	ProduceExamPhaseType_ProduceExamPhaseType_Unknown                               ProduceExamPhaseType = 0
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardDraw                          ProduceExamPhaseType = 1
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardPlay                          ProduceExamPhaseType = 2
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardPlayAfter                     ProduceExamPhaseType = 3
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStartTurn                         ProduceExamPhaseType = 4
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurn                           ProduceExamPhaseType = 5
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStartExam                         ProduceExamPhaseType = 6
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMove                          ProduceExamPhaseType = 7
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardAdd                           ProduceExamPhaseType = 8
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamLesson                            ProduceExamPhaseType = 9
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamForecast                          ProduceExamPhaseType = 10
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamSearchCardPlay                    ProduceExamPhaseType = 11
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChange                      ProduceExamPhaseType = 12
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStatusChange                      ProduceExamPhaseType = 13
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnCheck                         ProduceExamPhaseType = 16
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamUseDrink                          ProduceExamPhaseType = 17
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamGetPoint                          ProduceExamPhaseType = 18
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamShuffle                           ProduceExamPhaseType = 19
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStaminaReduce                     ProduceExamPhaseType = 20
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnTimer                         ProduceExamPhaseType = 21
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnInterval                      ProduceExamPhaseType = 22
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayCountInterval                 ProduceExamPhaseType = 23
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStaminaReduceCard                 ProduceExamPhaseType = 24
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayTurnCountInterval             ProduceExamPhaseType = 25
+	ProduceExamPhaseType_ProduceExamPhaseType_StartPlay                             ProduceExamPhaseType = 27
+	ProduceExamPhaseType_ProduceExamPhaseType_StartExamPlay                         ProduceExamPhaseType = 28
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveHand                      ProduceExamPhaseType = 29
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveGrave                     ProduceExamPhaseType = 30
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardMoveLost                      ProduceExamPhaseType = 31
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamLessonParameterUp                 ProduceExamPhaseType = 33
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamBuffConsume                       ProduceExamPhaseType = 34
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeCountInterval         ProduceExamPhaseType = 35
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeCount                 ProduceExamPhaseType = 36
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeConcentration         ProduceExamPhaseType = 37
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangePreservation          ProduceExamPhaseType = 38
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFullPower             ProduceExamPhaseType = 39
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceReset                       ProduceExamPhaseType = 40
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamTurnSkip                          ProduceExamPhaseType = 41
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurnTimer                      ProduceExamPhaseType = 42
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamEndTurnInterval                   ProduceExamPhaseType = 43
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayCountIntervalAfter            ProduceExamPhaseType = 44
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromConcentration     ProduceExamPhaseType = 45
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromPreservation      ProduceExamPhaseType = 46
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFromFullPower         ProduceExamPhaseType = 47
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardUpgrade                       ProduceExamPhaseType = 48
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamPlayCardMoveGrave                 ProduceExamPhaseType = 49
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamParameterBuffUpInterval           ProduceExamPhaseType = 50
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamLessonBuffUpInterval              ProduceExamPhaseType = 51
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamReviewUpInterval                  ProduceExamPhaseType = 52
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamAggressiveUpInterval              ProduceExamPhaseType = 53
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamFullPowerPointUpInterval          ProduceExamPhaseType = 54
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangePreservationInterval  ProduceExamPhaseType = 55
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeConcentrationInterval ProduceExamPhaseType = 56
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamStanceChangeFullPowerInterval     ProduceExamPhaseType = 57
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardUpgradeInterval               ProduceExamPhaseType = 58
+	ProduceExamPhaseType_ProduceExamPhaseType_ExamCardDrawInterval                  ProduceExamPhaseType = 59
+	ProduceExamPhaseType_ProduceExamPhaseType_None                                  ProduceExamPhaseType = 999
 )
 
 // Enum value maps for ProduceExamPhaseType.
@@ -10122,54 +10308,78 @@ var (
 		45:  "ProduceExamPhaseType_ExamStanceChangeFromConcentration",
 		46:  "ProduceExamPhaseType_ExamStanceChangeFromPreservation",
 		47:  "ProduceExamPhaseType_ExamStanceChangeFromFullPower",
+		48:  "ProduceExamPhaseType_ExamCardUpgrade",
+		49:  "ProduceExamPhaseType_ExamPlayCardMoveGrave",
+		50:  "ProduceExamPhaseType_ExamParameterBuffUpInterval",
+		51:  "ProduceExamPhaseType_ExamLessonBuffUpInterval",
+		52:  "ProduceExamPhaseType_ExamReviewUpInterval",
+		53:  "ProduceExamPhaseType_ExamAggressiveUpInterval",
+		54:  "ProduceExamPhaseType_ExamFullPowerPointUpInterval",
+		55:  "ProduceExamPhaseType_ExamStanceChangePreservationInterval",
+		56:  "ProduceExamPhaseType_ExamStanceChangeConcentrationInterval",
+		57:  "ProduceExamPhaseType_ExamStanceChangeFullPowerInterval",
+		58:  "ProduceExamPhaseType_ExamCardUpgradeInterval",
+		59:  "ProduceExamPhaseType_ExamCardDrawInterval",
 		999: "ProduceExamPhaseType_None",
 	}
 	ProduceExamPhaseType_value = map[string]int32{
-		"ProduceExamPhaseType_Unknown":                           0,
-		"ProduceExamPhaseType_ExamCardDraw":                      1,
-		"ProduceExamPhaseType_ExamCardPlay":                      2,
-		"ProduceExamPhaseType_ExamCardPlayAfter":                 3,
-		"ProduceExamPhaseType_ExamStartTurn":                     4,
-		"ProduceExamPhaseType_ExamEndTurn":                       5,
-		"ProduceExamPhaseType_ExamStartExam":                     6,
-		"ProduceExamPhaseType_ExamCardMove":                      7,
-		"ProduceExamPhaseType_ExamCardAdd":                       8,
-		"ProduceExamPhaseType_ExamLesson":                        9,
-		"ProduceExamPhaseType_ExamForecast":                      10,
-		"ProduceExamPhaseType_ExamSearchCardPlay":                11,
-		"ProduceExamPhaseType_ExamStanceChange":                  12,
-		"ProduceExamPhaseType_ExamStatusChange":                  13,
-		"ProduceExamPhaseType_ExamTurnCheck":                     16,
-		"ProduceExamPhaseType_ExamUseDrink":                      17,
-		"ProduceExamPhaseType_ExamGetPoint":                      18,
-		"ProduceExamPhaseType_ExamShuffle":                       19,
-		"ProduceExamPhaseType_ExamStaminaReduce":                 20,
-		"ProduceExamPhaseType_ExamTurnTimer":                     21,
-		"ProduceExamPhaseType_ExamTurnInterval":                  22,
-		"ProduceExamPhaseType_ExamPlayCountInterval":             23,
-		"ProduceExamPhaseType_ExamStaminaReduceCard":             24,
-		"ProduceExamPhaseType_ExamPlayTurnCountInterval":         25,
-		"ProduceExamPhaseType_StartPlay":                         27,
-		"ProduceExamPhaseType_StartExamPlay":                     28,
-		"ProduceExamPhaseType_ExamCardMoveHand":                  29,
-		"ProduceExamPhaseType_ExamCardMoveGrave":                 30,
-		"ProduceExamPhaseType_ExamCardMoveLost":                  31,
-		"ProduceExamPhaseType_ExamLessonParameterUp":             33,
-		"ProduceExamPhaseType_ExamBuffConsume":                   34,
-		"ProduceExamPhaseType_ExamStanceChangeCountInterval":     35,
-		"ProduceExamPhaseType_ExamStanceChangeCount":             36,
-		"ProduceExamPhaseType_ExamStanceChangeConcentration":     37,
-		"ProduceExamPhaseType_ExamStanceChangePreservation":      38,
-		"ProduceExamPhaseType_ExamStanceChangeFullPower":         39,
-		"ProduceExamPhaseType_ExamStanceReset":                   40,
-		"ProduceExamPhaseType_ExamTurnSkip":                      41,
-		"ProduceExamPhaseType_ExamEndTurnTimer":                  42,
-		"ProduceExamPhaseType_ExamEndTurnInterval":               43,
-		"ProduceExamPhaseType_ExamPlayCountIntervalAfter":        44,
-		"ProduceExamPhaseType_ExamStanceChangeFromConcentration": 45,
-		"ProduceExamPhaseType_ExamStanceChangeFromPreservation":  46,
-		"ProduceExamPhaseType_ExamStanceChangeFromFullPower":     47,
-		"ProduceExamPhaseType_None":                              999,
+		"ProduceExamPhaseType_Unknown":                               0,
+		"ProduceExamPhaseType_ExamCardDraw":                          1,
+		"ProduceExamPhaseType_ExamCardPlay":                          2,
+		"ProduceExamPhaseType_ExamCardPlayAfter":                     3,
+		"ProduceExamPhaseType_ExamStartTurn":                         4,
+		"ProduceExamPhaseType_ExamEndTurn":                           5,
+		"ProduceExamPhaseType_ExamStartExam":                         6,
+		"ProduceExamPhaseType_ExamCardMove":                          7,
+		"ProduceExamPhaseType_ExamCardAdd":                           8,
+		"ProduceExamPhaseType_ExamLesson":                            9,
+		"ProduceExamPhaseType_ExamForecast":                          10,
+		"ProduceExamPhaseType_ExamSearchCardPlay":                    11,
+		"ProduceExamPhaseType_ExamStanceChange":                      12,
+		"ProduceExamPhaseType_ExamStatusChange":                      13,
+		"ProduceExamPhaseType_ExamTurnCheck":                         16,
+		"ProduceExamPhaseType_ExamUseDrink":                          17,
+		"ProduceExamPhaseType_ExamGetPoint":                          18,
+		"ProduceExamPhaseType_ExamShuffle":                           19,
+		"ProduceExamPhaseType_ExamStaminaReduce":                     20,
+		"ProduceExamPhaseType_ExamTurnTimer":                         21,
+		"ProduceExamPhaseType_ExamTurnInterval":                      22,
+		"ProduceExamPhaseType_ExamPlayCountInterval":                 23,
+		"ProduceExamPhaseType_ExamStaminaReduceCard":                 24,
+		"ProduceExamPhaseType_ExamPlayTurnCountInterval":             25,
+		"ProduceExamPhaseType_StartPlay":                             27,
+		"ProduceExamPhaseType_StartExamPlay":                         28,
+		"ProduceExamPhaseType_ExamCardMoveHand":                      29,
+		"ProduceExamPhaseType_ExamCardMoveGrave":                     30,
+		"ProduceExamPhaseType_ExamCardMoveLost":                      31,
+		"ProduceExamPhaseType_ExamLessonParameterUp":                 33,
+		"ProduceExamPhaseType_ExamBuffConsume":                       34,
+		"ProduceExamPhaseType_ExamStanceChangeCountInterval":         35,
+		"ProduceExamPhaseType_ExamStanceChangeCount":                 36,
+		"ProduceExamPhaseType_ExamStanceChangeConcentration":         37,
+		"ProduceExamPhaseType_ExamStanceChangePreservation":          38,
+		"ProduceExamPhaseType_ExamStanceChangeFullPower":             39,
+		"ProduceExamPhaseType_ExamStanceReset":                       40,
+		"ProduceExamPhaseType_ExamTurnSkip":                          41,
+		"ProduceExamPhaseType_ExamEndTurnTimer":                      42,
+		"ProduceExamPhaseType_ExamEndTurnInterval":                   43,
+		"ProduceExamPhaseType_ExamPlayCountIntervalAfter":            44,
+		"ProduceExamPhaseType_ExamStanceChangeFromConcentration":     45,
+		"ProduceExamPhaseType_ExamStanceChangeFromPreservation":      46,
+		"ProduceExamPhaseType_ExamStanceChangeFromFullPower":         47,
+		"ProduceExamPhaseType_ExamCardUpgrade":                       48,
+		"ProduceExamPhaseType_ExamPlayCardMoveGrave":                 49,
+		"ProduceExamPhaseType_ExamParameterBuffUpInterval":           50,
+		"ProduceExamPhaseType_ExamLessonBuffUpInterval":              51,
+		"ProduceExamPhaseType_ExamReviewUpInterval":                  52,
+		"ProduceExamPhaseType_ExamAggressiveUpInterval":              53,
+		"ProduceExamPhaseType_ExamFullPowerPointUpInterval":          54,
+		"ProduceExamPhaseType_ExamStanceChangePreservationInterval":  55,
+		"ProduceExamPhaseType_ExamStanceChangeConcentrationInterval": 56,
+		"ProduceExamPhaseType_ExamStanceChangeFullPowerInterval":     57,
+		"ProduceExamPhaseType_ExamCardUpgradeInterval":               58,
+		"ProduceExamPhaseType_ExamCardDrawInterval":                  59,
+		"ProduceExamPhaseType_None":                                  999,
 	}
 )
 
@@ -11002,17 +11212,18 @@ func (ProduceProgressAuditionStatusType) EnumDescriptor() ([]byte, []int) {
 type ProduceProgressConditionType int32
 
 const (
-	ProduceProgressConditionType_ProduceProgressConditionType_Unknown           ProduceProgressConditionType = 0
-	ProduceProgressConditionType_ProduceProgressConditionType_StaminaRatio      ProduceProgressConditionType = 1
-	ProduceProgressConditionType_ProduceProgressConditionType_StaminaFix        ProduceProgressConditionType = 2
-	ProduceProgressConditionType_ProduceProgressConditionType_ProducePoint      ProduceProgressConditionType = 3
-	ProduceProgressConditionType_ProduceProgressConditionType_ProduceItemCount  ProduceProgressConditionType = 4
-	ProduceProgressConditionType_ProduceProgressConditionType_ProduceDrinkCount ProduceProgressConditionType = 5
-	ProduceProgressConditionType_ProduceProgressConditionType_ProduceCardCount  ProduceProgressConditionType = 6
-	ProduceProgressConditionType_ProduceProgressConditionType_Vocal             ProduceProgressConditionType = 7
-	ProduceProgressConditionType_ProduceProgressConditionType_Dance             ProduceProgressConditionType = 8
-	ProduceProgressConditionType_ProduceProgressConditionType_Visual            ProduceProgressConditionType = 9
-	ProduceProgressConditionType_ProduceProgressConditionType_StepNumber        ProduceProgressConditionType = 10
+	ProduceProgressConditionType_ProduceProgressConditionType_Unknown                ProduceProgressConditionType = 0
+	ProduceProgressConditionType_ProduceProgressConditionType_StaminaRatio           ProduceProgressConditionType = 1
+	ProduceProgressConditionType_ProduceProgressConditionType_StaminaFix             ProduceProgressConditionType = 2
+	ProduceProgressConditionType_ProduceProgressConditionType_ProducePoint           ProduceProgressConditionType = 3
+	ProduceProgressConditionType_ProduceProgressConditionType_ProduceItemCount       ProduceProgressConditionType = 4
+	ProduceProgressConditionType_ProduceProgressConditionType_ProduceDrinkCount      ProduceProgressConditionType = 5
+	ProduceProgressConditionType_ProduceProgressConditionType_ProduceCardCount       ProduceProgressConditionType = 6
+	ProduceProgressConditionType_ProduceProgressConditionType_Vocal                  ProduceProgressConditionType = 7
+	ProduceProgressConditionType_ProduceProgressConditionType_Dance                  ProduceProgressConditionType = 8
+	ProduceProgressConditionType_ProduceProgressConditionType_Visual                 ProduceProgressConditionType = 9
+	ProduceProgressConditionType_ProduceProgressConditionType_StepNumber             ProduceProgressConditionType = 10
+	ProduceProgressConditionType_ProduceProgressConditionType_ProduceCardSearchCount ProduceProgressConditionType = 11
 )
 
 // Enum value maps for ProduceProgressConditionType.
@@ -11029,19 +11240,21 @@ var (
 		8:  "ProduceProgressConditionType_Dance",
 		9:  "ProduceProgressConditionType_Visual",
 		10: "ProduceProgressConditionType_StepNumber",
+		11: "ProduceProgressConditionType_ProduceCardSearchCount",
 	}
 	ProduceProgressConditionType_value = map[string]int32{
-		"ProduceProgressConditionType_Unknown":           0,
-		"ProduceProgressConditionType_StaminaRatio":      1,
-		"ProduceProgressConditionType_StaminaFix":        2,
-		"ProduceProgressConditionType_ProducePoint":      3,
-		"ProduceProgressConditionType_ProduceItemCount":  4,
-		"ProduceProgressConditionType_ProduceDrinkCount": 5,
-		"ProduceProgressConditionType_ProduceCardCount":  6,
-		"ProduceProgressConditionType_Vocal":             7,
-		"ProduceProgressConditionType_Dance":             8,
-		"ProduceProgressConditionType_Visual":            9,
-		"ProduceProgressConditionType_StepNumber":        10,
+		"ProduceProgressConditionType_Unknown":                0,
+		"ProduceProgressConditionType_StaminaRatio":           1,
+		"ProduceProgressConditionType_StaminaFix":             2,
+		"ProduceProgressConditionType_ProducePoint":           3,
+		"ProduceProgressConditionType_ProduceItemCount":       4,
+		"ProduceProgressConditionType_ProduceDrinkCount":      5,
+		"ProduceProgressConditionType_ProduceCardCount":       6,
+		"ProduceProgressConditionType_Vocal":                  7,
+		"ProduceProgressConditionType_Dance":                  8,
+		"ProduceProgressConditionType_Visual":                 9,
+		"ProduceProgressConditionType_StepNumber":             10,
+		"ProduceProgressConditionType_ProduceCardSearchCount": 11,
 	}
 )
 
@@ -11199,19 +11412,21 @@ func (ProduceProgressStatus) EnumDescriptor() ([]byte, []int) {
 type ProduceResourceOriginType int32
 
 const (
-	ProduceResourceOriginType_ProduceResourceOriginType_Unknown       ProduceResourceOriginType = 0
-	ProduceResourceOriginType_ProduceResourceOriginType_Produce       ProduceResourceOriginType = 1
-	ProduceResourceOriginType_ProduceResourceOriginType_IdolCard      ProduceResourceOriginType = 2
-	ProduceResourceOriginType_ProduceResourceOriginType_SupportCard   ProduceResourceOriginType = 3
-	ProduceResourceOriginType_ProduceResourceOriginType_MemoryAbility ProduceResourceOriginType = 4
-	ProduceResourceOriginType_ProduceResourceOriginType_ProduceCard   ProduceResourceOriginType = 5
-	ProduceResourceOriginType_ProduceResourceOriginType_ProduceItem   ProduceResourceOriginType = 6
-	ProduceResourceOriginType_ProduceResourceOriginType_Character     ProduceResourceOriginType = 8
-	ProduceResourceOriginType_ProduceResourceOriginType_StepAudition  ProduceResourceOriginType = 10
-	ProduceResourceOriginType_ProduceResourceOriginType_StepEvent     ProduceResourceOriginType = 11
-	ProduceResourceOriginType_ProduceResourceOriginType_StepPresent   ProduceResourceOriginType = 12
-	ProduceResourceOriginType_ProduceResourceOriginType_StepShop      ProduceResourceOriginType = 13
-	ProduceResourceOriginType_ProduceResourceOriginType_ExamGimmick   ProduceResourceOriginType = 14
+	ProduceResourceOriginType_ProduceResourceOriginType_Unknown              ProduceResourceOriginType = 0
+	ProduceResourceOriginType_ProduceResourceOriginType_Produce              ProduceResourceOriginType = 1
+	ProduceResourceOriginType_ProduceResourceOriginType_IdolCard             ProduceResourceOriginType = 2
+	ProduceResourceOriginType_ProduceResourceOriginType_SupportCard          ProduceResourceOriginType = 3
+	ProduceResourceOriginType_ProduceResourceOriginType_MemoryAbility        ProduceResourceOriginType = 4
+	ProduceResourceOriginType_ProduceResourceOriginType_ProduceCard          ProduceResourceOriginType = 5
+	ProduceResourceOriginType_ProduceResourceOriginType_ProduceItem          ProduceResourceOriginType = 6
+	ProduceResourceOriginType_ProduceResourceOriginType_ProduceCustomizeItem ProduceResourceOriginType = 7
+	ProduceResourceOriginType_ProduceResourceOriginType_Character            ProduceResourceOriginType = 8
+	ProduceResourceOriginType_ProduceResourceOriginType_StepAudition         ProduceResourceOriginType = 10
+	ProduceResourceOriginType_ProduceResourceOriginType_StepEvent            ProduceResourceOriginType = 11
+	ProduceResourceOriginType_ProduceResourceOriginType_StepPresent          ProduceResourceOriginType = 12
+	ProduceResourceOriginType_ProduceResourceOriginType_StepShop             ProduceResourceOriginType = 13
+	ProduceResourceOriginType_ProduceResourceOriginType_ExamGimmick          ProduceResourceOriginType = 14
+	ProduceResourceOriginType_ProduceResourceOriginType_StepInterval         ProduceResourceOriginType = 15
 )
 
 // Enum value maps for ProduceResourceOriginType.
@@ -11224,27 +11439,31 @@ var (
 		4:  "ProduceResourceOriginType_MemoryAbility",
 		5:  "ProduceResourceOriginType_ProduceCard",
 		6:  "ProduceResourceOriginType_ProduceItem",
+		7:  "ProduceResourceOriginType_ProduceCustomizeItem",
 		8:  "ProduceResourceOriginType_Character",
 		10: "ProduceResourceOriginType_StepAudition",
 		11: "ProduceResourceOriginType_StepEvent",
 		12: "ProduceResourceOriginType_StepPresent",
 		13: "ProduceResourceOriginType_StepShop",
 		14: "ProduceResourceOriginType_ExamGimmick",
+		15: "ProduceResourceOriginType_StepInterval",
 	}
 	ProduceResourceOriginType_value = map[string]int32{
-		"ProduceResourceOriginType_Unknown":       0,
-		"ProduceResourceOriginType_Produce":       1,
-		"ProduceResourceOriginType_IdolCard":      2,
-		"ProduceResourceOriginType_SupportCard":   3,
-		"ProduceResourceOriginType_MemoryAbility": 4,
-		"ProduceResourceOriginType_ProduceCard":   5,
-		"ProduceResourceOriginType_ProduceItem":   6,
-		"ProduceResourceOriginType_Character":     8,
-		"ProduceResourceOriginType_StepAudition":  10,
-		"ProduceResourceOriginType_StepEvent":     11,
-		"ProduceResourceOriginType_StepPresent":   12,
-		"ProduceResourceOriginType_StepShop":      13,
-		"ProduceResourceOriginType_ExamGimmick":   14,
+		"ProduceResourceOriginType_Unknown":              0,
+		"ProduceResourceOriginType_Produce":              1,
+		"ProduceResourceOriginType_IdolCard":             2,
+		"ProduceResourceOriginType_SupportCard":          3,
+		"ProduceResourceOriginType_MemoryAbility":        4,
+		"ProduceResourceOriginType_ProduceCard":          5,
+		"ProduceResourceOriginType_ProduceItem":          6,
+		"ProduceResourceOriginType_ProduceCustomizeItem": 7,
+		"ProduceResourceOriginType_Character":            8,
+		"ProduceResourceOriginType_StepAudition":         10,
+		"ProduceResourceOriginType_StepEvent":            11,
+		"ProduceResourceOriginType_StepPresent":          12,
+		"ProduceResourceOriginType_StepShop":             13,
+		"ProduceResourceOriginType_ExamGimmick":          14,
+		"ProduceResourceOriginType_StepInterval":         15,
 	}
 )
 
@@ -11278,20 +11497,24 @@ func (ProduceResourceOriginType) EnumDescriptor() ([]byte, []int) {
 type ProduceResourceType int32
 
 const (
-	ProduceResourceType_ProduceResourceType_Unknown         ProduceResourceType = 0
-	ProduceResourceType_ProduceResourceType_ProduceCard     ProduceResourceType = 1
-	ProduceResourceType_ProduceResourceType_ProduceItem     ProduceResourceType = 2
-	ProduceResourceType_ProduceResourceType_ProduceDrink    ProduceResourceType = 3
-	ProduceResourceType_ProduceResourceType_ProducePoint    ProduceResourceType = 4
-	ProduceResourceType_ProduceResourceType_Stamina         ProduceResourceType = 5
-	ProduceResourceType_ProduceResourceType_ParameterVocal  ProduceResourceType = 6
-	ProduceResourceType_ProduceResourceType_ParameterDance  ProduceResourceType = 7
-	ProduceResourceType_ProduceResourceType_ParameterVisual ProduceResourceType = 8
-	ProduceResourceType_ProduceResourceType_Vote            ProduceResourceType = 9
-	ProduceResourceType_ProduceResourceType_HighScoreGold   ProduceResourceType = 100
-	ProduceResourceType_ProduceResourceType_CardUpgrade     ProduceResourceType = 997
-	ProduceResourceType_ProduceResourceType_CardDelete      ProduceResourceType = 998
-	ProduceResourceType_ProduceResourceType_Set             ProduceResourceType = 999
+	ProduceResourceType_ProduceResourceType_Unknown              ProduceResourceType = 0
+	ProduceResourceType_ProduceResourceType_ProduceCard          ProduceResourceType = 1
+	ProduceResourceType_ProduceResourceType_ProduceItem          ProduceResourceType = 2
+	ProduceResourceType_ProduceResourceType_ProduceDrink         ProduceResourceType = 3
+	ProduceResourceType_ProduceResourceType_ProducePoint         ProduceResourceType = 4
+	ProduceResourceType_ProduceResourceType_Stamina              ProduceResourceType = 5
+	ProduceResourceType_ProduceResourceType_ParameterVocal       ProduceResourceType = 6
+	ProduceResourceType_ProduceResourceType_ParameterDance       ProduceResourceType = 7
+	ProduceResourceType_ProduceResourceType_ParameterVisual      ProduceResourceType = 8
+	ProduceResourceType_ProduceResourceType_Vote                 ProduceResourceType = 9
+	ProduceResourceType_ProduceResourceType_Star                 ProduceResourceType = 10
+	ProduceResourceType_ProduceResourceType_ProduceCustomizeItem ProduceResourceType = 11
+	ProduceResourceType_ProduceResourceType_HighScoreGold        ProduceResourceType = 100
+	ProduceResourceType_ProduceResourceType_CardChange           ProduceResourceType = 994
+	ProduceResourceType_ProduceResourceType_CardCustomize        ProduceResourceType = 995
+	ProduceResourceType_ProduceResourceType_CardUpgrade          ProduceResourceType = 997
+	ProduceResourceType_ProduceResourceType_CardDelete           ProduceResourceType = 998
+	ProduceResourceType_ProduceResourceType_Set                  ProduceResourceType = 999
 )
 
 // Enum value maps for ProduceResourceType.
@@ -11307,26 +11530,34 @@ var (
 		7:   "ProduceResourceType_ParameterDance",
 		8:   "ProduceResourceType_ParameterVisual",
 		9:   "ProduceResourceType_Vote",
+		10:  "ProduceResourceType_Star",
+		11:  "ProduceResourceType_ProduceCustomizeItem",
 		100: "ProduceResourceType_HighScoreGold",
+		994: "ProduceResourceType_CardChange",
+		995: "ProduceResourceType_CardCustomize",
 		997: "ProduceResourceType_CardUpgrade",
 		998: "ProduceResourceType_CardDelete",
 		999: "ProduceResourceType_Set",
 	}
 	ProduceResourceType_value = map[string]int32{
-		"ProduceResourceType_Unknown":         0,
-		"ProduceResourceType_ProduceCard":     1,
-		"ProduceResourceType_ProduceItem":     2,
-		"ProduceResourceType_ProduceDrink":    3,
-		"ProduceResourceType_ProducePoint":    4,
-		"ProduceResourceType_Stamina":         5,
-		"ProduceResourceType_ParameterVocal":  6,
-		"ProduceResourceType_ParameterDance":  7,
-		"ProduceResourceType_ParameterVisual": 8,
-		"ProduceResourceType_Vote":            9,
-		"ProduceResourceType_HighScoreGold":   100,
-		"ProduceResourceType_CardUpgrade":     997,
-		"ProduceResourceType_CardDelete":      998,
-		"ProduceResourceType_Set":             999,
+		"ProduceResourceType_Unknown":              0,
+		"ProduceResourceType_ProduceCard":          1,
+		"ProduceResourceType_ProduceItem":          2,
+		"ProduceResourceType_ProduceDrink":         3,
+		"ProduceResourceType_ProducePoint":         4,
+		"ProduceResourceType_Stamina":              5,
+		"ProduceResourceType_ParameterVocal":       6,
+		"ProduceResourceType_ParameterDance":       7,
+		"ProduceResourceType_ParameterVisual":      8,
+		"ProduceResourceType_Vote":                 9,
+		"ProduceResourceType_Star":                 10,
+		"ProduceResourceType_ProduceCustomizeItem": 11,
+		"ProduceResourceType_HighScoreGold":        100,
+		"ProduceResourceType_CardChange":           994,
+		"ProduceResourceType_CardCustomize":        995,
+		"ProduceResourceType_CardUpgrade":          997,
+		"ProduceResourceType_CardDelete":           998,
+		"ProduceResourceType_Set":                  999,
 	}
 )
 
@@ -11406,180 +11637,6 @@ func (ProduceRewardType) EnumDescriptor() ([]byte, []int) {
 	return file_penum_proto_rawDescGZIP(), []int{146}
 }
 
-type ProducerLevelUnlockType int32
-
-const (
-	ProducerLevelUnlockType_ProducerLevelUnlockType_Unknown                      ProducerLevelUnlockType = 0
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCard                  ProducerLevelUnlockType = 1
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceDrink                 ProducerLevelUnlockType = 2
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardConversion        ProducerLevelUnlockType = 3
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ShopProduceCardUpgrade       ProducerLevelUnlockType = 10
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ShopProduceCardDelete        ProducerLevelUnlockType = 11
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardSelectRerollCount ProducerLevelUnlockType = 12
-	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardExcludeCount      ProducerLevelUnlockType = 13
-)
-
-// Enum value maps for ProducerLevelUnlockType.
-var (
-	ProducerLevelUnlockType_name = map[int32]string{
-		0:  "ProducerLevelUnlockType_Unknown",
-		1:  "ProducerLevelUnlockType_ProduceCard",
-		2:  "ProducerLevelUnlockType_ProduceDrink",
-		3:  "ProducerLevelUnlockType_ProduceCardConversion",
-		10: "ProducerLevelUnlockType_ShopProduceCardUpgrade",
-		11: "ProducerLevelUnlockType_ShopProduceCardDelete",
-		12: "ProducerLevelUnlockType_ProduceCardSelectRerollCount",
-		13: "ProducerLevelUnlockType_ProduceCardExcludeCount",
-	}
-	ProducerLevelUnlockType_value = map[string]int32{
-		"ProducerLevelUnlockType_Unknown":                      0,
-		"ProducerLevelUnlockType_ProduceCard":                  1,
-		"ProducerLevelUnlockType_ProduceDrink":                 2,
-		"ProducerLevelUnlockType_ProduceCardConversion":        3,
-		"ProducerLevelUnlockType_ShopProduceCardUpgrade":       10,
-		"ProducerLevelUnlockType_ShopProduceCardDelete":        11,
-		"ProducerLevelUnlockType_ProduceCardSelectRerollCount": 12,
-		"ProducerLevelUnlockType_ProduceCardExcludeCount":      13,
-	}
-)
-
-func (x ProducerLevelUnlockType) Enum() *ProducerLevelUnlockType {
-	p := new(ProducerLevelUnlockType)
-	*p = x
-	return p
-}
-
-func (x ProducerLevelUnlockType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ProducerLevelUnlockType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[147].Descriptor()
-}
-
-func (ProducerLevelUnlockType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[147]
-}
-
-func (x ProducerLevelUnlockType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ProducerLevelUnlockType.Descriptor instead.
-func (ProducerLevelUnlockType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{147}
-}
-
-type ProducerRankingGrade int32
-
-const (
-	ProducerRankingGrade_ProducerRankingGrade_Unknown     ProducerRankingGrade = 0
-	ProducerRankingGrade_ProducerRankingGrade_Normal      ProducerRankingGrade = 1
-	ProducerRankingGrade_ProducerRankingGrade_Bronze      ProducerRankingGrade = 2
-	ProducerRankingGrade_ProducerRankingGrade_Silver      ProducerRankingGrade = 3
-	ProducerRankingGrade_ProducerRankingGrade_Gold        ProducerRankingGrade = 4
-	ProducerRankingGrade_ProducerRankingGrade_Rainbow     ProducerRankingGrade = 5
-	ProducerRankingGrade_ProducerRankingGrade_RainbowPlus ProducerRankingGrade = 6
-)
-
-// Enum value maps for ProducerRankingGrade.
-var (
-	ProducerRankingGrade_name = map[int32]string{
-		0: "ProducerRankingGrade_Unknown",
-		1: "ProducerRankingGrade_Normal",
-		2: "ProducerRankingGrade_Bronze",
-		3: "ProducerRankingGrade_Silver",
-		4: "ProducerRankingGrade_Gold",
-		5: "ProducerRankingGrade_Rainbow",
-		6: "ProducerRankingGrade_RainbowPlus",
-	}
-	ProducerRankingGrade_value = map[string]int32{
-		"ProducerRankingGrade_Unknown":     0,
-		"ProducerRankingGrade_Normal":      1,
-		"ProducerRankingGrade_Bronze":      2,
-		"ProducerRankingGrade_Silver":      3,
-		"ProducerRankingGrade_Gold":        4,
-		"ProducerRankingGrade_Rainbow":     5,
-		"ProducerRankingGrade_RainbowPlus": 6,
-	}
-)
-
-func (x ProducerRankingGrade) Enum() *ProducerRankingGrade {
-	p := new(ProducerRankingGrade)
-	*p = x
-	return p
-}
-
-func (x ProducerRankingGrade) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ProducerRankingGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[148].Descriptor()
-}
-
-func (ProducerRankingGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[148]
-}
-
-func (x ProducerRankingGrade) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ProducerRankingGrade.Descriptor instead.
-func (ProducerRankingGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{148}
-}
-
-type ProducerRankingPointType int32
-
-const (
-	ProducerRankingPointType_ProducerRankingPointType_Unknown ProducerRankingPointType = 0
-	ProducerRankingPointType_ProducerRankingPointType_Produce ProducerRankingPointType = 1
-	ProducerRankingPointType_ProducerRankingPointType_Tower   ProducerRankingPointType = 2
-)
-
-// Enum value maps for ProducerRankingPointType.
-var (
-	ProducerRankingPointType_name = map[int32]string{
-		0: "ProducerRankingPointType_Unknown",
-		1: "ProducerRankingPointType_Produce",
-		2: "ProducerRankingPointType_Tower",
-	}
-	ProducerRankingPointType_value = map[string]int32{
-		"ProducerRankingPointType_Unknown": 0,
-		"ProducerRankingPointType_Produce": 1,
-		"ProducerRankingPointType_Tower":   2,
-	}
-)
-
-func (x ProducerRankingPointType) Enum() *ProducerRankingPointType {
-	p := new(ProducerRankingPointType)
-	*p = x
-	return p
-}
-
-func (x ProducerRankingPointType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ProducerRankingPointType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[149].Descriptor()
-}
-
-func (ProducerRankingPointType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[149]
-}
-
-func (x ProducerRankingPointType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ProducerRankingPointType.Descriptor instead.
-func (ProducerRankingPointType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{149}
-}
-
 type ProduceScheduleLocationType int32
 
 const (
@@ -11594,6 +11651,11 @@ const (
 	ProduceScheduleLocationType_ProduceScheduleLocationType_Classroom2    ProduceScheduleLocationType = 8
 	ProduceScheduleLocationType_ProduceScheduleLocationType_Rooftop2      ProduceScheduleLocationType = 9
 	ProduceScheduleLocationType_ProduceScheduleLocationType_Courtyard2    ProduceScheduleLocationType = 10
+	ProduceScheduleLocationType_ProduceScheduleLocationType_ProducerRoom5 ProduceScheduleLocationType = 11
+	ProduceScheduleLocationType_ProduceScheduleLocationType_ProducerRoom6 ProduceScheduleLocationType = 12
+	ProduceScheduleLocationType_ProduceScheduleLocationType_Rooftop3      ProduceScheduleLocationType = 13
+	ProduceScheduleLocationType_ProduceScheduleLocationType_Courtyard3    ProduceScheduleLocationType = 14
+	ProduceScheduleLocationType_ProduceScheduleLocationType_Classroom3    ProduceScheduleLocationType = 15
 )
 
 // Enum value maps for ProduceScheduleLocationType.
@@ -11610,6 +11672,11 @@ var (
 		8:  "ProduceScheduleLocationType_Classroom2",
 		9:  "ProduceScheduleLocationType_Rooftop2",
 		10: "ProduceScheduleLocationType_Courtyard2",
+		11: "ProduceScheduleLocationType_ProducerRoom5",
+		12: "ProduceScheduleLocationType_ProducerRoom6",
+		13: "ProduceScheduleLocationType_Rooftop3",
+		14: "ProduceScheduleLocationType_Courtyard3",
+		15: "ProduceScheduleLocationType_Classroom3",
 	}
 	ProduceScheduleLocationType_value = map[string]int32{
 		"ProduceScheduleLocationType_Unknown":       0,
@@ -11623,6 +11690,11 @@ var (
 		"ProduceScheduleLocationType_Classroom2":    8,
 		"ProduceScheduleLocationType_Rooftop2":      9,
 		"ProduceScheduleLocationType_Courtyard2":    10,
+		"ProduceScheduleLocationType_ProducerRoom5": 11,
+		"ProduceScheduleLocationType_ProducerRoom6": 12,
+		"ProduceScheduleLocationType_Rooftop3":      13,
+		"ProduceScheduleLocationType_Courtyard3":    14,
+		"ProduceScheduleLocationType_Classroom3":    15,
 	}
 )
 
@@ -11637,11 +11709,11 @@ func (x ProduceScheduleLocationType) String() string {
 }
 
 func (ProduceScheduleLocationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[150].Descriptor()
+	return file_penum_proto_enumTypes[147].Descriptor()
 }
 
 func (ProduceScheduleLocationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[150]
+	return &file_penum_proto_enumTypes[147]
 }
 
 func (x ProduceScheduleLocationType) Number() protoreflect.EnumNumber {
@@ -11650,7 +11722,7 @@ func (x ProduceScheduleLocationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleLocationType.Descriptor instead.
 func (ProduceScheduleLocationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{150}
+	return file_penum_proto_rawDescGZIP(), []int{147}
 }
 
 type ProduceScheduleMotionType int32
@@ -11692,11 +11764,11 @@ func (x ProduceScheduleMotionType) String() string {
 }
 
 func (ProduceScheduleMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[151].Descriptor()
+	return file_penum_proto_enumTypes[148].Descriptor()
 }
 
 func (ProduceScheduleMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[151]
+	return &file_penum_proto_enumTypes[148]
 }
 
 func (x ProduceScheduleMotionType) Number() protoreflect.EnumNumber {
@@ -11705,7 +11777,7 @@ func (x ProduceScheduleMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleMotionType.Descriptor instead.
 func (ProduceScheduleMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{151}
+	return file_penum_proto_rawDescGZIP(), []int{148}
 }
 
 type ProduceScheduleStaminaMotionType int32
@@ -11741,11 +11813,11 @@ func (x ProduceScheduleStaminaMotionType) String() string {
 }
 
 func (ProduceScheduleStaminaMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[152].Descriptor()
+	return file_penum_proto_enumTypes[149].Descriptor()
 }
 
 func (ProduceScheduleStaminaMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[152]
+	return &file_penum_proto_enumTypes[149]
 }
 
 func (x ProduceScheduleStaminaMotionType) Number() protoreflect.EnumNumber {
@@ -11754,7 +11826,7 @@ func (x ProduceScheduleStaminaMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceScheduleStaminaMotionType.Descriptor instead.
 func (ProduceScheduleStaminaMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{152}
+	return file_penum_proto_rawDescGZIP(), []int{149}
 }
 
 type ProduceSelectScreenOrderType int32
@@ -11790,11 +11862,11 @@ func (x ProduceSelectScreenOrderType) String() string {
 }
 
 func (ProduceSelectScreenOrderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[153].Descriptor()
+	return file_penum_proto_enumTypes[150].Descriptor()
 }
 
 func (ProduceSelectScreenOrderType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[153]
+	return &file_penum_proto_enumTypes[150]
 }
 
 func (x ProduceSelectScreenOrderType) Number() protoreflect.EnumNumber {
@@ -11803,7 +11875,7 @@ func (x ProduceSelectScreenOrderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceSelectScreenOrderType.Descriptor instead.
 func (ProduceSelectScreenOrderType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{153}
+	return file_penum_proto_rawDescGZIP(), []int{150}
 }
 
 type ProduceSkillEffectType int32
@@ -11860,11 +11932,11 @@ func (x ProduceSkillEffectType) String() string {
 }
 
 func (ProduceSkillEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[154].Descriptor()
+	return file_penum_proto_enumTypes[151].Descriptor()
 }
 
 func (ProduceSkillEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[154]
+	return &file_penum_proto_enumTypes[151]
 }
 
 func (x ProduceSkillEffectType) Number() protoreflect.EnumNumber {
@@ -11873,7 +11945,56 @@ func (x ProduceSkillEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceSkillEffectType.Descriptor instead.
 func (ProduceSkillEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{154}
+	return file_penum_proto_rawDescGZIP(), []int{151}
+}
+
+type ProduceSplitType int32
+
+const (
+	ProduceSplitType_ProduceSplitType_Unknown   ProduceSplitType = 0
+	ProduceSplitType_ProduceSplitType_Selection ProduceSplitType = 1
+	ProduceSplitType_ProduceSplitType_Final     ProduceSplitType = 2
+)
+
+// Enum value maps for ProduceSplitType.
+var (
+	ProduceSplitType_name = map[int32]string{
+		0: "ProduceSplitType_Unknown",
+		1: "ProduceSplitType_Selection",
+		2: "ProduceSplitType_Final",
+	}
+	ProduceSplitType_value = map[string]int32{
+		"ProduceSplitType_Unknown":   0,
+		"ProduceSplitType_Selection": 1,
+		"ProduceSplitType_Final":     2,
+	}
+)
+
+func (x ProduceSplitType) Enum() *ProduceSplitType {
+	p := new(ProduceSplitType)
+	*p = x
+	return p
+}
+
+func (x ProduceSplitType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ProduceSplitType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[152].Descriptor()
+}
+
+func (ProduceSplitType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[152]
+}
+
+func (x ProduceSplitType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ProduceSplitType.Descriptor instead.
+func (ProduceSplitType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{152}
 }
 
 type ProduceStartMotionType int32
@@ -11909,11 +12030,11 @@ func (x ProduceStartMotionType) String() string {
 }
 
 func (ProduceStartMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[155].Descriptor()
+	return file_penum_proto_enumTypes[153].Descriptor()
 }
 
 func (ProduceStartMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[155]
+	return &file_penum_proto_enumTypes[153]
 }
 
 func (x ProduceStartMotionType) Number() protoreflect.EnumNumber {
@@ -11922,18 +12043,19 @@ func (x ProduceStartMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStartMotionType.Descriptor instead.
 func (ProduceStartMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{155}
+	return file_penum_proto_rawDescGZIP(), []int{153}
 }
 
 type ProduceStepAuditionMotionType int32
 
 const (
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Unknown ProduceStepAuditionMotionType = 0
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Start   ProduceStepAuditionMotionType = 1
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result1 ProduceStepAuditionMotionType = 2
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result2 ProduceStepAuditionMotionType = 3
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result3 ProduceStepAuditionMotionType = 4
-	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Failure ProduceStepAuditionMotionType = 5
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Unknown   ProduceStepAuditionMotionType = 0
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Start     ProduceStepAuditionMotionType = 1
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result1   ProduceStepAuditionMotionType = 2
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result2   ProduceStepAuditionMotionType = 3
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Result3   ProduceStepAuditionMotionType = 4
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_Failure   ProduceStepAuditionMotionType = 5
+	ProduceStepAuditionMotionType_ProduceStepAuditionMotionType_PreResult ProduceStepAuditionMotionType = 6
 )
 
 // Enum value maps for ProduceStepAuditionMotionType.
@@ -11945,14 +12067,16 @@ var (
 		3: "ProduceStepAuditionMotionType_Result2",
 		4: "ProduceStepAuditionMotionType_Result3",
 		5: "ProduceStepAuditionMotionType_Failure",
+		6: "ProduceStepAuditionMotionType_PreResult",
 	}
 	ProduceStepAuditionMotionType_value = map[string]int32{
-		"ProduceStepAuditionMotionType_Unknown": 0,
-		"ProduceStepAuditionMotionType_Start":   1,
-		"ProduceStepAuditionMotionType_Result1": 2,
-		"ProduceStepAuditionMotionType_Result2": 3,
-		"ProduceStepAuditionMotionType_Result3": 4,
-		"ProduceStepAuditionMotionType_Failure": 5,
+		"ProduceStepAuditionMotionType_Unknown":   0,
+		"ProduceStepAuditionMotionType_Start":     1,
+		"ProduceStepAuditionMotionType_Result1":   2,
+		"ProduceStepAuditionMotionType_Result2":   3,
+		"ProduceStepAuditionMotionType_Result3":   4,
+		"ProduceStepAuditionMotionType_Failure":   5,
+		"ProduceStepAuditionMotionType_PreResult": 6,
 	}
 )
 
@@ -11967,11 +12091,11 @@ func (x ProduceStepAuditionMotionType) String() string {
 }
 
 func (ProduceStepAuditionMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[156].Descriptor()
+	return file_penum_proto_enumTypes[154].Descriptor()
 }
 
 func (ProduceStepAuditionMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[156]
+	return &file_penum_proto_enumTypes[154]
 }
 
 func (x ProduceStepAuditionMotionType) Number() protoreflect.EnumNumber {
@@ -11980,7 +12104,7 @@ func (x ProduceStepAuditionMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepAuditionMotionType.Descriptor instead.
 func (ProduceStepAuditionMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{156}
+	return file_penum_proto_rawDescGZIP(), []int{154}
 }
 
 type ProduceStepAuditionType int32
@@ -12040,11 +12164,11 @@ func (x ProduceStepAuditionType) String() string {
 }
 
 func (ProduceStepAuditionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[157].Descriptor()
+	return file_penum_proto_enumTypes[155].Descriptor()
 }
 
 func (ProduceStepAuditionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[157]
+	return &file_penum_proto_enumTypes[155]
 }
 
 func (x ProduceStepAuditionType) Number() protoreflect.EnumNumber {
@@ -12053,7 +12177,7 @@ func (x ProduceStepAuditionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepAuditionType.Descriptor instead.
 func (ProduceStepAuditionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{157}
+	return file_penum_proto_rawDescGZIP(), []int{155}
 }
 
 type ProduceStepBusinessType int32
@@ -12095,11 +12219,11 @@ func (x ProduceStepBusinessType) String() string {
 }
 
 func (ProduceStepBusinessType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[158].Descriptor()
+	return file_penum_proto_enumTypes[156].Descriptor()
 }
 
 func (ProduceStepBusinessType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[158]
+	return &file_penum_proto_enumTypes[156]
 }
 
 func (x ProduceStepBusinessType) Number() protoreflect.EnumNumber {
@@ -12108,7 +12232,7 @@ func (x ProduceStepBusinessType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepBusinessType.Descriptor instead.
 func (ProduceStepBusinessType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{158}
+	return file_penum_proto_rawDescGZIP(), []int{156}
 }
 
 type ProduceStepFanPresentMotionType int32
@@ -12144,11 +12268,11 @@ func (x ProduceStepFanPresentMotionType) String() string {
 }
 
 func (ProduceStepFanPresentMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[159].Descriptor()
+	return file_penum_proto_enumTypes[157].Descriptor()
 }
 
 func (ProduceStepFanPresentMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[159]
+	return &file_penum_proto_enumTypes[157]
 }
 
 func (x ProduceStepFanPresentMotionType) Number() protoreflect.EnumNumber {
@@ -12157,7 +12281,7 @@ func (x ProduceStepFanPresentMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepFanPresentMotionType.Descriptor instead.
 func (ProduceStepFanPresentMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{159}
+	return file_penum_proto_rawDescGZIP(), []int{157}
 }
 
 type ProduceStepLessonType int32
@@ -12235,11 +12359,11 @@ func (x ProduceStepLessonType) String() string {
 }
 
 func (ProduceStepLessonType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[160].Descriptor()
+	return file_penum_proto_enumTypes[158].Descriptor()
 }
 
 func (ProduceStepLessonType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[160]
+	return &file_penum_proto_enumTypes[158]
 }
 
 func (x ProduceStepLessonType) Number() protoreflect.EnumNumber {
@@ -12248,7 +12372,7 @@ func (x ProduceStepLessonType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepLessonType.Descriptor instead.
 func (ProduceStepLessonType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{160}
+	return file_penum_proto_rawDescGZIP(), []int{158}
 }
 
 type ProduceStepPhaseType int32
@@ -12284,11 +12408,11 @@ func (x ProduceStepPhaseType) String() string {
 }
 
 func (ProduceStepPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[161].Descriptor()
+	return file_penum_proto_enumTypes[159].Descriptor()
 }
 
 func (ProduceStepPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[161]
+	return &file_penum_proto_enumTypes[159]
 }
 
 func (x ProduceStepPhaseType) Number() protoreflect.EnumNumber {
@@ -12297,47 +12421,63 @@ func (x ProduceStepPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepPhaseType.Descriptor instead.
 func (ProduceStepPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{161}
+	return file_penum_proto_rawDescGZIP(), []int{159}
 }
 
 type ProduceStepType int32
 
 const (
-	ProduceStepType_ProduceStepType_Unknown                  ProduceStepType = 0
-	ProduceStepType_ProduceStepType_LessonVocalNormal        ProduceStepType = 1
-	ProduceStepType_ProduceStepType_LessonVocalSp            ProduceStepType = 2
-	ProduceStepType_ProduceStepType_LessonVocalHard          ProduceStepType = 3
-	ProduceStepType_ProduceStepType_LessonDanceNormal        ProduceStepType = 4
-	ProduceStepType_ProduceStepType_LessonDanceSp            ProduceStepType = 5
-	ProduceStepType_ProduceStepType_LessonDanceHard          ProduceStepType = 6
-	ProduceStepType_ProduceStepType_LessonVisualNormal       ProduceStepType = 7
-	ProduceStepType_ProduceStepType_LessonVisualSp           ProduceStepType = 8
-	ProduceStepType_ProduceStepType_LessonVisualHard         ProduceStepType = 9
-	ProduceStepType_ProduceStepType_Event                    ProduceStepType = 10
-	ProduceStepType_ProduceStepType_EventActivity            ProduceStepType = 11
-	ProduceStepType_ProduceStepType_EventSchool              ProduceStepType = 12
-	ProduceStepType_ProduceStepType_Shop                     ProduceStepType = 13
-	ProduceStepType_ProduceStepType_Refresh                  ProduceStepType = 14
-	ProduceStepType_ProduceStepType_Present                  ProduceStepType = 15
-	ProduceStepType_ProduceStepType_AuditionMid1             ProduceStepType = 16
-	ProduceStepType_ProduceStepType_AuditionMid2             ProduceStepType = 17
-	ProduceStepType_ProduceStepType_AuditionFinal            ProduceStepType = 18
-	ProduceStepType_ProduceStepType_SelfLessonVocalNormal    ProduceStepType = 19
-	ProduceStepType_ProduceStepType_SelfLessonVocalSp        ProduceStepType = 20
-	ProduceStepType_ProduceStepType_SelfLessonDanceNormal    ProduceStepType = 21
-	ProduceStepType_ProduceStepType_SelfLessonDanceSp        ProduceStepType = 22
-	ProduceStepType_ProduceStepType_SelfLessonVisualNormal   ProduceStepType = 23
-	ProduceStepType_ProduceStepType_SelfLessonVisualSp       ProduceStepType = 24
-	ProduceStepType_ProduceStepType_Business                 ProduceStepType = 25
-	ProduceStepType_ProduceStepType_EventBusiness            ProduceStepType = 26
-	ProduceStepType_ProduceStepType_FanPresent               ProduceStepType = 27
-	ProduceStepType_ProduceStepType_Customize                ProduceStepType = 28
-	ProduceStepType_ProduceStepType_LegendLessonVocalNormal  ProduceStepType = 29
-	ProduceStepType_ProduceStepType_LegendLessonVocalSp      ProduceStepType = 30
-	ProduceStepType_ProduceStepType_LegendLessonDanceNormal  ProduceStepType = 31
-	ProduceStepType_ProduceStepType_LegendLessonDanceSp      ProduceStepType = 32
-	ProduceStepType_ProduceStepType_LegendLessonVisualNormal ProduceStepType = 33
-	ProduceStepType_ProduceStepType_LegendLessonVisualSp     ProduceStepType = 34
+	ProduceStepType_ProduceStepType_Unknown                    ProduceStepType = 0
+	ProduceStepType_ProduceStepType_LessonVocalNormal          ProduceStepType = 1
+	ProduceStepType_ProduceStepType_LessonVocalSp              ProduceStepType = 2
+	ProduceStepType_ProduceStepType_LessonVocalHard            ProduceStepType = 3
+	ProduceStepType_ProduceStepType_LessonDanceNormal          ProduceStepType = 4
+	ProduceStepType_ProduceStepType_LessonDanceSp              ProduceStepType = 5
+	ProduceStepType_ProduceStepType_LessonDanceHard            ProduceStepType = 6
+	ProduceStepType_ProduceStepType_LessonVisualNormal         ProduceStepType = 7
+	ProduceStepType_ProduceStepType_LessonVisualSp             ProduceStepType = 8
+	ProduceStepType_ProduceStepType_LessonVisualHard           ProduceStepType = 9
+	ProduceStepType_ProduceStepType_Event                      ProduceStepType = 10
+	ProduceStepType_ProduceStepType_EventActivity              ProduceStepType = 11
+	ProduceStepType_ProduceStepType_EventSchool                ProduceStepType = 12
+	ProduceStepType_ProduceStepType_Shop                       ProduceStepType = 13
+	ProduceStepType_ProduceStepType_Refresh                    ProduceStepType = 14
+	ProduceStepType_ProduceStepType_Present                    ProduceStepType = 15
+	ProduceStepType_ProduceStepType_AuditionMid1               ProduceStepType = 16
+	ProduceStepType_ProduceStepType_AuditionMid2               ProduceStepType = 17
+	ProduceStepType_ProduceStepType_AuditionFinal              ProduceStepType = 18
+	ProduceStepType_ProduceStepType_SelfLessonVocalNormal      ProduceStepType = 19
+	ProduceStepType_ProduceStepType_SelfLessonVocalSp          ProduceStepType = 20
+	ProduceStepType_ProduceStepType_SelfLessonDanceNormal      ProduceStepType = 21
+	ProduceStepType_ProduceStepType_SelfLessonDanceSp          ProduceStepType = 22
+	ProduceStepType_ProduceStepType_SelfLessonVisualNormal     ProduceStepType = 23
+	ProduceStepType_ProduceStepType_SelfLessonVisualSp         ProduceStepType = 24
+	ProduceStepType_ProduceStepType_Business                   ProduceStepType = 25
+	ProduceStepType_ProduceStepType_EventBusiness              ProduceStepType = 26
+	ProduceStepType_ProduceStepType_FanPresent                 ProduceStepType = 27
+	ProduceStepType_ProduceStepType_Customize                  ProduceStepType = 28
+	ProduceStepType_ProduceStepType_LegendLessonVocalNormal    ProduceStepType = 29
+	ProduceStepType_ProduceStepType_LegendLessonVocalSp        ProduceStepType = 30
+	ProduceStepType_ProduceStepType_LegendLessonDanceNormal    ProduceStepType = 31
+	ProduceStepType_ProduceStepType_LegendLessonDanceSp        ProduceStepType = 32
+	ProduceStepType_ProduceStepType_LegendLessonVisualNormal   ProduceStepType = 33
+	ProduceStepType_ProduceStepType_LegendLessonVisualSp       ProduceStepType = 34
+	ProduceStepType_ProduceStepType_OpenLessonVocalNormal      ProduceStepType = 35
+	ProduceStepType_ProduceStepType_OpenLessonVocalSp          ProduceStepType = 36
+	ProduceStepType_ProduceStepType_OpenLessonVocalNormalStar  ProduceStepType = 37
+	ProduceStepType_ProduceStepType_OpenLessonVocalSpStar      ProduceStepType = 38
+	ProduceStepType_ProduceStepType_OpenLessonDanceNormal      ProduceStepType = 39
+	ProduceStepType_ProduceStepType_OpenLessonDanceSp          ProduceStepType = 40
+	ProduceStepType_ProduceStepType_OpenLessonDanceNormalStar  ProduceStepType = 41
+	ProduceStepType_ProduceStepType_OpenLessonDanceSpStar      ProduceStepType = 42
+	ProduceStepType_ProduceStepType_OpenLessonVisualNormal     ProduceStepType = 43
+	ProduceStepType_ProduceStepType_OpenLessonVisualSp         ProduceStepType = 44
+	ProduceStepType_ProduceStepType_OpenLessonVisualNormalStar ProduceStepType = 45
+	ProduceStepType_ProduceStepType_OpenLessonVisualSpStar     ProduceStepType = 46
+	ProduceStepType_ProduceStepType_Interval                   ProduceStepType = 47
+	ProduceStepType_ProduceStepType_EventSchoolVocal           ProduceStepType = 48
+	ProduceStepType_ProduceStepType_EventSchoolDance           ProduceStepType = 49
+	ProduceStepType_ProduceStepType_EventSchoolVisual          ProduceStepType = 50
 )
 
 // Enum value maps for ProduceStepType.
@@ -12378,43 +12518,75 @@ var (
 		32: "ProduceStepType_LegendLessonDanceSp",
 		33: "ProduceStepType_LegendLessonVisualNormal",
 		34: "ProduceStepType_LegendLessonVisualSp",
+		35: "ProduceStepType_OpenLessonVocalNormal",
+		36: "ProduceStepType_OpenLessonVocalSp",
+		37: "ProduceStepType_OpenLessonVocalNormalStar",
+		38: "ProduceStepType_OpenLessonVocalSpStar",
+		39: "ProduceStepType_OpenLessonDanceNormal",
+		40: "ProduceStepType_OpenLessonDanceSp",
+		41: "ProduceStepType_OpenLessonDanceNormalStar",
+		42: "ProduceStepType_OpenLessonDanceSpStar",
+		43: "ProduceStepType_OpenLessonVisualNormal",
+		44: "ProduceStepType_OpenLessonVisualSp",
+		45: "ProduceStepType_OpenLessonVisualNormalStar",
+		46: "ProduceStepType_OpenLessonVisualSpStar",
+		47: "ProduceStepType_Interval",
+		48: "ProduceStepType_EventSchoolVocal",
+		49: "ProduceStepType_EventSchoolDance",
+		50: "ProduceStepType_EventSchoolVisual",
 	}
 	ProduceStepType_value = map[string]int32{
-		"ProduceStepType_Unknown":                  0,
-		"ProduceStepType_LessonVocalNormal":        1,
-		"ProduceStepType_LessonVocalSp":            2,
-		"ProduceStepType_LessonVocalHard":          3,
-		"ProduceStepType_LessonDanceNormal":        4,
-		"ProduceStepType_LessonDanceSp":            5,
-		"ProduceStepType_LessonDanceHard":          6,
-		"ProduceStepType_LessonVisualNormal":       7,
-		"ProduceStepType_LessonVisualSp":           8,
-		"ProduceStepType_LessonVisualHard":         9,
-		"ProduceStepType_Event":                    10,
-		"ProduceStepType_EventActivity":            11,
-		"ProduceStepType_EventSchool":              12,
-		"ProduceStepType_Shop":                     13,
-		"ProduceStepType_Refresh":                  14,
-		"ProduceStepType_Present":                  15,
-		"ProduceStepType_AuditionMid1":             16,
-		"ProduceStepType_AuditionMid2":             17,
-		"ProduceStepType_AuditionFinal":            18,
-		"ProduceStepType_SelfLessonVocalNormal":    19,
-		"ProduceStepType_SelfLessonVocalSp":        20,
-		"ProduceStepType_SelfLessonDanceNormal":    21,
-		"ProduceStepType_SelfLessonDanceSp":        22,
-		"ProduceStepType_SelfLessonVisualNormal":   23,
-		"ProduceStepType_SelfLessonVisualSp":       24,
-		"ProduceStepType_Business":                 25,
-		"ProduceStepType_EventBusiness":            26,
-		"ProduceStepType_FanPresent":               27,
-		"ProduceStepType_Customize":                28,
-		"ProduceStepType_LegendLessonVocalNormal":  29,
-		"ProduceStepType_LegendLessonVocalSp":      30,
-		"ProduceStepType_LegendLessonDanceNormal":  31,
-		"ProduceStepType_LegendLessonDanceSp":      32,
-		"ProduceStepType_LegendLessonVisualNormal": 33,
-		"ProduceStepType_LegendLessonVisualSp":     34,
+		"ProduceStepType_Unknown":                    0,
+		"ProduceStepType_LessonVocalNormal":          1,
+		"ProduceStepType_LessonVocalSp":              2,
+		"ProduceStepType_LessonVocalHard":            3,
+		"ProduceStepType_LessonDanceNormal":          4,
+		"ProduceStepType_LessonDanceSp":              5,
+		"ProduceStepType_LessonDanceHard":            6,
+		"ProduceStepType_LessonVisualNormal":         7,
+		"ProduceStepType_LessonVisualSp":             8,
+		"ProduceStepType_LessonVisualHard":           9,
+		"ProduceStepType_Event":                      10,
+		"ProduceStepType_EventActivity":              11,
+		"ProduceStepType_EventSchool":                12,
+		"ProduceStepType_Shop":                       13,
+		"ProduceStepType_Refresh":                    14,
+		"ProduceStepType_Present":                    15,
+		"ProduceStepType_AuditionMid1":               16,
+		"ProduceStepType_AuditionMid2":               17,
+		"ProduceStepType_AuditionFinal":              18,
+		"ProduceStepType_SelfLessonVocalNormal":      19,
+		"ProduceStepType_SelfLessonVocalSp":          20,
+		"ProduceStepType_SelfLessonDanceNormal":      21,
+		"ProduceStepType_SelfLessonDanceSp":          22,
+		"ProduceStepType_SelfLessonVisualNormal":     23,
+		"ProduceStepType_SelfLessonVisualSp":         24,
+		"ProduceStepType_Business":                   25,
+		"ProduceStepType_EventBusiness":              26,
+		"ProduceStepType_FanPresent":                 27,
+		"ProduceStepType_Customize":                  28,
+		"ProduceStepType_LegendLessonVocalNormal":    29,
+		"ProduceStepType_LegendLessonVocalSp":        30,
+		"ProduceStepType_LegendLessonDanceNormal":    31,
+		"ProduceStepType_LegendLessonDanceSp":        32,
+		"ProduceStepType_LegendLessonVisualNormal":   33,
+		"ProduceStepType_LegendLessonVisualSp":       34,
+		"ProduceStepType_OpenLessonVocalNormal":      35,
+		"ProduceStepType_OpenLessonVocalSp":          36,
+		"ProduceStepType_OpenLessonVocalNormalStar":  37,
+		"ProduceStepType_OpenLessonVocalSpStar":      38,
+		"ProduceStepType_OpenLessonDanceNormal":      39,
+		"ProduceStepType_OpenLessonDanceSp":          40,
+		"ProduceStepType_OpenLessonDanceNormalStar":  41,
+		"ProduceStepType_OpenLessonDanceSpStar":      42,
+		"ProduceStepType_OpenLessonVisualNormal":     43,
+		"ProduceStepType_OpenLessonVisualSp":         44,
+		"ProduceStepType_OpenLessonVisualNormalStar": 45,
+		"ProduceStepType_OpenLessonVisualSpStar":     46,
+		"ProduceStepType_Interval":                   47,
+		"ProduceStepType_EventSchoolVocal":           48,
+		"ProduceStepType_EventSchoolDance":           49,
+		"ProduceStepType_EventSchoolVisual":          50,
 	}
 )
 
@@ -12429,11 +12601,11 @@ func (x ProduceStepType) String() string {
 }
 
 func (ProduceStepType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[162].Descriptor()
+	return file_penum_proto_enumTypes[160].Descriptor()
 }
 
 func (ProduceStepType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[162]
+	return &file_penum_proto_enumTypes[160]
 }
 
 func (x ProduceStepType) Number() protoreflect.EnumNumber {
@@ -12442,7 +12614,7 @@ func (x ProduceStepType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStepType.Descriptor instead.
 func (ProduceStepType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{162}
+	return file_penum_proto_rawDescGZIP(), []int{160}
 }
 
 type ProduceStoryType int32
@@ -12499,11 +12671,11 @@ func (x ProduceStoryType) String() string {
 }
 
 func (ProduceStoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[163].Descriptor()
+	return file_penum_proto_enumTypes[161].Descriptor()
 }
 
 func (ProduceStoryType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[163]
+	return &file_penum_proto_enumTypes[161]
 }
 
 func (x ProduceStoryType) Number() protoreflect.EnumNumber {
@@ -12512,49 +12684,55 @@ func (x ProduceStoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceStoryType.Descriptor instead.
 func (ProduceStoryType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{163}
+	return file_penum_proto_rawDescGZIP(), []int{161}
 }
 
 type ProduceTriggerOriginType int32
 
 const (
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Unknown       ProduceTriggerOriginType = 0
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Character     ProduceTriggerOriginType = 1
-	ProduceTriggerOriginType_ProduceTriggerOriginType_IdolCard      ProduceTriggerOriginType = 2
-	ProduceTriggerOriginType_ProduceTriggerOriginType_SupportCard   ProduceTriggerOriginType = 3
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Memory        ProduceTriggerOriginType = 4
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Event         ProduceTriggerOriginType = 5
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Item          ProduceTriggerOriginType = 6
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Drink         ProduceTriggerOriginType = 7
-	ProduceTriggerOriginType_ProduceTriggerOriginType_Produce       ProduceTriggerOriginType = 8
-	ProduceTriggerOriginType_ProduceTriggerOriginType_DearnessStory ProduceTriggerOriginType = 9
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Unknown              ProduceTriggerOriginType = 0
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Character            ProduceTriggerOriginType = 1
+	ProduceTriggerOriginType_ProduceTriggerOriginType_IdolCard             ProduceTriggerOriginType = 2
+	ProduceTriggerOriginType_ProduceTriggerOriginType_SupportCard          ProduceTriggerOriginType = 3
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Memory               ProduceTriggerOriginType = 4
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Event                ProduceTriggerOriginType = 5
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Item                 ProduceTriggerOriginType = 6
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Drink                ProduceTriggerOriginType = 7
+	ProduceTriggerOriginType_ProduceTriggerOriginType_Produce              ProduceTriggerOriginType = 8
+	ProduceTriggerOriginType_ProduceTriggerOriginType_DearnessStory        ProduceTriggerOriginType = 9
+	ProduceTriggerOriginType_ProduceTriggerOriginType_ProduceCustomizeItem ProduceTriggerOriginType = 10
+	ProduceTriggerOriginType_ProduceTriggerOriginType_ProduceGrowthPanel   ProduceTriggerOriginType = 11
 )
 
 // Enum value maps for ProduceTriggerOriginType.
 var (
 	ProduceTriggerOriginType_name = map[int32]string{
-		0: "ProduceTriggerOriginType_Unknown",
-		1: "ProduceTriggerOriginType_Character",
-		2: "ProduceTriggerOriginType_IdolCard",
-		3: "ProduceTriggerOriginType_SupportCard",
-		4: "ProduceTriggerOriginType_Memory",
-		5: "ProduceTriggerOriginType_Event",
-		6: "ProduceTriggerOriginType_Item",
-		7: "ProduceTriggerOriginType_Drink",
-		8: "ProduceTriggerOriginType_Produce",
-		9: "ProduceTriggerOriginType_DearnessStory",
+		0:  "ProduceTriggerOriginType_Unknown",
+		1:  "ProduceTriggerOriginType_Character",
+		2:  "ProduceTriggerOriginType_IdolCard",
+		3:  "ProduceTriggerOriginType_SupportCard",
+		4:  "ProduceTriggerOriginType_Memory",
+		5:  "ProduceTriggerOriginType_Event",
+		6:  "ProduceTriggerOriginType_Item",
+		7:  "ProduceTriggerOriginType_Drink",
+		8:  "ProduceTriggerOriginType_Produce",
+		9:  "ProduceTriggerOriginType_DearnessStory",
+		10: "ProduceTriggerOriginType_ProduceCustomizeItem",
+		11: "ProduceTriggerOriginType_ProduceGrowthPanel",
 	}
 	ProduceTriggerOriginType_value = map[string]int32{
-		"ProduceTriggerOriginType_Unknown":       0,
-		"ProduceTriggerOriginType_Character":     1,
-		"ProduceTriggerOriginType_IdolCard":      2,
-		"ProduceTriggerOriginType_SupportCard":   3,
-		"ProduceTriggerOriginType_Memory":        4,
-		"ProduceTriggerOriginType_Event":         5,
-		"ProduceTriggerOriginType_Item":          6,
-		"ProduceTriggerOriginType_Drink":         7,
-		"ProduceTriggerOriginType_Produce":       8,
-		"ProduceTriggerOriginType_DearnessStory": 9,
+		"ProduceTriggerOriginType_Unknown":              0,
+		"ProduceTriggerOriginType_Character":            1,
+		"ProduceTriggerOriginType_IdolCard":             2,
+		"ProduceTriggerOriginType_SupportCard":          3,
+		"ProduceTriggerOriginType_Memory":               4,
+		"ProduceTriggerOriginType_Event":                5,
+		"ProduceTriggerOriginType_Item":                 6,
+		"ProduceTriggerOriginType_Drink":                7,
+		"ProduceTriggerOriginType_Produce":              8,
+		"ProduceTriggerOriginType_DearnessStory":        9,
+		"ProduceTriggerOriginType_ProduceCustomizeItem": 10,
+		"ProduceTriggerOriginType_ProduceGrowthPanel":   11,
 	}
 )
 
@@ -12569,11 +12747,11 @@ func (x ProduceTriggerOriginType) String() string {
 }
 
 func (ProduceTriggerOriginType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[164].Descriptor()
+	return file_penum_proto_enumTypes[162].Descriptor()
 }
 
 func (ProduceTriggerOriginType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[164]
+	return &file_penum_proto_enumTypes[162]
 }
 
 func (x ProduceTriggerOriginType) Number() protoreflect.EnumNumber {
@@ -12582,15 +12760,16 @@ func (x ProduceTriggerOriginType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceTriggerOriginType.Descriptor instead.
 func (ProduceTriggerOriginType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{164}
+	return file_penum_proto_rawDescGZIP(), []int{162}
 }
 
 type ProduceType int32
 
 const (
-	ProduceType_ProduceType_Unknown          ProduceType = 0
-	ProduceType_ProduceType_FirstStar        ProduceType = 1
-	ProduceType_ProduceType_NextIdolAudition ProduceType = 2
+	ProduceType_ProduceType_Unknown                ProduceType = 0
+	ProduceType_ProduceType_FirstStar              ProduceType = 1
+	ProduceType_ProduceType_NextIdolAudition       ProduceType = 2
+	ProduceType_ProduceType_HatsuboshiIdolFestival ProduceType = 3
 )
 
 // Enum value maps for ProduceType.
@@ -12599,11 +12778,13 @@ var (
 		0: "ProduceType_Unknown",
 		1: "ProduceType_FirstStar",
 		2: "ProduceType_NextIdolAudition",
+		3: "ProduceType_HatsuboshiIdolFestival",
 	}
 	ProduceType_value = map[string]int32{
-		"ProduceType_Unknown":          0,
-		"ProduceType_FirstStar":        1,
-		"ProduceType_NextIdolAudition": 2,
+		"ProduceType_Unknown":                0,
+		"ProduceType_FirstStar":              1,
+		"ProduceType_NextIdolAudition":       2,
+		"ProduceType_HatsuboshiIdolFestival": 3,
 	}
 )
 
@@ -12618,11 +12799,11 @@ func (x ProduceType) String() string {
 }
 
 func (ProduceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[165].Descriptor()
+	return file_penum_proto_enumTypes[163].Descriptor()
 }
 
 func (ProduceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[165]
+	return &file_penum_proto_enumTypes[163]
 }
 
 func (x ProduceType) Number() protoreflect.EnumNumber {
@@ -12631,7 +12812,181 @@ func (x ProduceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProduceType.Descriptor instead.
 func (ProduceType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{163}
+}
+
+type ProducerLevelUnlockType int32
+
+const (
+	ProducerLevelUnlockType_ProducerLevelUnlockType_Unknown                      ProducerLevelUnlockType = 0
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCard                  ProducerLevelUnlockType = 1
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceDrink                 ProducerLevelUnlockType = 2
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardConversion        ProducerLevelUnlockType = 3
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ShopProduceCardUpgrade       ProducerLevelUnlockType = 10
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ShopProduceCardDelete        ProducerLevelUnlockType = 11
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardSelectRerollCount ProducerLevelUnlockType = 12
+	ProducerLevelUnlockType_ProducerLevelUnlockType_ProduceCardExcludeCount      ProducerLevelUnlockType = 13
+)
+
+// Enum value maps for ProducerLevelUnlockType.
+var (
+	ProducerLevelUnlockType_name = map[int32]string{
+		0:  "ProducerLevelUnlockType_Unknown",
+		1:  "ProducerLevelUnlockType_ProduceCard",
+		2:  "ProducerLevelUnlockType_ProduceDrink",
+		3:  "ProducerLevelUnlockType_ProduceCardConversion",
+		10: "ProducerLevelUnlockType_ShopProduceCardUpgrade",
+		11: "ProducerLevelUnlockType_ShopProduceCardDelete",
+		12: "ProducerLevelUnlockType_ProduceCardSelectRerollCount",
+		13: "ProducerLevelUnlockType_ProduceCardExcludeCount",
+	}
+	ProducerLevelUnlockType_value = map[string]int32{
+		"ProducerLevelUnlockType_Unknown":                      0,
+		"ProducerLevelUnlockType_ProduceCard":                  1,
+		"ProducerLevelUnlockType_ProduceDrink":                 2,
+		"ProducerLevelUnlockType_ProduceCardConversion":        3,
+		"ProducerLevelUnlockType_ShopProduceCardUpgrade":       10,
+		"ProducerLevelUnlockType_ShopProduceCardDelete":        11,
+		"ProducerLevelUnlockType_ProduceCardSelectRerollCount": 12,
+		"ProducerLevelUnlockType_ProduceCardExcludeCount":      13,
+	}
+)
+
+func (x ProducerLevelUnlockType) Enum() *ProducerLevelUnlockType {
+	p := new(ProducerLevelUnlockType)
+	*p = x
+	return p
+}
+
+func (x ProducerLevelUnlockType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ProducerLevelUnlockType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[164].Descriptor()
+}
+
+func (ProducerLevelUnlockType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[164]
+}
+
+func (x ProducerLevelUnlockType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ProducerLevelUnlockType.Descriptor instead.
+func (ProducerLevelUnlockType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{164}
+}
+
+type ProducerRankingGrade int32
+
+const (
+	ProducerRankingGrade_ProducerRankingGrade_Unknown     ProducerRankingGrade = 0
+	ProducerRankingGrade_ProducerRankingGrade_Normal      ProducerRankingGrade = 1
+	ProducerRankingGrade_ProducerRankingGrade_Bronze      ProducerRankingGrade = 2
+	ProducerRankingGrade_ProducerRankingGrade_Silver      ProducerRankingGrade = 3
+	ProducerRankingGrade_ProducerRankingGrade_Gold        ProducerRankingGrade = 4
+	ProducerRankingGrade_ProducerRankingGrade_Rainbow     ProducerRankingGrade = 5
+	ProducerRankingGrade_ProducerRankingGrade_RainbowPlus ProducerRankingGrade = 6
+)
+
+// Enum value maps for ProducerRankingGrade.
+var (
+	ProducerRankingGrade_name = map[int32]string{
+		0: "ProducerRankingGrade_Unknown",
+		1: "ProducerRankingGrade_Normal",
+		2: "ProducerRankingGrade_Bronze",
+		3: "ProducerRankingGrade_Silver",
+		4: "ProducerRankingGrade_Gold",
+		5: "ProducerRankingGrade_Rainbow",
+		6: "ProducerRankingGrade_RainbowPlus",
+	}
+	ProducerRankingGrade_value = map[string]int32{
+		"ProducerRankingGrade_Unknown":     0,
+		"ProducerRankingGrade_Normal":      1,
+		"ProducerRankingGrade_Bronze":      2,
+		"ProducerRankingGrade_Silver":      3,
+		"ProducerRankingGrade_Gold":        4,
+		"ProducerRankingGrade_Rainbow":     5,
+		"ProducerRankingGrade_RainbowPlus": 6,
+	}
+)
+
+func (x ProducerRankingGrade) Enum() *ProducerRankingGrade {
+	p := new(ProducerRankingGrade)
+	*p = x
+	return p
+}
+
+func (x ProducerRankingGrade) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ProducerRankingGrade) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[165].Descriptor()
+}
+
+func (ProducerRankingGrade) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[165]
+}
+
+func (x ProducerRankingGrade) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ProducerRankingGrade.Descriptor instead.
+func (ProducerRankingGrade) EnumDescriptor() ([]byte, []int) {
 	return file_penum_proto_rawDescGZIP(), []int{165}
+}
+
+type ProducerRankingPointType int32
+
+const (
+	ProducerRankingPointType_ProducerRankingPointType_Unknown ProducerRankingPointType = 0
+	ProducerRankingPointType_ProducerRankingPointType_Produce ProducerRankingPointType = 1
+	ProducerRankingPointType_ProducerRankingPointType_Tower   ProducerRankingPointType = 2
+)
+
+// Enum value maps for ProducerRankingPointType.
+var (
+	ProducerRankingPointType_name = map[int32]string{
+		0: "ProducerRankingPointType_Unknown",
+		1: "ProducerRankingPointType_Produce",
+		2: "ProducerRankingPointType_Tower",
+	}
+	ProducerRankingPointType_value = map[string]int32{
+		"ProducerRankingPointType_Unknown": 0,
+		"ProducerRankingPointType_Produce": 1,
+		"ProducerRankingPointType_Tower":   2,
+	}
+)
+
+func (x ProducerRankingPointType) Enum() *ProducerRankingPointType {
+	p := new(ProducerRankingPointType)
+	*p = x
+	return p
+}
+
+func (x ProducerRankingPointType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ProducerRankingPointType) Descriptor() protoreflect.EnumDescriptor {
+	return file_penum_proto_enumTypes[166].Descriptor()
+}
+
+func (ProducerRankingPointType) Type() protoreflect.EnumType {
+	return &file_penum_proto_enumTypes[166]
+}
+
+func (x ProducerRankingPointType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ProducerRankingPointType.Descriptor instead.
+func (ProducerRankingPointType) EnumDescriptor() ([]byte, []int) {
+	return file_penum_proto_rawDescGZIP(), []int{166}
 }
 
 type PurchaseTransactionStatusType int32
@@ -12679,11 +13034,11 @@ func (x PurchaseTransactionStatusType) String() string {
 }
 
 func (PurchaseTransactionStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[166].Descriptor()
+	return file_penum_proto_enumTypes[167].Descriptor()
 }
 
 func (PurchaseTransactionStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[166]
+	return &file_penum_proto_enumTypes[167]
 }
 
 func (x PurchaseTransactionStatusType) Number() protoreflect.EnumNumber {
@@ -12692,7 +13047,7 @@ func (x PurchaseTransactionStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PurchaseTransactionStatusType.Descriptor instead.
 func (PurchaseTransactionStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{166}
+	return file_penum_proto_rawDescGZIP(), []int{167}
 }
 
 type PushType int32
@@ -12743,11 +13098,11 @@ func (x PushType) String() string {
 }
 
 func (PushType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[167].Descriptor()
+	return file_penum_proto_enumTypes[168].Descriptor()
 }
 
 func (PushType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[167]
+	return &file_penum_proto_enumTypes[168]
 }
 
 func (x PushType) Number() protoreflect.EnumNumber {
@@ -12756,7 +13111,7 @@ func (x PushType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PushType.Descriptor instead.
 func (PushType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{167}
+	return file_penum_proto_rawDescGZIP(), []int{168}
 }
 
 type PvpRateGrade int32
@@ -12810,11 +13165,11 @@ func (x PvpRateGrade) String() string {
 }
 
 func (PvpRateGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[168].Descriptor()
+	return file_penum_proto_enumTypes[169].Descriptor()
 }
 
 func (PvpRateGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[168]
+	return &file_penum_proto_enumTypes[169]
 }
 
 func (x PvpRateGrade) Number() protoreflect.EnumNumber {
@@ -12823,7 +13178,7 @@ func (x PvpRateGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateGrade.Descriptor instead.
 func (PvpRateGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{168}
+	return file_penum_proto_rawDescGZIP(), []int{169}
 }
 
 type PvpRateMotionType int32
@@ -12859,11 +13214,11 @@ func (x PvpRateMotionType) String() string {
 }
 
 func (PvpRateMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[169].Descriptor()
+	return file_penum_proto_enumTypes[170].Descriptor()
 }
 
 func (PvpRateMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[169]
+	return &file_penum_proto_enumTypes[170]
 }
 
 func (x PvpRateMotionType) Number() protoreflect.EnumNumber {
@@ -12872,7 +13227,7 @@ func (x PvpRateMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateMotionType.Descriptor instead.
 func (PvpRateMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{169}
+	return file_penum_proto_rawDescGZIP(), []int{170}
 }
 
 type PvpRatePhaseType int32
@@ -12917,11 +13272,11 @@ func (x PvpRatePhaseType) String() string {
 }
 
 func (PvpRatePhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[170].Descriptor()
+	return file_penum_proto_enumTypes[171].Descriptor()
 }
 
 func (PvpRatePhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[170]
+	return &file_penum_proto_enumTypes[171]
 }
 
 func (x PvpRatePhaseType) Number() protoreflect.EnumNumber {
@@ -12930,7 +13285,7 @@ func (x PvpRatePhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRatePhaseType.Descriptor instead.
 func (PvpRatePhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{170}
+	return file_penum_proto_rawDescGZIP(), []int{171}
 }
 
 type PvpRateRivalType int32
@@ -12969,11 +13324,11 @@ func (x PvpRateRivalType) String() string {
 }
 
 func (PvpRateRivalType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[171].Descriptor()
+	return file_penum_proto_enumTypes[172].Descriptor()
 }
 
 func (PvpRateRivalType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[171]
+	return &file_penum_proto_enumTypes[172]
 }
 
 func (x PvpRateRivalType) Number() protoreflect.EnumNumber {
@@ -12982,7 +13337,7 @@ func (x PvpRateRivalType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateRivalType.Descriptor instead.
 func (PvpRateRivalType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{171}
+	return file_penum_proto_rawDescGZIP(), []int{172}
 }
 
 type PvpRateSeasonStatusType int32
@@ -13024,11 +13379,11 @@ func (x PvpRateSeasonStatusType) String() string {
 }
 
 func (PvpRateSeasonStatusType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[172].Descriptor()
+	return file_penum_proto_enumTypes[173].Descriptor()
 }
 
 func (PvpRateSeasonStatusType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[172]
+	return &file_penum_proto_enumTypes[173]
 }
 
 func (x PvpRateSeasonStatusType) Number() protoreflect.EnumNumber {
@@ -13037,7 +13392,7 @@ func (x PvpRateSeasonStatusType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateSeasonStatusType.Descriptor instead.
 func (PvpRateSeasonStatusType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{172}
+	return file_penum_proto_rawDescGZIP(), []int{173}
 }
 
 type PvpRateStageType int32
@@ -13076,11 +13431,11 @@ func (x PvpRateStageType) String() string {
 }
 
 func (PvpRateStageType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[173].Descriptor()
+	return file_penum_proto_enumTypes[174].Descriptor()
 }
 
 func (PvpRateStageType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[173]
+	return &file_penum_proto_enumTypes[174]
 }
 
 func (x PvpRateStageType) Number() protoreflect.EnumNumber {
@@ -13089,7 +13444,7 @@ func (x PvpRateStageType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PvpRateStageType.Descriptor instead.
 func (PvpRateStageType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{173}
+	return file_penum_proto_rawDescGZIP(), []int{174}
 }
 
 type ResetTimingType int32
@@ -13131,11 +13486,11 @@ func (x ResetTimingType) String() string {
 }
 
 func (ResetTimingType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[174].Descriptor()
+	return file_penum_proto_enumTypes[175].Descriptor()
 }
 
 func (ResetTimingType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[174]
+	return &file_penum_proto_enumTypes[175]
 }
 
 func (x ResetTimingType) Number() protoreflect.EnumNumber {
@@ -13144,7 +13499,7 @@ func (x ResetTimingType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResetTimingType.Descriptor instead.
 func (ResetTimingType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{174}
+	return file_penum_proto_rawDescGZIP(), []int{175}
 }
 
 type ResourceOriginType int32
@@ -13183,11 +13538,11 @@ func (x ResourceOriginType) String() string {
 }
 
 func (ResourceOriginType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[175].Descriptor()
+	return file_penum_proto_enumTypes[176].Descriptor()
 }
 
 func (ResourceOriginType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[175]
+	return &file_penum_proto_enumTypes[176]
 }
 
 func (x ResourceOriginType) Number() protoreflect.EnumNumber {
@@ -13196,7 +13551,7 @@ func (x ResourceOriginType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResourceOriginType.Descriptor instead.
 func (ResourceOriginType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{175}
+	return file_penum_proto_rawDescGZIP(), []int{176}
 }
 
 type ResourceType int32
@@ -13313,11 +13668,11 @@ func (x ResourceType) String() string {
 }
 
 func (ResourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[176].Descriptor()
+	return file_penum_proto_enumTypes[177].Descriptor()
 }
 
 func (ResourceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[176]
+	return &file_penum_proto_enumTypes[177]
 }
 
 func (x ResourceType) Number() protoreflect.EnumNumber {
@@ -13326,29 +13681,32 @@ func (x ResourceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResourceType.Descriptor instead.
 func (ResourceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{176}
+	return file_penum_proto_rawDescGZIP(), []int{177}
 }
 
 type ResultGrade int32
 
 const (
-	ResultGrade_ResultGrade_Unknown ResultGrade = 0
-	ResultGrade_ResultGrade_F       ResultGrade = 1
-	ResultGrade_ResultGrade_E       ResultGrade = 2
-	ResultGrade_ResultGrade_D       ResultGrade = 3
-	ResultGrade_ResultGrade_C       ResultGrade = 4
-	ResultGrade_ResultGrade_CPlus   ResultGrade = 5
-	ResultGrade_ResultGrade_B       ResultGrade = 6
-	ResultGrade_ResultGrade_BPlus   ResultGrade = 7
-	ResultGrade_ResultGrade_A       ResultGrade = 8
-	ResultGrade_ResultGrade_APlus   ResultGrade = 9
-	ResultGrade_ResultGrade_S       ResultGrade = 10
-	ResultGrade_ResultGrade_SPlus   ResultGrade = 11
-	ResultGrade_ResultGrade_Ss      ResultGrade = 12
-	ResultGrade_ResultGrade_SsPlus  ResultGrade = 13
-	ResultGrade_ResultGrade_Sss     ResultGrade = 14
-	ResultGrade_ResultGrade_SssPlus ResultGrade = 15
-	ResultGrade_ResultGrade_Ssss    ResultGrade = 16
+	ResultGrade_ResultGrade_Unknown   ResultGrade = 0
+	ResultGrade_ResultGrade_F         ResultGrade = 1
+	ResultGrade_ResultGrade_E         ResultGrade = 2
+	ResultGrade_ResultGrade_D         ResultGrade = 3
+	ResultGrade_ResultGrade_C         ResultGrade = 4
+	ResultGrade_ResultGrade_CPlus     ResultGrade = 5
+	ResultGrade_ResultGrade_B         ResultGrade = 6
+	ResultGrade_ResultGrade_BPlus     ResultGrade = 7
+	ResultGrade_ResultGrade_A         ResultGrade = 8
+	ResultGrade_ResultGrade_APlus     ResultGrade = 9
+	ResultGrade_ResultGrade_S         ResultGrade = 10
+	ResultGrade_ResultGrade_SPlus     ResultGrade = 11
+	ResultGrade_ResultGrade_Ss        ResultGrade = 12
+	ResultGrade_ResultGrade_SsPlus    ResultGrade = 13
+	ResultGrade_ResultGrade_Sss       ResultGrade = 14
+	ResultGrade_ResultGrade_SssPlus   ResultGrade = 15
+	ResultGrade_ResultGrade_Ssss      ResultGrade = 16
+	ResultGrade_ResultGrade_SsssPlus  ResultGrade = 17
+	ResultGrade_ResultGrade_Sssss     ResultGrade = 18
+	ResultGrade_ResultGrade_SssssPlus ResultGrade = 19
 )
 
 // Enum value maps for ResultGrade.
@@ -13371,25 +13729,31 @@ var (
 		14: "ResultGrade_Sss",
 		15: "ResultGrade_SssPlus",
 		16: "ResultGrade_Ssss",
+		17: "ResultGrade_SsssPlus",
+		18: "ResultGrade_Sssss",
+		19: "ResultGrade_SssssPlus",
 	}
 	ResultGrade_value = map[string]int32{
-		"ResultGrade_Unknown": 0,
-		"ResultGrade_F":       1,
-		"ResultGrade_E":       2,
-		"ResultGrade_D":       3,
-		"ResultGrade_C":       4,
-		"ResultGrade_CPlus":   5,
-		"ResultGrade_B":       6,
-		"ResultGrade_BPlus":   7,
-		"ResultGrade_A":       8,
-		"ResultGrade_APlus":   9,
-		"ResultGrade_S":       10,
-		"ResultGrade_SPlus":   11,
-		"ResultGrade_Ss":      12,
-		"ResultGrade_SsPlus":  13,
-		"ResultGrade_Sss":     14,
-		"ResultGrade_SssPlus": 15,
-		"ResultGrade_Ssss":    16,
+		"ResultGrade_Unknown":   0,
+		"ResultGrade_F":         1,
+		"ResultGrade_E":         2,
+		"ResultGrade_D":         3,
+		"ResultGrade_C":         4,
+		"ResultGrade_CPlus":     5,
+		"ResultGrade_B":         6,
+		"ResultGrade_BPlus":     7,
+		"ResultGrade_A":         8,
+		"ResultGrade_APlus":     9,
+		"ResultGrade_S":         10,
+		"ResultGrade_SPlus":     11,
+		"ResultGrade_Ss":        12,
+		"ResultGrade_SsPlus":    13,
+		"ResultGrade_Sss":       14,
+		"ResultGrade_SssPlus":   15,
+		"ResultGrade_Ssss":      16,
+		"ResultGrade_SsssPlus":  17,
+		"ResultGrade_Sssss":     18,
+		"ResultGrade_SssssPlus": 19,
 	}
 )
 
@@ -13404,11 +13768,11 @@ func (x ResultGrade) String() string {
 }
 
 func (ResultGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[177].Descriptor()
+	return file_penum_proto_enumTypes[178].Descriptor()
 }
 
 func (ResultGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[177]
+	return &file_penum_proto_enumTypes[178]
 }
 
 func (x ResultGrade) Number() protoreflect.EnumNumber {
@@ -13417,7 +13781,7 @@ func (x ResultGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResultGrade.Descriptor instead.
 func (ResultGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{177}
+	return file_penum_proto_rawDescGZIP(), []int{178}
 }
 
 type ResultGradeType int32
@@ -13428,6 +13792,7 @@ const (
 	ResultGradeType_ResultGradeType_MemoryParameter          ResultGradeType = 3
 	ResultGradeType_ResultGradeType_ProduceIdolCardParameter ResultGradeType = 5
 	ResultGradeType_ResultGradeType_ProduceVoteCount         ResultGradeType = 6
+	ResultGradeType_ResultGradeType_ProduceStar              ResultGradeType = 7
 )
 
 // Enum value maps for ResultGradeType.
@@ -13438,6 +13803,7 @@ var (
 		3: "ResultGradeType_MemoryParameter",
 		5: "ResultGradeType_ProduceIdolCardParameter",
 		6: "ResultGradeType_ProduceVoteCount",
+		7: "ResultGradeType_ProduceStar",
 	}
 	ResultGradeType_value = map[string]int32{
 		"ResultGradeType_Unknown":                  0,
@@ -13445,6 +13811,7 @@ var (
 		"ResultGradeType_MemoryParameter":          3,
 		"ResultGradeType_ProduceIdolCardParameter": 5,
 		"ResultGradeType_ProduceVoteCount":         6,
+		"ResultGradeType_ProduceStar":              7,
 	}
 )
 
@@ -13459,11 +13826,11 @@ func (x ResultGradeType) String() string {
 }
 
 func (ResultGradeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[178].Descriptor()
+	return file_penum_proto_enumTypes[179].Descriptor()
 }
 
 func (ResultGradeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[178]
+	return &file_penum_proto_enumTypes[179]
 }
 
 func (x ResultGradeType) Number() protoreflect.EnumNumber {
@@ -13472,7 +13839,7 @@ func (x ResultGradeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ResultGradeType.Descriptor instead.
 func (ResultGradeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{178}
+	return file_penum_proto_rawDescGZIP(), []int{179}
 }
 
 type RewardProvideType int32
@@ -13517,11 +13884,11 @@ func (x RewardProvideType) String() string {
 }
 
 func (RewardProvideType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[179].Descriptor()
+	return file_penum_proto_enumTypes[180].Descriptor()
 }
 
 func (RewardProvideType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[179]
+	return &file_penum_proto_enumTypes[180]
 }
 
 func (x RewardProvideType) Number() protoreflect.EnumNumber {
@@ -13530,7 +13897,7 @@ func (x RewardProvideType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RewardProvideType.Descriptor instead.
 func (RewardProvideType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{179}
+	return file_penum_proto_rawDescGZIP(), []int{180}
 }
 
 type RewardSetType int32
@@ -13566,11 +13933,11 @@ func (x RewardSetType) String() string {
 }
 
 func (RewardSetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[180].Descriptor()
+	return file_penum_proto_enumTypes[181].Descriptor()
 }
 
 func (RewardSetType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[180]
+	return &file_penum_proto_enumTypes[181]
 }
 
 func (x RewardSetType) Number() protoreflect.EnumNumber {
@@ -13579,7 +13946,7 @@ func (x RewardSetType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RewardSetType.Descriptor instead.
 func (RewardSetType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{180}
+	return file_penum_proto_rawDescGZIP(), []int{181}
 }
 
 type RuleType int32
@@ -13621,11 +13988,11 @@ func (x RuleType) String() string {
 }
 
 func (RuleType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[181].Descriptor()
+	return file_penum_proto_enumTypes[182].Descriptor()
 }
 
 func (RuleType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[181]
+	return &file_penum_proto_enumTypes[182]
 }
 
 func (x RuleType) Number() protoreflect.EnumNumber {
@@ -13634,7 +14001,7 @@ func (x RuleType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RuleType.Descriptor instead.
 func (RuleType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{181}
+	return file_penum_proto_rawDescGZIP(), []int{182}
 }
 
 type ServingStatus int32
@@ -13676,11 +14043,11 @@ func (x ServingStatus) String() string {
 }
 
 func (ServingStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[182].Descriptor()
+	return file_penum_proto_enumTypes[183].Descriptor()
 }
 
 func (ServingStatus) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[182]
+	return &file_penum_proto_enumTypes[183]
 }
 
 func (x ServingStatus) Number() protoreflect.EnumNumber {
@@ -13689,7 +14056,7 @@ func (x ServingStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ServingStatus.Descriptor instead.
 func (ServingStatus) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{182}
+	return file_penum_proto_rawDescGZIP(), []int{183}
 }
 
 type ShopItemLabelType int32
@@ -13725,11 +14092,11 @@ func (x ShopItemLabelType) String() string {
 }
 
 func (ShopItemLabelType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[183].Descriptor()
+	return file_penum_proto_enumTypes[184].Descriptor()
 }
 
 func (ShopItemLabelType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[183]
+	return &file_penum_proto_enumTypes[184]
 }
 
 func (x ShopItemLabelType) Number() protoreflect.EnumNumber {
@@ -13738,7 +14105,7 @@ func (x ShopItemLabelType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShopItemLabelType.Descriptor instead.
 func (ShopItemLabelType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{183}
+	return file_penum_proto_rawDescGZIP(), []int{184}
 }
 
 type ShopType int32
@@ -13783,11 +14150,11 @@ func (x ShopType) String() string {
 }
 
 func (ShopType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[184].Descriptor()
+	return file_penum_proto_enumTypes[185].Descriptor()
 }
 
 func (ShopType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[184]
+	return &file_penum_proto_enumTypes[185]
 }
 
 func (x ShopType) Number() protoreflect.EnumNumber {
@@ -13796,7 +14163,7 @@ func (x ShopType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShopType.Descriptor instead.
 func (ShopType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{184}
+	return file_penum_proto_rawDescGZIP(), []int{185}
 }
 
 type SkillRarity int32
@@ -13838,11 +14205,11 @@ func (x SkillRarity) String() string {
 }
 
 func (SkillRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[185].Descriptor()
+	return file_penum_proto_enumTypes[186].Descriptor()
 }
 
 func (SkillRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[185]
+	return &file_penum_proto_enumTypes[186]
 }
 
 func (x SkillRarity) Number() protoreflect.EnumNumber {
@@ -13851,7 +14218,7 @@ func (x SkillRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SkillRarity.Descriptor instead.
 func (SkillRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{185}
+	return file_penum_proto_rawDescGZIP(), []int{186}
 }
 
 type StartupNotificationDisplayType int32
@@ -13911,11 +14278,11 @@ func (x StartupNotificationDisplayType) String() string {
 }
 
 func (StartupNotificationDisplayType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[186].Descriptor()
+	return file_penum_proto_enumTypes[187].Descriptor()
 }
 
 func (StartupNotificationDisplayType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[186]
+	return &file_penum_proto_enumTypes[187]
 }
 
 func (x StartupNotificationDisplayType) Number() protoreflect.EnumNumber {
@@ -13924,7 +14291,7 @@ func (x StartupNotificationDisplayType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationDisplayType.Descriptor instead.
 func (StartupNotificationDisplayType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{186}
+	return file_penum_proto_rawDescGZIP(), []int{187}
 }
 
 type StartupNotificationEffectType int32
@@ -13963,11 +14330,11 @@ func (x StartupNotificationEffectType) String() string {
 }
 
 func (StartupNotificationEffectType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[187].Descriptor()
+	return file_penum_proto_enumTypes[188].Descriptor()
 }
 
 func (StartupNotificationEffectType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[187]
+	return &file_penum_proto_enumTypes[188]
 }
 
 func (x StartupNotificationEffectType) Number() protoreflect.EnumNumber {
@@ -13976,7 +14343,7 @@ func (x StartupNotificationEffectType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationEffectType.Descriptor instead.
 func (StartupNotificationEffectType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{187}
+	return file_penum_proto_rawDescGZIP(), []int{188}
 }
 
 type StartupNotificationRemindType int32
@@ -14021,11 +14388,11 @@ func (x StartupNotificationRemindType) String() string {
 }
 
 func (StartupNotificationRemindType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[188].Descriptor()
+	return file_penum_proto_enumTypes[189].Descriptor()
 }
 
 func (StartupNotificationRemindType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[188]
+	return &file_penum_proto_enumTypes[189]
 }
 
 func (x StartupNotificationRemindType) Number() protoreflect.EnumNumber {
@@ -14034,7 +14401,7 @@ func (x StartupNotificationRemindType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationRemindType.Descriptor instead.
 func (StartupNotificationRemindType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{188}
+	return file_penum_proto_rawDescGZIP(), []int{189}
 }
 
 type StartupNotificationType int32
@@ -14100,11 +14467,11 @@ func (x StartupNotificationType) String() string {
 }
 
 func (StartupNotificationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[189].Descriptor()
+	return file_penum_proto_enumTypes[190].Descriptor()
 }
 
 func (StartupNotificationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[189]
+	return &file_penum_proto_enumTypes[190]
 }
 
 func (x StartupNotificationType) Number() protoreflect.EnumNumber {
@@ -14113,7 +14480,7 @@ func (x StartupNotificationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StartupNotificationType.Descriptor instead.
 func (StartupNotificationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{189}
+	return file_penum_proto_rawDescGZIP(), []int{190}
 }
 
 type StoryCampaignType int32
@@ -14149,11 +14516,11 @@ func (x StoryCampaignType) String() string {
 }
 
 func (StoryCampaignType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[190].Descriptor()
+	return file_penum_proto_enumTypes[191].Descriptor()
 }
 
 func (StoryCampaignType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[190]
+	return &file_penum_proto_enumTypes[191]
 }
 
 func (x StoryCampaignType) Number() protoreflect.EnumNumber {
@@ -14162,7 +14529,7 @@ func (x StoryCampaignType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryCampaignType.Descriptor instead.
 func (StoryCampaignType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{190}
+	return file_penum_proto_rawDescGZIP(), []int{191}
 }
 
 type StoryEventMotionType int32
@@ -14201,11 +14568,11 @@ func (x StoryEventMotionType) String() string {
 }
 
 func (StoryEventMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[191].Descriptor()
+	return file_penum_proto_enumTypes[192].Descriptor()
 }
 
 func (StoryEventMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[191]
+	return &file_penum_proto_enumTypes[192]
 }
 
 func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
@@ -14214,7 +14581,7 @@ func (x StoryEventMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventMotionType.Descriptor instead.
 func (StoryEventMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{191}
+	return file_penum_proto_rawDescGZIP(), []int{192}
 }
 
 type StoryEventType int32
@@ -14256,11 +14623,11 @@ func (x StoryEventType) String() string {
 }
 
 func (StoryEventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[192].Descriptor()
+	return file_penum_proto_enumTypes[193].Descriptor()
 }
 
 func (StoryEventType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[192]
+	return &file_penum_proto_enumTypes[193]
 }
 
 func (x StoryEventType) Number() protoreflect.EnumNumber {
@@ -14269,7 +14636,7 @@ func (x StoryEventType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryEventType.Descriptor instead.
 func (StoryEventType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{192}
+	return file_penum_proto_rawDescGZIP(), []int{193}
 }
 
 type StoryType int32
@@ -14332,11 +14699,11 @@ func (x StoryType) String() string {
 }
 
 func (StoryType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[193].Descriptor()
+	return file_penum_proto_enumTypes[194].Descriptor()
 }
 
 func (StoryType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[193]
+	return &file_penum_proto_enumTypes[194]
 }
 
 func (x StoryType) Number() protoreflect.EnumNumber {
@@ -14345,7 +14712,7 @@ func (x StoryType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use StoryType.Descriptor instead.
 func (StoryType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{193}
+	return file_penum_proto_rawDescGZIP(), []int{194}
 }
 
 type SupportCardLevelLimitRank int32
@@ -14387,11 +14754,11 @@ func (x SupportCardLevelLimitRank) String() string {
 }
 
 func (SupportCardLevelLimitRank) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[194].Descriptor()
+	return file_penum_proto_enumTypes[195].Descriptor()
 }
 
 func (SupportCardLevelLimitRank) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[194]
+	return &file_penum_proto_enumTypes[195]
 }
 
 func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
@@ -14400,7 +14767,7 @@ func (x SupportCardLevelLimitRank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardLevelLimitRank.Descriptor instead.
 func (SupportCardLevelLimitRank) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{194}
+	return file_penum_proto_rawDescGZIP(), []int{195}
 }
 
 type SupportCardRarity int32
@@ -14439,11 +14806,11 @@ func (x SupportCardRarity) String() string {
 }
 
 func (SupportCardRarity) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[195].Descriptor()
+	return file_penum_proto_enumTypes[196].Descriptor()
 }
 
 func (SupportCardRarity) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[195]
+	return &file_penum_proto_enumTypes[196]
 }
 
 func (x SupportCardRarity) Number() protoreflect.EnumNumber {
@@ -14452,7 +14819,7 @@ func (x SupportCardRarity) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardRarity.Descriptor instead.
 func (SupportCardRarity) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{195}
+	return file_penum_proto_rawDescGZIP(), []int{196}
 }
 
 type SupportCardType int32
@@ -14494,11 +14861,11 @@ func (x SupportCardType) String() string {
 }
 
 func (SupportCardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[196].Descriptor()
+	return file_penum_proto_enumTypes[197].Descriptor()
 }
 
 func (SupportCardType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[196]
+	return &file_penum_proto_enumTypes[197]
 }
 
 func (x SupportCardType) Number() protoreflect.EnumNumber {
@@ -14507,7 +14874,7 @@ func (x SupportCardType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SupportCardType.Descriptor instead.
 func (SupportCardType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{196}
+	return file_penum_proto_rawDescGZIP(), []int{197}
 }
 
 type TermsType int32
@@ -14546,11 +14913,11 @@ func (x TermsType) String() string {
 }
 
 func (TermsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[197].Descriptor()
+	return file_penum_proto_enumTypes[198].Descriptor()
 }
 
 func (TermsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[197]
+	return &file_penum_proto_enumTypes[198]
 }
 
 func (x TermsType) Number() protoreflect.EnumNumber {
@@ -14559,7 +14926,7 @@ func (x TermsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TermsType.Descriptor instead.
 func (TermsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{197}
+	return file_penum_proto_rawDescGZIP(), []int{198}
 }
 
 type TimeType int32
@@ -14616,11 +14983,11 @@ func (x TimeType) String() string {
 }
 
 func (TimeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[198].Descriptor()
+	return file_penum_proto_enumTypes[199].Descriptor()
 }
 
 func (TimeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[198]
+	return &file_penum_proto_enumTypes[199]
 }
 
 func (x TimeType) Number() protoreflect.EnumNumber {
@@ -14629,7 +14996,7 @@ func (x TimeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TimeType.Descriptor instead.
 func (TimeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{198}
+	return file_penum_proto_rawDescGZIP(), []int{199}
 }
 
 type TipsType int32
@@ -14674,11 +15041,11 @@ func (x TipsType) String() string {
 }
 
 func (TipsType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[199].Descriptor()
+	return file_penum_proto_enumTypes[200].Descriptor()
 }
 
 func (TipsType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[199]
+	return &file_penum_proto_enumTypes[200]
 }
 
 func (x TipsType) Number() protoreflect.EnumNumber {
@@ -14687,7 +15054,7 @@ func (x TipsType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TipsType.Descriptor instead.
 func (TipsType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{199}
+	return file_penum_proto_rawDescGZIP(), []int{200}
 }
 
 type TourProgressPhaseType int32
@@ -14723,11 +15090,11 @@ func (x TourProgressPhaseType) String() string {
 }
 
 func (TourProgressPhaseType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[200].Descriptor()
+	return file_penum_proto_enumTypes[201].Descriptor()
 }
 
 func (TourProgressPhaseType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[200]
+	return &file_penum_proto_enumTypes[201]
 }
 
 func (x TourProgressPhaseType) Number() protoreflect.EnumNumber {
@@ -14736,7 +15103,7 @@ func (x TourProgressPhaseType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourProgressPhaseType.Descriptor instead.
 func (TourProgressPhaseType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{200}
+	return file_penum_proto_rawDescGZIP(), []int{201}
 }
 
 type TourScoreGrade int32
@@ -14805,11 +15172,11 @@ func (x TourScoreGrade) String() string {
 }
 
 func (TourScoreGrade) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[201].Descriptor()
+	return file_penum_proto_enumTypes[202].Descriptor()
 }
 
 func (TourScoreGrade) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[201]
+	return &file_penum_proto_enumTypes[202]
 }
 
 func (x TourScoreGrade) Number() protoreflect.EnumNumber {
@@ -14818,7 +15185,7 @@ func (x TourScoreGrade) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourScoreGrade.Descriptor instead.
 func (TourScoreGrade) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{201}
+	return file_penum_proto_rawDescGZIP(), []int{202}
 }
 
 type TourStageIconSizeType int32
@@ -14857,11 +15224,11 @@ func (x TourStageIconSizeType) String() string {
 }
 
 func (TourStageIconSizeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[202].Descriptor()
+	return file_penum_proto_enumTypes[203].Descriptor()
 }
 
 func (TourStageIconSizeType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[202]
+	return &file_penum_proto_enumTypes[203]
 }
 
 func (x TourStageIconSizeType) Number() protoreflect.EnumNumber {
@@ -14870,7 +15237,7 @@ func (x TourStageIconSizeType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TourStageIconSizeType.Descriptor instead.
 func (TourStageIconSizeType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{202}
+	return file_penum_proto_rawDescGZIP(), []int{203}
 }
 
 type TutorialCharacterVoiceType int32
@@ -14906,11 +15273,11 @@ func (x TutorialCharacterVoiceType) String() string {
 }
 
 func (TutorialCharacterVoiceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[203].Descriptor()
+	return file_penum_proto_enumTypes[204].Descriptor()
 }
 
 func (TutorialCharacterVoiceType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[203]
+	return &file_penum_proto_enumTypes[204]
 }
 
 func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
@@ -14919,7 +15286,7 @@ func (x TutorialCharacterVoiceType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialCharacterVoiceType.Descriptor instead.
 func (TutorialCharacterVoiceType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{203}
+	return file_penum_proto_rawDescGZIP(), []int{204}
 }
 
 type TutorialNavigationPositionType int32
@@ -14964,11 +15331,11 @@ func (x TutorialNavigationPositionType) String() string {
 }
 
 func (TutorialNavigationPositionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[204].Descriptor()
+	return file_penum_proto_enumTypes[205].Descriptor()
 }
 
 func (TutorialNavigationPositionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[204]
+	return &file_penum_proto_enumTypes[205]
 }
 
 func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
@@ -14977,7 +15344,7 @@ func (x TutorialNavigationPositionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationPositionType.Descriptor instead.
 func (TutorialNavigationPositionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{204}
+	return file_penum_proto_rawDescGZIP(), []int{205}
 }
 
 type TutorialNavigationType int32
@@ -15022,11 +15389,11 @@ func (x TutorialNavigationType) String() string {
 }
 
 func (TutorialNavigationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[205].Descriptor()
+	return file_penum_proto_enumTypes[206].Descriptor()
 }
 
 func (TutorialNavigationType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[205]
+	return &file_penum_proto_enumTypes[206]
 }
 
 func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
@@ -15035,7 +15402,7 @@ func (x TutorialNavigationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialNavigationType.Descriptor instead.
 func (TutorialNavigationType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{205}
+	return file_penum_proto_rawDescGZIP(), []int{206}
 }
 
 type TutorialProduceCommandType int32
@@ -15089,11 +15456,11 @@ func (x TutorialProduceCommandType) String() string {
 }
 
 func (TutorialProduceCommandType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[206].Descriptor()
+	return file_penum_proto_enumTypes[207].Descriptor()
 }
 
 func (TutorialProduceCommandType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[206]
+	return &file_penum_proto_enumTypes[207]
 }
 
 func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
@@ -15102,89 +15469,102 @@ func (x TutorialProduceCommandType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialProduceCommandType.Descriptor instead.
 func (TutorialProduceCommandType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{206}
+	return file_penum_proto_rawDescGZIP(), []int{207}
 }
 
 type TutorialType int32
 
 const (
-	TutorialType_TutorialType_Unknown                                   TutorialType = 0
-	TutorialType_TutorialType_GameStart                                 TutorialType = 1
-	TutorialType_TutorialType_MainTask                                  TutorialType = 2
-	TutorialType_TutorialType_Work                                      TutorialType = 3
-	TutorialType_TutorialType_IdolCard                                  TutorialType = 4
-	TutorialType_TutorialType_IdolCardSkin                              TutorialType = 5
-	TutorialType_TutorialType_PvpRate                                   TutorialType = 6
-	TutorialType_TutorialType_CoinGasha                                 TutorialType = 7
-	TutorialType_TutorialType_MoneyReceive                              TutorialType = 8
-	TutorialType_TutorialType_MissionPass                               TutorialType = 9
-	TutorialType_TutorialType_Profile                                   TutorialType = 10
-	TutorialType_TutorialType_Meishi                                    TutorialType = 11
-	TutorialType_TutorialType_Friend                                    TutorialType = 12
-	TutorialType_TutorialType_Achievement                               TutorialType = 14
-	TutorialType_TutorialType_IdolCardLevelLimitRankUpdate              TutorialType = 15
-	TutorialType_TutorialType_SupportCardLevelUpdate                    TutorialType = 16
-	TutorialType_TutorialType_ItemExchange                              TutorialType = 17
-	TutorialType_TutorialType_DailyExchange                             TutorialType = 18
-	TutorialType_TutorialType_Tower                                     TutorialType = 19
-	TutorialType_TutorialType_Guild                                     TutorialType = 20
-	TutorialType_TutorialType_TutorialReceiveIdolCard                   TutorialType = 21
-	TutorialType_TutorialType_PhotoTop                                  TutorialType = 22
-	TutorialType_TutorialType_PhotoIdol                                 TutorialType = 23
-	TutorialType_TutorialType_PhotoPrepare                              TutorialType = 24
-	TutorialType_TutorialType_Photo                                     TutorialType = 25
-	TutorialType_TutorialType_MeishiEditCustom                          TutorialType = 26
-	TutorialType_TutorialType_MeishiEditCustomManual                    TutorialType = 27
-	TutorialType_TutorialType_IdolCardSkinUnit                          TutorialType = 28
-	TutorialType_TutorialType_DearnessTop                               TutorialType = 29
-	TutorialType_TutorialType_DearnessPoint                             TutorialType = 30
-	TutorialType_TutorialType_ProduceIdolCardSelect                     TutorialType = 100
-	TutorialType_TutorialType_ProduceSupportCardSelect                  TutorialType = 101
-	TutorialType_TutorialType_ProduceMemorySelect                       TutorialType = 102
-	TutorialType_TutorialType_ProduceSchedule                           TutorialType = 103
-	TutorialType_TutorialType_ProduceEvent                              TutorialType = 104
-	TutorialType_TutorialType_ProducePresentStep                        TutorialType = 105
-	TutorialType_TutorialType_ProduceShopStep                           TutorialType = 106
-	TutorialType_TutorialType_ProduceExamGimmick                        TutorialType = 107
-	TutorialType_TutorialType_ProduceExamPerfect                        TutorialType = 108
-	TutorialType_TutorialType_ProduceBeforeLiveEvaluation               TutorialType = 109
-	TutorialType_TutorialType_ProduceDifficultySelect                   TutorialType = 110
-	TutorialType_TutorialType_ProduceCardUpgrade                        TutorialType = 111
-	TutorialType_TutorialType_ProduceCardDelete                         TutorialType = 112
-	TutorialType_TutorialType_ProduceDrink                              TutorialType = 113
-	TutorialType_TutorialType_ProduceCardUpgradeBySupportCard           TutorialType = 114
-	TutorialType_TutorialType_ProduceExamBattle                         TutorialType = 115
-	TutorialType_TutorialType_ProduceSupportCardEvent                   TutorialType = 116
-	TutorialType_TutorialType_ProduceStepLessonHardBonus                TutorialType = 117
-	TutorialType_TutorialType_ProduceStepLessonPresent                  TutorialType = 118
-	TutorialType_TutorialType_ProduceBeforeAuditionRefresh              TutorialType = 119
-	TutorialType_TutorialType_ProduceBeforeLessonHard                   TutorialType = 120
-	TutorialType_TutorialType_ProduceChallenge                          TutorialType = 121
-	TutorialType_TutorialType_ProduceNextIdolAuditionTop                TutorialType = 122
-	TutorialType_TutorialType_ProduceNextIdolAuditionSchedule           TutorialType = 123
-	TutorialType_TutorialType_ProduceNextIdolAuditionStepAuditionSelect TutorialType = 124
-	TutorialType_TutorialType_ProduceNextIdolAuditionStepAuditionStart  TutorialType = 125
-	TutorialType_TutorialType_ProduceNextIdolAuditionResult             TutorialType = 126
-	TutorialType_TutorialType_ProduceStepBusiness                       TutorialType = 127
-	TutorialType_TutorialType_ProduceStepCustomize                      TutorialType = 128
-	TutorialType_TutorialType_ProduceStepFanPresent                     TutorialType = 129
-	TutorialType_TutorialType_ProduceLegendTop                          TutorialType = 130
-	TutorialType_TutorialType_MissionPanel                              TutorialType = 200
-	TutorialType_TutorialType_ProduceHighScore                          TutorialType = 201
-	TutorialType_TutorialType_StoryEvent                                TutorialType = 202
-	TutorialType_TutorialType_StoryEventMainStroy                       TutorialType = 203
-	TutorialType_TutorialType_StoryEventBoxGasha                        TutorialType = 204
-	TutorialType_TutorialType_StoryEventGuildMission                    TutorialType = 205
-	TutorialType_TutorialType_GvgRaid                                   TutorialType = 206
-	TutorialType_TutorialType_ProduceNextIdolAuditionMaster             TutorialType = 207
-	TutorialType_TutorialType_ProduceNextIdolAuditionMasterRanking      TutorialType = 208
-	TutorialType_TutorialType_Tour                                      TutorialType = 209
-	TutorialType_TutorialType_Research                                  TutorialType = 210
-	TutorialType_TutorialType_ProducerRanking                           TutorialType = 211
-	TutorialType_TutorialType_ProduceCardConvert                        TutorialType = 212
-	TutorialType_TutorialType_Competition                               TutorialType = 213
-	TutorialType_TutorialType_CompetitionPreOpen                        TutorialType = 214
-	TutorialType_TutorialType_Badge                                     TutorialType = 215
+	TutorialType_TutorialType_Unknown                                            TutorialType = 0
+	TutorialType_TutorialType_GameStart                                          TutorialType = 1
+	TutorialType_TutorialType_MainTask                                           TutorialType = 2
+	TutorialType_TutorialType_Work                                               TutorialType = 3
+	TutorialType_TutorialType_IdolCard                                           TutorialType = 4
+	TutorialType_TutorialType_IdolCardSkin                                       TutorialType = 5
+	TutorialType_TutorialType_PvpRate                                            TutorialType = 6
+	TutorialType_TutorialType_CoinGasha                                          TutorialType = 7
+	TutorialType_TutorialType_MoneyReceive                                       TutorialType = 8
+	TutorialType_TutorialType_MissionPass                                        TutorialType = 9
+	TutorialType_TutorialType_Profile                                            TutorialType = 10
+	TutorialType_TutorialType_Meishi                                             TutorialType = 11
+	TutorialType_TutorialType_Friend                                             TutorialType = 12
+	TutorialType_TutorialType_Achievement                                        TutorialType = 14
+	TutorialType_TutorialType_IdolCardLevelLimitRankUpdate                       TutorialType = 15
+	TutorialType_TutorialType_SupportCardLevelUpdate                             TutorialType = 16
+	TutorialType_TutorialType_ItemExchange                                       TutorialType = 17
+	TutorialType_TutorialType_DailyExchange                                      TutorialType = 18
+	TutorialType_TutorialType_Tower                                              TutorialType = 19
+	TutorialType_TutorialType_Guild                                              TutorialType = 20
+	TutorialType_TutorialType_TutorialReceiveIdolCard                            TutorialType = 21
+	TutorialType_TutorialType_PhotoTop                                           TutorialType = 22
+	TutorialType_TutorialType_PhotoIdol                                          TutorialType = 23
+	TutorialType_TutorialType_PhotoPrepare                                       TutorialType = 24
+	TutorialType_TutorialType_Photo                                              TutorialType = 25
+	TutorialType_TutorialType_MeishiEditCustom                                   TutorialType = 26
+	TutorialType_TutorialType_MeishiEditCustomManual                             TutorialType = 27
+	TutorialType_TutorialType_IdolCardSkinUnit                                   TutorialType = 28
+	TutorialType_TutorialType_DearnessTop                                        TutorialType = 29
+	TutorialType_TutorialType_DearnessPoint                                      TutorialType = 30
+	TutorialType_TutorialType_PrimaStella                                        TutorialType = 31
+	TutorialType_TutorialType_ProduceIdolCardSelect                              TutorialType = 100
+	TutorialType_TutorialType_ProduceSupportCardSelect                           TutorialType = 101
+	TutorialType_TutorialType_ProduceMemorySelect                                TutorialType = 102
+	TutorialType_TutorialType_ProduceSchedule                                    TutorialType = 103
+	TutorialType_TutorialType_ProduceEvent                                       TutorialType = 104
+	TutorialType_TutorialType_ProducePresentStep                                 TutorialType = 105
+	TutorialType_TutorialType_ProduceShopStep                                    TutorialType = 106
+	TutorialType_TutorialType_ProduceExamGimmick                                 TutorialType = 107
+	TutorialType_TutorialType_ProduceExamPerfect                                 TutorialType = 108
+	TutorialType_TutorialType_ProduceBeforeLiveEvaluation                        TutorialType = 109
+	TutorialType_TutorialType_ProduceDifficultySelect                            TutorialType = 110
+	TutorialType_TutorialType_ProduceCardUpgrade                                 TutorialType = 111
+	TutorialType_TutorialType_ProduceCardDelete                                  TutorialType = 112
+	TutorialType_TutorialType_ProduceDrink                                       TutorialType = 113
+	TutorialType_TutorialType_ProduceCardUpgradeBySupportCard                    TutorialType = 114
+	TutorialType_TutorialType_ProduceExamBattle                                  TutorialType = 115
+	TutorialType_TutorialType_ProduceSupportCardEvent                            TutorialType = 116
+	TutorialType_TutorialType_ProduceStepLessonHardBonus                         TutorialType = 117
+	TutorialType_TutorialType_ProduceStepLessonPresent                           TutorialType = 118
+	TutorialType_TutorialType_ProduceBeforeAuditionRefresh                       TutorialType = 119
+	TutorialType_TutorialType_ProduceBeforeLessonHard                            TutorialType = 120
+	TutorialType_TutorialType_ProduceChallenge                                   TutorialType = 121
+	TutorialType_TutorialType_ProduceNextIdolAuditionTop                         TutorialType = 122
+	TutorialType_TutorialType_ProduceNextIdolAuditionSchedule                    TutorialType = 123
+	TutorialType_TutorialType_ProduceNextIdolAuditionStepAuditionSelect          TutorialType = 124
+	TutorialType_TutorialType_ProduceNextIdolAuditionStepAuditionStart           TutorialType = 125
+	TutorialType_TutorialType_ProduceNextIdolAuditionResult                      TutorialType = 126
+	TutorialType_TutorialType_ProduceStepBusiness                                TutorialType = 127
+	TutorialType_TutorialType_ProduceStepCustomize                               TutorialType = 128
+	TutorialType_TutorialType_ProduceStepFanPresent                              TutorialType = 129
+	TutorialType_TutorialType_ProduceLegendTop                                   TutorialType = 130
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalTop                   TutorialType = 131
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalFinalTop              TutorialType = 132
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalSelectionSchedule     TutorialType = 133
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalFinalSchedule         TutorialType = 134
+	TutorialType_TutorialType_ProduceGrowthPanelTop                              TutorialType = 135
+	TutorialType_TutorialType_ProduceCustomizeItemCustomizeEffect                TutorialType = 136
+	TutorialType_TutorialType_ProduceStepOpenLesson                              TutorialType = 137
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalStepSchool            TutorialType = 138
+	TutorialType_TutorialType_ProduceHatsuboshiIdolFestivalFinalStepAuditionMid1 TutorialType = 139
+	TutorialType_TutorialType_ProduceStepInterval                                TutorialType = 140
+	TutorialType_TutorialType_ProduceSelectionMemoryCreate                       TutorialType = 141
+	TutorialType_TutorialType_ProduceSelectionMemorySelect                       TutorialType = 142
+	TutorialType_TutorialType_MissionPanel                                       TutorialType = 200
+	TutorialType_TutorialType_ProduceHighScore                                   TutorialType = 201
+	TutorialType_TutorialType_StoryEvent                                         TutorialType = 202
+	TutorialType_TutorialType_StoryEventMainStroy                                TutorialType = 203
+	TutorialType_TutorialType_StoryEventBoxGasha                                 TutorialType = 204
+	TutorialType_TutorialType_StoryEventGuildMission                             TutorialType = 205
+	TutorialType_TutorialType_GvgRaid                                            TutorialType = 206
+	TutorialType_TutorialType_ProduceNextIdolAuditionMaster                      TutorialType = 207
+	TutorialType_TutorialType_ProduceNextIdolAuditionMasterRanking               TutorialType = 208
+	TutorialType_TutorialType_Tour                                               TutorialType = 209
+	TutorialType_TutorialType_Research                                           TutorialType = 210
+	TutorialType_TutorialType_ProducerRanking                                    TutorialType = 211
+	TutorialType_TutorialType_ProduceCardConvert                                 TutorialType = 212
+	TutorialType_TutorialType_Competition                                        TutorialType = 213
+	TutorialType_TutorialType_CompetitionPreOpen                                 TutorialType = 214
+	TutorialType_TutorialType_Badge                                              TutorialType = 215
 )
 
 // Enum value maps for TutorialType.
@@ -15220,6 +15600,7 @@ var (
 		28:  "TutorialType_IdolCardSkinUnit",
 		29:  "TutorialType_DearnessTop",
 		30:  "TutorialType_DearnessPoint",
+		31:  "TutorialType_PrimaStella",
 		100: "TutorialType_ProduceIdolCardSelect",
 		101: "TutorialType_ProduceSupportCardSelect",
 		102: "TutorialType_ProduceMemorySelect",
@@ -15251,6 +15632,18 @@ var (
 		128: "TutorialType_ProduceStepCustomize",
 		129: "TutorialType_ProduceStepFanPresent",
 		130: "TutorialType_ProduceLegendTop",
+		131: "TutorialType_ProduceHatsuboshiIdolFestivalTop",
+		132: "TutorialType_ProduceHatsuboshiIdolFestivalFinalTop",
+		133: "TutorialType_ProduceHatsuboshiIdolFestivalSelectionSchedule",
+		134: "TutorialType_ProduceHatsuboshiIdolFestivalFinalSchedule",
+		135: "TutorialType_ProduceGrowthPanelTop",
+		136: "TutorialType_ProduceCustomizeItemCustomizeEffect",
+		137: "TutorialType_ProduceStepOpenLesson",
+		138: "TutorialType_ProduceHatsuboshiIdolFestivalStepSchool",
+		139: "TutorialType_ProduceHatsuboshiIdolFestivalFinalStepAuditionMid1",
+		140: "TutorialType_ProduceStepInterval",
+		141: "TutorialType_ProduceSelectionMemoryCreate",
+		142: "TutorialType_ProduceSelectionMemorySelect",
 		200: "TutorialType_MissionPanel",
 		201: "TutorialType_ProduceHighScore",
 		202: "TutorialType_StoryEvent",
@@ -15269,83 +15662,96 @@ var (
 		215: "TutorialType_Badge",
 	}
 	TutorialType_value = map[string]int32{
-		"TutorialType_Unknown":                                   0,
-		"TutorialType_GameStart":                                 1,
-		"TutorialType_MainTask":                                  2,
-		"TutorialType_Work":                                      3,
-		"TutorialType_IdolCard":                                  4,
-		"TutorialType_IdolCardSkin":                              5,
-		"TutorialType_PvpRate":                                   6,
-		"TutorialType_CoinGasha":                                 7,
-		"TutorialType_MoneyReceive":                              8,
-		"TutorialType_MissionPass":                               9,
-		"TutorialType_Profile":                                   10,
-		"TutorialType_Meishi":                                    11,
-		"TutorialType_Friend":                                    12,
-		"TutorialType_Achievement":                               14,
-		"TutorialType_IdolCardLevelLimitRankUpdate":              15,
-		"TutorialType_SupportCardLevelUpdate":                    16,
-		"TutorialType_ItemExchange":                              17,
-		"TutorialType_DailyExchange":                             18,
-		"TutorialType_Tower":                                     19,
-		"TutorialType_Guild":                                     20,
-		"TutorialType_TutorialReceiveIdolCard":                   21,
-		"TutorialType_PhotoTop":                                  22,
-		"TutorialType_PhotoIdol":                                 23,
-		"TutorialType_PhotoPrepare":                              24,
-		"TutorialType_Photo":                                     25,
-		"TutorialType_MeishiEditCustom":                          26,
-		"TutorialType_MeishiEditCustomManual":                    27,
-		"TutorialType_IdolCardSkinUnit":                          28,
-		"TutorialType_DearnessTop":                               29,
-		"TutorialType_DearnessPoint":                             30,
-		"TutorialType_ProduceIdolCardSelect":                     100,
-		"TutorialType_ProduceSupportCardSelect":                  101,
-		"TutorialType_ProduceMemorySelect":                       102,
-		"TutorialType_ProduceSchedule":                           103,
-		"TutorialType_ProduceEvent":                              104,
-		"TutorialType_ProducePresentStep":                        105,
-		"TutorialType_ProduceShopStep":                           106,
-		"TutorialType_ProduceExamGimmick":                        107,
-		"TutorialType_ProduceExamPerfect":                        108,
-		"TutorialType_ProduceBeforeLiveEvaluation":               109,
-		"TutorialType_ProduceDifficultySelect":                   110,
-		"TutorialType_ProduceCardUpgrade":                        111,
-		"TutorialType_ProduceCardDelete":                         112,
-		"TutorialType_ProduceDrink":                              113,
-		"TutorialType_ProduceCardUpgradeBySupportCard":           114,
-		"TutorialType_ProduceExamBattle":                         115,
-		"TutorialType_ProduceSupportCardEvent":                   116,
-		"TutorialType_ProduceStepLessonHardBonus":                117,
-		"TutorialType_ProduceStepLessonPresent":                  118,
-		"TutorialType_ProduceBeforeAuditionRefresh":              119,
-		"TutorialType_ProduceBeforeLessonHard":                   120,
-		"TutorialType_ProduceChallenge":                          121,
-		"TutorialType_ProduceNextIdolAuditionTop":                122,
-		"TutorialType_ProduceNextIdolAuditionSchedule":           123,
-		"TutorialType_ProduceNextIdolAuditionStepAuditionSelect": 124,
-		"TutorialType_ProduceNextIdolAuditionStepAuditionStart":  125,
-		"TutorialType_ProduceNextIdolAuditionResult":             126,
-		"TutorialType_ProduceStepBusiness":                       127,
-		"TutorialType_ProduceStepCustomize":                      128,
-		"TutorialType_ProduceStepFanPresent":                     129,
-		"TutorialType_ProduceLegendTop":                          130,
-		"TutorialType_MissionPanel":                              200,
-		"TutorialType_ProduceHighScore":                          201,
-		"TutorialType_StoryEvent":                                202,
-		"TutorialType_StoryEventMainStroy":                       203,
-		"TutorialType_StoryEventBoxGasha":                        204,
-		"TutorialType_StoryEventGuildMission":                    205,
-		"TutorialType_GvgRaid":                                   206,
-		"TutorialType_ProduceNextIdolAuditionMaster":             207,
-		"TutorialType_ProduceNextIdolAuditionMasterRanking":      208,
-		"TutorialType_Tour":                                      209,
-		"TutorialType_Research":                                  210,
-		"TutorialType_ProducerRanking":                           211,
-		"TutorialType_ProduceCardConvert":                        212,
-		"TutorialType_Competition":                               213,
-		"TutorialType_CompetitionPreOpen":                        214,
-		"TutorialType_Badge":                                     215,
+		"TutorialType_Unknown":                                            0,
+		"TutorialType_GameStart":                                          1,
+		"TutorialType_MainTask":                                           2,
+		"TutorialType_Work":                                               3,
+		"TutorialType_IdolCard":                                           4,
+		"TutorialType_IdolCardSkin":                                       5,
+		"TutorialType_PvpRate":                                            6,
+		"TutorialType_CoinGasha":                                          7,
+		"TutorialType_MoneyReceive":                                       8,
+		"TutorialType_MissionPass":                                        9,
+		"TutorialType_Profile":                                            10,
+		"TutorialType_Meishi":                                             11,
+		"TutorialType_Friend":                                             12,
+		"TutorialType_Achievement":                                        14,
+		"TutorialType_IdolCardLevelLimitRankUpdate":                       15,
+		"TutorialType_SupportCardLevelUpdate":                             16,
+		"TutorialType_ItemExchange":                                       17,
+		"TutorialType_DailyExchange":                                      18,
+		"TutorialType_Tower":                                              19,
+		"TutorialType_Guild":                                              20,
+		"TutorialType_TutorialReceiveIdolCard":                            21,
+		"TutorialType_PhotoTop":                                           22,
+		"TutorialType_PhotoIdol":                                          23,
+		"TutorialType_PhotoPrepare":                                       24,
+		"TutorialType_Photo":                                              25,
+		"TutorialType_MeishiEditCustom":                                   26,
+		"TutorialType_MeishiEditCustomManual":                             27,
+		"TutorialType_IdolCardSkinUnit":                                   28,
+		"TutorialType_DearnessTop":                                        29,
+		"TutorialType_DearnessPoint":                                      30,
+		"TutorialType_PrimaStella":                                        31,
+		"TutorialType_ProduceIdolCardSelect":                              100,
+		"TutorialType_ProduceSupportCardSelect":                           101,
+		"TutorialType_ProduceMemorySelect":                                102,
+		"TutorialType_ProduceSchedule":                                    103,
+		"TutorialType_ProduceEvent":                                       104,
+		"TutorialType_ProducePresentStep":                                 105,
+		"TutorialType_ProduceShopStep":                                    106,
+		"TutorialType_ProduceExamGimmick":                                 107,
+		"TutorialType_ProduceExamPerfect":                                 108,
+		"TutorialType_ProduceBeforeLiveEvaluation":                        109,
+		"TutorialType_ProduceDifficultySelect":                            110,
+		"TutorialType_ProduceCardUpgrade":                                 111,
+		"TutorialType_ProduceCardDelete":                                  112,
+		"TutorialType_ProduceDrink":                                       113,
+		"TutorialType_ProduceCardUpgradeBySupportCard":                    114,
+		"TutorialType_ProduceExamBattle":                                  115,
+		"TutorialType_ProduceSupportCardEvent":                            116,
+		"TutorialType_ProduceStepLessonHardBonus":                         117,
+		"TutorialType_ProduceStepLessonPresent":                           118,
+		"TutorialType_ProduceBeforeAuditionRefresh":                       119,
+		"TutorialType_ProduceBeforeLessonHard":                            120,
+		"TutorialType_ProduceChallenge":                                   121,
+		"TutorialType_ProduceNextIdolAuditionTop":                         122,
+		"TutorialType_ProduceNextIdolAuditionSchedule":                    123,
+		"TutorialType_ProduceNextIdolAuditionStepAuditionSelect":          124,
+		"TutorialType_ProduceNextIdolAuditionStepAuditionStart":           125,
+		"TutorialType_ProduceNextIdolAuditionResult":                      126,
+		"TutorialType_ProduceStepBusiness":                                127,
+		"TutorialType_ProduceStepCustomize":                               128,
+		"TutorialType_ProduceStepFanPresent":                              129,
+		"TutorialType_ProduceLegendTop":                                   130,
+		"TutorialType_ProduceHatsuboshiIdolFestivalTop":                   131,
+		"TutorialType_ProduceHatsuboshiIdolFestivalFinalTop":              132,
+		"TutorialType_ProduceHatsuboshiIdolFestivalSelectionSchedule":     133,
+		"TutorialType_ProduceHatsuboshiIdolFestivalFinalSchedule":         134,
+		"TutorialType_ProduceGrowthPanelTop":                              135,
+		"TutorialType_ProduceCustomizeItemCustomizeEffect":                136,
+		"TutorialType_ProduceStepOpenLesson":                              137,
+		"TutorialType_ProduceHatsuboshiIdolFestivalStepSchool":            138,
+		"TutorialType_ProduceHatsuboshiIdolFestivalFinalStepAuditionMid1": 139,
+		"TutorialType_ProduceStepInterval":                                140,
+		"TutorialType_ProduceSelectionMemoryCreate":                       141,
+		"TutorialType_ProduceSelectionMemorySelect":                       142,
+		"TutorialType_MissionPanel":                                       200,
+		"TutorialType_ProduceHighScore":                                   201,
+		"TutorialType_StoryEvent":                                         202,
+		"TutorialType_StoryEventMainStroy":                                203,
+		"TutorialType_StoryEventBoxGasha":                                 204,
+		"TutorialType_StoryEventGuildMission":                             205,
+		"TutorialType_GvgRaid":                                            206,
+		"TutorialType_ProduceNextIdolAuditionMaster":                      207,
+		"TutorialType_ProduceNextIdolAuditionMasterRanking":               208,
+		"TutorialType_Tour":                                               209,
+		"TutorialType_Research":                                           210,
+		"TutorialType_ProducerRanking":                                    211,
+		"TutorialType_ProduceCardConvert":                                 212,
+		"TutorialType_Competition":                                        213,
+		"TutorialType_CompetitionPreOpen":                                 214,
+		"TutorialType_Badge":                                              215,
 	}
 )
 
@@ -15360,11 +15766,11 @@ func (x TutorialType) String() string {
 }
 
 func (TutorialType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[207].Descriptor()
+	return file_penum_proto_enumTypes[208].Descriptor()
 }
 
 func (TutorialType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[207]
+	return &file_penum_proto_enumTypes[208]
 }
 
 func (x TutorialType) Number() protoreflect.EnumNumber {
@@ -15373,7 +15779,7 @@ func (x TutorialType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TutorialType.Descriptor instead.
 func (TutorialType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{207}
+	return file_penum_proto_rawDescGZIP(), []int{208}
 }
 
 type ViewAreaType int32
@@ -15409,11 +15815,11 @@ func (x ViewAreaType) String() string {
 }
 
 func (ViewAreaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[208].Descriptor()
+	return file_penum_proto_enumTypes[209].Descriptor()
 }
 
 func (ViewAreaType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[208]
+	return &file_penum_proto_enumTypes[209]
 }
 
 func (x ViewAreaType) Number() protoreflect.EnumNumber {
@@ -15422,7 +15828,7 @@ func (x ViewAreaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ViewAreaType.Descriptor instead.
 func (ViewAreaType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{208}
+	return file_penum_proto_rawDescGZIP(), []int{209}
 }
 
 type VoicePlayScreenType int32
@@ -15464,11 +15870,11 @@ func (x VoicePlayScreenType) String() string {
 }
 
 func (VoicePlayScreenType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[209].Descriptor()
+	return file_penum_proto_enumTypes[210].Descriptor()
 }
 
 func (VoicePlayScreenType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[209]
+	return &file_penum_proto_enumTypes[210]
 }
 
 func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
@@ -15477,7 +15883,7 @@ func (x VoicePlayScreenType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use VoicePlayScreenType.Descriptor instead.
 func (VoicePlayScreenType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{209}
+	return file_penum_proto_rawDescGZIP(), []int{210}
 }
 
 type Weekday int32
@@ -15528,11 +15934,11 @@ func (x Weekday) String() string {
 }
 
 func (Weekday) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[210].Descriptor()
+	return file_penum_proto_enumTypes[211].Descriptor()
 }
 
 func (Weekday) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[210]
+	return &file_penum_proto_enumTypes[211]
 }
 
 func (x Weekday) Number() protoreflect.EnumNumber {
@@ -15541,7 +15947,7 @@ func (x Weekday) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Weekday.Descriptor instead.
 func (Weekday) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{210}
+	return file_penum_proto_rawDescGZIP(), []int{211}
 }
 
 type WorkMotionType int32
@@ -15589,11 +15995,11 @@ func (x WorkMotionType) String() string {
 }
 
 func (WorkMotionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[211].Descriptor()
+	return file_penum_proto_enumTypes[212].Descriptor()
 }
 
 func (WorkMotionType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[211]
+	return &file_penum_proto_enumTypes[212]
 }
 
 func (x WorkMotionType) Number() protoreflect.EnumNumber {
@@ -15602,7 +16008,7 @@ func (x WorkMotionType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMotionType.Descriptor instead.
 func (WorkMotionType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{211}
+	return file_penum_proto_rawDescGZIP(), []int{212}
 }
 
 type WorkType int32
@@ -15638,11 +16044,11 @@ func (x WorkType) String() string {
 }
 
 func (WorkType) Descriptor() protoreflect.EnumDescriptor {
-	return file_penum_proto_enumTypes[212].Descriptor()
+	return file_penum_proto_enumTypes[213].Descriptor()
 }
 
 func (WorkType) Type() protoreflect.EnumType {
-	return &file_penum_proto_enumTypes[212]
+	return &file_penum_proto_enumTypes[213]
 }
 
 func (x WorkType) Number() protoreflect.EnumNumber {
@@ -15651,7 +16057,7 @@ func (x WorkType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkType.Descriptor instead.
 func (WorkType) EnumDescriptor() ([]byte, []int) {
-	return file_penum_proto_rawDescGZIP(), []int{212}
+	return file_penum_proto_rawDescGZIP(), []int{213}
 }
 
 var File_penum_proto protoreflect.FileDescriptor
@@ -15793,7 +16199,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x15ConditionOperatorType\x12!\n" +
 	"\x1dConditionOperatorType_Unknown\x10\x00\x12\x1d\n" +
 	"\x19ConditionOperatorType_And\x10\x01\x12\x1c\n" +
-	"\x18ConditionOperatorType_Or\x10\x02*\xf4\x14\n" +
+	"\x18ConditionOperatorType_Or\x10\x02*\xfb\x15\n" +
 	"\rConditionType\x12\x19\n" +
 	"\x15ConditionType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16ConditionType_TimeTerm\x10\x01\x12\x1e\n" +
@@ -15867,7 +16273,10 @@ const file_penum_proto_rawDesc = "" +
 	"'ConditionType_AppVersionLessThanOrEqual\x10F\x12'\n" +
 	"#ConditionType_ProduceCardConversion\x10G\x12(\n" +
 	"$ConditionType_CompetitionSeasonGrade\x10H\x12&\n" +
-	"\"ConditionType_CompetitionBestGrade\x10I\x12\x16\n" +
+	"\"ConditionType_CompetitionBestGrade\x10I\x12)\n" +
+	"%ConditionType_ProduceGrowthPanelLevel\x10J\x12.\n" +
+	"*ConditionType_ProduceGrowthPanelLevelCount\x10K\x12*\n" +
+	"&ConditionType_IdolCardPrimaStellaCount\x10L\x12\x16\n" +
 	"\x11ConditionType_Set\x10\xe6\a\x12\x1e\n" +
 	"\x19ConditionType_NegativeSet\x10\xe7\a*\xa8\x01\n" +
 	"\x14ConsentAgreementType\x12 \n" +
@@ -16149,7 +16558,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x1dExamPlayType_ManualPlayLesson\x10\x02\x12%\n" +
 	"!ExamPlayType_ManualPlayLessonHard\x10\x03\x12#\n" +
 	"\x1fExamPlayType_ManualPlayAudition\x10\x04\x12$\n" +
-	" ExamPlayType_AutoPlayCompetition\x10\x05*\xad\x16\n" +
+	" ExamPlayType_AutoPlayCompetition\x10\x05*\xdc\x1a\n" +
 	"\x14ExamStatusEffectType\x12 \n" +
 	"\x1cExamStatusEffectType_Unknown\x10\x00\x12&\n" +
 	"\"ExamStatusEffectType_ParameterBuff\x10\x01\x12(\n" +
@@ -16213,7 +16622,18 @@ const file_penum_proto_rawDesc = "" +
 	"(ExamStatusEffectType_StanceLockFullPower\x10B\x12/\n" +
 	"+ExamStatusEffectType_StanceLockPreservation\x10C\x12'\n" +
 	"#ExamStatusEffectType_ReviewCountAdd\x10D\x12+\n" +
-	"'ExamStatusEffectType_EffectTimerEndTurn\x10E*\xd9\x01\n" +
+	"'ExamStatusEffectType_EffectTimerEndTurn\x10E\x120\n" +
+	",ExamStatusEffectType_ReviewTurnEndReduceLock\x10F\x127\n" +
+	"3ExamStatusEffectType_ParameterBuffTurnEndReduceLock\x10G\x12,\n" +
+	"(ExamStatusEffectType_BuffConsumptionDown\x10H\x12+\n" +
+	"'ExamStatusEffectType_BuffConsumptionAdd\x10I\x12<\n" +
+	"8ExamStatusEffectType_SearchPlayCardBuffConsumptionChange\x10J\x126\n" +
+	"2ExamStatusEffectType_PlayCardLimitPlayableValueAdd\x10K\x121\n" +
+	"-ExamStatusEffectType_ParameterBuffAdditiveFix\x10L\x12.\n" +
+	"*ExamStatusEffectType_LessonBuffAdditiveFix\x10M\x12.\n" +
+	"*ExamStatusEffectType_AggressiveAdditiveFix\x10N\x12*\n" +
+	"&ExamStatusEffectType_ReviewAdditiveFix\x10O\x122\n" +
+	".ExamStatusEffectType_FullPowerPointAdditiveFix\x10P*\xd9\x01\n" +
 	"\x18ExchangeItemCategoryType\x12$\n" +
 	" ExchangeItemCategoryType_Unknown\x10\x00\x12 \n" +
 	"\x1cExchangeItemCategoryType_All\x10\x01\x12)\n" +
@@ -16408,13 +16828,15 @@ const file_penum_proto_rawDesc = "" +
 	"\x1eIdolCardDifficultyType_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aIdolCardDifficultyType_Low\x10\x01\x12!\n" +
 	"\x1dIdolCardDifficultyType_Middle\x10\x02\x12\x1f\n" +
-	"\x1bIdolCardDifficultyType_High\x10\x03*\x8d\x02\n" +
+	"\x1bIdolCardDifficultyType_High\x10\x03*\xfd\x02\n" +
 	"\x1cIdolCardLevelLimitEffectType\x12(\n" +
 	"$IdolCardLevelLimitEffectType_Unknown\x10\x00\x123\n" +
 	"/IdolCardLevelLimitEffectType_ProduceCardUpgrade\x10\x01\x12.\n" +
 	"*IdolCardLevelLimitEffectType_ProduceVoDaVi\x10\x02\x12/\n" +
 	"+IdolCardLevelLimitEffectType_ProduceStamina\x10\x03\x12-\n" +
-	")IdolCardLevelLimitEffectType_ProduceSkill\x10\x04*\xd3\x02\n" +
+	")IdolCardLevelLimitEffectType_ProduceSkill\x10\x04\x129\n" +
+	"5IdolCardLevelLimitEffectType_SecondProduceCardUpgrade\x10\x05\x123\n" +
+	"/IdolCardLevelLimitEffectType_ProduceItemUpgrade\x10\x06*\xd3\x02\n" +
 	"\x16IdolCardLevelLimitRank\x12\"\n" +
 	"\x1eIdolCardLevelLimitRank_Unknown\x10\x00\x12\x1d\n" +
 	"\x19IdolCardLevelLimitRank__1\x10\x01\x12\x1d\n" +
@@ -16597,7 +17019,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x16MissionCategory_Normal\x10\x04\x12\x1b\n" +
 	"\x17MissionCategory_Special\x10\x05\x12\x19\n" +
 	"\x15MissionCategory_Event\x10\x06\x12\x1f\n" +
-	"\x1bMissionCategory_Achievement\x10\a*\xe3.\n" +
+	"\x1bMissionCategory_Achievement\x10\a*\xcb/\n" +
 	"\vMissionType\x12\x17\n" +
 	"\x13MissionType_Unknown\x10\x00\x12%\n" +
 	"!MissionType_IncrementMissionClear\x10e\x12#\n" +
@@ -16685,7 +17107,8 @@ const file_penum_proto_rawDesc = "" +
 	"$MissionType_AbsoluteSupportCardCount\x10\xbb\x02\x12.\n" +
 	")MissionType_AbsoluteSupportCardLevelCount\x10\xbc\x02\x127\n" +
 	"2MissionType_AbsoluteSupportCardLevelLimitRankCount\x10\xbd\x02\x12)\n" +
-	"$MissionType_AbsoluteSupportCardLevel\x10\xbf\x02\x12!\n" +
+	"$MissionType_AbsoluteSupportCardLevel\x10\xbf\x02\x121\n" +
+	",MissionType_AbsoluteIdolCardPrimaStellaCount\x10\xc0\x02\x12!\n" +
 	"\x1cMissionType_AbsoluteFanCount\x10\xcf\x02\x12&\n" +
 	"!MissionType_AbsoluteDearnessLevel\x10\xd1\x02\x12*\n" +
 	"%MissionType_AbsoluteMeishiUpdateCount\x10\xd7\x02\x12,\n" +
@@ -16720,7 +17143,8 @@ const file_penum_proto_rawDesc = "" +
 	"*MissionType_AbsoluteProduceCharacterEnding\x10\xa4\x03\x12)\n" +
 	"$MissionType_AbsoluteSeminarExamClear\x10\xa5\x03\x122\n" +
 	"-MissionType_AbsoluteProducePlayCharacterCount\x10\xa6\x03\x12)\n" +
-	"$MissionType_AbsoluteProduceStoryRead\x10\xa7\x03\x12\x1f\n" +
+	"$MissionType_AbsoluteProduceStoryRead\x10\xa7\x03\x123\n" +
+	".MissionType_AbsoluteProduceGrowthPanelComplete\x10\xa8\x03\x12\x1f\n" +
 	"\x1aMissionType_ConditionClear\x10\xe6\a\x12&\n" +
 	"!MissionType_ProduceConditionClear\x10\xe7\a\x12:\n" +
 	"5MissionType_ProduceConditionClearBeforeLiveEvaluation\x10\xe8\a*f\n" +
@@ -16934,7 +17358,7 @@ const file_penum_proto_rawDesc = "" +
 	"'ProduceCardSearchStatusType_EndTurnLost\x10\x02\x12'\n" +
 	"#ProduceCardSearchStatusType_Initial\x10\x04\x12(\n" +
 	"$ProduceCardSearchStatusType_Restrict\x10\x05\x12)\n" +
-	"%ProduceCardSearchStatusType_GravePlay\x10\x06*\xd6\x1a\n" +
+	"%ProduceCardSearchStatusType_GravePlay\x10\x06*\xf5\x1a\n" +
 	"\x14ProduceConditionType\x12 \n" +
 	"\x1cProduceConditionType_Unknown\x10\x00\x12&\n" +
 	"\"ProduceConditionType_EventOccurred\x10\x01\x12)\n" +
@@ -17010,13 +17434,14 @@ const file_penum_proto_rawDesc = "" +
 	",ProduceConditionType_CurrentAuditionStepType\x10P\x128\n" +
 	"4ProduceConditionType_CurrentAuditionStepSelectNumber\x10Q\x12&\n" +
 	"\"ProduceConditionType_DearnessPoint\x10R\x12\x1d\n" +
+	"\x19ProduceConditionType_Star\x10S\x12\x1d\n" +
 	"\x18ProduceConditionType_Set\x10\xe6\a\x12%\n" +
 	" ProduceConditionType_NegativeSet\x10\xe7\a*\xbc\x01\n" +
 	"\x1aProduceDescriptionSwapType\x12&\n" +
 	"\"ProduceDescriptionSwapType_Unknown\x10\x00\x12%\n" +
 	"!ProduceDescriptionSwapType_Lesson\x10\x01\x12'\n" +
 	"#ProduceDescriptionSwapType_Audition\x10\x02\x12&\n" +
-	"\"ProduceDescriptionSwapType_Contest\x10\x03*\xa1\b\n" +
+	"\"ProduceDescriptionSwapType_Contest\x10\x03*\xc7\b\n" +
 	"\x16ProduceDescriptionType\x12\"\n" +
 	"\x1eProduceDescriptionType_Unknown\x10\x00\x12$\n" +
 	" ProduceDescriptionType_PlainText\x10\x01\x120\n" +
@@ -17041,7 +17466,8 @@ const file_penum_proto_rawDesc = "" +
 	" ProduceDescriptionType_ExamCount\x10\"\x12G\n" +
 	"CProduceDescriptionType_ExamCardCreateSearchTurnTimerProduceCardName\x10#\x120\n" +
 	",ProduceDescriptionType_ExamProduceExamEffect\x10$\x120\n" +
-	",ProduceDescriptionType_ExamProduceCardSearch\x10%*r\n" +
+	",ProduceDescriptionType_ExamProduceCardSearch\x10%\x12$\n" +
+	" ProduceDescriptionType_IconAsset\x102*r\n" +
 	"\x12ProduceDisplayType\x12\x1e\n" +
 	"\x1aProduceDisplayType_Unknown\x10\x00\x12\x1d\n" +
 	"\x19ProduceDisplayType_Itself\x10\x01\x12\x1d\n" +
@@ -17051,7 +17477,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ProduceDrinkRarity_N\x10\x01\x12\x18\n" +
 	"\x14ProduceDrinkRarity_R\x10\x02\x12\x19\n" +
 	"\x15ProduceDrinkRarity_Sr\x10\x03\x12\x1a\n" +
-	"\x16ProduceDrinkRarity_Ssr\x10\x04*\xb1+\n" +
+	"\x16ProduceDrinkRarity_Ssr\x10\x04*\xd8-\n" +
 	"\x11ProduceEffectType\x12\x1d\n" +
 	"\x19ProduceEffectType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceEffectType_VocalAddition\x10\x01\x12#\n" +
@@ -17166,7 +17592,13 @@ const file_penum_proto_rawDesc = "" +
 	"0ProduceEffectType_LegendProduceCardCountAddition\x10}\x126\n" +
 	"2ProduceEffectType_ExamPermanentLessonStatusEnchant\x10~\x128\n" +
 	"4ProduceEffectType_ExamPermanentAuditionStatusEnchant\x10\x7f\x12(\n" +
-	"#ProduceEffectType_AuditionNpcWeaken\x10\x80\x01*\xe7\x05\n" +
+	"#ProduceEffectType_AuditionNpcWeaken\x10\x80\x01\x122\n" +
+	"-ProduceEffectType_ProduceCustomizeItemUpgrade\x10\x81\x01\x12#\n" +
+	"\x1eProduceEffectType_StarPermilUp\x10\x82\x01\x12#\n" +
+	"\x1eProduceEffectType_StarAddition\x10\x83\x01\x12.\n" +
+	")ProduceEffectType_ProduceCardChangeSelect\x10\x84\x01\x121\n" +
+	",ProduceEffectType_ProduceDrinkPossessLimitUp\x10\x85\x01\x12D\n" +
+	"?ProduceEffectType_ShopProduceCardPriceDiscountMultiplePermanent\x10\x86\x01*\xe7\x05\n" +
 	"\x19ProduceEventCharacterType\x12%\n" +
 	"!ProduceEventCharacterType_Unknown\x10\x00\x12%\n" +
 	"!ProduceEventCharacterType_Opening\x10\x01\x12(\n" +
@@ -17201,7 +17633,7 @@ const file_penum_proto_rawDesc = "" +
 	"/ProduceExamAutoCardSelectEvaluationType_Unknown\x10\x00\x12=\n" +
 	"9ProduceExamAutoCardSelectEvaluationType_LessonCoefficient\x10\x01\x12E\n" +
 	"AProduceExamAutoCardSelectEvaluationType_FullPowerPointCoefficient\x10\x02\x12K\n" +
-	"GProduceExamAutoCardSelectEvaluationType_FullPowerPointValue2Coefficient\x10\x03*\x84\x16\n" +
+	"GProduceExamAutoCardSelectEvaluationType_FullPowerPointValue2Coefficient\x10\x03*\xfe\x17\n" +
 	"\x1dProduceExamAutoEvaluationType\x12)\n" +
 	"%ProduceExamAutoEvaluationType_Unknown\x10\x00\x12+\n" +
 	"'ProduceExamAutoEvaluationType_Parameter\x10\x01\x12'\n" +
@@ -17253,7 +17685,11 @@ const file_penum_proto_rawDesc = "" +
 	"5ProduceExamAutoEvaluationType_StanceLockConcentration\x10.\x125\n" +
 	"1ProduceExamAutoEvaluationType_StanceLockFullPower\x10/\x128\n" +
 	"4ProduceExamAutoEvaluationType_StanceLockPreservation\x100\x124\n" +
-	"0ProduceExamAutoEvaluationType_ExamReviewCountAdd\x101*\x9e;\n" +
+	"0ProduceExamAutoEvaluationType_ExamReviewCountAdd\x101\x12=\n" +
+	"9ProduceExamAutoEvaluationType_ExamReviewTurnEndReduceLock\x102\x12D\n" +
+	"@ProduceExamAutoEvaluationType_ExamParameterBuffTurnEndReduceLock\x103\x129\n" +
+	"5ProduceExamAutoEvaluationType_ExamBuffConsumptionDown\x104\x128\n" +
+	"4ProduceExamAutoEvaluationType_ExamBuffConsumptionAdd\x105*\x89F\n" +
 	"\x15ProduceExamEffectType\x12!\n" +
 	"\x1dProduceExamEffectType_Unknown\x10\x00\x12$\n" +
 	" ProduceExamEffectType_ExamLesson\x10\x01\x12+\n" +
@@ -17400,7 +17836,31 @@ const file_penum_proto_rawDesc = "" +
 	"-ProduceExamEffectType_ExamStanceLockFullPower\x10\xc0\x01\x125\n" +
 	"0ProduceExamEffectType_ExamStanceLockPreservation\x10\xc1\x01\x123\n" +
 	".ProduceExamEffectType_ExamCardShuffleDeckGrave\x10\xc2\x01\x12-\n" +
-	"(ProduceExamEffectType_ExamReviewCountAdd\x10\xc3\x01*\xf9\x0e\n" +
+	"(ProduceExamEffectType_ExamReviewCountAdd\x10\xc3\x01\x126\n" +
+	"1ProduceExamEffectType_ExamReviewTurnEndReduceLock\x10\xc4\x01\x12=\n" +
+	"8ProduceExamEffectType_ExamParameterBuffTurnEndReduceLock\x10\xc5\x01\x122\n" +
+	"-ProduceExamEffectType_ExamBuffConsumptionDown\x10\xc6\x01\x121\n" +
+	",ProduceExamEffectType_ExamBuffConsumptionAdd\x10\xc7\x01\x12B\n" +
+	"=ProduceExamEffectType_ExamSearchPlayCardBuffConsumptionChange\x10\xc8\x01\x12<\n" +
+	"7ProduceExamEffectType_ExamPlayCardLimitPlayableValueAdd\x10\xc9\x01\x12?\n" +
+	":ProduceExamEffectType_ExamReviewDependReviewConsumptionSum\x10\xca\x01\x12:\n" +
+	"5ProduceExamEffectType_ExamLessonBuffReduceCancellable\x10\xcb\x01\x12=\n" +
+	"8ProduceExamEffectType_ExamParameterBuffReduceCancellable\x10\xcc\x01\x12:\n" +
+	"5ProduceExamEffectType_ExamAggressiveReduceCancellable\x10\xcd\x01\x126\n" +
+	"1ProduceExamEffectType_ExamReviewReduceCancellable\x10\xce\x01\x12>\n" +
+	"9ProduceExamEffectType_ExamFullPowerPointReduceCancellable\x10\xcf\x01\x123\n" +
+	".ProduceExamEffectType_ExamStatusEnchantTurnAdd\x10\xd0\x01\x124\n" +
+	"/ProduceExamEffectType_ExamStatusEnchantCountAdd\x10\xd1\x01\x127\n" +
+	"2ProduceExamEffectType_ExamParameterBuffAdditiveFix\x10\xd2\x01\x124\n" +
+	"/ProduceExamEffectType_ExamLessonBuffAdditiveFix\x10\xd3\x01\x124\n" +
+	"/ProduceExamEffectType_ExamAggressiveAdditiveFix\x10\xd4\x01\x120\n" +
+	"+ProduceExamEffectType_ExamReviewAdditiveFix\x10\xd5\x01\x128\n" +
+	"3ProduceExamEffectType_ExamFullPowerPointAdditiveFix\x10\xd6\x01\x12-\n" +
+	"(ProduceExamEffectType_ExamMoveGrowEffect\x10\xd7\x01\x12=\n" +
+	"8ProduceExamEffectType_ExamLessonDependEnthusiasticGetSum\x10\xd8\x01\x122\n" +
+	"-ProduceExamEffectType_ExamCardShuffleDeckLost\x10\xd9\x01\x12G\n" +
+	"BProduceExamEffectType_ExamFullPowerPointDependFullPowerPointGetSum\x10\xda\x01\x122\n" +
+	"-ProduceExamEffectType_ExamStatusEnchantEncore\x10\xdb\x01*\xc1\x10\n" +
 	"\x1aProduceExamFieldStatusType\x12&\n" +
 	"\"ProduceExamFieldStatusType_Unknown\x10\x00\x12,\n" +
 	"(ProduceExamFieldStatusType_ParameterBuff\x10\x01\x120\n" +
@@ -17439,7 +17899,11 @@ const file_penum_proto_rawDesc = "" +
 	",ProduceExamFieldStatusType_CardSearchCountUp\x103\x12-\n" +
 	")ProduceExamFieldStatusType_PlayCardSearch\x104\x12=\n" +
 	"9ProduceExamFieldStatusType_ParameterBuffMultiplePerTurnUp\x105\x12-\n" +
-	")ProduceExamFieldStatusType_EnthusiasticUp\x106*\xd4\x0f\n" +
+	")ProduceExamFieldStatusType_EnthusiasticUp\x106\x12-\n" +
+	")ProduceExamFieldStatusType_EnchantCountUp\x107\x122\n" +
+	".ProduceExamFieldStatusType_TurnPlayCardCountUp\x108\x125\n" +
+	"1ProduceExamFieldStatusType_DeckCardAllNoDuplicate\x109\x12,\n" +
+	"(ProduceExamFieldStatusType_DebuffCountUp\x10:*\xcc\x14\n" +
 	"\x14ProduceExamPhaseType\x12 \n" +
 	"\x1cProduceExamPhaseType_Unknown\x10\x00\x12%\n" +
 	"!ProduceExamPhaseType_ExamCardDraw\x10\x01\x12%\n" +
@@ -17485,7 +17949,19 @@ const file_penum_proto_rawDesc = "" +
 	"/ProduceExamPhaseType_ExamPlayCountIntervalAfter\x10,\x12:\n" +
 	"6ProduceExamPhaseType_ExamStanceChangeFromConcentration\x10-\x129\n" +
 	"5ProduceExamPhaseType_ExamStanceChangeFromPreservation\x10.\x126\n" +
-	"2ProduceExamPhaseType_ExamStanceChangeFromFullPower\x10/\x12\x1e\n" +
+	"2ProduceExamPhaseType_ExamStanceChangeFromFullPower\x10/\x12(\n" +
+	"$ProduceExamPhaseType_ExamCardUpgrade\x100\x12.\n" +
+	"*ProduceExamPhaseType_ExamPlayCardMoveGrave\x101\x124\n" +
+	"0ProduceExamPhaseType_ExamParameterBuffUpInterval\x102\x121\n" +
+	"-ProduceExamPhaseType_ExamLessonBuffUpInterval\x103\x12-\n" +
+	")ProduceExamPhaseType_ExamReviewUpInterval\x104\x121\n" +
+	"-ProduceExamPhaseType_ExamAggressiveUpInterval\x105\x125\n" +
+	"1ProduceExamPhaseType_ExamFullPowerPointUpInterval\x106\x12=\n" +
+	"9ProduceExamPhaseType_ExamStanceChangePreservationInterval\x107\x12>\n" +
+	":ProduceExamPhaseType_ExamStanceChangeConcentrationInterval\x108\x12:\n" +
+	"6ProduceExamPhaseType_ExamStanceChangeFullPowerInterval\x109\x120\n" +
+	",ProduceExamPhaseType_ExamCardUpgradeInterval\x10:\x12-\n" +
+	")ProduceExamPhaseType_ExamCardDrawInterval\x10;\x12\x1e\n" +
 	"\x19ProduceExamPhaseType_None\x10\xe7\a*\xa1\x01\n" +
 	"\x15ProduceExamResultType\x12!\n" +
 	"\x1dProduceExamResultType_Unknown\x10\x00\x12!\n" +
@@ -17593,7 +18069,7 @@ const file_penum_proto_rawDesc = "" +
 	"4ProduceProgressAuditionStatusType_ReadyForExamBattle\x10\x01\x12:\n" +
 	"6ProduceProgressAuditionStatusType_InProgressExamBattle\x10\x02\x127\n" +
 	"3ProduceProgressAuditionStatusType_ExamBattleSuccess\x10\x03\x127\n" +
-	"3ProduceProgressAuditionStatusType_ExamBattleFailure\x10\x04*\x93\x04\n" +
+	"3ProduceProgressAuditionStatusType_ExamBattleFailure\x10\x04*\xcc\x04\n" +
 	"\x1cProduceProgressConditionType\x12(\n" +
 	"$ProduceProgressConditionType_Unknown\x10\x00\x12-\n" +
 	")ProduceProgressConditionType_StaminaRatio\x10\x01\x12+\n" +
@@ -17606,7 +18082,8 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceProgressConditionType_Dance\x10\b\x12'\n" +
 	"#ProduceProgressConditionType_Visual\x10\t\x12+\n" +
 	"'ProduceProgressConditionType_StepNumber\x10\n" +
-	"*\xc3\n" +
+	"\x127\n" +
+	"3ProduceProgressConditionType_ProduceCardSearchCount\x10\v*\xc3\n" +
 	"\n" +
 	"\x15ProduceProgressStatus\x12!\n" +
 	"\x1dProduceProgressStatus_Unknown\x10\x00\x12$\n" +
@@ -17637,7 +18114,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceProgressStatus_GuildMission\x10 \x126\n" +
 	"2ProduceProgressStatus_EndingCharacterDearnessStory\x10!\x12'\n" +
 	"#ProduceProgressStatus_DearnessBoost\x10\"\x12\"\n" +
-	"\x1eProduceProgressStatus_Finished\x10c*\xbb\x04\n" +
+	"\x1eProduceProgressStatus_Finished\x10c*\x9b\x05\n" +
 	"\x19ProduceResourceOriginType\x12%\n" +
 	"!ProduceResourceOriginType_Unknown\x10\x00\x12%\n" +
 	"!ProduceResourceOriginType_Produce\x10\x01\x12&\n" +
@@ -17645,14 +18122,16 @@ const file_penum_proto_rawDesc = "" +
 	"%ProduceResourceOriginType_SupportCard\x10\x03\x12+\n" +
 	"'ProduceResourceOriginType_MemoryAbility\x10\x04\x12)\n" +
 	"%ProduceResourceOriginType_ProduceCard\x10\x05\x12)\n" +
-	"%ProduceResourceOriginType_ProduceItem\x10\x06\x12'\n" +
+	"%ProduceResourceOriginType_ProduceItem\x10\x06\x122\n" +
+	".ProduceResourceOriginType_ProduceCustomizeItem\x10\a\x12'\n" +
 	"#ProduceResourceOriginType_Character\x10\b\x12*\n" +
 	"&ProduceResourceOriginType_StepAudition\x10\n" +
 	"\x12'\n" +
 	"#ProduceResourceOriginType_StepEvent\x10\v\x12)\n" +
 	"%ProduceResourceOriginType_StepPresent\x10\f\x12&\n" +
 	"\"ProduceResourceOriginType_StepShop\x10\r\x12)\n" +
-	"%ProduceResourceOriginType_ExamGimmick\x10\x0e*\x94\x04\n" +
+	"%ProduceResourceOriginType_ExamGimmick\x10\x0e\x12*\n" +
+	"&ProduceResourceOriginType_StepInterval\x10\x0f*\xad\x05\n" +
 	"\x13ProduceResourceType\x12\x1f\n" +
 	"\x1bProduceResourceType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceResourceType_ProduceCard\x10\x01\x12#\n" +
@@ -17663,37 +18142,20 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceResourceType_ParameterVocal\x10\x06\x12&\n" +
 	"\"ProduceResourceType_ParameterDance\x10\a\x12'\n" +
 	"#ProduceResourceType_ParameterVisual\x10\b\x12\x1c\n" +
-	"\x18ProduceResourceType_Vote\x10\t\x12%\n" +
-	"!ProduceResourceType_HighScoreGold\x10d\x12$\n" +
+	"\x18ProduceResourceType_Vote\x10\t\x12\x1c\n" +
+	"\x18ProduceResourceType_Star\x10\n" +
+	"\x12,\n" +
+	"(ProduceResourceType_ProduceCustomizeItem\x10\v\x12%\n" +
+	"!ProduceResourceType_HighScoreGold\x10d\x12#\n" +
+	"\x1eProduceResourceType_CardChange\x10\xe2\a\x12&\n" +
+	"!ProduceResourceType_CardCustomize\x10\xe3\a\x12$\n" +
 	"\x1fProduceResourceType_CardUpgrade\x10\xe5\a\x12#\n" +
 	"\x1eProduceResourceType_CardDelete\x10\xe6\a\x12\x1c\n" +
 	"\x17ProduceResourceType_Set\x10\xe7\a*r\n" +
 	"\x11ProduceRewardType\x12\x1d\n" +
 	"\x19ProduceRewardType_Unknown\x10\x00\x12!\n" +
 	"\x1dProduceRewardType_Probability\x10\x01\x12\x1b\n" +
-	"\x17ProduceRewardType_Ratio\x10\x02*\x9a\x03\n" +
-	"\x17ProducerLevelUnlockType\x12#\n" +
-	"\x1fProducerLevelUnlockType_Unknown\x10\x00\x12'\n" +
-	"#ProducerLevelUnlockType_ProduceCard\x10\x01\x12(\n" +
-	"$ProducerLevelUnlockType_ProduceDrink\x10\x02\x121\n" +
-	"-ProducerLevelUnlockType_ProduceCardConversion\x10\x03\x122\n" +
-	".ProducerLevelUnlockType_ShopProduceCardUpgrade\x10\n" +
-	"\x121\n" +
-	"-ProducerLevelUnlockType_ShopProduceCardDelete\x10\v\x128\n" +
-	"4ProducerLevelUnlockType_ProduceCardSelectRerollCount\x10\f\x123\n" +
-	"/ProducerLevelUnlockType_ProduceCardExcludeCount\x10\r*\x82\x02\n" +
-	"\x14ProducerRankingGrade\x12 \n" +
-	"\x1cProducerRankingGrade_Unknown\x10\x00\x12\x1f\n" +
-	"\x1bProducerRankingGrade_Normal\x10\x01\x12\x1f\n" +
-	"\x1bProducerRankingGrade_Bronze\x10\x02\x12\x1f\n" +
-	"\x1bProducerRankingGrade_Silver\x10\x03\x12\x1d\n" +
-	"\x19ProducerRankingGrade_Gold\x10\x04\x12 \n" +
-	"\x1cProducerRankingGrade_Rainbow\x10\x05\x12$\n" +
-	" ProducerRankingGrade_RainbowPlus\x10\x06*\x8a\x01\n" +
-	"\x18ProducerRankingPointType\x12$\n" +
-	" ProducerRankingPointType_Unknown\x10\x00\x12$\n" +
-	" ProducerRankingPointType_Produce\x10\x01\x12\"\n" +
-	"\x1eProducerRankingPointType_Tower\x10\x02*\x83\x04\n" +
+	"\x17ProduceRewardType_Ratio\x10\x02*\xe3\x05\n" +
 	"\x1bProduceScheduleLocationType\x12'\n" +
 	"#ProduceScheduleLocationType_Unknown\x10\x00\x12-\n" +
 	")ProduceScheduleLocationType_ProducerRoom1\x10\x01\x12-\n" +
@@ -17706,7 +18168,12 @@ const file_penum_proto_rawDesc = "" +
 	"&ProduceScheduleLocationType_Classroom2\x10\b\x12(\n" +
 	"$ProduceScheduleLocationType_Rooftop2\x10\t\x12*\n" +
 	"&ProduceScheduleLocationType_Courtyard2\x10\n" +
-	"*\xe0\x01\n" +
+	"\x12-\n" +
+	")ProduceScheduleLocationType_ProducerRoom5\x10\v\x12-\n" +
+	")ProduceScheduleLocationType_ProducerRoom6\x10\f\x12(\n" +
+	"$ProduceScheduleLocationType_Rooftop3\x10\r\x12*\n" +
+	"&ProduceScheduleLocationType_Courtyard3\x10\x0e\x12*\n" +
+	"&ProduceScheduleLocationType_Classroom3\x10\x0f*\xe0\x01\n" +
 	"\x19ProduceScheduleMotionType\x12%\n" +
 	"!ProduceScheduleMotionType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceScheduleMotionType_Wait1\x10\x01\x12#\n" +
@@ -17731,18 +18198,23 @@ const file_penum_proto_rawDesc = "" +
 	"/ProduceSkillEffectType_VisualGrowthRateAddition\x10\xad\x02\x12+\n" +
 	"&ProduceSkillEffectType_StaminaAddition\x10\xf4\x03\x12,\n" +
 	"'ProduceSkillEffectType_ProduceRewardSet\x10\xe8\a\x12)\n" +
-	"$ProduceSkillEffectType_ProduceEffect\x10\xe9\a*\x82\x01\n" +
+	"$ProduceSkillEffectType_ProduceEffect\x10\xe9\a*l\n" +
+	"\x10ProduceSplitType\x12\x1c\n" +
+	"\x18ProduceSplitType_Unknown\x10\x00\x12\x1e\n" +
+	"\x1aProduceSplitType_Selection\x10\x01\x12\x1a\n" +
+	"\x16ProduceSplitType_Final\x10\x02*\x82\x01\n" +
 	"\x16ProduceStartMotionType\x12\"\n" +
 	"\x1eProduceStartMotionType_Unknown\x10\x00\x12#\n" +
 	"\x1fProduceStartMotionType_Reaction\x10\x01\x12\x1f\n" +
-	"\x1bProduceStartMotionType_Wait\x10\x02*\x9f\x02\n" +
+	"\x1bProduceStartMotionType_Wait\x10\x02*\xcc\x02\n" +
 	"\x1dProduceStepAuditionMotionType\x12)\n" +
 	"%ProduceStepAuditionMotionType_Unknown\x10\x00\x12'\n" +
 	"#ProduceStepAuditionMotionType_Start\x10\x01\x12)\n" +
 	"%ProduceStepAuditionMotionType_Result1\x10\x02\x12)\n" +
 	"%ProduceStepAuditionMotionType_Result2\x10\x03\x12)\n" +
 	"%ProduceStepAuditionMotionType_Result3\x10\x04\x12)\n" +
-	"%ProduceStepAuditionMotionType_Failure\x10\x05*\xc8\x03\n" +
+	"%ProduceStepAuditionMotionType_Failure\x10\x05\x12+\n" +
+	"'ProduceStepAuditionMotionType_PreResult\x10\x06*\xc8\x03\n" +
 	"\x17ProduceStepAuditionType\x12#\n" +
 	"\x1fProduceStepAuditionType_Unknown\x10\x00\x12$\n" +
 	" ProduceStepAuditionType_Mid1Easy\x10\x01\x12&\n" +
@@ -17788,8 +18260,7 @@ const file_penum_proto_rawDesc = "" +
 	"\x14ProduceStepPhaseType\x12 \n" +
 	"\x1cProduceStepPhaseType_Unknown\x10\x00\x12\x1f\n" +
 	"\x1bProduceStepPhaseType_Before\x10\x01\x12\x1e\n" +
-	"\x1aProduceStepPhaseType_After\x10\x02*\x94\n" +
-	"\n" +
+	"\x1aProduceStepPhaseType_After\x10\x02*\xad\x0f\n" +
 	"\x0fProduceStepType\x12\x1b\n" +
 	"\x17ProduceStepType_Unknown\x10\x00\x12%\n" +
 	"!ProduceStepType_LessonVocalNormal\x10\x01\x12!\n" +
@@ -17826,7 +18297,23 @@ const file_penum_proto_rawDesc = "" +
 	"'ProduceStepType_LegendLessonDanceNormal\x10\x1f\x12'\n" +
 	"#ProduceStepType_LegendLessonDanceSp\x10 \x12,\n" +
 	"(ProduceStepType_LegendLessonVisualNormal\x10!\x12(\n" +
-	"$ProduceStepType_LegendLessonVisualSp\x10\"*\xeb\x02\n" +
+	"$ProduceStepType_LegendLessonVisualSp\x10\"\x12)\n" +
+	"%ProduceStepType_OpenLessonVocalNormal\x10#\x12%\n" +
+	"!ProduceStepType_OpenLessonVocalSp\x10$\x12-\n" +
+	")ProduceStepType_OpenLessonVocalNormalStar\x10%\x12)\n" +
+	"%ProduceStepType_OpenLessonVocalSpStar\x10&\x12)\n" +
+	"%ProduceStepType_OpenLessonDanceNormal\x10'\x12%\n" +
+	"!ProduceStepType_OpenLessonDanceSp\x10(\x12-\n" +
+	")ProduceStepType_OpenLessonDanceNormalStar\x10)\x12)\n" +
+	"%ProduceStepType_OpenLessonDanceSpStar\x10*\x12*\n" +
+	"&ProduceStepType_OpenLessonVisualNormal\x10+\x12&\n" +
+	"\"ProduceStepType_OpenLessonVisualSp\x10,\x12.\n" +
+	"*ProduceStepType_OpenLessonVisualNormalStar\x10-\x12*\n" +
+	"&ProduceStepType_OpenLessonVisualSpStar\x10.\x12\x1c\n" +
+	"\x18ProduceStepType_Interval\x10/\x12$\n" +
+	" ProduceStepType_EventSchoolVocal\x100\x12$\n" +
+	" ProduceStepType_EventSchoolDance\x101\x12%\n" +
+	"!ProduceStepType_EventSchoolVisual\x102*\xeb\x02\n" +
 	"\x10ProduceStoryType\x12\x1c\n" +
 	"\x18ProduceStoryType_Unknown\x10\x00\x12\x1d\n" +
 	"\x19ProduceStoryType_Dearness\x10\x01\x12\x1e\n" +
@@ -17837,7 +18324,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ProduceStoryType_StepActivityEvent\x10\x06\x12$\n" +
 	" ProduceStoryType_StepSchoolEvent\x10\a\x12\x1d\n" +
 	"\x19ProduceStoryType_Campaign\x10\b\x12&\n" +
-	"\"ProduceStoryType_StepBusinessEvent\x10\t*\x9b\x03\n" +
+	"\"ProduceStoryType_StepBusinessEvent\x10\t*\xff\x03\n" +
 	"\x18ProduceTriggerOriginType\x12$\n" +
 	" ProduceTriggerOriginType_Unknown\x10\x00\x12&\n" +
 	"\"ProduceTriggerOriginType_Character\x10\x01\x12%\n" +
@@ -17848,11 +18335,37 @@ const file_penum_proto_rawDesc = "" +
 	"\x1dProduceTriggerOriginType_Item\x10\x06\x12\"\n" +
 	"\x1eProduceTriggerOriginType_Drink\x10\a\x12$\n" +
 	" ProduceTriggerOriginType_Produce\x10\b\x12*\n" +
-	"&ProduceTriggerOriginType_DearnessStory\x10\t*c\n" +
+	"&ProduceTriggerOriginType_DearnessStory\x10\t\x121\n" +
+	"-ProduceTriggerOriginType_ProduceCustomizeItem\x10\n" +
+	"\x12/\n" +
+	"+ProduceTriggerOriginType_ProduceGrowthPanel\x10\v*\x8b\x01\n" +
 	"\vProduceType\x12\x17\n" +
 	"\x13ProduceType_Unknown\x10\x00\x12\x19\n" +
 	"\x15ProduceType_FirstStar\x10\x01\x12 \n" +
-	"\x1cProduceType_NextIdolAudition\x10\x02*\xea\x02\n" +
+	"\x1cProduceType_NextIdolAudition\x10\x02\x12&\n" +
+	"\"ProduceType_HatsuboshiIdolFestival\x10\x03*\x9a\x03\n" +
+	"\x17ProducerLevelUnlockType\x12#\n" +
+	"\x1fProducerLevelUnlockType_Unknown\x10\x00\x12'\n" +
+	"#ProducerLevelUnlockType_ProduceCard\x10\x01\x12(\n" +
+	"$ProducerLevelUnlockType_ProduceDrink\x10\x02\x121\n" +
+	"-ProducerLevelUnlockType_ProduceCardConversion\x10\x03\x122\n" +
+	".ProducerLevelUnlockType_ShopProduceCardUpgrade\x10\n" +
+	"\x121\n" +
+	"-ProducerLevelUnlockType_ShopProduceCardDelete\x10\v\x128\n" +
+	"4ProducerLevelUnlockType_ProduceCardSelectRerollCount\x10\f\x123\n" +
+	"/ProducerLevelUnlockType_ProduceCardExcludeCount\x10\r*\x82\x02\n" +
+	"\x14ProducerRankingGrade\x12 \n" +
+	"\x1cProducerRankingGrade_Unknown\x10\x00\x12\x1f\n" +
+	"\x1bProducerRankingGrade_Normal\x10\x01\x12\x1f\n" +
+	"\x1bProducerRankingGrade_Bronze\x10\x02\x12\x1f\n" +
+	"\x1bProducerRankingGrade_Silver\x10\x03\x12\x1d\n" +
+	"\x19ProducerRankingGrade_Gold\x10\x04\x12 \n" +
+	"\x1cProducerRankingGrade_Rainbow\x10\x05\x12$\n" +
+	" ProducerRankingGrade_RainbowPlus\x10\x06*\x8a\x01\n" +
+	"\x18ProducerRankingPointType\x12$\n" +
+	" ProducerRankingPointType_Unknown\x10\x00\x12$\n" +
+	" ProducerRankingPointType_Produce\x10\x01\x12\"\n" +
+	"\x1eProducerRankingPointType_Tower\x10\x02*\xea\x02\n" +
 	"\x1dPurchaseTransactionStatusType\x12)\n" +
 	"%PurchaseTransactionStatusType_Unknown\x10\x00\x12&\n" +
 	"\"PurchaseTransactionStatusType_None\x10\x01\x12-\n" +
@@ -17949,7 +18462,7 @@ const file_penum_proto_rawDesc = "" +
 	"\"ResourceType_ProduceCardConversion\x10\x1a\x12\x1c\n" +
 	"\x17ResourceType_JewelTotal\x10\xcc\b\x12\x1f\n" +
 	"\x1aResourceType_JewelPaidOnly\x10\xcd\b\x12\x15\n" +
-	"\x10ResourceType_Set\x10\x8fN*\xf7\x02\n" +
+	"\x10ResourceType_Set\x10\x8fN*\xc3\x03\n" +
 	"\vResultGrade\x12\x17\n" +
 	"\x13ResultGrade_Unknown\x10\x00\x12\x11\n" +
 	"\rResultGrade_F\x10\x01\x12\x11\n" +
@@ -17968,13 +18481,17 @@ const file_penum_proto_rawDesc = "" +
 	"\x12ResultGrade_SsPlus\x10\r\x12\x13\n" +
 	"\x0fResultGrade_Sss\x10\x0e\x12\x17\n" +
 	"\x13ResultGrade_SssPlus\x10\x0f\x12\x14\n" +
-	"\x10ResultGrade_Ssss\x10\x10*\xc9\x01\n" +
+	"\x10ResultGrade_Ssss\x10\x10\x12\x18\n" +
+	"\x14ResultGrade_SsssPlus\x10\x11\x12\x15\n" +
+	"\x11ResultGrade_Sssss\x10\x12\x12\x19\n" +
+	"\x15ResultGrade_SssssPlus\x10\x13*\xea\x01\n" +
 	"\x0fResultGradeType\x12\x1b\n" +
 	"\x17ResultGradeType_Unknown\x10\x00\x12 \n" +
 	"\x1cResultGradeType_ProduceScore\x10\x01\x12#\n" +
 	"\x1fResultGradeType_MemoryParameter\x10\x03\x12,\n" +
 	"(ResultGradeType_ProduceIdolCardParameter\x10\x05\x12$\n" +
-	" ResultGradeType_ProduceVoteCount\x10\x06*\xd2\x01\n" +
+	" ResultGradeType_ProduceVoteCount\x10\x06\x12\x1f\n" +
+	"\x1bResultGradeType_ProduceStar\x10\a*\xd2\x01\n" +
 	"\x11RewardProvideType\x12\x1d\n" +
 	"\x19RewardProvideType_Unknown\x10\x00\x12\x1e\n" +
 	"\x1aRewardProvideType_PatternA\x10\x01\x12\x1e\n" +
@@ -18177,7 +18694,7 @@ const file_penum_proto_rawDesc = "" +
 	".TutorialProduceCommandType_StepAuditionExamEnd\x10\x05\x12.\n" +
 	"*TutorialProduceCommandType_StepAuditionEnd\x10\x06\x12?\n" +
 	";TutorialProduceCommandType_CheckBeforeLiveProduceEvaluation\x10\a\x12%\n" +
-	"!TutorialProduceCommandType_Result\x10\b*\xd1\x15\n" +
+	"!TutorialProduceCommandType_Result\x10\b*\xed\x1a\n" +
 	"\fTutorialType\x12\x18\n" +
 	"\x14TutorialType_Unknown\x10\x00\x12\x1a\n" +
 	"\x16TutorialType_GameStart\x10\x01\x12\x19\n" +
@@ -18209,7 +18726,8 @@ const file_penum_proto_rawDesc = "" +
 	"#TutorialType_MeishiEditCustomManual\x10\x1b\x12!\n" +
 	"\x1dTutorialType_IdolCardSkinUnit\x10\x1c\x12\x1c\n" +
 	"\x18TutorialType_DearnessTop\x10\x1d\x12\x1e\n" +
-	"\x1aTutorialType_DearnessPoint\x10\x1e\x12&\n" +
+	"\x1aTutorialType_DearnessPoint\x10\x1e\x12\x1c\n" +
+	"\x18TutorialType_PrimaStella\x10\x1f\x12&\n" +
 	"\"TutorialType_ProduceIdolCardSelect\x10d\x12)\n" +
 	"%TutorialType_ProduceSupportCardSelect\x10e\x12$\n" +
 	" TutorialType_ProduceMemorySelect\x10f\x12 \n" +
@@ -18240,7 +18758,19 @@ const file_penum_proto_rawDesc = "" +
 	" TutorialType_ProduceStepBusiness\x10\x7f\x12&\n" +
 	"!TutorialType_ProduceStepCustomize\x10\x80\x01\x12'\n" +
 	"\"TutorialType_ProduceStepFanPresent\x10\x81\x01\x12\"\n" +
-	"\x1dTutorialType_ProduceLegendTop\x10\x82\x01\x12\x1e\n" +
+	"\x1dTutorialType_ProduceLegendTop\x10\x82\x01\x122\n" +
+	"-TutorialType_ProduceHatsuboshiIdolFestivalTop\x10\x83\x01\x127\n" +
+	"2TutorialType_ProduceHatsuboshiIdolFestivalFinalTop\x10\x84\x01\x12@\n" +
+	";TutorialType_ProduceHatsuboshiIdolFestivalSelectionSchedule\x10\x85\x01\x12<\n" +
+	"7TutorialType_ProduceHatsuboshiIdolFestivalFinalSchedule\x10\x86\x01\x12'\n" +
+	"\"TutorialType_ProduceGrowthPanelTop\x10\x87\x01\x125\n" +
+	"0TutorialType_ProduceCustomizeItemCustomizeEffect\x10\x88\x01\x12'\n" +
+	"\"TutorialType_ProduceStepOpenLesson\x10\x89\x01\x129\n" +
+	"4TutorialType_ProduceHatsuboshiIdolFestivalStepSchool\x10\x8a\x01\x12D\n" +
+	"?TutorialType_ProduceHatsuboshiIdolFestivalFinalStepAuditionMid1\x10\x8b\x01\x12%\n" +
+	" TutorialType_ProduceStepInterval\x10\x8c\x01\x12.\n" +
+	")TutorialType_ProduceSelectionMemoryCreate\x10\x8d\x01\x12.\n" +
+	")TutorialType_ProduceSelectionMemorySelect\x10\x8e\x01\x12\x1e\n" +
 	"\x19TutorialType_MissionPanel\x10\xc8\x01\x12\"\n" +
 	"\x1dTutorialType_ProduceHighScore\x10\xc9\x01\x12\x1c\n" +
 	"\x17TutorialType_StoryEvent\x10\xca\x01\x12%\n" +
@@ -18301,7 +18831,7 @@ func file_penum_proto_rawDescGZIP() []byte {
 	return file_penum_proto_rawDescData
 }
 
-var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 213)
+var file_penum_proto_enumTypes = make([]protoimpl.EnumInfo, 214)
 var file_penum_proto_goTypes = []any{
 	(AchievementCategory)(0),                     // 0: penum.AchievementCategory
 	(AntiCheatFeatureType)(0),                    // 1: penum.AntiCheatFeatureType
@@ -18450,72 +18980,73 @@ var file_penum_proto_goTypes = []any{
 	(ProduceResourceOriginType)(0),               // 144: penum.ProduceResourceOriginType
 	(ProduceResourceType)(0),                     // 145: penum.ProduceResourceType
 	(ProduceRewardType)(0),                       // 146: penum.ProduceRewardType
-	(ProducerLevelUnlockType)(0),                 // 147: penum.ProducerLevelUnlockType
-	(ProducerRankingGrade)(0),                    // 148: penum.ProducerRankingGrade
-	(ProducerRankingPointType)(0),                // 149: penum.ProducerRankingPointType
-	(ProduceScheduleLocationType)(0),             // 150: penum.ProduceScheduleLocationType
-	(ProduceScheduleMotionType)(0),               // 151: penum.ProduceScheduleMotionType
-	(ProduceScheduleStaminaMotionType)(0),        // 152: penum.ProduceScheduleStaminaMotionType
-	(ProduceSelectScreenOrderType)(0),            // 153: penum.ProduceSelectScreenOrderType
-	(ProduceSkillEffectType)(0),                  // 154: penum.ProduceSkillEffectType
-	(ProduceStartMotionType)(0),                  // 155: penum.ProduceStartMotionType
-	(ProduceStepAuditionMotionType)(0),           // 156: penum.ProduceStepAuditionMotionType
-	(ProduceStepAuditionType)(0),                 // 157: penum.ProduceStepAuditionType
-	(ProduceStepBusinessType)(0),                 // 158: penum.ProduceStepBusinessType
-	(ProduceStepFanPresentMotionType)(0),         // 159: penum.ProduceStepFanPresentMotionType
-	(ProduceStepLessonType)(0),                   // 160: penum.ProduceStepLessonType
-	(ProduceStepPhaseType)(0),                    // 161: penum.ProduceStepPhaseType
-	(ProduceStepType)(0),                         // 162: penum.ProduceStepType
-	(ProduceStoryType)(0),                        // 163: penum.ProduceStoryType
-	(ProduceTriggerOriginType)(0),                // 164: penum.ProduceTriggerOriginType
-	(ProduceType)(0),                             // 165: penum.ProduceType
-	(PurchaseTransactionStatusType)(0),           // 166: penum.PurchaseTransactionStatusType
-	(PushType)(0),                                // 167: penum.PushType
-	(PvpRateGrade)(0),                            // 168: penum.PvpRateGrade
-	(PvpRateMotionType)(0),                       // 169: penum.PvpRateMotionType
-	(PvpRatePhaseType)(0),                        // 170: penum.PvpRatePhaseType
-	(PvpRateRivalType)(0),                        // 171: penum.PvpRateRivalType
-	(PvpRateSeasonStatusType)(0),                 // 172: penum.PvpRateSeasonStatusType
-	(PvpRateStageType)(0),                        // 173: penum.PvpRateStageType
-	(ResetTimingType)(0),                         // 174: penum.ResetTimingType
-	(ResourceOriginType)(0),                      // 175: penum.ResourceOriginType
-	(ResourceType)(0),                            // 176: penum.ResourceType
-	(ResultGrade)(0),                             // 177: penum.ResultGrade
-	(ResultGradeType)(0),                         // 178: penum.ResultGradeType
-	(RewardProvideType)(0),                       // 179: penum.RewardProvideType
-	(RewardSetType)(0),                           // 180: penum.RewardSetType
-	(RuleType)(0),                                // 181: penum.RuleType
-	(ServingStatus)(0),                           // 182: penum.ServingStatus
-	(ShopItemLabelType)(0),                       // 183: penum.ShopItemLabelType
-	(ShopType)(0),                                // 184: penum.ShopType
-	(SkillRarity)(0),                             // 185: penum.SkillRarity
-	(StartupNotificationDisplayType)(0),          // 186: penum.StartupNotificationDisplayType
-	(StartupNotificationEffectType)(0),           // 187: penum.StartupNotificationEffectType
-	(StartupNotificationRemindType)(0),           // 188: penum.StartupNotificationRemindType
-	(StartupNotificationType)(0),                 // 189: penum.StartupNotificationType
-	(StoryCampaignType)(0),                       // 190: penum.StoryCampaignType
-	(StoryEventMotionType)(0),                    // 191: penum.StoryEventMotionType
-	(StoryEventType)(0),                          // 192: penum.StoryEventType
-	(StoryType)(0),                               // 193: penum.StoryType
-	(SupportCardLevelLimitRank)(0),               // 194: penum.SupportCardLevelLimitRank
-	(SupportCardRarity)(0),                       // 195: penum.SupportCardRarity
-	(SupportCardType)(0),                         // 196: penum.SupportCardType
-	(TermsType)(0),                               // 197: penum.TermsType
-	(TimeType)(0),                                // 198: penum.TimeType
-	(TipsType)(0),                                // 199: penum.TipsType
-	(TourProgressPhaseType)(0),                   // 200: penum.TourProgressPhaseType
-	(TourScoreGrade)(0),                          // 201: penum.TourScoreGrade
-	(TourStageIconSizeType)(0),                   // 202: penum.TourStageIconSizeType
-	(TutorialCharacterVoiceType)(0),              // 203: penum.TutorialCharacterVoiceType
-	(TutorialNavigationPositionType)(0),          // 204: penum.TutorialNavigationPositionType
-	(TutorialNavigationType)(0),                  // 205: penum.TutorialNavigationType
-	(TutorialProduceCommandType)(0),              // 206: penum.TutorialProduceCommandType
-	(TutorialType)(0),                            // 207: penum.TutorialType
-	(ViewAreaType)(0),                            // 208: penum.ViewAreaType
-	(VoicePlayScreenType)(0),                     // 209: penum.VoicePlayScreenType
-	(Weekday)(0),                                 // 210: penum.Weekday
-	(WorkMotionType)(0),                          // 211: penum.WorkMotionType
-	(WorkType)(0),                                // 212: penum.WorkType
+	(ProduceScheduleLocationType)(0),             // 147: penum.ProduceScheduleLocationType
+	(ProduceScheduleMotionType)(0),               // 148: penum.ProduceScheduleMotionType
+	(ProduceScheduleStaminaMotionType)(0),        // 149: penum.ProduceScheduleStaminaMotionType
+	(ProduceSelectScreenOrderType)(0),            // 150: penum.ProduceSelectScreenOrderType
+	(ProduceSkillEffectType)(0),                  // 151: penum.ProduceSkillEffectType
+	(ProduceSplitType)(0),                        // 152: penum.ProduceSplitType
+	(ProduceStartMotionType)(0),                  // 153: penum.ProduceStartMotionType
+	(ProduceStepAuditionMotionType)(0),           // 154: penum.ProduceStepAuditionMotionType
+	(ProduceStepAuditionType)(0),                 // 155: penum.ProduceStepAuditionType
+	(ProduceStepBusinessType)(0),                 // 156: penum.ProduceStepBusinessType
+	(ProduceStepFanPresentMotionType)(0),         // 157: penum.ProduceStepFanPresentMotionType
+	(ProduceStepLessonType)(0),                   // 158: penum.ProduceStepLessonType
+	(ProduceStepPhaseType)(0),                    // 159: penum.ProduceStepPhaseType
+	(ProduceStepType)(0),                         // 160: penum.ProduceStepType
+	(ProduceStoryType)(0),                        // 161: penum.ProduceStoryType
+	(ProduceTriggerOriginType)(0),                // 162: penum.ProduceTriggerOriginType
+	(ProduceType)(0),                             // 163: penum.ProduceType
+	(ProducerLevelUnlockType)(0),                 // 164: penum.ProducerLevelUnlockType
+	(ProducerRankingGrade)(0),                    // 165: penum.ProducerRankingGrade
+	(ProducerRankingPointType)(0),                // 166: penum.ProducerRankingPointType
+	(PurchaseTransactionStatusType)(0),           // 167: penum.PurchaseTransactionStatusType
+	(PushType)(0),                                // 168: penum.PushType
+	(PvpRateGrade)(0),                            // 169: penum.PvpRateGrade
+	(PvpRateMotionType)(0),                       // 170: penum.PvpRateMotionType
+	(PvpRatePhaseType)(0),                        // 171: penum.PvpRatePhaseType
+	(PvpRateRivalType)(0),                        // 172: penum.PvpRateRivalType
+	(PvpRateSeasonStatusType)(0),                 // 173: penum.PvpRateSeasonStatusType
+	(PvpRateStageType)(0),                        // 174: penum.PvpRateStageType
+	(ResetTimingType)(0),                         // 175: penum.ResetTimingType
+	(ResourceOriginType)(0),                      // 176: penum.ResourceOriginType
+	(ResourceType)(0),                            // 177: penum.ResourceType
+	(ResultGrade)(0),                             // 178: penum.ResultGrade
+	(ResultGradeType)(0),                         // 179: penum.ResultGradeType
+	(RewardProvideType)(0),                       // 180: penum.RewardProvideType
+	(RewardSetType)(0),                           // 181: penum.RewardSetType
+	(RuleType)(0),                                // 182: penum.RuleType
+	(ServingStatus)(0),                           // 183: penum.ServingStatus
+	(ShopItemLabelType)(0),                       // 184: penum.ShopItemLabelType
+	(ShopType)(0),                                // 185: penum.ShopType
+	(SkillRarity)(0),                             // 186: penum.SkillRarity
+	(StartupNotificationDisplayType)(0),          // 187: penum.StartupNotificationDisplayType
+	(StartupNotificationEffectType)(0),           // 188: penum.StartupNotificationEffectType
+	(StartupNotificationRemindType)(0),           // 189: penum.StartupNotificationRemindType
+	(StartupNotificationType)(0),                 // 190: penum.StartupNotificationType
+	(StoryCampaignType)(0),                       // 191: penum.StoryCampaignType
+	(StoryEventMotionType)(0),                    // 192: penum.StoryEventMotionType
+	(StoryEventType)(0),                          // 193: penum.StoryEventType
+	(StoryType)(0),                               // 194: penum.StoryType
+	(SupportCardLevelLimitRank)(0),               // 195: penum.SupportCardLevelLimitRank
+	(SupportCardRarity)(0),                       // 196: penum.SupportCardRarity
+	(SupportCardType)(0),                         // 197: penum.SupportCardType
+	(TermsType)(0),                               // 198: penum.TermsType
+	(TimeType)(0),                                // 199: penum.TimeType
+	(TipsType)(0),                                // 200: penum.TipsType
+	(TourProgressPhaseType)(0),                   // 201: penum.TourProgressPhaseType
+	(TourScoreGrade)(0),                          // 202: penum.TourScoreGrade
+	(TourStageIconSizeType)(0),                   // 203: penum.TourStageIconSizeType
+	(TutorialCharacterVoiceType)(0),              // 204: penum.TutorialCharacterVoiceType
+	(TutorialNavigationPositionType)(0),          // 205: penum.TutorialNavigationPositionType
+	(TutorialNavigationType)(0),                  // 206: penum.TutorialNavigationType
+	(TutorialProduceCommandType)(0),              // 207: penum.TutorialProduceCommandType
+	(TutorialType)(0),                            // 208: penum.TutorialType
+	(ViewAreaType)(0),                            // 209: penum.ViewAreaType
+	(VoicePlayScreenType)(0),                     // 210: penum.VoicePlayScreenType
+	(Weekday)(0),                                 // 211: penum.Weekday
+	(WorkMotionType)(0),                          // 212: penum.WorkMotionType
+	(WorkType)(0),                                // 213: penum.WorkType
 }
 var file_penum_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -18535,7 +19066,7 @@ func file_penum_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_penum_proto_rawDesc), len(file_penum_proto_rawDesc)),
-			NumEnums:      213,
+			NumEnums:      214,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,

@@ -139,6 +139,7 @@ service Home {
 service IdolCard {
   rpc UpgradeLevelLimitRank(IdolCardUpgradeLevelLimitRankRequest) returns (IdolCardUpgradeLevelLimitRankResponse);
   rpc UpgradePotentialRank(IdolCardUpgradePotentialRankRequest) returns (IdolCardUpgradePotentialRankResponse);
+  rpc UpgradePrimaStella(IdolCardUpgradePrimaStellaRequest) returns (IdolCardUpgradePrimaStellaResponse);
   rpc Release(IdolCardReleaseRequest) returns (IdolCardReleaseResponse);
   rpc ChangeSkin(IdolCardChangeSkinRequest) returns (IdolCardChangeSkinResponse);
 }
@@ -246,6 +247,10 @@ service Produce {
   rpc StepShopReroll(ProduceStepShopRerollRequest) returns (ProduceStepShopRerollResponse);
   rpc StepShopBuy(ProduceStepShopBuyRequest) returns (ProduceStepShopBuyResponse);
   rpc StepShopEnd(ProduceStepShopEndRequest) returns (ProduceStepShopEndResponse);
+  rpc StepIntervalStart(ProduceStepIntervalStartRequest) returns (ProduceStepIntervalStartResponse);
+  rpc StepIntervalReroll(ProduceStepIntervalRerollRequest) returns (ProduceStepIntervalRerollResponse);
+  rpc StepIntervalBuy(ProduceStepIntervalBuyRequest) returns (ProduceStepIntervalBuyResponse);
+  rpc StepIntervalEnd(ProduceStepIntervalEndRequest) returns (ProduceStepIntervalEndResponse);
   rpc StepPresentStart(ProduceStepPresentStartRequest) returns (ProduceStepPresentStartResponse);
   rpc StepPresentReceive(ProduceStepPresentReceiveRequest) returns (ProduceStepPresentReceiveResponse);
   rpc StepPresentEnd(ProduceStepPresentEndRequest) returns (ProduceStepPresentEndResponse);
@@ -253,6 +258,8 @@ service Produce {
   rpc StepLessonEnd(ProduceStepLessonEndRequest) returns (ProduceStepLessonEndResponse);
   rpc StepSelfLessonStart(ProduceStepSelfLessonStartRequest) returns (ProduceStepSelfLessonStartResponse);
   rpc StepSelfLessonEnd(ProduceStepSelfLessonEndRequest) returns (ProduceStepSelfLessonEndResponse);
+  rpc StepOpenLessonStart(ProduceStepOpenLessonStartRequest) returns (ProduceStepOpenLessonStartResponse);
+  rpc StepOpenLessonEnd(ProduceStepOpenLessonEndRequest) returns (ProduceStepOpenLessonEndResponse);
   rpc StepAuditionRefresh(ProduceStepAuditionRefreshRequest) returns (ProduceStepAuditionRefreshResponse);
   rpc StepAuditionStart(ProduceStepAuditionStartRequest) returns (ProduceStepAuditionStartResponse);
   rpc StepAuditionEndExamBattle(ProduceStepAuditionEndExamBattleRequest) returns (ProduceStepAuditionEndExamBattleResponse);
@@ -279,11 +286,19 @@ service Produce {
   rpc ViewPictureBookLive(ProduceViewPictureBookLiveRequest) returns (ProduceViewPictureBookLiveResponse);
   rpc UnlockPictureBookLive(ProduceUnlockPictureBookLiveRequest) returns (ProduceUnlockPictureBookLiveResponse);
   rpc ChangeProduceCardConversion(ProduceChangeProduceCardConversionRequest) returns (ProduceChangeProduceCardConversionResponse);
+  rpc UnlockGrowthPanel(ProduceUnlockGrowthPanelRequest) returns (ProduceUnlockGrowthPanelResponse);
+  rpc ChangeGrowthPanel(ProduceChangeGrowthPanelRequest) returns (ProduceChangeGrowthPanelResponse);
 }
 service ProduceHighScore {
   rpc Get(Empty) returns (ProduceHighScoreGetResponse);
   rpc Ranking(ProduceHighScoreRankingRequest) returns (ProduceHighScoreRankingResponse);
   rpc ListRankReward(Empty) returns (ProduceHighScoreListRankRewardResponse);
+}
+service ProduceSeason {
+  rpc RankingTop(ProduceSeasonRankingTopRequest) returns (ProduceSeasonRankingTopResponse);
+  rpc RankingTopHistory(ProduceSeasonRankingTopHistoryRequest) returns (ProduceSeasonRankingTopHistoryResponse);
+  rpc Ranking(ProduceSeasonRankingRequest) returns (ProduceSeasonRankingResponse);
+  rpc RankingHistory(ProduceSeasonRankingHistoryRequest) returns (ProduceSeasonRankingHistoryResponse);
 }
 service ProducerRanking {
   rpc Top(Empty) returns (ProducerRankingTopResponse);
@@ -294,12 +309,6 @@ service ProducerRanking {
   rpc RankingHistory(ProducerRankingRankingHistoryRequest) returns (ProducerRankingRankingHistoryResponse);
   rpc CharacterHistory(ProducerRankingCharacterHistoryRequest) returns (ProducerRankingCharacterHistoryResponse);
   rpc GetTowerLayer(ProducerRankingGetTowerLayerRequest) returns (ProducerRankingGetTowerLayerResponse);
-}
-service ProduceSeason {
-  rpc RankingTop(ProduceSeasonRankingTopRequest) returns (ProduceSeasonRankingTopResponse);
-  rpc RankingTopHistory(ProduceSeasonRankingTopHistoryRequest) returns (ProduceSeasonRankingTopHistoryResponse);
-  rpc Ranking(ProduceSeasonRankingRequest) returns (ProduceSeasonRankingResponse);
-  rpc RankingHistory(ProduceSeasonRankingHistoryRequest) returns (ProduceSeasonRankingHistoryResponse);
 }
 service Profile {
   rpc Get(ProfileGetRequest) returns (ProfileGetResponse);
@@ -321,11 +330,20 @@ service PvpRate {
   rpc ListHistory(Empty) returns (PvpRateListHistoryResponse);
   rpc GetHistory(PvpRateGetHistoryRequest) returns (PvpRateGetHistoryResponse);
   rpc UpdateUserPvpRateUnit(PvpRateUpdateUserPvpRateUnitRequest) returns (PvpRateUpdateUserPvpRateUnitResponse);
+  rpc UpdateUserPvpRateDeck(PvpRateUpdateUserPvpRateDeckRequest) returns (PvpRateUpdateUserPvpRateDeckResponse);
 }
 service Research {
   rpc Get(Empty) returns (ResearchGetResponse);
   rpc Ranking(ResearchRankingRequest) returns (ResearchRankingResponse);
   rpc RerollMemory(ResearchRerollMemoryRequest) returns (ResearchRerollMemoryResponse);
+  rpc ChangeMemoryProduceCardPickup(ResearchChangeMemoryProduceCardPickupRequest) returns (ResearchChangeMemoryProduceCardPickupResponse);
+}
+service SelectionMemory {
+  rpc List(Empty) returns (SelectionMemoryListResponse);
+  rpc Get(SelectionMemoryGetRequest) returns (SelectionMemoryGetResponse);
+  rpc UpdateProtection(SelectionMemoryUpdateProtectionRequest) returns (SelectionMemoryUpdateProtectionResponse);
+  rpc UpdateTag(SelectionMemoryUpdateTagRequest) returns (SelectionMemoryUpdateTagResponse);
+  rpc Exchange(SelectionMemoryExchangeRequest) returns (SelectionMemoryExchangeResponse);
 }
 service Seminar {
   rpc ListExam(Empty) returns (SeminarListExamResponse);
@@ -1077,6 +1095,8 @@ message GashaGetPointExchangeResponse {
     int32 number = 1;
     int32 requiredQuantity = 2;
     repeated pcommon.Reward rewards = 3;
+    int64 startTime = 100;
+    int64 endTime = 101;
   }
 }
 message GashaGetPrecautionRequest {
@@ -1713,6 +1733,12 @@ message IdolCardUpgradePotentialRankRequest {
 message IdolCardUpgradePotentialRankResponse {
   papicommon.Response commonResponse = 9999;
 }
+message IdolCardUpgradePrimaStellaRequest {
+  string idolCardId = 1;
+}
+message IdolCardUpgradePrimaStellaResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message InvitationEnterInvitationCodeRequest {
   string publicUserId = 1;
 }
@@ -2140,6 +2166,7 @@ message NoticeUpdateDetailTimeResponse {
 }
 message PhotoCreateByMemoryRequest {
   string userMemoryId = 1;
+  string userSelectionMemoryId = 2;
 }
 message PhotoCreateByMemoryResponse {
   string userPhotoId = 1;
@@ -2216,6 +2243,7 @@ message PreferenceUpdateResponse {
 message ProduceActivateEffectRequest {
   repeated int32 pickIndexes = 2;
   string deviceProduceUuid = 3;
+  repeated int32 pickIndexes2 = 4;
 }
 message ProduceActivateEffectResponse {
   repeated pcommon.ProduceEffectResult effectResults = 1;
@@ -2226,6 +2254,7 @@ message ProduceChangeCostumeRequest {
   bool live = 2;
   bool training = 3;
   repeated string changeCostumeLiveUnitCharacterIds = 4;
+  repeated string changeCostumeTrainingUnitCharacterIds = 5;
 }
 message ProduceChangeCostumeResponse {
   papicommon.Response commonResponse = 9999;
@@ -2236,6 +2265,13 @@ message ProduceChangeForceLiveCommonRequest {
   bool disableForceLiveCommon = 3;
 }
 message ProduceChangeForceLiveCommonResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceChangeGrowthPanelRequest {
+  string produceGrowthPanelId = 1;
+  bool enable = 2;
+}
+message ProduceChangeGrowthPanelResponse {
   papicommon.Response commonResponse = 9999;
 }
 message ProduceChangeProduceCardConversionRequest {
@@ -2287,6 +2323,7 @@ message ProduceEndRequest {
 }
 message ProduceEndResponse {
   pcommon.Memory memory = 1;
+  pcommon.SelectionMemory selectionMemory = 2;
   papicommon.Response commonResponse = 9999;
 }
 message ProduceExcludeProduceCardRequest {
@@ -2558,6 +2595,8 @@ message ProduceResultResponse {
     int32 auditionScore = 1;
     repeated pcommon.RewardResult auditionScoreRewardResults = 2;
     repeated pcommon.RewardResult produceGradeRewardResults = 3;
+    pcommon.ResearchExchangeItemRewardResult exchangeItemRewardResult = 4;
+    pcommon.ResearchPointResult pointResult = 5;
   }
   message TourResult {
     penum.ResourceType resourceType = 1;
@@ -2645,6 +2684,8 @@ message ProduceStartRequest {
   bool isHighScoreRush = 11;
   repeated string changeCostumeLiveUnitCharacterIds = 12;
   bool isResearch = 13;
+  string userSelectionMemoryId = 14;
+  repeated string changeCostumeTrainingUnitCharacterIds = 15;
   string clientProduceUuid = 99;
   message Memory {
     string userMemoryId = 1;
@@ -2665,6 +2706,11 @@ message ProduceStepAuditionEndExamBattleRequest {
   pcommon.ExamBattleResult result = 2;
   repeated pcommon.ExamTurnEndLog turnEndLogs = 3;
   string deviceProduceUuid = 4;
+  repeated ProduceStepAuditionEndExamBattleRequest.ExamBattleNpcResult npcResults = 5;
+  message ExamBattleNpcResult {
+    int32 number = 1;
+    int32 score = 2;
+  }
 }
 message ProduceStepAuditionEndExamBattleResponse {
   bool shouldTransitionSeminar = 1;
@@ -2748,6 +2794,41 @@ message ProduceStepEventResponse {
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
+message ProduceStepIntervalBuyRequest {
+  string deviceProduceUuid = 1;
+  int32 positionNumber = 2;
+  int32 number = 3;
+  string produceCardCustomizeId = 4;
+}
+message ProduceStepIntervalBuyResponse {
+  repeated pcommon.ProduceRewardResult providedRewards = 1;
+  int32 beforeProducePoint = 2;
+  int32 afterProducePoint = 3;
+  int32 beforeStamina = 4;
+  int32 afterStamina = 5;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepIntervalEndRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceStepIntervalEndResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepIntervalRerollRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceStepIntervalRerollResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepIntervalStartRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceStepIntervalStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
 message ProduceStepLessonEndRequest {
   string deviceProduceUuid = 2;
   pcommon.ProduceExamEndResult examEndResult = 1001;
@@ -2762,6 +2843,23 @@ message ProduceStepLessonStartRequest {
   string deviceProduceUuid = 2;
 }
 message ProduceStepLessonStartResponse {
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepOpenLessonEndRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceStepOpenLessonEndResponse {
+  repeated pcommon.ProduceRewardResult rewardResults = 100;
+  repeated pcommon.ProduceEffectResult effectResults = 101;
+  papicommon.Response commonResponse = 9999;
+}
+message ProduceStepOpenLessonStartRequest {
+  string deviceProduceUuid = 1;
+}
+message ProduceStepOpenLessonStartResponse {
+  int32 beforeStamina = 1;
+  int32 afterStamina = 2;
   repeated pcommon.ProduceEffectResult effectResults = 101;
   papicommon.Response commonResponse = 9999;
 }
@@ -2883,6 +2981,9 @@ message ProduceTopResponse {
     repeated string externalProduceCardIds = 3;
     repeated string memoryPickupProduceCardIds = 4;
     repeated string produceItemIds = 5;
+    pcommon.EventBonus eventBonus = 6;
+    bool isMemoryProduceCardPickupDisable = 7;
+    string exchangeConsumptionItemId = 8;
     int64 startTime = 100;
     int64 endTime = 101;
   }
@@ -2891,6 +2992,13 @@ message ProduceTopResponse {
     pcommon.EventBonus eventBonus = 2;
     string produceTopLogoAssetId = 3;
   }
+}
+message ProduceUnlockGrowthPanelRequest {
+  string produceGrowthPanelId = 1;
+  int32 afterLevel = 2;
+}
+message ProduceUnlockGrowthPanelResponse {
+  papicommon.Response commonResponse = 9999;
 }
 message ProduceUnlockPictureBookLiveRequest {
   string musicId = 1;
@@ -3243,11 +3351,28 @@ message PvpRateUnitStageFormation {
     repeated pcommon.ProduceCardConversion produceCardConversions = 5;
   }
 }
+message PvpRateUpdateUserPvpRateDeckRequest {
+  int32 number = 1;
+  string name = 2;
+  string mainUserMemoryId = 3;
+  string subUserMemoryId = 4;
+  penum.DeckRecommendType recommendType = 5;
+}
+message PvpRateUpdateUserPvpRateDeckResponse {
+  papicommon.Response commonResponse = 9999;
+}
 message PvpRateUpdateUserPvpRateUnitRequest {
   repeated pcommon.PvpRateSetupUnitStageFormation stageFormations = 1;
   penum.DeckRecommendType recommendType = 2;
 }
 message PvpRateUpdateUserPvpRateUnitResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message ResearchChangeMemoryProduceCardPickupRequest {
+  bool disable = 1;
+}
+message ResearchChangeMemoryProduceCardPickupResponse {
+  bool disable = 1;
   papicommon.Response commonResponse = 9999;
 }
 message ResearchGetResponse {
@@ -3263,6 +3388,13 @@ message ResearchGetResponse {
   repeated string externalProduceCardIds = 10;
   repeated string memoryPickupProduceCardIds = 11;
   repeated string produceItemIds = 12;
+  pcommon.EventBonus eventBonus = 13;
+  string exchangeId = 14;
+  string exchangeConsumptionItemId = 15;
+  repeated pcommon.ResearchPointReward pointRewards = 16;
+  bool isMemoryProduceCardPickupDisable = 17;
+  int32 currentPoint = 18;
+  repeated string excludeRerollMemoryAbilityProduceGroupIds = 19;
   int64 startTime = 100;
   int64 endTime = 101;
   int64 closeTime = 102;
@@ -3289,6 +3421,69 @@ message ResearchRerollMemoryRequest {
   repeated bool memoryAbilityRerollLocks = 2;
 }
 message ResearchRerollMemoryResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message SelectionMemoryExchangeRequest {
+  repeated string userSelectionMemoryIds = 1;
+}
+message SelectionMemoryExchangeResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message SelectionMemoryGetRequest {
+  string userSelectionMemoryId = 1;
+}
+message SelectionMemoryGetResponse {
+  pcommon.SelectionMemory selectionMemory = 1;
+  papicommon.Response commonResponse = 9999;
+}
+message SelectionMemoryListResponse {
+  repeated SelectionMemoryListResponse.SelectionMemory selectionMemories = 1;
+  repeated string eventExpiredSelectionMemoryIds = 2;
+  papicommon.Response commonResponse = 9999;
+  message SelectionMemory {
+    string userSelectionMemoryId = 1;
+    string memoryTagId = 2;
+    bool isProtected = 3;
+    penum.ResultGrade grade = 4;
+    string assetId = 5;
+    string imagePath = 6;
+    string produceId = 7;
+    string characterId = 8;
+    string idolCardId = 9;
+    string idolCardSkinId = 10;
+    penum.ProducePlanType planType = 11;
+    penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 12;
+    penum.IdolCardPotentialRank idolCardPotentialRank = 13;
+    bool isPrimaStella = 14;
+    int32 vocal = 30;
+    int32 dance = 31;
+    int32 visual = 32;
+    int32 vocalGrowthRatePermil = 33;
+    int32 danceGrowthRatePermil = 34;
+    int32 visualGrowthRatePermil = 35;
+    int32 stamina = 36;
+    int32 star = 37;
+    repeated pcommon.SelectionProduceCard produceCards = 50;
+    repeated pcommon.SelectionProduceItem produceItems = 51;
+    repeated pcommon.SelectionProduceCustomizeItem produceCustomizeItems = 52;
+    string produceHighScoreId = 100;
+    string researchId = 101;
+    int64 clearedTime = 200;
+    int64 lastUsedTime = 201;
+  }
+}
+message SelectionMemoryUpdateProtectionRequest {
+  string userSelectionMemoryId = 1;
+  bool isProtected = 2;
+}
+message SelectionMemoryUpdateProtectionResponse {
+  papicommon.Response commonResponse = 9999;
+}
+message SelectionMemoryUpdateTagRequest {
+  string userSelectionMemoryId = 1;
+  string memoryTagId = 2;
+}
+message SelectionMemoryUpdateTagResponse {
   papicommon.Response commonResponse = 9999;
 }
 message SeminarEndExamRequest {

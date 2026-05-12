@@ -29,6 +29,11 @@ message AntiCheatSummaryResult {
     int32 loggedScore = 3;
   }
 }
+message AuditionNpcResult {
+  int32 number = 1;
+  int32 score = 2;
+  int32 point = 3;
+}
 message CoinGasha {
   string id = 1;
   penum.CoinGashaType type = 2;
@@ -46,6 +51,7 @@ message CoinGasha {
   bool isResettable = 14;
   int32 totalDrawCount = 15;
   repeated CoinGashaDrawCountReward drawCountRewards = 16;
+  int32 maxGuaranteedDrawCount = 17;
   bool unlock = 50;
   string viewConditionSetId = 51;
   string unlockConditionSetId = 52;
@@ -178,6 +184,7 @@ message ExamBattleAutoPlayer {
   penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 5;
   penum.IdolCardPotentialRank idolCardPotentialRank = 6;
   int32 power = 7;
+  bool isPrimaStella = 8;
   int64 seed = 50;
   int32 vocal = 51;
   int32 dance = 52;
@@ -188,6 +195,7 @@ message ExamBattleAutoPlayer {
   int32 maxStamina = 57;
   repeated ProduceCard produceCards = 58;
   repeated string produceItemIds = 59;
+  repeated string produceCustomizeItemIds = 60;
   int32 rank = 100;
   int32 score = 101;
   int32 vocalScore = 102;
@@ -210,6 +218,9 @@ message ExamBattleAutoStage {
   string produceExamGimmickEffectGroupId = 2;
   repeated ExamBattleAutoPlayer selfPlayers = 3;
   repeated ExamBattleAutoPlayer rivalPlayers = 4;
+  int32 vocal = 5;
+  int32 dance = 6;
+  int32 visual = 7;
 }
 message ExamBattleAutoStageResult {
   repeated ExamBattleAutoStageResult.Player selfPlayers = 3;
@@ -255,6 +266,7 @@ message ExamContestPlayer {
   penum.ProduceExamEffectType examEffectType = 12;
   penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 13;
   penum.IdolCardPotentialRank idolCardPotentialRank = 14;
+  bool isPrimaStella = 15;
   int32 power = 16;
   string idolCardSkinId = 17;
   int32 vocal = 50;
@@ -266,6 +278,7 @@ message ExamContestPlayer {
   int32 maxStamina = 56;
   repeated ProduceCard produceCards = 57;
   repeated ProduceItem produceItems = 58;
+  repeated string produceCustomizeItemIds = 59;
   repeated ExamAction examActions = 100;
 }
 message ExamContestPlayerResult {
@@ -571,6 +584,7 @@ message Memory {
   penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 10;
   penum.IdolCardPotentialRank idolCardPotentialRank = 11;
   bool noProduceHistory = 12;
+  bool isPrimaStella = 13;
   bool isHighScoreRush = 14;
   string researchId = 15;
   ProduceCard produceCard = 20;
@@ -664,6 +678,8 @@ message ProduceEffectResult {
   int32 afterProducePoint = 11;
   int32 beforeVoteCount = 21;
   int32 afterVoteCount = 22;
+  int32 beforeStar = 23;
+  int32 afterStar = 24;
   int32 beforeVocal = 12;
   int32 afterVocal = 13;
   int32 beforeDance = 14;
@@ -703,6 +719,7 @@ message ProduceHistory {
   penum.IdolCardPotentialRank potentialRank = 10;
   repeated penum.ProduceType trueEndProduceTypes = 11;
   repeated ProduceHistory.Audition auditions = 12;
+  bool isPrimaStella = 13;
   repeated ProduceHistory.DeckSupportCard deckSupportCards = 20;
   repeated ProduceHistory.DeckMemory deckMemories = 21;
   repeated ProduceHistory.DeckProduceCard produceCards = 22;
@@ -716,6 +733,8 @@ message ProduceHistory {
   int32 visualGrowthRatePermil = 35;
   int32 maxStamina = 36;
   int32 voteCount = 37;
+  int32 star = 38;
+  repeated string produceCustomizeItemIds = 39;
   bool isHighScoreRush = 100;
   int32 highScoreGold = 101;
   string researchId = 110;
@@ -769,6 +788,13 @@ message ProduceRewardResult {
   int32 quantity = 4;
   repeated ProduceCardCustomize customizes = 5;
 }
+message ProduceSchedule {
+  int32 number = 1;
+  penum.ProduceStepType selectedStepType = 2;
+  repeated penum.ProduceStepType stepTypes = 3;
+  repeated penum.ProduceParameterType stepSubParameterTypes = 4;
+  int32 refreshStamina = 5;
+}
 message ProduceTriggerOrigin {
   penum.ProduceTriggerOriginType originType = 1;
   string originOwnerId = 2;
@@ -815,6 +841,28 @@ message PvpRateSetupUnitStageFormation {
     string subUserMemoryId = 2;
   }
 }
+message ResearchExchangeItemRewardResult {
+  string researchId = 1;
+  penum.ResourceType resourceType = 2;
+  string resourceId = 3;
+  int32 baseQuantity = 4;
+  int32 bonusQuantity = 5;
+  int32 bonusPermil = 6;
+}
+message ResearchPointResult {
+  string researchId = 1;
+  int32 beforePoint = 2;
+  int32 afterPoint = 3;
+  repeated ResearchPointReward allRewards = 4;
+  repeated ResearchPointReward provideRewards = 5;
+}
+message ResearchPointReward {
+  int32 point = 1;
+  Reward reward = 2;
+  bool feature = 3;
+  bool repeat = 4;
+  int32 repeatPoint = 5;
+}
 message Reward {
   penum.ResourceType resourceType = 1;
   string resourceId = 2;
@@ -831,6 +879,113 @@ message RewardResult {
   bool isGift = 8;
   bool isCampaign = 9;
   bool isItemEffect = 10;
+}
+message SelectionMemory {
+  string userSelectionMemoryId = 1;
+  string memoryTagId = 2;
+  bool isProtected = 3;
+  penum.ResultGrade grade = 4;
+  string assetId = 5;
+  string imagePath = 6;
+  string produceId = 7;
+  string characterId = 8;
+  string idolCardId = 9;
+  string idolCardSkinId = 10;
+  penum.ProducePlanType planType = 11;
+  penum.IdolCardLevelLimitRank idolCardLevelLimitRank = 12;
+  penum.IdolCardPotentialRank idolCardPotentialRank = 13;
+  bool isPrimaStella = 14;
+  int32 startDearnessLevel = 15;
+  repeated string activateProduceGrowthPanelIds = 16;
+  repeated int32 activateProduceGrowthPanelLevels = 17;
+  int32 vocal = 30;
+  int32 dance = 31;
+  int32 visual = 32;
+  int32 vocalGrowthRatePermil = 33;
+  int32 danceGrowthRatePermil = 34;
+  int32 visualGrowthRatePermil = 35;
+  int32 stamina = 36;
+  int32 star = 37;
+  repeated SelectionProduceCard produceCards = 50;
+  repeated SelectionProduceItem produceItems = 51;
+  repeated SelectionProduceCustomizeItem produceCustomizeItems = 52;
+  repeated SelectionSupportCard supportCards = 53;
+  repeated SelectionMemorySlot memories = 54;
+  repeated ProduceSchedule schedules = 55;
+  int32 lessonVocalSpChangeRatePermil = 70;
+  int32 lessonDanceSpChangeRatePermil = 71;
+  int32 lessonVisualSpChangeRatePermil = 72;
+  int32 lessonPresentAdditionalProduceCardRewardCount = 73;
+  int32 staminaRecoverValueRatePermil = 74;
+  int32 staminaReduceValueRatePermil = 75;
+  int32 producePointAdditionValueRatePermil = 76;
+  int32 producePointReduceValueRatePermil = 77;
+  int32 produceDrinkGetDisableTurn = 78;
+  int32 produceItemGetDisableTurn = 79;
+  int32 producePointGetDisableTurn = 80;
+  int32 staminaRecoverDisableTurn = 81;
+  int32 examExtraTurn = 82;
+  int32 auditionNpcEnhancePermil = 83;
+  int32 eventSchoolStaminaPermil = 84;
+  int32 eventActivityProducePointPermil = 85;
+  repeated string excludeProduceCardIds = 86;
+  bool hiddenProduceCardReroll = 87;
+  bool hiddenProduceCardExclude = 88;
+  bool hiddenShopReroll = 89;
+  int32 produceCardRemainSelectRerollCount = 90;
+  int32 produceCardRemainExcludeCount = 91;
+  int32 shopRemainRerollCount = 92;
+  int32 vocalAdditionalLimit = 93;
+  int32 danceAdditionalLimit = 94;
+  int32 visualAdditionalLimit = 95;
+  int32 useProduceCardCount = 200;
+  int32 getProduceCardCount = 201;
+  int32 upgradeProduceCardCount = 202;
+  int32 customizeProduceCardCount = 203;
+  string produceHighScoreId = 800;
+  string researchId = 801;
+  int64 clearedTime = 900;
+  int64 lastUsedTime = 901;
+}
+message SelectionMemoryAbility {
+  string id = 1;
+  int32 level = 2;
+  int32 triggerCount = 3;
+}
+message SelectionMemorySlot {
+  int32 number = 1;
+  string userMemoryId = 2;
+  bool isRental = 3;
+  Memory memory = 4;
+  repeated SelectionMemoryAbility memoryAbilities = 5;
+}
+message SelectionProduceCard {
+  ProduceCard produceCard = 1;
+  bool fromMemory = 2;
+}
+message SelectionProduceCustomizeItem {
+  string produceCustomizeItemId = 1;
+  int32 triggerCount = 2;
+  int32 reactionCount = 3;
+}
+message SelectionProduceItem {
+  string id = 1;
+  int32 triggerCount = 2;
+  int32 reactionCount = 3;
+}
+message SelectionProduceSkill {
+  string id = 1;
+  int32 level = 2;
+  int32 triggerCount = 3;
+}
+message SelectionSupportCard {
+  int32 number = 1;
+  string supportCardId = 2;
+  int32 level = 3;
+  penum.SupportCardLevelLimitRank levelLimitRank = 4;
+  bool isRental = 5;
+  repeated SelectionProduceSkill produceSkills = 6;
+  repeated string eventDetailIds = 7;
 }
 message SimpleProfile {
   string publicUserId = 1;
@@ -904,6 +1059,7 @@ message StoryEventPointReward {
   bool feature = 4;
   bool repeat = 5;
   int32 repeatPoint = 6;
+  bool displayTop = 7;
 }
 message StoryEventProduceResult {
   StoryEventProduceResult.PointResult pointResult = 1;

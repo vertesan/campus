@@ -150,6 +150,8 @@ message CharacterColor {
   string labelTextColor = 6;
   string transitionGradientColor1 = 7;
   string transitionGradientColor2 = 8;
+  string decorationMainGradientColor1 = 9;
+  string decorationMainGradientColor2 = 10;
 }
 message CharacterColorList {
   repeated CharacterColor list = 1;
@@ -171,6 +173,7 @@ message CharacterDearnessLevel {
   string targetDescription = 32;
   penum.ProduceType trueEndAchievementProduceType = 33;
   int32 dearnessPointThreshold = 34;
+  int32 storyGroupOrder = 90;
   message ProduceSkill {
     string id = 1;
     int32 level = 2;
@@ -531,6 +534,7 @@ message ExamMotion {
   string sceneLayoutId = 8;
   string cameraId = 9;
   repeated string targetIds = 11;
+  repeated penum.ProduceStepType targetStepTypes = 12;
 }
 message ExamMotionList {
   repeated ExamMotion list = 1;
@@ -596,6 +600,8 @@ message ExamSetting {
   int32 examLessonValueMultipleDependReviewOrAggressiveMultiplePermil = 50;
   int32 examLessonValueMultipleDependReviewOrAggressiveMaxPermil = 51;
   bool fixMoveCardShuffleDeckEnable = 52;
+  int32 examBuffConsumptionDownPermil = 53;
+  int32 examBuffConsumptionAddPermil = 54;
 }
 message ExamSettingList {
   repeated ExamSetting list = 1;
@@ -611,6 +617,19 @@ message ExamSimulation {
 }
 message ExamSimulationList {
   repeated ExamSimulation list = 1;
+}
+message ExamUnitMotion {
+  string produceCharacterUnitId = 1;
+  string unitCharacterId = 2;
+  penum.ExamMotionType motionType = 3;
+  int32 number = 4;
+  string bodyMotionId = 5;
+  string facialMotionId = 6;
+  repeated string targetIds = 7;
+  repeated penum.ProduceStepType targetStepTypes = 8;
+}
+message ExamUnitMotionList {
+  repeated ExamUnitMotion list = 1;
 }
 message ExchangeItemCategory {
   string exchangeId = 1;
@@ -861,11 +880,20 @@ message IdolCard {
   penum.ProduceExamEffectType examEffectType = 48;
   string produceChallengeSlotId = 49;
   penum.ProduceExamEffectType showExamEffectType = 50;
+  string secondProduceCardId = 51;
+  string beforeLevelLimitProduceItemId = 52;
+  string afterLevelLimitProduceItemId = 53;
+  string primaStellaConsumptionSetId = 55;
+  string idolCardPrimaStellaProduceSkillId = 56;
+  string primaStellaAchievementId = 57;
   string potentialRankVoiceAssetId = 72;
   string produceSelectVoiceAssetId = 75;
   string produceScheduleFrontVoiceGroupId = 76;
   string produceScheduleBackVoiceGroupId = 77;
   string useProduceCardVoiceAssetId = 78;
+  string useSecondProduceCardVoiceAssetId = 79;
+  string usePrimaStellaProduceCardVoiceAssetId = 80;
+  string primaStellaVoiceAssetId = 81;
   int64 viewStartTime = 999;
   int64 order = 1000;
   repeated string produceStoryIds = 1005;
@@ -945,6 +973,15 @@ message IdolCardPotentialProduceSkill {
 message IdolCardPotentialProduceSkillList {
   repeated IdolCardPotentialProduceSkill list = 1;
 }
+message IdolCardPrimaStellaProduceSkill {
+  string id = 1;
+  string produceSkillId = 2;
+  int32 produceSkillLevel = 3;
+  int32 order = 99;
+}
+message IdolCardPrimaStellaProduceSkillList {
+  repeated IdolCardPrimaStellaProduceSkill list = 1;
+}
 message IdolCardSimulation {
   string idolCardId = 1;
   int32 number = 2;
@@ -993,6 +1030,13 @@ message IdolCardSkin {
   float afterDetailScale = 111;
   int32 beforeLevelLimitRankPositionPattern = 112;
   int32 afterLevelLimitRankPositionPattern = 113;
+  float primaStellaListPositionX = 114;
+  float primaStellaListPositionY = 115;
+  float primaStellaListScale = 116;
+  float primaStellaDetailPositionX = 117;
+  float primaStellaDetailPositionY = 118;
+  float primaStellaDetailScale = 119;
+  int32 primaStellaPositionPattern = 120;
   int64 viewStartTime = 999;
   int64 order = 1000;
 }
@@ -1060,6 +1104,7 @@ message Item {
   string produceHighScoreEventId = 21;
   string tourEventId = 26;
   string researchEventId = 27;
+  string produceGrowthPanelSheetId = 28;
   penum.IdolCardRarity idolCardRarity = 22;
   penum.SupportCardRarity supportCardRarity = 23;
   string characterId = 24;
@@ -1255,6 +1300,7 @@ message MemoryAbility {
   int32 evaluation = 6;
   penum.SkillRarity rarity = 7;
   repeated string produceGroupIds = 8;
+  bool isUniqueActivation = 9;
 }
 message MemoryAbilityList {
   repeated pcommon.MemoryAbility list = 1;
@@ -1632,6 +1678,9 @@ message Produce {
   repeated string easyProduceItemIds = 32;
   string easyConditionSetId = 33;
   string easyProduceConditionSetId = 34;
+  penum.ProduceSplitType produceSplitType = 35;
+  string splitPairProduceId = 36;
+  string selectionMemoryEmbedProduceCardId = 41;
   int32 order = 99;
 }
 message ProduceAdv {
@@ -1683,6 +1732,7 @@ message ProduceCard {
   bool isConversion = 45;
   repeated string moveProduceExamTriggerIds = 46;
   string originCharacterId = 47;
+  string originPrimaStellaIdolCardId = 50;
   int64 viewStartTime = 97;
   bool isLimited = 99;
   int64 order = 100;
@@ -1690,6 +1740,7 @@ message ProduceCard {
     string produceExamTriggerId = 1;
     string produceExamEffectId = 2;
     bool hideIcon = 3;
+    bool isOncePlayEffect = 4;
   }
 }
 message ProduceCardConversion {
@@ -1868,6 +1919,51 @@ message ProduceCharacterAdvList {
 message ProduceCharacterList {
   repeated ProduceCharacter list = 1;
 }
+message ProduceCharacterUnit {
+  string id = 1;
+  string produceGroupId = 2;
+  string targetCharacterId = 3;
+  string unitCharacterId = 4;
+  string name = 5;
+  string liveCostumeId = 6;
+  string liveCostumeHeadId = 7;
+}
+message ProduceCharacterUnitList {
+  repeated ProduceCharacterUnit list = 1;
+}
+message ProduceCustomizeItem {
+  string id = 1;
+  string name = 2;
+  penum.ProduceItemEffectType effectType = 3;
+  penum.ProducePlanType planType = 4;
+  repeated pcommon.ProduceDescriptionSegment produceDescriptions = 6;
+  string assetId1 = 10;
+  string assetId2 = 11;
+  string assetId3 = 12;
+  string assetId4 = 13;
+  string assetId5 = 14;
+  bool isBase = 50;
+  bool isTerminal = 51;
+  int32 examEffectTurn = 100;
+  int32 examEffectCount = 101;
+  string produceExamTriggerId = 102;
+  repeated string produceExamEffectIds = 103;
+  int32 produceEffectTriggerCount = 200;
+  int32 produceEffectTriggerInterval = 201;
+  string produceTriggerId = 202;
+  repeated string produceEffectIds = 203;
+  repeated string effectGroupIds = 204;
+}
+message ProduceCustomizeItemList {
+  repeated ProduceCustomizeItem list = 1;
+}
+message ProduceCustomizeItemRelationship {
+  string parentProduceCustomizeItemId = 1;
+  string childProduceCustomizeItemId = 2;
+}
+message ProduceCustomizeItemRelationshipList {
+  repeated ProduceCustomizeItemRelationship list = 1;
+}
 message ProduceDescriptionExamEffect {
   penum.ProduceExamEffectType type = 1;
   string name = 2;
@@ -1885,6 +1981,7 @@ message ProduceDescriptionLabel {
   string id = 1;
   string name = 3;
   string produceDescriptionSwapId = 4;
+  string iconAssetId = 5;
   repeated pcommon.ProduceDescriptionSegment produceDescriptions = 999;
 }
 message ProduceDescriptionLabelList {
@@ -1933,6 +2030,15 @@ message ProduceDescriptionProduceStep {
 }
 message ProduceDescriptionProduceStepList {
   repeated ProduceDescriptionProduceStep list = 1;
+}
+message ProduceDescriptionProduceType {
+  penum.ProduceType produceType = 1;
+  penum.ProduceSplitType produceSplitType = 2;
+  string name = 3;
+  string template = 10;
+}
+message ProduceDescriptionProduceTypeList {
+  repeated ProduceDescriptionProduceType list = 1;
 }
 message ProduceDescriptionSwap {
   string id = 1;
@@ -2131,6 +2237,7 @@ message ProduceExamBattleNpcMob {
   string id = 1;
   string name = 2;
   string assetId = 3;
+  bool isBorder = 4;
 }
 message ProduceExamBattleNpcMobList {
   repeated ProduceExamBattleNpcMob list = 1;
@@ -2162,6 +2269,12 @@ message ProduceExamEffect {
   penum.ProducePickCountType pickCountType = 23;
   int32 pickCountMin = 15;
   int32 pickCountMax = 16;
+  string produceCardSearchId2 = 24;
+  penum.ProducePickRangeType pickRangeType2 = 25;
+  string pickCountReferenceProduceCardSearchId2 = 26;
+  penum.ProducePickCountType pickCountType2 = 27;
+  int32 pickCountMin2 = 28;
+  int32 pickCountMax2 = 29;
   string chainProduceExamEffectId = 17;
   repeated string chainProduceExamEffectIds = 20;
   string produceExamStatusEnchantId = 18;
@@ -2267,6 +2380,32 @@ message ProduceGroupLiveCommon {
 }
 message ProduceGroupLiveCommonList {
   repeated ProduceGroupLiveCommon list = 1;
+}
+message ProduceGrowthPanel {
+  string id = 1;
+  int32 level = 2;
+  string produceGrowthPanelSheetId = 3;
+  penum.ProduceSplitType produceSplitType = 4;
+  string name = 5;
+  repeated pcommon.ProduceDescriptionSegment produceDescriptions = 7;
+  string unlockConditionSetId = 10;
+  int32 unlockItemQuantity = 11;
+  bool isUnlockRecommended = 12;
+  repeated string produceEffectIds = 20;
+  int32 order = 99;
+}
+message ProduceGrowthPanelList {
+  repeated ProduceGrowthPanel list = 1;
+}
+message ProduceGrowthPanelSheet {
+  string id = 1;
+  penum.ProduceType produceType = 2;
+  string unlockItemId = 3;
+  string missionGroupId = 4;
+  string achievementId = 5;
+}
+message ProduceGrowthPanelSheetList {
+  repeated ProduceGrowthPanelSheet list = 1;
 }
 message ProduceGuide {
   string idolCardId = 1;
@@ -2427,6 +2566,14 @@ message ProduceLive {
   string costumeId = 20;
   string costumeHeadId = 21;
 }
+message ProduceLiveEvaluation {
+  string produceId = 1;
+  string characterId = 2;
+  penum.ProduceLiveType liveType = 3;
+}
+message ProduceLiveEvaluationList {
+  repeated ProduceLiveEvaluation list = 1;
+}
 message ProduceLiveList {
   repeated ProduceLive list = 1;
 }
@@ -2456,6 +2603,7 @@ message ProduceResultMotion {
   string facialAssetId = 5;
   string voiceAssetId = 6;
   repeated string produceGroupIds = 7;
+  repeated string produceIds = 13;
 }
 message ProduceResultMotionList {
   repeated ProduceResultMotion list = 1;
@@ -2515,6 +2663,10 @@ message ProduceSetting {
   int32 produceAuditionTrendAssessmentPermilUpper = 62;
   int32 produceAuditionTrendAssessmentPermilLower = 63;
   int32 maxLegendProduceCardCount = 67;
+  int32 stepIntervalUpgradeProduceCardCount = 68;
+  int32 stepIntervalCustomizeProduceCardCount = 69;
+  int32 selectionMemoryNeedProduceCardCount = 70;
+  int32 produceDrinkPossessMaxLimit = 71;
 }
 message ProduceSettingList {
   repeated ProduceSetting list = 1;
@@ -2525,6 +2677,8 @@ message ProduceSkill {
   penum.SkillRarity rarity = 5;
   string tag = 6;
   penum.ProducePlanType planType = 7;
+  penum.ProduceType produceType = 18;
+  penum.ProduceSplitType produceSplitType = 20;
   int32 activationCount = 8;
   string produceEffectId1 = 9;
   string produceTriggerId1 = 10;
@@ -2539,6 +2693,17 @@ message ProduceSkill {
 }
 message ProduceSkillList {
   repeated ProduceSkill list = 1;
+}
+message ProduceSplitAdv {
+  penum.ProduceType produceType = 1;
+  penum.ProduceAdvType type = 2;
+  penum.ProduceSplitType produceSplitTypes = 3;
+  string targetCharacterId = 4;
+  string title = 5;
+  string assetId = 6;
+}
+message ProduceSplitAdvList {
+  repeated ProduceSplitAdv list = 1;
 }
 message ProduceStartMotion {
   string characterId = 1;
@@ -2559,8 +2724,34 @@ message ProduceStepAuditionCharacter {
   int32 failureNextIdolAuditionRank = 11;
   string auditionSelectHeaderSilhouetteAssetId = 20;
 }
+message ProduceStepAuditionCharacterBgm {
+  string characterId = 1;
+  string produceId = 2;
+  penum.ProduceStepType stepType = 3;
+  string bgmAssetId = 4;
+}
+message ProduceStepAuditionCharacterBgmList {
+  repeated ProduceStepAuditionCharacterBgm list = 1;
+}
 message ProduceStepAuditionCharacterList {
   repeated ProduceStepAuditionCharacter list = 1;
+}
+message ProduceStepAuditionCharacterUnitMotion {
+  string produceCharacterUnitId = 1;
+  string characterId = 2;
+  string targetCharacterId = 3;
+  penum.ProduceStepType stepType = 4;
+  penum.ProduceStepAuditionMotionType motionType = 5;
+  int32 number = 6;
+  string facialAssetId = 7;
+  string bodyAssetId = 8;
+  string voiceAssetId = 9;
+  repeated string produceIds = 10;
+  string motionSeAssetId = 11;
+  int32 motionSeStartMilliseconds = 12;
+}
+message ProduceStepAuditionCharacterUnitMotionList {
+  repeated ProduceStepAuditionCharacterUnitMotion list = 1;
 }
 message ProduceStepAuditionDifficulty {
   string id = 1;
@@ -2577,8 +2768,10 @@ message ProduceStepAuditionDifficulty {
   penum.ProduceStepAuditionType auditionType = 13;
   bool isUnlockAnimation = 14;
   int32 voteCountBaseLine = 15;
+  bool isStaticNpcScore = 17;
   int32 dearnessLevel = 52;
   int32 voteCount = 53;
+  int32 starScoreBonusBaseLine = 55;
 }
 message ProduceStepAuditionDifficultyList {
   repeated ProduceStepAuditionDifficulty list = 1;
@@ -2595,9 +2788,33 @@ message ProduceStepAuditionMotion {
   string cameraId = 9;
   repeated string produceGroupIds = 10;
   penum.ProduceStepAuditionType auditionType = 11;
+  repeated string produceIds = 12;
+  string motionSeAssetId = 13;
+  int32 motionSeStartMilliseconds = 14;
 }
 message ProduceStepAuditionMotionList {
   repeated ProduceStepAuditionMotion list = 1;
+}
+message ProduceStepAuditionRivalActor {
+  string id = 1;
+  string produceCharacterId = 2;
+  penum.ProduceStepType stepType = 3;
+  int32 number = 4;
+  repeated string actorAssetIds = 5;
+  repeated string produceIds = 6;
+}
+message ProduceStepAuditionRivalActorList {
+  repeated ProduceStepAuditionRivalActor list = 1;
+}
+message ProduceStepAuditionRivalActorMotion {
+  string rivalActorId = 1;
+  penum.ProduceStepAuditionMotionType motionType = 2;
+  int32 number = 3;
+  string bodyAssetId = 4;
+  string facialAssetId = 5;
+}
+message ProduceStepAuditionRivalActorMotionList {
+  repeated ProduceStepAuditionRivalActorMotion list = 1;
 }
 message ProduceStepEventDetail {
   string id = 1;
@@ -2668,6 +2885,30 @@ message ProduceStepLessonLevelList {
 message ProduceStepLessonList {
   repeated ProduceStepLesson list = 1;
 }
+message ProduceStepOpenLesson {
+  string id = 1;
+  int32 stamina = 3;
+  penum.ProduceParameterType subParameterType = 4;
+  int32 mainParameter = 5;
+  int32 subParameter = 6;
+  int32 star = 7;
+}
+message ProduceStepOpenLessonList {
+  repeated ProduceStepOpenLesson list = 1;
+}
+message ProduceStepOpenLessonMotion {
+  string characterId = 1;
+  penum.ProduceStepType stepType = 2;
+  int32 number = 3;
+  string advId = 4;
+  string voiceAssetId1 = 5;
+  string voiceAssetId2 = 6;
+  string seAssetId = 7;
+  string bgmAssetId = 8;
+}
+message ProduceStepOpenLessonMotionList {
+  repeated ProduceStepOpenLessonMotion list = 1;
+}
 message ProduceStepSelfLesson {
   string id = 1;
   int32 progressLevel = 2;
@@ -2702,6 +2943,10 @@ message ProduceStepTransition {
   string advAssetId = 7;
   string voiceAssetId = 8;
   string produceGroupId = 9;
+  repeated string produceIds = 10;
+  repeated string unitCharacterIds = 11;
+  repeated string unitCharacterCostumeHeadIds = 12;
+  repeated string unitCharacterCostumeIds = 13;
 }
 message ProduceStepTransitionList {
   repeated ProduceStepTransition list = 1;
@@ -2742,6 +2987,8 @@ message ProduceWeekMotion {
   string costumeId = 4;
   string advAssetId = 5;
   string voiceAssetId = 6;
+  repeated string produceIds = 11;
+  bool enableOpenLesson = 12;
 }
 message ProduceWeekMotionList {
   repeated ProduceWeekMotion list = 1;
@@ -2841,6 +3088,10 @@ message PvpRateConfig {
     string bgmAssetId = 6;
     string startTimelineAssetId = 7;
     string examTimelineAssetId = 8;
+    int32 vocal = 20;
+    int32 dance = 21;
+    int32 visual = 22;
+    string produceExamBattleScoreConfigId = 30;
   }
 }
 message PvpRateConfigList {
@@ -3011,9 +3262,14 @@ message Setting {
   string homeCharacterRandomIdolViewConditionSetID = 143;
   string badgeEditViewConditionSetID = 144;
   int32 userBlockLimitCount = 145;
+  int32 selectionMemoryLimitCount = 146;
   string sceneTransitionSDCharacterAnimationViewConditionSetID = 147;
   repeated string sceneTransitionSDCharacterAnimationFirstAssetIDs = 148;
   repeated string sceneTransitionSDCharacterAnimationSecondAssetIDs = 149;
+  int32 researchPointLimit = 156;
+  int32 idolCardPrimaStellaLevelLimitRank = 151;
+  int32 idolCardPrimaStellaDearnessLevel = 152;
+  bool profileReport2026Enable = 157;
   int32 produceDailyMemoryRentalLimit = 1001;
   int32 produceDailyFreeContinueCount = 1002;
   string produceContinueItemID = 1003;
@@ -3055,6 +3311,7 @@ message Setting {
   int32 produceMaxMemoryDeckCount = 1052;
   int32 produceMaxSupportCardDeckCount = 1053;
   string produceNextIdolAuditionProEasyModeConditionSetID = 1056;
+  int32 produceHatsuboshiIdolFestivalFinalTargetProducerLevel = 1057;
   int32 gashaPickupStoryCampaignCharacterDearnessLevel = 1101;
   int32 gashaAnimationReversalSsrPermil = 1102;
   int32 gashaAnimationReversalPickUpProduceIdolSsrPermil = 1103;
@@ -3089,6 +3346,10 @@ message Setting {
   string pvpRateExamBattleAllSkipUnlockConditionSetID = 1745;
   string pvpRateRehearsalViewConditionSetID = 1747;
   int32 pvpRateRankingDisplayCount = 1748;
+  int32 pvpRateMaxDeckCount = 1752;
+  int32 pvpRateDeckNameLengthLimit = 1753;
+  int32 pvpRateDeckRecommendFirstPriorityPermil = 1754;
+  int32 pvpRateDeckRecommendSecondPriorityPermil = 1755;
   int32 examBattleSubMemoryParameterPermil = 1801;
   int32 examBattleSubMemoryStaminaPermil = 1802;
   int32 examBattleConditionThresholdMultipleScore = 1803;
@@ -3194,6 +3455,7 @@ message Story {
   string unlockConditionSetId = 8;
   pcommon.Reward reward = 12;
   string previousStoryId = 13;
+  string dearnessStoryTitle = 14;
   int32 order = 99;
 }
 message StoryEvent {

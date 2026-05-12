@@ -802,90 +802,94 @@ func (x *StoryEventReward) GetPointRewards() []*pcommon.StoryEventPointReward {
 }
 
 type UserData struct {
-	state                              protoimpl.MessageState                         `protogen:"open.v1"`
-	User                               *ptransaction.User                             `protobuf:"bytes,342861366,opt,name=user,proto3" json:"user,omitempty"`
-	UserActionPoint                    *ptransaction.UserActionPoint                  `protobuf:"bytes,238317234,opt,name=userActionPoint,proto3" json:"userActionPoint,omitempty"`
-	UserAuthProviderList               []*ptransaction.UserAuthProvider               `protobuf:"bytes,151341701,rep,name=userAuthProviderList,proto3" json:"userAuthProviderList,omitempty"`
-	UserBadgeList                      []*ptransaction.UserBadge                      `protobuf:"bytes,175219847,rep,name=userBadgeList,proto3" json:"userBadgeList,omitempty"`
-	UserBalance                        *ptransaction.UserBalance                      `protobuf:"bytes,164091159,opt,name=userBalance,proto3" json:"userBalance,omitempty"`
-	UserBanWarning                     *ptransaction.UserBanWarning                   `protobuf:"bytes,531719871,opt,name=userBanWarning,proto3" json:"userBanWarning,omitempty"`
-	UserCharacterList                  []*ptransaction.UserCharacter                  `protobuf:"bytes,370704040,rep,name=userCharacterList,proto3" json:"userCharacterList,omitempty"`
-	UserCharacterCostumeList           []*ptransaction.UserCharacterCostume           `protobuf:"bytes,314243425,rep,name=userCharacterCostumeList,proto3" json:"userCharacterCostumeList,omitempty"`
-	UserCharacterRosterList            []*ptransaction.UserCharacterRoster            `protobuf:"bytes,449008014,rep,name=userCharacterRosterList,proto3" json:"userCharacterRosterList,omitempty"`
-	UserComebackList                   []*ptransaction.UserComeback                   `protobuf:"bytes,440873335,rep,name=userComebackList,proto3" json:"userComebackList,omitempty"`
-	UserCompetition                    *ptransaction.UserCompetition                  `protobuf:"bytes,59936386,opt,name=userCompetition,proto3" json:"userCompetition,omitempty"`
-	UserCompetitionDeckList            []*ptransaction.UserCompetitionDeck            `protobuf:"bytes,205293456,rep,name=userCompetitionDeckList,proto3" json:"userCompetitionDeckList,omitempty"`
-	UserCompetitionSeasonDeckList      []*ptransaction.UserCompetitionSeasonDeck      `protobuf:"bytes,444856278,rep,name=userCompetitionSeasonDeckList,proto3" json:"userCompetitionSeasonDeckList,omitempty"`
-	UserCostumeList                    []*ptransaction.UserCostume                    `protobuf:"bytes,469968532,rep,name=userCostumeList,proto3" json:"userCostumeList,omitempty"`
-	UserCostumeHeadList                []*ptransaction.UserCostumeHead                `protobuf:"bytes,374617052,rep,name=userCostumeHeadList,proto3" json:"userCostumeHeadList,omitempty"`
-	UserCountList                      []*ptransaction.UserCount                      `protobuf:"bytes,431111247,rep,name=userCountList,proto3" json:"userCountList,omitempty"`
-	UserDearnessStoryList              []*ptransaction.UserDearnessStory              `protobuf:"bytes,133642946,rep,name=userDearnessStoryList,proto3" json:"userDearnessStoryList,omitempty"`
-	UserGashaButtonList                []*ptransaction.UserGashaButton                `protobuf:"bytes,319381230,rep,name=userGashaButtonList,proto3" json:"userGashaButtonList,omitempty"`
-	UserGuild                          *ptransaction.UserGuild                        `protobuf:"bytes,33667889,opt,name=userGuild,proto3" json:"userGuild,omitempty"`
-	UserHomeCharacterList              []*ptransaction.UserHomeCharacter              `protobuf:"bytes,88325184,rep,name=userHomeCharacterList,proto3" json:"userHomeCharacterList,omitempty"`
-	UserIdolCardList                   []*ptransaction.UserIdolCard                   `protobuf:"bytes,119514127,rep,name=userIdolCardList,proto3" json:"userIdolCardList,omitempty"`
-	UserIdolCardSkinList               []*ptransaction.UserIdolCardSkin               `protobuf:"bytes,77005383,rep,name=userIdolCardSkinList,proto3" json:"userIdolCardSkinList,omitempty"`
-	UserInvitation                     *ptransaction.UserInvitation                   `protobuf:"bytes,11952121,opt,name=userInvitation,proto3" json:"userInvitation,omitempty"`
-	UserItemList                       []*ptransaction.UserItem                       `protobuf:"bytes,208896283,rep,name=userItemList,proto3" json:"userItemList,omitempty"`
-	UserMeishiList                     []*ptransaction.UserMeishi                     `protobuf:"bytes,392438043,rep,name=userMeishiList,proto3" json:"userMeishiList,omitempty"`
-	UserMeishiBaseAssetList            []*ptransaction.UserMeishiBaseAsset            `protobuf:"bytes,10530785,rep,name=userMeishiBaseAssetList,proto3" json:"userMeishiBaseAssetList,omitempty"`
-	UserMeishiIllustrationAssetList    []*ptransaction.UserMeishiIllustrationAsset    `protobuf:"bytes,100237367,rep,name=userMeishiIllustrationAssetList,proto3" json:"userMeishiIllustrationAssetList,omitempty"`
-	UserMemoryList                     []*ptransaction.UserMemory                     `protobuf:"bytes,163783316,rep,name=userMemoryList,proto3" json:"userMemoryList,omitempty"`
-	UserMemoryInherit                  *ptransaction.UserMemoryInherit                `protobuf:"bytes,312197620,opt,name=userMemoryInherit,proto3" json:"userMemoryInherit,omitempty"`
-	UserMissionList                    []*ptransaction.UserMission                    `protobuf:"bytes,176225192,rep,name=userMissionList,proto3" json:"userMissionList,omitempty"`
-	UserMissionDailyReleaseGroupList   []*ptransaction.UserMissionDailyReleaseGroup   `protobuf:"bytes,104872908,rep,name=userMissionDailyReleaseGroupList,proto3" json:"userMissionDailyReleaseGroupList,omitempty"`
-	UserMissionGroupList               []*ptransaction.UserMissionGroup               `protobuf:"bytes,350034430,rep,name=userMissionGroupList,proto3" json:"userMissionGroupList,omitempty"`
-	UserMissionPassList                []*ptransaction.UserMissionPass                `protobuf:"bytes,143481512,rep,name=userMissionPassList,proto3" json:"userMissionPassList,omitempty"`
-	UserMissionPassPointList           []*ptransaction.UserMissionPassPoint           `protobuf:"bytes,358937978,rep,name=userMissionPassPointList,proto3" json:"userMissionPassPointList,omitempty"`
-	UserMissionPointList               []*ptransaction.UserMissionPoint               `protobuf:"bytes,124548488,rep,name=userMissionPointList,proto3" json:"userMissionPointList,omitempty"`
-	UserMoney                          *ptransaction.UserMoney                        `protobuf:"bytes,170538259,opt,name=userMoney,proto3" json:"userMoney,omitempty"`
-	UserMovieList                      []*ptransaction.UserMovie                      `protobuf:"bytes,389419008,rep,name=userMovieList,proto3" json:"userMovieList,omitempty"`
-	UserMusicList                      []*ptransaction.UserMusic                      `protobuf:"bytes,430828780,rep,name=userMusicList,proto3" json:"userMusicList,omitempty"`
-	UserPhotoList                      []*ptransaction.UserPhoto                      `protobuf:"bytes,288232532,rep,name=userPhotoList,proto3" json:"userPhotoList,omitempty"`
-	UserPhotoBackgroundList            []*ptransaction.UserPhotoBackground            `protobuf:"bytes,99273345,rep,name=userPhotoBackgroundList,proto3" json:"userPhotoBackgroundList,omitempty"`
-	UserPhotoPoseList                  []*ptransaction.UserPhotoPose                  `protobuf:"bytes,439296203,rep,name=userPhotoPoseList,proto3" json:"userPhotoPoseList,omitempty"`
-	UserPreference                     *ptransaction.UserPreference                   `protobuf:"bytes,296399830,opt,name=userPreference,proto3" json:"userPreference,omitempty"`
-	UserProduceList                    []*ptransaction.UserProduce                    `protobuf:"bytes,170637697,rep,name=userProduceList,proto3" json:"userProduceList,omitempty"`
-	UserProduceAdvList                 []*ptransaction.UserProduceAdv                 `protobuf:"bytes,280248182,rep,name=userProduceAdvList,proto3" json:"userProduceAdvList,omitempty"`
-	UserProduceCardList                []*ptransaction.UserProduceCard                `protobuf:"bytes,230550472,rep,name=userProduceCardList,proto3" json:"userProduceCardList,omitempty"`
-	UserProduceCardConversionList      []*ptransaction.UserProduceCardConversion      `protobuf:"bytes,238079855,rep,name=userProduceCardConversionList,proto3" json:"userProduceCardConversionList,omitempty"`
-	UserProduceCardRewardList          []*ptransaction.UserProduceCardReward          `protobuf:"bytes,364806182,rep,name=userProduceCardRewardList,proto3" json:"userProduceCardRewardList,omitempty"`
-	UserProduceCharacterList           []*ptransaction.UserProduceCharacter           `protobuf:"bytes,494627662,rep,name=userProduceCharacterList,proto3" json:"userProduceCharacterList,omitempty"`
-	UserProduceDrinkList               []*ptransaction.UserProduceDrink               `protobuf:"bytes,65968245,rep,name=userProduceDrinkList,proto3" json:"userProduceDrinkList,omitempty"`
-	UserProduceGroupCharacterList      []*ptransaction.UserProduceGroupCharacter      `protobuf:"bytes,149373425,rep,name=userProduceGroupCharacterList,proto3" json:"userProduceGroupCharacterList,omitempty"`
-	UserProduceIdolCardList            []*ptransaction.UserProduceIdolCard            `protobuf:"bytes,110043881,rep,name=userProduceIdolCardList,proto3" json:"userProduceIdolCardList,omitempty"`
-	UserProduceItemList                []*ptransaction.UserProduceItem                `protobuf:"bytes,99080460,rep,name=userProduceItemList,proto3" json:"userProduceItemList,omitempty"`
-	UserProduceLiveList                []*ptransaction.UserProduceLive                `protobuf:"bytes,317020496,rep,name=userProduceLiveList,proto3" json:"userProduceLiveList,omitempty"`
-	UserProduceMemoryDeckList          []*ptransaction.UserProduceMemoryDeck          `protobuf:"bytes,162217088,rep,name=userProduceMemoryDeckList,proto3" json:"userProduceMemoryDeckList,omitempty"`
-	UserProduceProgress                *ptransaction.UserProduceProgress              `protobuf:"bytes,374217157,opt,name=userProduceProgress,proto3" json:"userProduceProgress,omitempty"`
-	UserProduceProgressAudition        *ptransaction.UserProduceProgressAudition      `protobuf:"bytes,532050964,opt,name=userProduceProgressAudition,proto3" json:"userProduceProgressAudition,omitempty"`
-	UserProduceProgressBusinessList    []*ptransaction.UserProduceProgressBusiness    `protobuf:"bytes,84290276,rep,name=userProduceProgressBusinessList,proto3" json:"userProduceProgressBusinessList,omitempty"`
-	UserProduceProgressEffectList      []*ptransaction.UserProduceProgressEffect      `protobuf:"bytes,315942447,rep,name=userProduceProgressEffectList,proto3" json:"userProduceProgressEffectList,omitempty"`
-	UserProduceProgressEventList       []*ptransaction.UserProduceProgressEvent       `protobuf:"bytes,40225152,rep,name=userProduceProgressEventList,proto3" json:"userProduceProgressEventList,omitempty"`
-	UserProduceProgressMemoryList      []*ptransaction.UserProduceProgressMemory      `protobuf:"bytes,215423357,rep,name=userProduceProgressMemoryList,proto3" json:"userProduceProgressMemoryList,omitempty"`
-	UserProduceProgressPresentList     []*ptransaction.UserProduceProgressPresent     `protobuf:"bytes,349962730,rep,name=userProduceProgressPresentList,proto3" json:"userProduceProgressPresentList,omitempty"`
-	UserProduceProgressProduceCardList []*ptransaction.UserProduceProgressProduceCard `protobuf:"bytes,309641228,rep,name=userProduceProgressProduceCardList,proto3" json:"userProduceProgressProduceCardList,omitempty"`
-	UserProduceProgressScheduleList    []*ptransaction.UserProduceProgressSchedule    `protobuf:"bytes,22482116,rep,name=userProduceProgressScheduleList,proto3" json:"userProduceProgressScheduleList,omitempty"`
-	UserProduceProgressShopList        []*ptransaction.UserProduceProgressShop        `protobuf:"bytes,498183736,rep,name=userProduceProgressShopList,proto3" json:"userProduceProgressShopList,omitempty"`
-	UserProduceProgressSupportCardList []*ptransaction.UserProduceProgressSupportCard `protobuf:"bytes,256246388,rep,name=userProduceProgressSupportCardList,proto3" json:"userProduceProgressSupportCardList,omitempty"`
-	UserProduceRerollMemoryList        []*ptransaction.UserProduceRerollMemory        `protobuf:"bytes,440818481,rep,name=userProduceRerollMemoryList,proto3" json:"userProduceRerollMemoryList,omitempty"`
-	UserProduceStartAchievementList    []*ptransaction.UserProduceStartAchievement    `protobuf:"bytes,259880526,rep,name=userProduceStartAchievementList,proto3" json:"userProduceStartAchievementList,omitempty"`
-	UserProduceStoryList               []*ptransaction.UserProduceStory               `protobuf:"bytes,117364693,rep,name=userProduceStoryList,proto3" json:"userProduceStoryList,omitempty"`
-	UserProduceSupportCardDeckList     []*ptransaction.UserProduceSupportCardDeck     `protobuf:"bytes,286307933,rep,name=userProduceSupportCardDeckList,proto3" json:"userProduceSupportCardDeckList,omitempty"`
-	UserProfile                        *ptransaction.UserProfile                      `protobuf:"bytes,49977942,opt,name=userProfile,proto3" json:"userProfile,omitempty"`
-	UserPvpRate                        *ptransaction.UserPvpRate                      `protobuf:"bytes,226209413,opt,name=userPvpRate,proto3" json:"userPvpRate,omitempty"`
-	UserPvpRateUnit                    *ptransaction.UserPvpRateUnit                  `protobuf:"bytes,286467793,opt,name=userPvpRateUnit,proto3" json:"userPvpRateUnit,omitempty"`
-	UserShopItemList                   []*ptransaction.UserShopItem                   `protobuf:"bytes,455613547,rep,name=userShopItemList,proto3" json:"userShopItemList,omitempty"`
-	UserStoryList                      []*ptransaction.UserStory                      `protobuf:"bytes,376356693,rep,name=userStoryList,proto3" json:"userStoryList,omitempty"`
-	UserSupportCardList                []*ptransaction.UserSupportCard                `protobuf:"bytes,2234692,rep,name=userSupportCardList,proto3" json:"userSupportCardList,omitempty"`
-	UserTimeList                       []*ptransaction.UserTime                       `protobuf:"bytes,68970636,rep,name=userTimeList,proto3" json:"userTimeList,omitempty"`
-	UserTowerList                      []*ptransaction.UserTower                      `protobuf:"bytes,268691409,rep,name=userTowerList,proto3" json:"userTowerList,omitempty"`
-	UserTutorialList                   []*ptransaction.UserTutorial                   `protobuf:"bytes,201375606,rep,name=userTutorialList,proto3" json:"userTutorialList,omitempty"`
-	UserWebStore                       *ptransaction.UserWebStore                     `protobuf:"bytes,223256751,opt,name=userWebStore,proto3" json:"userWebStore,omitempty"`
-	UserWorkList                       []*ptransaction.UserWork                       `protobuf:"bytes,225189857,rep,name=userWorkList,proto3" json:"userWorkList,omitempty"`
-	UserWorkCharacterList              []*ptransaction.UserWorkCharacter              `protobuf:"bytes,192688899,rep,name=userWorkCharacterList,proto3" json:"userWorkCharacterList,omitempty"`
-	unknownFields                      protoimpl.UnknownFields
-	sizeCache                          protoimpl.SizeCache
+	state                                       protoimpl.MessageState                                  `protogen:"open.v1"`
+	User                                        *ptransaction.User                                      `protobuf:"bytes,342861366,opt,name=user,proto3" json:"user,omitempty"`
+	UserActionPoint                             *ptransaction.UserActionPoint                           `protobuf:"bytes,238317234,opt,name=userActionPoint,proto3" json:"userActionPoint,omitempty"`
+	UserAuthProviderList                        []*ptransaction.UserAuthProvider                        `protobuf:"bytes,151341701,rep,name=userAuthProviderList,proto3" json:"userAuthProviderList,omitempty"`
+	UserBadgeList                               []*ptransaction.UserBadge                               `protobuf:"bytes,175219847,rep,name=userBadgeList,proto3" json:"userBadgeList,omitempty"`
+	UserBalance                                 *ptransaction.UserBalance                               `protobuf:"bytes,164091159,opt,name=userBalance,proto3" json:"userBalance,omitempty"`
+	UserBanWarning                              *ptransaction.UserBanWarning                            `protobuf:"bytes,531719871,opt,name=userBanWarning,proto3" json:"userBanWarning,omitempty"`
+	UserCharacterList                           []*ptransaction.UserCharacter                           `protobuf:"bytes,370704040,rep,name=userCharacterList,proto3" json:"userCharacterList,omitempty"`
+	UserCharacterCostumeList                    []*ptransaction.UserCharacterCostume                    `protobuf:"bytes,314243425,rep,name=userCharacterCostumeList,proto3" json:"userCharacterCostumeList,omitempty"`
+	UserCharacterRosterList                     []*ptransaction.UserCharacterRoster                     `protobuf:"bytes,449008014,rep,name=userCharacterRosterList,proto3" json:"userCharacterRosterList,omitempty"`
+	UserComebackList                            []*ptransaction.UserComeback                            `protobuf:"bytes,440873335,rep,name=userComebackList,proto3" json:"userComebackList,omitempty"`
+	UserCompetition                             *ptransaction.UserCompetition                           `protobuf:"bytes,59936386,opt,name=userCompetition,proto3" json:"userCompetition,omitempty"`
+	UserCompetitionDeckList                     []*ptransaction.UserCompetitionDeck                     `protobuf:"bytes,205293456,rep,name=userCompetitionDeckList,proto3" json:"userCompetitionDeckList,omitempty"`
+	UserCompetitionSeasonDeckList               []*ptransaction.UserCompetitionSeasonDeck               `protobuf:"bytes,444856278,rep,name=userCompetitionSeasonDeckList,proto3" json:"userCompetitionSeasonDeckList,omitempty"`
+	UserCostumeList                             []*ptransaction.UserCostume                             `protobuf:"bytes,469968532,rep,name=userCostumeList,proto3" json:"userCostumeList,omitempty"`
+	UserCostumeHeadList                         []*ptransaction.UserCostumeHead                         `protobuf:"bytes,374617052,rep,name=userCostumeHeadList,proto3" json:"userCostumeHeadList,omitempty"`
+	UserCountList                               []*ptransaction.UserCount                               `protobuf:"bytes,431111247,rep,name=userCountList,proto3" json:"userCountList,omitempty"`
+	UserDearnessStoryList                       []*ptransaction.UserDearnessStory                       `protobuf:"bytes,133642946,rep,name=userDearnessStoryList,proto3" json:"userDearnessStoryList,omitempty"`
+	UserGashaButtonList                         []*ptransaction.UserGashaButton                         `protobuf:"bytes,319381230,rep,name=userGashaButtonList,proto3" json:"userGashaButtonList,omitempty"`
+	UserGuild                                   *ptransaction.UserGuild                                 `protobuf:"bytes,33667889,opt,name=userGuild,proto3" json:"userGuild,omitempty"`
+	UserHomeCharacterList                       []*ptransaction.UserHomeCharacter                       `protobuf:"bytes,88325184,rep,name=userHomeCharacterList,proto3" json:"userHomeCharacterList,omitempty"`
+	UserIdolCardList                            []*ptransaction.UserIdolCard                            `protobuf:"bytes,119514127,rep,name=userIdolCardList,proto3" json:"userIdolCardList,omitempty"`
+	UserIdolCardSkinList                        []*ptransaction.UserIdolCardSkin                        `protobuf:"bytes,77005383,rep,name=userIdolCardSkinList,proto3" json:"userIdolCardSkinList,omitempty"`
+	UserInvitation                              *ptransaction.UserInvitation                            `protobuf:"bytes,11952121,opt,name=userInvitation,proto3" json:"userInvitation,omitempty"`
+	UserItemList                                []*ptransaction.UserItem                                `protobuf:"bytes,208896283,rep,name=userItemList,proto3" json:"userItemList,omitempty"`
+	UserMeishiList                              []*ptransaction.UserMeishi                              `protobuf:"bytes,392438043,rep,name=userMeishiList,proto3" json:"userMeishiList,omitempty"`
+	UserMeishiBaseAssetList                     []*ptransaction.UserMeishiBaseAsset                     `protobuf:"bytes,10530785,rep,name=userMeishiBaseAssetList,proto3" json:"userMeishiBaseAssetList,omitempty"`
+	UserMeishiIllustrationAssetList             []*ptransaction.UserMeishiIllustrationAsset             `protobuf:"bytes,100237367,rep,name=userMeishiIllustrationAssetList,proto3" json:"userMeishiIllustrationAssetList,omitempty"`
+	UserMemoryList                              []*ptransaction.UserMemory                              `protobuf:"bytes,163783316,rep,name=userMemoryList,proto3" json:"userMemoryList,omitempty"`
+	UserMemoryInherit                           *ptransaction.UserMemoryInherit                         `protobuf:"bytes,312197620,opt,name=userMemoryInherit,proto3" json:"userMemoryInherit,omitempty"`
+	UserMissionList                             []*ptransaction.UserMission                             `protobuf:"bytes,176225192,rep,name=userMissionList,proto3" json:"userMissionList,omitempty"`
+	UserMissionDailyReleaseGroupList            []*ptransaction.UserMissionDailyReleaseGroup            `protobuf:"bytes,104872908,rep,name=userMissionDailyReleaseGroupList,proto3" json:"userMissionDailyReleaseGroupList,omitempty"`
+	UserMissionGroupList                        []*ptransaction.UserMissionGroup                        `protobuf:"bytes,350034430,rep,name=userMissionGroupList,proto3" json:"userMissionGroupList,omitempty"`
+	UserMissionPassList                         []*ptransaction.UserMissionPass                         `protobuf:"bytes,143481512,rep,name=userMissionPassList,proto3" json:"userMissionPassList,omitempty"`
+	UserMissionPassPointList                    []*ptransaction.UserMissionPassPoint                    `protobuf:"bytes,358937978,rep,name=userMissionPassPointList,proto3" json:"userMissionPassPointList,omitempty"`
+	UserMissionPointList                        []*ptransaction.UserMissionPoint                        `protobuf:"bytes,124548488,rep,name=userMissionPointList,proto3" json:"userMissionPointList,omitempty"`
+	UserMoney                                   *ptransaction.UserMoney                                 `protobuf:"bytes,170538259,opt,name=userMoney,proto3" json:"userMoney,omitempty"`
+	UserMovieList                               []*ptransaction.UserMovie                               `protobuf:"bytes,389419008,rep,name=userMovieList,proto3" json:"userMovieList,omitempty"`
+	UserMusicList                               []*ptransaction.UserMusic                               `protobuf:"bytes,430828780,rep,name=userMusicList,proto3" json:"userMusicList,omitempty"`
+	UserPhotoList                               []*ptransaction.UserPhoto                               `protobuf:"bytes,288232532,rep,name=userPhotoList,proto3" json:"userPhotoList,omitempty"`
+	UserPhotoBackgroundList                     []*ptransaction.UserPhotoBackground                     `protobuf:"bytes,99273345,rep,name=userPhotoBackgroundList,proto3" json:"userPhotoBackgroundList,omitempty"`
+	UserPhotoPoseList                           []*ptransaction.UserPhotoPose                           `protobuf:"bytes,439296203,rep,name=userPhotoPoseList,proto3" json:"userPhotoPoseList,omitempty"`
+	UserPreference                              *ptransaction.UserPreference                            `protobuf:"bytes,296399830,opt,name=userPreference,proto3" json:"userPreference,omitempty"`
+	UserProduceList                             []*ptransaction.UserProduce                             `protobuf:"bytes,170637697,rep,name=userProduceList,proto3" json:"userProduceList,omitempty"`
+	UserProduceAdvList                          []*ptransaction.UserProduceAdv                          `protobuf:"bytes,280248182,rep,name=userProduceAdvList,proto3" json:"userProduceAdvList,omitempty"`
+	UserProduceCardList                         []*ptransaction.UserProduceCard                         `protobuf:"bytes,230550472,rep,name=userProduceCardList,proto3" json:"userProduceCardList,omitempty"`
+	UserProduceCardConversionList               []*ptransaction.UserProduceCardConversion               `protobuf:"bytes,238079855,rep,name=userProduceCardConversionList,proto3" json:"userProduceCardConversionList,omitempty"`
+	UserProduceCardRewardList                   []*ptransaction.UserProduceCardReward                   `protobuf:"bytes,364806182,rep,name=userProduceCardRewardList,proto3" json:"userProduceCardRewardList,omitempty"`
+	UserProduceCharacterList                    []*ptransaction.UserProduceCharacter                    `protobuf:"bytes,494627662,rep,name=userProduceCharacterList,proto3" json:"userProduceCharacterList,omitempty"`
+	UserProduceDrinkList                        []*ptransaction.UserProduceDrink                        `protobuf:"bytes,65968245,rep,name=userProduceDrinkList,proto3" json:"userProduceDrinkList,omitempty"`
+	UserProduceGroupCharacterList               []*ptransaction.UserProduceGroupCharacter               `protobuf:"bytes,149373425,rep,name=userProduceGroupCharacterList,proto3" json:"userProduceGroupCharacterList,omitempty"`
+	UserProduceGrowthPanelList                  []*ptransaction.UserProduceGrowthPanel                  `protobuf:"bytes,76941739,rep,name=userProduceGrowthPanelList,proto3" json:"userProduceGrowthPanelList,omitempty"`
+	UserProduceIdolCardList                     []*ptransaction.UserProduceIdolCard                     `protobuf:"bytes,110043881,rep,name=userProduceIdolCardList,proto3" json:"userProduceIdolCardList,omitempty"`
+	UserProduceItemList                         []*ptransaction.UserProduceItem                         `protobuf:"bytes,99080460,rep,name=userProduceItemList,proto3" json:"userProduceItemList,omitempty"`
+	UserProduceLiveList                         []*ptransaction.UserProduceLive                         `protobuf:"bytes,317020496,rep,name=userProduceLiveList,proto3" json:"userProduceLiveList,omitempty"`
+	UserProduceMemoryDeckList                   []*ptransaction.UserProduceMemoryDeck                   `protobuf:"bytes,162217088,rep,name=userProduceMemoryDeckList,proto3" json:"userProduceMemoryDeckList,omitempty"`
+	UserProduceProgress                         *ptransaction.UserProduceProgress                       `protobuf:"bytes,374217157,opt,name=userProduceProgress,proto3" json:"userProduceProgress,omitempty"`
+	UserProduceProgressAudition                 *ptransaction.UserProduceProgressAudition               `protobuf:"bytes,532050964,opt,name=userProduceProgressAudition,proto3" json:"userProduceProgressAudition,omitempty"`
+	UserProduceProgressBusinessList             []*ptransaction.UserProduceProgressBusiness             `protobuf:"bytes,84290276,rep,name=userProduceProgressBusinessList,proto3" json:"userProduceProgressBusinessList,omitempty"`
+	UserProduceProgressEffectList               []*ptransaction.UserProduceProgressEffect               `protobuf:"bytes,315942447,rep,name=userProduceProgressEffectList,proto3" json:"userProduceProgressEffectList,omitempty"`
+	UserProduceProgressEventList                []*ptransaction.UserProduceProgressEvent                `protobuf:"bytes,40225152,rep,name=userProduceProgressEventList,proto3" json:"userProduceProgressEventList,omitempty"`
+	UserProduceProgressIntervalList             []*ptransaction.UserProduceProgressInterval             `protobuf:"bytes,320646343,rep,name=userProduceProgressIntervalList,proto3" json:"userProduceProgressIntervalList,omitempty"`
+	UserProduceProgressMemoryList               []*ptransaction.UserProduceProgressMemory               `protobuf:"bytes,215423357,rep,name=userProduceProgressMemoryList,proto3" json:"userProduceProgressMemoryList,omitempty"`
+	UserProduceProgressPresentList              []*ptransaction.UserProduceProgressPresent              `protobuf:"bytes,349962730,rep,name=userProduceProgressPresentList,proto3" json:"userProduceProgressPresentList,omitempty"`
+	UserProduceProgressProduceCardList          []*ptransaction.UserProduceProgressProduceCard          `protobuf:"bytes,309641228,rep,name=userProduceProgressProduceCardList,proto3" json:"userProduceProgressProduceCardList,omitempty"`
+	UserProduceProgressProduceCustomizeItemList []*ptransaction.UserProduceProgressProduceCustomizeItem `protobuf:"bytes,233178336,rep,name=userProduceProgressProduceCustomizeItemList,proto3" json:"userProduceProgressProduceCustomizeItemList,omitempty"`
+	UserProduceProgressScheduleList             []*ptransaction.UserProduceProgressSchedule             `protobuf:"bytes,22482116,rep,name=userProduceProgressScheduleList,proto3" json:"userProduceProgressScheduleList,omitempty"`
+	UserProduceProgressShopList                 []*ptransaction.UserProduceProgressShop                 `protobuf:"bytes,498183736,rep,name=userProduceProgressShopList,proto3" json:"userProduceProgressShopList,omitempty"`
+	UserProduceProgressSupportCardList          []*ptransaction.UserProduceProgressSupportCard          `protobuf:"bytes,256246388,rep,name=userProduceProgressSupportCardList,proto3" json:"userProduceProgressSupportCardList,omitempty"`
+	UserProduceRerollMemoryList                 []*ptransaction.UserProduceRerollMemory                 `protobuf:"bytes,440818481,rep,name=userProduceRerollMemoryList,proto3" json:"userProduceRerollMemoryList,omitempty"`
+	UserProduceStartAchievementList             []*ptransaction.UserProduceStartAchievement             `protobuf:"bytes,259880526,rep,name=userProduceStartAchievementList,proto3" json:"userProduceStartAchievementList,omitempty"`
+	UserProduceStoryList                        []*ptransaction.UserProduceStory                        `protobuf:"bytes,117364693,rep,name=userProduceStoryList,proto3" json:"userProduceStoryList,omitempty"`
+	UserProduceSupportCardDeckList              []*ptransaction.UserProduceSupportCardDeck              `protobuf:"bytes,286307933,rep,name=userProduceSupportCardDeckList,proto3" json:"userProduceSupportCardDeckList,omitempty"`
+	UserProfile                                 *ptransaction.UserProfile                               `protobuf:"bytes,49977942,opt,name=userProfile,proto3" json:"userProfile,omitempty"`
+	UserPvpRate                                 *ptransaction.UserPvpRate                               `protobuf:"bytes,226209413,opt,name=userPvpRate,proto3" json:"userPvpRate,omitempty"`
+	UserPvpRateDeckList                         []*ptransaction.UserPvpRateDeck                         `protobuf:"bytes,353841253,rep,name=userPvpRateDeckList,proto3" json:"userPvpRateDeckList,omitempty"`
+	UserPvpRateUnit                             *ptransaction.UserPvpRateUnit                           `protobuf:"bytes,286467793,opt,name=userPvpRateUnit,proto3" json:"userPvpRateUnit,omitempty"`
+	UserShopItemList                            []*ptransaction.UserShopItem                            `protobuf:"bytes,455613547,rep,name=userShopItemList,proto3" json:"userShopItemList,omitempty"`
+	UserStoryList                               []*ptransaction.UserStory                               `protobuf:"bytes,376356693,rep,name=userStoryList,proto3" json:"userStoryList,omitempty"`
+	UserSupportCardList                         []*ptransaction.UserSupportCard                         `protobuf:"bytes,2234692,rep,name=userSupportCardList,proto3" json:"userSupportCardList,omitempty"`
+	UserTimeList                                []*ptransaction.UserTime                                `protobuf:"bytes,68970636,rep,name=userTimeList,proto3" json:"userTimeList,omitempty"`
+	UserTowerList                               []*ptransaction.UserTower                               `protobuf:"bytes,268691409,rep,name=userTowerList,proto3" json:"userTowerList,omitempty"`
+	UserTutorialList                            []*ptransaction.UserTutorial                            `protobuf:"bytes,201375606,rep,name=userTutorialList,proto3" json:"userTutorialList,omitempty"`
+	UserWebStore                                *ptransaction.UserWebStore                              `protobuf:"bytes,223256751,opt,name=userWebStore,proto3" json:"userWebStore,omitempty"`
+	UserWorkList                                []*ptransaction.UserWork                                `protobuf:"bytes,225189857,rep,name=userWorkList,proto3" json:"userWorkList,omitempty"`
+	UserWorkCharacterList                       []*ptransaction.UserWorkCharacter                       `protobuf:"bytes,192688899,rep,name=userWorkCharacterList,proto3" json:"userWorkCharacterList,omitempty"`
+	unknownFields                               protoimpl.UnknownFields
+	sizeCache                                   protoimpl.SizeCache
 }
 
 func (x *UserData) Reset() {
@@ -1268,6 +1272,13 @@ func (x *UserData) GetUserProduceGroupCharacterList() []*ptransaction.UserProduc
 	return nil
 }
 
+func (x *UserData) GetUserProduceGrowthPanelList() []*ptransaction.UserProduceGrowthPanel {
+	if x != nil {
+		return x.UserProduceGrowthPanelList
+	}
+	return nil
+}
+
 func (x *UserData) GetUserProduceIdolCardList() []*ptransaction.UserProduceIdolCard {
 	if x != nil {
 		return x.UserProduceIdolCardList
@@ -1331,6 +1342,13 @@ func (x *UserData) GetUserProduceProgressEventList() []*ptransaction.UserProduce
 	return nil
 }
 
+func (x *UserData) GetUserProduceProgressIntervalList() []*ptransaction.UserProduceProgressInterval {
+	if x != nil {
+		return x.UserProduceProgressIntervalList
+	}
+	return nil
+}
+
 func (x *UserData) GetUserProduceProgressMemoryList() []*ptransaction.UserProduceProgressMemory {
 	if x != nil {
 		return x.UserProduceProgressMemoryList
@@ -1348,6 +1366,13 @@ func (x *UserData) GetUserProduceProgressPresentList() []*ptransaction.UserProdu
 func (x *UserData) GetUserProduceProgressProduceCardList() []*ptransaction.UserProduceProgressProduceCard {
 	if x != nil {
 		return x.UserProduceProgressProduceCardList
+	}
+	return nil
+}
+
+func (x *UserData) GetUserProduceProgressProduceCustomizeItemList() []*ptransaction.UserProduceProgressProduceCustomizeItem {
+	if x != nil {
+		return x.UserProduceProgressProduceCustomizeItemList
 	}
 	return nil
 }
@@ -1411,6 +1436,13 @@ func (x *UserData) GetUserProfile() *ptransaction.UserProfile {
 func (x *UserData) GetUserPvpRate() *ptransaction.UserPvpRate {
 	if x != nil {
 		return x.UserPvpRate
+	}
+	return nil
+}
+
+func (x *UserData) GetUserPvpRateDeckList() []*ptransaction.UserPvpRateDeck {
+	if x != nil {
+		return x.UserPvpRateDeckList
 	}
 	return nil
 }
@@ -1559,7 +1591,7 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x11storyEventRewards\x18\b \x03(\v2\x1c.papicommon.StoryEventRewardR\x11storyEventRewards\"z\n" +
 	"\x10StoryEventReward\x12\"\n" +
 	"\fstoryEventId\x18\x01 \x01(\tR\fstoryEventId\x12B\n" +
-	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\xb17\n" +
+	"\fpointRewards\x18\x02 \x03(\v2\x1e.pcommon.StoryEventPointRewardR\fpointRewards\"\x85;\n" +
 	"\bUserData\x12*\n" +
 	"\x04user\x18\xb6̾\xa3\x01 \x01(\v2\x12.ptransaction.UserR\x04user\x12J\n" +
 	"\x0fuserActionPoint\x18\xb2\xdd\xd1q \x01(\v2\x1d.ptransaction.UserActionPointR\x0fuserActionPoint\x12U\n" +
@@ -1610,7 +1642,8 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x19userProduceCardRewardList\x18\xa6\x80\xfa\xad\x01 \x03(\v2#.ptransaction.UserProduceCardRewardR\x19userProduceCardRewardList\x12b\n" +
 	"\x18userProduceCharacterList\x18\xce\xd6\xed\xeb\x01 \x03(\v2\".ptransaction.UserProduceCharacterR\x18userProduceCharacterList\x12U\n" +
 	"\x14userProduceDrinkList\x18\xf5\xb0\xba\x1f \x03(\v2\x1e.ptransaction.UserProduceDrinkR\x14userProduceDrinkList\x12p\n" +
-	"\x1duserProduceGroupCharacterList\x18\xf1\x83\x9dG \x03(\v2'.ptransaction.UserProduceGroupCharacterR\x1duserProduceGroupCharacterList\x12^\n" +
+	"\x1duserProduceGroupCharacterList\x18\xf1\x83\x9dG \x03(\v2'.ptransaction.UserProduceGroupCharacterR\x1duserProduceGroupCharacterList\x12g\n" +
+	"\x1auserProduceGrowthPanelList\x18\xab\x93\xd8$ \x03(\v2$.ptransaction.UserProduceGrowthPanelR\x1auserProduceGrowthPanelList\x12^\n" +
 	"\x17userProduceIdolCardList\x18\xe9ż4 \x03(\v2!.ptransaction.UserProduceIdolCardR\x17userProduceIdolCardList\x12R\n" +
 	"\x13userProduceItemList\x18\x8c\xb2\x9f/ \x03(\v2\x1d.ptransaction.UserProduceItemR\x13userProduceItemList\x12S\n" +
 	"\x13userProduceLiveList\x18в\x95\x97\x01 \x03(\v2\x1d.ptransaction.UserProduceLiveR\x13userProduceLiveList\x12d\n" +
@@ -1619,10 +1652,12 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x1buserProduceProgressAudition\x18\x94\xe8\xd9\xfd\x01 \x01(\v2).ptransaction.UserProduceProgressAuditionR\x1buserProduceProgressAudition\x12v\n" +
 	"\x1fuserProduceProgressBusinessList\x18\xe4\u0558( \x03(\v2).ptransaction.UserProduceProgressBusinessR\x1fuserProduceProgressBusinessList\x12q\n" +
 	"\x1duserProduceProgressEffectList\x18\xaf\xccӖ\x01 \x03(\v2'.ptransaction.UserProduceProgressEffectR\x1duserProduceProgressEffectList\x12m\n" +
-	"\x1cuserProduceProgressEventList\x18\x80\x93\x97\x13 \x03(\v2&.ptransaction.UserProduceProgressEventR\x1cuserProduceProgressEventList\x12p\n" +
+	"\x1cuserProduceProgressEventList\x18\x80\x93\x97\x13 \x03(\v2&.ptransaction.UserProduceProgressEventR\x1cuserProduceProgressEventList\x12w\n" +
+	"\x1fuserProduceProgressIntervalList\x18\xc7\xd9\xf2\x98\x01 \x03(\v2).ptransaction.UserProduceProgressIntervalR\x1fuserProduceProgressIntervalList\x12p\n" +
 	"\x1duserProduceProgressMemoryList\x18\xfd\xb2\xdcf \x03(\v2'.ptransaction.UserProduceProgressMemoryR\x1duserProduceProgressMemoryList\x12t\n" +
 	"\x1euserProduceProgressPresentList\x18\xea\x83\xf0\xa6\x01 \x03(\v2(.ptransaction.UserProduceProgressPresentR\x1euserProduceProgressPresentList\x12\x80\x01\n" +
-	"\"userProduceProgressProduceCardList\x18\x8c\x80ӓ\x01 \x03(\v2,.ptransaction.UserProduceProgressProduceCardR\"userProduceProgressProduceCardList\x12v\n" +
+	"\"userProduceProgressProduceCardList\x18\x8c\x80ӓ\x01 \x03(\v2,.ptransaction.UserProduceProgressProduceCardR\"userProduceProgressProduceCardList\x12\x9a\x01\n" +
+	"+userProduceProgressProduceCustomizeItemList\x18\xe0\x89\x98o \x03(\v25.ptransaction.UserProduceProgressProduceCustomizeItemR+userProduceProgressProduceCustomizeItemList\x12v\n" +
 	"\x1fuserProduceProgressScheduleList\x18ę\xdc\n" +
 	" \x03(\v2).ptransaction.UserProduceProgressScheduleR\x1fuserProduceProgressScheduleList\x12k\n" +
 	"\x1buserProduceProgressShopList\x18\xb8\xdc\xc6\xed\x01 \x03(\v2%.ptransaction.UserProduceProgressShopR\x1buserProduceProgressShopList\x12\x7f\n" +
@@ -1632,7 +1667,8 @@ const file_papicommon_proto_rawDesc = "" +
 	"\x14userProduceStoryList\x18կ\xfb7 \x03(\v2\x1e.ptransaction.UserProduceStoryR\x14userProduceStoryList\x12t\n" +
 	"\x1euserProduceSupportCardDeckList\x18\xdd\xec\u0088\x01 \x03(\v2(.ptransaction.UserProduceSupportCardDeckR\x1euserProduceSupportCardDeckList\x12>\n" +
 	"\vuserProfile\x18ִ\xea\x17 \x01(\v2\x19.ptransaction.UserProfileR\vuserProfile\x12>\n" +
-	"\vuserPvpRate\x18\x85\xdd\xeek \x01(\v2\x19.ptransaction.UserPvpRateR\vuserPvpRate\x12K\n" +
+	"\vuserPvpRate\x18\x85\xdd\xeek \x01(\v2\x19.ptransaction.UserPvpRateR\vuserPvpRate\x12S\n" +
+	"\x13userPvpRateDeckList\x18\xe5\xe0ܨ\x01 \x03(\v2\x1d.ptransaction.UserPvpRateDeckR\x13userPvpRateDeckList\x12K\n" +
 	"\x0fuserPvpRateUnit\x18\xd1\xcd̈\x01 \x01(\v2\x1d.ptransaction.UserPvpRateUnitR\x0fuserPvpRateUnit\x12J\n" +
 	"\x10userShopItemList\x18븠\xd9\x01 \x03(\v2\x1a.ptransaction.UserShopItemR\x10userShopItemList\x12A\n" +
 	"\ruserStoryList\x18\xd5\xfe\xba\xb3\x01 \x03(\v2\x17.ptransaction.UserStoryR\ruserStoryList\x12R\n" +
@@ -1658,107 +1694,111 @@ func file_papicommon_proto_rawDescGZIP() []byte {
 
 var file_papicommon_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_papicommon_proto_goTypes = []any{
-	(*CompetitionPreSeasonResult)(nil),                  // 0: papicommon.CompetitionPreSeasonResult
-	(*CompetitionSeasonTop)(nil),                        // 1: papicommon.CompetitionSeasonTop
-	(*DearnessStoryUnlock)(nil),                         // 2: papicommon.DearnessStoryUnlock
-	(*Mission)(nil),                                     // 3: papicommon.Mission
-	(*ProduceHighScoreRushExternalProduceReward)(nil),   // 4: papicommon.ProduceHighScoreRushExternalProduceReward
-	(*PvpRateSeasonResult)(nil),                         // 5: papicommon.PvpRateSeasonResult
-	(*PvpRateSeasonTop)(nil),                            // 6: papicommon.PvpRateSeasonTop
-	(*RankReward)(nil),                                  // 7: papicommon.RankReward
-	(*Response)(nil),                                    // 8: papicommon.Response
-	(*StoryEventReward)(nil),                            // 9: papicommon.StoryEventReward
-	(*UserData)(nil),                                    // 10: papicommon.UserData
-	(penum.CompetitionGrade)(0),                         // 11: penum.CompetitionGrade
-	(*pcommon.Reward)(nil),                              // 12: pcommon.Reward
-	(penum.CompetitionSeasonStatusType)(0),              // 13: penum.CompetitionSeasonStatusType
-	(penum.ProduceExamEffectType)(0),                    // 14: penum.ProduceExamEffectType
-	(penum.PvpRateGrade)(0),                             // 15: penum.PvpRateGrade
-	(penum.PvpRateSeasonStatusType)(0),                  // 16: penum.PvpRateSeasonStatusType
-	(*pmaster.Mission)(nil),                             // 17: pmaster.Mission
-	(*pcommon.ProducerLevelUnlock)(nil),                 // 18: pcommon.ProducerLevelUnlock
-	(*pcommon.StoryEventPointReward)(nil),               // 19: pcommon.StoryEventPointReward
-	(*ptransaction.User)(nil),                           // 20: ptransaction.User
-	(*ptransaction.UserActionPoint)(nil),                // 21: ptransaction.UserActionPoint
-	(*ptransaction.UserAuthProvider)(nil),               // 22: ptransaction.UserAuthProvider
-	(*ptransaction.UserBadge)(nil),                      // 23: ptransaction.UserBadge
-	(*ptransaction.UserBalance)(nil),                    // 24: ptransaction.UserBalance
-	(*ptransaction.UserBanWarning)(nil),                 // 25: ptransaction.UserBanWarning
-	(*ptransaction.UserCharacter)(nil),                  // 26: ptransaction.UserCharacter
-	(*ptransaction.UserCharacterCostume)(nil),           // 27: ptransaction.UserCharacterCostume
-	(*ptransaction.UserCharacterRoster)(nil),            // 28: ptransaction.UserCharacterRoster
-	(*ptransaction.UserComeback)(nil),                   // 29: ptransaction.UserComeback
-	(*ptransaction.UserCompetition)(nil),                // 30: ptransaction.UserCompetition
-	(*ptransaction.UserCompetitionDeck)(nil),            // 31: ptransaction.UserCompetitionDeck
-	(*ptransaction.UserCompetitionSeasonDeck)(nil),      // 32: ptransaction.UserCompetitionSeasonDeck
-	(*ptransaction.UserCostume)(nil),                    // 33: ptransaction.UserCostume
-	(*ptransaction.UserCostumeHead)(nil),                // 34: ptransaction.UserCostumeHead
-	(*ptransaction.UserCount)(nil),                      // 35: ptransaction.UserCount
-	(*ptransaction.UserDearnessStory)(nil),              // 36: ptransaction.UserDearnessStory
-	(*ptransaction.UserGashaButton)(nil),                // 37: ptransaction.UserGashaButton
-	(*ptransaction.UserGuild)(nil),                      // 38: ptransaction.UserGuild
-	(*ptransaction.UserHomeCharacter)(nil),              // 39: ptransaction.UserHomeCharacter
-	(*ptransaction.UserIdolCard)(nil),                   // 40: ptransaction.UserIdolCard
-	(*ptransaction.UserIdolCardSkin)(nil),               // 41: ptransaction.UserIdolCardSkin
-	(*ptransaction.UserInvitation)(nil),                 // 42: ptransaction.UserInvitation
-	(*ptransaction.UserItem)(nil),                       // 43: ptransaction.UserItem
-	(*ptransaction.UserMeishi)(nil),                     // 44: ptransaction.UserMeishi
-	(*ptransaction.UserMeishiBaseAsset)(nil),            // 45: ptransaction.UserMeishiBaseAsset
-	(*ptransaction.UserMeishiIllustrationAsset)(nil),    // 46: ptransaction.UserMeishiIllustrationAsset
-	(*ptransaction.UserMemory)(nil),                     // 47: ptransaction.UserMemory
-	(*ptransaction.UserMemoryInherit)(nil),              // 48: ptransaction.UserMemoryInherit
-	(*ptransaction.UserMission)(nil),                    // 49: ptransaction.UserMission
-	(*ptransaction.UserMissionDailyReleaseGroup)(nil),   // 50: ptransaction.UserMissionDailyReleaseGroup
-	(*ptransaction.UserMissionGroup)(nil),               // 51: ptransaction.UserMissionGroup
-	(*ptransaction.UserMissionPass)(nil),                // 52: ptransaction.UserMissionPass
-	(*ptransaction.UserMissionPassPoint)(nil),           // 53: ptransaction.UserMissionPassPoint
-	(*ptransaction.UserMissionPoint)(nil),               // 54: ptransaction.UserMissionPoint
-	(*ptransaction.UserMoney)(nil),                      // 55: ptransaction.UserMoney
-	(*ptransaction.UserMovie)(nil),                      // 56: ptransaction.UserMovie
-	(*ptransaction.UserMusic)(nil),                      // 57: ptransaction.UserMusic
-	(*ptransaction.UserPhoto)(nil),                      // 58: ptransaction.UserPhoto
-	(*ptransaction.UserPhotoBackground)(nil),            // 59: ptransaction.UserPhotoBackground
-	(*ptransaction.UserPhotoPose)(nil),                  // 60: ptransaction.UserPhotoPose
-	(*ptransaction.UserPreference)(nil),                 // 61: ptransaction.UserPreference
-	(*ptransaction.UserProduce)(nil),                    // 62: ptransaction.UserProduce
-	(*ptransaction.UserProduceAdv)(nil),                 // 63: ptransaction.UserProduceAdv
-	(*ptransaction.UserProduceCard)(nil),                // 64: ptransaction.UserProduceCard
-	(*ptransaction.UserProduceCardConversion)(nil),      // 65: ptransaction.UserProduceCardConversion
-	(*ptransaction.UserProduceCardReward)(nil),          // 66: ptransaction.UserProduceCardReward
-	(*ptransaction.UserProduceCharacter)(nil),           // 67: ptransaction.UserProduceCharacter
-	(*ptransaction.UserProduceDrink)(nil),               // 68: ptransaction.UserProduceDrink
-	(*ptransaction.UserProduceGroupCharacter)(nil),      // 69: ptransaction.UserProduceGroupCharacter
-	(*ptransaction.UserProduceIdolCard)(nil),            // 70: ptransaction.UserProduceIdolCard
-	(*ptransaction.UserProduceItem)(nil),                // 71: ptransaction.UserProduceItem
-	(*ptransaction.UserProduceLive)(nil),                // 72: ptransaction.UserProduceLive
-	(*ptransaction.UserProduceMemoryDeck)(nil),          // 73: ptransaction.UserProduceMemoryDeck
-	(*ptransaction.UserProduceProgress)(nil),            // 74: ptransaction.UserProduceProgress
-	(*ptransaction.UserProduceProgressAudition)(nil),    // 75: ptransaction.UserProduceProgressAudition
-	(*ptransaction.UserProduceProgressBusiness)(nil),    // 76: ptransaction.UserProduceProgressBusiness
-	(*ptransaction.UserProduceProgressEffect)(nil),      // 77: ptransaction.UserProduceProgressEffect
-	(*ptransaction.UserProduceProgressEvent)(nil),       // 78: ptransaction.UserProduceProgressEvent
-	(*ptransaction.UserProduceProgressMemory)(nil),      // 79: ptransaction.UserProduceProgressMemory
-	(*ptransaction.UserProduceProgressPresent)(nil),     // 80: ptransaction.UserProduceProgressPresent
-	(*ptransaction.UserProduceProgressProduceCard)(nil), // 81: ptransaction.UserProduceProgressProduceCard
-	(*ptransaction.UserProduceProgressSchedule)(nil),    // 82: ptransaction.UserProduceProgressSchedule
-	(*ptransaction.UserProduceProgressShop)(nil),        // 83: ptransaction.UserProduceProgressShop
-	(*ptransaction.UserProduceProgressSupportCard)(nil), // 84: ptransaction.UserProduceProgressSupportCard
-	(*ptransaction.UserProduceRerollMemory)(nil),        // 85: ptransaction.UserProduceRerollMemory
-	(*ptransaction.UserProduceStartAchievement)(nil),    // 86: ptransaction.UserProduceStartAchievement
-	(*ptransaction.UserProduceStory)(nil),               // 87: ptransaction.UserProduceStory
-	(*ptransaction.UserProduceSupportCardDeck)(nil),     // 88: ptransaction.UserProduceSupportCardDeck
-	(*ptransaction.UserProfile)(nil),                    // 89: ptransaction.UserProfile
-	(*ptransaction.UserPvpRate)(nil),                    // 90: ptransaction.UserPvpRate
-	(*ptransaction.UserPvpRateUnit)(nil),                // 91: ptransaction.UserPvpRateUnit
-	(*ptransaction.UserShopItem)(nil),                   // 92: ptransaction.UserShopItem
-	(*ptransaction.UserStory)(nil),                      // 93: ptransaction.UserStory
-	(*ptransaction.UserSupportCard)(nil),                // 94: ptransaction.UserSupportCard
-	(*ptransaction.UserTime)(nil),                       // 95: ptransaction.UserTime
-	(*ptransaction.UserTower)(nil),                      // 96: ptransaction.UserTower
-	(*ptransaction.UserTutorial)(nil),                   // 97: ptransaction.UserTutorial
-	(*ptransaction.UserWebStore)(nil),                   // 98: ptransaction.UserWebStore
-	(*ptransaction.UserWork)(nil),                       // 99: ptransaction.UserWork
-	(*ptransaction.UserWorkCharacter)(nil),              // 100: ptransaction.UserWorkCharacter
+	(*CompetitionPreSeasonResult)(nil),                           // 0: papicommon.CompetitionPreSeasonResult
+	(*CompetitionSeasonTop)(nil),                                 // 1: papicommon.CompetitionSeasonTop
+	(*DearnessStoryUnlock)(nil),                                  // 2: papicommon.DearnessStoryUnlock
+	(*Mission)(nil),                                              // 3: papicommon.Mission
+	(*ProduceHighScoreRushExternalProduceReward)(nil),            // 4: papicommon.ProduceHighScoreRushExternalProduceReward
+	(*PvpRateSeasonResult)(nil),                                  // 5: papicommon.PvpRateSeasonResult
+	(*PvpRateSeasonTop)(nil),                                     // 6: papicommon.PvpRateSeasonTop
+	(*RankReward)(nil),                                           // 7: papicommon.RankReward
+	(*Response)(nil),                                             // 8: papicommon.Response
+	(*StoryEventReward)(nil),                                     // 9: papicommon.StoryEventReward
+	(*UserData)(nil),                                             // 10: papicommon.UserData
+	(penum.CompetitionGrade)(0),                                  // 11: penum.CompetitionGrade
+	(*pcommon.Reward)(nil),                                       // 12: pcommon.Reward
+	(penum.CompetitionSeasonStatusType)(0),                       // 13: penum.CompetitionSeasonStatusType
+	(penum.ProduceExamEffectType)(0),                             // 14: penum.ProduceExamEffectType
+	(penum.PvpRateGrade)(0),                                      // 15: penum.PvpRateGrade
+	(penum.PvpRateSeasonStatusType)(0),                           // 16: penum.PvpRateSeasonStatusType
+	(*pmaster.Mission)(nil),                                      // 17: pmaster.Mission
+	(*pcommon.ProducerLevelUnlock)(nil),                          // 18: pcommon.ProducerLevelUnlock
+	(*pcommon.StoryEventPointReward)(nil),                        // 19: pcommon.StoryEventPointReward
+	(*ptransaction.User)(nil),                                    // 20: ptransaction.User
+	(*ptransaction.UserActionPoint)(nil),                         // 21: ptransaction.UserActionPoint
+	(*ptransaction.UserAuthProvider)(nil),                        // 22: ptransaction.UserAuthProvider
+	(*ptransaction.UserBadge)(nil),                               // 23: ptransaction.UserBadge
+	(*ptransaction.UserBalance)(nil),                             // 24: ptransaction.UserBalance
+	(*ptransaction.UserBanWarning)(nil),                          // 25: ptransaction.UserBanWarning
+	(*ptransaction.UserCharacter)(nil),                           // 26: ptransaction.UserCharacter
+	(*ptransaction.UserCharacterCostume)(nil),                    // 27: ptransaction.UserCharacterCostume
+	(*ptransaction.UserCharacterRoster)(nil),                     // 28: ptransaction.UserCharacterRoster
+	(*ptransaction.UserComeback)(nil),                            // 29: ptransaction.UserComeback
+	(*ptransaction.UserCompetition)(nil),                         // 30: ptransaction.UserCompetition
+	(*ptransaction.UserCompetitionDeck)(nil),                     // 31: ptransaction.UserCompetitionDeck
+	(*ptransaction.UserCompetitionSeasonDeck)(nil),               // 32: ptransaction.UserCompetitionSeasonDeck
+	(*ptransaction.UserCostume)(nil),                             // 33: ptransaction.UserCostume
+	(*ptransaction.UserCostumeHead)(nil),                         // 34: ptransaction.UserCostumeHead
+	(*ptransaction.UserCount)(nil),                               // 35: ptransaction.UserCount
+	(*ptransaction.UserDearnessStory)(nil),                       // 36: ptransaction.UserDearnessStory
+	(*ptransaction.UserGashaButton)(nil),                         // 37: ptransaction.UserGashaButton
+	(*ptransaction.UserGuild)(nil),                               // 38: ptransaction.UserGuild
+	(*ptransaction.UserHomeCharacter)(nil),                       // 39: ptransaction.UserHomeCharacter
+	(*ptransaction.UserIdolCard)(nil),                            // 40: ptransaction.UserIdolCard
+	(*ptransaction.UserIdolCardSkin)(nil),                        // 41: ptransaction.UserIdolCardSkin
+	(*ptransaction.UserInvitation)(nil),                          // 42: ptransaction.UserInvitation
+	(*ptransaction.UserItem)(nil),                                // 43: ptransaction.UserItem
+	(*ptransaction.UserMeishi)(nil),                              // 44: ptransaction.UserMeishi
+	(*ptransaction.UserMeishiBaseAsset)(nil),                     // 45: ptransaction.UserMeishiBaseAsset
+	(*ptransaction.UserMeishiIllustrationAsset)(nil),             // 46: ptransaction.UserMeishiIllustrationAsset
+	(*ptransaction.UserMemory)(nil),                              // 47: ptransaction.UserMemory
+	(*ptransaction.UserMemoryInherit)(nil),                       // 48: ptransaction.UserMemoryInherit
+	(*ptransaction.UserMission)(nil),                             // 49: ptransaction.UserMission
+	(*ptransaction.UserMissionDailyReleaseGroup)(nil),            // 50: ptransaction.UserMissionDailyReleaseGroup
+	(*ptransaction.UserMissionGroup)(nil),                        // 51: ptransaction.UserMissionGroup
+	(*ptransaction.UserMissionPass)(nil),                         // 52: ptransaction.UserMissionPass
+	(*ptransaction.UserMissionPassPoint)(nil),                    // 53: ptransaction.UserMissionPassPoint
+	(*ptransaction.UserMissionPoint)(nil),                        // 54: ptransaction.UserMissionPoint
+	(*ptransaction.UserMoney)(nil),                               // 55: ptransaction.UserMoney
+	(*ptransaction.UserMovie)(nil),                               // 56: ptransaction.UserMovie
+	(*ptransaction.UserMusic)(nil),                               // 57: ptransaction.UserMusic
+	(*ptransaction.UserPhoto)(nil),                               // 58: ptransaction.UserPhoto
+	(*ptransaction.UserPhotoBackground)(nil),                     // 59: ptransaction.UserPhotoBackground
+	(*ptransaction.UserPhotoPose)(nil),                           // 60: ptransaction.UserPhotoPose
+	(*ptransaction.UserPreference)(nil),                          // 61: ptransaction.UserPreference
+	(*ptransaction.UserProduce)(nil),                             // 62: ptransaction.UserProduce
+	(*ptransaction.UserProduceAdv)(nil),                          // 63: ptransaction.UserProduceAdv
+	(*ptransaction.UserProduceCard)(nil),                         // 64: ptransaction.UserProduceCard
+	(*ptransaction.UserProduceCardConversion)(nil),               // 65: ptransaction.UserProduceCardConversion
+	(*ptransaction.UserProduceCardReward)(nil),                   // 66: ptransaction.UserProduceCardReward
+	(*ptransaction.UserProduceCharacter)(nil),                    // 67: ptransaction.UserProduceCharacter
+	(*ptransaction.UserProduceDrink)(nil),                        // 68: ptransaction.UserProduceDrink
+	(*ptransaction.UserProduceGroupCharacter)(nil),               // 69: ptransaction.UserProduceGroupCharacter
+	(*ptransaction.UserProduceGrowthPanel)(nil),                  // 70: ptransaction.UserProduceGrowthPanel
+	(*ptransaction.UserProduceIdolCard)(nil),                     // 71: ptransaction.UserProduceIdolCard
+	(*ptransaction.UserProduceItem)(nil),                         // 72: ptransaction.UserProduceItem
+	(*ptransaction.UserProduceLive)(nil),                         // 73: ptransaction.UserProduceLive
+	(*ptransaction.UserProduceMemoryDeck)(nil),                   // 74: ptransaction.UserProduceMemoryDeck
+	(*ptransaction.UserProduceProgress)(nil),                     // 75: ptransaction.UserProduceProgress
+	(*ptransaction.UserProduceProgressAudition)(nil),             // 76: ptransaction.UserProduceProgressAudition
+	(*ptransaction.UserProduceProgressBusiness)(nil),             // 77: ptransaction.UserProduceProgressBusiness
+	(*ptransaction.UserProduceProgressEffect)(nil),               // 78: ptransaction.UserProduceProgressEffect
+	(*ptransaction.UserProduceProgressEvent)(nil),                // 79: ptransaction.UserProduceProgressEvent
+	(*ptransaction.UserProduceProgressInterval)(nil),             // 80: ptransaction.UserProduceProgressInterval
+	(*ptransaction.UserProduceProgressMemory)(nil),               // 81: ptransaction.UserProduceProgressMemory
+	(*ptransaction.UserProduceProgressPresent)(nil),              // 82: ptransaction.UserProduceProgressPresent
+	(*ptransaction.UserProduceProgressProduceCard)(nil),          // 83: ptransaction.UserProduceProgressProduceCard
+	(*ptransaction.UserProduceProgressProduceCustomizeItem)(nil), // 84: ptransaction.UserProduceProgressProduceCustomizeItem
+	(*ptransaction.UserProduceProgressSchedule)(nil),             // 85: ptransaction.UserProduceProgressSchedule
+	(*ptransaction.UserProduceProgressShop)(nil),                 // 86: ptransaction.UserProduceProgressShop
+	(*ptransaction.UserProduceProgressSupportCard)(nil),          // 87: ptransaction.UserProduceProgressSupportCard
+	(*ptransaction.UserProduceRerollMemory)(nil),                 // 88: ptransaction.UserProduceRerollMemory
+	(*ptransaction.UserProduceStartAchievement)(nil),             // 89: ptransaction.UserProduceStartAchievement
+	(*ptransaction.UserProduceStory)(nil),                        // 90: ptransaction.UserProduceStory
+	(*ptransaction.UserProduceSupportCardDeck)(nil),              // 91: ptransaction.UserProduceSupportCardDeck
+	(*ptransaction.UserProfile)(nil),                             // 92: ptransaction.UserProfile
+	(*ptransaction.UserPvpRate)(nil),                             // 93: ptransaction.UserPvpRate
+	(*ptransaction.UserPvpRateDeck)(nil),                         // 94: ptransaction.UserPvpRateDeck
+	(*ptransaction.UserPvpRateUnit)(nil),                         // 95: ptransaction.UserPvpRateUnit
+	(*ptransaction.UserShopItem)(nil),                            // 96: ptransaction.UserShopItem
+	(*ptransaction.UserStory)(nil),                               // 97: ptransaction.UserStory
+	(*ptransaction.UserSupportCard)(nil),                         // 98: ptransaction.UserSupportCard
+	(*ptransaction.UserTime)(nil),                                // 99: ptransaction.UserTime
+	(*ptransaction.UserTower)(nil),                               // 100: ptransaction.UserTower
+	(*ptransaction.UserTutorial)(nil),                            // 101: ptransaction.UserTutorial
+	(*ptransaction.UserWebStore)(nil),                            // 102: ptransaction.UserWebStore
+	(*ptransaction.UserWork)(nil),                                // 103: ptransaction.UserWork
+	(*ptransaction.UserWorkCharacter)(nil),                       // 104: ptransaction.UserWorkCharacter
 }
 var file_papicommon_proto_depIdxs = []int32{
 	11,  // 0: papicommon.CompetitionPreSeasonResult.beforeGrade:type_name -> penum.CompetitionGrade
@@ -1828,42 +1868,46 @@ var file_papicommon_proto_depIdxs = []int32{
 	67,  // 64: papicommon.UserData.userProduceCharacterList:type_name -> ptransaction.UserProduceCharacter
 	68,  // 65: papicommon.UserData.userProduceDrinkList:type_name -> ptransaction.UserProduceDrink
 	69,  // 66: papicommon.UserData.userProduceGroupCharacterList:type_name -> ptransaction.UserProduceGroupCharacter
-	70,  // 67: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
-	71,  // 68: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
-	72,  // 69: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
-	73,  // 70: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
-	74,  // 71: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
-	75,  // 72: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
-	76,  // 73: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
-	77,  // 74: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
-	78,  // 75: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
-	79,  // 76: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
-	80,  // 77: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
-	81,  // 78: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
-	82,  // 79: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
-	83,  // 80: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
-	84,  // 81: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
-	85,  // 82: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
-	86,  // 83: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
-	87,  // 84: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
-	88,  // 85: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
-	89,  // 86: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
-	90,  // 87: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
-	91,  // 88: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
-	92,  // 89: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
-	93,  // 90: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
-	94,  // 91: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
-	95,  // 92: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
-	96,  // 93: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
-	97,  // 94: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
-	98,  // 95: papicommon.UserData.userWebStore:type_name -> ptransaction.UserWebStore
-	99,  // 96: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
-	100, // 97: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
-	98,  // [98:98] is the sub-list for method output_type
-	98,  // [98:98] is the sub-list for method input_type
-	98,  // [98:98] is the sub-list for extension type_name
-	98,  // [98:98] is the sub-list for extension extendee
-	0,   // [0:98] is the sub-list for field type_name
+	70,  // 67: papicommon.UserData.userProduceGrowthPanelList:type_name -> ptransaction.UserProduceGrowthPanel
+	71,  // 68: papicommon.UserData.userProduceIdolCardList:type_name -> ptransaction.UserProduceIdolCard
+	72,  // 69: papicommon.UserData.userProduceItemList:type_name -> ptransaction.UserProduceItem
+	73,  // 70: papicommon.UserData.userProduceLiveList:type_name -> ptransaction.UserProduceLive
+	74,  // 71: papicommon.UserData.userProduceMemoryDeckList:type_name -> ptransaction.UserProduceMemoryDeck
+	75,  // 72: papicommon.UserData.userProduceProgress:type_name -> ptransaction.UserProduceProgress
+	76,  // 73: papicommon.UserData.userProduceProgressAudition:type_name -> ptransaction.UserProduceProgressAudition
+	77,  // 74: papicommon.UserData.userProduceProgressBusinessList:type_name -> ptransaction.UserProduceProgressBusiness
+	78,  // 75: papicommon.UserData.userProduceProgressEffectList:type_name -> ptransaction.UserProduceProgressEffect
+	79,  // 76: papicommon.UserData.userProduceProgressEventList:type_name -> ptransaction.UserProduceProgressEvent
+	80,  // 77: papicommon.UserData.userProduceProgressIntervalList:type_name -> ptransaction.UserProduceProgressInterval
+	81,  // 78: papicommon.UserData.userProduceProgressMemoryList:type_name -> ptransaction.UserProduceProgressMemory
+	82,  // 79: papicommon.UserData.userProduceProgressPresentList:type_name -> ptransaction.UserProduceProgressPresent
+	83,  // 80: papicommon.UserData.userProduceProgressProduceCardList:type_name -> ptransaction.UserProduceProgressProduceCard
+	84,  // 81: papicommon.UserData.userProduceProgressProduceCustomizeItemList:type_name -> ptransaction.UserProduceProgressProduceCustomizeItem
+	85,  // 82: papicommon.UserData.userProduceProgressScheduleList:type_name -> ptransaction.UserProduceProgressSchedule
+	86,  // 83: papicommon.UserData.userProduceProgressShopList:type_name -> ptransaction.UserProduceProgressShop
+	87,  // 84: papicommon.UserData.userProduceProgressSupportCardList:type_name -> ptransaction.UserProduceProgressSupportCard
+	88,  // 85: papicommon.UserData.userProduceRerollMemoryList:type_name -> ptransaction.UserProduceRerollMemory
+	89,  // 86: papicommon.UserData.userProduceStartAchievementList:type_name -> ptransaction.UserProduceStartAchievement
+	90,  // 87: papicommon.UserData.userProduceStoryList:type_name -> ptransaction.UserProduceStory
+	91,  // 88: papicommon.UserData.userProduceSupportCardDeckList:type_name -> ptransaction.UserProduceSupportCardDeck
+	92,  // 89: papicommon.UserData.userProfile:type_name -> ptransaction.UserProfile
+	93,  // 90: papicommon.UserData.userPvpRate:type_name -> ptransaction.UserPvpRate
+	94,  // 91: papicommon.UserData.userPvpRateDeckList:type_name -> ptransaction.UserPvpRateDeck
+	95,  // 92: papicommon.UserData.userPvpRateUnit:type_name -> ptransaction.UserPvpRateUnit
+	96,  // 93: papicommon.UserData.userShopItemList:type_name -> ptransaction.UserShopItem
+	97,  // 94: papicommon.UserData.userStoryList:type_name -> ptransaction.UserStory
+	98,  // 95: papicommon.UserData.userSupportCardList:type_name -> ptransaction.UserSupportCard
+	99,  // 96: papicommon.UserData.userTimeList:type_name -> ptransaction.UserTime
+	100, // 97: papicommon.UserData.userTowerList:type_name -> ptransaction.UserTower
+	101, // 98: papicommon.UserData.userTutorialList:type_name -> ptransaction.UserTutorial
+	102, // 99: papicommon.UserData.userWebStore:type_name -> ptransaction.UserWebStore
+	103, // 100: papicommon.UserData.userWorkList:type_name -> ptransaction.UserWork
+	104, // 101: papicommon.UserData.userWorkCharacterList:type_name -> ptransaction.UserWorkCharacter
+	102, // [102:102] is the sub-list for method output_type
+	102, // [102:102] is the sub-list for method input_type
+	102, // [102:102] is the sub-list for extension type_name
+	102, // [102:102] is the sub-list for extension extendee
+	0,   // [0:102] is the sub-list for field type_name
 }
 
 func init() { file_papicommon_proto_init() }

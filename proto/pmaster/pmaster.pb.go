@@ -1460,17 +1460,19 @@ func (x *CharacterAdvList) GetList() []*CharacterAdv {
 }
 
 type CharacterColor struct {
-	state                    protoimpl.MessageState `protogen:"open.v1"`
-	CharacterId              string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	MainColor                string                 `protobuf:"bytes,2,opt,name=mainColor,proto3" json:"mainColor,omitempty"`
-	GradientColor1           string                 `protobuf:"bytes,3,opt,name=gradientColor1,proto3" json:"gradientColor1,omitempty"`
-	GradientColor2           string                 `protobuf:"bytes,4,opt,name=gradientColor2,proto3" json:"gradientColor2,omitempty"`
-	TextColor                string                 `protobuf:"bytes,5,opt,name=textColor,proto3" json:"textColor,omitempty"`
-	LabelTextColor           string                 `protobuf:"bytes,6,opt,name=labelTextColor,proto3" json:"labelTextColor,omitempty"`
-	TransitionGradientColor1 string                 `protobuf:"bytes,7,opt,name=transitionGradientColor1,proto3" json:"transitionGradientColor1,omitempty"`
-	TransitionGradientColor2 string                 `protobuf:"bytes,8,opt,name=transitionGradientColor2,proto3" json:"transitionGradientColor2,omitempty"`
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId                  string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	MainColor                    string                 `protobuf:"bytes,2,opt,name=mainColor,proto3" json:"mainColor,omitempty"`
+	GradientColor1               string                 `protobuf:"bytes,3,opt,name=gradientColor1,proto3" json:"gradientColor1,omitempty"`
+	GradientColor2               string                 `protobuf:"bytes,4,opt,name=gradientColor2,proto3" json:"gradientColor2,omitempty"`
+	TextColor                    string                 `protobuf:"bytes,5,opt,name=textColor,proto3" json:"textColor,omitempty"`
+	LabelTextColor               string                 `protobuf:"bytes,6,opt,name=labelTextColor,proto3" json:"labelTextColor,omitempty"`
+	TransitionGradientColor1     string                 `protobuf:"bytes,7,opt,name=transitionGradientColor1,proto3" json:"transitionGradientColor1,omitempty"`
+	TransitionGradientColor2     string                 `protobuf:"bytes,8,opt,name=transitionGradientColor2,proto3" json:"transitionGradientColor2,omitempty"`
+	DecorationMainGradientColor1 string                 `protobuf:"bytes,9,opt,name=decorationMainGradientColor1,proto3" json:"decorationMainGradientColor1,omitempty"`
+	DecorationMainGradientColor2 string                 `protobuf:"bytes,10,opt,name=decorationMainGradientColor2,proto3" json:"decorationMainGradientColor2,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *CharacterColor) Reset() {
@@ -1559,6 +1561,20 @@ func (x *CharacterColor) GetTransitionGradientColor2() string {
 	return ""
 }
 
+func (x *CharacterColor) GetDecorationMainGradientColor1() string {
+	if x != nil {
+		return x.DecorationMainGradientColor1
+	}
+	return ""
+}
+
+func (x *CharacterColor) GetDecorationMainGradientColor2() string {
+	if x != nil {
+		return x.DecorationMainGradientColor2
+	}
+	return ""
+}
+
 type CharacterColorList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*CharacterColor      `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -1621,6 +1637,7 @@ type CharacterDearnessLevel struct {
 	TargetDescription                    string                                 `protobuf:"bytes,32,opt,name=targetDescription,proto3" json:"targetDescription,omitempty"`
 	TrueEndAchievementProduceType        penum.ProduceType                      `protobuf:"varint,33,opt,name=trueEndAchievementProduceType,proto3,enum=penum.ProduceType" json:"trueEndAchievementProduceType,omitempty"`
 	DearnessPointThreshold               int32                                  `protobuf:"varint,34,opt,name=dearnessPointThreshold,proto3" json:"dearnessPointThreshold,omitempty"`
+	StoryGroupOrder                      int32                                  `protobuf:"varint,90,opt,name=storyGroupOrder,proto3" json:"storyGroupOrder,omitempty"`
 	unknownFields                        protoimpl.UnknownFields
 	sizeCache                            protoimpl.SizeCache
 }
@@ -1763,6 +1780,13 @@ func (x *CharacterDearnessLevel) GetTrueEndAchievementProduceType() penum.Produc
 func (x *CharacterDearnessLevel) GetDearnessPointThreshold() int32 {
 	if x != nil {
 		return x.DearnessPointThreshold
+	}
+	return 0
+}
+
+func (x *CharacterDearnessLevel) GetStoryGroupOrder() int32 {
+	if x != nil {
+		return x.StoryGroupOrder
 	}
 	return 0
 }
@@ -5592,19 +5616,20 @@ func (x *ExamInitialDeckList) GetList() []*ExamInitialDeck {
 }
 
 type ExamMotion struct {
-	state          protoimpl.MessageState     `protogen:"open.v1"`
-	CharacterId    string                     `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	Type           penum.ExamMotionTargetType `protobuf:"varint,2,opt,name=type,proto3,enum=penum.ExamMotionTargetType" json:"type,omitempty"`
-	MotionType     penum.ExamMotionType       `protobuf:"varint,3,opt,name=motionType,proto3,enum=penum.ExamMotionType" json:"motionType,omitempty"`
-	Number         int32                      `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
-	FacialMotionId string                     `protobuf:"bytes,5,opt,name=facialMotionId,proto3" json:"facialMotionId,omitempty"`
-	BodyMotionId   string                     `protobuf:"bytes,6,opt,name=bodyMotionId,proto3" json:"bodyMotionId,omitempty"`
-	VoiceAssetId   string                     `protobuf:"bytes,7,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
-	SceneLayoutId  string                     `protobuf:"bytes,8,opt,name=sceneLayoutId,proto3" json:"sceneLayoutId,omitempty"`
-	CameraId       string                     `protobuf:"bytes,9,opt,name=cameraId,proto3" json:"cameraId,omitempty"`
-	TargetIds      []string                   `protobuf:"bytes,11,rep,name=targetIds,proto3" json:"targetIds,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state           protoimpl.MessageState     `protogen:"open.v1"`
+	CharacterId     string                     `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Type            penum.ExamMotionTargetType `protobuf:"varint,2,opt,name=type,proto3,enum=penum.ExamMotionTargetType" json:"type,omitempty"`
+	MotionType      penum.ExamMotionType       `protobuf:"varint,3,opt,name=motionType,proto3,enum=penum.ExamMotionType" json:"motionType,omitempty"`
+	Number          int32                      `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	FacialMotionId  string                     `protobuf:"bytes,5,opt,name=facialMotionId,proto3" json:"facialMotionId,omitempty"`
+	BodyMotionId    string                     `protobuf:"bytes,6,opt,name=bodyMotionId,proto3" json:"bodyMotionId,omitempty"`
+	VoiceAssetId    string                     `protobuf:"bytes,7,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	SceneLayoutId   string                     `protobuf:"bytes,8,opt,name=sceneLayoutId,proto3" json:"sceneLayoutId,omitempty"`
+	CameraId        string                     `protobuf:"bytes,9,opt,name=cameraId,proto3" json:"cameraId,omitempty"`
+	TargetIds       []string                   `protobuf:"bytes,11,rep,name=targetIds,proto3" json:"targetIds,omitempty"`
+	TargetStepTypes []penum.ProduceStepType    `protobuf:"varint,12,rep,packed,name=targetStepTypes,proto3,enum=penum.ProduceStepType" json:"targetStepTypes,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ExamMotion) Reset() {
@@ -5703,6 +5728,13 @@ func (x *ExamMotion) GetCameraId() string {
 func (x *ExamMotion) GetTargetIds() []string {
 	if x != nil {
 		return x.TargetIds
+	}
+	return nil
+}
+
+func (x *ExamMotion) GetTargetStepTypes() []penum.ProduceStepType {
+	if x != nil {
+		return x.TargetStepTypes
 	}
 	return nil
 }
@@ -5951,6 +5983,8 @@ type ExamSetting struct {
 	ExamLessonValueMultipleDependReviewOrAggressiveMultiplePermil int32                  `protobuf:"varint,50,opt,name=examLessonValueMultipleDependReviewOrAggressiveMultiplePermil,proto3" json:"examLessonValueMultipleDependReviewOrAggressiveMultiplePermil,omitempty"`
 	ExamLessonValueMultipleDependReviewOrAggressiveMaxPermil      int32                  `protobuf:"varint,51,opt,name=examLessonValueMultipleDependReviewOrAggressiveMaxPermil,proto3" json:"examLessonValueMultipleDependReviewOrAggressiveMaxPermil,omitempty"`
 	FixMoveCardShuffleDeckEnable                                  bool                   `protobuf:"varint,52,opt,name=fixMoveCardShuffleDeckEnable,proto3" json:"fixMoveCardShuffleDeckEnable,omitempty"`
+	ExamBuffConsumptionDownPermil                                 int32                  `protobuf:"varint,53,opt,name=examBuffConsumptionDownPermil,proto3" json:"examBuffConsumptionDownPermil,omitempty"`
+	ExamBuffConsumptionAddPermil                                  int32                  `protobuf:"varint,54,opt,name=examBuffConsumptionAddPermil,proto3" json:"examBuffConsumptionAddPermil,omitempty"`
 	unknownFields                                                 protoimpl.UnknownFields
 	sizeCache                                                     protoimpl.SizeCache
 }
@@ -6307,6 +6341,20 @@ func (x *ExamSetting) GetFixMoveCardShuffleDeckEnable() bool {
 	return false
 }
 
+func (x *ExamSetting) GetExamBuffConsumptionDownPermil() int32 {
+	if x != nil {
+		return x.ExamBuffConsumptionDownPermil
+	}
+	return 0
+}
+
+func (x *ExamSetting) GetExamBuffConsumptionAddPermil() int32 {
+	if x != nil {
+		return x.ExamBuffConsumptionAddPermil
+	}
+	return 0
+}
+
 type ExamSettingList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ExamSetting         `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -6487,6 +6535,150 @@ func (x *ExamSimulationList) GetList() []*ExamSimulation {
 	return nil
 }
 
+type ExamUnitMotion struct {
+	state                  protoimpl.MessageState  `protogen:"open.v1"`
+	ProduceCharacterUnitId string                  `protobuf:"bytes,1,opt,name=produceCharacterUnitId,proto3" json:"produceCharacterUnitId,omitempty"`
+	UnitCharacterId        string                  `protobuf:"bytes,2,opt,name=unitCharacterId,proto3" json:"unitCharacterId,omitempty"`
+	MotionType             penum.ExamMotionType    `protobuf:"varint,3,opt,name=motionType,proto3,enum=penum.ExamMotionType" json:"motionType,omitempty"`
+	Number                 int32                   `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	BodyMotionId           string                  `protobuf:"bytes,5,opt,name=bodyMotionId,proto3" json:"bodyMotionId,omitempty"`
+	FacialMotionId         string                  `protobuf:"bytes,6,opt,name=facialMotionId,proto3" json:"facialMotionId,omitempty"`
+	TargetIds              []string                `protobuf:"bytes,7,rep,name=targetIds,proto3" json:"targetIds,omitempty"`
+	TargetStepTypes        []penum.ProduceStepType `protobuf:"varint,8,rep,packed,name=targetStepTypes,proto3,enum=penum.ProduceStepType" json:"targetStepTypes,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ExamUnitMotion) Reset() {
+	*x = ExamUnitMotion{}
+	mi := &file_pmaster_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExamUnitMotion) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExamUnitMotion) ProtoMessage() {}
+
+func (x *ExamUnitMotion) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExamUnitMotion.ProtoReflect.Descriptor instead.
+func (*ExamUnitMotion) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{88}
+}
+
+func (x *ExamUnitMotion) GetProduceCharacterUnitId() string {
+	if x != nil {
+		return x.ProduceCharacterUnitId
+	}
+	return ""
+}
+
+func (x *ExamUnitMotion) GetUnitCharacterId() string {
+	if x != nil {
+		return x.UnitCharacterId
+	}
+	return ""
+}
+
+func (x *ExamUnitMotion) GetMotionType() penum.ExamMotionType {
+	if x != nil {
+		return x.MotionType
+	}
+	return penum.ExamMotionType(0)
+}
+
+func (x *ExamUnitMotion) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *ExamUnitMotion) GetBodyMotionId() string {
+	if x != nil {
+		return x.BodyMotionId
+	}
+	return ""
+}
+
+func (x *ExamUnitMotion) GetFacialMotionId() string {
+	if x != nil {
+		return x.FacialMotionId
+	}
+	return ""
+}
+
+func (x *ExamUnitMotion) GetTargetIds() []string {
+	if x != nil {
+		return x.TargetIds
+	}
+	return nil
+}
+
+func (x *ExamUnitMotion) GetTargetStepTypes() []penum.ProduceStepType {
+	if x != nil {
+		return x.TargetStepTypes
+	}
+	return nil
+}
+
+type ExamUnitMotionList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	List          []*ExamUnitMotion      `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExamUnitMotionList) Reset() {
+	*x = ExamUnitMotionList{}
+	mi := &file_pmaster_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExamUnitMotionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExamUnitMotionList) ProtoMessage() {}
+
+func (x *ExamUnitMotionList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExamUnitMotionList.ProtoReflect.Descriptor instead.
+func (*ExamUnitMotionList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{89}
+}
+
+func (x *ExamUnitMotionList) GetList() []*ExamUnitMotion {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
 type ExchangeItemCategory struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
 	ExchangeId    string                         `protobuf:"bytes,1,opt,name=exchangeId,proto3" json:"exchangeId,omitempty"`
@@ -6501,7 +6693,7 @@ type ExchangeItemCategory struct {
 
 func (x *ExchangeItemCategory) Reset() {
 	*x = ExchangeItemCategory{}
-	mi := &file_pmaster_proto_msgTypes[88]
+	mi := &file_pmaster_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6513,7 +6705,7 @@ func (x *ExchangeItemCategory) String() string {
 func (*ExchangeItemCategory) ProtoMessage() {}
 
 func (x *ExchangeItemCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[88]
+	mi := &file_pmaster_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6526,7 +6718,7 @@ func (x *ExchangeItemCategory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeItemCategory.ProtoReflect.Descriptor instead.
 func (*ExchangeItemCategory) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{88}
+	return file_pmaster_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *ExchangeItemCategory) GetExchangeId() string {
@@ -6580,7 +6772,7 @@ type ExchangeItemCategoryList struct {
 
 func (x *ExchangeItemCategoryList) Reset() {
 	*x = ExchangeItemCategoryList{}
-	mi := &file_pmaster_proto_msgTypes[89]
+	mi := &file_pmaster_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6592,7 +6784,7 @@ func (x *ExchangeItemCategoryList) String() string {
 func (*ExchangeItemCategoryList) ProtoMessage() {}
 
 func (x *ExchangeItemCategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[89]
+	mi := &file_pmaster_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6605,7 +6797,7 @@ func (x *ExchangeItemCategoryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeItemCategoryList.ProtoReflect.Descriptor instead.
 func (*ExchangeItemCategoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{89}
+	return file_pmaster_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *ExchangeItemCategoryList) GetList() []*ExchangeItemCategory {
@@ -6630,7 +6822,7 @@ type FeatureLock struct {
 
 func (x *FeatureLock) Reset() {
 	*x = FeatureLock{}
-	mi := &file_pmaster_proto_msgTypes[90]
+	mi := &file_pmaster_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6642,7 +6834,7 @@ func (x *FeatureLock) String() string {
 func (*FeatureLock) ProtoMessage() {}
 
 func (x *FeatureLock) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[90]
+	mi := &file_pmaster_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6655,7 +6847,7 @@ func (x *FeatureLock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeatureLock.ProtoReflect.Descriptor instead.
 func (*FeatureLock) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{90}
+	return file_pmaster_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *FeatureLock) GetTutorialType() penum.TutorialType {
@@ -6716,7 +6908,7 @@ type FeatureLockList struct {
 
 func (x *FeatureLockList) Reset() {
 	*x = FeatureLockList{}
-	mi := &file_pmaster_proto_msgTypes[91]
+	mi := &file_pmaster_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6728,7 +6920,7 @@ func (x *FeatureLockList) String() string {
 func (*FeatureLockList) ProtoMessage() {}
 
 func (x *FeatureLockList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[91]
+	mi := &file_pmaster_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6741,7 +6933,7 @@ func (x *FeatureLockList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeatureLockList.ProtoReflect.Descriptor instead.
 func (*FeatureLockList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{91}
+	return file_pmaster_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *FeatureLockList) GetList() []*FeatureLock {
@@ -6763,7 +6955,7 @@ type ForceAppVersion struct {
 
 func (x *ForceAppVersion) Reset() {
 	*x = ForceAppVersion{}
-	mi := &file_pmaster_proto_msgTypes[92]
+	mi := &file_pmaster_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6775,7 +6967,7 @@ func (x *ForceAppVersion) String() string {
 func (*ForceAppVersion) ProtoMessage() {}
 
 func (x *ForceAppVersion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[92]
+	mi := &file_pmaster_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6788,7 +6980,7 @@ func (x *ForceAppVersion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ForceAppVersion.ProtoReflect.Descriptor instead.
 func (*ForceAppVersion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{92}
+	return file_pmaster_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *ForceAppVersion) GetPlatformType() penum.PlatformType {
@@ -6828,7 +7020,7 @@ type ForceAppVersionList struct {
 
 func (x *ForceAppVersionList) Reset() {
 	*x = ForceAppVersionList{}
-	mi := &file_pmaster_proto_msgTypes[93]
+	mi := &file_pmaster_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6840,7 +7032,7 @@ func (x *ForceAppVersionList) String() string {
 func (*ForceAppVersionList) ProtoMessage() {}
 
 func (x *ForceAppVersionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[93]
+	mi := &file_pmaster_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6853,7 +7045,7 @@ func (x *ForceAppVersionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ForceAppVersionList.ProtoReflect.Descriptor instead.
 func (*ForceAppVersionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{93}
+	return file_pmaster_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *ForceAppVersionList) GetList() []*ForceAppVersion {
@@ -6877,7 +7069,7 @@ type GashaAnimationStep struct {
 
 func (x *GashaAnimationStep) Reset() {
 	*x = GashaAnimationStep{}
-	mi := &file_pmaster_proto_msgTypes[94]
+	mi := &file_pmaster_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6889,7 +7081,7 @@ func (x *GashaAnimationStep) String() string {
 func (*GashaAnimationStep) ProtoMessage() {}
 
 func (x *GashaAnimationStep) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[94]
+	mi := &file_pmaster_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6902,7 +7094,7 @@ func (x *GashaAnimationStep) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GashaAnimationStep.ProtoReflect.Descriptor instead.
 func (*GashaAnimationStep) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{94}
+	return file_pmaster_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *GashaAnimationStep) GetRarity() penum.GashaAnimationRarity {
@@ -6956,7 +7148,7 @@ type GashaAnimationStepList struct {
 
 func (x *GashaAnimationStepList) Reset() {
 	*x = GashaAnimationStepList{}
-	mi := &file_pmaster_proto_msgTypes[95]
+	mi := &file_pmaster_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6968,7 +7160,7 @@ func (x *GashaAnimationStepList) String() string {
 func (*GashaAnimationStepList) ProtoMessage() {}
 
 func (x *GashaAnimationStepList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[95]
+	mi := &file_pmaster_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6981,7 +7173,7 @@ func (x *GashaAnimationStepList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GashaAnimationStepList.ProtoReflect.Descriptor instead.
 func (*GashaAnimationStepList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{95}
+	return file_pmaster_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *GashaAnimationStepList) GetList() []*GashaAnimationStep {
@@ -7024,7 +7216,7 @@ type GashaButton struct {
 
 func (x *GashaButton) Reset() {
 	*x = GashaButton{}
-	mi := &file_pmaster_proto_msgTypes[96]
+	mi := &file_pmaster_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7036,7 +7228,7 @@ func (x *GashaButton) String() string {
 func (*GashaButton) ProtoMessage() {}
 
 func (x *GashaButton) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[96]
+	mi := &file_pmaster_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7049,7 +7241,7 @@ func (x *GashaButton) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GashaButton.ProtoReflect.Descriptor instead.
 func (*GashaButton) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{96}
+	return file_pmaster_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *GashaButton) GetId() string {
@@ -7236,7 +7428,7 @@ type GashaButtonList struct {
 
 func (x *GashaButtonList) Reset() {
 	*x = GashaButtonList{}
-	mi := &file_pmaster_proto_msgTypes[97]
+	mi := &file_pmaster_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7248,7 +7440,7 @@ func (x *GashaButtonList) String() string {
 func (*GashaButtonList) ProtoMessage() {}
 
 func (x *GashaButtonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[97]
+	mi := &file_pmaster_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7261,7 +7453,7 @@ func (x *GashaButtonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GashaButtonList.ProtoReflect.Descriptor instead.
 func (*GashaButtonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{97}
+	return file_pmaster_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *GashaButtonList) GetList() []*pcommon.GashaButton {
@@ -7281,7 +7473,7 @@ type GuildDonationItem struct {
 
 func (x *GuildDonationItem) Reset() {
 	*x = GuildDonationItem{}
-	mi := &file_pmaster_proto_msgTypes[98]
+	mi := &file_pmaster_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7293,7 +7485,7 @@ func (x *GuildDonationItem) String() string {
 func (*GuildDonationItem) ProtoMessage() {}
 
 func (x *GuildDonationItem) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[98]
+	mi := &file_pmaster_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7306,7 +7498,7 @@ func (x *GuildDonationItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuildDonationItem.ProtoReflect.Descriptor instead.
 func (*GuildDonationItem) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{98}
+	return file_pmaster_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *GuildDonationItem) GetItemId() string {
@@ -7332,7 +7524,7 @@ type GuildDonationItemList struct {
 
 func (x *GuildDonationItemList) Reset() {
 	*x = GuildDonationItemList{}
-	mi := &file_pmaster_proto_msgTypes[99]
+	mi := &file_pmaster_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7344,7 +7536,7 @@ func (x *GuildDonationItemList) String() string {
 func (*GuildDonationItemList) ProtoMessage() {}
 
 func (x *GuildDonationItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[99]
+	mi := &file_pmaster_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7357,7 +7549,7 @@ func (x *GuildDonationItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuildDonationItemList.ProtoReflect.Descriptor instead.
 func (*GuildDonationItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{99}
+	return file_pmaster_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *GuildDonationItemList) GetList() []*GuildDonationItem {
@@ -7378,7 +7570,7 @@ type GuildReaction struct {
 
 func (x *GuildReaction) Reset() {
 	*x = GuildReaction{}
-	mi := &file_pmaster_proto_msgTypes[100]
+	mi := &file_pmaster_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7390,7 +7582,7 @@ func (x *GuildReaction) String() string {
 func (*GuildReaction) ProtoMessage() {}
 
 func (x *GuildReaction) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[100]
+	mi := &file_pmaster_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7403,7 +7595,7 @@ func (x *GuildReaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuildReaction.ProtoReflect.Descriptor instead.
 func (*GuildReaction) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{100}
+	return file_pmaster_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *GuildReaction) GetId() string {
@@ -7436,7 +7628,7 @@ type GuildReactionList struct {
 
 func (x *GuildReactionList) Reset() {
 	*x = GuildReactionList{}
-	mi := &file_pmaster_proto_msgTypes[101]
+	mi := &file_pmaster_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7448,7 +7640,7 @@ func (x *GuildReactionList) String() string {
 func (*GuildReactionList) ProtoMessage() {}
 
 func (x *GuildReactionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[101]
+	mi := &file_pmaster_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7461,7 +7653,7 @@ func (x *GuildReactionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuildReactionList.ProtoReflect.Descriptor instead.
 func (*GuildReactionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{101}
+	return file_pmaster_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *GuildReactionList) GetList() []*GuildReaction {
@@ -7486,7 +7678,7 @@ type GvgRaid struct {
 
 func (x *GvgRaid) Reset() {
 	*x = GvgRaid{}
-	mi := &file_pmaster_proto_msgTypes[102]
+	mi := &file_pmaster_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7498,7 +7690,7 @@ func (x *GvgRaid) String() string {
 func (*GvgRaid) ProtoMessage() {}
 
 func (x *GvgRaid) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[102]
+	mi := &file_pmaster_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7511,7 +7703,7 @@ func (x *GvgRaid) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GvgRaid.ProtoReflect.Descriptor instead.
 func (*GvgRaid) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{102}
+	return file_pmaster_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *GvgRaid) GetId() string {
@@ -7572,7 +7764,7 @@ type GvgRaidList struct {
 
 func (x *GvgRaidList) Reset() {
 	*x = GvgRaidList{}
-	mi := &file_pmaster_proto_msgTypes[103]
+	mi := &file_pmaster_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7584,7 +7776,7 @@ func (x *GvgRaidList) String() string {
 func (*GvgRaidList) ProtoMessage() {}
 
 func (x *GvgRaidList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[103]
+	mi := &file_pmaster_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7597,7 +7789,7 @@ func (x *GvgRaidList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GvgRaidList.ProtoReflect.Descriptor instead.
 func (*GvgRaidList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{103}
+	return file_pmaster_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *GvgRaidList) GetList() []*GvgRaid {
@@ -7638,7 +7830,7 @@ type GvgRaidStageLoop struct {
 
 func (x *GvgRaidStageLoop) Reset() {
 	*x = GvgRaidStageLoop{}
-	mi := &file_pmaster_proto_msgTypes[104]
+	mi := &file_pmaster_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7650,7 +7842,7 @@ func (x *GvgRaidStageLoop) String() string {
 func (*GvgRaidStageLoop) ProtoMessage() {}
 
 func (x *GvgRaidStageLoop) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[104]
+	mi := &file_pmaster_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7663,7 +7855,7 @@ func (x *GvgRaidStageLoop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GvgRaidStageLoop.ProtoReflect.Descriptor instead.
 func (*GvgRaidStageLoop) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{104}
+	return file_pmaster_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *GvgRaidStageLoop) GetGvgRaidId() string {
@@ -7836,7 +8028,7 @@ type GvgRaidStageLoopList struct {
 
 func (x *GvgRaidStageLoopList) Reset() {
 	*x = GvgRaidStageLoopList{}
-	mi := &file_pmaster_proto_msgTypes[105]
+	mi := &file_pmaster_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7848,7 +8040,7 @@ func (x *GvgRaidStageLoopList) String() string {
 func (*GvgRaidStageLoopList) ProtoMessage() {}
 
 func (x *GvgRaidStageLoopList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[105]
+	mi := &file_pmaster_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7861,7 +8053,7 @@ func (x *GvgRaidStageLoopList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GvgRaidStageLoopList.ProtoReflect.Descriptor instead.
 func (*GvgRaidStageLoopList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{105}
+	return file_pmaster_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *GvgRaidStageLoopList) GetList() []*GvgRaidStageLoop {
@@ -7885,7 +8077,7 @@ type HelpCategory struct {
 
 func (x *HelpCategory) Reset() {
 	*x = HelpCategory{}
-	mi := &file_pmaster_proto_msgTypes[106]
+	mi := &file_pmaster_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7897,7 +8089,7 @@ func (x *HelpCategory) String() string {
 func (*HelpCategory) ProtoMessage() {}
 
 func (x *HelpCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[106]
+	mi := &file_pmaster_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7910,7 +8102,7 @@ func (x *HelpCategory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpCategory.ProtoReflect.Descriptor instead.
 func (*HelpCategory) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{106}
+	return file_pmaster_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *HelpCategory) GetId() string {
@@ -7964,7 +8156,7 @@ type HelpCategoryList struct {
 
 func (x *HelpCategoryList) Reset() {
 	*x = HelpCategoryList{}
-	mi := &file_pmaster_proto_msgTypes[107]
+	mi := &file_pmaster_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7976,7 +8168,7 @@ func (x *HelpCategoryList) String() string {
 func (*HelpCategoryList) ProtoMessage() {}
 
 func (x *HelpCategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[107]
+	mi := &file_pmaster_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7989,7 +8181,7 @@ func (x *HelpCategoryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpCategoryList.ProtoReflect.Descriptor instead.
 func (*HelpCategoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{107}
+	return file_pmaster_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *HelpCategoryList) GetList() []*HelpCategory {
@@ -8012,7 +8204,7 @@ type HelpContent struct {
 
 func (x *HelpContent) Reset() {
 	*x = HelpContent{}
-	mi := &file_pmaster_proto_msgTypes[108]
+	mi := &file_pmaster_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8024,7 +8216,7 @@ func (x *HelpContent) String() string {
 func (*HelpContent) ProtoMessage() {}
 
 func (x *HelpContent) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[108]
+	mi := &file_pmaster_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8037,7 +8229,7 @@ func (x *HelpContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpContent.ProtoReflect.Descriptor instead.
 func (*HelpContent) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{108}
+	return file_pmaster_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *HelpContent) GetHelpCategoryId() string {
@@ -8084,7 +8276,7 @@ type HelpContentList struct {
 
 func (x *HelpContentList) Reset() {
 	*x = HelpContentList{}
-	mi := &file_pmaster_proto_msgTypes[109]
+	mi := &file_pmaster_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8096,7 +8288,7 @@ func (x *HelpContentList) String() string {
 func (*HelpContentList) ProtoMessage() {}
 
 func (x *HelpContentList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[109]
+	mi := &file_pmaster_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8109,7 +8301,7 @@ func (x *HelpContentList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpContentList.ProtoReflect.Descriptor instead.
 func (*HelpContentList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{109}
+	return file_pmaster_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *HelpContentList) GetList() []*HelpContent {
@@ -8131,7 +8323,7 @@ type HelpInfo struct {
 
 func (x *HelpInfo) Reset() {
 	*x = HelpInfo{}
-	mi := &file_pmaster_proto_msgTypes[110]
+	mi := &file_pmaster_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8143,7 +8335,7 @@ func (x *HelpInfo) String() string {
 func (*HelpInfo) ProtoMessage() {}
 
 func (x *HelpInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[110]
+	mi := &file_pmaster_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8156,7 +8348,7 @@ func (x *HelpInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpInfo.ProtoReflect.Descriptor instead.
 func (*HelpInfo) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{110}
+	return file_pmaster_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *HelpInfo) GetType() string {
@@ -8196,7 +8388,7 @@ type HelpInfoList struct {
 
 func (x *HelpInfoList) Reset() {
 	*x = HelpInfoList{}
-	mi := &file_pmaster_proto_msgTypes[111]
+	mi := &file_pmaster_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8208,7 +8400,7 @@ func (x *HelpInfoList) String() string {
 func (*HelpInfoList) ProtoMessage() {}
 
 func (x *HelpInfoList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[111]
+	mi := &file_pmaster_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8221,7 +8413,7 @@ func (x *HelpInfoList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HelpInfoList.ProtoReflect.Descriptor instead.
 func (*HelpInfoList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{111}
+	return file_pmaster_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *HelpInfoList) GetList() []*HelpInfo {
@@ -8244,7 +8436,7 @@ type HomeBackground struct {
 
 func (x *HomeBackground) Reset() {
 	*x = HomeBackground{}
-	mi := &file_pmaster_proto_msgTypes[112]
+	mi := &file_pmaster_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8256,7 +8448,7 @@ func (x *HomeBackground) String() string {
 func (*HomeBackground) ProtoMessage() {}
 
 func (x *HomeBackground) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[112]
+	mi := &file_pmaster_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8269,7 +8461,7 @@ func (x *HomeBackground) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBackground.ProtoReflect.Descriptor instead.
 func (*HomeBackground) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{112}
+	return file_pmaster_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *HomeBackground) GetId() string {
@@ -8316,7 +8508,7 @@ type HomeBackgroundList struct {
 
 func (x *HomeBackgroundList) Reset() {
 	*x = HomeBackgroundList{}
-	mi := &file_pmaster_proto_msgTypes[113]
+	mi := &file_pmaster_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8328,7 +8520,7 @@ func (x *HomeBackgroundList) String() string {
 func (*HomeBackgroundList) ProtoMessage() {}
 
 func (x *HomeBackgroundList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[113]
+	mi := &file_pmaster_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8341,7 +8533,7 @@ func (x *HomeBackgroundList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBackgroundList.ProtoReflect.Descriptor instead.
 func (*HomeBackgroundList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{113}
+	return file_pmaster_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *HomeBackgroundList) GetList() []*HomeBackground {
@@ -8362,7 +8554,7 @@ type HomeBackgroundPrefabGroup struct {
 
 func (x *HomeBackgroundPrefabGroup) Reset() {
 	*x = HomeBackgroundPrefabGroup{}
-	mi := &file_pmaster_proto_msgTypes[114]
+	mi := &file_pmaster_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8374,7 +8566,7 @@ func (x *HomeBackgroundPrefabGroup) String() string {
 func (*HomeBackgroundPrefabGroup) ProtoMessage() {}
 
 func (x *HomeBackgroundPrefabGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[114]
+	mi := &file_pmaster_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8387,7 +8579,7 @@ func (x *HomeBackgroundPrefabGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBackgroundPrefabGroup.ProtoReflect.Descriptor instead.
 func (*HomeBackgroundPrefabGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{114}
+	return file_pmaster_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *HomeBackgroundPrefabGroup) GetId() string {
@@ -8420,7 +8612,7 @@ type HomeBackgroundPrefabGroupList struct {
 
 func (x *HomeBackgroundPrefabGroupList) Reset() {
 	*x = HomeBackgroundPrefabGroupList{}
-	mi := &file_pmaster_proto_msgTypes[115]
+	mi := &file_pmaster_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8432,7 +8624,7 @@ func (x *HomeBackgroundPrefabGroupList) String() string {
 func (*HomeBackgroundPrefabGroupList) ProtoMessage() {}
 
 func (x *HomeBackgroundPrefabGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[115]
+	mi := &file_pmaster_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8445,7 +8637,7 @@ func (x *HomeBackgroundPrefabGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBackgroundPrefabGroupList.ProtoReflect.Descriptor instead.
 func (*HomeBackgroundPrefabGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{115}
+	return file_pmaster_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *HomeBackgroundPrefabGroupList) GetList() []*HomeBackgroundPrefabGroup {
@@ -8466,7 +8658,7 @@ type HomeBoard struct {
 
 func (x *HomeBoard) Reset() {
 	*x = HomeBoard{}
-	mi := &file_pmaster_proto_msgTypes[116]
+	mi := &file_pmaster_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8478,7 +8670,7 @@ func (x *HomeBoard) String() string {
 func (*HomeBoard) ProtoMessage() {}
 
 func (x *HomeBoard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[116]
+	mi := &file_pmaster_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8491,7 +8683,7 @@ func (x *HomeBoard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBoard.ProtoReflect.Descriptor instead.
 func (*HomeBoard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{116}
+	return file_pmaster_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *HomeBoard) GetPrefabId() string {
@@ -8524,7 +8716,7 @@ type HomeBoardList struct {
 
 func (x *HomeBoardList) Reset() {
 	*x = HomeBoardList{}
-	mi := &file_pmaster_proto_msgTypes[117]
+	mi := &file_pmaster_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8536,7 +8728,7 @@ func (x *HomeBoardList) String() string {
 func (*HomeBoardList) ProtoMessage() {}
 
 func (x *HomeBoardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[117]
+	mi := &file_pmaster_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8549,7 +8741,7 @@ func (x *HomeBoardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeBoardList.ProtoReflect.Descriptor instead.
 func (*HomeBoardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{117}
+	return file_pmaster_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *HomeBoardList) GetList() []*HomeBoard {
@@ -8571,7 +8763,7 @@ type HomeMonitor struct {
 
 func (x *HomeMonitor) Reset() {
 	*x = HomeMonitor{}
-	mi := &file_pmaster_proto_msgTypes[118]
+	mi := &file_pmaster_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8583,7 +8775,7 @@ func (x *HomeMonitor) String() string {
 func (*HomeMonitor) ProtoMessage() {}
 
 func (x *HomeMonitor) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[118]
+	mi := &file_pmaster_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8596,7 +8788,7 @@ func (x *HomeMonitor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeMonitor.ProtoReflect.Descriptor instead.
 func (*HomeMonitor) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{118}
+	return file_pmaster_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *HomeMonitor) GetMovieAssetId() string {
@@ -8636,7 +8828,7 @@ type HomeMonitorList struct {
 
 func (x *HomeMonitorList) Reset() {
 	*x = HomeMonitorList{}
-	mi := &file_pmaster_proto_msgTypes[119]
+	mi := &file_pmaster_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8648,7 +8840,7 @@ func (x *HomeMonitorList) String() string {
 func (*HomeMonitorList) ProtoMessage() {}
 
 func (x *HomeMonitorList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[119]
+	mi := &file_pmaster_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8661,7 +8853,7 @@ func (x *HomeMonitorList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeMonitorList.ProtoReflect.Descriptor instead.
 func (*HomeMonitorList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{119}
+	return file_pmaster_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *HomeMonitorList) GetList() []*HomeMonitor {
@@ -8688,7 +8880,7 @@ type HomeMotion struct {
 
 func (x *HomeMotion) Reset() {
 	*x = HomeMotion{}
-	mi := &file_pmaster_proto_msgTypes[120]
+	mi := &file_pmaster_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8700,7 +8892,7 @@ func (x *HomeMotion) String() string {
 func (*HomeMotion) ProtoMessage() {}
 
 func (x *HomeMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[120]
+	mi := &file_pmaster_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8713,7 +8905,7 @@ func (x *HomeMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeMotion.ProtoReflect.Descriptor instead.
 func (*HomeMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{120}
+	return file_pmaster_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *HomeMotion) GetCharacterId() string {
@@ -8788,7 +8980,7 @@ type HomeMotionList struct {
 
 func (x *HomeMotionList) Reset() {
 	*x = HomeMotionList{}
-	mi := &file_pmaster_proto_msgTypes[121]
+	mi := &file_pmaster_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8800,7 +8992,7 @@ func (x *HomeMotionList) String() string {
 func (*HomeMotionList) ProtoMessage() {}
 
 func (x *HomeMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[121]
+	mi := &file_pmaster_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8813,7 +9005,7 @@ func (x *HomeMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeMotionList.ProtoReflect.Descriptor instead.
 func (*HomeMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{121}
+	return file_pmaster_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *HomeMotionList) GetList() []*HomeMotion {
@@ -8834,7 +9026,7 @@ type HomeTime struct {
 
 func (x *HomeTime) Reset() {
 	*x = HomeTime{}
-	mi := &file_pmaster_proto_msgTypes[122]
+	mi := &file_pmaster_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8846,7 +9038,7 @@ func (x *HomeTime) String() string {
 func (*HomeTime) ProtoMessage() {}
 
 func (x *HomeTime) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[122]
+	mi := &file_pmaster_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8859,7 +9051,7 @@ func (x *HomeTime) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeTime.ProtoReflect.Descriptor instead.
 func (*HomeTime) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{122}
+	return file_pmaster_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *HomeTime) GetStartHour() int32 {
@@ -8892,7 +9084,7 @@ type HomeTimeList struct {
 
 func (x *HomeTimeList) Reset() {
 	*x = HomeTimeList{}
-	mi := &file_pmaster_proto_msgTypes[123]
+	mi := &file_pmaster_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8904,7 +9096,7 @@ func (x *HomeTimeList) String() string {
 func (*HomeTimeList) ProtoMessage() {}
 
 func (x *HomeTimeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[123]
+	mi := &file_pmaster_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8917,7 +9109,7 @@ func (x *HomeTimeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HomeTimeList.ProtoReflect.Descriptor instead.
 func (*HomeTimeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{123}
+	return file_pmaster_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *HomeTimeList) GetList() []*HomeTime {
@@ -8928,56 +9120,65 @@ func (x *HomeTimeList) GetList() []*HomeTime {
 }
 
 type IdolCard struct {
-	state                            protoimpl.MessageState       `protogen:"open.v1"`
-	Id                               string                       `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CharacterId                      string                       `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	OriginalIdolCardSkinId           string                       `protobuf:"bytes,3,opt,name=originalIdolCardSkinId,proto3" json:"originalIdolCardSkinId,omitempty"`
-	AssetId                          string                       `protobuf:"bytes,4,opt,name=assetId,proto3" json:"assetId,omitempty"`
-	Name                             string                       `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
-	Rarity                           penum.IdolCardRarity         `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.IdolCardRarity" json:"rarity,omitempty"`
-	IsLimited                        bool                         `protobuf:"varint,8,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
-	AnotherCostumeHeadId             string                       `protobuf:"bytes,11,opt,name=anotherCostumeHeadId,proto3" json:"anotherCostumeHeadId,omitempty"`
-	AnotherCostumeId                 string                       `protobuf:"bytes,12,opt,name=anotherCostumeId,proto3" json:"anotherCostumeId,omitempty"`
-	IdolCardPotentialId              string                       `protobuf:"bytes,13,opt,name=idolCardPotentialId,proto3" json:"idolCardPotentialId,omitempty"`
-	IdolCardPotentialProduceSkillId  string                       `protobuf:"bytes,14,opt,name=idolCardPotentialProduceSkillId,proto3" json:"idolCardPotentialProduceSkillId,omitempty"`
-	IdolCardLevelLimitId             string                       `protobuf:"bytes,15,opt,name=idolCardLevelLimitId,proto3" json:"idolCardLevelLimitId,omitempty"`
-	IdolCardLevelLimitProduceSkillId string                       `protobuf:"bytes,16,opt,name=idolCardLevelLimitProduceSkillId,proto3" json:"idolCardLevelLimitProduceSkillId,omitempty"`
-	MaxIdolCardLevelLimitRank        penum.IdolCardLevelLimitRank `protobuf:"varint,18,opt,name=maxIdolCardLevelLimitRank,proto3,enum=penum.IdolCardLevelLimitRank" json:"maxIdolCardLevelLimitRank,omitempty"`
-	AdditionalAnotherCostumeHeadIds  []string                     `protobuf:"bytes,19,rep,name=additionalAnotherCostumeHeadIds,proto3" json:"additionalAnotherCostumeHeadIds,omitempty"`
-	AdditionalAnotherCostumeIds      []string                     `protobuf:"bytes,20,rep,name=additionalAnotherCostumeIds,proto3" json:"additionalAnotherCostumeIds,omitempty"`
-	PlanType                         penum.ProducePlanType        `protobuf:"varint,30,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
-	IdolCardLevelLimitStatusUpId     string                       `protobuf:"bytes,31,opt,name=idolCardLevelLimitStatusUpId,proto3" json:"idolCardLevelLimitStatusUpId,omitempty"`
-	ProduceVocal                     int32                        `protobuf:"varint,32,opt,name=produceVocal,proto3" json:"produceVocal,omitempty"`
-	ProduceDance                     int32                        `protobuf:"varint,33,opt,name=produceDance,proto3" json:"produceDance,omitempty"`
-	ProduceVisual                    int32                        `protobuf:"varint,34,opt,name=produceVisual,proto3" json:"produceVisual,omitempty"`
-	ProduceVocalGrowthRatePermil     int32                        `protobuf:"varint,35,opt,name=produceVocalGrowthRatePermil,proto3" json:"produceVocalGrowthRatePermil,omitempty"`
-	ProduceDanceGrowthRatePermil     int32                        `protobuf:"varint,36,opt,name=produceDanceGrowthRatePermil,proto3" json:"produceDanceGrowthRatePermil,omitempty"`
-	ProduceVisualGrowthRatePermil    int32                        `protobuf:"varint,37,opt,name=produceVisualGrowthRatePermil,proto3" json:"produceVisualGrowthRatePermil,omitempty"`
-	ProduceStamina                   int32                        `protobuf:"varint,38,opt,name=produceStamina,proto3" json:"produceStamina,omitempty"`
-	ProduceStepAuditionDifficultyId  string                       `protobuf:"bytes,39,opt,name=produceStepAuditionDifficultyId,proto3" json:"produceStepAuditionDifficultyId,omitempty"`
-	ExamInitialDeckId                string                       `protobuf:"bytes,42,opt,name=examInitialDeckId,proto3" json:"examInitialDeckId,omitempty"`
-	ProduceCardId                    string                       `protobuf:"bytes,43,opt,name=produceCardId,proto3" json:"produceCardId,omitempty"`
-	BeforeProduceItemId              string                       `protobuf:"bytes,44,opt,name=beforeProduceItemId,proto3" json:"beforeProduceItemId,omitempty"`
-	AfterProduceItemId               string                       `protobuf:"bytes,45,opt,name=afterProduceItemId,proto3" json:"afterProduceItemId,omitempty"`
-	ExamEffectType                   penum.ProduceExamEffectType  `protobuf:"varint,48,opt,name=examEffectType,proto3,enum=penum.ProduceExamEffectType" json:"examEffectType,omitempty"`
-	ProduceChallengeSlotId           string                       `protobuf:"bytes,49,opt,name=produceChallengeSlotId,proto3" json:"produceChallengeSlotId,omitempty"`
-	ShowExamEffectType               penum.ProduceExamEffectType  `protobuf:"varint,50,opt,name=showExamEffectType,proto3,enum=penum.ProduceExamEffectType" json:"showExamEffectType,omitempty"`
-	PotentialRankVoiceAssetId        string                       `protobuf:"bytes,72,opt,name=potentialRankVoiceAssetId,proto3" json:"potentialRankVoiceAssetId,omitempty"`
-	ProduceSelectVoiceAssetId        string                       `protobuf:"bytes,75,opt,name=produceSelectVoiceAssetId,proto3" json:"produceSelectVoiceAssetId,omitempty"`
-	ProduceScheduleFrontVoiceGroupId string                       `protobuf:"bytes,76,opt,name=produceScheduleFrontVoiceGroupId,proto3" json:"produceScheduleFrontVoiceGroupId,omitempty"`
-	ProduceScheduleBackVoiceGroupId  string                       `protobuf:"bytes,77,opt,name=produceScheduleBackVoiceGroupId,proto3" json:"produceScheduleBackVoiceGroupId,omitempty"`
-	UseProduceCardVoiceAssetId       string                       `protobuf:"bytes,78,opt,name=useProduceCardVoiceAssetId,proto3" json:"useProduceCardVoiceAssetId,omitempty"`
-	ViewStartTime                    int64                        `protobuf:"varint,999,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
-	Order                            int64                        `protobuf:"varint,1000,opt,name=order,proto3" json:"order,omitempty"`
-	ProduceStoryIds                  []string                     `protobuf:"bytes,1005,rep,name=produceStoryIds,proto3" json:"produceStoryIds,omitempty"`
-	AchievementIds                   []string                     `protobuf:"bytes,1004,rep,name=achievementIds,proto3" json:"achievementIds,omitempty"`
-	unknownFields                    protoimpl.UnknownFields
-	sizeCache                        protoimpl.SizeCache
+	state                                 protoimpl.MessageState       `protogen:"open.v1"`
+	Id                                    string                       `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CharacterId                           string                       `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	OriginalIdolCardSkinId                string                       `protobuf:"bytes,3,opt,name=originalIdolCardSkinId,proto3" json:"originalIdolCardSkinId,omitempty"`
+	AssetId                               string                       `protobuf:"bytes,4,opt,name=assetId,proto3" json:"assetId,omitempty"`
+	Name                                  string                       `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Rarity                                penum.IdolCardRarity         `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.IdolCardRarity" json:"rarity,omitempty"`
+	IsLimited                             bool                         `protobuf:"varint,8,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
+	AnotherCostumeHeadId                  string                       `protobuf:"bytes,11,opt,name=anotherCostumeHeadId,proto3" json:"anotherCostumeHeadId,omitempty"`
+	AnotherCostumeId                      string                       `protobuf:"bytes,12,opt,name=anotherCostumeId,proto3" json:"anotherCostumeId,omitempty"`
+	IdolCardPotentialId                   string                       `protobuf:"bytes,13,opt,name=idolCardPotentialId,proto3" json:"idolCardPotentialId,omitempty"`
+	IdolCardPotentialProduceSkillId       string                       `protobuf:"bytes,14,opt,name=idolCardPotentialProduceSkillId,proto3" json:"idolCardPotentialProduceSkillId,omitempty"`
+	IdolCardLevelLimitId                  string                       `protobuf:"bytes,15,opt,name=idolCardLevelLimitId,proto3" json:"idolCardLevelLimitId,omitempty"`
+	IdolCardLevelLimitProduceSkillId      string                       `protobuf:"bytes,16,opt,name=idolCardLevelLimitProduceSkillId,proto3" json:"idolCardLevelLimitProduceSkillId,omitempty"`
+	MaxIdolCardLevelLimitRank             penum.IdolCardLevelLimitRank `protobuf:"varint,18,opt,name=maxIdolCardLevelLimitRank,proto3,enum=penum.IdolCardLevelLimitRank" json:"maxIdolCardLevelLimitRank,omitempty"`
+	AdditionalAnotherCostumeHeadIds       []string                     `protobuf:"bytes,19,rep,name=additionalAnotherCostumeHeadIds,proto3" json:"additionalAnotherCostumeHeadIds,omitempty"`
+	AdditionalAnotherCostumeIds           []string                     `protobuf:"bytes,20,rep,name=additionalAnotherCostumeIds,proto3" json:"additionalAnotherCostumeIds,omitempty"`
+	PlanType                              penum.ProducePlanType        `protobuf:"varint,30,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
+	IdolCardLevelLimitStatusUpId          string                       `protobuf:"bytes,31,opt,name=idolCardLevelLimitStatusUpId,proto3" json:"idolCardLevelLimitStatusUpId,omitempty"`
+	ProduceVocal                          int32                        `protobuf:"varint,32,opt,name=produceVocal,proto3" json:"produceVocal,omitempty"`
+	ProduceDance                          int32                        `protobuf:"varint,33,opt,name=produceDance,proto3" json:"produceDance,omitempty"`
+	ProduceVisual                         int32                        `protobuf:"varint,34,opt,name=produceVisual,proto3" json:"produceVisual,omitempty"`
+	ProduceVocalGrowthRatePermil          int32                        `protobuf:"varint,35,opt,name=produceVocalGrowthRatePermil,proto3" json:"produceVocalGrowthRatePermil,omitempty"`
+	ProduceDanceGrowthRatePermil          int32                        `protobuf:"varint,36,opt,name=produceDanceGrowthRatePermil,proto3" json:"produceDanceGrowthRatePermil,omitempty"`
+	ProduceVisualGrowthRatePermil         int32                        `protobuf:"varint,37,opt,name=produceVisualGrowthRatePermil,proto3" json:"produceVisualGrowthRatePermil,omitempty"`
+	ProduceStamina                        int32                        `protobuf:"varint,38,opt,name=produceStamina,proto3" json:"produceStamina,omitempty"`
+	ProduceStepAuditionDifficultyId       string                       `protobuf:"bytes,39,opt,name=produceStepAuditionDifficultyId,proto3" json:"produceStepAuditionDifficultyId,omitempty"`
+	ExamInitialDeckId                     string                       `protobuf:"bytes,42,opt,name=examInitialDeckId,proto3" json:"examInitialDeckId,omitempty"`
+	ProduceCardId                         string                       `protobuf:"bytes,43,opt,name=produceCardId,proto3" json:"produceCardId,omitempty"`
+	BeforeProduceItemId                   string                       `protobuf:"bytes,44,opt,name=beforeProduceItemId,proto3" json:"beforeProduceItemId,omitempty"`
+	AfterProduceItemId                    string                       `protobuf:"bytes,45,opt,name=afterProduceItemId,proto3" json:"afterProduceItemId,omitempty"`
+	ExamEffectType                        penum.ProduceExamEffectType  `protobuf:"varint,48,opt,name=examEffectType,proto3,enum=penum.ProduceExamEffectType" json:"examEffectType,omitempty"`
+	ProduceChallengeSlotId                string                       `protobuf:"bytes,49,opt,name=produceChallengeSlotId,proto3" json:"produceChallengeSlotId,omitempty"`
+	ShowExamEffectType                    penum.ProduceExamEffectType  `protobuf:"varint,50,opt,name=showExamEffectType,proto3,enum=penum.ProduceExamEffectType" json:"showExamEffectType,omitempty"`
+	SecondProduceCardId                   string                       `protobuf:"bytes,51,opt,name=secondProduceCardId,proto3" json:"secondProduceCardId,omitempty"`
+	BeforeLevelLimitProduceItemId         string                       `protobuf:"bytes,52,opt,name=beforeLevelLimitProduceItemId,proto3" json:"beforeLevelLimitProduceItemId,omitempty"`
+	AfterLevelLimitProduceItemId          string                       `protobuf:"bytes,53,opt,name=afterLevelLimitProduceItemId,proto3" json:"afterLevelLimitProduceItemId,omitempty"`
+	PrimaStellaConsumptionSetId           string                       `protobuf:"bytes,55,opt,name=primaStellaConsumptionSetId,proto3" json:"primaStellaConsumptionSetId,omitempty"`
+	IdolCardPrimaStellaProduceSkillId     string                       `protobuf:"bytes,56,opt,name=idolCardPrimaStellaProduceSkillId,proto3" json:"idolCardPrimaStellaProduceSkillId,omitempty"`
+	PrimaStellaAchievementId              string                       `protobuf:"bytes,57,opt,name=primaStellaAchievementId,proto3" json:"primaStellaAchievementId,omitempty"`
+	PotentialRankVoiceAssetId             string                       `protobuf:"bytes,72,opt,name=potentialRankVoiceAssetId,proto3" json:"potentialRankVoiceAssetId,omitempty"`
+	ProduceSelectVoiceAssetId             string                       `protobuf:"bytes,75,opt,name=produceSelectVoiceAssetId,proto3" json:"produceSelectVoiceAssetId,omitempty"`
+	ProduceScheduleFrontVoiceGroupId      string                       `protobuf:"bytes,76,opt,name=produceScheduleFrontVoiceGroupId,proto3" json:"produceScheduleFrontVoiceGroupId,omitempty"`
+	ProduceScheduleBackVoiceGroupId       string                       `protobuf:"bytes,77,opt,name=produceScheduleBackVoiceGroupId,proto3" json:"produceScheduleBackVoiceGroupId,omitempty"`
+	UseProduceCardVoiceAssetId            string                       `protobuf:"bytes,78,opt,name=useProduceCardVoiceAssetId,proto3" json:"useProduceCardVoiceAssetId,omitempty"`
+	UseSecondProduceCardVoiceAssetId      string                       `protobuf:"bytes,79,opt,name=useSecondProduceCardVoiceAssetId,proto3" json:"useSecondProduceCardVoiceAssetId,omitempty"`
+	UsePrimaStellaProduceCardVoiceAssetId string                       `protobuf:"bytes,80,opt,name=usePrimaStellaProduceCardVoiceAssetId,proto3" json:"usePrimaStellaProduceCardVoiceAssetId,omitempty"`
+	PrimaStellaVoiceAssetId               string                       `protobuf:"bytes,81,opt,name=primaStellaVoiceAssetId,proto3" json:"primaStellaVoiceAssetId,omitempty"`
+	ViewStartTime                         int64                        `protobuf:"varint,999,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
+	Order                                 int64                        `protobuf:"varint,1000,opt,name=order,proto3" json:"order,omitempty"`
+	ProduceStoryIds                       []string                     `protobuf:"bytes,1005,rep,name=produceStoryIds,proto3" json:"produceStoryIds,omitempty"`
+	AchievementIds                        []string                     `protobuf:"bytes,1004,rep,name=achievementIds,proto3" json:"achievementIds,omitempty"`
+	unknownFields                         protoimpl.UnknownFields
+	sizeCache                             protoimpl.SizeCache
 }
 
 func (x *IdolCard) Reset() {
 	*x = IdolCard{}
-	mi := &file_pmaster_proto_msgTypes[124]
+	mi := &file_pmaster_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8989,7 +9190,7 @@ func (x *IdolCard) String() string {
 func (*IdolCard) ProtoMessage() {}
 
 func (x *IdolCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[124]
+	mi := &file_pmaster_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9002,7 +9203,7 @@ func (x *IdolCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCard.ProtoReflect.Descriptor instead.
 func (*IdolCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{124}
+	return file_pmaster_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *IdolCard) GetId() string {
@@ -9236,6 +9437,48 @@ func (x *IdolCard) GetShowExamEffectType() penum.ProduceExamEffectType {
 	return penum.ProduceExamEffectType(0)
 }
 
+func (x *IdolCard) GetSecondProduceCardId() string {
+	if x != nil {
+		return x.SecondProduceCardId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetBeforeLevelLimitProduceItemId() string {
+	if x != nil {
+		return x.BeforeLevelLimitProduceItemId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetAfterLevelLimitProduceItemId() string {
+	if x != nil {
+		return x.AfterLevelLimitProduceItemId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetPrimaStellaConsumptionSetId() string {
+	if x != nil {
+		return x.PrimaStellaConsumptionSetId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetIdolCardPrimaStellaProduceSkillId() string {
+	if x != nil {
+		return x.IdolCardPrimaStellaProduceSkillId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetPrimaStellaAchievementId() string {
+	if x != nil {
+		return x.PrimaStellaAchievementId
+	}
+	return ""
+}
+
 func (x *IdolCard) GetPotentialRankVoiceAssetId() string {
 	if x != nil {
 		return x.PotentialRankVoiceAssetId
@@ -9267,6 +9510,27 @@ func (x *IdolCard) GetProduceScheduleBackVoiceGroupId() string {
 func (x *IdolCard) GetUseProduceCardVoiceAssetId() string {
 	if x != nil {
 		return x.UseProduceCardVoiceAssetId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetUseSecondProduceCardVoiceAssetId() string {
+	if x != nil {
+		return x.UseSecondProduceCardVoiceAssetId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetUsePrimaStellaProduceCardVoiceAssetId() string {
+	if x != nil {
+		return x.UsePrimaStellaProduceCardVoiceAssetId
+	}
+	return ""
+}
+
+func (x *IdolCard) GetPrimaStellaVoiceAssetId() string {
+	if x != nil {
+		return x.PrimaStellaVoiceAssetId
 	}
 	return ""
 }
@@ -9310,7 +9574,7 @@ type IdolCardLevelLimit struct {
 
 func (x *IdolCardLevelLimit) Reset() {
 	*x = IdolCardLevelLimit{}
-	mi := &file_pmaster_proto_msgTypes[125]
+	mi := &file_pmaster_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9322,7 +9586,7 @@ func (x *IdolCardLevelLimit) String() string {
 func (*IdolCardLevelLimit) ProtoMessage() {}
 
 func (x *IdolCardLevelLimit) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[125]
+	mi := &file_pmaster_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9335,7 +9599,7 @@ func (x *IdolCardLevelLimit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardLevelLimit.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimit) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{125}
+	return file_pmaster_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *IdolCardLevelLimit) GetId() string {
@@ -9368,7 +9632,7 @@ type IdolCardLevelLimitList struct {
 
 func (x *IdolCardLevelLimitList) Reset() {
 	*x = IdolCardLevelLimitList{}
-	mi := &file_pmaster_proto_msgTypes[126]
+	mi := &file_pmaster_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9380,7 +9644,7 @@ func (x *IdolCardLevelLimitList) String() string {
 func (*IdolCardLevelLimitList) ProtoMessage() {}
 
 func (x *IdolCardLevelLimitList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[126]
+	mi := &file_pmaster_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9393,7 +9657,7 @@ func (x *IdolCardLevelLimitList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardLevelLimitList.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimitList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{126}
+	return file_pmaster_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *IdolCardLevelLimitList) GetList() []*IdolCardLevelLimit {
@@ -9416,7 +9680,7 @@ type IdolCardLevelLimitProduceSkill struct {
 
 func (x *IdolCardLevelLimitProduceSkill) Reset() {
 	*x = IdolCardLevelLimitProduceSkill{}
-	mi := &file_pmaster_proto_msgTypes[127]
+	mi := &file_pmaster_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9428,7 +9692,7 @@ func (x *IdolCardLevelLimitProduceSkill) String() string {
 func (*IdolCardLevelLimitProduceSkill) ProtoMessage() {}
 
 func (x *IdolCardLevelLimitProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[127]
+	mi := &file_pmaster_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9441,7 +9705,7 @@ func (x *IdolCardLevelLimitProduceSkill) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardLevelLimitProduceSkill.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimitProduceSkill) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{127}
+	return file_pmaster_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *IdolCardLevelLimitProduceSkill) GetId() string {
@@ -9488,7 +9752,7 @@ type IdolCardLevelLimitProduceSkillList struct {
 
 func (x *IdolCardLevelLimitProduceSkillList) Reset() {
 	*x = IdolCardLevelLimitProduceSkillList{}
-	mi := &file_pmaster_proto_msgTypes[128]
+	mi := &file_pmaster_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9500,7 +9764,7 @@ func (x *IdolCardLevelLimitProduceSkillList) String() string {
 func (*IdolCardLevelLimitProduceSkillList) ProtoMessage() {}
 
 func (x *IdolCardLevelLimitProduceSkillList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[128]
+	mi := &file_pmaster_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9513,7 +9777,7 @@ func (x *IdolCardLevelLimitProduceSkillList) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use IdolCardLevelLimitProduceSkillList.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimitProduceSkillList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{128}
+	return file_pmaster_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *IdolCardLevelLimitProduceSkillList) GetList() []*IdolCardLevelLimitProduceSkill {
@@ -9539,7 +9803,7 @@ type IdolCardLevelLimitStatusUp struct {
 
 func (x *IdolCardLevelLimitStatusUp) Reset() {
 	*x = IdolCardLevelLimitStatusUp{}
-	mi := &file_pmaster_proto_msgTypes[129]
+	mi := &file_pmaster_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9551,7 +9815,7 @@ func (x *IdolCardLevelLimitStatusUp) String() string {
 func (*IdolCardLevelLimitStatusUp) ProtoMessage() {}
 
 func (x *IdolCardLevelLimitStatusUp) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[129]
+	mi := &file_pmaster_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9564,7 +9828,7 @@ func (x *IdolCardLevelLimitStatusUp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardLevelLimitStatusUp.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimitStatusUp) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{129}
+	return file_pmaster_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *IdolCardLevelLimitStatusUp) GetId() string {
@@ -9632,7 +9896,7 @@ type IdolCardLevelLimitStatusUpList struct {
 
 func (x *IdolCardLevelLimitStatusUpList) Reset() {
 	*x = IdolCardLevelLimitStatusUpList{}
-	mi := &file_pmaster_proto_msgTypes[130]
+	mi := &file_pmaster_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9644,7 +9908,7 @@ func (x *IdolCardLevelLimitStatusUpList) String() string {
 func (*IdolCardLevelLimitStatusUpList) ProtoMessage() {}
 
 func (x *IdolCardLevelLimitStatusUpList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[130]
+	mi := &file_pmaster_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9657,7 +9921,7 @@ func (x *IdolCardLevelLimitStatusUpList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardLevelLimitStatusUpList.ProtoReflect.Descriptor instead.
 func (*IdolCardLevelLimitStatusUpList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{130}
+	return file_pmaster_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *IdolCardLevelLimitStatusUpList) GetList() []*IdolCardLevelLimitStatusUp {
@@ -9676,7 +9940,7 @@ type IdolCardList struct {
 
 func (x *IdolCardList) Reset() {
 	*x = IdolCardList{}
-	mi := &file_pmaster_proto_msgTypes[131]
+	mi := &file_pmaster_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9688,7 +9952,7 @@ func (x *IdolCardList) String() string {
 func (*IdolCardList) ProtoMessage() {}
 
 func (x *IdolCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[131]
+	mi := &file_pmaster_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9701,7 +9965,7 @@ func (x *IdolCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardList.ProtoReflect.Descriptor instead.
 func (*IdolCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{131}
+	return file_pmaster_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *IdolCardList) GetList() []*pcommon.IdolCard {
@@ -9723,7 +9987,7 @@ type IdolCardPiece struct {
 
 func (x *IdolCardPiece) Reset() {
 	*x = IdolCardPiece{}
-	mi := &file_pmaster_proto_msgTypes[132]
+	mi := &file_pmaster_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9735,7 +9999,7 @@ func (x *IdolCardPiece) String() string {
 func (*IdolCardPiece) ProtoMessage() {}
 
 func (x *IdolCardPiece) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[132]
+	mi := &file_pmaster_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9748,7 +10012,7 @@ func (x *IdolCardPiece) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPiece.ProtoReflect.Descriptor instead.
 func (*IdolCardPiece) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{132}
+	return file_pmaster_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *IdolCardPiece) GetIdolCardId() string {
@@ -9788,7 +10052,7 @@ type IdolCardPieceList struct {
 
 func (x *IdolCardPieceList) Reset() {
 	*x = IdolCardPieceList{}
-	mi := &file_pmaster_proto_msgTypes[133]
+	mi := &file_pmaster_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9800,7 +10064,7 @@ func (x *IdolCardPieceList) String() string {
 func (*IdolCardPieceList) ProtoMessage() {}
 
 func (x *IdolCardPieceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[133]
+	mi := &file_pmaster_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9813,7 +10077,7 @@ func (x *IdolCardPieceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPieceList.ProtoReflect.Descriptor instead.
 func (*IdolCardPieceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{133}
+	return file_pmaster_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *IdolCardPieceList) GetList() []*IdolCardPiece {
@@ -9833,7 +10097,7 @@ type IdolCardPieceQuantity struct {
 
 func (x *IdolCardPieceQuantity) Reset() {
 	*x = IdolCardPieceQuantity{}
-	mi := &file_pmaster_proto_msgTypes[134]
+	mi := &file_pmaster_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9845,7 +10109,7 @@ func (x *IdolCardPieceQuantity) String() string {
 func (*IdolCardPieceQuantity) ProtoMessage() {}
 
 func (x *IdolCardPieceQuantity) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[134]
+	mi := &file_pmaster_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9858,7 +10122,7 @@ func (x *IdolCardPieceQuantity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPieceQuantity.ProtoReflect.Descriptor instead.
 func (*IdolCardPieceQuantity) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{134}
+	return file_pmaster_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *IdolCardPieceQuantity) GetRarity() penum.IdolCardRarity {
@@ -9884,7 +10148,7 @@ type IdolCardPieceQuantityList struct {
 
 func (x *IdolCardPieceQuantityList) Reset() {
 	*x = IdolCardPieceQuantityList{}
-	mi := &file_pmaster_proto_msgTypes[135]
+	mi := &file_pmaster_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9896,7 +10160,7 @@ func (x *IdolCardPieceQuantityList) String() string {
 func (*IdolCardPieceQuantityList) ProtoMessage() {}
 
 func (x *IdolCardPieceQuantityList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[135]
+	mi := &file_pmaster_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9909,7 +10173,7 @@ func (x *IdolCardPieceQuantityList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPieceQuantityList.ProtoReflect.Descriptor instead.
 func (*IdolCardPieceQuantityList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{135}
+	return file_pmaster_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *IdolCardPieceQuantityList) GetList() []*IdolCardPieceQuantity {
@@ -9936,7 +10200,7 @@ type IdolCardPotential struct {
 
 func (x *IdolCardPotential) Reset() {
 	*x = IdolCardPotential{}
-	mi := &file_pmaster_proto_msgTypes[136]
+	mi := &file_pmaster_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9948,7 +10212,7 @@ func (x *IdolCardPotential) String() string {
 func (*IdolCardPotential) ProtoMessage() {}
 
 func (x *IdolCardPotential) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[136]
+	mi := &file_pmaster_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9961,7 +10225,7 @@ func (x *IdolCardPotential) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPotential.ProtoReflect.Descriptor instead.
 func (*IdolCardPotential) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{136}
+	return file_pmaster_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *IdolCardPotential) GetId() string {
@@ -10036,7 +10300,7 @@ type IdolCardPotentialList struct {
 
 func (x *IdolCardPotentialList) Reset() {
 	*x = IdolCardPotentialList{}
-	mi := &file_pmaster_proto_msgTypes[137]
+	mi := &file_pmaster_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10048,7 +10312,7 @@ func (x *IdolCardPotentialList) String() string {
 func (*IdolCardPotentialList) ProtoMessage() {}
 
 func (x *IdolCardPotentialList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[137]
+	mi := &file_pmaster_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10061,7 +10325,7 @@ func (x *IdolCardPotentialList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPotentialList.ProtoReflect.Descriptor instead.
 func (*IdolCardPotentialList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{137}
+	return file_pmaster_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *IdolCardPotentialList) GetList() []*IdolCardPotential {
@@ -10084,7 +10348,7 @@ type IdolCardPotentialProduceSkill struct {
 
 func (x *IdolCardPotentialProduceSkill) Reset() {
 	*x = IdolCardPotentialProduceSkill{}
-	mi := &file_pmaster_proto_msgTypes[138]
+	mi := &file_pmaster_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10096,7 +10360,7 @@ func (x *IdolCardPotentialProduceSkill) String() string {
 func (*IdolCardPotentialProduceSkill) ProtoMessage() {}
 
 func (x *IdolCardPotentialProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[138]
+	mi := &file_pmaster_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10109,7 +10373,7 @@ func (x *IdolCardPotentialProduceSkill) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardPotentialProduceSkill.ProtoReflect.Descriptor instead.
 func (*IdolCardPotentialProduceSkill) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{138}
+	return file_pmaster_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *IdolCardPotentialProduceSkill) GetId() string {
@@ -10156,7 +10420,7 @@ type IdolCardPotentialProduceSkillList struct {
 
 func (x *IdolCardPotentialProduceSkillList) Reset() {
 	*x = IdolCardPotentialProduceSkillList{}
-	mi := &file_pmaster_proto_msgTypes[139]
+	mi := &file_pmaster_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10168,7 +10432,7 @@ func (x *IdolCardPotentialProduceSkillList) String() string {
 func (*IdolCardPotentialProduceSkillList) ProtoMessage() {}
 
 func (x *IdolCardPotentialProduceSkillList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[139]
+	mi := &file_pmaster_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10181,10 +10445,122 @@ func (x *IdolCardPotentialProduceSkillList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use IdolCardPotentialProduceSkillList.ProtoReflect.Descriptor instead.
 func (*IdolCardPotentialProduceSkillList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{139}
+	return file_pmaster_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *IdolCardPotentialProduceSkillList) GetList() []*IdolCardPotentialProduceSkill {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type IdolCardPrimaStellaProduceSkill struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProduceSkillId    string                 `protobuf:"bytes,2,opt,name=produceSkillId,proto3" json:"produceSkillId,omitempty"`
+	ProduceSkillLevel int32                  `protobuf:"varint,3,opt,name=produceSkillLevel,proto3" json:"produceSkillLevel,omitempty"`
+	Order             int32                  `protobuf:"varint,99,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) Reset() {
+	*x = IdolCardPrimaStellaProduceSkill{}
+	mi := &file_pmaster_proto_msgTypes[142]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdolCardPrimaStellaProduceSkill) ProtoMessage() {}
+
+func (x *IdolCardPrimaStellaProduceSkill) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[142]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdolCardPrimaStellaProduceSkill.ProtoReflect.Descriptor instead.
+func (*IdolCardPrimaStellaProduceSkill) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{142}
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) GetProduceSkillId() string {
+	if x != nil {
+		return x.ProduceSkillId
+	}
+	return ""
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) GetProduceSkillLevel() int32 {
+	if x != nil {
+		return x.ProduceSkillLevel
+	}
+	return 0
+}
+
+func (x *IdolCardPrimaStellaProduceSkill) GetOrder() int32 {
+	if x != nil {
+		return x.Order
+	}
+	return 0
+}
+
+type IdolCardPrimaStellaProduceSkillList struct {
+	state         protoimpl.MessageState             `protogen:"open.v1"`
+	List          []*IdolCardPrimaStellaProduceSkill `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IdolCardPrimaStellaProduceSkillList) Reset() {
+	*x = IdolCardPrimaStellaProduceSkillList{}
+	mi := &file_pmaster_proto_msgTypes[143]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IdolCardPrimaStellaProduceSkillList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdolCardPrimaStellaProduceSkillList) ProtoMessage() {}
+
+func (x *IdolCardPrimaStellaProduceSkillList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[143]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdolCardPrimaStellaProduceSkillList.ProtoReflect.Descriptor instead.
+func (*IdolCardPrimaStellaProduceSkillList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{143}
+}
+
+func (x *IdolCardPrimaStellaProduceSkillList) GetList() []*IdolCardPrimaStellaProduceSkill {
 	if x != nil {
 		return x.List
 	}
@@ -10205,7 +10581,7 @@ type IdolCardSimulation struct {
 
 func (x *IdolCardSimulation) Reset() {
 	*x = IdolCardSimulation{}
-	mi := &file_pmaster_proto_msgTypes[140]
+	mi := &file_pmaster_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10217,7 +10593,7 @@ func (x *IdolCardSimulation) String() string {
 func (*IdolCardSimulation) ProtoMessage() {}
 
 func (x *IdolCardSimulation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[140]
+	mi := &file_pmaster_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10230,7 +10606,7 @@ func (x *IdolCardSimulation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSimulation.ProtoReflect.Descriptor instead.
 func (*IdolCardSimulation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{140}
+	return file_pmaster_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *IdolCardSimulation) GetIdolCardId() string {
@@ -10284,7 +10660,7 @@ type IdolCardSimulationList struct {
 
 func (x *IdolCardSimulationList) Reset() {
 	*x = IdolCardSimulationList{}
-	mi := &file_pmaster_proto_msgTypes[141]
+	mi := &file_pmaster_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10296,7 +10672,7 @@ func (x *IdolCardSimulationList) String() string {
 func (*IdolCardSimulationList) ProtoMessage() {}
 
 func (x *IdolCardSimulationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[141]
+	mi := &file_pmaster_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10309,7 +10685,7 @@ func (x *IdolCardSimulationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSimulationList.ProtoReflect.Descriptor instead.
 func (*IdolCardSimulationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{141}
+	return file_pmaster_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *IdolCardSimulationList) GetList() []*IdolCardSimulation {
@@ -10357,6 +10733,13 @@ type IdolCardSkin struct {
 	AfterDetailScale                      float32                `protobuf:"fixed32,111,opt,name=afterDetailScale,proto3" json:"afterDetailScale,omitempty"`
 	BeforeLevelLimitRankPositionPattern   int32                  `protobuf:"varint,112,opt,name=beforeLevelLimitRankPositionPattern,proto3" json:"beforeLevelLimitRankPositionPattern,omitempty"`
 	AfterLevelLimitRankPositionPattern    int32                  `protobuf:"varint,113,opt,name=afterLevelLimitRankPositionPattern,proto3" json:"afterLevelLimitRankPositionPattern,omitempty"`
+	PrimaStellaListPositionX              float32                `protobuf:"fixed32,114,opt,name=primaStellaListPositionX,proto3" json:"primaStellaListPositionX,omitempty"`
+	PrimaStellaListPositionY              float32                `protobuf:"fixed32,115,opt,name=primaStellaListPositionY,proto3" json:"primaStellaListPositionY,omitempty"`
+	PrimaStellaListScale                  float32                `protobuf:"fixed32,116,opt,name=primaStellaListScale,proto3" json:"primaStellaListScale,omitempty"`
+	PrimaStellaDetailPositionX            float32                `protobuf:"fixed32,117,opt,name=primaStellaDetailPositionX,proto3" json:"primaStellaDetailPositionX,omitempty"`
+	PrimaStellaDetailPositionY            float32                `protobuf:"fixed32,118,opt,name=primaStellaDetailPositionY,proto3" json:"primaStellaDetailPositionY,omitempty"`
+	PrimaStellaDetailScale                float32                `protobuf:"fixed32,119,opt,name=primaStellaDetailScale,proto3" json:"primaStellaDetailScale,omitempty"`
+	PrimaStellaPositionPattern            int32                  `protobuf:"varint,120,opt,name=primaStellaPositionPattern,proto3" json:"primaStellaPositionPattern,omitempty"`
 	ViewStartTime                         int64                  `protobuf:"varint,999,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
 	Order                                 int64                  `protobuf:"varint,1000,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields                         protoimpl.UnknownFields
@@ -10365,7 +10748,7 @@ type IdolCardSkin struct {
 
 func (x *IdolCardSkin) Reset() {
 	*x = IdolCardSkin{}
-	mi := &file_pmaster_proto_msgTypes[142]
+	mi := &file_pmaster_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10377,7 +10760,7 @@ func (x *IdolCardSkin) String() string {
 func (*IdolCardSkin) ProtoMessage() {}
 
 func (x *IdolCardSkin) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[142]
+	mi := &file_pmaster_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10390,7 +10773,7 @@ func (x *IdolCardSkin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkin.ProtoReflect.Descriptor instead.
 func (*IdolCardSkin) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{142}
+	return file_pmaster_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *IdolCardSkin) GetId() string {
@@ -10645,6 +11028,55 @@ func (x *IdolCardSkin) GetAfterLevelLimitRankPositionPattern() int32 {
 	return 0
 }
 
+func (x *IdolCardSkin) GetPrimaStellaListPositionX() float32 {
+	if x != nil {
+		return x.PrimaStellaListPositionX
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaListPositionY() float32 {
+	if x != nil {
+		return x.PrimaStellaListPositionY
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaListScale() float32 {
+	if x != nil {
+		return x.PrimaStellaListScale
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaDetailPositionX() float32 {
+	if x != nil {
+		return x.PrimaStellaDetailPositionX
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaDetailPositionY() float32 {
+	if x != nil {
+		return x.PrimaStellaDetailPositionY
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaDetailScale() float32 {
+	if x != nil {
+		return x.PrimaStellaDetailScale
+	}
+	return 0
+}
+
+func (x *IdolCardSkin) GetPrimaStellaPositionPattern() int32 {
+	if x != nil {
+		return x.PrimaStellaPositionPattern
+	}
+	return 0
+}
+
 func (x *IdolCardSkin) GetViewStartTime() int64 {
 	if x != nil {
 		return x.ViewStartTime
@@ -10668,7 +11100,7 @@ type IdolCardSkinList struct {
 
 func (x *IdolCardSkinList) Reset() {
 	*x = IdolCardSkinList{}
-	mi := &file_pmaster_proto_msgTypes[143]
+	mi := &file_pmaster_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10680,7 +11112,7 @@ func (x *IdolCardSkinList) String() string {
 func (*IdolCardSkinList) ProtoMessage() {}
 
 func (x *IdolCardSkinList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[143]
+	mi := &file_pmaster_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10693,7 +11125,7 @@ func (x *IdolCardSkinList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinList.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{143}
+	return file_pmaster_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *IdolCardSkinList) GetList() []*IdolCardSkin {
@@ -10716,7 +11148,7 @@ type IdolCardSkinSelectReward struct {
 
 func (x *IdolCardSkinSelectReward) Reset() {
 	*x = IdolCardSkinSelectReward{}
-	mi := &file_pmaster_proto_msgTypes[144]
+	mi := &file_pmaster_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10728,7 +11160,7 @@ func (x *IdolCardSkinSelectReward) String() string {
 func (*IdolCardSkinSelectReward) ProtoMessage() {}
 
 func (x *IdolCardSkinSelectReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[144]
+	mi := &file_pmaster_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10741,7 +11173,7 @@ func (x *IdolCardSkinSelectReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinSelectReward.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinSelectReward) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{144}
+	return file_pmaster_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *IdolCardSkinSelectReward) GetId() string {
@@ -10788,7 +11220,7 @@ type IdolCardSkinSelectRewardList struct {
 
 func (x *IdolCardSkinSelectRewardList) Reset() {
 	*x = IdolCardSkinSelectRewardList{}
-	mi := &file_pmaster_proto_msgTypes[145]
+	mi := &file_pmaster_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10800,7 +11232,7 @@ func (x *IdolCardSkinSelectRewardList) String() string {
 func (*IdolCardSkinSelectRewardList) ProtoMessage() {}
 
 func (x *IdolCardSkinSelectRewardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[145]
+	mi := &file_pmaster_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10813,7 +11245,7 @@ func (x *IdolCardSkinSelectRewardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinSelectRewardList.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinSelectRewardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{145}
+	return file_pmaster_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *IdolCardSkinSelectRewardList) GetList() []*IdolCardSkinSelectReward {
@@ -10835,7 +11267,7 @@ type IdolCardSkinUnit struct {
 
 func (x *IdolCardSkinUnit) Reset() {
 	*x = IdolCardSkinUnit{}
-	mi := &file_pmaster_proto_msgTypes[146]
+	mi := &file_pmaster_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10847,7 +11279,7 @@ func (x *IdolCardSkinUnit) String() string {
 func (*IdolCardSkinUnit) ProtoMessage() {}
 
 func (x *IdolCardSkinUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[146]
+	mi := &file_pmaster_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10860,7 +11292,7 @@ func (x *IdolCardSkinUnit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinUnit.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinUnit) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{146}
+	return file_pmaster_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *IdolCardSkinUnit) GetId() string {
@@ -10900,7 +11332,7 @@ type IdolCardSkinUnitList struct {
 
 func (x *IdolCardSkinUnitList) Reset() {
 	*x = IdolCardSkinUnitList{}
-	mi := &file_pmaster_proto_msgTypes[147]
+	mi := &file_pmaster_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10912,7 +11344,7 @@ func (x *IdolCardSkinUnitList) String() string {
 func (*IdolCardSkinUnitList) ProtoMessage() {}
 
 func (x *IdolCardSkinUnitList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[147]
+	mi := &file_pmaster_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10925,7 +11357,7 @@ func (x *IdolCardSkinUnitList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinUnitList.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinUnitList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{147}
+	return file_pmaster_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *IdolCardSkinUnitList) GetList() []*IdolCardSkinUnit {
@@ -10945,7 +11377,7 @@ type InvitationMission struct {
 
 func (x *InvitationMission) Reset() {
 	*x = InvitationMission{}
-	mi := &file_pmaster_proto_msgTypes[148]
+	mi := &file_pmaster_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10957,7 +11389,7 @@ func (x *InvitationMission) String() string {
 func (*InvitationMission) ProtoMessage() {}
 
 func (x *InvitationMission) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[148]
+	mi := &file_pmaster_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10970,7 +11402,7 @@ func (x *InvitationMission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvitationMission.ProtoReflect.Descriptor instead.
 func (*InvitationMission) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{148}
+	return file_pmaster_proto_rawDescGZIP(), []int{152}
 }
 
 func (x *InvitationMission) GetProducerLevel() int32 {
@@ -10996,7 +11428,7 @@ type InvitationMissionList struct {
 
 func (x *InvitationMissionList) Reset() {
 	*x = InvitationMissionList{}
-	mi := &file_pmaster_proto_msgTypes[149]
+	mi := &file_pmaster_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11008,7 +11440,7 @@ func (x *InvitationMissionList) String() string {
 func (*InvitationMissionList) ProtoMessage() {}
 
 func (x *InvitationMissionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[149]
+	mi := &file_pmaster_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11021,7 +11453,7 @@ func (x *InvitationMissionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvitationMissionList.ProtoReflect.Descriptor instead.
 func (*InvitationMissionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{149}
+	return file_pmaster_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *InvitationMissionList) GetList() []*InvitationMission {
@@ -11041,7 +11473,7 @@ type InvitationPointReward struct {
 
 func (x *InvitationPointReward) Reset() {
 	*x = InvitationPointReward{}
-	mi := &file_pmaster_proto_msgTypes[150]
+	mi := &file_pmaster_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11053,7 +11485,7 @@ func (x *InvitationPointReward) String() string {
 func (*InvitationPointReward) ProtoMessage() {}
 
 func (x *InvitationPointReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[150]
+	mi := &file_pmaster_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11066,7 +11498,7 @@ func (x *InvitationPointReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvitationPointReward.ProtoReflect.Descriptor instead.
 func (*InvitationPointReward) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{150}
+	return file_pmaster_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *InvitationPointReward) GetThreshold() int32 {
@@ -11092,7 +11524,7 @@ type InvitationPointRewardList struct {
 
 func (x *InvitationPointRewardList) Reset() {
 	*x = InvitationPointRewardList{}
-	mi := &file_pmaster_proto_msgTypes[151]
+	mi := &file_pmaster_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11104,7 +11536,7 @@ func (x *InvitationPointRewardList) String() string {
 func (*InvitationPointRewardList) ProtoMessage() {}
 
 func (x *InvitationPointRewardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[151]
+	mi := &file_pmaster_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11117,7 +11549,7 @@ func (x *InvitationPointRewardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvitationPointRewardList.ProtoReflect.Descriptor instead.
 func (*InvitationPointRewardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{151}
+	return file_pmaster_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *InvitationPointRewardList) GetList() []*InvitationPointReward {
@@ -11150,6 +11582,7 @@ type Item struct {
 	ProduceHighScoreEventId     string                  `protobuf:"bytes,21,opt,name=produceHighScoreEventId,proto3" json:"produceHighScoreEventId,omitempty"`
 	TourEventId                 string                  `protobuf:"bytes,26,opt,name=tourEventId,proto3" json:"tourEventId,omitempty"`
 	ResearchEventId             string                  `protobuf:"bytes,27,opt,name=researchEventId,proto3" json:"researchEventId,omitempty"`
+	ProduceGrowthPanelSheetId   string                  `protobuf:"bytes,28,opt,name=produceGrowthPanelSheetId,proto3" json:"produceGrowthPanelSheetId,omitempty"`
 	IdolCardRarity              penum.IdolCardRarity    `protobuf:"varint,22,opt,name=idolCardRarity,proto3,enum=penum.IdolCardRarity" json:"idolCardRarity,omitempty"`
 	SupportCardRarity           penum.SupportCardRarity `protobuf:"varint,23,opt,name=supportCardRarity,proto3,enum=penum.SupportCardRarity" json:"supportCardRarity,omitempty"`
 	CharacterId                 string                  `protobuf:"bytes,24,opt,name=characterId,proto3" json:"characterId,omitempty"`
@@ -11165,7 +11598,7 @@ type Item struct {
 
 func (x *Item) Reset() {
 	*x = Item{}
-	mi := &file_pmaster_proto_msgTypes[152]
+	mi := &file_pmaster_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11177,7 +11610,7 @@ func (x *Item) String() string {
 func (*Item) ProtoMessage() {}
 
 func (x *Item) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[152]
+	mi := &file_pmaster_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11190,7 +11623,7 @@ func (x *Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Item.ProtoReflect.Descriptor instead.
 func (*Item) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{152}
+	return file_pmaster_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *Item) GetId() string {
@@ -11340,6 +11773,13 @@ func (x *Item) GetResearchEventId() string {
 	return ""
 }
 
+func (x *Item) GetProduceGrowthPanelSheetId() string {
+	if x != nil {
+		return x.ProduceGrowthPanelSheetId
+	}
+	return ""
+}
+
 func (x *Item) GetIdolCardRarity() penum.IdolCardRarity {
 	if x != nil {
 		return x.IdolCardRarity
@@ -11412,7 +11852,7 @@ type ItemList struct {
 
 func (x *ItemList) Reset() {
 	*x = ItemList{}
-	mi := &file_pmaster_proto_msgTypes[153]
+	mi := &file_pmaster_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11424,7 +11864,7 @@ func (x *ItemList) String() string {
 func (*ItemList) ProtoMessage() {}
 
 func (x *ItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[153]
+	mi := &file_pmaster_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11437,7 +11877,7 @@ func (x *ItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemList.ProtoReflect.Descriptor instead.
 func (*ItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{153}
+	return file_pmaster_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *ItemList) GetList() []*Item {
@@ -11459,7 +11899,7 @@ type JewelConsumptionCount struct {
 
 func (x *JewelConsumptionCount) Reset() {
 	*x = JewelConsumptionCount{}
-	mi := &file_pmaster_proto_msgTypes[154]
+	mi := &file_pmaster_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11471,7 +11911,7 @@ func (x *JewelConsumptionCount) String() string {
 func (*JewelConsumptionCount) ProtoMessage() {}
 
 func (x *JewelConsumptionCount) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[154]
+	mi := &file_pmaster_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11484,7 +11924,7 @@ func (x *JewelConsumptionCount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JewelConsumptionCount.ProtoReflect.Descriptor instead.
 func (*JewelConsumptionCount) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{154}
+	return file_pmaster_proto_rawDescGZIP(), []int{158}
 }
 
 func (x *JewelConsumptionCount) GetId() string {
@@ -11524,7 +11964,7 @@ type JewelConsumptionCountList struct {
 
 func (x *JewelConsumptionCountList) Reset() {
 	*x = JewelConsumptionCountList{}
-	mi := &file_pmaster_proto_msgTypes[155]
+	mi := &file_pmaster_proto_msgTypes[159]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11536,7 +11976,7 @@ func (x *JewelConsumptionCountList) String() string {
 func (*JewelConsumptionCountList) ProtoMessage() {}
 
 func (x *JewelConsumptionCountList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[155]
+	mi := &file_pmaster_proto_msgTypes[159]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11549,7 +11989,7 @@ func (x *JewelConsumptionCountList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JewelConsumptionCountList.ProtoReflect.Descriptor instead.
 func (*JewelConsumptionCountList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{155}
+	return file_pmaster_proto_rawDescGZIP(), []int{159}
 }
 
 func (x *JewelConsumptionCountList) GetList() []*JewelConsumptionCount {
@@ -11569,7 +12009,7 @@ type LimitItem struct {
 
 func (x *LimitItem) Reset() {
 	*x = LimitItem{}
-	mi := &file_pmaster_proto_msgTypes[156]
+	mi := &file_pmaster_proto_msgTypes[160]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11581,7 +12021,7 @@ func (x *LimitItem) String() string {
 func (*LimitItem) ProtoMessage() {}
 
 func (x *LimitItem) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[156]
+	mi := &file_pmaster_proto_msgTypes[160]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11594,7 +12034,7 @@ func (x *LimitItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LimitItem.ProtoReflect.Descriptor instead.
 func (*LimitItem) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{156}
+	return file_pmaster_proto_rawDescGZIP(), []int{160}
 }
 
 func (x *LimitItem) GetType() penum.ItemType {
@@ -11620,7 +12060,7 @@ type LimitItemList struct {
 
 func (x *LimitItemList) Reset() {
 	*x = LimitItemList{}
-	mi := &file_pmaster_proto_msgTypes[157]
+	mi := &file_pmaster_proto_msgTypes[161]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11632,7 +12072,7 @@ func (x *LimitItemList) String() string {
 func (*LimitItemList) ProtoMessage() {}
 
 func (x *LimitItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[157]
+	mi := &file_pmaster_proto_msgTypes[161]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11645,7 +12085,7 @@ func (x *LimitItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LimitItemList.ProtoReflect.Descriptor instead.
 func (*LimitItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{157}
+	return file_pmaster_proto_rawDescGZIP(), []int{161}
 }
 
 func (x *LimitItemList) GetList() []*LimitItem {
@@ -11665,7 +12105,7 @@ type Localization struct {
 
 func (x *Localization) Reset() {
 	*x = Localization{}
-	mi := &file_pmaster_proto_msgTypes[158]
+	mi := &file_pmaster_proto_msgTypes[162]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11677,7 +12117,7 @@ func (x *Localization) String() string {
 func (*Localization) ProtoMessage() {}
 
 func (x *Localization) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[158]
+	mi := &file_pmaster_proto_msgTypes[162]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11690,7 +12130,7 @@ func (x *Localization) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Localization.ProtoReflect.Descriptor instead.
 func (*Localization) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{158}
+	return file_pmaster_proto_rawDescGZIP(), []int{162}
 }
 
 func (x *Localization) GetId() string {
@@ -11716,7 +12156,7 @@ type LocalizationList struct {
 
 func (x *LocalizationList) Reset() {
 	*x = LocalizationList{}
-	mi := &file_pmaster_proto_msgTypes[159]
+	mi := &file_pmaster_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11728,7 +12168,7 @@ func (x *LocalizationList) String() string {
 func (*LocalizationList) ProtoMessage() {}
 
 func (x *LocalizationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[159]
+	mi := &file_pmaster_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11741,7 +12181,7 @@ func (x *LocalizationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocalizationList.ProtoReflect.Descriptor instead.
 func (*LocalizationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{159}
+	return file_pmaster_proto_rawDescGZIP(), []int{163}
 }
 
 func (x *LocalizationList) GetList() []*Localization {
@@ -11765,7 +12205,7 @@ type LoginBonusMotion struct {
 
 func (x *LoginBonusMotion) Reset() {
 	*x = LoginBonusMotion{}
-	mi := &file_pmaster_proto_msgTypes[160]
+	mi := &file_pmaster_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11777,7 +12217,7 @@ func (x *LoginBonusMotion) String() string {
 func (*LoginBonusMotion) ProtoMessage() {}
 
 func (x *LoginBonusMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[160]
+	mi := &file_pmaster_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11790,7 +12230,7 @@ func (x *LoginBonusMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginBonusMotion.ProtoReflect.Descriptor instead.
 func (*LoginBonusMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{160}
+	return file_pmaster_proto_rawDescGZIP(), []int{164}
 }
 
 func (x *LoginBonusMotion) GetId() string {
@@ -11844,7 +12284,7 @@ type LoginBonusMotionList struct {
 
 func (x *LoginBonusMotionList) Reset() {
 	*x = LoginBonusMotionList{}
-	mi := &file_pmaster_proto_msgTypes[161]
+	mi := &file_pmaster_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11856,7 +12296,7 @@ func (x *LoginBonusMotionList) String() string {
 func (*LoginBonusMotionList) ProtoMessage() {}
 
 func (x *LoginBonusMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[161]
+	mi := &file_pmaster_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11869,7 +12309,7 @@ func (x *LoginBonusMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginBonusMotionList.ProtoReflect.Descriptor instead.
 func (*LoginBonusMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{161}
+	return file_pmaster_proto_rawDescGZIP(), []int{165}
 }
 
 func (x *LoginBonusMotionList) GetList() []*LoginBonusMotion {
@@ -11894,7 +12334,7 @@ type MainStoryChapter struct {
 
 func (x *MainStoryChapter) Reset() {
 	*x = MainStoryChapter{}
-	mi := &file_pmaster_proto_msgTypes[162]
+	mi := &file_pmaster_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11906,7 +12346,7 @@ func (x *MainStoryChapter) String() string {
 func (*MainStoryChapter) ProtoMessage() {}
 
 func (x *MainStoryChapter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[162]
+	mi := &file_pmaster_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11919,7 +12359,7 @@ func (x *MainStoryChapter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainStoryChapter.ProtoReflect.Descriptor instead.
 func (*MainStoryChapter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{162}
+	return file_pmaster_proto_rawDescGZIP(), []int{166}
 }
 
 func (x *MainStoryChapter) GetMainStoryPartId() string {
@@ -11980,7 +12420,7 @@ type MainStoryChapterList struct {
 
 func (x *MainStoryChapterList) Reset() {
 	*x = MainStoryChapterList{}
-	mi := &file_pmaster_proto_msgTypes[163]
+	mi := &file_pmaster_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11992,7 +12432,7 @@ func (x *MainStoryChapterList) String() string {
 func (*MainStoryChapterList) ProtoMessage() {}
 
 func (x *MainStoryChapterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[163]
+	mi := &file_pmaster_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12005,7 +12445,7 @@ func (x *MainStoryChapterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainStoryChapterList.ProtoReflect.Descriptor instead.
 func (*MainStoryChapterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{163}
+	return file_pmaster_proto_rawDescGZIP(), []int{167}
 }
 
 func (x *MainStoryChapterList) GetList() []*MainStoryChapter {
@@ -12027,7 +12467,7 @@ type MainStoryPart struct {
 
 func (x *MainStoryPart) Reset() {
 	*x = MainStoryPart{}
-	mi := &file_pmaster_proto_msgTypes[164]
+	mi := &file_pmaster_proto_msgTypes[168]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12039,7 +12479,7 @@ func (x *MainStoryPart) String() string {
 func (*MainStoryPart) ProtoMessage() {}
 
 func (x *MainStoryPart) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[164]
+	mi := &file_pmaster_proto_msgTypes[168]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12052,7 +12492,7 @@ func (x *MainStoryPart) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainStoryPart.ProtoReflect.Descriptor instead.
 func (*MainStoryPart) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{164}
+	return file_pmaster_proto_rawDescGZIP(), []int{168}
 }
 
 func (x *MainStoryPart) GetId() string {
@@ -12092,7 +12532,7 @@ type MainStoryPartList struct {
 
 func (x *MainStoryPartList) Reset() {
 	*x = MainStoryPartList{}
-	mi := &file_pmaster_proto_msgTypes[165]
+	mi := &file_pmaster_proto_msgTypes[169]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12104,7 +12544,7 @@ func (x *MainStoryPartList) String() string {
 func (*MainStoryPartList) ProtoMessage() {}
 
 func (x *MainStoryPartList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[165]
+	mi := &file_pmaster_proto_msgTypes[169]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12117,7 +12557,7 @@ func (x *MainStoryPartList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainStoryPartList.ProtoReflect.Descriptor instead.
 func (*MainStoryPartList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{165}
+	return file_pmaster_proto_rawDescGZIP(), []int{169}
 }
 
 func (x *MainStoryPartList) GetList() []*MainStoryPart {
@@ -12152,7 +12592,7 @@ type MainTask struct {
 
 func (x *MainTask) Reset() {
 	*x = MainTask{}
-	mi := &file_pmaster_proto_msgTypes[166]
+	mi := &file_pmaster_proto_msgTypes[170]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12164,7 +12604,7 @@ func (x *MainTask) String() string {
 func (*MainTask) ProtoMessage() {}
 
 func (x *MainTask) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[166]
+	mi := &file_pmaster_proto_msgTypes[170]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12177,7 +12617,7 @@ func (x *MainTask) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTask.ProtoReflect.Descriptor instead.
 func (*MainTask) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{166}
+	return file_pmaster_proto_rawDescGZIP(), []int{170}
 }
 
 func (x *MainTask) GetMainTaskGroupId() string {
@@ -12313,7 +12753,7 @@ type MainTaskGroup struct {
 
 func (x *MainTaskGroup) Reset() {
 	*x = MainTaskGroup{}
-	mi := &file_pmaster_proto_msgTypes[167]
+	mi := &file_pmaster_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12325,7 +12765,7 @@ func (x *MainTaskGroup) String() string {
 func (*MainTaskGroup) ProtoMessage() {}
 
 func (x *MainTaskGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[167]
+	mi := &file_pmaster_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12338,7 +12778,7 @@ func (x *MainTaskGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTaskGroup.ProtoReflect.Descriptor instead.
 func (*MainTaskGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{167}
+	return file_pmaster_proto_rawDescGZIP(), []int{171}
 }
 
 func (x *MainTaskGroup) GetId() string {
@@ -12392,7 +12832,7 @@ type MainTaskGroupList struct {
 
 func (x *MainTaskGroupList) Reset() {
 	*x = MainTaskGroupList{}
-	mi := &file_pmaster_proto_msgTypes[168]
+	mi := &file_pmaster_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12404,7 +12844,7 @@ func (x *MainTaskGroupList) String() string {
 func (*MainTaskGroupList) ProtoMessage() {}
 
 func (x *MainTaskGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[168]
+	mi := &file_pmaster_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12417,7 +12857,7 @@ func (x *MainTaskGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTaskGroupList.ProtoReflect.Descriptor instead.
 func (*MainTaskGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{168}
+	return file_pmaster_proto_rawDescGZIP(), []int{172}
 }
 
 func (x *MainTaskGroupList) GetList() []*MainTaskGroup {
@@ -12437,7 +12877,7 @@ type MainTaskIcon struct {
 
 func (x *MainTaskIcon) Reset() {
 	*x = MainTaskIcon{}
-	mi := &file_pmaster_proto_msgTypes[169]
+	mi := &file_pmaster_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12449,7 +12889,7 @@ func (x *MainTaskIcon) String() string {
 func (*MainTaskIcon) ProtoMessage() {}
 
 func (x *MainTaskIcon) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[169]
+	mi := &file_pmaster_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12462,7 +12902,7 @@ func (x *MainTaskIcon) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTaskIcon.ProtoReflect.Descriptor instead.
 func (*MainTaskIcon) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{169}
+	return file_pmaster_proto_rawDescGZIP(), []int{173}
 }
 
 func (x *MainTaskIcon) GetMissionType() penum.MissionType {
@@ -12488,7 +12928,7 @@ type MainTaskIconList struct {
 
 func (x *MainTaskIconList) Reset() {
 	*x = MainTaskIconList{}
-	mi := &file_pmaster_proto_msgTypes[170]
+	mi := &file_pmaster_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12500,7 +12940,7 @@ func (x *MainTaskIconList) String() string {
 func (*MainTaskIconList) ProtoMessage() {}
 
 func (x *MainTaskIconList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[170]
+	mi := &file_pmaster_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12513,7 +12953,7 @@ func (x *MainTaskIconList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTaskIconList.ProtoReflect.Descriptor instead.
 func (*MainTaskIconList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{170}
+	return file_pmaster_proto_rawDescGZIP(), []int{174}
 }
 
 func (x *MainTaskIconList) GetList() []*MainTaskIcon {
@@ -12532,7 +12972,7 @@ type MainTaskList struct {
 
 func (x *MainTaskList) Reset() {
 	*x = MainTaskList{}
-	mi := &file_pmaster_proto_msgTypes[171]
+	mi := &file_pmaster_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12544,7 +12984,7 @@ func (x *MainTaskList) String() string {
 func (*MainTaskList) ProtoMessage() {}
 
 func (x *MainTaskList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[171]
+	mi := &file_pmaster_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12557,7 +12997,7 @@ func (x *MainTaskList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MainTaskList.ProtoReflect.Descriptor instead.
 func (*MainTaskList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{171}
+	return file_pmaster_proto_rawDescGZIP(), []int{175}
 }
 
 func (x *MainTaskList) GetList() []*MainTask {
@@ -12590,7 +13030,7 @@ type Media struct {
 
 func (x *Media) Reset() {
 	*x = Media{}
-	mi := &file_pmaster_proto_msgTypes[172]
+	mi := &file_pmaster_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12602,7 +13042,7 @@ func (x *Media) String() string {
 func (*Media) ProtoMessage() {}
 
 func (x *Media) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[172]
+	mi := &file_pmaster_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12615,7 +13055,7 @@ func (x *Media) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Media.ProtoReflect.Descriptor instead.
 func (*Media) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{172}
+	return file_pmaster_proto_rawDescGZIP(), []int{176}
 }
 
 func (x *Media) GetId() string {
@@ -12737,7 +13177,7 @@ type MediaExternalLink struct {
 
 func (x *MediaExternalLink) Reset() {
 	*x = MediaExternalLink{}
-	mi := &file_pmaster_proto_msgTypes[173]
+	mi := &file_pmaster_proto_msgTypes[177]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12749,7 +13189,7 @@ func (x *MediaExternalLink) String() string {
 func (*MediaExternalLink) ProtoMessage() {}
 
 func (x *MediaExternalLink) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[173]
+	mi := &file_pmaster_proto_msgTypes[177]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12762,7 +13202,7 @@ func (x *MediaExternalLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaExternalLink.ProtoReflect.Descriptor instead.
 func (*MediaExternalLink) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{173}
+	return file_pmaster_proto_rawDescGZIP(), []int{177}
 }
 
 func (x *MediaExternalLink) GetId() string {
@@ -12816,7 +13256,7 @@ type MediaExternalLinkList struct {
 
 func (x *MediaExternalLinkList) Reset() {
 	*x = MediaExternalLinkList{}
-	mi := &file_pmaster_proto_msgTypes[174]
+	mi := &file_pmaster_proto_msgTypes[178]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12828,7 +13268,7 @@ func (x *MediaExternalLinkList) String() string {
 func (*MediaExternalLinkList) ProtoMessage() {}
 
 func (x *MediaExternalLinkList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[174]
+	mi := &file_pmaster_proto_msgTypes[178]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12841,7 +13281,7 @@ func (x *MediaExternalLinkList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaExternalLinkList.ProtoReflect.Descriptor instead.
 func (*MediaExternalLinkList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{174}
+	return file_pmaster_proto_rawDescGZIP(), []int{178}
 }
 
 func (x *MediaExternalLinkList) GetList() []*MediaExternalLink {
@@ -12860,7 +13300,7 @@ type MediaList struct {
 
 func (x *MediaList) Reset() {
 	*x = MediaList{}
-	mi := &file_pmaster_proto_msgTypes[175]
+	mi := &file_pmaster_proto_msgTypes[179]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12872,7 +13312,7 @@ func (x *MediaList) String() string {
 func (*MediaList) ProtoMessage() {}
 
 func (x *MediaList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[175]
+	mi := &file_pmaster_proto_msgTypes[179]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12885,7 +13325,7 @@ func (x *MediaList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MediaList.ProtoReflect.Descriptor instead.
 func (*MediaList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{175}
+	return file_pmaster_proto_rawDescGZIP(), []int{179}
 }
 
 func (x *MediaList) GetList() []*Media {
@@ -12908,7 +13348,7 @@ type MeishiBaseAsset struct {
 
 func (x *MeishiBaseAsset) Reset() {
 	*x = MeishiBaseAsset{}
-	mi := &file_pmaster_proto_msgTypes[176]
+	mi := &file_pmaster_proto_msgTypes[180]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12920,7 +13360,7 @@ func (x *MeishiBaseAsset) String() string {
 func (*MeishiBaseAsset) ProtoMessage() {}
 
 func (x *MeishiBaseAsset) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[176]
+	mi := &file_pmaster_proto_msgTypes[180]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12933,7 +13373,7 @@ func (x *MeishiBaseAsset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiBaseAsset.ProtoReflect.Descriptor instead.
 func (*MeishiBaseAsset) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{176}
+	return file_pmaster_proto_rawDescGZIP(), []int{180}
 }
 
 func (x *MeishiBaseAsset) GetId() string {
@@ -12980,7 +13420,7 @@ type MeishiBaseAssetList struct {
 
 func (x *MeishiBaseAssetList) Reset() {
 	*x = MeishiBaseAssetList{}
-	mi := &file_pmaster_proto_msgTypes[177]
+	mi := &file_pmaster_proto_msgTypes[181]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12992,7 +13432,7 @@ func (x *MeishiBaseAssetList) String() string {
 func (*MeishiBaseAssetList) ProtoMessage() {}
 
 func (x *MeishiBaseAssetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[177]
+	mi := &file_pmaster_proto_msgTypes[181]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13005,7 +13445,7 @@ func (x *MeishiBaseAssetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiBaseAssetList.ProtoReflect.Descriptor instead.
 func (*MeishiBaseAssetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{177}
+	return file_pmaster_proto_rawDescGZIP(), []int{181}
 }
 
 func (x *MeishiBaseAssetList) GetList() []*MeishiBaseAsset {
@@ -13025,7 +13465,7 @@ type MeishiBaseColor struct {
 
 func (x *MeishiBaseColor) Reset() {
 	*x = MeishiBaseColor{}
-	mi := &file_pmaster_proto_msgTypes[178]
+	mi := &file_pmaster_proto_msgTypes[182]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13037,7 +13477,7 @@ func (x *MeishiBaseColor) String() string {
 func (*MeishiBaseColor) ProtoMessage() {}
 
 func (x *MeishiBaseColor) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[178]
+	mi := &file_pmaster_proto_msgTypes[182]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13050,7 +13490,7 @@ func (x *MeishiBaseColor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiBaseColor.ProtoReflect.Descriptor instead.
 func (*MeishiBaseColor) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{178}
+	return file_pmaster_proto_rawDescGZIP(), []int{182}
 }
 
 func (x *MeishiBaseColor) GetId() string {
@@ -13076,7 +13516,7 @@ type MeishiBaseColorList struct {
 
 func (x *MeishiBaseColorList) Reset() {
 	*x = MeishiBaseColorList{}
-	mi := &file_pmaster_proto_msgTypes[179]
+	mi := &file_pmaster_proto_msgTypes[183]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13088,7 +13528,7 @@ func (x *MeishiBaseColorList) String() string {
 func (*MeishiBaseColorList) ProtoMessage() {}
 
 func (x *MeishiBaseColorList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[179]
+	mi := &file_pmaster_proto_msgTypes[183]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13101,7 +13541,7 @@ func (x *MeishiBaseColorList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiBaseColorList.ProtoReflect.Descriptor instead.
 func (*MeishiBaseColorList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{179}
+	return file_pmaster_proto_rawDescGZIP(), []int{183}
 }
 
 func (x *MeishiBaseColorList) GetList() []*MeishiBaseColor {
@@ -13130,7 +13570,7 @@ type MeishiIllustrationAsset struct {
 
 func (x *MeishiIllustrationAsset) Reset() {
 	*x = MeishiIllustrationAsset{}
-	mi := &file_pmaster_proto_msgTypes[180]
+	mi := &file_pmaster_proto_msgTypes[184]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13142,7 +13582,7 @@ func (x *MeishiIllustrationAsset) String() string {
 func (*MeishiIllustrationAsset) ProtoMessage() {}
 
 func (x *MeishiIllustrationAsset) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[180]
+	mi := &file_pmaster_proto_msgTypes[184]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13155,7 +13595,7 @@ func (x *MeishiIllustrationAsset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiIllustrationAsset.ProtoReflect.Descriptor instead.
 func (*MeishiIllustrationAsset) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{180}
+	return file_pmaster_proto_rawDescGZIP(), []int{184}
 }
 
 func (x *MeishiIllustrationAsset) GetId() string {
@@ -13244,7 +13684,7 @@ type MeishiIllustrationAssetList struct {
 
 func (x *MeishiIllustrationAssetList) Reset() {
 	*x = MeishiIllustrationAssetList{}
-	mi := &file_pmaster_proto_msgTypes[181]
+	mi := &file_pmaster_proto_msgTypes[185]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13256,7 +13696,7 @@ func (x *MeishiIllustrationAssetList) String() string {
 func (*MeishiIllustrationAssetList) ProtoMessage() {}
 
 func (x *MeishiIllustrationAssetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[181]
+	mi := &file_pmaster_proto_msgTypes[185]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13269,7 +13709,7 @@ func (x *MeishiIllustrationAssetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiIllustrationAssetList.ProtoReflect.Descriptor instead.
 func (*MeishiIllustrationAssetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{181}
+	return file_pmaster_proto_rawDescGZIP(), []int{185}
 }
 
 func (x *MeishiIllustrationAssetList) GetList() []*MeishiIllustrationAsset {
@@ -13289,7 +13729,7 @@ type MeishiTextColor struct {
 
 func (x *MeishiTextColor) Reset() {
 	*x = MeishiTextColor{}
-	mi := &file_pmaster_proto_msgTypes[182]
+	mi := &file_pmaster_proto_msgTypes[186]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13301,7 +13741,7 @@ func (x *MeishiTextColor) String() string {
 func (*MeishiTextColor) ProtoMessage() {}
 
 func (x *MeishiTextColor) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[182]
+	mi := &file_pmaster_proto_msgTypes[186]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13314,7 +13754,7 @@ func (x *MeishiTextColor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiTextColor.ProtoReflect.Descriptor instead.
 func (*MeishiTextColor) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{182}
+	return file_pmaster_proto_rawDescGZIP(), []int{186}
 }
 
 func (x *MeishiTextColor) GetId() string {
@@ -13340,7 +13780,7 @@ type MeishiTextColorList struct {
 
 func (x *MeishiTextColorList) Reset() {
 	*x = MeishiTextColorList{}
-	mi := &file_pmaster_proto_msgTypes[183]
+	mi := &file_pmaster_proto_msgTypes[187]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13352,7 +13792,7 @@ func (x *MeishiTextColorList) String() string {
 func (*MeishiTextColorList) ProtoMessage() {}
 
 func (x *MeishiTextColorList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[183]
+	mi := &file_pmaster_proto_msgTypes[187]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13365,7 +13805,7 @@ func (x *MeishiTextColorList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeishiTextColorList.ProtoReflect.Descriptor instead.
 func (*MeishiTextColorList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{183}
+	return file_pmaster_proto_rawDescGZIP(), []int{187}
 }
 
 func (x *MeishiTextColorList) GetList() []*MeishiTextColor {
@@ -13376,20 +13816,21 @@ func (x *MeishiTextColorList) GetList() []*MeishiTextColor {
 }
 
 type MemoryAbility struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Level           int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
-	SkillId         string                 `protobuf:"bytes,4,opt,name=skillId,proto3" json:"skillId,omitempty"`
-	Evaluation      int32                  `protobuf:"varint,6,opt,name=evaluation,proto3" json:"evaluation,omitempty"`
-	Rarity          penum.SkillRarity      `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.SkillRarity" json:"rarity,omitempty"`
-	ProduceGroupIds []string               `protobuf:"bytes,8,rep,name=produceGroupIds,proto3" json:"produceGroupIds,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Level              int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
+	SkillId            string                 `protobuf:"bytes,4,opt,name=skillId,proto3" json:"skillId,omitempty"`
+	Evaluation         int32                  `protobuf:"varint,6,opt,name=evaluation,proto3" json:"evaluation,omitempty"`
+	Rarity             penum.SkillRarity      `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.SkillRarity" json:"rarity,omitempty"`
+	ProduceGroupIds    []string               `protobuf:"bytes,8,rep,name=produceGroupIds,proto3" json:"produceGroupIds,omitempty"`
+	IsUniqueActivation bool                   `protobuf:"varint,9,opt,name=isUniqueActivation,proto3" json:"isUniqueActivation,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *MemoryAbility) Reset() {
 	*x = MemoryAbility{}
-	mi := &file_pmaster_proto_msgTypes[184]
+	mi := &file_pmaster_proto_msgTypes[188]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13401,7 +13842,7 @@ func (x *MemoryAbility) String() string {
 func (*MemoryAbility) ProtoMessage() {}
 
 func (x *MemoryAbility) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[184]
+	mi := &file_pmaster_proto_msgTypes[188]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13414,7 +13855,7 @@ func (x *MemoryAbility) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryAbility.ProtoReflect.Descriptor instead.
 func (*MemoryAbility) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{184}
+	return file_pmaster_proto_rawDescGZIP(), []int{188}
 }
 
 func (x *MemoryAbility) GetId() string {
@@ -13459,6 +13900,13 @@ func (x *MemoryAbility) GetProduceGroupIds() []string {
 	return nil
 }
 
+func (x *MemoryAbility) GetIsUniqueActivation() bool {
+	if x != nil {
+		return x.IsUniqueActivation
+	}
+	return false
+}
+
 type MemoryAbilityList struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
 	List          []*pcommon.MemoryAbility `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -13468,7 +13916,7 @@ type MemoryAbilityList struct {
 
 func (x *MemoryAbilityList) Reset() {
 	*x = MemoryAbilityList{}
-	mi := &file_pmaster_proto_msgTypes[185]
+	mi := &file_pmaster_proto_msgTypes[189]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13480,7 +13928,7 @@ func (x *MemoryAbilityList) String() string {
 func (*MemoryAbilityList) ProtoMessage() {}
 
 func (x *MemoryAbilityList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[185]
+	mi := &file_pmaster_proto_msgTypes[189]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13493,7 +13941,7 @@ func (x *MemoryAbilityList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryAbilityList.ProtoReflect.Descriptor instead.
 func (*MemoryAbilityList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{185}
+	return file_pmaster_proto_rawDescGZIP(), []int{189}
 }
 
 func (x *MemoryAbilityList) GetList() []*pcommon.MemoryAbility {
@@ -13513,7 +13961,7 @@ type MemoryExchangeItem struct {
 
 func (x *MemoryExchangeItem) Reset() {
 	*x = MemoryExchangeItem{}
-	mi := &file_pmaster_proto_msgTypes[186]
+	mi := &file_pmaster_proto_msgTypes[190]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13525,7 +13973,7 @@ func (x *MemoryExchangeItem) String() string {
 func (*MemoryExchangeItem) ProtoMessage() {}
 
 func (x *MemoryExchangeItem) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[186]
+	mi := &file_pmaster_proto_msgTypes[190]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13538,7 +13986,7 @@ func (x *MemoryExchangeItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryExchangeItem.ProtoReflect.Descriptor instead.
 func (*MemoryExchangeItem) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{186}
+	return file_pmaster_proto_rawDescGZIP(), []int{190}
 }
 
 func (x *MemoryExchangeItem) GetPlanType() penum.ProducePlanType {
@@ -13564,7 +14012,7 @@ type MemoryExchangeItemList struct {
 
 func (x *MemoryExchangeItemList) Reset() {
 	*x = MemoryExchangeItemList{}
-	mi := &file_pmaster_proto_msgTypes[187]
+	mi := &file_pmaster_proto_msgTypes[191]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13576,7 +14024,7 @@ func (x *MemoryExchangeItemList) String() string {
 func (*MemoryExchangeItemList) ProtoMessage() {}
 
 func (x *MemoryExchangeItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[187]
+	mi := &file_pmaster_proto_msgTypes[191]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13589,7 +14037,7 @@ func (x *MemoryExchangeItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryExchangeItemList.ProtoReflect.Descriptor instead.
 func (*MemoryExchangeItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{187}
+	return file_pmaster_proto_rawDescGZIP(), []int{191}
 }
 
 func (x *MemoryExchangeItemList) GetList() []*MemoryExchangeItem {
@@ -13609,7 +14057,7 @@ type MemoryExchangeItemQuantity struct {
 
 func (x *MemoryExchangeItemQuantity) Reset() {
 	*x = MemoryExchangeItemQuantity{}
-	mi := &file_pmaster_proto_msgTypes[188]
+	mi := &file_pmaster_proto_msgTypes[192]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13621,7 +14069,7 @@ func (x *MemoryExchangeItemQuantity) String() string {
 func (*MemoryExchangeItemQuantity) ProtoMessage() {}
 
 func (x *MemoryExchangeItemQuantity) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[188]
+	mi := &file_pmaster_proto_msgTypes[192]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13634,7 +14082,7 @@ func (x *MemoryExchangeItemQuantity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryExchangeItemQuantity.ProtoReflect.Descriptor instead.
 func (*MemoryExchangeItemQuantity) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{188}
+	return file_pmaster_proto_rawDescGZIP(), []int{192}
 }
 
 func (x *MemoryExchangeItemQuantity) GetGrade() penum.ResultGrade {
@@ -13660,7 +14108,7 @@ type MemoryExchangeItemQuantityList struct {
 
 func (x *MemoryExchangeItemQuantityList) Reset() {
 	*x = MemoryExchangeItemQuantityList{}
-	mi := &file_pmaster_proto_msgTypes[189]
+	mi := &file_pmaster_proto_msgTypes[193]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13672,7 +14120,7 @@ func (x *MemoryExchangeItemQuantityList) String() string {
 func (*MemoryExchangeItemQuantityList) ProtoMessage() {}
 
 func (x *MemoryExchangeItemQuantityList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[189]
+	mi := &file_pmaster_proto_msgTypes[193]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13685,7 +14133,7 @@ func (x *MemoryExchangeItemQuantityList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryExchangeItemQuantityList.ProtoReflect.Descriptor instead.
 func (*MemoryExchangeItemQuantityList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{189}
+	return file_pmaster_proto_rawDescGZIP(), []int{193}
 }
 
 func (x *MemoryExchangeItemQuantityList) GetList() []*MemoryExchangeItemQuantity {
@@ -13719,7 +14167,7 @@ type MemoryGift struct {
 
 func (x *MemoryGift) Reset() {
 	*x = MemoryGift{}
-	mi := &file_pmaster_proto_msgTypes[190]
+	mi := &file_pmaster_proto_msgTypes[194]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13731,7 +14179,7 @@ func (x *MemoryGift) String() string {
 func (*MemoryGift) ProtoMessage() {}
 
 func (x *MemoryGift) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[190]
+	mi := &file_pmaster_proto_msgTypes[194]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13744,7 +14192,7 @@ func (x *MemoryGift) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryGift.ProtoReflect.Descriptor instead.
 func (*MemoryGift) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{190}
+	return file_pmaster_proto_rawDescGZIP(), []int{194}
 }
 
 func (x *MemoryGift) GetId() string {
@@ -13868,7 +14316,7 @@ type MemoryGiftList struct {
 
 func (x *MemoryGiftList) Reset() {
 	*x = MemoryGiftList{}
-	mi := &file_pmaster_proto_msgTypes[191]
+	mi := &file_pmaster_proto_msgTypes[195]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13880,7 +14328,7 @@ func (x *MemoryGiftList) String() string {
 func (*MemoryGiftList) ProtoMessage() {}
 
 func (x *MemoryGiftList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[191]
+	mi := &file_pmaster_proto_msgTypes[195]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13893,7 +14341,7 @@ func (x *MemoryGiftList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryGiftList.ProtoReflect.Descriptor instead.
 func (*MemoryGiftList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{191}
+	return file_pmaster_proto_rawDescGZIP(), []int{195}
 }
 
 func (x *MemoryGiftList) GetList() []*MemoryGift {
@@ -13915,7 +14363,7 @@ type MemoryTag struct {
 
 func (x *MemoryTag) Reset() {
 	*x = MemoryTag{}
-	mi := &file_pmaster_proto_msgTypes[192]
+	mi := &file_pmaster_proto_msgTypes[196]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13927,7 +14375,7 @@ func (x *MemoryTag) String() string {
 func (*MemoryTag) ProtoMessage() {}
 
 func (x *MemoryTag) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[192]
+	mi := &file_pmaster_proto_msgTypes[196]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13940,7 +14388,7 @@ func (x *MemoryTag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryTag.ProtoReflect.Descriptor instead.
 func (*MemoryTag) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{192}
+	return file_pmaster_proto_rawDescGZIP(), []int{196}
 }
 
 func (x *MemoryTag) GetId() string {
@@ -13980,7 +14428,7 @@ type MemoryTagList struct {
 
 func (x *MemoryTagList) Reset() {
 	*x = MemoryTagList{}
-	mi := &file_pmaster_proto_msgTypes[193]
+	mi := &file_pmaster_proto_msgTypes[197]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13992,7 +14440,7 @@ func (x *MemoryTagList) String() string {
 func (*MemoryTagList) ProtoMessage() {}
 
 func (x *MemoryTagList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[193]
+	mi := &file_pmaster_proto_msgTypes[197]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14005,7 +14453,7 @@ func (x *MemoryTagList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryTagList.ProtoReflect.Descriptor instead.
 func (*MemoryTagList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{193}
+	return file_pmaster_proto_rawDescGZIP(), []int{197}
 }
 
 func (x *MemoryTagList) GetList() []*MemoryTag {
@@ -14039,7 +14487,7 @@ type Mission struct {
 
 func (x *Mission) Reset() {
 	*x = Mission{}
-	mi := &file_pmaster_proto_msgTypes[194]
+	mi := &file_pmaster_proto_msgTypes[198]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14051,7 +14499,7 @@ func (x *Mission) String() string {
 func (*Mission) ProtoMessage() {}
 
 func (x *Mission) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[194]
+	mi := &file_pmaster_proto_msgTypes[198]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14064,7 +14512,7 @@ func (x *Mission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Mission.ProtoReflect.Descriptor instead.
 func (*Mission) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{194}
+	return file_pmaster_proto_rawDescGZIP(), []int{198}
 }
 
 func (x *Mission) GetId() string {
@@ -14190,7 +14638,7 @@ type MissionDailyRelease struct {
 
 func (x *MissionDailyRelease) Reset() {
 	*x = MissionDailyRelease{}
-	mi := &file_pmaster_proto_msgTypes[195]
+	mi := &file_pmaster_proto_msgTypes[199]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14202,7 +14650,7 @@ func (x *MissionDailyRelease) String() string {
 func (*MissionDailyRelease) ProtoMessage() {}
 
 func (x *MissionDailyRelease) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[195]
+	mi := &file_pmaster_proto_msgTypes[199]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14215,7 +14663,7 @@ func (x *MissionDailyRelease) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionDailyRelease.ProtoReflect.Descriptor instead.
 func (*MissionDailyRelease) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{195}
+	return file_pmaster_proto_rawDescGZIP(), []int{199}
 }
 
 func (x *MissionDailyRelease) GetMissionDailyReleaseGroupId() string {
@@ -14259,7 +14707,7 @@ type MissionDailyReleaseGroup struct {
 
 func (x *MissionDailyReleaseGroup) Reset() {
 	*x = MissionDailyReleaseGroup{}
-	mi := &file_pmaster_proto_msgTypes[196]
+	mi := &file_pmaster_proto_msgTypes[200]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14271,7 +14719,7 @@ func (x *MissionDailyReleaseGroup) String() string {
 func (*MissionDailyReleaseGroup) ProtoMessage() {}
 
 func (x *MissionDailyReleaseGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[196]
+	mi := &file_pmaster_proto_msgTypes[200]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14284,7 +14732,7 @@ func (x *MissionDailyReleaseGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionDailyReleaseGroup.ProtoReflect.Descriptor instead.
 func (*MissionDailyReleaseGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{196}
+	return file_pmaster_proto_rawDescGZIP(), []int{200}
 }
 
 func (x *MissionDailyReleaseGroup) GetId() string {
@@ -14380,7 +14828,7 @@ type MissionDailyReleaseGroupList struct {
 
 func (x *MissionDailyReleaseGroupList) Reset() {
 	*x = MissionDailyReleaseGroupList{}
-	mi := &file_pmaster_proto_msgTypes[197]
+	mi := &file_pmaster_proto_msgTypes[201]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14392,7 +14840,7 @@ func (x *MissionDailyReleaseGroupList) String() string {
 func (*MissionDailyReleaseGroupList) ProtoMessage() {}
 
 func (x *MissionDailyReleaseGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[197]
+	mi := &file_pmaster_proto_msgTypes[201]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14405,7 +14853,7 @@ func (x *MissionDailyReleaseGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionDailyReleaseGroupList.ProtoReflect.Descriptor instead.
 func (*MissionDailyReleaseGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{197}
+	return file_pmaster_proto_rawDescGZIP(), []int{201}
 }
 
 func (x *MissionDailyReleaseGroupList) GetList() []*MissionDailyReleaseGroup {
@@ -14424,7 +14872,7 @@ type MissionDailyReleaseList struct {
 
 func (x *MissionDailyReleaseList) Reset() {
 	*x = MissionDailyReleaseList{}
-	mi := &file_pmaster_proto_msgTypes[198]
+	mi := &file_pmaster_proto_msgTypes[202]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14436,7 +14884,7 @@ func (x *MissionDailyReleaseList) String() string {
 func (*MissionDailyReleaseList) ProtoMessage() {}
 
 func (x *MissionDailyReleaseList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[198]
+	mi := &file_pmaster_proto_msgTypes[202]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14449,7 +14897,7 @@ func (x *MissionDailyReleaseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionDailyReleaseList.ProtoReflect.Descriptor instead.
 func (*MissionDailyReleaseList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{198}
+	return file_pmaster_proto_rawDescGZIP(), []int{202}
 }
 
 func (x *MissionDailyReleaseList) GetList() []*MissionDailyRelease {
@@ -14478,7 +14926,7 @@ type MissionGroup struct {
 
 func (x *MissionGroup) Reset() {
 	*x = MissionGroup{}
-	mi := &file_pmaster_proto_msgTypes[199]
+	mi := &file_pmaster_proto_msgTypes[203]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14490,7 +14938,7 @@ func (x *MissionGroup) String() string {
 func (*MissionGroup) ProtoMessage() {}
 
 func (x *MissionGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[199]
+	mi := &file_pmaster_proto_msgTypes[203]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14503,7 +14951,7 @@ func (x *MissionGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionGroup.ProtoReflect.Descriptor instead.
 func (*MissionGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{199}
+	return file_pmaster_proto_rawDescGZIP(), []int{203}
 }
 
 func (x *MissionGroup) GetId() string {
@@ -14592,7 +15040,7 @@ type MissionGroupList struct {
 
 func (x *MissionGroupList) Reset() {
 	*x = MissionGroupList{}
-	mi := &file_pmaster_proto_msgTypes[200]
+	mi := &file_pmaster_proto_msgTypes[204]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14604,7 +15052,7 @@ func (x *MissionGroupList) String() string {
 func (*MissionGroupList) ProtoMessage() {}
 
 func (x *MissionGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[200]
+	mi := &file_pmaster_proto_msgTypes[204]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14617,7 +15065,7 @@ func (x *MissionGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionGroupList.ProtoReflect.Descriptor instead.
 func (*MissionGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{200}
+	return file_pmaster_proto_rawDescGZIP(), []int{204}
 }
 
 func (x *MissionGroupList) GetList() []*MissionGroup {
@@ -14636,7 +15084,7 @@ type MissionList struct {
 
 func (x *MissionList) Reset() {
 	*x = MissionList{}
-	mi := &file_pmaster_proto_msgTypes[201]
+	mi := &file_pmaster_proto_msgTypes[205]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14648,7 +15096,7 @@ func (x *MissionList) String() string {
 func (*MissionList) ProtoMessage() {}
 
 func (x *MissionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[201]
+	mi := &file_pmaster_proto_msgTypes[205]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14661,7 +15109,7 @@ func (x *MissionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionList.ProtoReflect.Descriptor instead.
 func (*MissionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{201}
+	return file_pmaster_proto_rawDescGZIP(), []int{205}
 }
 
 func (x *MissionList) GetList() []*Mission {
@@ -14690,7 +15138,7 @@ type MissionPanelSheet struct {
 
 func (x *MissionPanelSheet) Reset() {
 	*x = MissionPanelSheet{}
-	mi := &file_pmaster_proto_msgTypes[202]
+	mi := &file_pmaster_proto_msgTypes[206]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14702,7 +15150,7 @@ func (x *MissionPanelSheet) String() string {
 func (*MissionPanelSheet) ProtoMessage() {}
 
 func (x *MissionPanelSheet) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[202]
+	mi := &file_pmaster_proto_msgTypes[206]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14715,7 +15163,7 @@ func (x *MissionPanelSheet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPanelSheet.ProtoReflect.Descriptor instead.
 func (*MissionPanelSheet) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{202}
+	return file_pmaster_proto_rawDescGZIP(), []int{206}
 }
 
 func (x *MissionPanelSheet) GetMissionPanelSheetGroupId() string {
@@ -14808,7 +15256,7 @@ type MissionPanelSheetGroup struct {
 
 func (x *MissionPanelSheetGroup) Reset() {
 	*x = MissionPanelSheetGroup{}
-	mi := &file_pmaster_proto_msgTypes[203]
+	mi := &file_pmaster_proto_msgTypes[207]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14820,7 +15268,7 @@ func (x *MissionPanelSheetGroup) String() string {
 func (*MissionPanelSheetGroup) ProtoMessage() {}
 
 func (x *MissionPanelSheetGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[203]
+	mi := &file_pmaster_proto_msgTypes[207]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14833,7 +15281,7 @@ func (x *MissionPanelSheetGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPanelSheetGroup.ProtoReflect.Descriptor instead.
 func (*MissionPanelSheetGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{203}
+	return file_pmaster_proto_rawDescGZIP(), []int{207}
 }
 
 func (x *MissionPanelSheetGroup) GetId() string {
@@ -14880,7 +15328,7 @@ type MissionPanelSheetGroupList struct {
 
 func (x *MissionPanelSheetGroupList) Reset() {
 	*x = MissionPanelSheetGroupList{}
-	mi := &file_pmaster_proto_msgTypes[204]
+	mi := &file_pmaster_proto_msgTypes[208]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14892,7 +15340,7 @@ func (x *MissionPanelSheetGroupList) String() string {
 func (*MissionPanelSheetGroupList) ProtoMessage() {}
 
 func (x *MissionPanelSheetGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[204]
+	mi := &file_pmaster_proto_msgTypes[208]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14905,7 +15353,7 @@ func (x *MissionPanelSheetGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPanelSheetGroupList.ProtoReflect.Descriptor instead.
 func (*MissionPanelSheetGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{204}
+	return file_pmaster_proto_rawDescGZIP(), []int{208}
 }
 
 func (x *MissionPanelSheetGroupList) GetList() []*MissionPanelSheetGroup {
@@ -14924,7 +15372,7 @@ type MissionPanelSheetList struct {
 
 func (x *MissionPanelSheetList) Reset() {
 	*x = MissionPanelSheetList{}
-	mi := &file_pmaster_proto_msgTypes[205]
+	mi := &file_pmaster_proto_msgTypes[209]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14936,7 +15384,7 @@ func (x *MissionPanelSheetList) String() string {
 func (*MissionPanelSheetList) ProtoMessage() {}
 
 func (x *MissionPanelSheetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[205]
+	mi := &file_pmaster_proto_msgTypes[209]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14949,7 +15397,7 @@ func (x *MissionPanelSheetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPanelSheetList.ProtoReflect.Descriptor instead.
 func (*MissionPanelSheetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{205}
+	return file_pmaster_proto_rawDescGZIP(), []int{209}
 }
 
 func (x *MissionPanelSheetList) GetList() []*MissionPanelSheet {
@@ -14978,7 +15426,7 @@ type MissionPass struct {
 
 func (x *MissionPass) Reset() {
 	*x = MissionPass{}
-	mi := &file_pmaster_proto_msgTypes[206]
+	mi := &file_pmaster_proto_msgTypes[210]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14990,7 +15438,7 @@ func (x *MissionPass) String() string {
 func (*MissionPass) ProtoMessage() {}
 
 func (x *MissionPass) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[206]
+	mi := &file_pmaster_proto_msgTypes[210]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15003,7 +15451,7 @@ func (x *MissionPass) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPass.ProtoReflect.Descriptor instead.
 func (*MissionPass) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{206}
+	return file_pmaster_proto_rawDescGZIP(), []int{210}
 }
 
 func (x *MissionPass) GetId() string {
@@ -15092,7 +15540,7 @@ type MissionPassList struct {
 
 func (x *MissionPassList) Reset() {
 	*x = MissionPassList{}
-	mi := &file_pmaster_proto_msgTypes[207]
+	mi := &file_pmaster_proto_msgTypes[211]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15104,7 +15552,7 @@ func (x *MissionPassList) String() string {
 func (*MissionPassList) ProtoMessage() {}
 
 func (x *MissionPassList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[207]
+	mi := &file_pmaster_proto_msgTypes[211]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15117,7 +15565,7 @@ func (x *MissionPassList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPassList.ProtoReflect.Descriptor instead.
 func (*MissionPassList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{207}
+	return file_pmaster_proto_rawDescGZIP(), []int{211}
 }
 
 func (x *MissionPassList) GetList() []*MissionPass {
@@ -15138,7 +15586,7 @@ type MissionPassPoint struct {
 
 func (x *MissionPassPoint) Reset() {
 	*x = MissionPassPoint{}
-	mi := &file_pmaster_proto_msgTypes[208]
+	mi := &file_pmaster_proto_msgTypes[212]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15150,7 +15598,7 @@ func (x *MissionPassPoint) String() string {
 func (*MissionPassPoint) ProtoMessage() {}
 
 func (x *MissionPassPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[208]
+	mi := &file_pmaster_proto_msgTypes[212]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15163,7 +15611,7 @@ func (x *MissionPassPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPassPoint.ProtoReflect.Descriptor instead.
 func (*MissionPassPoint) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{208}
+	return file_pmaster_proto_rawDescGZIP(), []int{212}
 }
 
 func (x *MissionPassPoint) GetId() string {
@@ -15196,7 +15644,7 @@ type MissionPassPointList struct {
 
 func (x *MissionPassPointList) Reset() {
 	*x = MissionPassPointList{}
-	mi := &file_pmaster_proto_msgTypes[209]
+	mi := &file_pmaster_proto_msgTypes[213]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15208,7 +15656,7 @@ func (x *MissionPassPointList) String() string {
 func (*MissionPassPointList) ProtoMessage() {}
 
 func (x *MissionPassPointList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[209]
+	mi := &file_pmaster_proto_msgTypes[213]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15221,7 +15669,7 @@ func (x *MissionPassPointList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPassPointList.ProtoReflect.Descriptor instead.
 func (*MissionPassPointList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{209}
+	return file_pmaster_proto_rawDescGZIP(), []int{213}
 }
 
 func (x *MissionPassPointList) GetList() []*MissionPassPoint {
@@ -15246,7 +15694,7 @@ type MissionPassProgress struct {
 
 func (x *MissionPassProgress) Reset() {
 	*x = MissionPassProgress{}
-	mi := &file_pmaster_proto_msgTypes[210]
+	mi := &file_pmaster_proto_msgTypes[214]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15258,7 +15706,7 @@ func (x *MissionPassProgress) String() string {
 func (*MissionPassProgress) ProtoMessage() {}
 
 func (x *MissionPassProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[210]
+	mi := &file_pmaster_proto_msgTypes[214]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15271,7 +15719,7 @@ func (x *MissionPassProgress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPassProgress.ProtoReflect.Descriptor instead.
 func (*MissionPassProgress) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{210}
+	return file_pmaster_proto_rawDescGZIP(), []int{214}
 }
 
 func (x *MissionPassProgress) GetMissionPassId() string {
@@ -15332,7 +15780,7 @@ type MissionPassProgressList struct {
 
 func (x *MissionPassProgressList) Reset() {
 	*x = MissionPassProgressList{}
-	mi := &file_pmaster_proto_msgTypes[211]
+	mi := &file_pmaster_proto_msgTypes[215]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15344,7 +15792,7 @@ func (x *MissionPassProgressList) String() string {
 func (*MissionPassProgressList) ProtoMessage() {}
 
 func (x *MissionPassProgressList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[211]
+	mi := &file_pmaster_proto_msgTypes[215]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15357,7 +15805,7 @@ func (x *MissionPassProgressList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPassProgressList.ProtoReflect.Descriptor instead.
 func (*MissionPassProgressList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{211}
+	return file_pmaster_proto_rawDescGZIP(), []int{215}
 }
 
 func (x *MissionPassProgressList) GetList() []*MissionPassProgress {
@@ -15379,7 +15827,7 @@ type MissionPoint struct {
 
 func (x *MissionPoint) Reset() {
 	*x = MissionPoint{}
-	mi := &file_pmaster_proto_msgTypes[212]
+	mi := &file_pmaster_proto_msgTypes[216]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15391,7 +15839,7 @@ func (x *MissionPoint) String() string {
 func (*MissionPoint) ProtoMessage() {}
 
 func (x *MissionPoint) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[212]
+	mi := &file_pmaster_proto_msgTypes[216]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15404,7 +15852,7 @@ func (x *MissionPoint) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPoint.ProtoReflect.Descriptor instead.
 func (*MissionPoint) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{212}
+	return file_pmaster_proto_rawDescGZIP(), []int{216}
 }
 
 func (x *MissionPoint) GetId() string {
@@ -15444,7 +15892,7 @@ type MissionPointList struct {
 
 func (x *MissionPointList) Reset() {
 	*x = MissionPointList{}
-	mi := &file_pmaster_proto_msgTypes[213]
+	mi := &file_pmaster_proto_msgTypes[217]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15456,7 +15904,7 @@ func (x *MissionPointList) String() string {
 func (*MissionPointList) ProtoMessage() {}
 
 func (x *MissionPointList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[213]
+	mi := &file_pmaster_proto_msgTypes[217]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15469,7 +15917,7 @@ func (x *MissionPointList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPointList.ProtoReflect.Descriptor instead.
 func (*MissionPointList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{213}
+	return file_pmaster_proto_rawDescGZIP(), []int{217}
 }
 
 func (x *MissionPointList) GetList() []*MissionPoint {
@@ -15491,7 +15939,7 @@ type MissionPointRewardSet struct {
 
 func (x *MissionPointRewardSet) Reset() {
 	*x = MissionPointRewardSet{}
-	mi := &file_pmaster_proto_msgTypes[214]
+	mi := &file_pmaster_proto_msgTypes[218]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15503,7 +15951,7 @@ func (x *MissionPointRewardSet) String() string {
 func (*MissionPointRewardSet) ProtoMessage() {}
 
 func (x *MissionPointRewardSet) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[214]
+	mi := &file_pmaster_proto_msgTypes[218]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15516,7 +15964,7 @@ func (x *MissionPointRewardSet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPointRewardSet.ProtoReflect.Descriptor instead.
 func (*MissionPointRewardSet) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{214}
+	return file_pmaster_proto_rawDescGZIP(), []int{218}
 }
 
 func (x *MissionPointRewardSet) GetMissionPointId() string {
@@ -15556,7 +16004,7 @@ type MissionPointRewardSetList struct {
 
 func (x *MissionPointRewardSetList) Reset() {
 	*x = MissionPointRewardSetList{}
-	mi := &file_pmaster_proto_msgTypes[215]
+	mi := &file_pmaster_proto_msgTypes[219]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15568,7 +16016,7 @@ func (x *MissionPointRewardSetList) String() string {
 func (*MissionPointRewardSetList) ProtoMessage() {}
 
 func (x *MissionPointRewardSetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[215]
+	mi := &file_pmaster_proto_msgTypes[219]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15581,7 +16029,7 @@ func (x *MissionPointRewardSetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionPointRewardSetList.ProtoReflect.Descriptor instead.
 func (*MissionPointRewardSetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{215}
+	return file_pmaster_proto_rawDescGZIP(), []int{219}
 }
 
 func (x *MissionPointRewardSetList) GetList() []*MissionPointRewardSet {
@@ -15603,7 +16051,7 @@ type MissionProgress struct {
 
 func (x *MissionProgress) Reset() {
 	*x = MissionProgress{}
-	mi := &file_pmaster_proto_msgTypes[216]
+	mi := &file_pmaster_proto_msgTypes[220]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15615,7 +16063,7 @@ func (x *MissionProgress) String() string {
 func (*MissionProgress) ProtoMessage() {}
 
 func (x *MissionProgress) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[216]
+	mi := &file_pmaster_proto_msgTypes[220]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15628,7 +16076,7 @@ func (x *MissionProgress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionProgress.ProtoReflect.Descriptor instead.
 func (*MissionProgress) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{216}
+	return file_pmaster_proto_rawDescGZIP(), []int{220}
 }
 
 func (x *MissionProgress) GetMissionId() string {
@@ -15668,7 +16116,7 @@ type MissionProgressList struct {
 
 func (x *MissionProgressList) Reset() {
 	*x = MissionProgressList{}
-	mi := &file_pmaster_proto_msgTypes[217]
+	mi := &file_pmaster_proto_msgTypes[221]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15680,7 +16128,7 @@ func (x *MissionProgressList) String() string {
 func (*MissionProgressList) ProtoMessage() {}
 
 func (x *MissionProgressList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[217]
+	mi := &file_pmaster_proto_msgTypes[221]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15693,7 +16141,7 @@ func (x *MissionProgressList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MissionProgressList.ProtoReflect.Descriptor instead.
 func (*MissionProgressList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{217}
+	return file_pmaster_proto_rawDescGZIP(), []int{221}
 }
 
 func (x *MissionProgressList) GetList() []*MissionProgress {
@@ -15715,7 +16163,7 @@ type Money struct {
 
 func (x *Money) Reset() {
 	*x = Money{}
-	mi := &file_pmaster_proto_msgTypes[218]
+	mi := &file_pmaster_proto_msgTypes[222]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15727,7 +16175,7 @@ func (x *Money) String() string {
 func (*Money) ProtoMessage() {}
 
 func (x *Money) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[218]
+	mi := &file_pmaster_proto_msgTypes[222]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15740,7 +16188,7 @@ func (x *Money) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Money.ProtoReflect.Descriptor instead.
 func (*Money) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{218}
+	return file_pmaster_proto_rawDescGZIP(), []int{222}
 }
 
 func (x *Money) GetLevel() int32 {
@@ -15780,7 +16228,7 @@ type MoneyList struct {
 
 func (x *MoneyList) Reset() {
 	*x = MoneyList{}
-	mi := &file_pmaster_proto_msgTypes[219]
+	mi := &file_pmaster_proto_msgTypes[223]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15792,7 +16240,7 @@ func (x *MoneyList) String() string {
 func (*MoneyList) ProtoMessage() {}
 
 func (x *MoneyList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[219]
+	mi := &file_pmaster_proto_msgTypes[223]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15805,7 +16253,7 @@ func (x *MoneyList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoneyList.ProtoReflect.Descriptor instead.
 func (*MoneyList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{219}
+	return file_pmaster_proto_rawDescGZIP(), []int{223}
 }
 
 func (x *MoneyList) GetList() []*Money {
@@ -15842,7 +16290,7 @@ type Music struct {
 
 func (x *Music) Reset() {
 	*x = Music{}
-	mi := &file_pmaster_proto_msgTypes[220]
+	mi := &file_pmaster_proto_msgTypes[224]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15854,7 +16302,7 @@ func (x *Music) String() string {
 func (*Music) ProtoMessage() {}
 
 func (x *Music) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[220]
+	mi := &file_pmaster_proto_msgTypes[224]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15867,7 +16315,7 @@ func (x *Music) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Music.ProtoReflect.Descriptor instead.
 func (*Music) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{220}
+	return file_pmaster_proto_rawDescGZIP(), []int{224}
 }
 
 func (x *Music) GetId() string {
@@ -16015,7 +16463,7 @@ type MusicHot struct {
 
 func (x *MusicHot) Reset() {
 	*x = MusicHot{}
-	mi := &file_pmaster_proto_msgTypes[221]
+	mi := &file_pmaster_proto_msgTypes[225]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16027,7 +16475,7 @@ func (x *MusicHot) String() string {
 func (*MusicHot) ProtoMessage() {}
 
 func (x *MusicHot) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[221]
+	mi := &file_pmaster_proto_msgTypes[225]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16040,7 +16488,7 @@ func (x *MusicHot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MusicHot.ProtoReflect.Descriptor instead.
 func (*MusicHot) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{221}
+	return file_pmaster_proto_rawDescGZIP(), []int{225}
 }
 
 func (x *MusicHot) GetId() string {
@@ -16080,7 +16528,7 @@ type MusicHotList struct {
 
 func (x *MusicHotList) Reset() {
 	*x = MusicHotList{}
-	mi := &file_pmaster_proto_msgTypes[222]
+	mi := &file_pmaster_proto_msgTypes[226]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16092,7 +16540,7 @@ func (x *MusicHotList) String() string {
 func (*MusicHotList) ProtoMessage() {}
 
 func (x *MusicHotList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[222]
+	mi := &file_pmaster_proto_msgTypes[226]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16105,7 +16553,7 @@ func (x *MusicHotList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MusicHotList.ProtoReflect.Descriptor instead.
 func (*MusicHotList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{222}
+	return file_pmaster_proto_rawDescGZIP(), []int{226}
 }
 
 func (x *MusicHotList) GetList() []*MusicHot {
@@ -16124,7 +16572,7 @@ type MusicList struct {
 
 func (x *MusicList) Reset() {
 	*x = MusicList{}
-	mi := &file_pmaster_proto_msgTypes[223]
+	mi := &file_pmaster_proto_msgTypes[227]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16136,7 +16584,7 @@ func (x *MusicList) String() string {
 func (*MusicList) ProtoMessage() {}
 
 func (x *MusicList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[223]
+	mi := &file_pmaster_proto_msgTypes[227]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16149,7 +16597,7 @@ func (x *MusicList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MusicList.ProtoReflect.Descriptor instead.
 func (*MusicList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{223}
+	return file_pmaster_proto_rawDescGZIP(), []int{227}
 }
 
 func (x *MusicList) GetList() []*Music {
@@ -16172,7 +16620,7 @@ type MusicSinger struct {
 
 func (x *MusicSinger) Reset() {
 	*x = MusicSinger{}
-	mi := &file_pmaster_proto_msgTypes[224]
+	mi := &file_pmaster_proto_msgTypes[228]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16184,7 +16632,7 @@ func (x *MusicSinger) String() string {
 func (*MusicSinger) ProtoMessage() {}
 
 func (x *MusicSinger) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[224]
+	mi := &file_pmaster_proto_msgTypes[228]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16197,7 +16645,7 @@ func (x *MusicSinger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MusicSinger.ProtoReflect.Descriptor instead.
 func (*MusicSinger) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{224}
+	return file_pmaster_proto_rawDescGZIP(), []int{228}
 }
 
 func (x *MusicSinger) GetMusicId() string {
@@ -16244,7 +16692,7 @@ type MusicSingerList struct {
 
 func (x *MusicSingerList) Reset() {
 	*x = MusicSingerList{}
-	mi := &file_pmaster_proto_msgTypes[225]
+	mi := &file_pmaster_proto_msgTypes[229]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16256,7 +16704,7 @@ func (x *MusicSingerList) String() string {
 func (*MusicSingerList) ProtoMessage() {}
 
 func (x *MusicSingerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[225]
+	mi := &file_pmaster_proto_msgTypes[229]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16269,7 +16717,7 @@ func (x *MusicSingerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MusicSingerList.ProtoReflect.Descriptor instead.
 func (*MusicSingerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{225}
+	return file_pmaster_proto_rawDescGZIP(), []int{229}
 }
 
 func (x *MusicSingerList) GetList() []*MusicSinger {
@@ -16302,7 +16750,7 @@ type PhotoBackground struct {
 
 func (x *PhotoBackground) Reset() {
 	*x = PhotoBackground{}
-	mi := &file_pmaster_proto_msgTypes[226]
+	mi := &file_pmaster_proto_msgTypes[230]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16314,7 +16762,7 @@ func (x *PhotoBackground) String() string {
 func (*PhotoBackground) ProtoMessage() {}
 
 func (x *PhotoBackground) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[226]
+	mi := &file_pmaster_proto_msgTypes[230]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16327,7 +16775,7 @@ func (x *PhotoBackground) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoBackground.ProtoReflect.Descriptor instead.
 func (*PhotoBackground) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{226}
+	return file_pmaster_proto_rawDescGZIP(), []int{230}
 }
 
 func (x *PhotoBackground) GetId() string {
@@ -16444,7 +16892,7 @@ type PhotoBackgroundList struct {
 
 func (x *PhotoBackgroundList) Reset() {
 	*x = PhotoBackgroundList{}
-	mi := &file_pmaster_proto_msgTypes[227]
+	mi := &file_pmaster_proto_msgTypes[231]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16456,7 +16904,7 @@ func (x *PhotoBackgroundList) String() string {
 func (*PhotoBackgroundList) ProtoMessage() {}
 
 func (x *PhotoBackgroundList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[227]
+	mi := &file_pmaster_proto_msgTypes[231]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16469,7 +16917,7 @@ func (x *PhotoBackgroundList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoBackgroundList.ProtoReflect.Descriptor instead.
 func (*PhotoBackgroundList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{227}
+	return file_pmaster_proto_rawDescGZIP(), []int{231}
 }
 
 func (x *PhotoBackgroundList) GetList() []*PhotoBackground {
@@ -16489,7 +16937,7 @@ type PhotoFacialLookTarget struct {
 
 func (x *PhotoFacialLookTarget) Reset() {
 	*x = PhotoFacialLookTarget{}
-	mi := &file_pmaster_proto_msgTypes[228]
+	mi := &file_pmaster_proto_msgTypes[232]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16501,7 +16949,7 @@ func (x *PhotoFacialLookTarget) String() string {
 func (*PhotoFacialLookTarget) ProtoMessage() {}
 
 func (x *PhotoFacialLookTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[228]
+	mi := &file_pmaster_proto_msgTypes[232]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16514,7 +16962,7 @@ func (x *PhotoFacialLookTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoFacialLookTarget.ProtoReflect.Descriptor instead.
 func (*PhotoFacialLookTarget) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{228}
+	return file_pmaster_proto_rawDescGZIP(), []int{232}
 }
 
 func (x *PhotoFacialLookTarget) GetFacialAssetId() string {
@@ -16540,7 +16988,7 @@ type PhotoFacialLookTargetList struct {
 
 func (x *PhotoFacialLookTargetList) Reset() {
 	*x = PhotoFacialLookTargetList{}
-	mi := &file_pmaster_proto_msgTypes[229]
+	mi := &file_pmaster_proto_msgTypes[233]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16552,7 +17000,7 @@ func (x *PhotoFacialLookTargetList) String() string {
 func (*PhotoFacialLookTargetList) ProtoMessage() {}
 
 func (x *PhotoFacialLookTargetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[229]
+	mi := &file_pmaster_proto_msgTypes[233]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16565,7 +17013,7 @@ func (x *PhotoFacialLookTargetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoFacialLookTargetList.ProtoReflect.Descriptor instead.
 func (*PhotoFacialLookTargetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{229}
+	return file_pmaster_proto_rawDescGZIP(), []int{233}
 }
 
 func (x *PhotoFacialLookTargetList) GetList() []*PhotoFacialLookTarget {
@@ -16588,7 +17036,7 @@ type PhotoFacialMotionGroup struct {
 
 func (x *PhotoFacialMotionGroup) Reset() {
 	*x = PhotoFacialMotionGroup{}
-	mi := &file_pmaster_proto_msgTypes[230]
+	mi := &file_pmaster_proto_msgTypes[234]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16600,7 +17048,7 @@ func (x *PhotoFacialMotionGroup) String() string {
 func (*PhotoFacialMotionGroup) ProtoMessage() {}
 
 func (x *PhotoFacialMotionGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[230]
+	mi := &file_pmaster_proto_msgTypes[234]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16613,7 +17061,7 @@ func (x *PhotoFacialMotionGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoFacialMotionGroup.ProtoReflect.Descriptor instead.
 func (*PhotoFacialMotionGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{230}
+	return file_pmaster_proto_rawDescGZIP(), []int{234}
 }
 
 func (x *PhotoFacialMotionGroup) GetId() string {
@@ -16660,7 +17108,7 @@ type PhotoFacialMotionGroupList struct {
 
 func (x *PhotoFacialMotionGroupList) Reset() {
 	*x = PhotoFacialMotionGroupList{}
-	mi := &file_pmaster_proto_msgTypes[231]
+	mi := &file_pmaster_proto_msgTypes[235]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16672,7 +17120,7 @@ func (x *PhotoFacialMotionGroupList) String() string {
 func (*PhotoFacialMotionGroupList) ProtoMessage() {}
 
 func (x *PhotoFacialMotionGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[231]
+	mi := &file_pmaster_proto_msgTypes[235]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16685,7 +17133,7 @@ func (x *PhotoFacialMotionGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoFacialMotionGroupList.ProtoReflect.Descriptor instead.
 func (*PhotoFacialMotionGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{231}
+	return file_pmaster_proto_rawDescGZIP(), []int{235}
 }
 
 func (x *PhotoFacialMotionGroupList) GetList() []*PhotoFacialMotionGroup {
@@ -16705,7 +17153,7 @@ type PhotoLookEffectorCharacter struct {
 
 func (x *PhotoLookEffectorCharacter) Reset() {
 	*x = PhotoLookEffectorCharacter{}
-	mi := &file_pmaster_proto_msgTypes[232]
+	mi := &file_pmaster_proto_msgTypes[236]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16717,7 +17165,7 @@ func (x *PhotoLookEffectorCharacter) String() string {
 func (*PhotoLookEffectorCharacter) ProtoMessage() {}
 
 func (x *PhotoLookEffectorCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[232]
+	mi := &file_pmaster_proto_msgTypes[236]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16730,7 +17178,7 @@ func (x *PhotoLookEffectorCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoLookEffectorCharacter.ProtoReflect.Descriptor instead.
 func (*PhotoLookEffectorCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{232}
+	return file_pmaster_proto_rawDescGZIP(), []int{236}
 }
 
 func (x *PhotoLookEffectorCharacter) GetCharacterId() string {
@@ -16756,7 +17204,7 @@ type PhotoLookEffectorCharacterList struct {
 
 func (x *PhotoLookEffectorCharacterList) Reset() {
 	*x = PhotoLookEffectorCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[233]
+	mi := &file_pmaster_proto_msgTypes[237]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16768,7 +17216,7 @@ func (x *PhotoLookEffectorCharacterList) String() string {
 func (*PhotoLookEffectorCharacterList) ProtoMessage() {}
 
 func (x *PhotoLookEffectorCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[233]
+	mi := &file_pmaster_proto_msgTypes[237]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16781,7 +17229,7 @@ func (x *PhotoLookEffectorCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoLookEffectorCharacterList.ProtoReflect.Descriptor instead.
 func (*PhotoLookEffectorCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{233}
+	return file_pmaster_proto_rawDescGZIP(), []int{237}
 }
 
 func (x *PhotoLookEffectorCharacterList) GetList() []*PhotoLookEffectorCharacter {
@@ -16802,7 +17250,7 @@ type PhotoLookTargetVoiceCharacter struct {
 
 func (x *PhotoLookTargetVoiceCharacter) Reset() {
 	*x = PhotoLookTargetVoiceCharacter{}
-	mi := &file_pmaster_proto_msgTypes[234]
+	mi := &file_pmaster_proto_msgTypes[238]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16814,7 +17262,7 @@ func (x *PhotoLookTargetVoiceCharacter) String() string {
 func (*PhotoLookTargetVoiceCharacter) ProtoMessage() {}
 
 func (x *PhotoLookTargetVoiceCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[234]
+	mi := &file_pmaster_proto_msgTypes[238]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16827,7 +17275,7 @@ func (x *PhotoLookTargetVoiceCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoLookTargetVoiceCharacter.ProtoReflect.Descriptor instead.
 func (*PhotoLookTargetVoiceCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{234}
+	return file_pmaster_proto_rawDescGZIP(), []int{238}
 }
 
 func (x *PhotoLookTargetVoiceCharacter) GetCharacterId() string {
@@ -16860,7 +17308,7 @@ type PhotoLookTargetVoiceCharacterList struct {
 
 func (x *PhotoLookTargetVoiceCharacterList) Reset() {
 	*x = PhotoLookTargetVoiceCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[235]
+	mi := &file_pmaster_proto_msgTypes[239]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16872,7 +17320,7 @@ func (x *PhotoLookTargetVoiceCharacterList) String() string {
 func (*PhotoLookTargetVoiceCharacterList) ProtoMessage() {}
 
 func (x *PhotoLookTargetVoiceCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[235]
+	mi := &file_pmaster_proto_msgTypes[239]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16885,7 +17333,7 @@ func (x *PhotoLookTargetVoiceCharacterList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PhotoLookTargetVoiceCharacterList.ProtoReflect.Descriptor instead.
 func (*PhotoLookTargetVoiceCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{235}
+	return file_pmaster_proto_rawDescGZIP(), []int{239}
 }
 
 func (x *PhotoLookTargetVoiceCharacterList) GetList() []*PhotoLookTargetVoiceCharacter {
@@ -16921,7 +17369,7 @@ type PhotoPose struct {
 
 func (x *PhotoPose) Reset() {
 	*x = PhotoPose{}
-	mi := &file_pmaster_proto_msgTypes[236]
+	mi := &file_pmaster_proto_msgTypes[240]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16933,7 +17381,7 @@ func (x *PhotoPose) String() string {
 func (*PhotoPose) ProtoMessage() {}
 
 func (x *PhotoPose) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[236]
+	mi := &file_pmaster_proto_msgTypes[240]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16946,7 +17394,7 @@ func (x *PhotoPose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoPose.ProtoReflect.Descriptor instead.
 func (*PhotoPose) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{236}
+	return file_pmaster_proto_rawDescGZIP(), []int{240}
 }
 
 func (x *PhotoPose) GetId() string {
@@ -17084,7 +17532,7 @@ type PhotoPoseList struct {
 
 func (x *PhotoPoseList) Reset() {
 	*x = PhotoPoseList{}
-	mi := &file_pmaster_proto_msgTypes[237]
+	mi := &file_pmaster_proto_msgTypes[241]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17096,7 +17544,7 @@ func (x *PhotoPoseList) String() string {
 func (*PhotoPoseList) ProtoMessage() {}
 
 func (x *PhotoPoseList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[237]
+	mi := &file_pmaster_proto_msgTypes[241]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17109,7 +17557,7 @@ func (x *PhotoPoseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoPoseList.ProtoReflect.Descriptor instead.
 func (*PhotoPoseList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{237}
+	return file_pmaster_proto_rawDescGZIP(), []int{241}
 }
 
 func (x *PhotoPoseList) GetList() []*PhotoPose {
@@ -17133,7 +17581,7 @@ type PhotoReactionVoiceGroup struct {
 
 func (x *PhotoReactionVoiceGroup) Reset() {
 	*x = PhotoReactionVoiceGroup{}
-	mi := &file_pmaster_proto_msgTypes[238]
+	mi := &file_pmaster_proto_msgTypes[242]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17145,7 +17593,7 @@ func (x *PhotoReactionVoiceGroup) String() string {
 func (*PhotoReactionVoiceGroup) ProtoMessage() {}
 
 func (x *PhotoReactionVoiceGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[238]
+	mi := &file_pmaster_proto_msgTypes[242]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17158,7 +17606,7 @@ func (x *PhotoReactionVoiceGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoReactionVoiceGroup.ProtoReflect.Descriptor instead.
 func (*PhotoReactionVoiceGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{238}
+	return file_pmaster_proto_rawDescGZIP(), []int{242}
 }
 
 func (x *PhotoReactionVoiceGroup) GetId() string {
@@ -17212,7 +17660,7 @@ type PhotoReactionVoiceGroupList struct {
 
 func (x *PhotoReactionVoiceGroupList) Reset() {
 	*x = PhotoReactionVoiceGroupList{}
-	mi := &file_pmaster_proto_msgTypes[239]
+	mi := &file_pmaster_proto_msgTypes[243]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17224,7 +17672,7 @@ func (x *PhotoReactionVoiceGroupList) String() string {
 func (*PhotoReactionVoiceGroupList) ProtoMessage() {}
 
 func (x *PhotoReactionVoiceGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[239]
+	mi := &file_pmaster_proto_msgTypes[243]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17237,7 +17685,7 @@ func (x *PhotoReactionVoiceGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoReactionVoiceGroupList.ProtoReflect.Descriptor instead.
 func (*PhotoReactionVoiceGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{239}
+	return file_pmaster_proto_rawDescGZIP(), []int{243}
 }
 
 func (x *PhotoReactionVoiceGroupList) GetList() []*PhotoReactionVoiceGroup {
@@ -17258,7 +17706,7 @@ type PhotoWaitVoiceCharacter struct {
 
 func (x *PhotoWaitVoiceCharacter) Reset() {
 	*x = PhotoWaitVoiceCharacter{}
-	mi := &file_pmaster_proto_msgTypes[240]
+	mi := &file_pmaster_proto_msgTypes[244]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17270,7 +17718,7 @@ func (x *PhotoWaitVoiceCharacter) String() string {
 func (*PhotoWaitVoiceCharacter) ProtoMessage() {}
 
 func (x *PhotoWaitVoiceCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[240]
+	mi := &file_pmaster_proto_msgTypes[244]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17283,7 +17731,7 @@ func (x *PhotoWaitVoiceCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoWaitVoiceCharacter.ProtoReflect.Descriptor instead.
 func (*PhotoWaitVoiceCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{240}
+	return file_pmaster_proto_rawDescGZIP(), []int{244}
 }
 
 func (x *PhotoWaitVoiceCharacter) GetCharacterId() string {
@@ -17316,7 +17764,7 @@ type PhotoWaitVoiceCharacterList struct {
 
 func (x *PhotoWaitVoiceCharacterList) Reset() {
 	*x = PhotoWaitVoiceCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[241]
+	mi := &file_pmaster_proto_msgTypes[245]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17328,7 +17776,7 @@ func (x *PhotoWaitVoiceCharacterList) String() string {
 func (*PhotoWaitVoiceCharacterList) ProtoMessage() {}
 
 func (x *PhotoWaitVoiceCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[241]
+	mi := &file_pmaster_proto_msgTypes[245]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17341,7 +17789,7 @@ func (x *PhotoWaitVoiceCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoWaitVoiceCharacterList.ProtoReflect.Descriptor instead.
 func (*PhotoWaitVoiceCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{241}
+	return file_pmaster_proto_rawDescGZIP(), []int{245}
 }
 
 func (x *PhotoWaitVoiceCharacterList) GetList() []*PhotoWaitVoiceCharacter {
@@ -17362,7 +17810,7 @@ type PhotoWaitVoiceGroup struct {
 
 func (x *PhotoWaitVoiceGroup) Reset() {
 	*x = PhotoWaitVoiceGroup{}
-	mi := &file_pmaster_proto_msgTypes[242]
+	mi := &file_pmaster_proto_msgTypes[246]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17374,7 +17822,7 @@ func (x *PhotoWaitVoiceGroup) String() string {
 func (*PhotoWaitVoiceGroup) ProtoMessage() {}
 
 func (x *PhotoWaitVoiceGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[242]
+	mi := &file_pmaster_proto_msgTypes[246]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17387,7 +17835,7 @@ func (x *PhotoWaitVoiceGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoWaitVoiceGroup.ProtoReflect.Descriptor instead.
 func (*PhotoWaitVoiceGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{242}
+	return file_pmaster_proto_rawDescGZIP(), []int{246}
 }
 
 func (x *PhotoWaitVoiceGroup) GetId() string {
@@ -17420,7 +17868,7 @@ type PhotoWaitVoiceGroupList struct {
 
 func (x *PhotoWaitVoiceGroupList) Reset() {
 	*x = PhotoWaitVoiceGroupList{}
-	mi := &file_pmaster_proto_msgTypes[243]
+	mi := &file_pmaster_proto_msgTypes[247]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17432,7 +17880,7 @@ func (x *PhotoWaitVoiceGroupList) String() string {
 func (*PhotoWaitVoiceGroupList) ProtoMessage() {}
 
 func (x *PhotoWaitVoiceGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[243]
+	mi := &file_pmaster_proto_msgTypes[247]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17445,7 +17893,7 @@ func (x *PhotoWaitVoiceGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PhotoWaitVoiceGroupList.ProtoReflect.Descriptor instead.
 func (*PhotoWaitVoiceGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{243}
+	return file_pmaster_proto_rawDescGZIP(), []int{247}
 }
 
 func (x *PhotoWaitVoiceGroupList) GetList() []*PhotoWaitVoiceGroup {
@@ -17480,6 +17928,9 @@ type Produce struct {
 	EasyProduceItemIds                   []string                           `protobuf:"bytes,32,rep,name=easyProduceItemIds,proto3" json:"easyProduceItemIds,omitempty"`
 	EasyConditionSetId                   string                             `protobuf:"bytes,33,opt,name=easyConditionSetId,proto3" json:"easyConditionSetId,omitempty"`
 	EasyProduceConditionSetId            string                             `protobuf:"bytes,34,opt,name=easyProduceConditionSetId,proto3" json:"easyProduceConditionSetId,omitempty"`
+	ProduceSplitType                     penum.ProduceSplitType             `protobuf:"varint,35,opt,name=produceSplitType,proto3,enum=penum.ProduceSplitType" json:"produceSplitType,omitempty"`
+	SplitPairProduceId                   string                             `protobuf:"bytes,36,opt,name=splitPairProduceId,proto3" json:"splitPairProduceId,omitempty"`
+	SelectionMemoryEmbedProduceCardId    string                             `protobuf:"bytes,41,opt,name=selectionMemoryEmbedProduceCardId,proto3" json:"selectionMemoryEmbedProduceCardId,omitempty"`
 	Order                                int32                              `protobuf:"varint,99,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields                        protoimpl.UnknownFields
 	sizeCache                            protoimpl.SizeCache
@@ -17487,7 +17938,7 @@ type Produce struct {
 
 func (x *Produce) Reset() {
 	*x = Produce{}
-	mi := &file_pmaster_proto_msgTypes[244]
+	mi := &file_pmaster_proto_msgTypes[248]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17499,7 +17950,7 @@ func (x *Produce) String() string {
 func (*Produce) ProtoMessage() {}
 
 func (x *Produce) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[244]
+	mi := &file_pmaster_proto_msgTypes[248]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17512,7 +17963,7 @@ func (x *Produce) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Produce.ProtoReflect.Descriptor instead.
 func (*Produce) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{244}
+	return file_pmaster_proto_rawDescGZIP(), []int{248}
 }
 
 func (x *Produce) GetId() string {
@@ -17676,6 +18127,27 @@ func (x *Produce) GetEasyProduceConditionSetId() string {
 	return ""
 }
 
+func (x *Produce) GetProduceSplitType() penum.ProduceSplitType {
+	if x != nil {
+		return x.ProduceSplitType
+	}
+	return penum.ProduceSplitType(0)
+}
+
+func (x *Produce) GetSplitPairProduceId() string {
+	if x != nil {
+		return x.SplitPairProduceId
+	}
+	return ""
+}
+
+func (x *Produce) GetSelectionMemoryEmbedProduceCardId() string {
+	if x != nil {
+		return x.SelectionMemoryEmbedProduceCardId
+	}
+	return ""
+}
+
 func (x *Produce) GetOrder() int32 {
 	if x != nil {
 		return x.Order
@@ -17695,7 +18167,7 @@ type ProduceAdv struct {
 
 func (x *ProduceAdv) Reset() {
 	*x = ProduceAdv{}
-	mi := &file_pmaster_proto_msgTypes[245]
+	mi := &file_pmaster_proto_msgTypes[249]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17707,7 +18179,7 @@ func (x *ProduceAdv) String() string {
 func (*ProduceAdv) ProtoMessage() {}
 
 func (x *ProduceAdv) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[245]
+	mi := &file_pmaster_proto_msgTypes[249]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17720,7 +18192,7 @@ func (x *ProduceAdv) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceAdv.ProtoReflect.Descriptor instead.
 func (*ProduceAdv) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{245}
+	return file_pmaster_proto_rawDescGZIP(), []int{249}
 }
 
 func (x *ProduceAdv) GetProduceType() penum.ProduceType {
@@ -17760,7 +18232,7 @@ type ProduceAdvList struct {
 
 func (x *ProduceAdvList) Reset() {
 	*x = ProduceAdvList{}
-	mi := &file_pmaster_proto_msgTypes[246]
+	mi := &file_pmaster_proto_msgTypes[250]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17772,7 +18244,7 @@ func (x *ProduceAdvList) String() string {
 func (*ProduceAdvList) ProtoMessage() {}
 
 func (x *ProduceAdvList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[246]
+	mi := &file_pmaster_proto_msgTypes[250]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17785,7 +18257,7 @@ func (x *ProduceAdvList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceAdvList.ProtoReflect.Descriptor instead.
 func (*ProduceAdvList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{246}
+	return file_pmaster_proto_rawDescGZIP(), []int{250}
 }
 
 func (x *ProduceAdvList) GetList() []*ProduceAdv {
@@ -17796,56 +18268,57 @@ func (x *ProduceAdvList) GetList() []*ProduceAdv {
 }
 
 type ProduceCard struct {
-	state                      protoimpl.MessageState                 `protogen:"open.v1"`
-	Id                         string                                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	UpgradeCount               int32                                  `protobuf:"varint,2,opt,name=upgradeCount,proto3" json:"upgradeCount,omitempty"`
-	Name                       string                                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	AssetId                    string                                 `protobuf:"bytes,5,opt,name=assetId,proto3" json:"assetId,omitempty"`
-	IsCharacterAsset           bool                                   `protobuf:"varint,6,opt,name=isCharacterAsset,proto3" json:"isCharacterAsset,omitempty"`
-	VoiceAssetId               string                                 `protobuf:"bytes,48,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
-	Rarity                     penum.ProduceCardRarity                `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.ProduceCardRarity" json:"rarity,omitempty"`
-	PlanType                   penum.ProducePlanType                  `protobuf:"varint,8,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
-	Category                   penum.ProduceCardCategory              `protobuf:"varint,9,opt,name=category,proto3,enum=penum.ProduceCardCategory" json:"category,omitempty"`
-	Stamina                    int32                                  `protobuf:"varint,10,opt,name=stamina,proto3" json:"stamina,omitempty"`
-	ForceStamina               int32                                  `protobuf:"varint,11,opt,name=forceStamina,proto3" json:"forceStamina,omitempty"`
-	CostType                   penum.ExamCostType                     `protobuf:"varint,12,opt,name=costType,proto3,enum=penum.ExamCostType" json:"costType,omitempty"`
-	CostValue                  int32                                  `protobuf:"varint,13,opt,name=costValue,proto3" json:"costValue,omitempty"`
-	PlayProduceExamTriggerId   string                                 `protobuf:"bytes,17,opt,name=playProduceExamTriggerId,proto3" json:"playProduceExamTriggerId,omitempty"`
-	PlayEffects                []*ProduceCard_PlayEffect              `protobuf:"bytes,21,rep,name=playEffects,proto3" json:"playEffects,omitempty"`
-	PlayMovePositionType       penum.ProduceCardMovePositionType      `protobuf:"varint,22,opt,name=playMovePositionType,proto3,enum=penum.ProduceCardMovePositionType" json:"playMovePositionType,omitempty"`
-	MoveEffectTriggerType      penum.ProduceCardMoveEffectTriggerType `protobuf:"varint,23,opt,name=moveEffectTriggerType,proto3,enum=penum.ProduceCardMoveEffectTriggerType" json:"moveEffectTriggerType,omitempty"`
-	MoveProduceExamEffectIds   []string                               `protobuf:"bytes,24,rep,name=moveProduceExamEffectIds,proto3" json:"moveProduceExamEffectIds,omitempty"`
-	IsEndTurnLost              bool                                   `protobuf:"varint,25,opt,name=isEndTurnLost,proto3" json:"isEndTurnLost,omitempty"`
-	IsInitial                  bool                                   `protobuf:"varint,26,opt,name=isInitial,proto3" json:"isInitial,omitempty"`
-	IsRestrict                 bool                                   `protobuf:"varint,27,opt,name=isRestrict,proto3" json:"isRestrict,omitempty"`
-	ProduceCardStatusEnchantId string                                 `protobuf:"bytes,28,opt,name=produceCardStatusEnchantId,proto3" json:"produceCardStatusEnchantId,omitempty"`
-	SearchTag                  string                                 `protobuf:"bytes,29,opt,name=searchTag,proto3" json:"searchTag,omitempty"`
-	LibraryHidden              bool                                   `protobuf:"varint,30,opt,name=libraryHidden,proto3" json:"libraryHidden,omitempty"`
-	NoDeckDuplication          bool                                   `protobuf:"varint,31,opt,name=noDeckDuplication,proto3" json:"noDeckDuplication,omitempty"`
-	IsReward                   bool                                   `protobuf:"varint,32,opt,name=isReward,proto3" json:"isReward,omitempty"`
-	ProduceDescriptions        []*pcommon.ProduceDescriptionSegment   `protobuf:"bytes,33,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
-	UnlockProducerLevel        int32                                  `protobuf:"varint,35,opt,name=unlockProducerLevel,proto3" json:"unlockProducerLevel,omitempty"`
-	RentalUnlockProducerLevel  int32                                  `protobuf:"varint,36,opt,name=rentalUnlockProducerLevel,proto3" json:"rentalUnlockProducerLevel,omitempty"`
-	Evaluation                 int32                                  `protobuf:"varint,37,opt,name=evaluation,proto3" json:"evaluation,omitempty"`
-	OriginIdolCardId           string                                 `protobuf:"bytes,39,opt,name=originIdolCardId,proto3" json:"originIdolCardId,omitempty"`
-	OriginSupportCardId        string                                 `protobuf:"bytes,40,opt,name=originSupportCardId,proto3" json:"originSupportCardId,omitempty"`
-	IsInitialDeckProduceCard   bool                                   `protobuf:"varint,41,opt,name=isInitialDeckProduceCard,proto3" json:"isInitialDeckProduceCard,omitempty"`
-	EffectGroupIds             []string                               `protobuf:"bytes,42,rep,name=effectGroupIds,proto3" json:"effectGroupIds,omitempty"`
-	ProduceCardCustomizeIds    []string                               `protobuf:"bytes,43,rep,name=produceCardCustomizeIds,proto3" json:"produceCardCustomizeIds,omitempty"`
-	MaxCustomizeCount          int32                                  `protobuf:"varint,44,opt,name=maxCustomizeCount,proto3" json:"maxCustomizeCount,omitempty"`
-	IsConversion               bool                                   `protobuf:"varint,45,opt,name=isConversion,proto3" json:"isConversion,omitempty"`
-	MoveProduceExamTriggerIds  []string                               `protobuf:"bytes,46,rep,name=moveProduceExamTriggerIds,proto3" json:"moveProduceExamTriggerIds,omitempty"`
-	OriginCharacterId          string                                 `protobuf:"bytes,47,opt,name=originCharacterId,proto3" json:"originCharacterId,omitempty"`
-	ViewStartTime              int64                                  `protobuf:"varint,97,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
-	IsLimited                  bool                                   `protobuf:"varint,99,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
-	Order                      int64                                  `protobuf:"varint,100,opt,name=order,proto3" json:"order,omitempty"`
-	unknownFields              protoimpl.UnknownFields
-	sizeCache                  protoimpl.SizeCache
+	state                       protoimpl.MessageState                 `protogen:"open.v1"`
+	Id                          string                                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UpgradeCount                int32                                  `protobuf:"varint,2,opt,name=upgradeCount,proto3" json:"upgradeCount,omitempty"`
+	Name                        string                                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	AssetId                     string                                 `protobuf:"bytes,5,opt,name=assetId,proto3" json:"assetId,omitempty"`
+	IsCharacterAsset            bool                                   `protobuf:"varint,6,opt,name=isCharacterAsset,proto3" json:"isCharacterAsset,omitempty"`
+	VoiceAssetId                string                                 `protobuf:"bytes,48,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	Rarity                      penum.ProduceCardRarity                `protobuf:"varint,7,opt,name=rarity,proto3,enum=penum.ProduceCardRarity" json:"rarity,omitempty"`
+	PlanType                    penum.ProducePlanType                  `protobuf:"varint,8,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
+	Category                    penum.ProduceCardCategory              `protobuf:"varint,9,opt,name=category,proto3,enum=penum.ProduceCardCategory" json:"category,omitempty"`
+	Stamina                     int32                                  `protobuf:"varint,10,opt,name=stamina,proto3" json:"stamina,omitempty"`
+	ForceStamina                int32                                  `protobuf:"varint,11,opt,name=forceStamina,proto3" json:"forceStamina,omitempty"`
+	CostType                    penum.ExamCostType                     `protobuf:"varint,12,opt,name=costType,proto3,enum=penum.ExamCostType" json:"costType,omitempty"`
+	CostValue                   int32                                  `protobuf:"varint,13,opt,name=costValue,proto3" json:"costValue,omitempty"`
+	PlayProduceExamTriggerId    string                                 `protobuf:"bytes,17,opt,name=playProduceExamTriggerId,proto3" json:"playProduceExamTriggerId,omitempty"`
+	PlayEffects                 []*ProduceCard_PlayEffect              `protobuf:"bytes,21,rep,name=playEffects,proto3" json:"playEffects,omitempty"`
+	PlayMovePositionType        penum.ProduceCardMovePositionType      `protobuf:"varint,22,opt,name=playMovePositionType,proto3,enum=penum.ProduceCardMovePositionType" json:"playMovePositionType,omitempty"`
+	MoveEffectTriggerType       penum.ProduceCardMoveEffectTriggerType `protobuf:"varint,23,opt,name=moveEffectTriggerType,proto3,enum=penum.ProduceCardMoveEffectTriggerType" json:"moveEffectTriggerType,omitempty"`
+	MoveProduceExamEffectIds    []string                               `protobuf:"bytes,24,rep,name=moveProduceExamEffectIds,proto3" json:"moveProduceExamEffectIds,omitempty"`
+	IsEndTurnLost               bool                                   `protobuf:"varint,25,opt,name=isEndTurnLost,proto3" json:"isEndTurnLost,omitempty"`
+	IsInitial                   bool                                   `protobuf:"varint,26,opt,name=isInitial,proto3" json:"isInitial,omitempty"`
+	IsRestrict                  bool                                   `protobuf:"varint,27,opt,name=isRestrict,proto3" json:"isRestrict,omitempty"`
+	ProduceCardStatusEnchantId  string                                 `protobuf:"bytes,28,opt,name=produceCardStatusEnchantId,proto3" json:"produceCardStatusEnchantId,omitempty"`
+	SearchTag                   string                                 `protobuf:"bytes,29,opt,name=searchTag,proto3" json:"searchTag,omitempty"`
+	LibraryHidden               bool                                   `protobuf:"varint,30,opt,name=libraryHidden,proto3" json:"libraryHidden,omitempty"`
+	NoDeckDuplication           bool                                   `protobuf:"varint,31,opt,name=noDeckDuplication,proto3" json:"noDeckDuplication,omitempty"`
+	IsReward                    bool                                   `protobuf:"varint,32,opt,name=isReward,proto3" json:"isReward,omitempty"`
+	ProduceDescriptions         []*pcommon.ProduceDescriptionSegment   `protobuf:"bytes,33,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
+	UnlockProducerLevel         int32                                  `protobuf:"varint,35,opt,name=unlockProducerLevel,proto3" json:"unlockProducerLevel,omitempty"`
+	RentalUnlockProducerLevel   int32                                  `protobuf:"varint,36,opt,name=rentalUnlockProducerLevel,proto3" json:"rentalUnlockProducerLevel,omitempty"`
+	Evaluation                  int32                                  `protobuf:"varint,37,opt,name=evaluation,proto3" json:"evaluation,omitempty"`
+	OriginIdolCardId            string                                 `protobuf:"bytes,39,opt,name=originIdolCardId,proto3" json:"originIdolCardId,omitempty"`
+	OriginSupportCardId         string                                 `protobuf:"bytes,40,opt,name=originSupportCardId,proto3" json:"originSupportCardId,omitempty"`
+	IsInitialDeckProduceCard    bool                                   `protobuf:"varint,41,opt,name=isInitialDeckProduceCard,proto3" json:"isInitialDeckProduceCard,omitempty"`
+	EffectGroupIds              []string                               `protobuf:"bytes,42,rep,name=effectGroupIds,proto3" json:"effectGroupIds,omitempty"`
+	ProduceCardCustomizeIds     []string                               `protobuf:"bytes,43,rep,name=produceCardCustomizeIds,proto3" json:"produceCardCustomizeIds,omitempty"`
+	MaxCustomizeCount           int32                                  `protobuf:"varint,44,opt,name=maxCustomizeCount,proto3" json:"maxCustomizeCount,omitempty"`
+	IsConversion                bool                                   `protobuf:"varint,45,opt,name=isConversion,proto3" json:"isConversion,omitempty"`
+	MoveProduceExamTriggerIds   []string                               `protobuf:"bytes,46,rep,name=moveProduceExamTriggerIds,proto3" json:"moveProduceExamTriggerIds,omitempty"`
+	OriginCharacterId           string                                 `protobuf:"bytes,47,opt,name=originCharacterId,proto3" json:"originCharacterId,omitempty"`
+	OriginPrimaStellaIdolCardId string                                 `protobuf:"bytes,50,opt,name=originPrimaStellaIdolCardId,proto3" json:"originPrimaStellaIdolCardId,omitempty"`
+	ViewStartTime               int64                                  `protobuf:"varint,97,opt,name=viewStartTime,proto3" json:"viewStartTime,omitempty"`
+	IsLimited                   bool                                   `protobuf:"varint,99,opt,name=isLimited,proto3" json:"isLimited,omitempty"`
+	Order                       int64                                  `protobuf:"varint,100,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *ProduceCard) Reset() {
 	*x = ProduceCard{}
-	mi := &file_pmaster_proto_msgTypes[247]
+	mi := &file_pmaster_proto_msgTypes[251]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17857,7 +18330,7 @@ func (x *ProduceCard) String() string {
 func (*ProduceCard) ProtoMessage() {}
 
 func (x *ProduceCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[247]
+	mi := &file_pmaster_proto_msgTypes[251]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17870,7 +18343,7 @@ func (x *ProduceCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCard.ProtoReflect.Descriptor instead.
 func (*ProduceCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{247}
+	return file_pmaster_proto_rawDescGZIP(), []int{251}
 }
 
 func (x *ProduceCard) GetId() string {
@@ -18146,6 +18619,13 @@ func (x *ProduceCard) GetOriginCharacterId() string {
 	return ""
 }
 
+func (x *ProduceCard) GetOriginPrimaStellaIdolCardId() string {
+	if x != nil {
+		return x.OriginPrimaStellaIdolCardId
+	}
+	return ""
+}
+
 func (x *ProduceCard) GetViewStartTime() int64 {
 	if x != nil {
 		return x.ViewStartTime
@@ -18180,7 +18660,7 @@ type ProduceCardConversion struct {
 
 func (x *ProduceCardConversion) Reset() {
 	*x = ProduceCardConversion{}
-	mi := &file_pmaster_proto_msgTypes[248]
+	mi := &file_pmaster_proto_msgTypes[252]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18192,7 +18672,7 @@ func (x *ProduceCardConversion) String() string {
 func (*ProduceCardConversion) ProtoMessage() {}
 
 func (x *ProduceCardConversion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[248]
+	mi := &file_pmaster_proto_msgTypes[252]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18205,7 +18685,7 @@ func (x *ProduceCardConversion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardConversion.ProtoReflect.Descriptor instead.
 func (*ProduceCardConversion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{248}
+	return file_pmaster_proto_rawDescGZIP(), []int{252}
 }
 
 func (x *ProduceCardConversion) GetBeforeProduceCardId() string {
@@ -18252,7 +18732,7 @@ type ProduceCardConversionList struct {
 
 func (x *ProduceCardConversionList) Reset() {
 	*x = ProduceCardConversionList{}
-	mi := &file_pmaster_proto_msgTypes[249]
+	mi := &file_pmaster_proto_msgTypes[253]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18264,7 +18744,7 @@ func (x *ProduceCardConversionList) String() string {
 func (*ProduceCardConversionList) ProtoMessage() {}
 
 func (x *ProduceCardConversionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[249]
+	mi := &file_pmaster_proto_msgTypes[253]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18277,7 +18757,7 @@ func (x *ProduceCardConversionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardConversionList.ProtoReflect.Descriptor instead.
 func (*ProduceCardConversionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{249}
+	return file_pmaster_proto_rawDescGZIP(), []int{253}
 }
 
 func (x *ProduceCardConversionList) GetList() []*pcommon.ProduceCardConversion {
@@ -18301,7 +18781,7 @@ type ProduceCardCustomize struct {
 
 func (x *ProduceCardCustomize) Reset() {
 	*x = ProduceCardCustomize{}
-	mi := &file_pmaster_proto_msgTypes[250]
+	mi := &file_pmaster_proto_msgTypes[254]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18313,7 +18793,7 @@ func (x *ProduceCardCustomize) String() string {
 func (*ProduceCardCustomize) ProtoMessage() {}
 
 func (x *ProduceCardCustomize) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[250]
+	mi := &file_pmaster_proto_msgTypes[254]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18326,7 +18806,7 @@ func (x *ProduceCardCustomize) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardCustomize.ProtoReflect.Descriptor instead.
 func (*ProduceCardCustomize) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{250}
+	return file_pmaster_proto_rawDescGZIP(), []int{254}
 }
 
 func (x *ProduceCardCustomize) GetId() string {
@@ -18380,7 +18860,7 @@ type ProduceCardCustomizeList struct {
 
 func (x *ProduceCardCustomizeList) Reset() {
 	*x = ProduceCardCustomizeList{}
-	mi := &file_pmaster_proto_msgTypes[251]
+	mi := &file_pmaster_proto_msgTypes[255]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18392,7 +18872,7 @@ func (x *ProduceCardCustomizeList) String() string {
 func (*ProduceCardCustomizeList) ProtoMessage() {}
 
 func (x *ProduceCardCustomizeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[251]
+	mi := &file_pmaster_proto_msgTypes[255]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18405,7 +18885,7 @@ func (x *ProduceCardCustomizeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardCustomizeList.ProtoReflect.Descriptor instead.
 func (*ProduceCardCustomizeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{251}
+	return file_pmaster_proto_rawDescGZIP(), []int{255}
 }
 
 func (x *ProduceCardCustomizeList) GetList() []*pcommon.ProduceCardCustomize {
@@ -18425,7 +18905,7 @@ type ProduceCardCustomizeRarityEvaluation struct {
 
 func (x *ProduceCardCustomizeRarityEvaluation) Reset() {
 	*x = ProduceCardCustomizeRarityEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[252]
+	mi := &file_pmaster_proto_msgTypes[256]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18437,7 +18917,7 @@ func (x *ProduceCardCustomizeRarityEvaluation) String() string {
 func (*ProduceCardCustomizeRarityEvaluation) ProtoMessage() {}
 
 func (x *ProduceCardCustomizeRarityEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[252]
+	mi := &file_pmaster_proto_msgTypes[256]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18450,7 +18930,7 @@ func (x *ProduceCardCustomizeRarityEvaluation) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ProduceCardCustomizeRarityEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceCardCustomizeRarityEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{252}
+	return file_pmaster_proto_rawDescGZIP(), []int{256}
 }
 
 func (x *ProduceCardCustomizeRarityEvaluation) GetRarity() penum.ProduceCardRarity {
@@ -18476,7 +18956,7 @@ type ProduceCardCustomizeRarityEvaluationList struct {
 
 func (x *ProduceCardCustomizeRarityEvaluationList) Reset() {
 	*x = ProduceCardCustomizeRarityEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[253]
+	mi := &file_pmaster_proto_msgTypes[257]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18488,7 +18968,7 @@ func (x *ProduceCardCustomizeRarityEvaluationList) String() string {
 func (*ProduceCardCustomizeRarityEvaluationList) ProtoMessage() {}
 
 func (x *ProduceCardCustomizeRarityEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[253]
+	mi := &file_pmaster_proto_msgTypes[257]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18501,7 +18981,7 @@ func (x *ProduceCardCustomizeRarityEvaluationList) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ProduceCardCustomizeRarityEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceCardCustomizeRarityEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{253}
+	return file_pmaster_proto_rawDescGZIP(), []int{257}
 }
 
 func (x *ProduceCardCustomizeRarityEvaluationList) GetList() []*ProduceCardCustomizeRarityEvaluation {
@@ -18531,7 +19011,7 @@ type ProduceCardGrowEffect struct {
 
 func (x *ProduceCardGrowEffect) Reset() {
 	*x = ProduceCardGrowEffect{}
-	mi := &file_pmaster_proto_msgTypes[254]
+	mi := &file_pmaster_proto_msgTypes[258]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18543,7 +19023,7 @@ func (x *ProduceCardGrowEffect) String() string {
 func (*ProduceCardGrowEffect) ProtoMessage() {}
 
 func (x *ProduceCardGrowEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[254]
+	mi := &file_pmaster_proto_msgTypes[258]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18556,7 +19036,7 @@ func (x *ProduceCardGrowEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardGrowEffect.ProtoReflect.Descriptor instead.
 func (*ProduceCardGrowEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{254}
+	return file_pmaster_proto_rawDescGZIP(), []int{258}
 }
 
 func (x *ProduceCardGrowEffect) GetId() string {
@@ -18652,7 +19132,7 @@ type ProduceCardGrowEffectList struct {
 
 func (x *ProduceCardGrowEffectList) Reset() {
 	*x = ProduceCardGrowEffectList{}
-	mi := &file_pmaster_proto_msgTypes[255]
+	mi := &file_pmaster_proto_msgTypes[259]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18664,7 +19144,7 @@ func (x *ProduceCardGrowEffectList) String() string {
 func (*ProduceCardGrowEffectList) ProtoMessage() {}
 
 func (x *ProduceCardGrowEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[255]
+	mi := &file_pmaster_proto_msgTypes[259]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18677,7 +19157,7 @@ func (x *ProduceCardGrowEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardGrowEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceCardGrowEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{255}
+	return file_pmaster_proto_rawDescGZIP(), []int{259}
 }
 
 func (x *ProduceCardGrowEffectList) GetList() []*ProduceCardGrowEffect {
@@ -18696,7 +19176,7 @@ type ProduceCardList struct {
 
 func (x *ProduceCardList) Reset() {
 	*x = ProduceCardList{}
-	mi := &file_pmaster_proto_msgTypes[256]
+	mi := &file_pmaster_proto_msgTypes[260]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18708,7 +19188,7 @@ func (x *ProduceCardList) String() string {
 func (*ProduceCardList) ProtoMessage() {}
 
 func (x *ProduceCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[256]
+	mi := &file_pmaster_proto_msgTypes[260]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18721,7 +19201,7 @@ func (x *ProduceCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardList.ProtoReflect.Descriptor instead.
 func (*ProduceCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{256}
+	return file_pmaster_proto_rawDescGZIP(), []int{260}
 }
 
 func (x *ProduceCardList) GetList() []*pcommon.ProduceCard {
@@ -18741,7 +19221,7 @@ type ProduceCardPool struct {
 
 func (x *ProduceCardPool) Reset() {
 	*x = ProduceCardPool{}
-	mi := &file_pmaster_proto_msgTypes[257]
+	mi := &file_pmaster_proto_msgTypes[261]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18753,7 +19233,7 @@ func (x *ProduceCardPool) String() string {
 func (*ProduceCardPool) ProtoMessage() {}
 
 func (x *ProduceCardPool) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[257]
+	mi := &file_pmaster_proto_msgTypes[261]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18766,7 +19246,7 @@ func (x *ProduceCardPool) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardPool.ProtoReflect.Descriptor instead.
 func (*ProduceCardPool) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{257}
+	return file_pmaster_proto_rawDescGZIP(), []int{261}
 }
 
 func (x *ProduceCardPool) GetId() string {
@@ -18792,7 +19272,7 @@ type ProduceCardPoolList struct {
 
 func (x *ProduceCardPoolList) Reset() {
 	*x = ProduceCardPoolList{}
-	mi := &file_pmaster_proto_msgTypes[258]
+	mi := &file_pmaster_proto_msgTypes[262]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18804,7 +19284,7 @@ func (x *ProduceCardPoolList) String() string {
 func (*ProduceCardPoolList) ProtoMessage() {}
 
 func (x *ProduceCardPoolList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[258]
+	mi := &file_pmaster_proto_msgTypes[262]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18817,7 +19297,7 @@ func (x *ProduceCardPoolList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardPoolList.ProtoReflect.Descriptor instead.
 func (*ProduceCardPoolList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{258}
+	return file_pmaster_proto_rawDescGZIP(), []int{262}
 }
 
 func (x *ProduceCardPoolList) GetList() []*ProduceCardPool {
@@ -18839,7 +19319,7 @@ type ProduceCardRandomPool struct {
 
 func (x *ProduceCardRandomPool) Reset() {
 	*x = ProduceCardRandomPool{}
-	mi := &file_pmaster_proto_msgTypes[259]
+	mi := &file_pmaster_proto_msgTypes[263]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18851,7 +19331,7 @@ func (x *ProduceCardRandomPool) String() string {
 func (*ProduceCardRandomPool) ProtoMessage() {}
 
 func (x *ProduceCardRandomPool) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[259]
+	mi := &file_pmaster_proto_msgTypes[263]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18864,7 +19344,7 @@ func (x *ProduceCardRandomPool) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardRandomPool.ProtoReflect.Descriptor instead.
 func (*ProduceCardRandomPool) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{259}
+	return file_pmaster_proto_rawDescGZIP(), []int{263}
 }
 
 func (x *ProduceCardRandomPool) GetId() string {
@@ -18904,7 +19384,7 @@ type ProduceCardRandomPoolList struct {
 
 func (x *ProduceCardRandomPoolList) Reset() {
 	*x = ProduceCardRandomPoolList{}
-	mi := &file_pmaster_proto_msgTypes[260]
+	mi := &file_pmaster_proto_msgTypes[264]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18916,7 +19396,7 @@ func (x *ProduceCardRandomPoolList) String() string {
 func (*ProduceCardRandomPoolList) ProtoMessage() {}
 
 func (x *ProduceCardRandomPoolList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[260]
+	mi := &file_pmaster_proto_msgTypes[264]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18929,7 +19409,7 @@ func (x *ProduceCardRandomPoolList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardRandomPoolList.ProtoReflect.Descriptor instead.
 func (*ProduceCardRandomPoolList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{260}
+	return file_pmaster_proto_rawDescGZIP(), []int{264}
 }
 
 func (x *ProduceCardRandomPoolList) GetList() []*ProduceCardRandomPool {
@@ -18969,7 +19449,7 @@ type ProduceCardSearch struct {
 
 func (x *ProduceCardSearch) Reset() {
 	*x = ProduceCardSearch{}
-	mi := &file_pmaster_proto_msgTypes[261]
+	mi := &file_pmaster_proto_msgTypes[265]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18981,7 +19461,7 @@ func (x *ProduceCardSearch) String() string {
 func (*ProduceCardSearch) ProtoMessage() {}
 
 func (x *ProduceCardSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[261]
+	mi := &file_pmaster_proto_msgTypes[265]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18994,7 +19474,7 @@ func (x *ProduceCardSearch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSearch.ProtoReflect.Descriptor instead.
 func (*ProduceCardSearch) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{261}
+	return file_pmaster_proto_rawDescGZIP(), []int{265}
 }
 
 func (x *ProduceCardSearch) GetId() string {
@@ -19160,7 +19640,7 @@ type ProduceCardSearchList struct {
 
 func (x *ProduceCardSearchList) Reset() {
 	*x = ProduceCardSearchList{}
-	mi := &file_pmaster_proto_msgTypes[262]
+	mi := &file_pmaster_proto_msgTypes[266]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19172,7 +19652,7 @@ func (x *ProduceCardSearchList) String() string {
 func (*ProduceCardSearchList) ProtoMessage() {}
 
 func (x *ProduceCardSearchList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[262]
+	mi := &file_pmaster_proto_msgTypes[266]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19185,7 +19665,7 @@ func (x *ProduceCardSearchList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSearchList.ProtoReflect.Descriptor instead.
 func (*ProduceCardSearchList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{262}
+	return file_pmaster_proto_rawDescGZIP(), []int{266}
 }
 
 func (x *ProduceCardSearchList) GetList() []*ProduceCardSearch {
@@ -19208,7 +19688,7 @@ type ProduceCardSimulation struct {
 
 func (x *ProduceCardSimulation) Reset() {
 	*x = ProduceCardSimulation{}
-	mi := &file_pmaster_proto_msgTypes[263]
+	mi := &file_pmaster_proto_msgTypes[267]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19220,7 +19700,7 @@ func (x *ProduceCardSimulation) String() string {
 func (*ProduceCardSimulation) ProtoMessage() {}
 
 func (x *ProduceCardSimulation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[263]
+	mi := &file_pmaster_proto_msgTypes[267]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19233,7 +19713,7 @@ func (x *ProduceCardSimulation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSimulation.ProtoReflect.Descriptor instead.
 func (*ProduceCardSimulation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{263}
+	return file_pmaster_proto_rawDescGZIP(), []int{267}
 }
 
 func (x *ProduceCardSimulation) GetProduceCardSimulationGroupId() string {
@@ -19281,7 +19761,7 @@ type ProduceCardSimulationGroup struct {
 
 func (x *ProduceCardSimulationGroup) Reset() {
 	*x = ProduceCardSimulationGroup{}
-	mi := &file_pmaster_proto_msgTypes[264]
+	mi := &file_pmaster_proto_msgTypes[268]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19293,7 +19773,7 @@ func (x *ProduceCardSimulationGroup) String() string {
 func (*ProduceCardSimulationGroup) ProtoMessage() {}
 
 func (x *ProduceCardSimulationGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[264]
+	mi := &file_pmaster_proto_msgTypes[268]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19306,7 +19786,7 @@ func (x *ProduceCardSimulationGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSimulationGroup.ProtoReflect.Descriptor instead.
 func (*ProduceCardSimulationGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{264}
+	return file_pmaster_proto_rawDescGZIP(), []int{268}
 }
 
 func (x *ProduceCardSimulationGroup) GetId() string {
@@ -19332,7 +19812,7 @@ type ProduceCardSimulationGroupList struct {
 
 func (x *ProduceCardSimulationGroupList) Reset() {
 	*x = ProduceCardSimulationGroupList{}
-	mi := &file_pmaster_proto_msgTypes[265]
+	mi := &file_pmaster_proto_msgTypes[269]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19344,7 +19824,7 @@ func (x *ProduceCardSimulationGroupList) String() string {
 func (*ProduceCardSimulationGroupList) ProtoMessage() {}
 
 func (x *ProduceCardSimulationGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[265]
+	mi := &file_pmaster_proto_msgTypes[269]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19357,7 +19837,7 @@ func (x *ProduceCardSimulationGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSimulationGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceCardSimulationGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{265}
+	return file_pmaster_proto_rawDescGZIP(), []int{269}
 }
 
 func (x *ProduceCardSimulationGroupList) GetList() []*ProduceCardSimulationGroup {
@@ -19376,7 +19856,7 @@ type ProduceCardSimulationList struct {
 
 func (x *ProduceCardSimulationList) Reset() {
 	*x = ProduceCardSimulationList{}
-	mi := &file_pmaster_proto_msgTypes[266]
+	mi := &file_pmaster_proto_msgTypes[270]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19388,7 +19868,7 @@ func (x *ProduceCardSimulationList) String() string {
 func (*ProduceCardSimulationList) ProtoMessage() {}
 
 func (x *ProduceCardSimulationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[266]
+	mi := &file_pmaster_proto_msgTypes[270]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19401,7 +19881,7 @@ func (x *ProduceCardSimulationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardSimulationList.ProtoReflect.Descriptor instead.
 func (*ProduceCardSimulationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{266}
+	return file_pmaster_proto_rawDescGZIP(), []int{270}
 }
 
 func (x *ProduceCardSimulationList) GetList() []*ProduceCardSimulation {
@@ -19422,7 +19902,7 @@ type ProduceCardStatusEffect struct {
 
 func (x *ProduceCardStatusEffect) Reset() {
 	*x = ProduceCardStatusEffect{}
-	mi := &file_pmaster_proto_msgTypes[267]
+	mi := &file_pmaster_proto_msgTypes[271]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19434,7 +19914,7 @@ func (x *ProduceCardStatusEffect) String() string {
 func (*ProduceCardStatusEffect) ProtoMessage() {}
 
 func (x *ProduceCardStatusEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[267]
+	mi := &file_pmaster_proto_msgTypes[271]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19447,7 +19927,7 @@ func (x *ProduceCardStatusEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardStatusEffect.ProtoReflect.Descriptor instead.
 func (*ProduceCardStatusEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{267}
+	return file_pmaster_proto_rawDescGZIP(), []int{271}
 }
 
 func (x *ProduceCardStatusEffect) GetId() string {
@@ -19480,7 +19960,7 @@ type ProduceCardStatusEffectList struct {
 
 func (x *ProduceCardStatusEffectList) Reset() {
 	*x = ProduceCardStatusEffectList{}
-	mi := &file_pmaster_proto_msgTypes[268]
+	mi := &file_pmaster_proto_msgTypes[272]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19492,7 +19972,7 @@ func (x *ProduceCardStatusEffectList) String() string {
 func (*ProduceCardStatusEffectList) ProtoMessage() {}
 
 func (x *ProduceCardStatusEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[268]
+	mi := &file_pmaster_proto_msgTypes[272]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19505,7 +19985,7 @@ func (x *ProduceCardStatusEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardStatusEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceCardStatusEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{268}
+	return file_pmaster_proto_rawDescGZIP(), []int{272}
 }
 
 func (x *ProduceCardStatusEffectList) GetList() []*ProduceCardStatusEffect {
@@ -19529,7 +20009,7 @@ type ProduceCardStatusEnchant struct {
 
 func (x *ProduceCardStatusEnchant) Reset() {
 	*x = ProduceCardStatusEnchant{}
-	mi := &file_pmaster_proto_msgTypes[269]
+	mi := &file_pmaster_proto_msgTypes[273]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19541,7 +20021,7 @@ func (x *ProduceCardStatusEnchant) String() string {
 func (*ProduceCardStatusEnchant) ProtoMessage() {}
 
 func (x *ProduceCardStatusEnchant) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[269]
+	mi := &file_pmaster_proto_msgTypes[273]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19554,7 +20034,7 @@ func (x *ProduceCardStatusEnchant) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardStatusEnchant.ProtoReflect.Descriptor instead.
 func (*ProduceCardStatusEnchant) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{269}
+	return file_pmaster_proto_rawDescGZIP(), []int{273}
 }
 
 func (x *ProduceCardStatusEnchant) GetId() string {
@@ -19608,7 +20088,7 @@ type ProduceCardStatusEnchantList struct {
 
 func (x *ProduceCardStatusEnchantList) Reset() {
 	*x = ProduceCardStatusEnchantList{}
-	mi := &file_pmaster_proto_msgTypes[270]
+	mi := &file_pmaster_proto_msgTypes[274]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19620,7 +20100,7 @@ func (x *ProduceCardStatusEnchantList) String() string {
 func (*ProduceCardStatusEnchantList) ProtoMessage() {}
 
 func (x *ProduceCardStatusEnchantList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[270]
+	mi := &file_pmaster_proto_msgTypes[274]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19633,7 +20113,7 @@ func (x *ProduceCardStatusEnchantList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardStatusEnchantList.ProtoReflect.Descriptor instead.
 func (*ProduceCardStatusEnchantList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{270}
+	return file_pmaster_proto_rawDescGZIP(), []int{274}
 }
 
 func (x *ProduceCardStatusEnchantList) GetList() []*ProduceCardStatusEnchant {
@@ -19653,7 +20133,7 @@ type ProduceCardTag struct {
 
 func (x *ProduceCardTag) Reset() {
 	*x = ProduceCardTag{}
-	mi := &file_pmaster_proto_msgTypes[271]
+	mi := &file_pmaster_proto_msgTypes[275]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19665,7 +20145,7 @@ func (x *ProduceCardTag) String() string {
 func (*ProduceCardTag) ProtoMessage() {}
 
 func (x *ProduceCardTag) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[271]
+	mi := &file_pmaster_proto_msgTypes[275]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19678,7 +20158,7 @@ func (x *ProduceCardTag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardTag.ProtoReflect.Descriptor instead.
 func (*ProduceCardTag) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{271}
+	return file_pmaster_proto_rawDescGZIP(), []int{275}
 }
 
 func (x *ProduceCardTag) GetId() string {
@@ -19704,7 +20184,7 @@ type ProduceCardTagList struct {
 
 func (x *ProduceCardTagList) Reset() {
 	*x = ProduceCardTagList{}
-	mi := &file_pmaster_proto_msgTypes[272]
+	mi := &file_pmaster_proto_msgTypes[276]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19716,7 +20196,7 @@ func (x *ProduceCardTagList) String() string {
 func (*ProduceCardTagList) ProtoMessage() {}
 
 func (x *ProduceCardTagList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[272]
+	mi := &file_pmaster_proto_msgTypes[276]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19729,7 +20209,7 @@ func (x *ProduceCardTagList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardTagList.ProtoReflect.Descriptor instead.
 func (*ProduceCardTagList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{272}
+	return file_pmaster_proto_rawDescGZIP(), []int{276}
 }
 
 func (x *ProduceCardTagList) GetList() []*ProduceCardTag {
@@ -19750,7 +20230,7 @@ type ProduceChallengeCharacter struct {
 
 func (x *ProduceChallengeCharacter) Reset() {
 	*x = ProduceChallengeCharacter{}
-	mi := &file_pmaster_proto_msgTypes[273]
+	mi := &file_pmaster_proto_msgTypes[277]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19762,7 +20242,7 @@ func (x *ProduceChallengeCharacter) String() string {
 func (*ProduceChallengeCharacter) ProtoMessage() {}
 
 func (x *ProduceChallengeCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[273]
+	mi := &file_pmaster_proto_msgTypes[277]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19775,7 +20255,7 @@ func (x *ProduceChallengeCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceChallengeCharacter.ProtoReflect.Descriptor instead.
 func (*ProduceChallengeCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{273}
+	return file_pmaster_proto_rawDescGZIP(), []int{277}
 }
 
 func (x *ProduceChallengeCharacter) GetProduceId() string {
@@ -19808,7 +20288,7 @@ type ProduceChallengeCharacterList struct {
 
 func (x *ProduceChallengeCharacterList) Reset() {
 	*x = ProduceChallengeCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[274]
+	mi := &file_pmaster_proto_msgTypes[278]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19820,7 +20300,7 @@ func (x *ProduceChallengeCharacterList) String() string {
 func (*ProduceChallengeCharacterList) ProtoMessage() {}
 
 func (x *ProduceChallengeCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[274]
+	mi := &file_pmaster_proto_msgTypes[278]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19833,7 +20313,7 @@ func (x *ProduceChallengeCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceChallengeCharacterList.ProtoReflect.Descriptor instead.
 func (*ProduceChallengeCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{274}
+	return file_pmaster_proto_rawDescGZIP(), []int{278}
 }
 
 func (x *ProduceChallengeCharacterList) GetList() []*ProduceChallengeCharacter {
@@ -19856,7 +20336,7 @@ type ProduceChallengeSlot struct {
 
 func (x *ProduceChallengeSlot) Reset() {
 	*x = ProduceChallengeSlot{}
-	mi := &file_pmaster_proto_msgTypes[275]
+	mi := &file_pmaster_proto_msgTypes[279]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19868,7 +20348,7 @@ func (x *ProduceChallengeSlot) String() string {
 func (*ProduceChallengeSlot) ProtoMessage() {}
 
 func (x *ProduceChallengeSlot) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[275]
+	mi := &file_pmaster_proto_msgTypes[279]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19881,7 +20361,7 @@ func (x *ProduceChallengeSlot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceChallengeSlot.ProtoReflect.Descriptor instead.
 func (*ProduceChallengeSlot) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{275}
+	return file_pmaster_proto_rawDescGZIP(), []int{279}
 }
 
 func (x *ProduceChallengeSlot) GetId() string {
@@ -19928,7 +20408,7 @@ type ProduceChallengeSlotList struct {
 
 func (x *ProduceChallengeSlotList) Reset() {
 	*x = ProduceChallengeSlotList{}
-	mi := &file_pmaster_proto_msgTypes[276]
+	mi := &file_pmaster_proto_msgTypes[280]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19940,7 +20420,7 @@ func (x *ProduceChallengeSlotList) String() string {
 func (*ProduceChallengeSlotList) ProtoMessage() {}
 
 func (x *ProduceChallengeSlotList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[276]
+	mi := &file_pmaster_proto_msgTypes[280]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19953,7 +20433,7 @@ func (x *ProduceChallengeSlotList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceChallengeSlotList.ProtoReflect.Descriptor instead.
 func (*ProduceChallengeSlotList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{276}
+	return file_pmaster_proto_rawDescGZIP(), []int{280}
 }
 
 func (x *ProduceChallengeSlotList) GetList() []*ProduceChallengeSlot {
@@ -19975,7 +20455,7 @@ type ProduceCharacter struct {
 
 func (x *ProduceCharacter) Reset() {
 	*x = ProduceCharacter{}
-	mi := &file_pmaster_proto_msgTypes[277]
+	mi := &file_pmaster_proto_msgTypes[281]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19987,7 +20467,7 @@ func (x *ProduceCharacter) String() string {
 func (*ProduceCharacter) ProtoMessage() {}
 
 func (x *ProduceCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[277]
+	mi := &file_pmaster_proto_msgTypes[281]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20000,7 +20480,7 @@ func (x *ProduceCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCharacter.ProtoReflect.Descriptor instead.
 func (*ProduceCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{277}
+	return file_pmaster_proto_rawDescGZIP(), []int{281}
 }
 
 func (x *ProduceCharacter) GetProduceId() string {
@@ -20044,7 +20524,7 @@ type ProduceCharacterAdv struct {
 
 func (x *ProduceCharacterAdv) Reset() {
 	*x = ProduceCharacterAdv{}
-	mi := &file_pmaster_proto_msgTypes[278]
+	mi := &file_pmaster_proto_msgTypes[282]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20056,7 +20536,7 @@ func (x *ProduceCharacterAdv) String() string {
 func (*ProduceCharacterAdv) ProtoMessage() {}
 
 func (x *ProduceCharacterAdv) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[278]
+	mi := &file_pmaster_proto_msgTypes[282]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20069,7 +20549,7 @@ func (x *ProduceCharacterAdv) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCharacterAdv.ProtoReflect.Descriptor instead.
 func (*ProduceCharacterAdv) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{278}
+	return file_pmaster_proto_rawDescGZIP(), []int{282}
 }
 
 func (x *ProduceCharacterAdv) GetProduceType() penum.ProduceType {
@@ -20116,7 +20596,7 @@ type ProduceCharacterAdvList struct {
 
 func (x *ProduceCharacterAdvList) Reset() {
 	*x = ProduceCharacterAdvList{}
-	mi := &file_pmaster_proto_msgTypes[279]
+	mi := &file_pmaster_proto_msgTypes[283]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20128,7 +20608,7 @@ func (x *ProduceCharacterAdvList) String() string {
 func (*ProduceCharacterAdvList) ProtoMessage() {}
 
 func (x *ProduceCharacterAdvList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[279]
+	mi := &file_pmaster_proto_msgTypes[283]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20141,7 +20621,7 @@ func (x *ProduceCharacterAdvList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCharacterAdvList.ProtoReflect.Descriptor instead.
 func (*ProduceCharacterAdvList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{279}
+	return file_pmaster_proto_rawDescGZIP(), []int{283}
 }
 
 func (x *ProduceCharacterAdvList) GetList() []*ProduceCharacterAdv {
@@ -20160,7 +20640,7 @@ type ProduceCharacterList struct {
 
 func (x *ProduceCharacterList) Reset() {
 	*x = ProduceCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[280]
+	mi := &file_pmaster_proto_msgTypes[284]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20172,7 +20652,7 @@ func (x *ProduceCharacterList) String() string {
 func (*ProduceCharacterList) ProtoMessage() {}
 
 func (x *ProduceCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[280]
+	mi := &file_pmaster_proto_msgTypes[284]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20185,10 +20665,490 @@ func (x *ProduceCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCharacterList.ProtoReflect.Descriptor instead.
 func (*ProduceCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{280}
+	return file_pmaster_proto_rawDescGZIP(), []int{284}
 }
 
 func (x *ProduceCharacterList) GetList() []*ProduceCharacter {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceCharacterUnit struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProduceGroupId    string                 `protobuf:"bytes,2,opt,name=produceGroupId,proto3" json:"produceGroupId,omitempty"`
+	TargetCharacterId string                 `protobuf:"bytes,3,opt,name=targetCharacterId,proto3" json:"targetCharacterId,omitempty"`
+	UnitCharacterId   string                 `protobuf:"bytes,4,opt,name=unitCharacterId,proto3" json:"unitCharacterId,omitempty"`
+	Name              string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	LiveCostumeId     string                 `protobuf:"bytes,6,opt,name=liveCostumeId,proto3" json:"liveCostumeId,omitempty"`
+	LiveCostumeHeadId string                 `protobuf:"bytes,7,opt,name=liveCostumeHeadId,proto3" json:"liveCostumeHeadId,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *ProduceCharacterUnit) Reset() {
+	*x = ProduceCharacterUnit{}
+	mi := &file_pmaster_proto_msgTypes[285]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCharacterUnit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCharacterUnit) ProtoMessage() {}
+
+func (x *ProduceCharacterUnit) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[285]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCharacterUnit.ProtoReflect.Descriptor instead.
+func (*ProduceCharacterUnit) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{285}
+}
+
+func (x *ProduceCharacterUnit) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetProduceGroupId() string {
+	if x != nil {
+		return x.ProduceGroupId
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetTargetCharacterId() string {
+	if x != nil {
+		return x.TargetCharacterId
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetUnitCharacterId() string {
+	if x != nil {
+		return x.UnitCharacterId
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetLiveCostumeId() string {
+	if x != nil {
+		return x.LiveCostumeId
+	}
+	return ""
+}
+
+func (x *ProduceCharacterUnit) GetLiveCostumeHeadId() string {
+	if x != nil {
+		return x.LiveCostumeHeadId
+	}
+	return ""
+}
+
+type ProduceCharacterUnitList struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	List          []*ProduceCharacterUnit `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceCharacterUnitList) Reset() {
+	*x = ProduceCharacterUnitList{}
+	mi := &file_pmaster_proto_msgTypes[286]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCharacterUnitList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCharacterUnitList) ProtoMessage() {}
+
+func (x *ProduceCharacterUnitList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[286]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCharacterUnitList.ProtoReflect.Descriptor instead.
+func (*ProduceCharacterUnitList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{286}
+}
+
+func (x *ProduceCharacterUnitList) GetList() []*ProduceCharacterUnit {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceCustomizeItem struct {
+	state                        protoimpl.MessageState               `protogen:"open.v1"`
+	Id                           string                               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                         string                               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	EffectType                   penum.ProduceItemEffectType          `protobuf:"varint,3,opt,name=effectType,proto3,enum=penum.ProduceItemEffectType" json:"effectType,omitempty"`
+	PlanType                     penum.ProducePlanType                `protobuf:"varint,4,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
+	ProduceDescriptions          []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,6,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
+	AssetId1                     string                               `protobuf:"bytes,10,opt,name=assetId1,proto3" json:"assetId1,omitempty"`
+	AssetId2                     string                               `protobuf:"bytes,11,opt,name=assetId2,proto3" json:"assetId2,omitempty"`
+	AssetId3                     string                               `protobuf:"bytes,12,opt,name=assetId3,proto3" json:"assetId3,omitempty"`
+	AssetId4                     string                               `protobuf:"bytes,13,opt,name=assetId4,proto3" json:"assetId4,omitempty"`
+	AssetId5                     string                               `protobuf:"bytes,14,opt,name=assetId5,proto3" json:"assetId5,omitempty"`
+	IsBase                       bool                                 `protobuf:"varint,50,opt,name=isBase,proto3" json:"isBase,omitempty"`
+	IsTerminal                   bool                                 `protobuf:"varint,51,opt,name=isTerminal,proto3" json:"isTerminal,omitempty"`
+	ExamEffectTurn               int32                                `protobuf:"varint,100,opt,name=examEffectTurn,proto3" json:"examEffectTurn,omitempty"`
+	ExamEffectCount              int32                                `protobuf:"varint,101,opt,name=examEffectCount,proto3" json:"examEffectCount,omitempty"`
+	ProduceExamTriggerId         string                               `protobuf:"bytes,102,opt,name=produceExamTriggerId,proto3" json:"produceExamTriggerId,omitempty"`
+	ProduceExamEffectIds         []string                             `protobuf:"bytes,103,rep,name=produceExamEffectIds,proto3" json:"produceExamEffectIds,omitempty"`
+	ProduceEffectTriggerCount    int32                                `protobuf:"varint,200,opt,name=produceEffectTriggerCount,proto3" json:"produceEffectTriggerCount,omitempty"`
+	ProduceEffectTriggerInterval int32                                `protobuf:"varint,201,opt,name=produceEffectTriggerInterval,proto3" json:"produceEffectTriggerInterval,omitempty"`
+	ProduceTriggerId             string                               `protobuf:"bytes,202,opt,name=produceTriggerId,proto3" json:"produceTriggerId,omitempty"`
+	ProduceEffectIds             []string                             `protobuf:"bytes,203,rep,name=produceEffectIds,proto3" json:"produceEffectIds,omitempty"`
+	EffectGroupIds               []string                             `protobuf:"bytes,204,rep,name=effectGroupIds,proto3" json:"effectGroupIds,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
+}
+
+func (x *ProduceCustomizeItem) Reset() {
+	*x = ProduceCustomizeItem{}
+	mi := &file_pmaster_proto_msgTypes[287]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCustomizeItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCustomizeItem) ProtoMessage() {}
+
+func (x *ProduceCustomizeItem) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[287]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCustomizeItem.ProtoReflect.Descriptor instead.
+func (*ProduceCustomizeItem) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{287}
+}
+
+func (x *ProduceCustomizeItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetEffectType() penum.ProduceItemEffectType {
+	if x != nil {
+		return x.EffectType
+	}
+	return penum.ProduceItemEffectType(0)
+}
+
+func (x *ProduceCustomizeItem) GetPlanType() penum.ProducePlanType {
+	if x != nil {
+		return x.PlanType
+	}
+	return penum.ProducePlanType(0)
+}
+
+func (x *ProduceCustomizeItem) GetProduceDescriptions() []*pcommon.ProduceDescriptionSegment {
+	if x != nil {
+		return x.ProduceDescriptions
+	}
+	return nil
+}
+
+func (x *ProduceCustomizeItem) GetAssetId1() string {
+	if x != nil {
+		return x.AssetId1
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetAssetId2() string {
+	if x != nil {
+		return x.AssetId2
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetAssetId3() string {
+	if x != nil {
+		return x.AssetId3
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetAssetId4() string {
+	if x != nil {
+		return x.AssetId4
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetAssetId5() string {
+	if x != nil {
+		return x.AssetId5
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetIsBase() bool {
+	if x != nil {
+		return x.IsBase
+	}
+	return false
+}
+
+func (x *ProduceCustomizeItem) GetIsTerminal() bool {
+	if x != nil {
+		return x.IsTerminal
+	}
+	return false
+}
+
+func (x *ProduceCustomizeItem) GetExamEffectTurn() int32 {
+	if x != nil {
+		return x.ExamEffectTurn
+	}
+	return 0
+}
+
+func (x *ProduceCustomizeItem) GetExamEffectCount() int32 {
+	if x != nil {
+		return x.ExamEffectCount
+	}
+	return 0
+}
+
+func (x *ProduceCustomizeItem) GetProduceExamTriggerId() string {
+	if x != nil {
+		return x.ProduceExamTriggerId
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetProduceExamEffectIds() []string {
+	if x != nil {
+		return x.ProduceExamEffectIds
+	}
+	return nil
+}
+
+func (x *ProduceCustomizeItem) GetProduceEffectTriggerCount() int32 {
+	if x != nil {
+		return x.ProduceEffectTriggerCount
+	}
+	return 0
+}
+
+func (x *ProduceCustomizeItem) GetProduceEffectTriggerInterval() int32 {
+	if x != nil {
+		return x.ProduceEffectTriggerInterval
+	}
+	return 0
+}
+
+func (x *ProduceCustomizeItem) GetProduceTriggerId() string {
+	if x != nil {
+		return x.ProduceTriggerId
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItem) GetProduceEffectIds() []string {
+	if x != nil {
+		return x.ProduceEffectIds
+	}
+	return nil
+}
+
+func (x *ProduceCustomizeItem) GetEffectGroupIds() []string {
+	if x != nil {
+		return x.EffectGroupIds
+	}
+	return nil
+}
+
+type ProduceCustomizeItemList struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	List          []*ProduceCustomizeItem `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceCustomizeItemList) Reset() {
+	*x = ProduceCustomizeItemList{}
+	mi := &file_pmaster_proto_msgTypes[288]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCustomizeItemList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCustomizeItemList) ProtoMessage() {}
+
+func (x *ProduceCustomizeItemList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[288]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCustomizeItemList.ProtoReflect.Descriptor instead.
+func (*ProduceCustomizeItemList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{288}
+}
+
+func (x *ProduceCustomizeItemList) GetList() []*ProduceCustomizeItem {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceCustomizeItemRelationship struct {
+	state                        protoimpl.MessageState `protogen:"open.v1"`
+	ParentProduceCustomizeItemId string                 `protobuf:"bytes,1,opt,name=parentProduceCustomizeItemId,proto3" json:"parentProduceCustomizeItemId,omitempty"`
+	ChildProduceCustomizeItemId  string                 `protobuf:"bytes,2,opt,name=childProduceCustomizeItemId,proto3" json:"childProduceCustomizeItemId,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
+}
+
+func (x *ProduceCustomizeItemRelationship) Reset() {
+	*x = ProduceCustomizeItemRelationship{}
+	mi := &file_pmaster_proto_msgTypes[289]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCustomizeItemRelationship) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCustomizeItemRelationship) ProtoMessage() {}
+
+func (x *ProduceCustomizeItemRelationship) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[289]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCustomizeItemRelationship.ProtoReflect.Descriptor instead.
+func (*ProduceCustomizeItemRelationship) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{289}
+}
+
+func (x *ProduceCustomizeItemRelationship) GetParentProduceCustomizeItemId() string {
+	if x != nil {
+		return x.ParentProduceCustomizeItemId
+	}
+	return ""
+}
+
+func (x *ProduceCustomizeItemRelationship) GetChildProduceCustomizeItemId() string {
+	if x != nil {
+		return x.ChildProduceCustomizeItemId
+	}
+	return ""
+}
+
+type ProduceCustomizeItemRelationshipList struct {
+	state         protoimpl.MessageState              `protogen:"open.v1"`
+	List          []*ProduceCustomizeItemRelationship `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceCustomizeItemRelationshipList) Reset() {
+	*x = ProduceCustomizeItemRelationshipList{}
+	mi := &file_pmaster_proto_msgTypes[290]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceCustomizeItemRelationshipList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceCustomizeItemRelationshipList) ProtoMessage() {}
+
+func (x *ProduceCustomizeItemRelationshipList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[290]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceCustomizeItemRelationshipList.ProtoReflect.Descriptor instead.
+func (*ProduceCustomizeItemRelationshipList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{290}
+}
+
+func (x *ProduceCustomizeItemRelationshipList) GetList() []*ProduceCustomizeItemRelationship {
 	if x != nil {
 		return x.List
 	}
@@ -20211,7 +21171,7 @@ type ProduceDescriptionExamEffect struct {
 
 func (x *ProduceDescriptionExamEffect) Reset() {
 	*x = ProduceDescriptionExamEffect{}
-	mi := &file_pmaster_proto_msgTypes[281]
+	mi := &file_pmaster_proto_msgTypes[291]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20223,7 +21183,7 @@ func (x *ProduceDescriptionExamEffect) String() string {
 func (*ProduceDescriptionExamEffect) ProtoMessage() {}
 
 func (x *ProduceDescriptionExamEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[281]
+	mi := &file_pmaster_proto_msgTypes[291]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20236,7 +21196,7 @@ func (x *ProduceDescriptionExamEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionExamEffect.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionExamEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{281}
+	return file_pmaster_proto_rawDescGZIP(), []int{291}
 }
 
 func (x *ProduceDescriptionExamEffect) GetType() penum.ProduceExamEffectType {
@@ -20304,7 +21264,7 @@ type ProduceDescriptionExamEffectList struct {
 
 func (x *ProduceDescriptionExamEffectList) Reset() {
 	*x = ProduceDescriptionExamEffectList{}
-	mi := &file_pmaster_proto_msgTypes[282]
+	mi := &file_pmaster_proto_msgTypes[292]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20316,7 +21276,7 @@ func (x *ProduceDescriptionExamEffectList) String() string {
 func (*ProduceDescriptionExamEffectList) ProtoMessage() {}
 
 func (x *ProduceDescriptionExamEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[282]
+	mi := &file_pmaster_proto_msgTypes[292]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20329,7 +21289,7 @@ func (x *ProduceDescriptionExamEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionExamEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionExamEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{282}
+	return file_pmaster_proto_rawDescGZIP(), []int{292}
 }
 
 func (x *ProduceDescriptionExamEffectList) GetList() []*ProduceDescriptionExamEffect {
@@ -20344,6 +21304,7 @@ type ProduceDescriptionLabel struct {
 	Id                       string                               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name                     string                               `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	ProduceDescriptionSwapId string                               `protobuf:"bytes,4,opt,name=produceDescriptionSwapId,proto3" json:"produceDescriptionSwapId,omitempty"`
+	IconAssetId              string                               `protobuf:"bytes,5,opt,name=iconAssetId,proto3" json:"iconAssetId,omitempty"`
 	ProduceDescriptions      []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,999,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
@@ -20351,7 +21312,7 @@ type ProduceDescriptionLabel struct {
 
 func (x *ProduceDescriptionLabel) Reset() {
 	*x = ProduceDescriptionLabel{}
-	mi := &file_pmaster_proto_msgTypes[283]
+	mi := &file_pmaster_proto_msgTypes[293]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20363,7 +21324,7 @@ func (x *ProduceDescriptionLabel) String() string {
 func (*ProduceDescriptionLabel) ProtoMessage() {}
 
 func (x *ProduceDescriptionLabel) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[283]
+	mi := &file_pmaster_proto_msgTypes[293]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20376,7 +21337,7 @@ func (x *ProduceDescriptionLabel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionLabel.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionLabel) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{283}
+	return file_pmaster_proto_rawDescGZIP(), []int{293}
 }
 
 func (x *ProduceDescriptionLabel) GetId() string {
@@ -20400,6 +21361,13 @@ func (x *ProduceDescriptionLabel) GetProduceDescriptionSwapId() string {
 	return ""
 }
 
+func (x *ProduceDescriptionLabel) GetIconAssetId() string {
+	if x != nil {
+		return x.IconAssetId
+	}
+	return ""
+}
+
 func (x *ProduceDescriptionLabel) GetProduceDescriptions() []*pcommon.ProduceDescriptionSegment {
 	if x != nil {
 		return x.ProduceDescriptions
@@ -20416,7 +21384,7 @@ type ProduceDescriptionLabelList struct {
 
 func (x *ProduceDescriptionLabelList) Reset() {
 	*x = ProduceDescriptionLabelList{}
-	mi := &file_pmaster_proto_msgTypes[284]
+	mi := &file_pmaster_proto_msgTypes[294]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20428,7 +21396,7 @@ func (x *ProduceDescriptionLabelList) String() string {
 func (*ProduceDescriptionLabelList) ProtoMessage() {}
 
 func (x *ProduceDescriptionLabelList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[284]
+	mi := &file_pmaster_proto_msgTypes[294]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20441,7 +21409,7 @@ func (x *ProduceDescriptionLabelList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionLabelList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionLabelList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{284}
+	return file_pmaster_proto_rawDescGZIP(), []int{294}
 }
 
 func (x *ProduceDescriptionLabelList) GetList() []*ProduceDescriptionLabel {
@@ -20465,7 +21433,7 @@ type ProduceDescriptionProduceCardGrowEffect struct {
 
 func (x *ProduceDescriptionProduceCardGrowEffect) Reset() {
 	*x = ProduceDescriptionProduceCardGrowEffect{}
-	mi := &file_pmaster_proto_msgTypes[285]
+	mi := &file_pmaster_proto_msgTypes[295]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20477,7 +21445,7 @@ func (x *ProduceDescriptionProduceCardGrowEffect) String() string {
 func (*ProduceDescriptionProduceCardGrowEffect) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceCardGrowEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[285]
+	mi := &file_pmaster_proto_msgTypes[295]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20490,7 +21458,7 @@ func (x *ProduceDescriptionProduceCardGrowEffect) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ProduceDescriptionProduceCardGrowEffect.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceCardGrowEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{285}
+	return file_pmaster_proto_rawDescGZIP(), []int{295}
 }
 
 func (x *ProduceDescriptionProduceCardGrowEffect) GetType() penum.ProduceCardGrowEffectType {
@@ -20544,7 +21512,7 @@ type ProduceDescriptionProduceCardGrowEffectList struct {
 
 func (x *ProduceDescriptionProduceCardGrowEffectList) Reset() {
 	*x = ProduceDescriptionProduceCardGrowEffectList{}
-	mi := &file_pmaster_proto_msgTypes[286]
+	mi := &file_pmaster_proto_msgTypes[296]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20556,7 +21524,7 @@ func (x *ProduceDescriptionProduceCardGrowEffectList) String() string {
 func (*ProduceDescriptionProduceCardGrowEffectList) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceCardGrowEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[286]
+	mi := &file_pmaster_proto_msgTypes[296]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20569,7 +21537,7 @@ func (x *ProduceDescriptionProduceCardGrowEffectList) ProtoReflect() protoreflec
 
 // Deprecated: Use ProduceDescriptionProduceCardGrowEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceCardGrowEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{286}
+	return file_pmaster_proto_rawDescGZIP(), []int{296}
 }
 
 func (x *ProduceDescriptionProduceCardGrowEffectList) GetList() []*ProduceDescriptionProduceCardGrowEffect {
@@ -20590,7 +21558,7 @@ type ProduceDescriptionProduceCardMovePosition struct {
 
 func (x *ProduceDescriptionProduceCardMovePosition) Reset() {
 	*x = ProduceDescriptionProduceCardMovePosition{}
-	mi := &file_pmaster_proto_msgTypes[287]
+	mi := &file_pmaster_proto_msgTypes[297]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20602,7 +21570,7 @@ func (x *ProduceDescriptionProduceCardMovePosition) String() string {
 func (*ProduceDescriptionProduceCardMovePosition) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceCardMovePosition) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[287]
+	mi := &file_pmaster_proto_msgTypes[297]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20615,7 +21583,7 @@ func (x *ProduceDescriptionProduceCardMovePosition) ProtoReflect() protoreflect.
 
 // Deprecated: Use ProduceDescriptionProduceCardMovePosition.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceCardMovePosition) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{287}
+	return file_pmaster_proto_rawDescGZIP(), []int{297}
 }
 
 func (x *ProduceDescriptionProduceCardMovePosition) GetType() penum.ProduceCardMovePositionType {
@@ -20648,7 +21616,7 @@ type ProduceDescriptionProduceCardMovePositionList struct {
 
 func (x *ProduceDescriptionProduceCardMovePositionList) Reset() {
 	*x = ProduceDescriptionProduceCardMovePositionList{}
-	mi := &file_pmaster_proto_msgTypes[288]
+	mi := &file_pmaster_proto_msgTypes[298]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20660,7 +21628,7 @@ func (x *ProduceDescriptionProduceCardMovePositionList) String() string {
 func (*ProduceDescriptionProduceCardMovePositionList) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceCardMovePositionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[288]
+	mi := &file_pmaster_proto_msgTypes[298]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20673,7 +21641,7 @@ func (x *ProduceDescriptionProduceCardMovePositionList) ProtoReflect() protorefl
 
 // Deprecated: Use ProduceDescriptionProduceCardMovePositionList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceCardMovePositionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{288}
+	return file_pmaster_proto_rawDescGZIP(), []int{298}
 }
 
 func (x *ProduceDescriptionProduceCardMovePositionList) GetList() []*ProduceDescriptionProduceCardMovePosition {
@@ -20694,7 +21662,7 @@ type ProduceDescriptionProduceEffect struct {
 
 func (x *ProduceDescriptionProduceEffect) Reset() {
 	*x = ProduceDescriptionProduceEffect{}
-	mi := &file_pmaster_proto_msgTypes[289]
+	mi := &file_pmaster_proto_msgTypes[299]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20706,7 +21674,7 @@ func (x *ProduceDescriptionProduceEffect) String() string {
 func (*ProduceDescriptionProduceEffect) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[289]
+	mi := &file_pmaster_proto_msgTypes[299]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20719,7 +21687,7 @@ func (x *ProduceDescriptionProduceEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionProduceEffect.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{289}
+	return file_pmaster_proto_rawDescGZIP(), []int{299}
 }
 
 func (x *ProduceDescriptionProduceEffect) GetType() penum.ProduceEffectType {
@@ -20752,7 +21720,7 @@ type ProduceDescriptionProduceEffectList struct {
 
 func (x *ProduceDescriptionProduceEffectList) Reset() {
 	*x = ProduceDescriptionProduceEffectList{}
-	mi := &file_pmaster_proto_msgTypes[290]
+	mi := &file_pmaster_proto_msgTypes[300]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20764,7 +21732,7 @@ func (x *ProduceDescriptionProduceEffectList) String() string {
 func (*ProduceDescriptionProduceEffectList) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[290]
+	mi := &file_pmaster_proto_msgTypes[300]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20777,7 +21745,7 @@ func (x *ProduceDescriptionProduceEffectList) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceDescriptionProduceEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{290}
+	return file_pmaster_proto_rawDescGZIP(), []int{300}
 }
 
 func (x *ProduceDescriptionProduceEffectList) GetList() []*ProduceDescriptionProduceEffect {
@@ -20799,7 +21767,7 @@ type ProduceDescriptionProducePlan struct {
 
 func (x *ProduceDescriptionProducePlan) Reset() {
 	*x = ProduceDescriptionProducePlan{}
-	mi := &file_pmaster_proto_msgTypes[291]
+	mi := &file_pmaster_proto_msgTypes[301]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20811,7 +21779,7 @@ func (x *ProduceDescriptionProducePlan) String() string {
 func (*ProduceDescriptionProducePlan) ProtoMessage() {}
 
 func (x *ProduceDescriptionProducePlan) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[291]
+	mi := &file_pmaster_proto_msgTypes[301]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20824,7 +21792,7 @@ func (x *ProduceDescriptionProducePlan) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionProducePlan.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProducePlan) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{291}
+	return file_pmaster_proto_rawDescGZIP(), []int{301}
 }
 
 func (x *ProduceDescriptionProducePlan) GetType() penum.ProducePlanType {
@@ -20864,7 +21832,7 @@ type ProduceDescriptionProducePlanList struct {
 
 func (x *ProduceDescriptionProducePlanList) Reset() {
 	*x = ProduceDescriptionProducePlanList{}
-	mi := &file_pmaster_proto_msgTypes[292]
+	mi := &file_pmaster_proto_msgTypes[302]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20876,7 +21844,7 @@ func (x *ProduceDescriptionProducePlanList) String() string {
 func (*ProduceDescriptionProducePlanList) ProtoMessage() {}
 
 func (x *ProduceDescriptionProducePlanList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[292]
+	mi := &file_pmaster_proto_msgTypes[302]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20889,7 +21857,7 @@ func (x *ProduceDescriptionProducePlanList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceDescriptionProducePlanList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProducePlanList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{292}
+	return file_pmaster_proto_rawDescGZIP(), []int{302}
 }
 
 func (x *ProduceDescriptionProducePlanList) GetList() []*ProduceDescriptionProducePlan {
@@ -20910,7 +21878,7 @@ type ProduceDescriptionProduceStep struct {
 
 func (x *ProduceDescriptionProduceStep) Reset() {
 	*x = ProduceDescriptionProduceStep{}
-	mi := &file_pmaster_proto_msgTypes[293]
+	mi := &file_pmaster_proto_msgTypes[303]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20922,7 +21890,7 @@ func (x *ProduceDescriptionProduceStep) String() string {
 func (*ProduceDescriptionProduceStep) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceStep) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[293]
+	mi := &file_pmaster_proto_msgTypes[303]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20935,7 +21903,7 @@ func (x *ProduceDescriptionProduceStep) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionProduceStep.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceStep) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{293}
+	return file_pmaster_proto_rawDescGZIP(), []int{303}
 }
 
 func (x *ProduceDescriptionProduceStep) GetType() penum.ProduceStepType {
@@ -20968,7 +21936,7 @@ type ProduceDescriptionProduceStepList struct {
 
 func (x *ProduceDescriptionProduceStepList) Reset() {
 	*x = ProduceDescriptionProduceStepList{}
-	mi := &file_pmaster_proto_msgTypes[294]
+	mi := &file_pmaster_proto_msgTypes[304]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20980,7 +21948,7 @@ func (x *ProduceDescriptionProduceStepList) String() string {
 func (*ProduceDescriptionProduceStepList) ProtoMessage() {}
 
 func (x *ProduceDescriptionProduceStepList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[294]
+	mi := &file_pmaster_proto_msgTypes[304]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20993,10 +21961,122 @@ func (x *ProduceDescriptionProduceStepList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceDescriptionProduceStepList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionProduceStepList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{294}
+	return file_pmaster_proto_rawDescGZIP(), []int{304}
 }
 
 func (x *ProduceDescriptionProduceStepList) GetList() []*ProduceDescriptionProduceStep {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceDescriptionProduceType struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ProduceType      penum.ProduceType      `protobuf:"varint,1,opt,name=produceType,proto3,enum=penum.ProduceType" json:"produceType,omitempty"`
+	ProduceSplitType penum.ProduceSplitType `protobuf:"varint,2,opt,name=produceSplitType,proto3,enum=penum.ProduceSplitType" json:"produceSplitType,omitempty"`
+	Name             string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Template         string                 `protobuf:"bytes,10,opt,name=template,proto3" json:"template,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ProduceDescriptionProduceType) Reset() {
+	*x = ProduceDescriptionProduceType{}
+	mi := &file_pmaster_proto_msgTypes[305]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceDescriptionProduceType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceDescriptionProduceType) ProtoMessage() {}
+
+func (x *ProduceDescriptionProduceType) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[305]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceDescriptionProduceType.ProtoReflect.Descriptor instead.
+func (*ProduceDescriptionProduceType) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{305}
+}
+
+func (x *ProduceDescriptionProduceType) GetProduceType() penum.ProduceType {
+	if x != nil {
+		return x.ProduceType
+	}
+	return penum.ProduceType(0)
+}
+
+func (x *ProduceDescriptionProduceType) GetProduceSplitType() penum.ProduceSplitType {
+	if x != nil {
+		return x.ProduceSplitType
+	}
+	return penum.ProduceSplitType(0)
+}
+
+func (x *ProduceDescriptionProduceType) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProduceDescriptionProduceType) GetTemplate() string {
+	if x != nil {
+		return x.Template
+	}
+	return ""
+}
+
+type ProduceDescriptionProduceTypeList struct {
+	state         protoimpl.MessageState           `protogen:"open.v1"`
+	List          []*ProduceDescriptionProduceType `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceDescriptionProduceTypeList) Reset() {
+	*x = ProduceDescriptionProduceTypeList{}
+	mi := &file_pmaster_proto_msgTypes[306]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceDescriptionProduceTypeList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceDescriptionProduceTypeList) ProtoMessage() {}
+
+func (x *ProduceDescriptionProduceTypeList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[306]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceDescriptionProduceTypeList.ProtoReflect.Descriptor instead.
+func (*ProduceDescriptionProduceTypeList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{306}
+}
+
+func (x *ProduceDescriptionProduceTypeList) GetList() []*ProduceDescriptionProduceType {
 	if x != nil {
 		return x.List
 	}
@@ -21014,7 +22094,7 @@ type ProduceDescriptionSwap struct {
 
 func (x *ProduceDescriptionSwap) Reset() {
 	*x = ProduceDescriptionSwap{}
-	mi := &file_pmaster_proto_msgTypes[295]
+	mi := &file_pmaster_proto_msgTypes[307]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21026,7 +22106,7 @@ func (x *ProduceDescriptionSwap) String() string {
 func (*ProduceDescriptionSwap) ProtoMessage() {}
 
 func (x *ProduceDescriptionSwap) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[295]
+	mi := &file_pmaster_proto_msgTypes[307]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21039,7 +22119,7 @@ func (x *ProduceDescriptionSwap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionSwap.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionSwap) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{295}
+	return file_pmaster_proto_rawDescGZIP(), []int{307}
 }
 
 func (x *ProduceDescriptionSwap) GetId() string {
@@ -21072,7 +22152,7 @@ type ProduceDescriptionSwapList struct {
 
 func (x *ProduceDescriptionSwapList) Reset() {
 	*x = ProduceDescriptionSwapList{}
-	mi := &file_pmaster_proto_msgTypes[296]
+	mi := &file_pmaster_proto_msgTypes[308]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21084,7 +22164,7 @@ func (x *ProduceDescriptionSwapList) String() string {
 func (*ProduceDescriptionSwapList) ProtoMessage() {}
 
 func (x *ProduceDescriptionSwapList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[296]
+	mi := &file_pmaster_proto_msgTypes[308]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21097,7 +22177,7 @@ func (x *ProduceDescriptionSwapList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDescriptionSwapList.ProtoReflect.Descriptor instead.
 func (*ProduceDescriptionSwapList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{296}
+	return file_pmaster_proto_rawDescGZIP(), []int{308}
 }
 
 func (x *ProduceDescriptionSwapList) GetList() []*ProduceDescriptionSwap {
@@ -21128,7 +22208,7 @@ type ProduceDrink struct {
 
 func (x *ProduceDrink) Reset() {
 	*x = ProduceDrink{}
-	mi := &file_pmaster_proto_msgTypes[297]
+	mi := &file_pmaster_proto_msgTypes[309]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21140,7 +22220,7 @@ func (x *ProduceDrink) String() string {
 func (*ProduceDrink) ProtoMessage() {}
 
 func (x *ProduceDrink) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[297]
+	mi := &file_pmaster_proto_msgTypes[309]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21153,7 +22233,7 @@ func (x *ProduceDrink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDrink.ProtoReflect.Descriptor instead.
 func (*ProduceDrink) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{297}
+	return file_pmaster_proto_rawDescGZIP(), []int{309}
 }
 
 func (x *ProduceDrink) GetId() string {
@@ -21258,7 +22338,7 @@ type ProduceDrinkEffect struct {
 
 func (x *ProduceDrinkEffect) Reset() {
 	*x = ProduceDrinkEffect{}
-	mi := &file_pmaster_proto_msgTypes[298]
+	mi := &file_pmaster_proto_msgTypes[310]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21270,7 +22350,7 @@ func (x *ProduceDrinkEffect) String() string {
 func (*ProduceDrinkEffect) ProtoMessage() {}
 
 func (x *ProduceDrinkEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[298]
+	mi := &file_pmaster_proto_msgTypes[310]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21283,7 +22363,7 @@ func (x *ProduceDrinkEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDrinkEffect.ProtoReflect.Descriptor instead.
 func (*ProduceDrinkEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{298}
+	return file_pmaster_proto_rawDescGZIP(), []int{310}
 }
 
 func (x *ProduceDrinkEffect) GetId() string {
@@ -21316,7 +22396,7 @@ type ProduceDrinkEffectList struct {
 
 func (x *ProduceDrinkEffectList) Reset() {
 	*x = ProduceDrinkEffectList{}
-	mi := &file_pmaster_proto_msgTypes[299]
+	mi := &file_pmaster_proto_msgTypes[311]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21328,7 +22408,7 @@ func (x *ProduceDrinkEffectList) String() string {
 func (*ProduceDrinkEffectList) ProtoMessage() {}
 
 func (x *ProduceDrinkEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[299]
+	mi := &file_pmaster_proto_msgTypes[311]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21341,7 +22421,7 @@ func (x *ProduceDrinkEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDrinkEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceDrinkEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{299}
+	return file_pmaster_proto_rawDescGZIP(), []int{311}
 }
 
 func (x *ProduceDrinkEffectList) GetList() []*ProduceDrinkEffect {
@@ -21360,7 +22440,7 @@ type ProduceDrinkList struct {
 
 func (x *ProduceDrinkList) Reset() {
 	*x = ProduceDrinkList{}
-	mi := &file_pmaster_proto_msgTypes[300]
+	mi := &file_pmaster_proto_msgTypes[312]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21372,7 +22452,7 @@ func (x *ProduceDrinkList) String() string {
 func (*ProduceDrinkList) ProtoMessage() {}
 
 func (x *ProduceDrinkList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[300]
+	mi := &file_pmaster_proto_msgTypes[312]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21385,7 +22465,7 @@ func (x *ProduceDrinkList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceDrinkList.ProtoReflect.Descriptor instead.
 func (*ProduceDrinkList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{300}
+	return file_pmaster_proto_rawDescGZIP(), []int{312}
 }
 
 func (x *ProduceDrinkList) GetList() []*ProduceDrink {
@@ -21416,7 +22496,7 @@ type ProduceEffect struct {
 
 func (x *ProduceEffect) Reset() {
 	*x = ProduceEffect{}
-	mi := &file_pmaster_proto_msgTypes[301]
+	mi := &file_pmaster_proto_msgTypes[313]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21428,7 +22508,7 @@ func (x *ProduceEffect) String() string {
 func (*ProduceEffect) ProtoMessage() {}
 
 func (x *ProduceEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[301]
+	mi := &file_pmaster_proto_msgTypes[313]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21441,7 +22521,7 @@ func (x *ProduceEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEffect.ProtoReflect.Descriptor instead.
 func (*ProduceEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{301}
+	return file_pmaster_proto_rawDescGZIP(), []int{313}
 }
 
 func (x *ProduceEffect) GetId() string {
@@ -21548,7 +22628,7 @@ type ProduceEffectIcon struct {
 
 func (x *ProduceEffectIcon) Reset() {
 	*x = ProduceEffectIcon{}
-	mi := &file_pmaster_proto_msgTypes[302]
+	mi := &file_pmaster_proto_msgTypes[314]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21560,7 +22640,7 @@ func (x *ProduceEffectIcon) String() string {
 func (*ProduceEffectIcon) ProtoMessage() {}
 
 func (x *ProduceEffectIcon) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[302]
+	mi := &file_pmaster_proto_msgTypes[314]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21573,7 +22653,7 @@ func (x *ProduceEffectIcon) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEffectIcon.ProtoReflect.Descriptor instead.
 func (*ProduceEffectIcon) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{302}
+	return file_pmaster_proto_rawDescGZIP(), []int{314}
 }
 
 func (x *ProduceEffectIcon) GetType() penum.ProduceEffectType {
@@ -21620,7 +22700,7 @@ type ProduceEffectIconList struct {
 
 func (x *ProduceEffectIconList) Reset() {
 	*x = ProduceEffectIconList{}
-	mi := &file_pmaster_proto_msgTypes[303]
+	mi := &file_pmaster_proto_msgTypes[315]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21632,7 +22712,7 @@ func (x *ProduceEffectIconList) String() string {
 func (*ProduceEffectIconList) ProtoMessage() {}
 
 func (x *ProduceEffectIconList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[303]
+	mi := &file_pmaster_proto_msgTypes[315]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21645,7 +22725,7 @@ func (x *ProduceEffectIconList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEffectIconList.ProtoReflect.Descriptor instead.
 func (*ProduceEffectIconList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{303}
+	return file_pmaster_proto_rawDescGZIP(), []int{315}
 }
 
 func (x *ProduceEffectIconList) GetList() []*ProduceEffectIcon {
@@ -21664,7 +22744,7 @@ type ProduceEffectList struct {
 
 func (x *ProduceEffectList) Reset() {
 	*x = ProduceEffectList{}
-	mi := &file_pmaster_proto_msgTypes[304]
+	mi := &file_pmaster_proto_msgTypes[316]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21676,7 +22756,7 @@ func (x *ProduceEffectList) String() string {
 func (*ProduceEffectList) ProtoMessage() {}
 
 func (x *ProduceEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[304]
+	mi := &file_pmaster_proto_msgTypes[316]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21689,7 +22769,7 @@ func (x *ProduceEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{304}
+	return file_pmaster_proto_rawDescGZIP(), []int{316}
 }
 
 func (x *ProduceEffectList) GetList() []*ProduceEffect {
@@ -21715,7 +22795,7 @@ type ProduceEventCharacterGrowth struct {
 
 func (x *ProduceEventCharacterGrowth) Reset() {
 	*x = ProduceEventCharacterGrowth{}
-	mi := &file_pmaster_proto_msgTypes[305]
+	mi := &file_pmaster_proto_msgTypes[317]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21727,7 +22807,7 @@ func (x *ProduceEventCharacterGrowth) String() string {
 func (*ProduceEventCharacterGrowth) ProtoMessage() {}
 
 func (x *ProduceEventCharacterGrowth) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[305]
+	mi := &file_pmaster_proto_msgTypes[317]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21740,7 +22820,7 @@ func (x *ProduceEventCharacterGrowth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEventCharacterGrowth.ProtoReflect.Descriptor instead.
 func (*ProduceEventCharacterGrowth) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{305}
+	return file_pmaster_proto_rawDescGZIP(), []int{317}
 }
 
 func (x *ProduceEventCharacterGrowth) GetCharacterId() string {
@@ -21808,7 +22888,7 @@ type ProduceEventCharacterGrowthList struct {
 
 func (x *ProduceEventCharacterGrowthList) Reset() {
 	*x = ProduceEventCharacterGrowthList{}
-	mi := &file_pmaster_proto_msgTypes[306]
+	mi := &file_pmaster_proto_msgTypes[318]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21820,7 +22900,7 @@ func (x *ProduceEventCharacterGrowthList) String() string {
 func (*ProduceEventCharacterGrowthList) ProtoMessage() {}
 
 func (x *ProduceEventCharacterGrowthList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[306]
+	mi := &file_pmaster_proto_msgTypes[318]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21833,7 +22913,7 @@ func (x *ProduceEventCharacterGrowthList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEventCharacterGrowthList.ProtoReflect.Descriptor instead.
 func (*ProduceEventCharacterGrowthList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{306}
+	return file_pmaster_proto_rawDescGZIP(), []int{318}
 }
 
 func (x *ProduceEventCharacterGrowthList) GetList() []*ProduceEventCharacterGrowth {
@@ -21855,7 +22935,7 @@ type ProduceEventSupportCard struct {
 
 func (x *ProduceEventSupportCard) Reset() {
 	*x = ProduceEventSupportCard{}
-	mi := &file_pmaster_proto_msgTypes[307]
+	mi := &file_pmaster_proto_msgTypes[319]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21867,7 +22947,7 @@ func (x *ProduceEventSupportCard) String() string {
 func (*ProduceEventSupportCard) ProtoMessage() {}
 
 func (x *ProduceEventSupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[307]
+	mi := &file_pmaster_proto_msgTypes[319]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21880,7 +22960,7 @@ func (x *ProduceEventSupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEventSupportCard.ProtoReflect.Descriptor instead.
 func (*ProduceEventSupportCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{307}
+	return file_pmaster_proto_rawDescGZIP(), []int{319}
 }
 
 func (x *ProduceEventSupportCard) GetSupportCardId() string {
@@ -21920,7 +23000,7 @@ type ProduceEventSupportCardList struct {
 
 func (x *ProduceEventSupportCardList) Reset() {
 	*x = ProduceEventSupportCardList{}
-	mi := &file_pmaster_proto_msgTypes[308]
+	mi := &file_pmaster_proto_msgTypes[320]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21932,7 +23012,7 @@ func (x *ProduceEventSupportCardList) String() string {
 func (*ProduceEventSupportCardList) ProtoMessage() {}
 
 func (x *ProduceEventSupportCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[308]
+	mi := &file_pmaster_proto_msgTypes[320]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21945,7 +23025,7 @@ func (x *ProduceEventSupportCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEventSupportCardList.ProtoReflect.Descriptor instead.
 func (*ProduceEventSupportCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{308}
+	return file_pmaster_proto_rawDescGZIP(), []int{320}
 }
 
 func (x *ProduceEventSupportCardList) GetList() []*ProduceEventSupportCard {
@@ -21968,7 +23048,7 @@ type ProduceExamAutoCardSelectEvaluation struct {
 
 func (x *ProduceExamAutoCardSelectEvaluation) Reset() {
 	*x = ProduceExamAutoCardSelectEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[309]
+	mi := &file_pmaster_proto_msgTypes[321]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21980,7 +23060,7 @@ func (x *ProduceExamAutoCardSelectEvaluation) String() string {
 func (*ProduceExamAutoCardSelectEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoCardSelectEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[309]
+	mi := &file_pmaster_proto_msgTypes[321]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21993,7 +23073,7 @@ func (x *ProduceExamAutoCardSelectEvaluation) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceExamAutoCardSelectEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoCardSelectEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{309}
+	return file_pmaster_proto_rawDescGZIP(), []int{321}
 }
 
 func (x *ProduceExamAutoCardSelectEvaluation) GetType() penum.ExamPlayType {
@@ -22040,7 +23120,7 @@ type ProduceExamAutoCardSelectEvaluationList struct {
 
 func (x *ProduceExamAutoCardSelectEvaluationList) Reset() {
 	*x = ProduceExamAutoCardSelectEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[310]
+	mi := &file_pmaster_proto_msgTypes[322]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22052,7 +23132,7 @@ func (x *ProduceExamAutoCardSelectEvaluationList) String() string {
 func (*ProduceExamAutoCardSelectEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoCardSelectEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[310]
+	mi := &file_pmaster_proto_msgTypes[322]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22065,7 +23145,7 @@ func (x *ProduceExamAutoCardSelectEvaluationList) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ProduceExamAutoCardSelectEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoCardSelectEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{310}
+	return file_pmaster_proto_rawDescGZIP(), []int{322}
 }
 
 func (x *ProduceExamAutoCardSelectEvaluationList) GetList() []*ProduceExamAutoCardSelectEvaluation {
@@ -22089,7 +23169,7 @@ type ProduceExamAutoEvaluation struct {
 
 func (x *ProduceExamAutoEvaluation) Reset() {
 	*x = ProduceExamAutoEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[311]
+	mi := &file_pmaster_proto_msgTypes[323]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22101,7 +23181,7 @@ func (x *ProduceExamAutoEvaluation) String() string {
 func (*ProduceExamAutoEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[311]
+	mi := &file_pmaster_proto_msgTypes[323]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22114,7 +23194,7 @@ func (x *ProduceExamAutoEvaluation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamAutoEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{311}
+	return file_pmaster_proto_rawDescGZIP(), []int{323}
 }
 
 func (x *ProduceExamAutoEvaluation) GetType() penum.ExamPlayType {
@@ -22168,7 +23248,7 @@ type ProduceExamAutoEvaluationList struct {
 
 func (x *ProduceExamAutoEvaluationList) Reset() {
 	*x = ProduceExamAutoEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[312]
+	mi := &file_pmaster_proto_msgTypes[324]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22180,7 +23260,7 @@ func (x *ProduceExamAutoEvaluationList) String() string {
 func (*ProduceExamAutoEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[312]
+	mi := &file_pmaster_proto_msgTypes[324]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22193,7 +23273,7 @@ func (x *ProduceExamAutoEvaluationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamAutoEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{312}
+	return file_pmaster_proto_rawDescGZIP(), []int{324}
 }
 
 func (x *ProduceExamAutoEvaluationList) GetList() []*ProduceExamAutoEvaluation {
@@ -22217,7 +23297,7 @@ type ProduceExamAutoGrowEffectEvaluation struct {
 
 func (x *ProduceExamAutoGrowEffectEvaluation) Reset() {
 	*x = ProduceExamAutoGrowEffectEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[313]
+	mi := &file_pmaster_proto_msgTypes[325]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22229,7 +23309,7 @@ func (x *ProduceExamAutoGrowEffectEvaluation) String() string {
 func (*ProduceExamAutoGrowEffectEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoGrowEffectEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[313]
+	mi := &file_pmaster_proto_msgTypes[325]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22242,7 +23322,7 @@ func (x *ProduceExamAutoGrowEffectEvaluation) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceExamAutoGrowEffectEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoGrowEffectEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{313}
+	return file_pmaster_proto_rawDescGZIP(), []int{325}
 }
 
 func (x *ProduceExamAutoGrowEffectEvaluation) GetType() penum.ExamPlayType {
@@ -22296,7 +23376,7 @@ type ProduceExamAutoGrowEffectEvaluationList struct {
 
 func (x *ProduceExamAutoGrowEffectEvaluationList) Reset() {
 	*x = ProduceExamAutoGrowEffectEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[314]
+	mi := &file_pmaster_proto_msgTypes[326]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22308,7 +23388,7 @@ func (x *ProduceExamAutoGrowEffectEvaluationList) String() string {
 func (*ProduceExamAutoGrowEffectEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoGrowEffectEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[314]
+	mi := &file_pmaster_proto_msgTypes[326]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22321,7 +23401,7 @@ func (x *ProduceExamAutoGrowEffectEvaluationList) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ProduceExamAutoGrowEffectEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoGrowEffectEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{314}
+	return file_pmaster_proto_rawDescGZIP(), []int{326}
 }
 
 func (x *ProduceExamAutoGrowEffectEvaluationList) GetList() []*ProduceExamAutoGrowEffectEvaluation {
@@ -22342,7 +23422,7 @@ type ProduceExamAutoPlayCardEvaluation struct {
 
 func (x *ProduceExamAutoPlayCardEvaluation) Reset() {
 	*x = ProduceExamAutoPlayCardEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[315]
+	mi := &file_pmaster_proto_msgTypes[327]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22354,7 +23434,7 @@ func (x *ProduceExamAutoPlayCardEvaluation) String() string {
 func (*ProduceExamAutoPlayCardEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoPlayCardEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[315]
+	mi := &file_pmaster_proto_msgTypes[327]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22367,7 +23447,7 @@ func (x *ProduceExamAutoPlayCardEvaluation) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceExamAutoPlayCardEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoPlayCardEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{315}
+	return file_pmaster_proto_rawDescGZIP(), []int{327}
 }
 
 func (x *ProduceExamAutoPlayCardEvaluation) GetProduceCardId() string {
@@ -22400,7 +23480,7 @@ type ProduceExamAutoPlayCardEvaluationList struct {
 
 func (x *ProduceExamAutoPlayCardEvaluationList) Reset() {
 	*x = ProduceExamAutoPlayCardEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[316]
+	mi := &file_pmaster_proto_msgTypes[328]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22412,7 +23492,7 @@ func (x *ProduceExamAutoPlayCardEvaluationList) String() string {
 func (*ProduceExamAutoPlayCardEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoPlayCardEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[316]
+	mi := &file_pmaster_proto_msgTypes[328]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22425,7 +23505,7 @@ func (x *ProduceExamAutoPlayCardEvaluationList) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ProduceExamAutoPlayCardEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoPlayCardEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{316}
+	return file_pmaster_proto_rawDescGZIP(), []int{328}
 }
 
 func (x *ProduceExamAutoPlayCardEvaluationList) GetList() []*ProduceExamAutoPlayCardEvaluation {
@@ -22447,7 +23527,7 @@ type ProduceExamAutoPlayProduceCardEvaluation struct {
 
 func (x *ProduceExamAutoPlayProduceCardEvaluation) Reset() {
 	*x = ProduceExamAutoPlayProduceCardEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[317]
+	mi := &file_pmaster_proto_msgTypes[329]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22459,7 +23539,7 @@ func (x *ProduceExamAutoPlayProduceCardEvaluation) String() string {
 func (*ProduceExamAutoPlayProduceCardEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoPlayProduceCardEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[317]
+	mi := &file_pmaster_proto_msgTypes[329]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22472,7 +23552,7 @@ func (x *ProduceExamAutoPlayProduceCardEvaluation) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ProduceExamAutoPlayProduceCardEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoPlayProduceCardEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{317}
+	return file_pmaster_proto_rawDescGZIP(), []int{329}
 }
 
 func (x *ProduceExamAutoPlayProduceCardEvaluation) GetType() penum.ExamPlayType {
@@ -22512,7 +23592,7 @@ type ProduceExamAutoPlayProduceCardEvaluationList struct {
 
 func (x *ProduceExamAutoPlayProduceCardEvaluationList) Reset() {
 	*x = ProduceExamAutoPlayProduceCardEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[318]
+	mi := &file_pmaster_proto_msgTypes[330]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22524,7 +23604,7 @@ func (x *ProduceExamAutoPlayProduceCardEvaluationList) String() string {
 func (*ProduceExamAutoPlayProduceCardEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoPlayProduceCardEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[318]
+	mi := &file_pmaster_proto_msgTypes[330]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22537,7 +23617,7 @@ func (x *ProduceExamAutoPlayProduceCardEvaluationList) ProtoReflect() protorefle
 
 // Deprecated: Use ProduceExamAutoPlayProduceCardEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoPlayProduceCardEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{318}
+	return file_pmaster_proto_rawDescGZIP(), []int{330}
 }
 
 func (x *ProduceExamAutoPlayProduceCardEvaluationList) GetList() []*ProduceExamAutoPlayProduceCardEvaluation {
@@ -22562,7 +23642,7 @@ type ProduceExamAutoResourceEvaluation struct {
 
 func (x *ProduceExamAutoResourceEvaluation) Reset() {
 	*x = ProduceExamAutoResourceEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[319]
+	mi := &file_pmaster_proto_msgTypes[331]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22574,7 +23654,7 @@ func (x *ProduceExamAutoResourceEvaluation) String() string {
 func (*ProduceExamAutoResourceEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoResourceEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[319]
+	mi := &file_pmaster_proto_msgTypes[331]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22587,7 +23667,7 @@ func (x *ProduceExamAutoResourceEvaluation) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceExamAutoResourceEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoResourceEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{319}
+	return file_pmaster_proto_rawDescGZIP(), []int{331}
 }
 
 func (x *ProduceExamAutoResourceEvaluation) GetType() penum.ExamPlayType {
@@ -22648,7 +23728,7 @@ type ProduceExamAutoResourceEvaluationList struct {
 
 func (x *ProduceExamAutoResourceEvaluationList) Reset() {
 	*x = ProduceExamAutoResourceEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[320]
+	mi := &file_pmaster_proto_msgTypes[332]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22660,7 +23740,7 @@ func (x *ProduceExamAutoResourceEvaluationList) String() string {
 func (*ProduceExamAutoResourceEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoResourceEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[320]
+	mi := &file_pmaster_proto_msgTypes[332]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22673,7 +23753,7 @@ func (x *ProduceExamAutoResourceEvaluationList) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ProduceExamAutoResourceEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoResourceEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{320}
+	return file_pmaster_proto_rawDescGZIP(), []int{332}
 }
 
 func (x *ProduceExamAutoResourceEvaluationList) GetList() []*ProduceExamAutoResourceEvaluation {
@@ -22695,7 +23775,7 @@ type ProduceExamAutoTriggerEvaluation struct {
 
 func (x *ProduceExamAutoTriggerEvaluation) Reset() {
 	*x = ProduceExamAutoTriggerEvaluation{}
-	mi := &file_pmaster_proto_msgTypes[321]
+	mi := &file_pmaster_proto_msgTypes[333]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22707,7 +23787,7 @@ func (x *ProduceExamAutoTriggerEvaluation) String() string {
 func (*ProduceExamAutoTriggerEvaluation) ProtoMessage() {}
 
 func (x *ProduceExamAutoTriggerEvaluation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[321]
+	mi := &file_pmaster_proto_msgTypes[333]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22720,7 +23800,7 @@ func (x *ProduceExamAutoTriggerEvaluation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamAutoTriggerEvaluation.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoTriggerEvaluation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{321}
+	return file_pmaster_proto_rawDescGZIP(), []int{333}
 }
 
 func (x *ProduceExamAutoTriggerEvaluation) GetType() penum.ExamPlayType {
@@ -22760,7 +23840,7 @@ type ProduceExamAutoTriggerEvaluationList struct {
 
 func (x *ProduceExamAutoTriggerEvaluationList) Reset() {
 	*x = ProduceExamAutoTriggerEvaluationList{}
-	mi := &file_pmaster_proto_msgTypes[322]
+	mi := &file_pmaster_proto_msgTypes[334]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22772,7 +23852,7 @@ func (x *ProduceExamAutoTriggerEvaluationList) String() string {
 func (*ProduceExamAutoTriggerEvaluationList) ProtoMessage() {}
 
 func (x *ProduceExamAutoTriggerEvaluationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[322]
+	mi := &file_pmaster_proto_msgTypes[334]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22785,7 +23865,7 @@ func (x *ProduceExamAutoTriggerEvaluationList) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ProduceExamAutoTriggerEvaluationList.ProtoReflect.Descriptor instead.
 func (*ProduceExamAutoTriggerEvaluationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{322}
+	return file_pmaster_proto_rawDescGZIP(), []int{334}
 }
 
 func (x *ProduceExamAutoTriggerEvaluationList) GetList() []*ProduceExamAutoTriggerEvaluation {
@@ -22815,7 +23895,7 @@ type ProduceExamBattleConfig struct {
 
 func (x *ProduceExamBattleConfig) Reset() {
 	*x = ProduceExamBattleConfig{}
-	mi := &file_pmaster_proto_msgTypes[323]
+	mi := &file_pmaster_proto_msgTypes[335]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22827,7 +23907,7 @@ func (x *ProduceExamBattleConfig) String() string {
 func (*ProduceExamBattleConfig) ProtoMessage() {}
 
 func (x *ProduceExamBattleConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[323]
+	mi := &file_pmaster_proto_msgTypes[335]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22840,7 +23920,7 @@ func (x *ProduceExamBattleConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleConfig.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleConfig) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{323}
+	return file_pmaster_proto_rawDescGZIP(), []int{335}
 }
 
 func (x *ProduceExamBattleConfig) GetId() string {
@@ -22936,7 +24016,7 @@ type ProduceExamBattleConfigList struct {
 
 func (x *ProduceExamBattleConfigList) Reset() {
 	*x = ProduceExamBattleConfigList{}
-	mi := &file_pmaster_proto_msgTypes[324]
+	mi := &file_pmaster_proto_msgTypes[336]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22948,7 +24028,7 @@ func (x *ProduceExamBattleConfigList) String() string {
 func (*ProduceExamBattleConfigList) ProtoMessage() {}
 
 func (x *ProduceExamBattleConfigList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[324]
+	mi := &file_pmaster_proto_msgTypes[336]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22961,7 +24041,7 @@ func (x *ProduceExamBattleConfigList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleConfigList.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleConfigList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{324}
+	return file_pmaster_proto_rawDescGZIP(), []int{336}
 }
 
 func (x *ProduceExamBattleConfigList) GetList() []*ProduceExamBattleConfig {
@@ -22991,7 +24071,7 @@ type ProduceExamBattleNpcGroup struct {
 
 func (x *ProduceExamBattleNpcGroup) Reset() {
 	*x = ProduceExamBattleNpcGroup{}
-	mi := &file_pmaster_proto_msgTypes[325]
+	mi := &file_pmaster_proto_msgTypes[337]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23003,7 +24083,7 @@ func (x *ProduceExamBattleNpcGroup) String() string {
 func (*ProduceExamBattleNpcGroup) ProtoMessage() {}
 
 func (x *ProduceExamBattleNpcGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[325]
+	mi := &file_pmaster_proto_msgTypes[337]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23016,7 +24096,7 @@ func (x *ProduceExamBattleNpcGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleNpcGroup.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleNpcGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{325}
+	return file_pmaster_proto_rawDescGZIP(), []int{337}
 }
 
 func (x *ProduceExamBattleNpcGroup) GetId() string {
@@ -23112,7 +24192,7 @@ type ProduceExamBattleNpcGroupList struct {
 
 func (x *ProduceExamBattleNpcGroupList) Reset() {
 	*x = ProduceExamBattleNpcGroupList{}
-	mi := &file_pmaster_proto_msgTypes[326]
+	mi := &file_pmaster_proto_msgTypes[338]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23124,7 +24204,7 @@ func (x *ProduceExamBattleNpcGroupList) String() string {
 func (*ProduceExamBattleNpcGroupList) ProtoMessage() {}
 
 func (x *ProduceExamBattleNpcGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[326]
+	mi := &file_pmaster_proto_msgTypes[338]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23137,7 +24217,7 @@ func (x *ProduceExamBattleNpcGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleNpcGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleNpcGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{326}
+	return file_pmaster_proto_rawDescGZIP(), []int{338}
 }
 
 func (x *ProduceExamBattleNpcGroupList) GetList() []*ProduceExamBattleNpcGroup {
@@ -23152,13 +24232,14 @@ type ProduceExamBattleNpcMob struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	AssetId       string                 `protobuf:"bytes,3,opt,name=assetId,proto3" json:"assetId,omitempty"`
+	IsBorder      bool                   `protobuf:"varint,4,opt,name=isBorder,proto3" json:"isBorder,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ProduceExamBattleNpcMob) Reset() {
 	*x = ProduceExamBattleNpcMob{}
-	mi := &file_pmaster_proto_msgTypes[327]
+	mi := &file_pmaster_proto_msgTypes[339]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23170,7 +24251,7 @@ func (x *ProduceExamBattleNpcMob) String() string {
 func (*ProduceExamBattleNpcMob) ProtoMessage() {}
 
 func (x *ProduceExamBattleNpcMob) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[327]
+	mi := &file_pmaster_proto_msgTypes[339]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23183,7 +24264,7 @@ func (x *ProduceExamBattleNpcMob) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleNpcMob.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleNpcMob) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{327}
+	return file_pmaster_proto_rawDescGZIP(), []int{339}
 }
 
 func (x *ProduceExamBattleNpcMob) GetId() string {
@@ -23207,6 +24288,13 @@ func (x *ProduceExamBattleNpcMob) GetAssetId() string {
 	return ""
 }
 
+func (x *ProduceExamBattleNpcMob) GetIsBorder() bool {
+	if x != nil {
+		return x.IsBorder
+	}
+	return false
+}
+
 type ProduceExamBattleNpcMobList struct {
 	state         protoimpl.MessageState     `protogen:"open.v1"`
 	List          []*ProduceExamBattleNpcMob `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -23216,7 +24304,7 @@ type ProduceExamBattleNpcMobList struct {
 
 func (x *ProduceExamBattleNpcMobList) Reset() {
 	*x = ProduceExamBattleNpcMobList{}
-	mi := &file_pmaster_proto_msgTypes[328]
+	mi := &file_pmaster_proto_msgTypes[340]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23228,7 +24316,7 @@ func (x *ProduceExamBattleNpcMobList) String() string {
 func (*ProduceExamBattleNpcMobList) ProtoMessage() {}
 
 func (x *ProduceExamBattleNpcMobList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[328]
+	mi := &file_pmaster_proto_msgTypes[340]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23241,7 +24329,7 @@ func (x *ProduceExamBattleNpcMobList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleNpcMobList.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleNpcMobList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{328}
+	return file_pmaster_proto_rawDescGZIP(), []int{340}
 }
 
 func (x *ProduceExamBattleNpcMobList) GetList() []*ProduceExamBattleNpcMob {
@@ -23264,7 +24352,7 @@ type ProduceExamBattleScoreConfig struct {
 
 func (x *ProduceExamBattleScoreConfig) Reset() {
 	*x = ProduceExamBattleScoreConfig{}
-	mi := &file_pmaster_proto_msgTypes[329]
+	mi := &file_pmaster_proto_msgTypes[341]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23276,7 +24364,7 @@ func (x *ProduceExamBattleScoreConfig) String() string {
 func (*ProduceExamBattleScoreConfig) ProtoMessage() {}
 
 func (x *ProduceExamBattleScoreConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[329]
+	mi := &file_pmaster_proto_msgTypes[341]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23289,7 +24377,7 @@ func (x *ProduceExamBattleScoreConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleScoreConfig.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleScoreConfig) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{329}
+	return file_pmaster_proto_rawDescGZIP(), []int{341}
 }
 
 func (x *ProduceExamBattleScoreConfig) GetId() string {
@@ -23336,7 +24424,7 @@ type ProduceExamBattleScoreConfigList struct {
 
 func (x *ProduceExamBattleScoreConfigList) Reset() {
 	*x = ProduceExamBattleScoreConfigList{}
-	mi := &file_pmaster_proto_msgTypes[330]
+	mi := &file_pmaster_proto_msgTypes[342]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23348,7 +24436,7 @@ func (x *ProduceExamBattleScoreConfigList) String() string {
 func (*ProduceExamBattleScoreConfigList) ProtoMessage() {}
 
 func (x *ProduceExamBattleScoreConfigList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[330]
+	mi := &file_pmaster_proto_msgTypes[342]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23361,7 +24449,7 @@ func (x *ProduceExamBattleScoreConfigList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamBattleScoreConfigList.ProtoReflect.Descriptor instead.
 func (*ProduceExamBattleScoreConfigList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{330}
+	return file_pmaster_proto_rawDescGZIP(), []int{342}
 }
 
 func (x *ProduceExamBattleScoreConfigList) GetList() []*ProduceExamBattleScoreConfig {
@@ -23372,38 +24460,44 @@ func (x *ProduceExamBattleScoreConfigList) GetList() []*ProduceExamBattleScoreCo
 }
 
 type ProduceExamEffect struct {
-	state                                 protoimpl.MessageState               `protogen:"open.v1"`
-	Id                                    string                               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	EffectType                            penum.ProduceExamEffectType          `protobuf:"varint,2,opt,name=effectType,proto3,enum=penum.ProduceExamEffectType" json:"effectType,omitempty"`
-	EffectValue1                          int32                                `protobuf:"varint,5,opt,name=effectValue1,proto3" json:"effectValue1,omitempty"`
-	EffectValue2                          int32                                `protobuf:"varint,6,opt,name=effectValue2,proto3" json:"effectValue2,omitempty"`
-	EffectCount                           int32                                `protobuf:"varint,7,opt,name=effectCount,proto3" json:"effectCount,omitempty"`
-	EffectTurn                            int32                                `protobuf:"varint,8,opt,name=effectTurn,proto3" json:"effectTurn,omitempty"`
-	TargetProduceCardId                   string                               `protobuf:"bytes,9,opt,name=targetProduceCardId,proto3" json:"targetProduceCardId,omitempty"`
-	TargetUpgradeCount                    int32                                `protobuf:"varint,10,opt,name=targetUpgradeCount,proto3" json:"targetUpgradeCount,omitempty"`
-	TargetExamEffectType                  penum.ProduceExamEffectType          `protobuf:"varint,11,opt,name=targetExamEffectType,proto3,enum=penum.ProduceExamEffectType" json:"targetExamEffectType,omitempty"`
-	ProduceCardSearchId                   string                               `protobuf:"bytes,12,opt,name=produceCardSearchId,proto3" json:"produceCardSearchId,omitempty"`
-	MovePositionType                      penum.ProduceCardMovePositionType    `protobuf:"varint,13,opt,name=movePositionType,proto3,enum=penum.ProduceCardMovePositionType" json:"movePositionType,omitempty"`
-	PickRangeType                         penum.ProducePickRangeType           `protobuf:"varint,14,opt,name=pickRangeType,proto3,enum=penum.ProducePickRangeType" json:"pickRangeType,omitempty"`
-	PickCountReferenceProduceCardSearchId string                               `protobuf:"bytes,22,opt,name=pickCountReferenceProduceCardSearchId,proto3" json:"pickCountReferenceProduceCardSearchId,omitempty"`
-	PickCountType                         penum.ProducePickCountType           `protobuf:"varint,23,opt,name=pickCountType,proto3,enum=penum.ProducePickCountType" json:"pickCountType,omitempty"`
-	PickCountMin                          int32                                `protobuf:"varint,15,opt,name=pickCountMin,proto3" json:"pickCountMin,omitempty"`
-	PickCountMax                          int32                                `protobuf:"varint,16,opt,name=pickCountMax,proto3" json:"pickCountMax,omitempty"`
-	ChainProduceExamEffectId              string                               `protobuf:"bytes,17,opt,name=chainProduceExamEffectId,proto3" json:"chainProduceExamEffectId,omitempty"`
-	ChainProduceExamEffectIds             []string                             `protobuf:"bytes,20,rep,name=chainProduceExamEffectIds,proto3" json:"chainProduceExamEffectIds,omitempty"`
-	ProduceExamStatusEnchantId            string                               `protobuf:"bytes,18,opt,name=produceExamStatusEnchantId,proto3" json:"produceExamStatusEnchantId,omitempty"`
-	ProduceCardStatusEnchantId            string                               `protobuf:"bytes,19,opt,name=produceCardStatusEnchantId,proto3" json:"produceCardStatusEnchantId,omitempty"`
-	ProduceCardGrowEffectIds              []string                             `protobuf:"bytes,21,rep,name=produceCardGrowEffectIds,proto3" json:"produceCardGrowEffectIds,omitempty"`
-	EffectGroupIds                        []string                             `protobuf:"bytes,30,rep,name=effectGroupIds,proto3" json:"effectGroupIds,omitempty"`
-	ProduceDescriptions                   []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,31,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
-	CustomizeProduceDescriptions          []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,32,rep,name=customizeProduceDescriptions,proto3" json:"customizeProduceDescriptions,omitempty"`
-	unknownFields                         protoimpl.UnknownFields
-	sizeCache                             protoimpl.SizeCache
+	state                                  protoimpl.MessageState               `protogen:"open.v1"`
+	Id                                     string                               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	EffectType                             penum.ProduceExamEffectType          `protobuf:"varint,2,opt,name=effectType,proto3,enum=penum.ProduceExamEffectType" json:"effectType,omitempty"`
+	EffectValue1                           int32                                `protobuf:"varint,5,opt,name=effectValue1,proto3" json:"effectValue1,omitempty"`
+	EffectValue2                           int32                                `protobuf:"varint,6,opt,name=effectValue2,proto3" json:"effectValue2,omitempty"`
+	EffectCount                            int32                                `protobuf:"varint,7,opt,name=effectCount,proto3" json:"effectCount,omitempty"`
+	EffectTurn                             int32                                `protobuf:"varint,8,opt,name=effectTurn,proto3" json:"effectTurn,omitempty"`
+	TargetProduceCardId                    string                               `protobuf:"bytes,9,opt,name=targetProduceCardId,proto3" json:"targetProduceCardId,omitempty"`
+	TargetUpgradeCount                     int32                                `protobuf:"varint,10,opt,name=targetUpgradeCount,proto3" json:"targetUpgradeCount,omitempty"`
+	TargetExamEffectType                   penum.ProduceExamEffectType          `protobuf:"varint,11,opt,name=targetExamEffectType,proto3,enum=penum.ProduceExamEffectType" json:"targetExamEffectType,omitempty"`
+	ProduceCardSearchId                    string                               `protobuf:"bytes,12,opt,name=produceCardSearchId,proto3" json:"produceCardSearchId,omitempty"`
+	MovePositionType                       penum.ProduceCardMovePositionType    `protobuf:"varint,13,opt,name=movePositionType,proto3,enum=penum.ProduceCardMovePositionType" json:"movePositionType,omitempty"`
+	PickRangeType                          penum.ProducePickRangeType           `protobuf:"varint,14,opt,name=pickRangeType,proto3,enum=penum.ProducePickRangeType" json:"pickRangeType,omitempty"`
+	PickCountReferenceProduceCardSearchId  string                               `protobuf:"bytes,22,opt,name=pickCountReferenceProduceCardSearchId,proto3" json:"pickCountReferenceProduceCardSearchId,omitempty"`
+	PickCountType                          penum.ProducePickCountType           `protobuf:"varint,23,opt,name=pickCountType,proto3,enum=penum.ProducePickCountType" json:"pickCountType,omitempty"`
+	PickCountMin                           int32                                `protobuf:"varint,15,opt,name=pickCountMin,proto3" json:"pickCountMin,omitempty"`
+	PickCountMax                           int32                                `protobuf:"varint,16,opt,name=pickCountMax,proto3" json:"pickCountMax,omitempty"`
+	ProduceCardSearchId2                   string                               `protobuf:"bytes,24,opt,name=produceCardSearchId2,proto3" json:"produceCardSearchId2,omitempty"`
+	PickRangeType2                         penum.ProducePickRangeType           `protobuf:"varint,25,opt,name=pickRangeType2,proto3,enum=penum.ProducePickRangeType" json:"pickRangeType2,omitempty"`
+	PickCountReferenceProduceCardSearchId2 string                               `protobuf:"bytes,26,opt,name=pickCountReferenceProduceCardSearchId2,proto3" json:"pickCountReferenceProduceCardSearchId2,omitempty"`
+	PickCountType2                         penum.ProducePickCountType           `protobuf:"varint,27,opt,name=pickCountType2,proto3,enum=penum.ProducePickCountType" json:"pickCountType2,omitempty"`
+	PickCountMin2                          int32                                `protobuf:"varint,28,opt,name=pickCountMin2,proto3" json:"pickCountMin2,omitempty"`
+	PickCountMax2                          int32                                `protobuf:"varint,29,opt,name=pickCountMax2,proto3" json:"pickCountMax2,omitempty"`
+	ChainProduceExamEffectId               string                               `protobuf:"bytes,17,opt,name=chainProduceExamEffectId,proto3" json:"chainProduceExamEffectId,omitempty"`
+	ChainProduceExamEffectIds              []string                             `protobuf:"bytes,20,rep,name=chainProduceExamEffectIds,proto3" json:"chainProduceExamEffectIds,omitempty"`
+	ProduceExamStatusEnchantId             string                               `protobuf:"bytes,18,opt,name=produceExamStatusEnchantId,proto3" json:"produceExamStatusEnchantId,omitempty"`
+	ProduceCardStatusEnchantId             string                               `protobuf:"bytes,19,opt,name=produceCardStatusEnchantId,proto3" json:"produceCardStatusEnchantId,omitempty"`
+	ProduceCardGrowEffectIds               []string                             `protobuf:"bytes,21,rep,name=produceCardGrowEffectIds,proto3" json:"produceCardGrowEffectIds,omitempty"`
+	EffectGroupIds                         []string                             `protobuf:"bytes,30,rep,name=effectGroupIds,proto3" json:"effectGroupIds,omitempty"`
+	ProduceDescriptions                    []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,31,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
+	CustomizeProduceDescriptions           []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,32,rep,name=customizeProduceDescriptions,proto3" json:"customizeProduceDescriptions,omitempty"`
+	unknownFields                          protoimpl.UnknownFields
+	sizeCache                              protoimpl.SizeCache
 }
 
 func (x *ProduceExamEffect) Reset() {
 	*x = ProduceExamEffect{}
-	mi := &file_pmaster_proto_msgTypes[331]
+	mi := &file_pmaster_proto_msgTypes[343]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23415,7 +24509,7 @@ func (x *ProduceExamEffect) String() string {
 func (*ProduceExamEffect) ProtoMessage() {}
 
 func (x *ProduceExamEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[331]
+	mi := &file_pmaster_proto_msgTypes[343]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23428,7 +24522,7 @@ func (x *ProduceExamEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamEffect.ProtoReflect.Descriptor instead.
 func (*ProduceExamEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{331}
+	return file_pmaster_proto_rawDescGZIP(), []int{343}
 }
 
 func (x *ProduceExamEffect) GetId() string {
@@ -23543,6 +24637,48 @@ func (x *ProduceExamEffect) GetPickCountMax() int32 {
 	return 0
 }
 
+func (x *ProduceExamEffect) GetProduceCardSearchId2() string {
+	if x != nil {
+		return x.ProduceCardSearchId2
+	}
+	return ""
+}
+
+func (x *ProduceExamEffect) GetPickRangeType2() penum.ProducePickRangeType {
+	if x != nil {
+		return x.PickRangeType2
+	}
+	return penum.ProducePickRangeType(0)
+}
+
+func (x *ProduceExamEffect) GetPickCountReferenceProduceCardSearchId2() string {
+	if x != nil {
+		return x.PickCountReferenceProduceCardSearchId2
+	}
+	return ""
+}
+
+func (x *ProduceExamEffect) GetPickCountType2() penum.ProducePickCountType {
+	if x != nil {
+		return x.PickCountType2
+	}
+	return penum.ProducePickCountType(0)
+}
+
+func (x *ProduceExamEffect) GetPickCountMin2() int32 {
+	if x != nil {
+		return x.PickCountMin2
+	}
+	return 0
+}
+
+func (x *ProduceExamEffect) GetPickCountMax2() int32 {
+	if x != nil {
+		return x.PickCountMax2
+	}
+	return 0
+}
+
 func (x *ProduceExamEffect) GetChainProduceExamEffectId() string {
 	if x != nil {
 		return x.ChainProduceExamEffectId
@@ -23608,7 +24744,7 @@ type ProduceExamEffectList struct {
 
 func (x *ProduceExamEffectList) Reset() {
 	*x = ProduceExamEffectList{}
-	mi := &file_pmaster_proto_msgTypes[332]
+	mi := &file_pmaster_proto_msgTypes[344]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23620,7 +24756,7 @@ func (x *ProduceExamEffectList) String() string {
 func (*ProduceExamEffectList) ProtoMessage() {}
 
 func (x *ProduceExamEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[332]
+	mi := &file_pmaster_proto_msgTypes[344]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23633,7 +24769,7 @@ func (x *ProduceExamEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceExamEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{332}
+	return file_pmaster_proto_rawDescGZIP(), []int{344}
 }
 
 func (x *ProduceExamEffectList) GetList() []*ProduceExamEffect {
@@ -23663,7 +24799,7 @@ type ProduceExamGimmickEffectGroup struct {
 
 func (x *ProduceExamGimmickEffectGroup) Reset() {
 	*x = ProduceExamGimmickEffectGroup{}
-	mi := &file_pmaster_proto_msgTypes[333]
+	mi := &file_pmaster_proto_msgTypes[345]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23675,7 +24811,7 @@ func (x *ProduceExamGimmickEffectGroup) String() string {
 func (*ProduceExamGimmickEffectGroup) ProtoMessage() {}
 
 func (x *ProduceExamGimmickEffectGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[333]
+	mi := &file_pmaster_proto_msgTypes[345]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23688,7 +24824,7 @@ func (x *ProduceExamGimmickEffectGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamGimmickEffectGroup.ProtoReflect.Descriptor instead.
 func (*ProduceExamGimmickEffectGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{333}
+	return file_pmaster_proto_rawDescGZIP(), []int{345}
 }
 
 func (x *ProduceExamGimmickEffectGroup) GetId() string {
@@ -23784,7 +24920,7 @@ type ProduceExamGimmickEffectGroupList struct {
 
 func (x *ProduceExamGimmickEffectGroupList) Reset() {
 	*x = ProduceExamGimmickEffectGroupList{}
-	mi := &file_pmaster_proto_msgTypes[334]
+	mi := &file_pmaster_proto_msgTypes[346]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23796,7 +24932,7 @@ func (x *ProduceExamGimmickEffectGroupList) String() string {
 func (*ProduceExamGimmickEffectGroupList) ProtoMessage() {}
 
 func (x *ProduceExamGimmickEffectGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[334]
+	mi := &file_pmaster_proto_msgTypes[346]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23809,7 +24945,7 @@ func (x *ProduceExamGimmickEffectGroupList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceExamGimmickEffectGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceExamGimmickEffectGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{334}
+	return file_pmaster_proto_rawDescGZIP(), []int{346}
 }
 
 func (x *ProduceExamGimmickEffectGroupList) GetList() []*ProduceExamGimmickEffectGroup {
@@ -23832,7 +24968,7 @@ type ProduceExamStatusEnchant struct {
 
 func (x *ProduceExamStatusEnchant) Reset() {
 	*x = ProduceExamStatusEnchant{}
-	mi := &file_pmaster_proto_msgTypes[335]
+	mi := &file_pmaster_proto_msgTypes[347]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23844,7 +24980,7 @@ func (x *ProduceExamStatusEnchant) String() string {
 func (*ProduceExamStatusEnchant) ProtoMessage() {}
 
 func (x *ProduceExamStatusEnchant) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[335]
+	mi := &file_pmaster_proto_msgTypes[347]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23857,7 +24993,7 @@ func (x *ProduceExamStatusEnchant) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamStatusEnchant.ProtoReflect.Descriptor instead.
 func (*ProduceExamStatusEnchant) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{335}
+	return file_pmaster_proto_rawDescGZIP(), []int{347}
 }
 
 func (x *ProduceExamStatusEnchant) GetId() string {
@@ -23904,7 +25040,7 @@ type ProduceExamStatusEnchantList struct {
 
 func (x *ProduceExamStatusEnchantList) Reset() {
 	*x = ProduceExamStatusEnchantList{}
-	mi := &file_pmaster_proto_msgTypes[336]
+	mi := &file_pmaster_proto_msgTypes[348]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23916,7 +25052,7 @@ func (x *ProduceExamStatusEnchantList) String() string {
 func (*ProduceExamStatusEnchantList) ProtoMessage() {}
 
 func (x *ProduceExamStatusEnchantList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[336]
+	mi := &file_pmaster_proto_msgTypes[348]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23929,7 +25065,7 @@ func (x *ProduceExamStatusEnchantList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamStatusEnchantList.ProtoReflect.Descriptor instead.
 func (*ProduceExamStatusEnchantList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{336}
+	return file_pmaster_proto_rawDescGZIP(), []int{348}
 }
 
 func (x *ProduceExamStatusEnchantList) GetList() []*ProduceExamStatusEnchant {
@@ -23963,7 +25099,7 @@ type ProduceExamTrigger struct {
 
 func (x *ProduceExamTrigger) Reset() {
 	*x = ProduceExamTrigger{}
-	mi := &file_pmaster_proto_msgTypes[337]
+	mi := &file_pmaster_proto_msgTypes[349]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23975,7 +25111,7 @@ func (x *ProduceExamTrigger) String() string {
 func (*ProduceExamTrigger) ProtoMessage() {}
 
 func (x *ProduceExamTrigger) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[337]
+	mi := &file_pmaster_proto_msgTypes[349]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23988,7 +25124,7 @@ func (x *ProduceExamTrigger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamTrigger.ProtoReflect.Descriptor instead.
 func (*ProduceExamTrigger) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{337}
+	return file_pmaster_proto_rawDescGZIP(), []int{349}
 }
 
 func (x *ProduceExamTrigger) GetId() string {
@@ -24112,7 +25248,7 @@ type ProduceExamTriggerList struct {
 
 func (x *ProduceExamTriggerList) Reset() {
 	*x = ProduceExamTriggerList{}
-	mi := &file_pmaster_proto_msgTypes[338]
+	mi := &file_pmaster_proto_msgTypes[350]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24124,7 +25260,7 @@ func (x *ProduceExamTriggerList) String() string {
 func (*ProduceExamTriggerList) ProtoMessage() {}
 
 func (x *ProduceExamTriggerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[338]
+	mi := &file_pmaster_proto_msgTypes[350]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24137,7 +25273,7 @@ func (x *ProduceExamTriggerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceExamTriggerList.ProtoReflect.Descriptor instead.
 func (*ProduceExamTriggerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{338}
+	return file_pmaster_proto_rawDescGZIP(), []int{350}
 }
 
 func (x *ProduceExamTriggerList) GetList() []*ProduceExamTrigger {
@@ -24158,7 +25294,7 @@ type ProduceGrade struct {
 
 func (x *ProduceGrade) Reset() {
 	*x = ProduceGrade{}
-	mi := &file_pmaster_proto_msgTypes[339]
+	mi := &file_pmaster_proto_msgTypes[351]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24170,7 +25306,7 @@ func (x *ProduceGrade) String() string {
 func (*ProduceGrade) ProtoMessage() {}
 
 func (x *ProduceGrade) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[339]
+	mi := &file_pmaster_proto_msgTypes[351]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24183,7 +25319,7 @@ func (x *ProduceGrade) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGrade.ProtoReflect.Descriptor instead.
 func (*ProduceGrade) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{339}
+	return file_pmaster_proto_rawDescGZIP(), []int{351}
 }
 
 func (x *ProduceGrade) GetProduceGroupId() string {
@@ -24216,7 +25352,7 @@ type ProduceGradeList struct {
 
 func (x *ProduceGradeList) Reset() {
 	*x = ProduceGradeList{}
-	mi := &file_pmaster_proto_msgTypes[340]
+	mi := &file_pmaster_proto_msgTypes[352]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24228,7 +25364,7 @@ func (x *ProduceGradeList) String() string {
 func (*ProduceGradeList) ProtoMessage() {}
 
 func (x *ProduceGradeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[340]
+	mi := &file_pmaster_proto_msgTypes[352]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24241,7 +25377,7 @@ func (x *ProduceGradeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGradeList.ProtoReflect.Descriptor instead.
 func (*ProduceGradeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{340}
+	return file_pmaster_proto_rawDescGZIP(), []int{352}
 }
 
 func (x *ProduceGradeList) GetList() []*ProduceGrade {
@@ -24272,7 +25408,7 @@ type ProduceGroup struct {
 
 func (x *ProduceGroup) Reset() {
 	*x = ProduceGroup{}
-	mi := &file_pmaster_proto_msgTypes[341]
+	mi := &file_pmaster_proto_msgTypes[353]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24284,7 +25420,7 @@ func (x *ProduceGroup) String() string {
 func (*ProduceGroup) ProtoMessage() {}
 
 func (x *ProduceGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[341]
+	mi := &file_pmaster_proto_msgTypes[353]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24297,7 +25433,7 @@ func (x *ProduceGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGroup.ProtoReflect.Descriptor instead.
 func (*ProduceGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{341}
+	return file_pmaster_proto_rawDescGZIP(), []int{353}
 }
 
 func (x *ProduceGroup) GetId() string {
@@ -24400,7 +25536,7 @@ type ProduceGroupList struct {
 
 func (x *ProduceGroupList) Reset() {
 	*x = ProduceGroupList{}
-	mi := &file_pmaster_proto_msgTypes[342]
+	mi := &file_pmaster_proto_msgTypes[354]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24412,7 +25548,7 @@ func (x *ProduceGroupList) String() string {
 func (*ProduceGroupList) ProtoMessage() {}
 
 func (x *ProduceGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[342]
+	mi := &file_pmaster_proto_msgTypes[354]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24425,7 +25561,7 @@ func (x *ProduceGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{342}
+	return file_pmaster_proto_rawDescGZIP(), []int{354}
 }
 
 func (x *ProduceGroupList) GetList() []*ProduceGroup {
@@ -24458,7 +25594,7 @@ type ProduceGroupLiveCommon struct {
 
 func (x *ProduceGroupLiveCommon) Reset() {
 	*x = ProduceGroupLiveCommon{}
-	mi := &file_pmaster_proto_msgTypes[343]
+	mi := &file_pmaster_proto_msgTypes[355]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24470,7 +25606,7 @@ func (x *ProduceGroupLiveCommon) String() string {
 func (*ProduceGroupLiveCommon) ProtoMessage() {}
 
 func (x *ProduceGroupLiveCommon) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[343]
+	mi := &file_pmaster_proto_msgTypes[355]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24483,7 +25619,7 @@ func (x *ProduceGroupLiveCommon) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGroupLiveCommon.ProtoReflect.Descriptor instead.
 func (*ProduceGroupLiveCommon) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{343}
+	return file_pmaster_proto_rawDescGZIP(), []int{355}
 }
 
 func (x *ProduceGroupLiveCommon) GetCharacterId() string {
@@ -24600,7 +25736,7 @@ type ProduceGroupLiveCommonList struct {
 
 func (x *ProduceGroupLiveCommonList) Reset() {
 	*x = ProduceGroupLiveCommonList{}
-	mi := &file_pmaster_proto_msgTypes[344]
+	mi := &file_pmaster_proto_msgTypes[356]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24612,7 +25748,7 @@ func (x *ProduceGroupLiveCommonList) String() string {
 func (*ProduceGroupLiveCommonList) ProtoMessage() {}
 
 func (x *ProduceGroupLiveCommonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[344]
+	mi := &file_pmaster_proto_msgTypes[356]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24625,10 +25761,298 @@ func (x *ProduceGroupLiveCommonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGroupLiveCommonList.ProtoReflect.Descriptor instead.
 func (*ProduceGroupLiveCommonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{344}
+	return file_pmaster_proto_rawDescGZIP(), []int{356}
 }
 
 func (x *ProduceGroupLiveCommonList) GetList() []*ProduceGroupLiveCommon {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceGrowthPanel struct {
+	state                     protoimpl.MessageState               `protogen:"open.v1"`
+	Id                        string                               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Level                     int32                                `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
+	ProduceGrowthPanelSheetId string                               `protobuf:"bytes,3,opt,name=produceGrowthPanelSheetId,proto3" json:"produceGrowthPanelSheetId,omitempty"`
+	ProduceSplitType          penum.ProduceSplitType               `protobuf:"varint,4,opt,name=produceSplitType,proto3,enum=penum.ProduceSplitType" json:"produceSplitType,omitempty"`
+	Name                      string                               `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	ProduceDescriptions       []*pcommon.ProduceDescriptionSegment `protobuf:"bytes,7,rep,name=produceDescriptions,proto3" json:"produceDescriptions,omitempty"`
+	UnlockConditionSetId      string                               `protobuf:"bytes,10,opt,name=unlockConditionSetId,proto3" json:"unlockConditionSetId,omitempty"`
+	UnlockItemQuantity        int32                                `protobuf:"varint,11,opt,name=unlockItemQuantity,proto3" json:"unlockItemQuantity,omitempty"`
+	IsUnlockRecommended       bool                                 `protobuf:"varint,12,opt,name=isUnlockRecommended,proto3" json:"isUnlockRecommended,omitempty"`
+	ProduceEffectIds          []string                             `protobuf:"bytes,20,rep,name=produceEffectIds,proto3" json:"produceEffectIds,omitempty"`
+	Order                     int32                                `protobuf:"varint,99,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *ProduceGrowthPanel) Reset() {
+	*x = ProduceGrowthPanel{}
+	mi := &file_pmaster_proto_msgTypes[357]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceGrowthPanel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceGrowthPanel) ProtoMessage() {}
+
+func (x *ProduceGrowthPanel) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[357]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceGrowthPanel.ProtoReflect.Descriptor instead.
+func (*ProduceGrowthPanel) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{357}
+}
+
+func (x *ProduceGrowthPanel) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanel) GetLevel() int32 {
+	if x != nil {
+		return x.Level
+	}
+	return 0
+}
+
+func (x *ProduceGrowthPanel) GetProduceGrowthPanelSheetId() string {
+	if x != nil {
+		return x.ProduceGrowthPanelSheetId
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanel) GetProduceSplitType() penum.ProduceSplitType {
+	if x != nil {
+		return x.ProduceSplitType
+	}
+	return penum.ProduceSplitType(0)
+}
+
+func (x *ProduceGrowthPanel) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanel) GetProduceDescriptions() []*pcommon.ProduceDescriptionSegment {
+	if x != nil {
+		return x.ProduceDescriptions
+	}
+	return nil
+}
+
+func (x *ProduceGrowthPanel) GetUnlockConditionSetId() string {
+	if x != nil {
+		return x.UnlockConditionSetId
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanel) GetUnlockItemQuantity() int32 {
+	if x != nil {
+		return x.UnlockItemQuantity
+	}
+	return 0
+}
+
+func (x *ProduceGrowthPanel) GetIsUnlockRecommended() bool {
+	if x != nil {
+		return x.IsUnlockRecommended
+	}
+	return false
+}
+
+func (x *ProduceGrowthPanel) GetProduceEffectIds() []string {
+	if x != nil {
+		return x.ProduceEffectIds
+	}
+	return nil
+}
+
+func (x *ProduceGrowthPanel) GetOrder() int32 {
+	if x != nil {
+		return x.Order
+	}
+	return 0
+}
+
+type ProduceGrowthPanelList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	List          []*ProduceGrowthPanel  `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceGrowthPanelList) Reset() {
+	*x = ProduceGrowthPanelList{}
+	mi := &file_pmaster_proto_msgTypes[358]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceGrowthPanelList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceGrowthPanelList) ProtoMessage() {}
+
+func (x *ProduceGrowthPanelList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[358]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceGrowthPanelList.ProtoReflect.Descriptor instead.
+func (*ProduceGrowthPanelList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{358}
+}
+
+func (x *ProduceGrowthPanelList) GetList() []*ProduceGrowthPanel {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceGrowthPanelSheet struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProduceType    penum.ProduceType      `protobuf:"varint,2,opt,name=produceType,proto3,enum=penum.ProduceType" json:"produceType,omitempty"`
+	UnlockItemId   string                 `protobuf:"bytes,3,opt,name=unlockItemId,proto3" json:"unlockItemId,omitempty"`
+	MissionGroupId string                 `protobuf:"bytes,4,opt,name=missionGroupId,proto3" json:"missionGroupId,omitempty"`
+	AchievementId  string                 `protobuf:"bytes,5,opt,name=achievementId,proto3" json:"achievementId,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ProduceGrowthPanelSheet) Reset() {
+	*x = ProduceGrowthPanelSheet{}
+	mi := &file_pmaster_proto_msgTypes[359]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceGrowthPanelSheet) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceGrowthPanelSheet) ProtoMessage() {}
+
+func (x *ProduceGrowthPanelSheet) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[359]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceGrowthPanelSheet.ProtoReflect.Descriptor instead.
+func (*ProduceGrowthPanelSheet) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{359}
+}
+
+func (x *ProduceGrowthPanelSheet) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanelSheet) GetProduceType() penum.ProduceType {
+	if x != nil {
+		return x.ProduceType
+	}
+	return penum.ProduceType(0)
+}
+
+func (x *ProduceGrowthPanelSheet) GetUnlockItemId() string {
+	if x != nil {
+		return x.UnlockItemId
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanelSheet) GetMissionGroupId() string {
+	if x != nil {
+		return x.MissionGroupId
+	}
+	return ""
+}
+
+func (x *ProduceGrowthPanelSheet) GetAchievementId() string {
+	if x != nil {
+		return x.AchievementId
+	}
+	return ""
+}
+
+type ProduceGrowthPanelSheetList struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	List          []*ProduceGrowthPanelSheet `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceGrowthPanelSheetList) Reset() {
+	*x = ProduceGrowthPanelSheetList{}
+	mi := &file_pmaster_proto_msgTypes[360]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceGrowthPanelSheetList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceGrowthPanelSheetList) ProtoMessage() {}
+
+func (x *ProduceGrowthPanelSheetList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[360]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceGrowthPanelSheetList.ProtoReflect.Descriptor instead.
+func (*ProduceGrowthPanelSheetList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{360}
+}
+
+func (x *ProduceGrowthPanelSheetList) GetList() []*ProduceGrowthPanelSheet {
 	if x != nil {
 		return x.List
 	}
@@ -24647,7 +26071,7 @@ type ProduceGuide struct {
 
 func (x *ProduceGuide) Reset() {
 	*x = ProduceGuide{}
-	mi := &file_pmaster_proto_msgTypes[345]
+	mi := &file_pmaster_proto_msgTypes[361]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24659,7 +26083,7 @@ func (x *ProduceGuide) String() string {
 func (*ProduceGuide) ProtoMessage() {}
 
 func (x *ProduceGuide) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[345]
+	mi := &file_pmaster_proto_msgTypes[361]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24672,7 +26096,7 @@ func (x *ProduceGuide) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGuide.ProtoReflect.Descriptor instead.
 func (*ProduceGuide) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{345}
+	return file_pmaster_proto_rawDescGZIP(), []int{361}
 }
 
 func (x *ProduceGuide) GetIdolCardId() string {
@@ -24712,7 +26136,7 @@ type ProduceGuideList struct {
 
 func (x *ProduceGuideList) Reset() {
 	*x = ProduceGuideList{}
-	mi := &file_pmaster_proto_msgTypes[346]
+	mi := &file_pmaster_proto_msgTypes[362]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24724,7 +26148,7 @@ func (x *ProduceGuideList) String() string {
 func (*ProduceGuideList) ProtoMessage() {}
 
 func (x *ProduceGuideList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[346]
+	mi := &file_pmaster_proto_msgTypes[362]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24737,7 +26161,7 @@ func (x *ProduceGuideList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGuideList.ProtoReflect.Descriptor instead.
 func (*ProduceGuideList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{346}
+	return file_pmaster_proto_rawDescGZIP(), []int{362}
 }
 
 func (x *ProduceGuideList) GetList() []*ProduceGuide {
@@ -24760,7 +26184,7 @@ type ProduceGuideProduceCardCategory struct {
 
 func (x *ProduceGuideProduceCardCategory) Reset() {
 	*x = ProduceGuideProduceCardCategory{}
-	mi := &file_pmaster_proto_msgTypes[347]
+	mi := &file_pmaster_proto_msgTypes[363]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24772,7 +26196,7 @@ func (x *ProduceGuideProduceCardCategory) String() string {
 func (*ProduceGuideProduceCardCategory) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[347]
+	mi := &file_pmaster_proto_msgTypes[363]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24785,7 +26209,7 @@ func (x *ProduceGuideProduceCardCategory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceGuideProduceCardCategory.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardCategory) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{347}
+	return file_pmaster_proto_rawDescGZIP(), []int{363}
 }
 
 func (x *ProduceGuideProduceCardCategory) GetId() string {
@@ -24834,7 +26258,7 @@ type ProduceGuideProduceCardCategoryGroup struct {
 
 func (x *ProduceGuideProduceCardCategoryGroup) Reset() {
 	*x = ProduceGuideProduceCardCategoryGroup{}
-	mi := &file_pmaster_proto_msgTypes[348]
+	mi := &file_pmaster_proto_msgTypes[364]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24846,7 +26270,7 @@ func (x *ProduceGuideProduceCardCategoryGroup) String() string {
 func (*ProduceGuideProduceCardCategoryGroup) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardCategoryGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[348]
+	mi := &file_pmaster_proto_msgTypes[364]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24859,7 +26283,7 @@ func (x *ProduceGuideProduceCardCategoryGroup) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ProduceGuideProduceCardCategoryGroup.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardCategoryGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{348}
+	return file_pmaster_proto_rawDescGZIP(), []int{364}
 }
 
 func (x *ProduceGuideProduceCardCategoryGroup) GetId() string {
@@ -24892,7 +26316,7 @@ type ProduceGuideProduceCardCategoryGroupList struct {
 
 func (x *ProduceGuideProduceCardCategoryGroupList) Reset() {
 	*x = ProduceGuideProduceCardCategoryGroupList{}
-	mi := &file_pmaster_proto_msgTypes[349]
+	mi := &file_pmaster_proto_msgTypes[365]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24904,7 +26328,7 @@ func (x *ProduceGuideProduceCardCategoryGroupList) String() string {
 func (*ProduceGuideProduceCardCategoryGroupList) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardCategoryGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[349]
+	mi := &file_pmaster_proto_msgTypes[365]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24917,7 +26341,7 @@ func (x *ProduceGuideProduceCardCategoryGroupList) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ProduceGuideProduceCardCategoryGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardCategoryGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{349}
+	return file_pmaster_proto_rawDescGZIP(), []int{365}
 }
 
 func (x *ProduceGuideProduceCardCategoryGroupList) GetList() []*ProduceGuideProduceCardCategoryGroup {
@@ -24936,7 +26360,7 @@ type ProduceGuideProduceCardCategoryList struct {
 
 func (x *ProduceGuideProduceCardCategoryList) Reset() {
 	*x = ProduceGuideProduceCardCategoryList{}
-	mi := &file_pmaster_proto_msgTypes[350]
+	mi := &file_pmaster_proto_msgTypes[366]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24948,7 +26372,7 @@ func (x *ProduceGuideProduceCardCategoryList) String() string {
 func (*ProduceGuideProduceCardCategoryList) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardCategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[350]
+	mi := &file_pmaster_proto_msgTypes[366]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24961,7 +26385,7 @@ func (x *ProduceGuideProduceCardCategoryList) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ProduceGuideProduceCardCategoryList.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardCategoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{350}
+	return file_pmaster_proto_rawDescGZIP(), []int{366}
 }
 
 func (x *ProduceGuideProduceCardCategoryList) GetList() []*ProduceGuideProduceCardCategory {
@@ -24982,7 +26406,7 @@ type ProduceGuideProduceCardSampleDeckCategory struct {
 
 func (x *ProduceGuideProduceCardSampleDeckCategory) Reset() {
 	*x = ProduceGuideProduceCardSampleDeckCategory{}
-	mi := &file_pmaster_proto_msgTypes[351]
+	mi := &file_pmaster_proto_msgTypes[367]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24994,7 +26418,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategory) String() string {
 func (*ProduceGuideProduceCardSampleDeckCategory) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardSampleDeckCategory) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[351]
+	mi := &file_pmaster_proto_msgTypes[367]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25007,7 +26431,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategory) ProtoReflect() protoreflect.
 
 // Deprecated: Use ProduceGuideProduceCardSampleDeckCategory.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardSampleDeckCategory) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{351}
+	return file_pmaster_proto_rawDescGZIP(), []int{367}
 }
 
 func (x *ProduceGuideProduceCardSampleDeckCategory) GetId() string {
@@ -25041,7 +26465,7 @@ type ProduceGuideProduceCardSampleDeckCategoryGroup struct {
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroup) Reset() {
 	*x = ProduceGuideProduceCardSampleDeckCategoryGroup{}
-	mi := &file_pmaster_proto_msgTypes[352]
+	mi := &file_pmaster_proto_msgTypes[368]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25053,7 +26477,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryGroup) String() string {
 func (*ProduceGuideProduceCardSampleDeckCategoryGroup) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[352]
+	mi := &file_pmaster_proto_msgTypes[368]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25066,7 +26490,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryGroup) ProtoReflect() protoref
 
 // Deprecated: Use ProduceGuideProduceCardSampleDeckCategoryGroup.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardSampleDeckCategoryGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{352}
+	return file_pmaster_proto_rawDescGZIP(), []int{368}
 }
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroup) GetId() string {
@@ -25092,7 +26516,7 @@ type ProduceGuideProduceCardSampleDeckCategoryGroupList struct {
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroupList) Reset() {
 	*x = ProduceGuideProduceCardSampleDeckCategoryGroupList{}
-	mi := &file_pmaster_proto_msgTypes[353]
+	mi := &file_pmaster_proto_msgTypes[369]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25104,7 +26528,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryGroupList) String() string {
 func (*ProduceGuideProduceCardSampleDeckCategoryGroupList) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[353]
+	mi := &file_pmaster_proto_msgTypes[369]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25117,7 +26541,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryGroupList) ProtoReflect() prot
 
 // Deprecated: Use ProduceGuideProduceCardSampleDeckCategoryGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardSampleDeckCategoryGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{353}
+	return file_pmaster_proto_rawDescGZIP(), []int{369}
 }
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryGroupList) GetList() []*ProduceGuideProduceCardSampleDeckCategoryGroup {
@@ -25136,7 +26560,7 @@ type ProduceGuideProduceCardSampleDeckCategoryList struct {
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryList) Reset() {
 	*x = ProduceGuideProduceCardSampleDeckCategoryList{}
-	mi := &file_pmaster_proto_msgTypes[354]
+	mi := &file_pmaster_proto_msgTypes[370]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25148,7 +26572,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryList) String() string {
 func (*ProduceGuideProduceCardSampleDeckCategoryList) ProtoMessage() {}
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[354]
+	mi := &file_pmaster_proto_msgTypes[370]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25161,7 +26585,7 @@ func (x *ProduceGuideProduceCardSampleDeckCategoryList) ProtoReflect() protorefl
 
 // Deprecated: Use ProduceGuideProduceCardSampleDeckCategoryList.ProtoReflect.Descriptor instead.
 func (*ProduceGuideProduceCardSampleDeckCategoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{354}
+	return file_pmaster_proto_rawDescGZIP(), []int{370}
 }
 
 func (x *ProduceGuideProduceCardSampleDeckCategoryList) GetList() []*ProduceGuideProduceCardSampleDeckCategory {
@@ -25184,7 +26608,7 @@ type ProduceHighScore struct {
 
 func (x *ProduceHighScore) Reset() {
 	*x = ProduceHighScore{}
-	mi := &file_pmaster_proto_msgTypes[355]
+	mi := &file_pmaster_proto_msgTypes[371]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25196,7 +26620,7 @@ func (x *ProduceHighScore) String() string {
 func (*ProduceHighScore) ProtoMessage() {}
 
 func (x *ProduceHighScore) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[355]
+	mi := &file_pmaster_proto_msgTypes[371]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25209,7 +26633,7 @@ func (x *ProduceHighScore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceHighScore.ProtoReflect.Descriptor instead.
 func (*ProduceHighScore) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{355}
+	return file_pmaster_proto_rawDescGZIP(), []int{371}
 }
 
 func (x *ProduceHighScore) GetId() string {
@@ -25256,7 +26680,7 @@ type ProduceHighScoreList struct {
 
 func (x *ProduceHighScoreList) Reset() {
 	*x = ProduceHighScoreList{}
-	mi := &file_pmaster_proto_msgTypes[356]
+	mi := &file_pmaster_proto_msgTypes[372]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25268,7 +26692,7 @@ func (x *ProduceHighScoreList) String() string {
 func (*ProduceHighScoreList) ProtoMessage() {}
 
 func (x *ProduceHighScoreList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[356]
+	mi := &file_pmaster_proto_msgTypes[372]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25281,7 +26705,7 @@ func (x *ProduceHighScoreList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceHighScoreList.ProtoReflect.Descriptor instead.
 func (*ProduceHighScoreList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{356}
+	return file_pmaster_proto_rawDescGZIP(), []int{372}
 }
 
 func (x *ProduceHighScoreList) GetList() []*ProduceHighScore {
@@ -25302,7 +26726,7 @@ type ProduceInitialDeck struct {
 
 func (x *ProduceInitialDeck) Reset() {
 	*x = ProduceInitialDeck{}
-	mi := &file_pmaster_proto_msgTypes[357]
+	mi := &file_pmaster_proto_msgTypes[373]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25314,7 +26738,7 @@ func (x *ProduceInitialDeck) String() string {
 func (*ProduceInitialDeck) ProtoMessage() {}
 
 func (x *ProduceInitialDeck) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[357]
+	mi := &file_pmaster_proto_msgTypes[373]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25327,7 +26751,7 @@ func (x *ProduceInitialDeck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceInitialDeck.ProtoReflect.Descriptor instead.
 func (*ProduceInitialDeck) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{357}
+	return file_pmaster_proto_rawDescGZIP(), []int{373}
 }
 
 func (x *ProduceInitialDeck) GetProduceId() string {
@@ -25360,7 +26784,7 @@ type ProduceInitialDeckList struct {
 
 func (x *ProduceInitialDeckList) Reset() {
 	*x = ProduceInitialDeckList{}
-	mi := &file_pmaster_proto_msgTypes[358]
+	mi := &file_pmaster_proto_msgTypes[374]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25372,7 +26796,7 @@ func (x *ProduceInitialDeckList) String() string {
 func (*ProduceInitialDeckList) ProtoMessage() {}
 
 func (x *ProduceInitialDeckList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[358]
+	mi := &file_pmaster_proto_msgTypes[374]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25385,7 +26809,7 @@ func (x *ProduceInitialDeckList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceInitialDeckList.ProtoReflect.Descriptor instead.
 func (*ProduceInitialDeckList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{358}
+	return file_pmaster_proto_rawDescGZIP(), []int{374}
 }
 
 func (x *ProduceInitialDeckList) GetList() []*ProduceInitialDeck {
@@ -25429,7 +26853,7 @@ type ProduceItem struct {
 
 func (x *ProduceItem) Reset() {
 	*x = ProduceItem{}
-	mi := &file_pmaster_proto_msgTypes[359]
+	mi := &file_pmaster_proto_msgTypes[375]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25441,7 +26865,7 @@ func (x *ProduceItem) String() string {
 func (*ProduceItem) ProtoMessage() {}
 
 func (x *ProduceItem) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[359]
+	mi := &file_pmaster_proto_msgTypes[375]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25454,7 +26878,7 @@ func (x *ProduceItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItem.ProtoReflect.Descriptor instead.
 func (*ProduceItem) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{359}
+	return file_pmaster_proto_rawDescGZIP(), []int{375}
 }
 
 func (x *ProduceItem) GetId() string {
@@ -25651,7 +27075,7 @@ type ProduceItemChallengeGroup struct {
 
 func (x *ProduceItemChallengeGroup) Reset() {
 	*x = ProduceItemChallengeGroup{}
-	mi := &file_pmaster_proto_msgTypes[360]
+	mi := &file_pmaster_proto_msgTypes[376]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25663,7 +27087,7 @@ func (x *ProduceItemChallengeGroup) String() string {
 func (*ProduceItemChallengeGroup) ProtoMessage() {}
 
 func (x *ProduceItemChallengeGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[360]
+	mi := &file_pmaster_proto_msgTypes[376]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25676,7 +27100,7 @@ func (x *ProduceItemChallengeGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemChallengeGroup.ProtoReflect.Descriptor instead.
 func (*ProduceItemChallengeGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{360}
+	return file_pmaster_proto_rawDescGZIP(), []int{376}
 }
 
 func (x *ProduceItemChallengeGroup) GetId() string {
@@ -25716,7 +27140,7 @@ type ProduceItemChallengeGroupList struct {
 
 func (x *ProduceItemChallengeGroupList) Reset() {
 	*x = ProduceItemChallengeGroupList{}
-	mi := &file_pmaster_proto_msgTypes[361]
+	mi := &file_pmaster_proto_msgTypes[377]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25728,7 +27152,7 @@ func (x *ProduceItemChallengeGroupList) String() string {
 func (*ProduceItemChallengeGroupList) ProtoMessage() {}
 
 func (x *ProduceItemChallengeGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[361]
+	mi := &file_pmaster_proto_msgTypes[377]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25741,7 +27165,7 @@ func (x *ProduceItemChallengeGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemChallengeGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceItemChallengeGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{361}
+	return file_pmaster_proto_rawDescGZIP(), []int{377}
 }
 
 func (x *ProduceItemChallengeGroupList) GetList() []*ProduceItemChallengeGroup {
@@ -25765,7 +27189,7 @@ type ProduceItemEffect struct {
 
 func (x *ProduceItemEffect) Reset() {
 	*x = ProduceItemEffect{}
-	mi := &file_pmaster_proto_msgTypes[362]
+	mi := &file_pmaster_proto_msgTypes[378]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25777,7 +27201,7 @@ func (x *ProduceItemEffect) String() string {
 func (*ProduceItemEffect) ProtoMessage() {}
 
 func (x *ProduceItemEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[362]
+	mi := &file_pmaster_proto_msgTypes[378]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25790,7 +27214,7 @@ func (x *ProduceItemEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemEffect.ProtoReflect.Descriptor instead.
 func (*ProduceItemEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{362}
+	return file_pmaster_proto_rawDescGZIP(), []int{378}
 }
 
 func (x *ProduceItemEffect) GetId() string {
@@ -25844,7 +27268,7 @@ type ProduceItemEffectList struct {
 
 func (x *ProduceItemEffectList) Reset() {
 	*x = ProduceItemEffectList{}
-	mi := &file_pmaster_proto_msgTypes[363]
+	mi := &file_pmaster_proto_msgTypes[379]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25856,7 +27280,7 @@ func (x *ProduceItemEffectList) String() string {
 func (*ProduceItemEffectList) ProtoMessage() {}
 
 func (x *ProduceItemEffectList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[363]
+	mi := &file_pmaster_proto_msgTypes[379]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25869,7 +27293,7 @@ func (x *ProduceItemEffectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemEffectList.ProtoReflect.Descriptor instead.
 func (*ProduceItemEffectList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{363}
+	return file_pmaster_proto_rawDescGZIP(), []int{379}
 }
 
 func (x *ProduceItemEffectList) GetList() []*ProduceItemEffect {
@@ -25888,7 +27312,7 @@ type ProduceItemList struct {
 
 func (x *ProduceItemList) Reset() {
 	*x = ProduceItemList{}
-	mi := &file_pmaster_proto_msgTypes[364]
+	mi := &file_pmaster_proto_msgTypes[380]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25900,7 +27324,7 @@ func (x *ProduceItemList) String() string {
 func (*ProduceItemList) ProtoMessage() {}
 
 func (x *ProduceItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[364]
+	mi := &file_pmaster_proto_msgTypes[380]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25913,7 +27337,7 @@ func (x *ProduceItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemList.ProtoReflect.Descriptor instead.
 func (*ProduceItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{364}
+	return file_pmaster_proto_rawDescGZIP(), []int{380}
 }
 
 func (x *ProduceItemList) GetList() []*pcommon.ProduceItem {
@@ -25933,7 +27357,7 @@ type ProduceItemSimulation struct {
 
 func (x *ProduceItemSimulation) Reset() {
 	*x = ProduceItemSimulation{}
-	mi := &file_pmaster_proto_msgTypes[365]
+	mi := &file_pmaster_proto_msgTypes[381]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25945,7 +27369,7 @@ func (x *ProduceItemSimulation) String() string {
 func (*ProduceItemSimulation) ProtoMessage() {}
 
 func (x *ProduceItemSimulation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[365]
+	mi := &file_pmaster_proto_msgTypes[381]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25958,7 +27382,7 @@ func (x *ProduceItemSimulation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemSimulation.ProtoReflect.Descriptor instead.
 func (*ProduceItemSimulation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{365}
+	return file_pmaster_proto_rawDescGZIP(), []int{381}
 }
 
 func (x *ProduceItemSimulation) GetProduceItemSimulationGroupId() string {
@@ -25985,7 +27409,7 @@ type ProduceItemSimulationGroup struct {
 
 func (x *ProduceItemSimulationGroup) Reset() {
 	*x = ProduceItemSimulationGroup{}
-	mi := &file_pmaster_proto_msgTypes[366]
+	mi := &file_pmaster_proto_msgTypes[382]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25997,7 +27421,7 @@ func (x *ProduceItemSimulationGroup) String() string {
 func (*ProduceItemSimulationGroup) ProtoMessage() {}
 
 func (x *ProduceItemSimulationGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[366]
+	mi := &file_pmaster_proto_msgTypes[382]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26010,7 +27434,7 @@ func (x *ProduceItemSimulationGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemSimulationGroup.ProtoReflect.Descriptor instead.
 func (*ProduceItemSimulationGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{366}
+	return file_pmaster_proto_rawDescGZIP(), []int{382}
 }
 
 func (x *ProduceItemSimulationGroup) GetId() string {
@@ -26036,7 +27460,7 @@ type ProduceItemSimulationGroupList struct {
 
 func (x *ProduceItemSimulationGroupList) Reset() {
 	*x = ProduceItemSimulationGroupList{}
-	mi := &file_pmaster_proto_msgTypes[367]
+	mi := &file_pmaster_proto_msgTypes[383]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26048,7 +27472,7 @@ func (x *ProduceItemSimulationGroupList) String() string {
 func (*ProduceItemSimulationGroupList) ProtoMessage() {}
 
 func (x *ProduceItemSimulationGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[367]
+	mi := &file_pmaster_proto_msgTypes[383]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26061,7 +27485,7 @@ func (x *ProduceItemSimulationGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemSimulationGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceItemSimulationGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{367}
+	return file_pmaster_proto_rawDescGZIP(), []int{383}
 }
 
 func (x *ProduceItemSimulationGroupList) GetList() []*ProduceItemSimulationGroup {
@@ -26080,7 +27504,7 @@ type ProduceItemSimulationList struct {
 
 func (x *ProduceItemSimulationList) Reset() {
 	*x = ProduceItemSimulationList{}
-	mi := &file_pmaster_proto_msgTypes[368]
+	mi := &file_pmaster_proto_msgTypes[384]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26092,7 +27516,7 @@ func (x *ProduceItemSimulationList) String() string {
 func (*ProduceItemSimulationList) ProtoMessage() {}
 
 func (x *ProduceItemSimulationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[368]
+	mi := &file_pmaster_proto_msgTypes[384]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26105,7 +27529,7 @@ func (x *ProduceItemSimulationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItemSimulationList.ProtoReflect.Descriptor instead.
 func (*ProduceItemSimulationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{368}
+	return file_pmaster_proto_rawDescGZIP(), []int{384}
 }
 
 func (x *ProduceItemSimulationList) GetList() []*ProduceItemSimulation {
@@ -26126,7 +27550,7 @@ type ProduceLegendProduceCard struct {
 
 func (x *ProduceLegendProduceCard) Reset() {
 	*x = ProduceLegendProduceCard{}
-	mi := &file_pmaster_proto_msgTypes[369]
+	mi := &file_pmaster_proto_msgTypes[385]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26138,7 +27562,7 @@ func (x *ProduceLegendProduceCard) String() string {
 func (*ProduceLegendProduceCard) ProtoMessage() {}
 
 func (x *ProduceLegendProduceCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[369]
+	mi := &file_pmaster_proto_msgTypes[385]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26151,7 +27575,7 @@ func (x *ProduceLegendProduceCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceLegendProduceCard.ProtoReflect.Descriptor instead.
 func (*ProduceLegendProduceCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{369}
+	return file_pmaster_proto_rawDescGZIP(), []int{385}
 }
 
 func (x *ProduceLegendProduceCard) GetProduceId() string {
@@ -26184,7 +27608,7 @@ type ProduceLegendProduceCardList struct {
 
 func (x *ProduceLegendProduceCardList) Reset() {
 	*x = ProduceLegendProduceCardList{}
-	mi := &file_pmaster_proto_msgTypes[370]
+	mi := &file_pmaster_proto_msgTypes[386]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26196,7 +27620,7 @@ func (x *ProduceLegendProduceCardList) String() string {
 func (*ProduceLegendProduceCardList) ProtoMessage() {}
 
 func (x *ProduceLegendProduceCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[370]
+	mi := &file_pmaster_proto_msgTypes[386]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26209,7 +27633,7 @@ func (x *ProduceLegendProduceCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceLegendProduceCardList.ProtoReflect.Descriptor instead.
 func (*ProduceLegendProduceCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{370}
+	return file_pmaster_proto_rawDescGZIP(), []int{386}
 }
 
 func (x *ProduceLegendProduceCardList) GetList() []*ProduceLegendProduceCard {
@@ -26228,7 +27652,7 @@ type ProduceList struct {
 
 func (x *ProduceList) Reset() {
 	*x = ProduceList{}
-	mi := &file_pmaster_proto_msgTypes[371]
+	mi := &file_pmaster_proto_msgTypes[387]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26240,7 +27664,7 @@ func (x *ProduceList) String() string {
 func (*ProduceList) ProtoMessage() {}
 
 func (x *ProduceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[371]
+	mi := &file_pmaster_proto_msgTypes[387]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26253,7 +27677,7 @@ func (x *ProduceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceList.ProtoReflect.Descriptor instead.
 func (*ProduceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{371}
+	return file_pmaster_proto_rawDescGZIP(), []int{387}
 }
 
 func (x *ProduceList) GetList() []*Produce {
@@ -26288,7 +27712,7 @@ type ProduceLive struct {
 
 func (x *ProduceLive) Reset() {
 	*x = ProduceLive{}
-	mi := &file_pmaster_proto_msgTypes[372]
+	mi := &file_pmaster_proto_msgTypes[388]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26300,7 +27724,7 @@ func (x *ProduceLive) String() string {
 func (*ProduceLive) ProtoMessage() {}
 
 func (x *ProduceLive) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[372]
+	mi := &file_pmaster_proto_msgTypes[388]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26313,7 +27737,7 @@ func (x *ProduceLive) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceLive.ProtoReflect.Descriptor instead.
 func (*ProduceLive) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{372}
+	return file_pmaster_proto_rawDescGZIP(), []int{388}
 }
 
 func (x *ProduceLive) GetMusicId() string {
@@ -26435,6 +27859,110 @@ func (x *ProduceLive) GetCostumeHeadId() string {
 	return ""
 }
 
+type ProduceLiveEvaluation struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProduceId     string                 `protobuf:"bytes,1,opt,name=produceId,proto3" json:"produceId,omitempty"`
+	CharacterId   string                 `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	LiveType      penum.ProduceLiveType  `protobuf:"varint,3,opt,name=liveType,proto3,enum=penum.ProduceLiveType" json:"liveType,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceLiveEvaluation) Reset() {
+	*x = ProduceLiveEvaluation{}
+	mi := &file_pmaster_proto_msgTypes[389]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceLiveEvaluation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceLiveEvaluation) ProtoMessage() {}
+
+func (x *ProduceLiveEvaluation) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[389]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceLiveEvaluation.ProtoReflect.Descriptor instead.
+func (*ProduceLiveEvaluation) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{389}
+}
+
+func (x *ProduceLiveEvaluation) GetProduceId() string {
+	if x != nil {
+		return x.ProduceId
+	}
+	return ""
+}
+
+func (x *ProduceLiveEvaluation) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ProduceLiveEvaluation) GetLiveType() penum.ProduceLiveType {
+	if x != nil {
+		return x.LiveType
+	}
+	return penum.ProduceLiveType(0)
+}
+
+type ProduceLiveEvaluationList struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	List          []*ProduceLiveEvaluation `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceLiveEvaluationList) Reset() {
+	*x = ProduceLiveEvaluationList{}
+	mi := &file_pmaster_proto_msgTypes[390]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceLiveEvaluationList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceLiveEvaluationList) ProtoMessage() {}
+
+func (x *ProduceLiveEvaluationList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[390]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceLiveEvaluationList.ProtoReflect.Descriptor instead.
+func (*ProduceLiveEvaluationList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{390}
+}
+
+func (x *ProduceLiveEvaluationList) GetList() []*ProduceLiveEvaluation {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
 type ProduceLiveList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ProduceLive         `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -26444,7 +27972,7 @@ type ProduceLiveList struct {
 
 func (x *ProduceLiveList) Reset() {
 	*x = ProduceLiveList{}
-	mi := &file_pmaster_proto_msgTypes[373]
+	mi := &file_pmaster_proto_msgTypes[391]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26456,7 +27984,7 @@ func (x *ProduceLiveList) String() string {
 func (*ProduceLiveList) ProtoMessage() {}
 
 func (x *ProduceLiveList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[373]
+	mi := &file_pmaster_proto_msgTypes[391]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26469,7 +27997,7 @@ func (x *ProduceLiveList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceLiveList.ProtoReflect.Descriptor instead.
 func (*ProduceLiveList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{373}
+	return file_pmaster_proto_rawDescGZIP(), []int{391}
 }
 
 func (x *ProduceLiveList) GetList() []*ProduceLive {
@@ -26490,7 +28018,7 @@ type ProduceNavigation struct {
 
 func (x *ProduceNavigation) Reset() {
 	*x = ProduceNavigation{}
-	mi := &file_pmaster_proto_msgTypes[374]
+	mi := &file_pmaster_proto_msgTypes[392]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26502,7 +28030,7 @@ func (x *ProduceNavigation) String() string {
 func (*ProduceNavigation) ProtoMessage() {}
 
 func (x *ProduceNavigation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[374]
+	mi := &file_pmaster_proto_msgTypes[392]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26515,7 +28043,7 @@ func (x *ProduceNavigation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceNavigation.ProtoReflect.Descriptor instead.
 func (*ProduceNavigation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{374}
+	return file_pmaster_proto_rawDescGZIP(), []int{392}
 }
 
 func (x *ProduceNavigation) GetId() string {
@@ -26548,7 +28076,7 @@ type ProduceNavigationList struct {
 
 func (x *ProduceNavigationList) Reset() {
 	*x = ProduceNavigationList{}
-	mi := &file_pmaster_proto_msgTypes[375]
+	mi := &file_pmaster_proto_msgTypes[393]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26560,7 +28088,7 @@ func (x *ProduceNavigationList) String() string {
 func (*ProduceNavigationList) ProtoMessage() {}
 
 func (x *ProduceNavigationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[375]
+	mi := &file_pmaster_proto_msgTypes[393]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26573,7 +28101,7 @@ func (x *ProduceNavigationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceNavigationList.ProtoReflect.Descriptor instead.
 func (*ProduceNavigationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{375}
+	return file_pmaster_proto_rawDescGZIP(), []int{393}
 }
 
 func (x *ProduceNavigationList) GetList() []*ProduceNavigation {
@@ -26596,7 +28124,7 @@ type ProduceNextIdolAuditionMasterRankingSeason struct {
 
 func (x *ProduceNextIdolAuditionMasterRankingSeason) Reset() {
 	*x = ProduceNextIdolAuditionMasterRankingSeason{}
-	mi := &file_pmaster_proto_msgTypes[376]
+	mi := &file_pmaster_proto_msgTypes[394]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26608,7 +28136,7 @@ func (x *ProduceNextIdolAuditionMasterRankingSeason) String() string {
 func (*ProduceNextIdolAuditionMasterRankingSeason) ProtoMessage() {}
 
 func (x *ProduceNextIdolAuditionMasterRankingSeason) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[376]
+	mi := &file_pmaster_proto_msgTypes[394]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26621,7 +28149,7 @@ func (x *ProduceNextIdolAuditionMasterRankingSeason) ProtoReflect() protoreflect
 
 // Deprecated: Use ProduceNextIdolAuditionMasterRankingSeason.ProtoReflect.Descriptor instead.
 func (*ProduceNextIdolAuditionMasterRankingSeason) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{376}
+	return file_pmaster_proto_rawDescGZIP(), []int{394}
 }
 
 func (x *ProduceNextIdolAuditionMasterRankingSeason) GetId() string {
@@ -26668,7 +28196,7 @@ type ProduceNextIdolAuditionMasterRankingSeasonList struct {
 
 func (x *ProduceNextIdolAuditionMasterRankingSeasonList) Reset() {
 	*x = ProduceNextIdolAuditionMasterRankingSeasonList{}
-	mi := &file_pmaster_proto_msgTypes[377]
+	mi := &file_pmaster_proto_msgTypes[395]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26680,7 +28208,7 @@ func (x *ProduceNextIdolAuditionMasterRankingSeasonList) String() string {
 func (*ProduceNextIdolAuditionMasterRankingSeasonList) ProtoMessage() {}
 
 func (x *ProduceNextIdolAuditionMasterRankingSeasonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[377]
+	mi := &file_pmaster_proto_msgTypes[395]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26693,7 +28221,7 @@ func (x *ProduceNextIdolAuditionMasterRankingSeasonList) ProtoReflect() protoref
 
 // Deprecated: Use ProduceNextIdolAuditionMasterRankingSeasonList.ProtoReflect.Descriptor instead.
 func (*ProduceNextIdolAuditionMasterRankingSeasonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{377}
+	return file_pmaster_proto_rawDescGZIP(), []int{395}
 }
 
 func (x *ProduceNextIdolAuditionMasterRankingSeasonList) GetList() []*ProduceNextIdolAuditionMasterRankingSeason {
@@ -26712,13 +28240,14 @@ type ProduceResultMotion struct {
 	FacialAssetId   string                 `protobuf:"bytes,5,opt,name=facialAssetId,proto3" json:"facialAssetId,omitempty"`
 	VoiceAssetId    string                 `protobuf:"bytes,6,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
 	ProduceGroupIds []string               `protobuf:"bytes,7,rep,name=produceGroupIds,proto3" json:"produceGroupIds,omitempty"`
+	ProduceIds      []string               `protobuf:"bytes,13,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ProduceResultMotion) Reset() {
 	*x = ProduceResultMotion{}
-	mi := &file_pmaster_proto_msgTypes[378]
+	mi := &file_pmaster_proto_msgTypes[396]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26730,7 +28259,7 @@ func (x *ProduceResultMotion) String() string {
 func (*ProduceResultMotion) ProtoMessage() {}
 
 func (x *ProduceResultMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[378]
+	mi := &file_pmaster_proto_msgTypes[396]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26743,7 +28272,7 @@ func (x *ProduceResultMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceResultMotion.ProtoReflect.Descriptor instead.
 func (*ProduceResultMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{378}
+	return file_pmaster_proto_rawDescGZIP(), []int{396}
 }
 
 func (x *ProduceResultMotion) GetCharacterId() string {
@@ -26795,6 +28324,13 @@ func (x *ProduceResultMotion) GetProduceGroupIds() []string {
 	return nil
 }
 
+func (x *ProduceResultMotion) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
 type ProduceResultMotionList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ProduceResultMotion `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -26804,7 +28340,7 @@ type ProduceResultMotionList struct {
 
 func (x *ProduceResultMotionList) Reset() {
 	*x = ProduceResultMotionList{}
-	mi := &file_pmaster_proto_msgTypes[379]
+	mi := &file_pmaster_proto_msgTypes[397]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26816,7 +28352,7 @@ func (x *ProduceResultMotionList) String() string {
 func (*ProduceResultMotionList) ProtoMessage() {}
 
 func (x *ProduceResultMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[379]
+	mi := &file_pmaster_proto_msgTypes[397]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26829,7 +28365,7 @@ func (x *ProduceResultMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceResultMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceResultMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{379}
+	return file_pmaster_proto_rawDescGZIP(), []int{397}
 }
 
 func (x *ProduceResultMotionList) GetList() []*ProduceResultMotion {
@@ -26852,7 +28388,7 @@ type ProduceScheduleBackground struct {
 
 func (x *ProduceScheduleBackground) Reset() {
 	*x = ProduceScheduleBackground{}
-	mi := &file_pmaster_proto_msgTypes[380]
+	mi := &file_pmaster_proto_msgTypes[398]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26864,7 +28400,7 @@ func (x *ProduceScheduleBackground) String() string {
 func (*ProduceScheduleBackground) ProtoMessage() {}
 
 func (x *ProduceScheduleBackground) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[380]
+	mi := &file_pmaster_proto_msgTypes[398]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26877,7 +28413,7 @@ func (x *ProduceScheduleBackground) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceScheduleBackground.ProtoReflect.Descriptor instead.
 func (*ProduceScheduleBackground) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{380}
+	return file_pmaster_proto_rawDescGZIP(), []int{398}
 }
 
 func (x *ProduceScheduleBackground) GetLocationType() penum.ProduceScheduleLocationType {
@@ -26924,7 +28460,7 @@ type ProduceScheduleBackgroundList struct {
 
 func (x *ProduceScheduleBackgroundList) Reset() {
 	*x = ProduceScheduleBackgroundList{}
-	mi := &file_pmaster_proto_msgTypes[381]
+	mi := &file_pmaster_proto_msgTypes[399]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26936,7 +28472,7 @@ func (x *ProduceScheduleBackgroundList) String() string {
 func (*ProduceScheduleBackgroundList) ProtoMessage() {}
 
 func (x *ProduceScheduleBackgroundList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[381]
+	mi := &file_pmaster_proto_msgTypes[399]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26949,7 +28485,7 @@ func (x *ProduceScheduleBackgroundList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceScheduleBackgroundList.ProtoReflect.Descriptor instead.
 func (*ProduceScheduleBackgroundList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{381}
+	return file_pmaster_proto_rawDescGZIP(), []int{399}
 }
 
 func (x *ProduceScheduleBackgroundList) GetList() []*ProduceScheduleBackground {
@@ -26975,7 +28511,7 @@ type ProduceScheduleMotion struct {
 
 func (x *ProduceScheduleMotion) Reset() {
 	*x = ProduceScheduleMotion{}
-	mi := &file_pmaster_proto_msgTypes[382]
+	mi := &file_pmaster_proto_msgTypes[400]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26987,7 +28523,7 @@ func (x *ProduceScheduleMotion) String() string {
 func (*ProduceScheduleMotion) ProtoMessage() {}
 
 func (x *ProduceScheduleMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[382]
+	mi := &file_pmaster_proto_msgTypes[400]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27000,7 +28536,7 @@ func (x *ProduceScheduleMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceScheduleMotion.ProtoReflect.Descriptor instead.
 func (*ProduceScheduleMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{382}
+	return file_pmaster_proto_rawDescGZIP(), []int{400}
 }
 
 func (x *ProduceScheduleMotion) GetCharacterId() string {
@@ -27068,7 +28604,7 @@ type ProduceScheduleMotionList struct {
 
 func (x *ProduceScheduleMotionList) Reset() {
 	*x = ProduceScheduleMotionList{}
-	mi := &file_pmaster_proto_msgTypes[383]
+	mi := &file_pmaster_proto_msgTypes[401]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27080,7 +28616,7 @@ func (x *ProduceScheduleMotionList) String() string {
 func (*ProduceScheduleMotionList) ProtoMessage() {}
 
 func (x *ProduceScheduleMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[383]
+	mi := &file_pmaster_proto_msgTypes[401]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27093,7 +28629,7 @@ func (x *ProduceScheduleMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceScheduleMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceScheduleMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{383}
+	return file_pmaster_proto_rawDescGZIP(), []int{401}
 }
 
 func (x *ProduceScheduleMotionList) GetList() []*ProduceScheduleMotion {
@@ -27116,7 +28652,7 @@ type ProduceSeason struct {
 
 func (x *ProduceSeason) Reset() {
 	*x = ProduceSeason{}
-	mi := &file_pmaster_proto_msgTypes[384]
+	mi := &file_pmaster_proto_msgTypes[402]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27128,7 +28664,7 @@ func (x *ProduceSeason) String() string {
 func (*ProduceSeason) ProtoMessage() {}
 
 func (x *ProduceSeason) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[384]
+	mi := &file_pmaster_proto_msgTypes[402]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27141,7 +28677,7 @@ func (x *ProduceSeason) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSeason.ProtoReflect.Descriptor instead.
 func (*ProduceSeason) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{384}
+	return file_pmaster_proto_rawDescGZIP(), []int{402}
 }
 
 func (x *ProduceSeason) GetId() string {
@@ -27188,7 +28724,7 @@ type ProduceSeasonList struct {
 
 func (x *ProduceSeasonList) Reset() {
 	*x = ProduceSeasonList{}
-	mi := &file_pmaster_proto_msgTypes[385]
+	mi := &file_pmaster_proto_msgTypes[403]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27200,7 +28736,7 @@ func (x *ProduceSeasonList) String() string {
 func (*ProduceSeasonList) ProtoMessage() {}
 
 func (x *ProduceSeasonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[385]
+	mi := &file_pmaster_proto_msgTypes[403]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27213,7 +28749,7 @@ func (x *ProduceSeasonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSeasonList.ProtoReflect.Descriptor instead.
 func (*ProduceSeasonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{385}
+	return file_pmaster_proto_rawDescGZIP(), []int{403}
 }
 
 func (x *ProduceSeasonList) GetList() []*ProduceSeason {
@@ -27234,7 +28770,7 @@ type ProduceSeasonZeroGrade struct {
 
 func (x *ProduceSeasonZeroGrade) Reset() {
 	*x = ProduceSeasonZeroGrade{}
-	mi := &file_pmaster_proto_msgTypes[386]
+	mi := &file_pmaster_proto_msgTypes[404]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27246,7 +28782,7 @@ func (x *ProduceSeasonZeroGrade) String() string {
 func (*ProduceSeasonZeroGrade) ProtoMessage() {}
 
 func (x *ProduceSeasonZeroGrade) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[386]
+	mi := &file_pmaster_proto_msgTypes[404]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27259,7 +28795,7 @@ func (x *ProduceSeasonZeroGrade) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSeasonZeroGrade.ProtoReflect.Descriptor instead.
 func (*ProduceSeasonZeroGrade) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{386}
+	return file_pmaster_proto_rawDescGZIP(), []int{404}
 }
 
 func (x *ProduceSeasonZeroGrade) GetProduceGroupId() string {
@@ -27292,7 +28828,7 @@ type ProduceSeasonZeroGradeList struct {
 
 func (x *ProduceSeasonZeroGradeList) Reset() {
 	*x = ProduceSeasonZeroGradeList{}
-	mi := &file_pmaster_proto_msgTypes[387]
+	mi := &file_pmaster_proto_msgTypes[405]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27304,7 +28840,7 @@ func (x *ProduceSeasonZeroGradeList) String() string {
 func (*ProduceSeasonZeroGradeList) ProtoMessage() {}
 
 func (x *ProduceSeasonZeroGradeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[387]
+	mi := &file_pmaster_proto_msgTypes[405]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27317,7 +28853,7 @@ func (x *ProduceSeasonZeroGradeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSeasonZeroGradeList.ProtoReflect.Descriptor instead.
 func (*ProduceSeasonZeroGradeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{387}
+	return file_pmaster_proto_rawDescGZIP(), []int{405}
 }
 
 func (x *ProduceSeasonZeroGradeList) GetList() []*ProduceSeasonZeroGrade {
@@ -27342,13 +28878,17 @@ type ProduceSetting struct {
 	ProduceAuditionTrendAssessmentPermilUpper    int32                  `protobuf:"varint,62,opt,name=produceAuditionTrendAssessmentPermilUpper,proto3" json:"produceAuditionTrendAssessmentPermilUpper,omitempty"`
 	ProduceAuditionTrendAssessmentPermilLower    int32                  `protobuf:"varint,63,opt,name=produceAuditionTrendAssessmentPermilLower,proto3" json:"produceAuditionTrendAssessmentPermilLower,omitempty"`
 	MaxLegendProduceCardCount                    int32                  `protobuf:"varint,67,opt,name=maxLegendProduceCardCount,proto3" json:"maxLegendProduceCardCount,omitempty"`
+	StepIntervalUpgradeProduceCardCount          int32                  `protobuf:"varint,68,opt,name=stepIntervalUpgradeProduceCardCount,proto3" json:"stepIntervalUpgradeProduceCardCount,omitempty"`
+	StepIntervalCustomizeProduceCardCount        int32                  `protobuf:"varint,69,opt,name=stepIntervalCustomizeProduceCardCount,proto3" json:"stepIntervalCustomizeProduceCardCount,omitempty"`
+	SelectionMemoryNeedProduceCardCount          int32                  `protobuf:"varint,70,opt,name=selectionMemoryNeedProduceCardCount,proto3" json:"selectionMemoryNeedProduceCardCount,omitempty"`
+	ProduceDrinkPossessMaxLimit                  int32                  `protobuf:"varint,71,opt,name=produceDrinkPossessMaxLimit,proto3" json:"produceDrinkPossessMaxLimit,omitempty"`
 	unknownFields                                protoimpl.UnknownFields
 	sizeCache                                    protoimpl.SizeCache
 }
 
 func (x *ProduceSetting) Reset() {
 	*x = ProduceSetting{}
-	mi := &file_pmaster_proto_msgTypes[388]
+	mi := &file_pmaster_proto_msgTypes[406]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27360,7 +28900,7 @@ func (x *ProduceSetting) String() string {
 func (*ProduceSetting) ProtoMessage() {}
 
 func (x *ProduceSetting) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[388]
+	mi := &file_pmaster_proto_msgTypes[406]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27373,7 +28913,7 @@ func (x *ProduceSetting) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSetting.ProtoReflect.Descriptor instead.
 func (*ProduceSetting) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{388}
+	return file_pmaster_proto_rawDescGZIP(), []int{406}
 }
 
 func (x *ProduceSetting) GetId() string {
@@ -27467,6 +29007,34 @@ func (x *ProduceSetting) GetMaxLegendProduceCardCount() int32 {
 	return 0
 }
 
+func (x *ProduceSetting) GetStepIntervalUpgradeProduceCardCount() int32 {
+	if x != nil {
+		return x.StepIntervalUpgradeProduceCardCount
+	}
+	return 0
+}
+
+func (x *ProduceSetting) GetStepIntervalCustomizeProduceCardCount() int32 {
+	if x != nil {
+		return x.StepIntervalCustomizeProduceCardCount
+	}
+	return 0
+}
+
+func (x *ProduceSetting) GetSelectionMemoryNeedProduceCardCount() int32 {
+	if x != nil {
+		return x.SelectionMemoryNeedProduceCardCount
+	}
+	return 0
+}
+
+func (x *ProduceSetting) GetProduceDrinkPossessMaxLimit() int32 {
+	if x != nil {
+		return x.ProduceDrinkPossessMaxLimit
+	}
+	return 0
+}
+
 type ProduceSettingList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ProduceSetting      `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -27476,7 +29044,7 @@ type ProduceSettingList struct {
 
 func (x *ProduceSettingList) Reset() {
 	*x = ProduceSettingList{}
-	mi := &file_pmaster_proto_msgTypes[389]
+	mi := &file_pmaster_proto_msgTypes[407]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27488,7 +29056,7 @@ func (x *ProduceSettingList) String() string {
 func (*ProduceSettingList) ProtoMessage() {}
 
 func (x *ProduceSettingList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[389]
+	mi := &file_pmaster_proto_msgTypes[407]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27501,7 +29069,7 @@ func (x *ProduceSettingList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSettingList.ProtoReflect.Descriptor instead.
 func (*ProduceSettingList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{389}
+	return file_pmaster_proto_rawDescGZIP(), []int{407}
 }
 
 func (x *ProduceSettingList) GetList() []*ProduceSetting {
@@ -27518,6 +29086,8 @@ type ProduceSkill struct {
 	Rarity                penum.SkillRarity                    `protobuf:"varint,5,opt,name=rarity,proto3,enum=penum.SkillRarity" json:"rarity,omitempty"`
 	Tag                   string                               `protobuf:"bytes,6,opt,name=tag,proto3" json:"tag,omitempty"`
 	PlanType              penum.ProducePlanType                `protobuf:"varint,7,opt,name=planType,proto3,enum=penum.ProducePlanType" json:"planType,omitempty"`
+	ProduceType           penum.ProduceType                    `protobuf:"varint,18,opt,name=produceType,proto3,enum=penum.ProduceType" json:"produceType,omitempty"`
+	ProduceSplitType      penum.ProduceSplitType               `protobuf:"varint,20,opt,name=produceSplitType,proto3,enum=penum.ProduceSplitType" json:"produceSplitType,omitempty"`
 	ActivationCount       int32                                `protobuf:"varint,8,opt,name=activationCount,proto3" json:"activationCount,omitempty"`
 	ProduceEffectId1      string                               `protobuf:"bytes,9,opt,name=produceEffectId1,proto3" json:"produceEffectId1,omitempty"`
 	ProduceTriggerId1     string                               `protobuf:"bytes,10,opt,name=produceTriggerId1,proto3" json:"produceTriggerId1,omitempty"`
@@ -27535,7 +29105,7 @@ type ProduceSkill struct {
 
 func (x *ProduceSkill) Reset() {
 	*x = ProduceSkill{}
-	mi := &file_pmaster_proto_msgTypes[390]
+	mi := &file_pmaster_proto_msgTypes[408]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27547,7 +29117,7 @@ func (x *ProduceSkill) String() string {
 func (*ProduceSkill) ProtoMessage() {}
 
 func (x *ProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[390]
+	mi := &file_pmaster_proto_msgTypes[408]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27560,7 +29130,7 @@ func (x *ProduceSkill) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSkill.ProtoReflect.Descriptor instead.
 func (*ProduceSkill) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{390}
+	return file_pmaster_proto_rawDescGZIP(), []int{408}
 }
 
 func (x *ProduceSkill) GetId() string {
@@ -27596,6 +29166,20 @@ func (x *ProduceSkill) GetPlanType() penum.ProducePlanType {
 		return x.PlanType
 	}
 	return penum.ProducePlanType(0)
+}
+
+func (x *ProduceSkill) GetProduceType() penum.ProduceType {
+	if x != nil {
+		return x.ProduceType
+	}
+	return penum.ProduceType(0)
+}
+
+func (x *ProduceSkill) GetProduceSplitType() penum.ProduceSplitType {
+	if x != nil {
+		return x.ProduceSplitType
+	}
+	return penum.ProduceSplitType(0)
 }
 
 func (x *ProduceSkill) GetActivationCount() int32 {
@@ -27684,7 +29268,7 @@ type ProduceSkillList struct {
 
 func (x *ProduceSkillList) Reset() {
 	*x = ProduceSkillList{}
-	mi := &file_pmaster_proto_msgTypes[391]
+	mi := &file_pmaster_proto_msgTypes[409]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27696,7 +29280,7 @@ func (x *ProduceSkillList) String() string {
 func (*ProduceSkillList) ProtoMessage() {}
 
 func (x *ProduceSkillList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[391]
+	mi := &file_pmaster_proto_msgTypes[409]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27709,10 +29293,138 @@ func (x *ProduceSkillList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceSkillList.ProtoReflect.Descriptor instead.
 func (*ProduceSkillList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{391}
+	return file_pmaster_proto_rawDescGZIP(), []int{409}
 }
 
 func (x *ProduceSkillList) GetList() []*ProduceSkill {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceSplitAdv struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	ProduceType       penum.ProduceType      `protobuf:"varint,1,opt,name=produceType,proto3,enum=penum.ProduceType" json:"produceType,omitempty"`
+	Type              penum.ProduceAdvType   `protobuf:"varint,2,opt,name=type,proto3,enum=penum.ProduceAdvType" json:"type,omitempty"`
+	ProduceSplitTypes penum.ProduceSplitType `protobuf:"varint,3,opt,name=produceSplitTypes,proto3,enum=penum.ProduceSplitType" json:"produceSplitTypes,omitempty"`
+	TargetCharacterId string                 `protobuf:"bytes,4,opt,name=targetCharacterId,proto3" json:"targetCharacterId,omitempty"`
+	Title             string                 `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	AssetId           string                 `protobuf:"bytes,6,opt,name=assetId,proto3" json:"assetId,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *ProduceSplitAdv) Reset() {
+	*x = ProduceSplitAdv{}
+	mi := &file_pmaster_proto_msgTypes[410]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceSplitAdv) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceSplitAdv) ProtoMessage() {}
+
+func (x *ProduceSplitAdv) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[410]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceSplitAdv.ProtoReflect.Descriptor instead.
+func (*ProduceSplitAdv) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{410}
+}
+
+func (x *ProduceSplitAdv) GetProduceType() penum.ProduceType {
+	if x != nil {
+		return x.ProduceType
+	}
+	return penum.ProduceType(0)
+}
+
+func (x *ProduceSplitAdv) GetType() penum.ProduceAdvType {
+	if x != nil {
+		return x.Type
+	}
+	return penum.ProduceAdvType(0)
+}
+
+func (x *ProduceSplitAdv) GetProduceSplitTypes() penum.ProduceSplitType {
+	if x != nil {
+		return x.ProduceSplitTypes
+	}
+	return penum.ProduceSplitType(0)
+}
+
+func (x *ProduceSplitAdv) GetTargetCharacterId() string {
+	if x != nil {
+		return x.TargetCharacterId
+	}
+	return ""
+}
+
+func (x *ProduceSplitAdv) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ProduceSplitAdv) GetAssetId() string {
+	if x != nil {
+		return x.AssetId
+	}
+	return ""
+}
+
+type ProduceSplitAdvList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	List          []*ProduceSplitAdv     `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceSplitAdvList) Reset() {
+	*x = ProduceSplitAdvList{}
+	mi := &file_pmaster_proto_msgTypes[411]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceSplitAdvList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceSplitAdvList) ProtoMessage() {}
+
+func (x *ProduceSplitAdvList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[411]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceSplitAdvList.ProtoReflect.Descriptor instead.
+func (*ProduceSplitAdvList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{411}
+}
+
+func (x *ProduceSplitAdvList) GetList() []*ProduceSplitAdv {
 	if x != nil {
 		return x.List
 	}
@@ -27733,7 +29445,7 @@ type ProduceStartMotion struct {
 
 func (x *ProduceStartMotion) Reset() {
 	*x = ProduceStartMotion{}
-	mi := &file_pmaster_proto_msgTypes[392]
+	mi := &file_pmaster_proto_msgTypes[412]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27745,7 +29457,7 @@ func (x *ProduceStartMotion) String() string {
 func (*ProduceStartMotion) ProtoMessage() {}
 
 func (x *ProduceStartMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[392]
+	mi := &file_pmaster_proto_msgTypes[412]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27758,7 +29470,7 @@ func (x *ProduceStartMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartMotion.ProtoReflect.Descriptor instead.
 func (*ProduceStartMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{392}
+	return file_pmaster_proto_rawDescGZIP(), []int{412}
 }
 
 func (x *ProduceStartMotion) GetCharacterId() string {
@@ -27812,7 +29524,7 @@ type ProduceStartMotionList struct {
 
 func (x *ProduceStartMotionList) Reset() {
 	*x = ProduceStartMotionList{}
-	mi := &file_pmaster_proto_msgTypes[393]
+	mi := &file_pmaster_proto_msgTypes[413]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27824,7 +29536,7 @@ func (x *ProduceStartMotionList) String() string {
 func (*ProduceStartMotionList) ProtoMessage() {}
 
 func (x *ProduceStartMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[393]
+	mi := &file_pmaster_proto_msgTypes[413]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27837,7 +29549,7 @@ func (x *ProduceStartMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStartMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceStartMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{393}
+	return file_pmaster_proto_rawDescGZIP(), []int{413}
 }
 
 func (x *ProduceStartMotionList) GetList() []*ProduceStartMotion {
@@ -27861,7 +29573,7 @@ type ProduceStepAuditionCharacter struct {
 
 func (x *ProduceStepAuditionCharacter) Reset() {
 	*x = ProduceStepAuditionCharacter{}
-	mi := &file_pmaster_proto_msgTypes[394]
+	mi := &file_pmaster_proto_msgTypes[414]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27873,7 +29585,7 @@ func (x *ProduceStepAuditionCharacter) String() string {
 func (*ProduceStepAuditionCharacter) ProtoMessage() {}
 
 func (x *ProduceStepAuditionCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[394]
+	mi := &file_pmaster_proto_msgTypes[414]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27886,7 +29598,7 @@ func (x *ProduceStepAuditionCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionCharacter.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{394}
+	return file_pmaster_proto_rawDescGZIP(), []int{414}
 }
 
 func (x *ProduceStepAuditionCharacter) GetCharacterId() string {
@@ -27931,6 +29643,118 @@ func (x *ProduceStepAuditionCharacter) GetAuditionSelectHeaderSilhouetteAssetId(
 	return ""
 }
 
+type ProduceStepAuditionCharacterBgm struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	ProduceId     string                 `protobuf:"bytes,2,opt,name=produceId,proto3" json:"produceId,omitempty"`
+	StepType      penum.ProduceStepType  `protobuf:"varint,3,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	BgmAssetId    string                 `protobuf:"bytes,4,opt,name=bgmAssetId,proto3" json:"bgmAssetId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionCharacterBgm) Reset() {
+	*x = ProduceStepAuditionCharacterBgm{}
+	mi := &file_pmaster_proto_msgTypes[415]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionCharacterBgm) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionCharacterBgm) ProtoMessage() {}
+
+func (x *ProduceStepAuditionCharacterBgm) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[415]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionCharacterBgm.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionCharacterBgm) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{415}
+}
+
+func (x *ProduceStepAuditionCharacterBgm) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterBgm) GetProduceId() string {
+	if x != nil {
+		return x.ProduceId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterBgm) GetStepType() penum.ProduceStepType {
+	if x != nil {
+		return x.StepType
+	}
+	return penum.ProduceStepType(0)
+}
+
+func (x *ProduceStepAuditionCharacterBgm) GetBgmAssetId() string {
+	if x != nil {
+		return x.BgmAssetId
+	}
+	return ""
+}
+
+type ProduceStepAuditionCharacterBgmList struct {
+	state         protoimpl.MessageState             `protogen:"open.v1"`
+	List          []*ProduceStepAuditionCharacterBgm `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionCharacterBgmList) Reset() {
+	*x = ProduceStepAuditionCharacterBgmList{}
+	mi := &file_pmaster_proto_msgTypes[416]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionCharacterBgmList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionCharacterBgmList) ProtoMessage() {}
+
+func (x *ProduceStepAuditionCharacterBgmList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[416]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionCharacterBgmList.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionCharacterBgmList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{416}
+}
+
+func (x *ProduceStepAuditionCharacterBgmList) GetList() []*ProduceStepAuditionCharacterBgm {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
 type ProduceStepAuditionCharacterList struct {
 	state         protoimpl.MessageState          `protogen:"open.v1"`
 	List          []*ProduceStepAuditionCharacter `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -27940,7 +29764,7 @@ type ProduceStepAuditionCharacterList struct {
 
 func (x *ProduceStepAuditionCharacterList) Reset() {
 	*x = ProduceStepAuditionCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[395]
+	mi := &file_pmaster_proto_msgTypes[417]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27952,7 +29776,7 @@ func (x *ProduceStepAuditionCharacterList) String() string {
 func (*ProduceStepAuditionCharacterList) ProtoMessage() {}
 
 func (x *ProduceStepAuditionCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[395]
+	mi := &file_pmaster_proto_msgTypes[417]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27965,10 +29789,186 @@ func (x *ProduceStepAuditionCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionCharacterList.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{395}
+	return file_pmaster_proto_rawDescGZIP(), []int{417}
 }
 
 func (x *ProduceStepAuditionCharacterList) GetList() []*ProduceStepAuditionCharacter {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceStepAuditionCharacterUnitMotion struct {
+	state                     protoimpl.MessageState              `protogen:"open.v1"`
+	ProduceCharacterUnitId    string                              `protobuf:"bytes,1,opt,name=produceCharacterUnitId,proto3" json:"produceCharacterUnitId,omitempty"`
+	CharacterId               string                              `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	TargetCharacterId         string                              `protobuf:"bytes,3,opt,name=targetCharacterId,proto3" json:"targetCharacterId,omitempty"`
+	StepType                  penum.ProduceStepType               `protobuf:"varint,4,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	MotionType                penum.ProduceStepAuditionMotionType `protobuf:"varint,5,opt,name=motionType,proto3,enum=penum.ProduceStepAuditionMotionType" json:"motionType,omitempty"`
+	Number                    int32                               `protobuf:"varint,6,opt,name=number,proto3" json:"number,omitempty"`
+	FacialAssetId             string                              `protobuf:"bytes,7,opt,name=facialAssetId,proto3" json:"facialAssetId,omitempty"`
+	BodyAssetId               string                              `protobuf:"bytes,8,opt,name=bodyAssetId,proto3" json:"bodyAssetId,omitempty"`
+	VoiceAssetId              string                              `protobuf:"bytes,9,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	ProduceIds                []string                            `protobuf:"bytes,10,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
+	MotionSeAssetId           string                              `protobuf:"bytes,11,opt,name=motionSeAssetId,proto3" json:"motionSeAssetId,omitempty"`
+	MotionSeStartMilliseconds int32                               `protobuf:"varint,12,opt,name=motionSeStartMilliseconds,proto3" json:"motionSeStartMilliseconds,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) Reset() {
+	*x = ProduceStepAuditionCharacterUnitMotion{}
+	mi := &file_pmaster_proto_msgTypes[418]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionCharacterUnitMotion) ProtoMessage() {}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[418]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionCharacterUnitMotion.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionCharacterUnitMotion) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{418}
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetProduceCharacterUnitId() string {
+	if x != nil {
+		return x.ProduceCharacterUnitId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetTargetCharacterId() string {
+	if x != nil {
+		return x.TargetCharacterId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetStepType() penum.ProduceStepType {
+	if x != nil {
+		return x.StepType
+	}
+	return penum.ProduceStepType(0)
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetMotionType() penum.ProduceStepAuditionMotionType {
+	if x != nil {
+		return x.MotionType
+	}
+	return penum.ProduceStepAuditionMotionType(0)
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetFacialAssetId() string {
+	if x != nil {
+		return x.FacialAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetBodyAssetId() string {
+	if x != nil {
+		return x.BodyAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetVoiceAssetId() string {
+	if x != nil {
+		return x.VoiceAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetMotionSeAssetId() string {
+	if x != nil {
+		return x.MotionSeAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotion) GetMotionSeStartMilliseconds() int32 {
+	if x != nil {
+		return x.MotionSeStartMilliseconds
+	}
+	return 0
+}
+
+type ProduceStepAuditionCharacterUnitMotionList struct {
+	state         protoimpl.MessageState                    `protogen:"open.v1"`
+	List          []*ProduceStepAuditionCharacterUnitMotion `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotionList) Reset() {
+	*x = ProduceStepAuditionCharacterUnitMotionList{}
+	mi := &file_pmaster_proto_msgTypes[419]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionCharacterUnitMotionList) ProtoMessage() {}
+
+func (x *ProduceStepAuditionCharacterUnitMotionList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[419]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionCharacterUnitMotionList.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionCharacterUnitMotionList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{419}
+}
+
+func (x *ProduceStepAuditionCharacterUnitMotionList) GetList() []*ProduceStepAuditionCharacterUnitMotion {
 	if x != nil {
 		return x.List
 	}
@@ -27991,15 +29991,17 @@ type ProduceStepAuditionDifficulty struct {
 	AuditionType                    penum.ProduceStepAuditionType `protobuf:"varint,13,opt,name=auditionType,proto3,enum=penum.ProduceStepAuditionType" json:"auditionType,omitempty"`
 	IsUnlockAnimation               bool                          `protobuf:"varint,14,opt,name=isUnlockAnimation,proto3" json:"isUnlockAnimation,omitempty"`
 	VoteCountBaseLine               int32                         `protobuf:"varint,15,opt,name=voteCountBaseLine,proto3" json:"voteCountBaseLine,omitempty"`
+	IsStaticNpcScore                bool                          `protobuf:"varint,17,opt,name=isStaticNpcScore,proto3" json:"isStaticNpcScore,omitempty"`
 	DearnessLevel                   int32                         `protobuf:"varint,52,opt,name=dearnessLevel,proto3" json:"dearnessLevel,omitempty"`
 	VoteCount                       int32                         `protobuf:"varint,53,opt,name=voteCount,proto3" json:"voteCount,omitempty"`
+	StarScoreBonusBaseLine          int32                         `protobuf:"varint,55,opt,name=starScoreBonusBaseLine,proto3" json:"starScoreBonusBaseLine,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *ProduceStepAuditionDifficulty) Reset() {
 	*x = ProduceStepAuditionDifficulty{}
-	mi := &file_pmaster_proto_msgTypes[396]
+	mi := &file_pmaster_proto_msgTypes[420]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28011,7 +30013,7 @@ func (x *ProduceStepAuditionDifficulty) String() string {
 func (*ProduceStepAuditionDifficulty) ProtoMessage() {}
 
 func (x *ProduceStepAuditionDifficulty) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[396]
+	mi := &file_pmaster_proto_msgTypes[420]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28024,7 +30026,7 @@ func (x *ProduceStepAuditionDifficulty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionDifficulty.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionDifficulty) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{396}
+	return file_pmaster_proto_rawDescGZIP(), []int{420}
 }
 
 func (x *ProduceStepAuditionDifficulty) GetId() string {
@@ -28125,6 +30127,13 @@ func (x *ProduceStepAuditionDifficulty) GetVoteCountBaseLine() int32 {
 	return 0
 }
 
+func (x *ProduceStepAuditionDifficulty) GetIsStaticNpcScore() bool {
+	if x != nil {
+		return x.IsStaticNpcScore
+	}
+	return false
+}
+
 func (x *ProduceStepAuditionDifficulty) GetDearnessLevel() int32 {
 	if x != nil {
 		return x.DearnessLevel
@@ -28139,6 +30148,13 @@ func (x *ProduceStepAuditionDifficulty) GetVoteCount() int32 {
 	return 0
 }
 
+func (x *ProduceStepAuditionDifficulty) GetStarScoreBonusBaseLine() int32 {
+	if x != nil {
+		return x.StarScoreBonusBaseLine
+	}
+	return 0
+}
+
 type ProduceStepAuditionDifficultyList struct {
 	state         protoimpl.MessageState           `protogen:"open.v1"`
 	List          []*ProduceStepAuditionDifficulty `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -28148,7 +30164,7 @@ type ProduceStepAuditionDifficultyList struct {
 
 func (x *ProduceStepAuditionDifficultyList) Reset() {
 	*x = ProduceStepAuditionDifficultyList{}
-	mi := &file_pmaster_proto_msgTypes[397]
+	mi := &file_pmaster_proto_msgTypes[421]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28160,7 +30176,7 @@ func (x *ProduceStepAuditionDifficultyList) String() string {
 func (*ProduceStepAuditionDifficultyList) ProtoMessage() {}
 
 func (x *ProduceStepAuditionDifficultyList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[397]
+	mi := &file_pmaster_proto_msgTypes[421]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28173,7 +30189,7 @@ func (x *ProduceStepAuditionDifficultyList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ProduceStepAuditionDifficultyList.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionDifficultyList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{397}
+	return file_pmaster_proto_rawDescGZIP(), []int{421}
 }
 
 func (x *ProduceStepAuditionDifficultyList) GetList() []*ProduceStepAuditionDifficulty {
@@ -28184,25 +30200,28 @@ func (x *ProduceStepAuditionDifficultyList) GetList() []*ProduceStepAuditionDiff
 }
 
 type ProduceStepAuditionMotion struct {
-	state           protoimpl.MessageState              `protogen:"open.v1"`
-	CharacterId     string                              `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	StepType        penum.ProduceStepType               `protobuf:"varint,2,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
-	MotionType      penum.ProduceStepAuditionMotionType `protobuf:"varint,3,opt,name=motionType,proto3,enum=penum.ProduceStepAuditionMotionType" json:"motionType,omitempty"`
-	Number          int32                               `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
-	FacialAssetId   string                              `protobuf:"bytes,5,opt,name=facialAssetId,proto3" json:"facialAssetId,omitempty"`
-	BodyAssetId     string                              `protobuf:"bytes,6,opt,name=bodyAssetId,proto3" json:"bodyAssetId,omitempty"`
-	VoiceAssetId    string                              `protobuf:"bytes,7,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
-	SceneLayoutId   string                              `protobuf:"bytes,8,opt,name=sceneLayoutId,proto3" json:"sceneLayoutId,omitempty"`
-	CameraId        string                              `protobuf:"bytes,9,opt,name=cameraId,proto3" json:"cameraId,omitempty"`
-	ProduceGroupIds []string                            `protobuf:"bytes,10,rep,name=produceGroupIds,proto3" json:"produceGroupIds,omitempty"`
-	AuditionType    penum.ProduceStepAuditionType       `protobuf:"varint,11,opt,name=auditionType,proto3,enum=penum.ProduceStepAuditionType" json:"auditionType,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                     protoimpl.MessageState              `protogen:"open.v1"`
+	CharacterId               string                              `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	StepType                  penum.ProduceStepType               `protobuf:"varint,2,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	MotionType                penum.ProduceStepAuditionMotionType `protobuf:"varint,3,opt,name=motionType,proto3,enum=penum.ProduceStepAuditionMotionType" json:"motionType,omitempty"`
+	Number                    int32                               `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	FacialAssetId             string                              `protobuf:"bytes,5,opt,name=facialAssetId,proto3" json:"facialAssetId,omitempty"`
+	BodyAssetId               string                              `protobuf:"bytes,6,opt,name=bodyAssetId,proto3" json:"bodyAssetId,omitempty"`
+	VoiceAssetId              string                              `protobuf:"bytes,7,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	SceneLayoutId             string                              `protobuf:"bytes,8,opt,name=sceneLayoutId,proto3" json:"sceneLayoutId,omitempty"`
+	CameraId                  string                              `protobuf:"bytes,9,opt,name=cameraId,proto3" json:"cameraId,omitempty"`
+	ProduceGroupIds           []string                            `protobuf:"bytes,10,rep,name=produceGroupIds,proto3" json:"produceGroupIds,omitempty"`
+	AuditionType              penum.ProduceStepAuditionType       `protobuf:"varint,11,opt,name=auditionType,proto3,enum=penum.ProduceStepAuditionType" json:"auditionType,omitempty"`
+	ProduceIds                []string                            `protobuf:"bytes,12,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
+	MotionSeAssetId           string                              `protobuf:"bytes,13,opt,name=motionSeAssetId,proto3" json:"motionSeAssetId,omitempty"`
+	MotionSeStartMilliseconds int32                               `protobuf:"varint,14,opt,name=motionSeStartMilliseconds,proto3" json:"motionSeStartMilliseconds,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *ProduceStepAuditionMotion) Reset() {
 	*x = ProduceStepAuditionMotion{}
-	mi := &file_pmaster_proto_msgTypes[398]
+	mi := &file_pmaster_proto_msgTypes[422]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28214,7 +30233,7 @@ func (x *ProduceStepAuditionMotion) String() string {
 func (*ProduceStepAuditionMotion) ProtoMessage() {}
 
 func (x *ProduceStepAuditionMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[398]
+	mi := &file_pmaster_proto_msgTypes[422]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28227,7 +30246,7 @@ func (x *ProduceStepAuditionMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionMotion.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{398}
+	return file_pmaster_proto_rawDescGZIP(), []int{422}
 }
 
 func (x *ProduceStepAuditionMotion) GetCharacterId() string {
@@ -28307,6 +30326,27 @@ func (x *ProduceStepAuditionMotion) GetAuditionType() penum.ProduceStepAuditionT
 	return penum.ProduceStepAuditionType(0)
 }
 
+func (x *ProduceStepAuditionMotion) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
+func (x *ProduceStepAuditionMotion) GetMotionSeAssetId() string {
+	if x != nil {
+		return x.MotionSeAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionMotion) GetMotionSeStartMilliseconds() int32 {
+	if x != nil {
+		return x.MotionSeStartMilliseconds
+	}
+	return 0
+}
+
 type ProduceStepAuditionMotionList struct {
 	state         protoimpl.MessageState       `protogen:"open.v1"`
 	List          []*ProduceStepAuditionMotion `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -28316,7 +30356,7 @@ type ProduceStepAuditionMotionList struct {
 
 func (x *ProduceStepAuditionMotionList) Reset() {
 	*x = ProduceStepAuditionMotionList{}
-	mi := &file_pmaster_proto_msgTypes[399]
+	mi := &file_pmaster_proto_msgTypes[423]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28328,7 +30368,7 @@ func (x *ProduceStepAuditionMotionList) String() string {
 func (*ProduceStepAuditionMotionList) ProtoMessage() {}
 
 func (x *ProduceStepAuditionMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[399]
+	mi := &file_pmaster_proto_msgTypes[423]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28341,10 +30381,258 @@ func (x *ProduceStepAuditionMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepAuditionMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceStepAuditionMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{399}
+	return file_pmaster_proto_rawDescGZIP(), []int{423}
 }
 
 func (x *ProduceStepAuditionMotionList) GetList() []*ProduceStepAuditionMotion {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceStepAuditionRivalActor struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProduceCharacterId string                 `protobuf:"bytes,2,opt,name=produceCharacterId,proto3" json:"produceCharacterId,omitempty"`
+	StepType           penum.ProduceStepType  `protobuf:"varint,3,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	Number             int32                  `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	ActorAssetIds      []string               `protobuf:"bytes,5,rep,name=actorAssetIds,proto3" json:"actorAssetIds,omitempty"`
+	ProduceIds         []string               `protobuf:"bytes,6,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionRivalActor) Reset() {
+	*x = ProduceStepAuditionRivalActor{}
+	mi := &file_pmaster_proto_msgTypes[424]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionRivalActor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionRivalActor) ProtoMessage() {}
+
+func (x *ProduceStepAuditionRivalActor) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[424]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionRivalActor.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionRivalActor) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{424}
+}
+
+func (x *ProduceStepAuditionRivalActor) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionRivalActor) GetProduceCharacterId() string {
+	if x != nil {
+		return x.ProduceCharacterId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionRivalActor) GetStepType() penum.ProduceStepType {
+	if x != nil {
+		return x.StepType
+	}
+	return penum.ProduceStepType(0)
+}
+
+func (x *ProduceStepAuditionRivalActor) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *ProduceStepAuditionRivalActor) GetActorAssetIds() []string {
+	if x != nil {
+		return x.ActorAssetIds
+	}
+	return nil
+}
+
+func (x *ProduceStepAuditionRivalActor) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
+type ProduceStepAuditionRivalActorList struct {
+	state         protoimpl.MessageState           `protogen:"open.v1"`
+	List          []*ProduceStepAuditionRivalActor `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionRivalActorList) Reset() {
+	*x = ProduceStepAuditionRivalActorList{}
+	mi := &file_pmaster_proto_msgTypes[425]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionRivalActorList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionRivalActorList) ProtoMessage() {}
+
+func (x *ProduceStepAuditionRivalActorList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[425]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionRivalActorList.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionRivalActorList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{425}
+}
+
+func (x *ProduceStepAuditionRivalActorList) GetList() []*ProduceStepAuditionRivalActor {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceStepAuditionRivalActorMotion struct {
+	state         protoimpl.MessageState              `protogen:"open.v1"`
+	RivalActorId  string                              `protobuf:"bytes,1,opt,name=rivalActorId,proto3" json:"rivalActorId,omitempty"`
+	MotionType    penum.ProduceStepAuditionMotionType `protobuf:"varint,2,opt,name=motionType,proto3,enum=penum.ProduceStepAuditionMotionType" json:"motionType,omitempty"`
+	Number        int32                               `protobuf:"varint,3,opt,name=number,proto3" json:"number,omitempty"`
+	BodyAssetId   string                              `protobuf:"bytes,4,opt,name=bodyAssetId,proto3" json:"bodyAssetId,omitempty"`
+	FacialAssetId string                              `protobuf:"bytes,5,opt,name=facialAssetId,proto3" json:"facialAssetId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) Reset() {
+	*x = ProduceStepAuditionRivalActorMotion{}
+	mi := &file_pmaster_proto_msgTypes[426]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionRivalActorMotion) ProtoMessage() {}
+
+func (x *ProduceStepAuditionRivalActorMotion) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[426]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionRivalActorMotion.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionRivalActorMotion) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{426}
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) GetRivalActorId() string {
+	if x != nil {
+		return x.RivalActorId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) GetMotionType() penum.ProduceStepAuditionMotionType {
+	if x != nil {
+		return x.MotionType
+	}
+	return penum.ProduceStepAuditionMotionType(0)
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) GetBodyAssetId() string {
+	if x != nil {
+		return x.BodyAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepAuditionRivalActorMotion) GetFacialAssetId() string {
+	if x != nil {
+		return x.FacialAssetId
+	}
+	return ""
+}
+
+type ProduceStepAuditionRivalActorMotionList struct {
+	state         protoimpl.MessageState                 `protogen:"open.v1"`
+	List          []*ProduceStepAuditionRivalActorMotion `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepAuditionRivalActorMotionList) Reset() {
+	*x = ProduceStepAuditionRivalActorMotionList{}
+	mi := &file_pmaster_proto_msgTypes[427]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepAuditionRivalActorMotionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepAuditionRivalActorMotionList) ProtoMessage() {}
+
+func (x *ProduceStepAuditionRivalActorMotionList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[427]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepAuditionRivalActorMotionList.ProtoReflect.Descriptor instead.
+func (*ProduceStepAuditionRivalActorMotionList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{427}
+}
+
+func (x *ProduceStepAuditionRivalActorMotionList) GetList() []*ProduceStepAuditionRivalActorMotion {
 	if x != nil {
 		return x.List
 	}
@@ -28370,7 +30658,7 @@ type ProduceStepEventDetail struct {
 
 func (x *ProduceStepEventDetail) Reset() {
 	*x = ProduceStepEventDetail{}
-	mi := &file_pmaster_proto_msgTypes[400]
+	mi := &file_pmaster_proto_msgTypes[428]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28382,7 +30670,7 @@ func (x *ProduceStepEventDetail) String() string {
 func (*ProduceStepEventDetail) ProtoMessage() {}
 
 func (x *ProduceStepEventDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[400]
+	mi := &file_pmaster_proto_msgTypes[428]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28395,7 +30683,7 @@ func (x *ProduceStepEventDetail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventDetail.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventDetail) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{400}
+	return file_pmaster_proto_rawDescGZIP(), []int{428}
 }
 
 func (x *ProduceStepEventDetail) GetId() string {
@@ -28484,7 +30772,7 @@ type ProduceStepEventDetailList struct {
 
 func (x *ProduceStepEventDetailList) Reset() {
 	*x = ProduceStepEventDetailList{}
-	mi := &file_pmaster_proto_msgTypes[401]
+	mi := &file_pmaster_proto_msgTypes[429]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28496,7 +30784,7 @@ func (x *ProduceStepEventDetailList) String() string {
 func (*ProduceStepEventDetailList) ProtoMessage() {}
 
 func (x *ProduceStepEventDetailList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[401]
+	mi := &file_pmaster_proto_msgTypes[429]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28509,7 +30797,7 @@ func (x *ProduceStepEventDetailList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventDetailList.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventDetailList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{401}
+	return file_pmaster_proto_rawDescGZIP(), []int{429}
 }
 
 func (x *ProduceStepEventDetailList) GetList() []*ProduceStepEventDetail {
@@ -28546,7 +30834,7 @@ type ProduceStepEventSuggestion struct {
 
 func (x *ProduceStepEventSuggestion) Reset() {
 	*x = ProduceStepEventSuggestion{}
-	mi := &file_pmaster_proto_msgTypes[402]
+	mi := &file_pmaster_proto_msgTypes[430]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28558,7 +30846,7 @@ func (x *ProduceStepEventSuggestion) String() string {
 func (*ProduceStepEventSuggestion) ProtoMessage() {}
 
 func (x *ProduceStepEventSuggestion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[402]
+	mi := &file_pmaster_proto_msgTypes[430]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28571,7 +30859,7 @@ func (x *ProduceStepEventSuggestion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventSuggestion.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventSuggestion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{402}
+	return file_pmaster_proto_rawDescGZIP(), []int{430}
 }
 
 func (x *ProduceStepEventSuggestion) GetId() string {
@@ -28716,7 +31004,7 @@ type ProduceStepEventSuggestionList struct {
 
 func (x *ProduceStepEventSuggestionList) Reset() {
 	*x = ProduceStepEventSuggestionList{}
-	mi := &file_pmaster_proto_msgTypes[403]
+	mi := &file_pmaster_proto_msgTypes[431]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28728,7 +31016,7 @@ func (x *ProduceStepEventSuggestionList) String() string {
 func (*ProduceStepEventSuggestionList) ProtoMessage() {}
 
 func (x *ProduceStepEventSuggestionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[403]
+	mi := &file_pmaster_proto_msgTypes[431]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28741,7 +31029,7 @@ func (x *ProduceStepEventSuggestionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepEventSuggestionList.ProtoReflect.Descriptor instead.
 func (*ProduceStepEventSuggestionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{403}
+	return file_pmaster_proto_rawDescGZIP(), []int{431}
 }
 
 func (x *ProduceStepEventSuggestionList) GetList() []*ProduceStepEventSuggestion {
@@ -28765,7 +31053,7 @@ type ProduceStepFanPresentMotion struct {
 
 func (x *ProduceStepFanPresentMotion) Reset() {
 	*x = ProduceStepFanPresentMotion{}
-	mi := &file_pmaster_proto_msgTypes[404]
+	mi := &file_pmaster_proto_msgTypes[432]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28777,7 +31065,7 @@ func (x *ProduceStepFanPresentMotion) String() string {
 func (*ProduceStepFanPresentMotion) ProtoMessage() {}
 
 func (x *ProduceStepFanPresentMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[404]
+	mi := &file_pmaster_proto_msgTypes[432]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28790,7 +31078,7 @@ func (x *ProduceStepFanPresentMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepFanPresentMotion.ProtoReflect.Descriptor instead.
 func (*ProduceStepFanPresentMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{404}
+	return file_pmaster_proto_rawDescGZIP(), []int{432}
 }
 
 func (x *ProduceStepFanPresentMotion) GetCharacterId() string {
@@ -28844,7 +31132,7 @@ type ProduceStepFanPresentMotionList struct {
 
 func (x *ProduceStepFanPresentMotionList) Reset() {
 	*x = ProduceStepFanPresentMotionList{}
-	mi := &file_pmaster_proto_msgTypes[405]
+	mi := &file_pmaster_proto_msgTypes[433]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28856,7 +31144,7 @@ func (x *ProduceStepFanPresentMotionList) String() string {
 func (*ProduceStepFanPresentMotionList) ProtoMessage() {}
 
 func (x *ProduceStepFanPresentMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[405]
+	mi := &file_pmaster_proto_msgTypes[433]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28869,7 +31157,7 @@ func (x *ProduceStepFanPresentMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepFanPresentMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceStepFanPresentMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{405}
+	return file_pmaster_proto_rawDescGZIP(), []int{433}
 }
 
 func (x *ProduceStepFanPresentMotionList) GetList() []*ProduceStepFanPresentMotion {
@@ -28890,7 +31178,7 @@ type ProduceStepLesson struct {
 
 func (x *ProduceStepLesson) Reset() {
 	*x = ProduceStepLesson{}
-	mi := &file_pmaster_proto_msgTypes[406]
+	mi := &file_pmaster_proto_msgTypes[434]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28902,7 +31190,7 @@ func (x *ProduceStepLesson) String() string {
 func (*ProduceStepLesson) ProtoMessage() {}
 
 func (x *ProduceStepLesson) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[406]
+	mi := &file_pmaster_proto_msgTypes[434]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28915,7 +31203,7 @@ func (x *ProduceStepLesson) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLesson.ProtoReflect.Descriptor instead.
 func (*ProduceStepLesson) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{406}
+	return file_pmaster_proto_rawDescGZIP(), []int{434}
 }
 
 func (x *ProduceStepLesson) GetId() string {
@@ -28952,7 +31240,7 @@ type ProduceStepLessonLevel struct {
 
 func (x *ProduceStepLessonLevel) Reset() {
 	*x = ProduceStepLessonLevel{}
-	mi := &file_pmaster_proto_msgTypes[407]
+	mi := &file_pmaster_proto_msgTypes[435]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28964,7 +31252,7 @@ func (x *ProduceStepLessonLevel) String() string {
 func (*ProduceStepLessonLevel) ProtoMessage() {}
 
 func (x *ProduceStepLessonLevel) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[407]
+	mi := &file_pmaster_proto_msgTypes[435]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28977,7 +31265,7 @@ func (x *ProduceStepLessonLevel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonLevel.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonLevel) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{407}
+	return file_pmaster_proto_rawDescGZIP(), []int{435}
 }
 
 func (x *ProduceStepLessonLevel) GetId() string {
@@ -29024,7 +31312,7 @@ type ProduceStepLessonLevelList struct {
 
 func (x *ProduceStepLessonLevelList) Reset() {
 	*x = ProduceStepLessonLevelList{}
-	mi := &file_pmaster_proto_msgTypes[408]
+	mi := &file_pmaster_proto_msgTypes[436]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29036,7 +31324,7 @@ func (x *ProduceStepLessonLevelList) String() string {
 func (*ProduceStepLessonLevelList) ProtoMessage() {}
 
 func (x *ProduceStepLessonLevelList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[408]
+	mi := &file_pmaster_proto_msgTypes[436]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29049,7 +31337,7 @@ func (x *ProduceStepLessonLevelList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonLevelList.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonLevelList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{408}
+	return file_pmaster_proto_rawDescGZIP(), []int{436}
 }
 
 func (x *ProduceStepLessonLevelList) GetList() []*ProduceStepLessonLevel {
@@ -29068,7 +31356,7 @@ type ProduceStepLessonList struct {
 
 func (x *ProduceStepLessonList) Reset() {
 	*x = ProduceStepLessonList{}
-	mi := &file_pmaster_proto_msgTypes[409]
+	mi := &file_pmaster_proto_msgTypes[437]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29080,7 +31368,7 @@ func (x *ProduceStepLessonList) String() string {
 func (*ProduceStepLessonList) ProtoMessage() {}
 
 func (x *ProduceStepLessonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[409]
+	mi := &file_pmaster_proto_msgTypes[437]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29093,10 +31381,282 @@ func (x *ProduceStepLessonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepLessonList.ProtoReflect.Descriptor instead.
 func (*ProduceStepLessonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{409}
+	return file_pmaster_proto_rawDescGZIP(), []int{437}
 }
 
 func (x *ProduceStepLessonList) GetList() []*ProduceStepLesson {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceStepOpenLesson struct {
+	state            protoimpl.MessageState     `protogen:"open.v1"`
+	Id               string                     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Stamina          int32                      `protobuf:"varint,3,opt,name=stamina,proto3" json:"stamina,omitempty"`
+	SubParameterType penum.ProduceParameterType `protobuf:"varint,4,opt,name=subParameterType,proto3,enum=penum.ProduceParameterType" json:"subParameterType,omitempty"`
+	MainParameter    int32                      `protobuf:"varint,5,opt,name=mainParameter,proto3" json:"mainParameter,omitempty"`
+	SubParameter     int32                      `protobuf:"varint,6,opt,name=subParameter,proto3" json:"subParameter,omitempty"`
+	Star             int32                      `protobuf:"varint,7,opt,name=star,proto3" json:"star,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ProduceStepOpenLesson) Reset() {
+	*x = ProduceStepOpenLesson{}
+	mi := &file_pmaster_proto_msgTypes[438]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepOpenLesson) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepOpenLesson) ProtoMessage() {}
+
+func (x *ProduceStepOpenLesson) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[438]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepOpenLesson.ProtoReflect.Descriptor instead.
+func (*ProduceStepOpenLesson) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{438}
+}
+
+func (x *ProduceStepOpenLesson) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLesson) GetStamina() int32 {
+	if x != nil {
+		return x.Stamina
+	}
+	return 0
+}
+
+func (x *ProduceStepOpenLesson) GetSubParameterType() penum.ProduceParameterType {
+	if x != nil {
+		return x.SubParameterType
+	}
+	return penum.ProduceParameterType(0)
+}
+
+func (x *ProduceStepOpenLesson) GetMainParameter() int32 {
+	if x != nil {
+		return x.MainParameter
+	}
+	return 0
+}
+
+func (x *ProduceStepOpenLesson) GetSubParameter() int32 {
+	if x != nil {
+		return x.SubParameter
+	}
+	return 0
+}
+
+func (x *ProduceStepOpenLesson) GetStar() int32 {
+	if x != nil {
+		return x.Star
+	}
+	return 0
+}
+
+type ProduceStepOpenLessonList struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	List          []*ProduceStepOpenLesson `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepOpenLessonList) Reset() {
+	*x = ProduceStepOpenLessonList{}
+	mi := &file_pmaster_proto_msgTypes[439]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepOpenLessonList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepOpenLessonList) ProtoMessage() {}
+
+func (x *ProduceStepOpenLessonList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[439]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepOpenLessonList.ProtoReflect.Descriptor instead.
+func (*ProduceStepOpenLessonList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{439}
+}
+
+func (x *ProduceStepOpenLessonList) GetList() []*ProduceStepOpenLesson {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ProduceStepOpenLessonMotion struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	StepType      penum.ProduceStepType  `protobuf:"varint,2,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	Number        int32                  `protobuf:"varint,3,opt,name=number,proto3" json:"number,omitempty"`
+	AdvId         string                 `protobuf:"bytes,4,opt,name=advId,proto3" json:"advId,omitempty"`
+	VoiceAssetId1 string                 `protobuf:"bytes,5,opt,name=voiceAssetId1,proto3" json:"voiceAssetId1,omitempty"`
+	VoiceAssetId2 string                 `protobuf:"bytes,6,opt,name=voiceAssetId2,proto3" json:"voiceAssetId2,omitempty"`
+	SeAssetId     string                 `protobuf:"bytes,7,opt,name=seAssetId,proto3" json:"seAssetId,omitempty"`
+	BgmAssetId    string                 `protobuf:"bytes,8,opt,name=bgmAssetId,proto3" json:"bgmAssetId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepOpenLessonMotion) Reset() {
+	*x = ProduceStepOpenLessonMotion{}
+	mi := &file_pmaster_proto_msgTypes[440]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepOpenLessonMotion) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepOpenLessonMotion) ProtoMessage() {}
+
+func (x *ProduceStepOpenLessonMotion) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[440]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepOpenLessonMotion.ProtoReflect.Descriptor instead.
+func (*ProduceStepOpenLessonMotion) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{440}
+}
+
+func (x *ProduceStepOpenLessonMotion) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLessonMotion) GetStepType() penum.ProduceStepType {
+	if x != nil {
+		return x.StepType
+	}
+	return penum.ProduceStepType(0)
+}
+
+func (x *ProduceStepOpenLessonMotion) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *ProduceStepOpenLessonMotion) GetAdvId() string {
+	if x != nil {
+		return x.AdvId
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLessonMotion) GetVoiceAssetId1() string {
+	if x != nil {
+		return x.VoiceAssetId1
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLessonMotion) GetVoiceAssetId2() string {
+	if x != nil {
+		return x.VoiceAssetId2
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLessonMotion) GetSeAssetId() string {
+	if x != nil {
+		return x.SeAssetId
+	}
+	return ""
+}
+
+func (x *ProduceStepOpenLessonMotion) GetBgmAssetId() string {
+	if x != nil {
+		return x.BgmAssetId
+	}
+	return ""
+}
+
+type ProduceStepOpenLessonMotionList struct {
+	state         protoimpl.MessageState         `protogen:"open.v1"`
+	List          []*ProduceStepOpenLessonMotion `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProduceStepOpenLessonMotionList) Reset() {
+	*x = ProduceStepOpenLessonMotionList{}
+	mi := &file_pmaster_proto_msgTypes[441]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProduceStepOpenLessonMotionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProduceStepOpenLessonMotionList) ProtoMessage() {}
+
+func (x *ProduceStepOpenLessonMotionList) ProtoReflect() protoreflect.Message {
+	mi := &file_pmaster_proto_msgTypes[441]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProduceStepOpenLessonMotionList.ProtoReflect.Descriptor instead.
+func (*ProduceStepOpenLessonMotionList) Descriptor() ([]byte, []int) {
+	return file_pmaster_proto_rawDescGZIP(), []int{441}
+}
+
+func (x *ProduceStepOpenLessonMotionList) GetList() []*ProduceStepOpenLessonMotion {
 	if x != nil {
 		return x.List
 	}
@@ -29115,7 +31675,7 @@ type ProduceStepSelfLesson struct {
 
 func (x *ProduceStepSelfLesson) Reset() {
 	*x = ProduceStepSelfLesson{}
-	mi := &file_pmaster_proto_msgTypes[410]
+	mi := &file_pmaster_proto_msgTypes[442]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29127,7 +31687,7 @@ func (x *ProduceStepSelfLesson) String() string {
 func (*ProduceStepSelfLesson) ProtoMessage() {}
 
 func (x *ProduceStepSelfLesson) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[410]
+	mi := &file_pmaster_proto_msgTypes[442]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29140,7 +31700,7 @@ func (x *ProduceStepSelfLesson) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLesson.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLesson) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{410}
+	return file_pmaster_proto_rawDescGZIP(), []int{442}
 }
 
 func (x *ProduceStepSelfLesson) GetId() string {
@@ -29180,7 +31740,7 @@ type ProduceStepSelfLessonList struct {
 
 func (x *ProduceStepSelfLessonList) Reset() {
 	*x = ProduceStepSelfLessonList{}
-	mi := &file_pmaster_proto_msgTypes[411]
+	mi := &file_pmaster_proto_msgTypes[443]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29192,7 +31752,7 @@ func (x *ProduceStepSelfLessonList) String() string {
 func (*ProduceStepSelfLessonList) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[411]
+	mi := &file_pmaster_proto_msgTypes[443]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29205,7 +31765,7 @@ func (x *ProduceStepSelfLessonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLessonList.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{411}
+	return file_pmaster_proto_rawDescGZIP(), []int{443}
 }
 
 func (x *ProduceStepSelfLessonList) GetList() []*ProduceStepSelfLesson {
@@ -29233,7 +31793,7 @@ type ProduceStepSelfLessonMotion struct {
 
 func (x *ProduceStepSelfLessonMotion) Reset() {
 	*x = ProduceStepSelfLessonMotion{}
-	mi := &file_pmaster_proto_msgTypes[412]
+	mi := &file_pmaster_proto_msgTypes[444]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29245,7 +31805,7 @@ func (x *ProduceStepSelfLessonMotion) String() string {
 func (*ProduceStepSelfLessonMotion) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[412]
+	mi := &file_pmaster_proto_msgTypes[444]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29258,7 +31818,7 @@ func (x *ProduceStepSelfLessonMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLessonMotion.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{412}
+	return file_pmaster_proto_rawDescGZIP(), []int{444}
 }
 
 func (x *ProduceStepSelfLessonMotion) GetCharacterId() string {
@@ -29340,7 +31900,7 @@ type ProduceStepSelfLessonMotionList struct {
 
 func (x *ProduceStepSelfLessonMotionList) Reset() {
 	*x = ProduceStepSelfLessonMotionList{}
-	mi := &file_pmaster_proto_msgTypes[413]
+	mi := &file_pmaster_proto_msgTypes[445]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29352,7 +31912,7 @@ func (x *ProduceStepSelfLessonMotionList) String() string {
 func (*ProduceStepSelfLessonMotionList) ProtoMessage() {}
 
 func (x *ProduceStepSelfLessonMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[413]
+	mi := &file_pmaster_proto_msgTypes[445]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29365,7 +31925,7 @@ func (x *ProduceStepSelfLessonMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepSelfLessonMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceStepSelfLessonMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{413}
+	return file_pmaster_proto_rawDescGZIP(), []int{445}
 }
 
 func (x *ProduceStepSelfLessonMotionList) GetList() []*ProduceStepSelfLessonMotion {
@@ -29376,23 +31936,27 @@ func (x *ProduceStepSelfLessonMotionList) GetList() []*ProduceStepSelfLessonMoti
 }
 
 type ProduceStepTransition struct {
-	state          protoimpl.MessageState     `protogen:"open.v1"`
-	CharacterId    string                     `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	StepType       penum.ProduceStepType      `protobuf:"varint,2,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
-	StepPhaseType  penum.ProduceStepPhaseType `protobuf:"varint,3,opt,name=stepPhaseType,proto3,enum=penum.ProduceStepPhaseType" json:"stepPhaseType,omitempty"`
-	Number         int32                      `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
-	CostumeHeadId  string                     `protobuf:"bytes,5,opt,name=costumeHeadId,proto3" json:"costumeHeadId,omitempty"`
-	CostumeId      string                     `protobuf:"bytes,6,opt,name=costumeId,proto3" json:"costumeId,omitempty"`
-	AdvAssetId     string                     `protobuf:"bytes,7,opt,name=advAssetId,proto3" json:"advAssetId,omitempty"`
-	VoiceAssetId   string                     `protobuf:"bytes,8,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
-	ProduceGroupId string                     `protobuf:"bytes,9,opt,name=produceGroupId,proto3" json:"produceGroupId,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                       protoimpl.MessageState     `protogen:"open.v1"`
+	CharacterId                 string                     `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	StepType                    penum.ProduceStepType      `protobuf:"varint,2,opt,name=stepType,proto3,enum=penum.ProduceStepType" json:"stepType,omitempty"`
+	StepPhaseType               penum.ProduceStepPhaseType `protobuf:"varint,3,opt,name=stepPhaseType,proto3,enum=penum.ProduceStepPhaseType" json:"stepPhaseType,omitempty"`
+	Number                      int32                      `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
+	CostumeHeadId               string                     `protobuf:"bytes,5,opt,name=costumeHeadId,proto3" json:"costumeHeadId,omitempty"`
+	CostumeId                   string                     `protobuf:"bytes,6,opt,name=costumeId,proto3" json:"costumeId,omitempty"`
+	AdvAssetId                  string                     `protobuf:"bytes,7,opt,name=advAssetId,proto3" json:"advAssetId,omitempty"`
+	VoiceAssetId                string                     `protobuf:"bytes,8,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	ProduceGroupId              string                     `protobuf:"bytes,9,opt,name=produceGroupId,proto3" json:"produceGroupId,omitempty"`
+	ProduceIds                  []string                   `protobuf:"bytes,10,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
+	UnitCharacterIds            []string                   `protobuf:"bytes,11,rep,name=unitCharacterIds,proto3" json:"unitCharacterIds,omitempty"`
+	UnitCharacterCostumeHeadIds []string                   `protobuf:"bytes,12,rep,name=unitCharacterCostumeHeadIds,proto3" json:"unitCharacterCostumeHeadIds,omitempty"`
+	UnitCharacterCostumeIds     []string                   `protobuf:"bytes,13,rep,name=unitCharacterCostumeIds,proto3" json:"unitCharacterCostumeIds,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *ProduceStepTransition) Reset() {
 	*x = ProduceStepTransition{}
-	mi := &file_pmaster_proto_msgTypes[414]
+	mi := &file_pmaster_proto_msgTypes[446]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29404,7 +31968,7 @@ func (x *ProduceStepTransition) String() string {
 func (*ProduceStepTransition) ProtoMessage() {}
 
 func (x *ProduceStepTransition) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[414]
+	mi := &file_pmaster_proto_msgTypes[446]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29417,7 +31981,7 @@ func (x *ProduceStepTransition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepTransition.ProtoReflect.Descriptor instead.
 func (*ProduceStepTransition) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{414}
+	return file_pmaster_proto_rawDescGZIP(), []int{446}
 }
 
 func (x *ProduceStepTransition) GetCharacterId() string {
@@ -29483,6 +32047,34 @@ func (x *ProduceStepTransition) GetProduceGroupId() string {
 	return ""
 }
 
+func (x *ProduceStepTransition) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
+func (x *ProduceStepTransition) GetUnitCharacterIds() []string {
+	if x != nil {
+		return x.UnitCharacterIds
+	}
+	return nil
+}
+
+func (x *ProduceStepTransition) GetUnitCharacterCostumeHeadIds() []string {
+	if x != nil {
+		return x.UnitCharacterCostumeHeadIds
+	}
+	return nil
+}
+
+func (x *ProduceStepTransition) GetUnitCharacterCostumeIds() []string {
+	if x != nil {
+		return x.UnitCharacterCostumeIds
+	}
+	return nil
+}
+
 type ProduceStepTransitionList struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
 	List          []*ProduceStepTransition `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -29492,7 +32084,7 @@ type ProduceStepTransitionList struct {
 
 func (x *ProduceStepTransitionList) Reset() {
 	*x = ProduceStepTransitionList{}
-	mi := &file_pmaster_proto_msgTypes[415]
+	mi := &file_pmaster_proto_msgTypes[447]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29504,7 +32096,7 @@ func (x *ProduceStepTransitionList) String() string {
 func (*ProduceStepTransitionList) ProtoMessage() {}
 
 func (x *ProduceStepTransitionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[415]
+	mi := &file_pmaster_proto_msgTypes[447]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29517,7 +32109,7 @@ func (x *ProduceStepTransitionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStepTransitionList.ProtoReflect.Descriptor instead.
 func (*ProduceStepTransitionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{415}
+	return file_pmaster_proto_rawDescGZIP(), []int{447}
 }
 
 func (x *ProduceStepTransitionList) GetList() []*ProduceStepTransition {
@@ -29544,7 +32136,7 @@ type ProduceStory struct {
 
 func (x *ProduceStory) Reset() {
 	*x = ProduceStory{}
-	mi := &file_pmaster_proto_msgTypes[416]
+	mi := &file_pmaster_proto_msgTypes[448]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29556,7 +32148,7 @@ func (x *ProduceStory) String() string {
 func (*ProduceStory) ProtoMessage() {}
 
 func (x *ProduceStory) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[416]
+	mi := &file_pmaster_proto_msgTypes[448]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29569,7 +32161,7 @@ func (x *ProduceStory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStory.ProtoReflect.Descriptor instead.
 func (*ProduceStory) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{416}
+	return file_pmaster_proto_rawDescGZIP(), []int{448}
 }
 
 func (x *ProduceStory) GetId() string {
@@ -29646,7 +32238,7 @@ type ProduceStoryGroup struct {
 
 func (x *ProduceStoryGroup) Reset() {
 	*x = ProduceStoryGroup{}
-	mi := &file_pmaster_proto_msgTypes[417]
+	mi := &file_pmaster_proto_msgTypes[449]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29658,7 +32250,7 @@ func (x *ProduceStoryGroup) String() string {
 func (*ProduceStoryGroup) ProtoMessage() {}
 
 func (x *ProduceStoryGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[417]
+	mi := &file_pmaster_proto_msgTypes[449]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29671,7 +32263,7 @@ func (x *ProduceStoryGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStoryGroup.ProtoReflect.Descriptor instead.
 func (*ProduceStoryGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{417}
+	return file_pmaster_proto_rawDescGZIP(), []int{449}
 }
 
 func (x *ProduceStoryGroup) GetId() string {
@@ -29704,7 +32296,7 @@ type ProduceStoryGroupList struct {
 
 func (x *ProduceStoryGroupList) Reset() {
 	*x = ProduceStoryGroupList{}
-	mi := &file_pmaster_proto_msgTypes[418]
+	mi := &file_pmaster_proto_msgTypes[450]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29716,7 +32308,7 @@ func (x *ProduceStoryGroupList) String() string {
 func (*ProduceStoryGroupList) ProtoMessage() {}
 
 func (x *ProduceStoryGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[418]
+	mi := &file_pmaster_proto_msgTypes[450]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29729,7 +32321,7 @@ func (x *ProduceStoryGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStoryGroupList.ProtoReflect.Descriptor instead.
 func (*ProduceStoryGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{418}
+	return file_pmaster_proto_rawDescGZIP(), []int{450}
 }
 
 func (x *ProduceStoryGroupList) GetList() []*ProduceStoryGroup {
@@ -29748,7 +32340,7 @@ type ProduceStoryList struct {
 
 func (x *ProduceStoryList) Reset() {
 	*x = ProduceStoryList{}
-	mi := &file_pmaster_proto_msgTypes[419]
+	mi := &file_pmaster_proto_msgTypes[451]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29760,7 +32352,7 @@ func (x *ProduceStoryList) String() string {
 func (*ProduceStoryList) ProtoMessage() {}
 
 func (x *ProduceStoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[419]
+	mi := &file_pmaster_proto_msgTypes[451]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29773,7 +32365,7 @@ func (x *ProduceStoryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceStoryList.ProtoReflect.Descriptor instead.
 func (*ProduceStoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{419}
+	return file_pmaster_proto_rawDescGZIP(), []int{451}
 }
 
 func (x *ProduceStoryList) GetList() []*ProduceStory {
@@ -29793,7 +32385,7 @@ type ProduceTrigger struct {
 
 func (x *ProduceTrigger) Reset() {
 	*x = ProduceTrigger{}
-	mi := &file_pmaster_proto_msgTypes[420]
+	mi := &file_pmaster_proto_msgTypes[452]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29805,7 +32397,7 @@ func (x *ProduceTrigger) String() string {
 func (*ProduceTrigger) ProtoMessage() {}
 
 func (x *ProduceTrigger) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[420]
+	mi := &file_pmaster_proto_msgTypes[452]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29818,7 +32410,7 @@ func (x *ProduceTrigger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceTrigger.ProtoReflect.Descriptor instead.
 func (*ProduceTrigger) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{420}
+	return file_pmaster_proto_rawDescGZIP(), []int{452}
 }
 
 func (x *ProduceTrigger) GetId() string {
@@ -29844,7 +32436,7 @@ type ProduceTriggerList struct {
 
 func (x *ProduceTriggerList) Reset() {
 	*x = ProduceTriggerList{}
-	mi := &file_pmaster_proto_msgTypes[421]
+	mi := &file_pmaster_proto_msgTypes[453]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29856,7 +32448,7 @@ func (x *ProduceTriggerList) String() string {
 func (*ProduceTriggerList) ProtoMessage() {}
 
 func (x *ProduceTriggerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[421]
+	mi := &file_pmaster_proto_msgTypes[453]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29869,7 +32461,7 @@ func (x *ProduceTriggerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceTriggerList.ProtoReflect.Descriptor instead.
 func (*ProduceTriggerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{421}
+	return file_pmaster_proto_rawDescGZIP(), []int{453}
 }
 
 func (x *ProduceTriggerList) GetList() []*ProduceTrigger {
@@ -29880,20 +32472,22 @@ func (x *ProduceTriggerList) GetList() []*ProduceTrigger {
 }
 
 type ProduceWeekMotion struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CharacterId   string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
-	Number        int32                  `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
-	CostumeHeadId string                 `protobuf:"bytes,3,opt,name=costumeHeadId,proto3" json:"costumeHeadId,omitempty"`
-	CostumeId     string                 `protobuf:"bytes,4,opt,name=costumeId,proto3" json:"costumeId,omitempty"`
-	AdvAssetId    string                 `protobuf:"bytes,5,opt,name=advAssetId,proto3" json:"advAssetId,omitempty"`
-	VoiceAssetId  string                 `protobuf:"bytes,6,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	CharacterId      string                 `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Number           int32                  `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	CostumeHeadId    string                 `protobuf:"bytes,3,opt,name=costumeHeadId,proto3" json:"costumeHeadId,omitempty"`
+	CostumeId        string                 `protobuf:"bytes,4,opt,name=costumeId,proto3" json:"costumeId,omitempty"`
+	AdvAssetId       string                 `protobuf:"bytes,5,opt,name=advAssetId,proto3" json:"advAssetId,omitempty"`
+	VoiceAssetId     string                 `protobuf:"bytes,6,opt,name=voiceAssetId,proto3" json:"voiceAssetId,omitempty"`
+	ProduceIds       []string               `protobuf:"bytes,11,rep,name=produceIds,proto3" json:"produceIds,omitempty"`
+	EnableOpenLesson bool                   `protobuf:"varint,12,opt,name=enableOpenLesson,proto3" json:"enableOpenLesson,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *ProduceWeekMotion) Reset() {
 	*x = ProduceWeekMotion{}
-	mi := &file_pmaster_proto_msgTypes[422]
+	mi := &file_pmaster_proto_msgTypes[454]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29905,7 +32499,7 @@ func (x *ProduceWeekMotion) String() string {
 func (*ProduceWeekMotion) ProtoMessage() {}
 
 func (x *ProduceWeekMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[422]
+	mi := &file_pmaster_proto_msgTypes[454]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29918,7 +32512,7 @@ func (x *ProduceWeekMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceWeekMotion.ProtoReflect.Descriptor instead.
 func (*ProduceWeekMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{422}
+	return file_pmaster_proto_rawDescGZIP(), []int{454}
 }
 
 func (x *ProduceWeekMotion) GetCharacterId() string {
@@ -29963,6 +32557,20 @@ func (x *ProduceWeekMotion) GetVoiceAssetId() string {
 	return ""
 }
 
+func (x *ProduceWeekMotion) GetProduceIds() []string {
+	if x != nil {
+		return x.ProduceIds
+	}
+	return nil
+}
+
+func (x *ProduceWeekMotion) GetEnableOpenLesson() bool {
+	if x != nil {
+		return x.EnableOpenLesson
+	}
+	return false
+}
+
 type ProduceWeekMotionList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          []*ProduceWeekMotion   `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
@@ -29972,7 +32580,7 @@ type ProduceWeekMotionList struct {
 
 func (x *ProduceWeekMotionList) Reset() {
 	*x = ProduceWeekMotionList{}
-	mi := &file_pmaster_proto_msgTypes[423]
+	mi := &file_pmaster_proto_msgTypes[455]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29984,7 +32592,7 @@ func (x *ProduceWeekMotionList) String() string {
 func (*ProduceWeekMotionList) ProtoMessage() {}
 
 func (x *ProduceWeekMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[423]
+	mi := &file_pmaster_proto_msgTypes[455]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29997,7 +32605,7 @@ func (x *ProduceWeekMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceWeekMotionList.ProtoReflect.Descriptor instead.
 func (*ProduceWeekMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{423}
+	return file_pmaster_proto_rawDescGZIP(), []int{455}
 }
 
 func (x *ProduceWeekMotionList) GetList() []*ProduceWeekMotion {
@@ -30020,7 +32628,7 @@ type ProducerLevel struct {
 
 func (x *ProducerLevel) Reset() {
 	*x = ProducerLevel{}
-	mi := &file_pmaster_proto_msgTypes[424]
+	mi := &file_pmaster_proto_msgTypes[456]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30032,7 +32640,7 @@ func (x *ProducerLevel) String() string {
 func (*ProducerLevel) ProtoMessage() {}
 
 func (x *ProducerLevel) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[424]
+	mi := &file_pmaster_proto_msgTypes[456]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30045,7 +32653,7 @@ func (x *ProducerLevel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerLevel.ProtoReflect.Descriptor instead.
 func (*ProducerLevel) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{424}
+	return file_pmaster_proto_rawDescGZIP(), []int{456}
 }
 
 func (x *ProducerLevel) GetLevel() int32 {
@@ -30092,7 +32700,7 @@ type ProducerLevelList struct {
 
 func (x *ProducerLevelList) Reset() {
 	*x = ProducerLevelList{}
-	mi := &file_pmaster_proto_msgTypes[425]
+	mi := &file_pmaster_proto_msgTypes[457]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30104,7 +32712,7 @@ func (x *ProducerLevelList) String() string {
 func (*ProducerLevelList) ProtoMessage() {}
 
 func (x *ProducerLevelList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[425]
+	mi := &file_pmaster_proto_msgTypes[457]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30117,7 +32725,7 @@ func (x *ProducerLevelList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerLevelList.ProtoReflect.Descriptor instead.
 func (*ProducerLevelList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{425}
+	return file_pmaster_proto_rawDescGZIP(), []int{457}
 }
 
 func (x *ProducerLevelList) GetList() []*ProducerLevel {
@@ -30146,7 +32754,7 @@ type ProducerRanking struct {
 
 func (x *ProducerRanking) Reset() {
 	*x = ProducerRanking{}
-	mi := &file_pmaster_proto_msgTypes[426]
+	mi := &file_pmaster_proto_msgTypes[458]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30158,7 +32766,7 @@ func (x *ProducerRanking) String() string {
 func (*ProducerRanking) ProtoMessage() {}
 
 func (x *ProducerRanking) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[426]
+	mi := &file_pmaster_proto_msgTypes[458]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30171,7 +32779,7 @@ func (x *ProducerRanking) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRanking.ProtoReflect.Descriptor instead.
 func (*ProducerRanking) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{426}
+	return file_pmaster_proto_rawDescGZIP(), []int{458}
 }
 
 func (x *ProducerRanking) GetId() string {
@@ -30262,7 +32870,7 @@ type ProducerRankingCharacter struct {
 
 func (x *ProducerRankingCharacter) Reset() {
 	*x = ProducerRankingCharacter{}
-	mi := &file_pmaster_proto_msgTypes[427]
+	mi := &file_pmaster_proto_msgTypes[459]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30274,7 +32882,7 @@ func (x *ProducerRankingCharacter) String() string {
 func (*ProducerRankingCharacter) ProtoMessage() {}
 
 func (x *ProducerRankingCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[427]
+	mi := &file_pmaster_proto_msgTypes[459]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30287,7 +32895,7 @@ func (x *ProducerRankingCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingCharacter.ProtoReflect.Descriptor instead.
 func (*ProducerRankingCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{427}
+	return file_pmaster_proto_rawDescGZIP(), []int{459}
 }
 
 func (x *ProducerRankingCharacter) GetCharacterId() string {
@@ -30320,7 +32928,7 @@ type ProducerRankingCharacterList struct {
 
 func (x *ProducerRankingCharacterList) Reset() {
 	*x = ProducerRankingCharacterList{}
-	mi := &file_pmaster_proto_msgTypes[428]
+	mi := &file_pmaster_proto_msgTypes[460]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30332,7 +32940,7 @@ func (x *ProducerRankingCharacterList) String() string {
 func (*ProducerRankingCharacterList) ProtoMessage() {}
 
 func (x *ProducerRankingCharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[428]
+	mi := &file_pmaster_proto_msgTypes[460]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30345,7 +32953,7 @@ func (x *ProducerRankingCharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingCharacterList.ProtoReflect.Descriptor instead.
 func (*ProducerRankingCharacterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{428}
+	return file_pmaster_proto_rawDescGZIP(), []int{460}
 }
 
 func (x *ProducerRankingCharacterList) GetList() []*ProducerRankingCharacter {
@@ -30364,7 +32972,7 @@ type ProducerRankingList struct {
 
 func (x *ProducerRankingList) Reset() {
 	*x = ProducerRankingList{}
-	mi := &file_pmaster_proto_msgTypes[429]
+	mi := &file_pmaster_proto_msgTypes[461]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30376,7 +32984,7 @@ func (x *ProducerRankingList) String() string {
 func (*ProducerRankingList) ProtoMessage() {}
 
 func (x *ProducerRankingList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[429]
+	mi := &file_pmaster_proto_msgTypes[461]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30389,7 +32997,7 @@ func (x *ProducerRankingList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingList.ProtoReflect.Descriptor instead.
 func (*ProducerRankingList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{429}
+	return file_pmaster_proto_rawDescGZIP(), []int{461}
 }
 
 func (x *ProducerRankingList) GetList() []*ProducerRanking {
@@ -30409,7 +33017,7 @@ type ProducerRankingProduce struct {
 
 func (x *ProducerRankingProduce) Reset() {
 	*x = ProducerRankingProduce{}
-	mi := &file_pmaster_proto_msgTypes[430]
+	mi := &file_pmaster_proto_msgTypes[462]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30421,7 +33029,7 @@ func (x *ProducerRankingProduce) String() string {
 func (*ProducerRankingProduce) ProtoMessage() {}
 
 func (x *ProducerRankingProduce) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[430]
+	mi := &file_pmaster_proto_msgTypes[462]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30434,7 +33042,7 @@ func (x *ProducerRankingProduce) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingProduce.ProtoReflect.Descriptor instead.
 func (*ProducerRankingProduce) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{430}
+	return file_pmaster_proto_rawDescGZIP(), []int{462}
 }
 
 func (x *ProducerRankingProduce) GetId() string {
@@ -30460,7 +33068,7 @@ type ProducerRankingProduceList struct {
 
 func (x *ProducerRankingProduceList) Reset() {
 	*x = ProducerRankingProduceList{}
-	mi := &file_pmaster_proto_msgTypes[431]
+	mi := &file_pmaster_proto_msgTypes[463]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30472,7 +33080,7 @@ func (x *ProducerRankingProduceList) String() string {
 func (*ProducerRankingProduceList) ProtoMessage() {}
 
 func (x *ProducerRankingProduceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[431]
+	mi := &file_pmaster_proto_msgTypes[463]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30485,7 +33093,7 @@ func (x *ProducerRankingProduceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingProduceList.ProtoReflect.Descriptor instead.
 func (*ProducerRankingProduceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{431}
+	return file_pmaster_proto_rawDescGZIP(), []int{463}
 }
 
 func (x *ProducerRankingProduceList) GetList() []*ProducerRankingProduce {
@@ -30506,7 +33114,7 @@ type ProducerRankingRankGrade struct {
 
 func (x *ProducerRankingRankGrade) Reset() {
 	*x = ProducerRankingRankGrade{}
-	mi := &file_pmaster_proto_msgTypes[432]
+	mi := &file_pmaster_proto_msgTypes[464]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30518,7 +33126,7 @@ func (x *ProducerRankingRankGrade) String() string {
 func (*ProducerRankingRankGrade) ProtoMessage() {}
 
 func (x *ProducerRankingRankGrade) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[432]
+	mi := &file_pmaster_proto_msgTypes[464]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30531,7 +33139,7 @@ func (x *ProducerRankingRankGrade) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingRankGrade.ProtoReflect.Descriptor instead.
 func (*ProducerRankingRankGrade) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{432}
+	return file_pmaster_proto_rawDescGZIP(), []int{464}
 }
 
 func (x *ProducerRankingRankGrade) GetId() string {
@@ -30564,7 +33172,7 @@ type ProducerRankingRankGradeList struct {
 
 func (x *ProducerRankingRankGradeList) Reset() {
 	*x = ProducerRankingRankGradeList{}
-	mi := &file_pmaster_proto_msgTypes[433]
+	mi := &file_pmaster_proto_msgTypes[465]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30576,7 +33184,7 @@ func (x *ProducerRankingRankGradeList) String() string {
 func (*ProducerRankingRankGradeList) ProtoMessage() {}
 
 func (x *ProducerRankingRankGradeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[433]
+	mi := &file_pmaster_proto_msgTypes[465]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30589,7 +33197,7 @@ func (x *ProducerRankingRankGradeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingRankGradeList.ProtoReflect.Descriptor instead.
 func (*ProducerRankingRankGradeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{433}
+	return file_pmaster_proto_rawDescGZIP(), []int{465}
 }
 
 func (x *ProducerRankingRankGradeList) GetList() []*ProducerRankingRankGrade {
@@ -30610,7 +33218,7 @@ type ProducerRankingTower struct {
 
 func (x *ProducerRankingTower) Reset() {
 	*x = ProducerRankingTower{}
-	mi := &file_pmaster_proto_msgTypes[434]
+	mi := &file_pmaster_proto_msgTypes[466]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30622,7 +33230,7 @@ func (x *ProducerRankingTower) String() string {
 func (*ProducerRankingTower) ProtoMessage() {}
 
 func (x *ProducerRankingTower) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[434]
+	mi := &file_pmaster_proto_msgTypes[466]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30635,7 +33243,7 @@ func (x *ProducerRankingTower) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingTower.ProtoReflect.Descriptor instead.
 func (*ProducerRankingTower) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{434}
+	return file_pmaster_proto_rawDescGZIP(), []int{466}
 }
 
 func (x *ProducerRankingTower) GetId() string {
@@ -30668,7 +33276,7 @@ type ProducerRankingTowerList struct {
 
 func (x *ProducerRankingTowerList) Reset() {
 	*x = ProducerRankingTowerList{}
-	mi := &file_pmaster_proto_msgTypes[435]
+	mi := &file_pmaster_proto_msgTypes[467]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30680,7 +33288,7 @@ func (x *ProducerRankingTowerList) String() string {
 func (*ProducerRankingTowerList) ProtoMessage() {}
 
 func (x *ProducerRankingTowerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[435]
+	mi := &file_pmaster_proto_msgTypes[467]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30693,7 +33301,7 @@ func (x *ProducerRankingTowerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerRankingTowerList.ProtoReflect.Descriptor instead.
 func (*ProducerRankingTowerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{435}
+	return file_pmaster_proto_rawDescGZIP(), []int{467}
 }
 
 func (x *ProducerRankingTowerList) GetList() []*ProducerRankingTower {
@@ -30714,7 +33322,7 @@ type PvpRateCommonProduceCard struct {
 
 func (x *PvpRateCommonProduceCard) Reset() {
 	*x = PvpRateCommonProduceCard{}
-	mi := &file_pmaster_proto_msgTypes[436]
+	mi := &file_pmaster_proto_msgTypes[468]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30726,7 +33334,7 @@ func (x *PvpRateCommonProduceCard) String() string {
 func (*PvpRateCommonProduceCard) ProtoMessage() {}
 
 func (x *PvpRateCommonProduceCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[436]
+	mi := &file_pmaster_proto_msgTypes[468]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30739,7 +33347,7 @@ func (x *PvpRateCommonProduceCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateCommonProduceCard.ProtoReflect.Descriptor instead.
 func (*PvpRateCommonProduceCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{436}
+	return file_pmaster_proto_rawDescGZIP(), []int{468}
 }
 
 func (x *PvpRateCommonProduceCard) GetId() string {
@@ -30772,7 +33380,7 @@ type PvpRateCommonProduceCardList struct {
 
 func (x *PvpRateCommonProduceCardList) Reset() {
 	*x = PvpRateCommonProduceCardList{}
-	mi := &file_pmaster_proto_msgTypes[437]
+	mi := &file_pmaster_proto_msgTypes[469]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30784,7 +33392,7 @@ func (x *PvpRateCommonProduceCardList) String() string {
 func (*PvpRateCommonProduceCardList) ProtoMessage() {}
 
 func (x *PvpRateCommonProduceCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[437]
+	mi := &file_pmaster_proto_msgTypes[469]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30797,7 +33405,7 @@ func (x *PvpRateCommonProduceCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateCommonProduceCardList.ProtoReflect.Descriptor instead.
 func (*PvpRateCommonProduceCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{437}
+	return file_pmaster_proto_rawDescGZIP(), []int{469}
 }
 
 func (x *PvpRateCommonProduceCardList) GetList() []*PvpRateCommonProduceCard {
@@ -30829,7 +33437,7 @@ type PvpRateConfig struct {
 
 func (x *PvpRateConfig) Reset() {
 	*x = PvpRateConfig{}
-	mi := &file_pmaster_proto_msgTypes[438]
+	mi := &file_pmaster_proto_msgTypes[470]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30841,7 +33449,7 @@ func (x *PvpRateConfig) String() string {
 func (*PvpRateConfig) ProtoMessage() {}
 
 func (x *PvpRateConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[438]
+	mi := &file_pmaster_proto_msgTypes[470]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30854,7 +33462,7 @@ func (x *PvpRateConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateConfig.ProtoReflect.Descriptor instead.
 func (*PvpRateConfig) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{438}
+	return file_pmaster_proto_rawDescGZIP(), []int{470}
 }
 
 func (x *PvpRateConfig) GetId() string {
@@ -30964,7 +33572,7 @@ type PvpRateConfigList struct {
 
 func (x *PvpRateConfigList) Reset() {
 	*x = PvpRateConfigList{}
-	mi := &file_pmaster_proto_msgTypes[439]
+	mi := &file_pmaster_proto_msgTypes[471]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30976,7 +33584,7 @@ func (x *PvpRateConfigList) String() string {
 func (*PvpRateConfigList) ProtoMessage() {}
 
 func (x *PvpRateConfigList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[439]
+	mi := &file_pmaster_proto_msgTypes[471]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30989,7 +33597,7 @@ func (x *PvpRateConfigList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateConfigList.ProtoReflect.Descriptor instead.
 func (*PvpRateConfigList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{439}
+	return file_pmaster_proto_rawDescGZIP(), []int{471}
 }
 
 func (x *PvpRateConfigList) GetList() []*PvpRateConfig {
@@ -31015,7 +33623,7 @@ type PvpRateMotion struct {
 
 func (x *PvpRateMotion) Reset() {
 	*x = PvpRateMotion{}
-	mi := &file_pmaster_proto_msgTypes[440]
+	mi := &file_pmaster_proto_msgTypes[472]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31027,7 +33635,7 @@ func (x *PvpRateMotion) String() string {
 func (*PvpRateMotion) ProtoMessage() {}
 
 func (x *PvpRateMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[440]
+	mi := &file_pmaster_proto_msgTypes[472]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31040,7 +33648,7 @@ func (x *PvpRateMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateMotion.ProtoReflect.Descriptor instead.
 func (*PvpRateMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{440}
+	return file_pmaster_proto_rawDescGZIP(), []int{472}
 }
 
 func (x *PvpRateMotion) GetCharacterId() string {
@@ -31108,7 +33716,7 @@ type PvpRateMotionList struct {
 
 func (x *PvpRateMotionList) Reset() {
 	*x = PvpRateMotionList{}
-	mi := &file_pmaster_proto_msgTypes[441]
+	mi := &file_pmaster_proto_msgTypes[473]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31120,7 +33728,7 @@ func (x *PvpRateMotionList) String() string {
 func (*PvpRateMotionList) ProtoMessage() {}
 
 func (x *PvpRateMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[441]
+	mi := &file_pmaster_proto_msgTypes[473]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31133,7 +33741,7 @@ func (x *PvpRateMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateMotionList.ProtoReflect.Descriptor instead.
 func (*PvpRateMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{441}
+	return file_pmaster_proto_rawDescGZIP(), []int{473}
 }
 
 func (x *PvpRateMotionList) GetList() []*PvpRateMotion {
@@ -31153,7 +33761,7 @@ type PvpRateUnitSlotUnlock struct {
 
 func (x *PvpRateUnitSlotUnlock) Reset() {
 	*x = PvpRateUnitSlotUnlock{}
-	mi := &file_pmaster_proto_msgTypes[442]
+	mi := &file_pmaster_proto_msgTypes[474]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31165,7 +33773,7 @@ func (x *PvpRateUnitSlotUnlock) String() string {
 func (*PvpRateUnitSlotUnlock) ProtoMessage() {}
 
 func (x *PvpRateUnitSlotUnlock) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[442]
+	mi := &file_pmaster_proto_msgTypes[474]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31178,7 +33786,7 @@ func (x *PvpRateUnitSlotUnlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateUnitSlotUnlock.ProtoReflect.Descriptor instead.
 func (*PvpRateUnitSlotUnlock) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{442}
+	return file_pmaster_proto_rawDescGZIP(), []int{474}
 }
 
 func (x *PvpRateUnitSlotUnlock) GetGrade() penum.PvpRateGrade {
@@ -31204,7 +33812,7 @@ type PvpRateUnitSlotUnlockList struct {
 
 func (x *PvpRateUnitSlotUnlockList) Reset() {
 	*x = PvpRateUnitSlotUnlockList{}
-	mi := &file_pmaster_proto_msgTypes[443]
+	mi := &file_pmaster_proto_msgTypes[475]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31216,7 +33824,7 @@ func (x *PvpRateUnitSlotUnlockList) String() string {
 func (*PvpRateUnitSlotUnlockList) ProtoMessage() {}
 
 func (x *PvpRateUnitSlotUnlockList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[443]
+	mi := &file_pmaster_proto_msgTypes[475]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31229,7 +33837,7 @@ func (x *PvpRateUnitSlotUnlockList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateUnitSlotUnlockList.ProtoReflect.Descriptor instead.
 func (*PvpRateUnitSlotUnlockList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{443}
+	return file_pmaster_proto_rawDescGZIP(), []int{475}
 }
 
 func (x *PvpRateUnitSlotUnlockList) GetList() []*PvpRateUnitSlotUnlock {
@@ -31250,7 +33858,7 @@ type ResearchMemoryRerollCost struct {
 
 func (x *ResearchMemoryRerollCost) Reset() {
 	*x = ResearchMemoryRerollCost{}
-	mi := &file_pmaster_proto_msgTypes[444]
+	mi := &file_pmaster_proto_msgTypes[476]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31262,7 +33870,7 @@ func (x *ResearchMemoryRerollCost) String() string {
 func (*ResearchMemoryRerollCost) ProtoMessage() {}
 
 func (x *ResearchMemoryRerollCost) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[444]
+	mi := &file_pmaster_proto_msgTypes[476]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31275,7 +33883,7 @@ func (x *ResearchMemoryRerollCost) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResearchMemoryRerollCost.ProtoReflect.Descriptor instead.
 func (*ResearchMemoryRerollCost) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{444}
+	return file_pmaster_proto_rawDescGZIP(), []int{476}
 }
 
 func (x *ResearchMemoryRerollCost) GetLockCount() int32 {
@@ -31308,7 +33916,7 @@ type ResearchMemoryRerollCostList struct {
 
 func (x *ResearchMemoryRerollCostList) Reset() {
 	*x = ResearchMemoryRerollCostList{}
-	mi := &file_pmaster_proto_msgTypes[445]
+	mi := &file_pmaster_proto_msgTypes[477]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31320,7 +33928,7 @@ func (x *ResearchMemoryRerollCostList) String() string {
 func (*ResearchMemoryRerollCostList) ProtoMessage() {}
 
 func (x *ResearchMemoryRerollCostList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[445]
+	mi := &file_pmaster_proto_msgTypes[477]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31333,7 +33941,7 @@ func (x *ResearchMemoryRerollCostList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResearchMemoryRerollCostList.ProtoReflect.Descriptor instead.
 func (*ResearchMemoryRerollCostList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{445}
+	return file_pmaster_proto_rawDescGZIP(), []int{477}
 }
 
 func (x *ResearchMemoryRerollCostList) GetList() []*ResearchMemoryRerollCost {
@@ -31354,7 +33962,7 @@ type ResultGradePattern struct {
 
 func (x *ResultGradePattern) Reset() {
 	*x = ResultGradePattern{}
-	mi := &file_pmaster_proto_msgTypes[446]
+	mi := &file_pmaster_proto_msgTypes[478]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31366,7 +33974,7 @@ func (x *ResultGradePattern) String() string {
 func (*ResultGradePattern) ProtoMessage() {}
 
 func (x *ResultGradePattern) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[446]
+	mi := &file_pmaster_proto_msgTypes[478]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31379,7 +33987,7 @@ func (x *ResultGradePattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResultGradePattern.ProtoReflect.Descriptor instead.
 func (*ResultGradePattern) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{446}
+	return file_pmaster_proto_rawDescGZIP(), []int{478}
 }
 
 func (x *ResultGradePattern) GetType() penum.ResultGradeType {
@@ -31412,7 +34020,7 @@ type ResultGradePatternList struct {
 
 func (x *ResultGradePatternList) Reset() {
 	*x = ResultGradePatternList{}
-	mi := &file_pmaster_proto_msgTypes[447]
+	mi := &file_pmaster_proto_msgTypes[479]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31424,7 +34032,7 @@ func (x *ResultGradePatternList) String() string {
 func (*ResultGradePatternList) ProtoMessage() {}
 
 func (x *ResultGradePatternList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[447]
+	mi := &file_pmaster_proto_msgTypes[479]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31437,7 +34045,7 @@ func (x *ResultGradePatternList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResultGradePatternList.ProtoReflect.Descriptor instead.
 func (*ResultGradePatternList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{447}
+	return file_pmaster_proto_rawDescGZIP(), []int{479}
 }
 
 func (x *ResultGradePatternList) GetList() []*ResultGradePattern {
@@ -31459,7 +34067,7 @@ type Rule struct {
 
 func (x *Rule) Reset() {
 	*x = Rule{}
-	mi := &file_pmaster_proto_msgTypes[448]
+	mi := &file_pmaster_proto_msgTypes[480]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31471,7 +34079,7 @@ func (x *Rule) String() string {
 func (*Rule) ProtoMessage() {}
 
 func (x *Rule) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[448]
+	mi := &file_pmaster_proto_msgTypes[480]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31484,7 +34092,7 @@ func (x *Rule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rule.ProtoReflect.Descriptor instead.
 func (*Rule) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{448}
+	return file_pmaster_proto_rawDescGZIP(), []int{480}
 }
 
 func (x *Rule) GetType() penum.RuleType {
@@ -31524,7 +34132,7 @@ type RuleList struct {
 
 func (x *RuleList) Reset() {
 	*x = RuleList{}
-	mi := &file_pmaster_proto_msgTypes[449]
+	mi := &file_pmaster_proto_msgTypes[481]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31536,7 +34144,7 @@ func (x *RuleList) String() string {
 func (*RuleList) ProtoMessage() {}
 
 func (x *RuleList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[449]
+	mi := &file_pmaster_proto_msgTypes[481]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31549,7 +34157,7 @@ func (x *RuleList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RuleList.ProtoReflect.Descriptor instead.
 func (*RuleList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{449}
+	return file_pmaster_proto_rawDescGZIP(), []int{481}
 }
 
 func (x *RuleList) GetList() []*Rule {
@@ -31576,7 +34184,7 @@ type SeminarExamTransition struct {
 
 func (x *SeminarExamTransition) Reset() {
 	*x = SeminarExamTransition{}
-	mi := &file_pmaster_proto_msgTypes[450]
+	mi := &file_pmaster_proto_msgTypes[482]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31588,7 +34196,7 @@ func (x *SeminarExamTransition) String() string {
 func (*SeminarExamTransition) ProtoMessage() {}
 
 func (x *SeminarExamTransition) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[450]
+	mi := &file_pmaster_proto_msgTypes[482]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31601,7 +34209,7 @@ func (x *SeminarExamTransition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarExamTransition.ProtoReflect.Descriptor instead.
 func (*SeminarExamTransition) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{450}
+	return file_pmaster_proto_rawDescGZIP(), []int{482}
 }
 
 func (x *SeminarExamTransition) GetExamEffectType() penum.ProduceExamEffectType {
@@ -31676,7 +34284,7 @@ type SeminarExamTransitionList struct {
 
 func (x *SeminarExamTransitionList) Reset() {
 	*x = SeminarExamTransitionList{}
-	mi := &file_pmaster_proto_msgTypes[451]
+	mi := &file_pmaster_proto_msgTypes[483]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31688,7 +34296,7 @@ func (x *SeminarExamTransitionList) String() string {
 func (*SeminarExamTransitionList) ProtoMessage() {}
 
 func (x *SeminarExamTransitionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[451]
+	mi := &file_pmaster_proto_msgTypes[483]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31701,7 +34309,7 @@ func (x *SeminarExamTransitionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeminarExamTransitionList.ProtoReflect.Descriptor instead.
 func (*SeminarExamTransitionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{451}
+	return file_pmaster_proto_rawDescGZIP(), []int{483}
 }
 
 func (x *SeminarExamTransitionList) GetList() []*SeminarExamTransition {
@@ -31818,9 +34426,14 @@ type Setting struct {
 	HomeCharacterRandomIdolViewConditionSetID                    string                 `protobuf:"bytes,143,opt,name=homeCharacterRandomIdolViewConditionSetID,proto3" json:"homeCharacterRandomIdolViewConditionSetID,omitempty"`
 	BadgeEditViewConditionSetID                                  string                 `protobuf:"bytes,144,opt,name=badgeEditViewConditionSetID,proto3" json:"badgeEditViewConditionSetID,omitempty"`
 	UserBlockLimitCount                                          int32                  `protobuf:"varint,145,opt,name=userBlockLimitCount,proto3" json:"userBlockLimitCount,omitempty"`
+	SelectionMemoryLimitCount                                    int32                  `protobuf:"varint,146,opt,name=selectionMemoryLimitCount,proto3" json:"selectionMemoryLimitCount,omitempty"`
 	SceneTransitionSDCharacterAnimationViewConditionSetID        string                 `protobuf:"bytes,147,opt,name=sceneTransitionSDCharacterAnimationViewConditionSetID,proto3" json:"sceneTransitionSDCharacterAnimationViewConditionSetID,omitempty"`
 	SceneTransitionSDCharacterAnimationFirstAssetIDs             []string               `protobuf:"bytes,148,rep,name=sceneTransitionSDCharacterAnimationFirstAssetIDs,proto3" json:"sceneTransitionSDCharacterAnimationFirstAssetIDs,omitempty"`
 	SceneTransitionSDCharacterAnimationSecondAssetIDs            []string               `protobuf:"bytes,149,rep,name=sceneTransitionSDCharacterAnimationSecondAssetIDs,proto3" json:"sceneTransitionSDCharacterAnimationSecondAssetIDs,omitempty"`
+	ResearchPointLimit                                           int32                  `protobuf:"varint,156,opt,name=researchPointLimit,proto3" json:"researchPointLimit,omitempty"`
+	IdolCardPrimaStellaLevelLimitRank                            int32                  `protobuf:"varint,151,opt,name=idolCardPrimaStellaLevelLimitRank,proto3" json:"idolCardPrimaStellaLevelLimitRank,omitempty"`
+	IdolCardPrimaStellaDearnessLevel                             int32                  `protobuf:"varint,152,opt,name=idolCardPrimaStellaDearnessLevel,proto3" json:"idolCardPrimaStellaDearnessLevel,omitempty"`
+	ProfileReport2026Enable                                      bool                   `protobuf:"varint,157,opt,name=profileReport2026Enable,proto3" json:"profileReport2026Enable,omitempty"`
 	ProduceDailyMemoryRentalLimit                                int32                  `protobuf:"varint,1001,opt,name=produceDailyMemoryRentalLimit,proto3" json:"produceDailyMemoryRentalLimit,omitempty"`
 	ProduceDailyFreeContinueCount                                int32                  `protobuf:"varint,1002,opt,name=produceDailyFreeContinueCount,proto3" json:"produceDailyFreeContinueCount,omitempty"`
 	ProduceContinueItemID                                        string                 `protobuf:"bytes,1003,opt,name=produceContinueItemID,proto3" json:"produceContinueItemID,omitempty"`
@@ -31862,6 +34475,7 @@ type Setting struct {
 	ProduceMaxMemoryDeckCount                                    int32                  `protobuf:"varint,1052,opt,name=produceMaxMemoryDeckCount,proto3" json:"produceMaxMemoryDeckCount,omitempty"`
 	ProduceMaxSupportCardDeckCount                               int32                  `protobuf:"varint,1053,opt,name=produceMaxSupportCardDeckCount,proto3" json:"produceMaxSupportCardDeckCount,omitempty"`
 	ProduceNextIdolAuditionProEasyModeConditionSetID             string                 `protobuf:"bytes,1056,opt,name=produceNextIdolAuditionProEasyModeConditionSetID,proto3" json:"produceNextIdolAuditionProEasyModeConditionSetID,omitempty"`
+	ProduceHatsuboshiIdolFestivalFinalTargetProducerLevel        int32                  `protobuf:"varint,1057,opt,name=produceHatsuboshiIdolFestivalFinalTargetProducerLevel,proto3" json:"produceHatsuboshiIdolFestivalFinalTargetProducerLevel,omitempty"`
 	GashaPickupStoryCampaignCharacterDearnessLevel               int32                  `protobuf:"varint,1101,opt,name=gashaPickupStoryCampaignCharacterDearnessLevel,proto3" json:"gashaPickupStoryCampaignCharacterDearnessLevel,omitempty"`
 	GashaAnimationReversalSsrPermil                              int32                  `protobuf:"varint,1102,opt,name=gashaAnimationReversalSsrPermil,proto3" json:"gashaAnimationReversalSsrPermil,omitempty"`
 	GashaAnimationReversalPickUpProduceIdolSsrPermil             int32                  `protobuf:"varint,1103,opt,name=gashaAnimationReversalPickUpProduceIdolSsrPermil,proto3" json:"gashaAnimationReversalPickUpProduceIdolSsrPermil,omitempty"`
@@ -31896,6 +34510,10 @@ type Setting struct {
 	PvpRateExamBattleAllSkipUnlockConditionSetID                 string                 `protobuf:"bytes,1745,opt,name=pvpRateExamBattleAllSkipUnlockConditionSetID,proto3" json:"pvpRateExamBattleAllSkipUnlockConditionSetID,omitempty"`
 	PvpRateRehearsalViewConditionSetID                           string                 `protobuf:"bytes,1747,opt,name=pvpRateRehearsalViewConditionSetID,proto3" json:"pvpRateRehearsalViewConditionSetID,omitempty"`
 	PvpRateRankingDisplayCount                                   int32                  `protobuf:"varint,1748,opt,name=pvpRateRankingDisplayCount,proto3" json:"pvpRateRankingDisplayCount,omitempty"`
+	PvpRateMaxDeckCount                                          int32                  `protobuf:"varint,1752,opt,name=pvpRateMaxDeckCount,proto3" json:"pvpRateMaxDeckCount,omitempty"`
+	PvpRateDeckNameLengthLimit                                   int32                  `protobuf:"varint,1753,opt,name=pvpRateDeckNameLengthLimit,proto3" json:"pvpRateDeckNameLengthLimit,omitempty"`
+	PvpRateDeckRecommendFirstPriorityPermil                      int32                  `protobuf:"varint,1754,opt,name=pvpRateDeckRecommendFirstPriorityPermil,proto3" json:"pvpRateDeckRecommendFirstPriorityPermil,omitempty"`
+	PvpRateDeckRecommendSecondPriorityPermil                     int32                  `protobuf:"varint,1755,opt,name=pvpRateDeckRecommendSecondPriorityPermil,proto3" json:"pvpRateDeckRecommendSecondPriorityPermil,omitempty"`
 	ExamBattleSubMemoryParameterPermil                           int32                  `protobuf:"varint,1801,opt,name=examBattleSubMemoryParameterPermil,proto3" json:"examBattleSubMemoryParameterPermil,omitempty"`
 	ExamBattleSubMemoryStaminaPermil                             int32                  `protobuf:"varint,1802,opt,name=examBattleSubMemoryStaminaPermil,proto3" json:"examBattleSubMemoryStaminaPermil,omitempty"`
 	ExamBattleConditionThresholdMultipleScore                    int32                  `protobuf:"varint,1803,opt,name=examBattleConditionThresholdMultipleScore,proto3" json:"examBattleConditionThresholdMultipleScore,omitempty"`
@@ -31936,7 +34554,7 @@ type Setting struct {
 
 func (x *Setting) Reset() {
 	*x = Setting{}
-	mi := &file_pmaster_proto_msgTypes[452]
+	mi := &file_pmaster_proto_msgTypes[484]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -31948,7 +34566,7 @@ func (x *Setting) String() string {
 func (*Setting) ProtoMessage() {}
 
 func (x *Setting) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[452]
+	mi := &file_pmaster_proto_msgTypes[484]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -31961,7 +34579,7 @@ func (x *Setting) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Setting.ProtoReflect.Descriptor instead.
 func (*Setting) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{452}
+	return file_pmaster_proto_rawDescGZIP(), []int{484}
 }
 
 func (x *Setting) GetId() string {
@@ -32699,6 +35317,13 @@ func (x *Setting) GetUserBlockLimitCount() int32 {
 	return 0
 }
 
+func (x *Setting) GetSelectionMemoryLimitCount() int32 {
+	if x != nil {
+		return x.SelectionMemoryLimitCount
+	}
+	return 0
+}
+
 func (x *Setting) GetSceneTransitionSDCharacterAnimationViewConditionSetID() string {
 	if x != nil {
 		return x.SceneTransitionSDCharacterAnimationViewConditionSetID
@@ -32718,6 +35343,34 @@ func (x *Setting) GetSceneTransitionSDCharacterAnimationSecondAssetIDs() []strin
 		return x.SceneTransitionSDCharacterAnimationSecondAssetIDs
 	}
 	return nil
+}
+
+func (x *Setting) GetResearchPointLimit() int32 {
+	if x != nil {
+		return x.ResearchPointLimit
+	}
+	return 0
+}
+
+func (x *Setting) GetIdolCardPrimaStellaLevelLimitRank() int32 {
+	if x != nil {
+		return x.IdolCardPrimaStellaLevelLimitRank
+	}
+	return 0
+}
+
+func (x *Setting) GetIdolCardPrimaStellaDearnessLevel() int32 {
+	if x != nil {
+		return x.IdolCardPrimaStellaDearnessLevel
+	}
+	return 0
+}
+
+func (x *Setting) GetProfileReport2026Enable() bool {
+	if x != nil {
+		return x.ProfileReport2026Enable
+	}
+	return false
 }
 
 func (x *Setting) GetProduceDailyMemoryRentalLimit() int32 {
@@ -33007,6 +35660,13 @@ func (x *Setting) GetProduceNextIdolAuditionProEasyModeConditionSetID() string {
 	return ""
 }
 
+func (x *Setting) GetProduceHatsuboshiIdolFestivalFinalTargetProducerLevel() int32 {
+	if x != nil {
+		return x.ProduceHatsuboshiIdolFestivalFinalTargetProducerLevel
+	}
+	return 0
+}
+
 func (x *Setting) GetGashaPickupStoryCampaignCharacterDearnessLevel() int32 {
 	if x != nil {
 		return x.GashaPickupStoryCampaignCharacterDearnessLevel
@@ -33241,6 +35901,34 @@ func (x *Setting) GetPvpRateRehearsalViewConditionSetID() string {
 func (x *Setting) GetPvpRateRankingDisplayCount() int32 {
 	if x != nil {
 		return x.PvpRateRankingDisplayCount
+	}
+	return 0
+}
+
+func (x *Setting) GetPvpRateMaxDeckCount() int32 {
+	if x != nil {
+		return x.PvpRateMaxDeckCount
+	}
+	return 0
+}
+
+func (x *Setting) GetPvpRateDeckNameLengthLimit() int32 {
+	if x != nil {
+		return x.PvpRateDeckNameLengthLimit
+	}
+	return 0
+}
+
+func (x *Setting) GetPvpRateDeckRecommendFirstPriorityPermil() int32 {
+	if x != nil {
+		return x.PvpRateDeckRecommendFirstPriorityPermil
+	}
+	return 0
+}
+
+func (x *Setting) GetPvpRateDeckRecommendSecondPriorityPermil() int32 {
+	if x != nil {
+		return x.PvpRateDeckRecommendSecondPriorityPermil
 	}
 	return 0
 }
@@ -33492,7 +36180,7 @@ type SettingList struct {
 
 func (x *SettingList) Reset() {
 	*x = SettingList{}
-	mi := &file_pmaster_proto_msgTypes[453]
+	mi := &file_pmaster_proto_msgTypes[485]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33504,7 +36192,7 @@ func (x *SettingList) String() string {
 func (*SettingList) ProtoMessage() {}
 
 func (x *SettingList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[453]
+	mi := &file_pmaster_proto_msgTypes[485]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33517,7 +36205,7 @@ func (x *SettingList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SettingList.ProtoReflect.Descriptor instead.
 func (*SettingList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{453}
+	return file_pmaster_proto_rawDescGZIP(), []int{485}
 }
 
 func (x *SettingList) GetList() []*Setting {
@@ -33546,7 +36234,7 @@ type Shop struct {
 
 func (x *Shop) Reset() {
 	*x = Shop{}
-	mi := &file_pmaster_proto_msgTypes[454]
+	mi := &file_pmaster_proto_msgTypes[486]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33558,7 +36246,7 @@ func (x *Shop) String() string {
 func (*Shop) ProtoMessage() {}
 
 func (x *Shop) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[454]
+	mi := &file_pmaster_proto_msgTypes[486]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33571,7 +36259,7 @@ func (x *Shop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Shop.ProtoReflect.Descriptor instead.
 func (*Shop) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{454}
+	return file_pmaster_proto_rawDescGZIP(), []int{486}
 }
 
 func (x *Shop) GetId() string {
@@ -33682,7 +36370,7 @@ type ShopItem struct {
 
 func (x *ShopItem) Reset() {
 	*x = ShopItem{}
-	mi := &file_pmaster_proto_msgTypes[455]
+	mi := &file_pmaster_proto_msgTypes[487]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33694,7 +36382,7 @@ func (x *ShopItem) String() string {
 func (*ShopItem) ProtoMessage() {}
 
 func (x *ShopItem) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[455]
+	mi := &file_pmaster_proto_msgTypes[487]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33707,7 +36395,7 @@ func (x *ShopItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopItem.ProtoReflect.Descriptor instead.
 func (*ShopItem) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{455}
+	return file_pmaster_proto_rawDescGZIP(), []int{487}
 }
 
 func (x *ShopItem) GetId() string {
@@ -33880,7 +36568,7 @@ type ShopItemList struct {
 
 func (x *ShopItemList) Reset() {
 	*x = ShopItemList{}
-	mi := &file_pmaster_proto_msgTypes[456]
+	mi := &file_pmaster_proto_msgTypes[488]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33892,7 +36580,7 @@ func (x *ShopItemList) String() string {
 func (*ShopItemList) ProtoMessage() {}
 
 func (x *ShopItemList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[456]
+	mi := &file_pmaster_proto_msgTypes[488]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33905,7 +36593,7 @@ func (x *ShopItemList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopItemList.ProtoReflect.Descriptor instead.
 func (*ShopItemList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{456}
+	return file_pmaster_proto_rawDescGZIP(), []int{488}
 }
 
 func (x *ShopItemList) GetList() []*ShopItem {
@@ -33924,7 +36612,7 @@ type ShopList struct {
 
 func (x *ShopList) Reset() {
 	*x = ShopList{}
-	mi := &file_pmaster_proto_msgTypes[457]
+	mi := &file_pmaster_proto_msgTypes[489]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33936,7 +36624,7 @@ func (x *ShopList) String() string {
 func (*ShopList) ProtoMessage() {}
 
 func (x *ShopList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[457]
+	mi := &file_pmaster_proto_msgTypes[489]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33949,7 +36637,7 @@ func (x *ShopList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopList.ProtoReflect.Descriptor instead.
 func (*ShopList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{457}
+	return file_pmaster_proto_rawDescGZIP(), []int{489}
 }
 
 func (x *ShopList) GetList() []*Shop {
@@ -33974,7 +36662,7 @@ type ShopProduct struct {
 
 func (x *ShopProduct) Reset() {
 	*x = ShopProduct{}
-	mi := &file_pmaster_proto_msgTypes[458]
+	mi := &file_pmaster_proto_msgTypes[490]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -33986,7 +36674,7 @@ func (x *ShopProduct) String() string {
 func (*ShopProduct) ProtoMessage() {}
 
 func (x *ShopProduct) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[458]
+	mi := &file_pmaster_proto_msgTypes[490]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -33999,7 +36687,7 @@ func (x *ShopProduct) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopProduct.ProtoReflect.Descriptor instead.
 func (*ShopProduct) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{458}
+	return file_pmaster_proto_rawDescGZIP(), []int{490}
 }
 
 func (x *ShopProduct) GetId() string {
@@ -34060,7 +36748,7 @@ type ShopProductList struct {
 
 func (x *ShopProductList) Reset() {
 	*x = ShopProductList{}
-	mi := &file_pmaster_proto_msgTypes[459]
+	mi := &file_pmaster_proto_msgTypes[491]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34072,7 +36760,7 @@ func (x *ShopProductList) String() string {
 func (*ShopProductList) ProtoMessage() {}
 
 func (x *ShopProductList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[459]
+	mi := &file_pmaster_proto_msgTypes[491]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34085,7 +36773,7 @@ func (x *ShopProductList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShopProductList.ProtoReflect.Descriptor instead.
 func (*ShopProductList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{459}
+	return file_pmaster_proto_rawDescGZIP(), []int{491}
 }
 
 func (x *ShopProductList) GetList() []*ShopProduct {
@@ -34107,6 +36795,7 @@ type Story struct {
 	UnlockConditionSetId string                 `protobuf:"bytes,8,opt,name=unlockConditionSetId,proto3" json:"unlockConditionSetId,omitempty"`
 	Reward               *pcommon.Reward        `protobuf:"bytes,12,opt,name=reward,proto3" json:"reward,omitempty"`
 	PreviousStoryId      string                 `protobuf:"bytes,13,opt,name=previousStoryId,proto3" json:"previousStoryId,omitempty"`
+	DearnessStoryTitle   string                 `protobuf:"bytes,14,opt,name=dearnessStoryTitle,proto3" json:"dearnessStoryTitle,omitempty"`
 	Order                int32                  `protobuf:"varint,99,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -34114,7 +36803,7 @@ type Story struct {
 
 func (x *Story) Reset() {
 	*x = Story{}
-	mi := &file_pmaster_proto_msgTypes[460]
+	mi := &file_pmaster_proto_msgTypes[492]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34126,7 +36815,7 @@ func (x *Story) String() string {
 func (*Story) ProtoMessage() {}
 
 func (x *Story) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[460]
+	mi := &file_pmaster_proto_msgTypes[492]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34139,7 +36828,7 @@ func (x *Story) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Story.ProtoReflect.Descriptor instead.
 func (*Story) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{460}
+	return file_pmaster_proto_rawDescGZIP(), []int{492}
 }
 
 func (x *Story) GetId() string {
@@ -34212,6 +36901,13 @@ func (x *Story) GetPreviousStoryId() string {
 	return ""
 }
 
+func (x *Story) GetDearnessStoryTitle() string {
+	if x != nil {
+		return x.DearnessStoryTitle
+	}
+	return ""
+}
+
 func (x *Story) GetOrder() int32 {
 	if x != nil {
 		return x.Order
@@ -34236,7 +36932,7 @@ type StoryEvent struct {
 
 func (x *StoryEvent) Reset() {
 	*x = StoryEvent{}
-	mi := &file_pmaster_proto_msgTypes[461]
+	mi := &file_pmaster_proto_msgTypes[493]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34248,7 +36944,7 @@ func (x *StoryEvent) String() string {
 func (*StoryEvent) ProtoMessage() {}
 
 func (x *StoryEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[461]
+	mi := &file_pmaster_proto_msgTypes[493]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34261,7 +36957,7 @@ func (x *StoryEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEvent.ProtoReflect.Descriptor instead.
 func (*StoryEvent) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{461}
+	return file_pmaster_proto_rawDescGZIP(), []int{493}
 }
 
 func (x *StoryEvent) GetId() string {
@@ -34336,7 +37032,7 @@ type StoryEventList struct {
 
 func (x *StoryEventList) Reset() {
 	*x = StoryEventList{}
-	mi := &file_pmaster_proto_msgTypes[462]
+	mi := &file_pmaster_proto_msgTypes[494]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34348,7 +37044,7 @@ func (x *StoryEventList) String() string {
 func (*StoryEventList) ProtoMessage() {}
 
 func (x *StoryEventList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[462]
+	mi := &file_pmaster_proto_msgTypes[494]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34361,7 +37057,7 @@ func (x *StoryEventList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryEventList.ProtoReflect.Descriptor instead.
 func (*StoryEventList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{462}
+	return file_pmaster_proto_rawDescGZIP(), []int{494}
 }
 
 func (x *StoryEventList) GetList() []*StoryEvent {
@@ -34394,7 +37090,7 @@ type StoryGroup struct {
 
 func (x *StoryGroup) Reset() {
 	*x = StoryGroup{}
-	mi := &file_pmaster_proto_msgTypes[463]
+	mi := &file_pmaster_proto_msgTypes[495]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34406,7 +37102,7 @@ func (x *StoryGroup) String() string {
 func (*StoryGroup) ProtoMessage() {}
 
 func (x *StoryGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[463]
+	mi := &file_pmaster_proto_msgTypes[495]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34419,7 +37115,7 @@ func (x *StoryGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryGroup.ProtoReflect.Descriptor instead.
 func (*StoryGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{463}
+	return file_pmaster_proto_rawDescGZIP(), []int{495}
 }
 
 func (x *StoryGroup) GetId() string {
@@ -34536,7 +37232,7 @@ type StoryGroupList struct {
 
 func (x *StoryGroupList) Reset() {
 	*x = StoryGroupList{}
-	mi := &file_pmaster_proto_msgTypes[464]
+	mi := &file_pmaster_proto_msgTypes[496]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34548,7 +37244,7 @@ func (x *StoryGroupList) String() string {
 func (*StoryGroupList) ProtoMessage() {}
 
 func (x *StoryGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[464]
+	mi := &file_pmaster_proto_msgTypes[496]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34561,7 +37257,7 @@ func (x *StoryGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryGroupList.ProtoReflect.Descriptor instead.
 func (*StoryGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{464}
+	return file_pmaster_proto_rawDescGZIP(), []int{496}
 }
 
 func (x *StoryGroupList) GetList() []*StoryGroup {
@@ -34580,7 +37276,7 @@ type StoryList struct {
 
 func (x *StoryList) Reset() {
 	*x = StoryList{}
-	mi := &file_pmaster_proto_msgTypes[465]
+	mi := &file_pmaster_proto_msgTypes[497]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34592,7 +37288,7 @@ func (x *StoryList) String() string {
 func (*StoryList) ProtoMessage() {}
 
 func (x *StoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[465]
+	mi := &file_pmaster_proto_msgTypes[497]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34605,7 +37301,7 @@ func (x *StoryList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoryList.ProtoReflect.Descriptor instead.
 func (*StoryList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{465}
+	return file_pmaster_proto_rawDescGZIP(), []int{497}
 }
 
 func (x *StoryList) GetList() []*Story {
@@ -34645,7 +37341,7 @@ type SupportCard struct {
 
 func (x *SupportCard) Reset() {
 	*x = SupportCard{}
-	mi := &file_pmaster_proto_msgTypes[466]
+	mi := &file_pmaster_proto_msgTypes[498]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34657,7 +37353,7 @@ func (x *SupportCard) String() string {
 func (*SupportCard) ProtoMessage() {}
 
 func (x *SupportCard) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[466]
+	mi := &file_pmaster_proto_msgTypes[498]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34670,7 +37366,7 @@ func (x *SupportCard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCard.ProtoReflect.Descriptor instead.
 func (*SupportCard) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{466}
+	return file_pmaster_proto_rawDescGZIP(), []int{498}
 }
 
 func (x *SupportCard) GetId() string {
@@ -34838,7 +37534,7 @@ type SupportCardBonus struct {
 
 func (x *SupportCardBonus) Reset() {
 	*x = SupportCardBonus{}
-	mi := &file_pmaster_proto_msgTypes[467]
+	mi := &file_pmaster_proto_msgTypes[499]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34850,7 +37546,7 @@ func (x *SupportCardBonus) String() string {
 func (*SupportCardBonus) ProtoMessage() {}
 
 func (x *SupportCardBonus) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[467]
+	mi := &file_pmaster_proto_msgTypes[499]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34863,7 +37559,7 @@ func (x *SupportCardBonus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardBonus.ProtoReflect.Descriptor instead.
 func (*SupportCardBonus) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{467}
+	return file_pmaster_proto_rawDescGZIP(), []int{499}
 }
 
 func (x *SupportCardBonus) GetRarity() penum.SupportCardRarity {
@@ -34896,7 +37592,7 @@ type SupportCardBonusList struct {
 
 func (x *SupportCardBonusList) Reset() {
 	*x = SupportCardBonusList{}
-	mi := &file_pmaster_proto_msgTypes[468]
+	mi := &file_pmaster_proto_msgTypes[500]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34908,7 +37604,7 @@ func (x *SupportCardBonusList) String() string {
 func (*SupportCardBonusList) ProtoMessage() {}
 
 func (x *SupportCardBonusList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[468]
+	mi := &file_pmaster_proto_msgTypes[500]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34921,7 +37617,7 @@ func (x *SupportCardBonusList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardBonusList.ProtoReflect.Descriptor instead.
 func (*SupportCardBonusList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{468}
+	return file_pmaster_proto_rawDescGZIP(), []int{500}
 }
 
 func (x *SupportCardBonusList) GetList() []*SupportCardBonus {
@@ -34944,7 +37640,7 @@ type SupportCardFlavor struct {
 
 func (x *SupportCardFlavor) Reset() {
 	*x = SupportCardFlavor{}
-	mi := &file_pmaster_proto_msgTypes[469]
+	mi := &file_pmaster_proto_msgTypes[501]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -34956,7 +37652,7 @@ func (x *SupportCardFlavor) String() string {
 func (*SupportCardFlavor) ProtoMessage() {}
 
 func (x *SupportCardFlavor) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[469]
+	mi := &file_pmaster_proto_msgTypes[501]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -34969,7 +37665,7 @@ func (x *SupportCardFlavor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardFlavor.ProtoReflect.Descriptor instead.
 func (*SupportCardFlavor) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{469}
+	return file_pmaster_proto_rawDescGZIP(), []int{501}
 }
 
 func (x *SupportCardFlavor) GetSupportCardId() string {
@@ -35016,7 +37712,7 @@ type SupportCardFlavorList struct {
 
 func (x *SupportCardFlavorList) Reset() {
 	*x = SupportCardFlavorList{}
-	mi := &file_pmaster_proto_msgTypes[470]
+	mi := &file_pmaster_proto_msgTypes[502]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35028,7 +37724,7 @@ func (x *SupportCardFlavorList) String() string {
 func (*SupportCardFlavorList) ProtoMessage() {}
 
 func (x *SupportCardFlavorList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[470]
+	mi := &file_pmaster_proto_msgTypes[502]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35041,7 +37737,7 @@ func (x *SupportCardFlavorList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardFlavorList.ProtoReflect.Descriptor instead.
 func (*SupportCardFlavorList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{470}
+	return file_pmaster_proto_rawDescGZIP(), []int{502}
 }
 
 func (x *SupportCardFlavorList) GetList() []*SupportCardFlavor {
@@ -35062,7 +37758,7 @@ type SupportCardLevel struct {
 
 func (x *SupportCardLevel) Reset() {
 	*x = SupportCardLevel{}
-	mi := &file_pmaster_proto_msgTypes[471]
+	mi := &file_pmaster_proto_msgTypes[503]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35074,7 +37770,7 @@ func (x *SupportCardLevel) String() string {
 func (*SupportCardLevel) ProtoMessage() {}
 
 func (x *SupportCardLevel) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[471]
+	mi := &file_pmaster_proto_msgTypes[503]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35087,7 +37783,7 @@ func (x *SupportCardLevel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardLevel.ProtoReflect.Descriptor instead.
 func (*SupportCardLevel) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{471}
+	return file_pmaster_proto_rawDescGZIP(), []int{503}
 }
 
 func (x *SupportCardLevel) GetId() string {
@@ -35122,7 +37818,7 @@ type SupportCardLevelLimit struct {
 
 func (x *SupportCardLevelLimit) Reset() {
 	*x = SupportCardLevelLimit{}
-	mi := &file_pmaster_proto_msgTypes[472]
+	mi := &file_pmaster_proto_msgTypes[504]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35134,7 +37830,7 @@ func (x *SupportCardLevelLimit) String() string {
 func (*SupportCardLevelLimit) ProtoMessage() {}
 
 func (x *SupportCardLevelLimit) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[472]
+	mi := &file_pmaster_proto_msgTypes[504]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35147,7 +37843,7 @@ func (x *SupportCardLevelLimit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardLevelLimit.ProtoReflect.Descriptor instead.
 func (*SupportCardLevelLimit) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{472}
+	return file_pmaster_proto_rawDescGZIP(), []int{504}
 }
 
 func (x *SupportCardLevelLimit) GetId() string {
@@ -35180,7 +37876,7 @@ type SupportCardLevelLimitList struct {
 
 func (x *SupportCardLevelLimitList) Reset() {
 	*x = SupportCardLevelLimitList{}
-	mi := &file_pmaster_proto_msgTypes[473]
+	mi := &file_pmaster_proto_msgTypes[505]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35192,7 +37888,7 @@ func (x *SupportCardLevelLimitList) String() string {
 func (*SupportCardLevelLimitList) ProtoMessage() {}
 
 func (x *SupportCardLevelLimitList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[473]
+	mi := &file_pmaster_proto_msgTypes[505]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35205,7 +37901,7 @@ func (x *SupportCardLevelLimitList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardLevelLimitList.ProtoReflect.Descriptor instead.
 func (*SupportCardLevelLimitList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{473}
+	return file_pmaster_proto_rawDescGZIP(), []int{505}
 }
 
 func (x *SupportCardLevelLimitList) GetList() []*SupportCardLevelLimit {
@@ -35224,7 +37920,7 @@ type SupportCardLevelList struct {
 
 func (x *SupportCardLevelList) Reset() {
 	*x = SupportCardLevelList{}
-	mi := &file_pmaster_proto_msgTypes[474]
+	mi := &file_pmaster_proto_msgTypes[506]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35236,7 +37932,7 @@ func (x *SupportCardLevelList) String() string {
 func (*SupportCardLevelList) ProtoMessage() {}
 
 func (x *SupportCardLevelList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[474]
+	mi := &file_pmaster_proto_msgTypes[506]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35249,7 +37945,7 @@ func (x *SupportCardLevelList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardLevelList.ProtoReflect.Descriptor instead.
 func (*SupportCardLevelList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{474}
+	return file_pmaster_proto_rawDescGZIP(), []int{506}
 }
 
 func (x *SupportCardLevelList) GetList() []*SupportCardLevel {
@@ -35268,7 +37964,7 @@ type SupportCardList struct {
 
 func (x *SupportCardList) Reset() {
 	*x = SupportCardList{}
-	mi := &file_pmaster_proto_msgTypes[475]
+	mi := &file_pmaster_proto_msgTypes[507]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35280,7 +37976,7 @@ func (x *SupportCardList) String() string {
 func (*SupportCardList) ProtoMessage() {}
 
 func (x *SupportCardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[475]
+	mi := &file_pmaster_proto_msgTypes[507]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35293,7 +37989,7 @@ func (x *SupportCardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardList.ProtoReflect.Descriptor instead.
 func (*SupportCardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{475}
+	return file_pmaster_proto_rawDescGZIP(), []int{507}
 }
 
 func (x *SupportCardList) GetList() []*pcommon.SupportCard {
@@ -35316,7 +38012,7 @@ type SupportCardProduceSkillFilter struct {
 
 func (x *SupportCardProduceSkillFilter) Reset() {
 	*x = SupportCardProduceSkillFilter{}
-	mi := &file_pmaster_proto_msgTypes[476]
+	mi := &file_pmaster_proto_msgTypes[508]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35328,7 +38024,7 @@ func (x *SupportCardProduceSkillFilter) String() string {
 func (*SupportCardProduceSkillFilter) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[476]
+	mi := &file_pmaster_proto_msgTypes[508]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35341,7 +38037,7 @@ func (x *SupportCardProduceSkillFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardProduceSkillFilter.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillFilter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{476}
+	return file_pmaster_proto_rawDescGZIP(), []int{508}
 }
 
 func (x *SupportCardProduceSkillFilter) GetId() string {
@@ -35388,7 +38084,7 @@ type SupportCardProduceSkillFilterList struct {
 
 func (x *SupportCardProduceSkillFilterList) Reset() {
 	*x = SupportCardProduceSkillFilterList{}
-	mi := &file_pmaster_proto_msgTypes[477]
+	mi := &file_pmaster_proto_msgTypes[509]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35400,7 +38096,7 @@ func (x *SupportCardProduceSkillFilterList) String() string {
 func (*SupportCardProduceSkillFilterList) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillFilterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[477]
+	mi := &file_pmaster_proto_msgTypes[509]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35413,7 +38109,7 @@ func (x *SupportCardProduceSkillFilterList) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SupportCardProduceSkillFilterList.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillFilterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{477}
+	return file_pmaster_proto_rawDescGZIP(), []int{509}
 }
 
 func (x *SupportCardProduceSkillFilterList) GetList() []*SupportCardProduceSkillFilter {
@@ -35436,7 +38132,7 @@ type SupportCardProduceSkillLevelAssist struct {
 
 func (x *SupportCardProduceSkillLevelAssist) Reset() {
 	*x = SupportCardProduceSkillLevelAssist{}
-	mi := &file_pmaster_proto_msgTypes[478]
+	mi := &file_pmaster_proto_msgTypes[510]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35448,7 +38144,7 @@ func (x *SupportCardProduceSkillLevelAssist) String() string {
 func (*SupportCardProduceSkillLevelAssist) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelAssist) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[478]
+	mi := &file_pmaster_proto_msgTypes[510]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35461,7 +38157,7 @@ func (x *SupportCardProduceSkillLevelAssist) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use SupportCardProduceSkillLevelAssist.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelAssist) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{478}
+	return file_pmaster_proto_rawDescGZIP(), []int{510}
 }
 
 func (x *SupportCardProduceSkillLevelAssist) GetSupportCardId() string {
@@ -35508,7 +38204,7 @@ type SupportCardProduceSkillLevelAssistList struct {
 
 func (x *SupportCardProduceSkillLevelAssistList) Reset() {
 	*x = SupportCardProduceSkillLevelAssistList{}
-	mi := &file_pmaster_proto_msgTypes[479]
+	mi := &file_pmaster_proto_msgTypes[511]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35520,7 +38216,7 @@ func (x *SupportCardProduceSkillLevelAssistList) String() string {
 func (*SupportCardProduceSkillLevelAssistList) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelAssistList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[479]
+	mi := &file_pmaster_proto_msgTypes[511]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35533,7 +38229,7 @@ func (x *SupportCardProduceSkillLevelAssistList) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use SupportCardProduceSkillLevelAssistList.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelAssistList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{479}
+	return file_pmaster_proto_rawDescGZIP(), []int{511}
 }
 
 func (x *SupportCardProduceSkillLevelAssistList) GetList() []*SupportCardProduceSkillLevelAssist {
@@ -35556,7 +38252,7 @@ type SupportCardProduceSkillLevelDance struct {
 
 func (x *SupportCardProduceSkillLevelDance) Reset() {
 	*x = SupportCardProduceSkillLevelDance{}
-	mi := &file_pmaster_proto_msgTypes[480]
+	mi := &file_pmaster_proto_msgTypes[512]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35568,7 +38264,7 @@ func (x *SupportCardProduceSkillLevelDance) String() string {
 func (*SupportCardProduceSkillLevelDance) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelDance) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[480]
+	mi := &file_pmaster_proto_msgTypes[512]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35581,7 +38277,7 @@ func (x *SupportCardProduceSkillLevelDance) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SupportCardProduceSkillLevelDance.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelDance) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{480}
+	return file_pmaster_proto_rawDescGZIP(), []int{512}
 }
 
 func (x *SupportCardProduceSkillLevelDance) GetSupportCardId() string {
@@ -35628,7 +38324,7 @@ type SupportCardProduceSkillLevelDanceList struct {
 
 func (x *SupportCardProduceSkillLevelDanceList) Reset() {
 	*x = SupportCardProduceSkillLevelDanceList{}
-	mi := &file_pmaster_proto_msgTypes[481]
+	mi := &file_pmaster_proto_msgTypes[513]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35640,7 +38336,7 @@ func (x *SupportCardProduceSkillLevelDanceList) String() string {
 func (*SupportCardProduceSkillLevelDanceList) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelDanceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[481]
+	mi := &file_pmaster_proto_msgTypes[513]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35653,7 +38349,7 @@ func (x *SupportCardProduceSkillLevelDanceList) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SupportCardProduceSkillLevelDanceList.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelDanceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{481}
+	return file_pmaster_proto_rawDescGZIP(), []int{513}
 }
 
 func (x *SupportCardProduceSkillLevelDanceList) GetList() []*SupportCardProduceSkillLevelDance {
@@ -35676,7 +38372,7 @@ type SupportCardProduceSkillLevelVisual struct {
 
 func (x *SupportCardProduceSkillLevelVisual) Reset() {
 	*x = SupportCardProduceSkillLevelVisual{}
-	mi := &file_pmaster_proto_msgTypes[482]
+	mi := &file_pmaster_proto_msgTypes[514]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35688,7 +38384,7 @@ func (x *SupportCardProduceSkillLevelVisual) String() string {
 func (*SupportCardProduceSkillLevelVisual) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelVisual) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[482]
+	mi := &file_pmaster_proto_msgTypes[514]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35701,7 +38397,7 @@ func (x *SupportCardProduceSkillLevelVisual) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use SupportCardProduceSkillLevelVisual.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelVisual) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{482}
+	return file_pmaster_proto_rawDescGZIP(), []int{514}
 }
 
 func (x *SupportCardProduceSkillLevelVisual) GetSupportCardId() string {
@@ -35748,7 +38444,7 @@ type SupportCardProduceSkillLevelVisualList struct {
 
 func (x *SupportCardProduceSkillLevelVisualList) Reset() {
 	*x = SupportCardProduceSkillLevelVisualList{}
-	mi := &file_pmaster_proto_msgTypes[483]
+	mi := &file_pmaster_proto_msgTypes[515]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35760,7 +38456,7 @@ func (x *SupportCardProduceSkillLevelVisualList) String() string {
 func (*SupportCardProduceSkillLevelVisualList) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelVisualList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[483]
+	mi := &file_pmaster_proto_msgTypes[515]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35773,7 +38469,7 @@ func (x *SupportCardProduceSkillLevelVisualList) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use SupportCardProduceSkillLevelVisualList.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelVisualList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{483}
+	return file_pmaster_proto_rawDescGZIP(), []int{515}
 }
 
 func (x *SupportCardProduceSkillLevelVisualList) GetList() []*SupportCardProduceSkillLevelVisual {
@@ -35796,7 +38492,7 @@ type SupportCardProduceSkillLevelVocal struct {
 
 func (x *SupportCardProduceSkillLevelVocal) Reset() {
 	*x = SupportCardProduceSkillLevelVocal{}
-	mi := &file_pmaster_proto_msgTypes[484]
+	mi := &file_pmaster_proto_msgTypes[516]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35808,7 +38504,7 @@ func (x *SupportCardProduceSkillLevelVocal) String() string {
 func (*SupportCardProduceSkillLevelVocal) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelVocal) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[484]
+	mi := &file_pmaster_proto_msgTypes[516]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35821,7 +38517,7 @@ func (x *SupportCardProduceSkillLevelVocal) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SupportCardProduceSkillLevelVocal.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelVocal) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{484}
+	return file_pmaster_proto_rawDescGZIP(), []int{516}
 }
 
 func (x *SupportCardProduceSkillLevelVocal) GetSupportCardId() string {
@@ -35868,7 +38564,7 @@ type SupportCardProduceSkillLevelVocalList struct {
 
 func (x *SupportCardProduceSkillLevelVocalList) Reset() {
 	*x = SupportCardProduceSkillLevelVocalList{}
-	mi := &file_pmaster_proto_msgTypes[485]
+	mi := &file_pmaster_proto_msgTypes[517]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35880,7 +38576,7 @@ func (x *SupportCardProduceSkillLevelVocalList) String() string {
 func (*SupportCardProduceSkillLevelVocalList) ProtoMessage() {}
 
 func (x *SupportCardProduceSkillLevelVocalList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[485]
+	mi := &file_pmaster_proto_msgTypes[517]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35893,7 +38589,7 @@ func (x *SupportCardProduceSkillLevelVocalList) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SupportCardProduceSkillLevelVocalList.ProtoReflect.Descriptor instead.
 func (*SupportCardProduceSkillLevelVocalList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{485}
+	return file_pmaster_proto_rawDescGZIP(), []int{517}
 }
 
 func (x *SupportCardProduceSkillLevelVocalList) GetList() []*SupportCardProduceSkillLevelVocal {
@@ -35913,7 +38609,7 @@ type SupportCardSimulation struct {
 
 func (x *SupportCardSimulation) Reset() {
 	*x = SupportCardSimulation{}
-	mi := &file_pmaster_proto_msgTypes[486]
+	mi := &file_pmaster_proto_msgTypes[518]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35925,7 +38621,7 @@ func (x *SupportCardSimulation) String() string {
 func (*SupportCardSimulation) ProtoMessage() {}
 
 func (x *SupportCardSimulation) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[486]
+	mi := &file_pmaster_proto_msgTypes[518]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35938,7 +38634,7 @@ func (x *SupportCardSimulation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardSimulation.ProtoReflect.Descriptor instead.
 func (*SupportCardSimulation) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{486}
+	return file_pmaster_proto_rawDescGZIP(), []int{518}
 }
 
 func (x *SupportCardSimulation) GetSupportCardSimulationGroupId() string {
@@ -35965,7 +38661,7 @@ type SupportCardSimulationGroup struct {
 
 func (x *SupportCardSimulationGroup) Reset() {
 	*x = SupportCardSimulationGroup{}
-	mi := &file_pmaster_proto_msgTypes[487]
+	mi := &file_pmaster_proto_msgTypes[519]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -35977,7 +38673,7 @@ func (x *SupportCardSimulationGroup) String() string {
 func (*SupportCardSimulationGroup) ProtoMessage() {}
 
 func (x *SupportCardSimulationGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[487]
+	mi := &file_pmaster_proto_msgTypes[519]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -35990,7 +38686,7 @@ func (x *SupportCardSimulationGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardSimulationGroup.ProtoReflect.Descriptor instead.
 func (*SupportCardSimulationGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{487}
+	return file_pmaster_proto_rawDescGZIP(), []int{519}
 }
 
 func (x *SupportCardSimulationGroup) GetId() string {
@@ -36016,7 +38712,7 @@ type SupportCardSimulationGroupList struct {
 
 func (x *SupportCardSimulationGroupList) Reset() {
 	*x = SupportCardSimulationGroupList{}
-	mi := &file_pmaster_proto_msgTypes[488]
+	mi := &file_pmaster_proto_msgTypes[520]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36028,7 +38724,7 @@ func (x *SupportCardSimulationGroupList) String() string {
 func (*SupportCardSimulationGroupList) ProtoMessage() {}
 
 func (x *SupportCardSimulationGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[488]
+	mi := &file_pmaster_proto_msgTypes[520]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36041,7 +38737,7 @@ func (x *SupportCardSimulationGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardSimulationGroupList.ProtoReflect.Descriptor instead.
 func (*SupportCardSimulationGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{488}
+	return file_pmaster_proto_rawDescGZIP(), []int{520}
 }
 
 func (x *SupportCardSimulationGroupList) GetList() []*SupportCardSimulationGroup {
@@ -36060,7 +38756,7 @@ type SupportCardSimulationList struct {
 
 func (x *SupportCardSimulationList) Reset() {
 	*x = SupportCardSimulationList{}
-	mi := &file_pmaster_proto_msgTypes[489]
+	mi := &file_pmaster_proto_msgTypes[521]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36072,7 +38768,7 @@ func (x *SupportCardSimulationList) String() string {
 func (*SupportCardSimulationList) ProtoMessage() {}
 
 func (x *SupportCardSimulationList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[489]
+	mi := &file_pmaster_proto_msgTypes[521]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36085,7 +38781,7 @@ func (x *SupportCardSimulationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportCardSimulationList.ProtoReflect.Descriptor instead.
 func (*SupportCardSimulationList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{489}
+	return file_pmaster_proto_rawDescGZIP(), []int{521}
 }
 
 func (x *SupportCardSimulationList) GetList() []*SupportCardSimulation {
@@ -36106,7 +38802,7 @@ type Terms struct {
 
 func (x *Terms) Reset() {
 	*x = Terms{}
-	mi := &file_pmaster_proto_msgTypes[490]
+	mi := &file_pmaster_proto_msgTypes[522]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36118,7 +38814,7 @@ func (x *Terms) String() string {
 func (*Terms) ProtoMessage() {}
 
 func (x *Terms) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[490]
+	mi := &file_pmaster_proto_msgTypes[522]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36131,7 +38827,7 @@ func (x *Terms) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Terms.ProtoReflect.Descriptor instead.
 func (*Terms) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{490}
+	return file_pmaster_proto_rawDescGZIP(), []int{522}
 }
 
 func (x *Terms) GetType() penum.TermsType {
@@ -36164,7 +38860,7 @@ type TermsList struct {
 
 func (x *TermsList) Reset() {
 	*x = TermsList{}
-	mi := &file_pmaster_proto_msgTypes[491]
+	mi := &file_pmaster_proto_msgTypes[523]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36176,7 +38872,7 @@ func (x *TermsList) String() string {
 func (*TermsList) ProtoMessage() {}
 
 func (x *TermsList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[491]
+	mi := &file_pmaster_proto_msgTypes[523]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36189,7 +38885,7 @@ func (x *TermsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TermsList.ProtoReflect.Descriptor instead.
 func (*TermsList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{491}
+	return file_pmaster_proto_rawDescGZIP(), []int{523}
 }
 
 func (x *TermsList) GetList() []*Terms {
@@ -36217,7 +38913,7 @@ type Tips struct {
 
 func (x *Tips) Reset() {
 	*x = Tips{}
-	mi := &file_pmaster_proto_msgTypes[492]
+	mi := &file_pmaster_proto_msgTypes[524]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36229,7 +38925,7 @@ func (x *Tips) String() string {
 func (*Tips) ProtoMessage() {}
 
 func (x *Tips) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[492]
+	mi := &file_pmaster_proto_msgTypes[524]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36242,7 +38938,7 @@ func (x *Tips) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tips.ProtoReflect.Descriptor instead.
 func (*Tips) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{492}
+	return file_pmaster_proto_rawDescGZIP(), []int{524}
 }
 
 func (x *Tips) GetId() string {
@@ -36324,7 +39020,7 @@ type TipsList struct {
 
 func (x *TipsList) Reset() {
 	*x = TipsList{}
-	mi := &file_pmaster_proto_msgTypes[493]
+	mi := &file_pmaster_proto_msgTypes[525]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36336,7 +39032,7 @@ func (x *TipsList) String() string {
 func (*TipsList) ProtoMessage() {}
 
 func (x *TipsList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[493]
+	mi := &file_pmaster_proto_msgTypes[525]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36349,7 +39045,7 @@ func (x *TipsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TipsList.ProtoReflect.Descriptor instead.
 func (*TipsList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{493}
+	return file_pmaster_proto_rawDescGZIP(), []int{525}
 }
 
 func (x *TipsList) GetList() []*Tips {
@@ -36377,7 +39073,7 @@ type TitleAsset struct {
 
 func (x *TitleAsset) Reset() {
 	*x = TitleAsset{}
-	mi := &file_pmaster_proto_msgTypes[494]
+	mi := &file_pmaster_proto_msgTypes[526]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36389,7 +39085,7 @@ func (x *TitleAsset) String() string {
 func (*TitleAsset) ProtoMessage() {}
 
 func (x *TitleAsset) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[494]
+	mi := &file_pmaster_proto_msgTypes[526]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36402,7 +39098,7 @@ func (x *TitleAsset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TitleAsset.ProtoReflect.Descriptor instead.
 func (*TitleAsset) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{494}
+	return file_pmaster_proto_rawDescGZIP(), []int{526}
 }
 
 func (x *TitleAsset) GetId() string {
@@ -36484,7 +39180,7 @@ type TitleAssetList struct {
 
 func (x *TitleAssetList) Reset() {
 	*x = TitleAssetList{}
-	mi := &file_pmaster_proto_msgTypes[495]
+	mi := &file_pmaster_proto_msgTypes[527]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36496,7 +39192,7 @@ func (x *TitleAssetList) String() string {
 func (*TitleAssetList) ProtoMessage() {}
 
 func (x *TitleAssetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[495]
+	mi := &file_pmaster_proto_msgTypes[527]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36509,7 +39205,7 @@ func (x *TitleAssetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TitleAssetList.ProtoReflect.Descriptor instead.
 func (*TitleAssetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{495}
+	return file_pmaster_proto_rawDescGZIP(), []int{527}
 }
 
 func (x *TitleAssetList) GetList() []*TitleAsset {
@@ -36530,7 +39226,7 @@ type TitleVoice struct {
 
 func (x *TitleVoice) Reset() {
 	*x = TitleVoice{}
-	mi := &file_pmaster_proto_msgTypes[496]
+	mi := &file_pmaster_proto_msgTypes[528]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36542,7 +39238,7 @@ func (x *TitleVoice) String() string {
 func (*TitleVoice) ProtoMessage() {}
 
 func (x *TitleVoice) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[496]
+	mi := &file_pmaster_proto_msgTypes[528]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36555,7 +39251,7 @@ func (x *TitleVoice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TitleVoice.ProtoReflect.Descriptor instead.
 func (*TitleVoice) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{496}
+	return file_pmaster_proto_rawDescGZIP(), []int{528}
 }
 
 func (x *TitleVoice) GetVoiceAssetId() string {
@@ -36588,7 +39284,7 @@ type TitleVoiceList struct {
 
 func (x *TitleVoiceList) Reset() {
 	*x = TitleVoiceList{}
-	mi := &file_pmaster_proto_msgTypes[497]
+	mi := &file_pmaster_proto_msgTypes[529]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36600,7 +39296,7 @@ func (x *TitleVoiceList) String() string {
 func (*TitleVoiceList) ProtoMessage() {}
 
 func (x *TitleVoiceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[497]
+	mi := &file_pmaster_proto_msgTypes[529]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36613,7 +39309,7 @@ func (x *TitleVoiceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TitleVoiceList.ProtoReflect.Descriptor instead.
 func (*TitleVoiceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{497}
+	return file_pmaster_proto_rawDescGZIP(), []int{529}
 }
 
 func (x *TitleVoiceList) GetList() []*TitleVoice {
@@ -36641,7 +39337,7 @@ type Tour struct {
 
 func (x *Tour) Reset() {
 	*x = Tour{}
-	mi := &file_pmaster_proto_msgTypes[498]
+	mi := &file_pmaster_proto_msgTypes[530]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36653,7 +39349,7 @@ func (x *Tour) String() string {
 func (*Tour) ProtoMessage() {}
 
 func (x *Tour) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[498]
+	mi := &file_pmaster_proto_msgTypes[530]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36666,7 +39362,7 @@ func (x *Tour) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tour.ProtoReflect.Descriptor instead.
 func (*Tour) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{498}
+	return file_pmaster_proto_rawDescGZIP(), []int{530}
 }
 
 func (x *Tour) GetId() string {
@@ -36748,7 +39444,7 @@ type TourList struct {
 
 func (x *TourList) Reset() {
 	*x = TourList{}
-	mi := &file_pmaster_proto_msgTypes[499]
+	mi := &file_pmaster_proto_msgTypes[531]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36760,7 +39456,7 @@ func (x *TourList) String() string {
 func (*TourList) ProtoMessage() {}
 
 func (x *TourList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[499]
+	mi := &file_pmaster_proto_msgTypes[531]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36773,7 +39469,7 @@ func (x *TourList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TourList.ProtoReflect.Descriptor instead.
 func (*TourList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{499}
+	return file_pmaster_proto_rawDescGZIP(), []int{531}
 }
 
 func (x *TourList) GetList() []*Tour {
@@ -36799,7 +39495,7 @@ type TourMotion struct {
 
 func (x *TourMotion) Reset() {
 	*x = TourMotion{}
-	mi := &file_pmaster_proto_msgTypes[500]
+	mi := &file_pmaster_proto_msgTypes[532]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36811,7 +39507,7 @@ func (x *TourMotion) String() string {
 func (*TourMotion) ProtoMessage() {}
 
 func (x *TourMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[500]
+	mi := &file_pmaster_proto_msgTypes[532]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36824,7 +39520,7 @@ func (x *TourMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TourMotion.ProtoReflect.Descriptor instead.
 func (*TourMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{500}
+	return file_pmaster_proto_rawDescGZIP(), []int{532}
 }
 
 func (x *TourMotion) GetId() string {
@@ -36892,7 +39588,7 @@ type TourMotionList struct {
 
 func (x *TourMotionList) Reset() {
 	*x = TourMotionList{}
-	mi := &file_pmaster_proto_msgTypes[501]
+	mi := &file_pmaster_proto_msgTypes[533]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36904,7 +39600,7 @@ func (x *TourMotionList) String() string {
 func (*TourMotionList) ProtoMessage() {}
 
 func (x *TourMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[501]
+	mi := &file_pmaster_proto_msgTypes[533]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36917,7 +39613,7 @@ func (x *TourMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TourMotionList.ProtoReflect.Descriptor instead.
 func (*TourMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{501}
+	return file_pmaster_proto_rawDescGZIP(), []int{533}
 }
 
 func (x *TourMotionList) GetList() []*TourMotion {
@@ -36943,7 +39639,7 @@ type TourStageTimeline struct {
 
 func (x *TourStageTimeline) Reset() {
 	*x = TourStageTimeline{}
-	mi := &file_pmaster_proto_msgTypes[502]
+	mi := &file_pmaster_proto_msgTypes[534]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -36955,7 +39651,7 @@ func (x *TourStageTimeline) String() string {
 func (*TourStageTimeline) ProtoMessage() {}
 
 func (x *TourStageTimeline) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[502]
+	mi := &file_pmaster_proto_msgTypes[534]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -36968,7 +39664,7 @@ func (x *TourStageTimeline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TourStageTimeline.ProtoReflect.Descriptor instead.
 func (*TourStageTimeline) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{502}
+	return file_pmaster_proto_rawDescGZIP(), []int{534}
 }
 
 func (x *TourStageTimeline) GetId() string {
@@ -37036,7 +39732,7 @@ type TourStageTimelineList struct {
 
 func (x *TourStageTimelineList) Reset() {
 	*x = TourStageTimelineList{}
-	mi := &file_pmaster_proto_msgTypes[503]
+	mi := &file_pmaster_proto_msgTypes[535]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37048,7 +39744,7 @@ func (x *TourStageTimelineList) String() string {
 func (*TourStageTimelineList) ProtoMessage() {}
 
 func (x *TourStageTimelineList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[503]
+	mi := &file_pmaster_proto_msgTypes[535]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37061,7 +39757,7 @@ func (x *TourStageTimelineList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TourStageTimelineList.ProtoReflect.Descriptor instead.
 func (*TourStageTimelineList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{503}
+	return file_pmaster_proto_rawDescGZIP(), []int{535}
 }
 
 func (x *TourStageTimelineList) GetList() []*TourStageTimeline {
@@ -37086,7 +39782,7 @@ type Tower struct {
 
 func (x *Tower) Reset() {
 	*x = Tower{}
-	mi := &file_pmaster_proto_msgTypes[504]
+	mi := &file_pmaster_proto_msgTypes[536]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37098,7 +39794,7 @@ func (x *Tower) String() string {
 func (*Tower) ProtoMessage() {}
 
 func (x *Tower) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[504]
+	mi := &file_pmaster_proto_msgTypes[536]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37111,7 +39807,7 @@ func (x *Tower) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tower.ProtoReflect.Descriptor instead.
 func (*Tower) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{504}
+	return file_pmaster_proto_rawDescGZIP(), []int{536}
 }
 
 func (x *Tower) GetId() string {
@@ -37180,7 +39876,7 @@ type TowerLayer struct {
 
 func (x *TowerLayer) Reset() {
 	*x = TowerLayer{}
-	mi := &file_pmaster_proto_msgTypes[505]
+	mi := &file_pmaster_proto_msgTypes[537]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37192,7 +39888,7 @@ func (x *TowerLayer) String() string {
 func (*TowerLayer) ProtoMessage() {}
 
 func (x *TowerLayer) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[505]
+	mi := &file_pmaster_proto_msgTypes[537]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37205,7 +39901,7 @@ func (x *TowerLayer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayer.ProtoReflect.Descriptor instead.
 func (*TowerLayer) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{505}
+	return file_pmaster_proto_rawDescGZIP(), []int{537}
 }
 
 func (x *TowerLayer) GetTowerId() string {
@@ -37288,7 +39984,7 @@ type TowerLayerExam struct {
 
 func (x *TowerLayerExam) Reset() {
 	*x = TowerLayerExam{}
-	mi := &file_pmaster_proto_msgTypes[506]
+	mi := &file_pmaster_proto_msgTypes[538]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37300,7 +39996,7 @@ func (x *TowerLayerExam) String() string {
 func (*TowerLayerExam) ProtoMessage() {}
 
 func (x *TowerLayerExam) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[506]
+	mi := &file_pmaster_proto_msgTypes[538]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37313,7 +40009,7 @@ func (x *TowerLayerExam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerExam.ProtoReflect.Descriptor instead.
 func (*TowerLayerExam) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{506}
+	return file_pmaster_proto_rawDescGZIP(), []int{538}
 }
 
 func (x *TowerLayerExam) GetTowerId() string {
@@ -37388,7 +40084,7 @@ type TowerLayerExamList struct {
 
 func (x *TowerLayerExamList) Reset() {
 	*x = TowerLayerExamList{}
-	mi := &file_pmaster_proto_msgTypes[507]
+	mi := &file_pmaster_proto_msgTypes[539]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37400,7 +40096,7 @@ func (x *TowerLayerExamList) String() string {
 func (*TowerLayerExamList) ProtoMessage() {}
 
 func (x *TowerLayerExamList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[507]
+	mi := &file_pmaster_proto_msgTypes[539]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37413,7 +40109,7 @@ func (x *TowerLayerExamList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerExamList.ProtoReflect.Descriptor instead.
 func (*TowerLayerExamList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{507}
+	return file_pmaster_proto_rawDescGZIP(), []int{539}
 }
 
 func (x *TowerLayerExamList) GetList() []*TowerLayerExam {
@@ -37432,7 +40128,7 @@ type TowerLayerList struct {
 
 func (x *TowerLayerList) Reset() {
 	*x = TowerLayerList{}
-	mi := &file_pmaster_proto_msgTypes[508]
+	mi := &file_pmaster_proto_msgTypes[540]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37444,7 +40140,7 @@ func (x *TowerLayerList) String() string {
 func (*TowerLayerList) ProtoMessage() {}
 
 func (x *TowerLayerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[508]
+	mi := &file_pmaster_proto_msgTypes[540]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37457,7 +40153,7 @@ func (x *TowerLayerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerList.ProtoReflect.Descriptor instead.
 func (*TowerLayerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{508}
+	return file_pmaster_proto_rawDescGZIP(), []int{540}
 }
 
 func (x *TowerLayerList) GetList() []*TowerLayer {
@@ -37481,7 +40177,7 @@ type TowerLayerRank struct {
 
 func (x *TowerLayerRank) Reset() {
 	*x = TowerLayerRank{}
-	mi := &file_pmaster_proto_msgTypes[509]
+	mi := &file_pmaster_proto_msgTypes[541]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37493,7 +40189,7 @@ func (x *TowerLayerRank) String() string {
 func (*TowerLayerRank) ProtoMessage() {}
 
 func (x *TowerLayerRank) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[509]
+	mi := &file_pmaster_proto_msgTypes[541]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37506,7 +40202,7 @@ func (x *TowerLayerRank) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerRank.ProtoReflect.Descriptor instead.
 func (*TowerLayerRank) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{509}
+	return file_pmaster_proto_rawDescGZIP(), []int{541}
 }
 
 func (x *TowerLayerRank) GetTowerId() string {
@@ -37560,7 +40256,7 @@ type TowerLayerRankList struct {
 
 func (x *TowerLayerRankList) Reset() {
 	*x = TowerLayerRankList{}
-	mi := &file_pmaster_proto_msgTypes[510]
+	mi := &file_pmaster_proto_msgTypes[542]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37572,7 +40268,7 @@ func (x *TowerLayerRankList) String() string {
 func (*TowerLayerRankList) ProtoMessage() {}
 
 func (x *TowerLayerRankList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[510]
+	mi := &file_pmaster_proto_msgTypes[542]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37585,7 +40281,7 @@ func (x *TowerLayerRankList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerLayerRankList.ProtoReflect.Descriptor instead.
 func (*TowerLayerRankList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{510}
+	return file_pmaster_proto_rawDescGZIP(), []int{542}
 }
 
 func (x *TowerLayerRankList) GetList() []*TowerLayerRank {
@@ -37604,7 +40300,7 @@ type TowerList struct {
 
 func (x *TowerList) Reset() {
 	*x = TowerList{}
-	mi := &file_pmaster_proto_msgTypes[511]
+	mi := &file_pmaster_proto_msgTypes[543]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37616,7 +40312,7 @@ func (x *TowerList) String() string {
 func (*TowerList) ProtoMessage() {}
 
 func (x *TowerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[511]
+	mi := &file_pmaster_proto_msgTypes[543]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37629,7 +40325,7 @@ func (x *TowerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerList.ProtoReflect.Descriptor instead.
 func (*TowerList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{511}
+	return file_pmaster_proto_rawDescGZIP(), []int{543}
 }
 
 func (x *TowerList) GetList() []*Tower {
@@ -37650,7 +40346,7 @@ type TowerReset struct {
 
 func (x *TowerReset) Reset() {
 	*x = TowerReset{}
-	mi := &file_pmaster_proto_msgTypes[512]
+	mi := &file_pmaster_proto_msgTypes[544]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37662,7 +40358,7 @@ func (x *TowerReset) String() string {
 func (*TowerReset) ProtoMessage() {}
 
 func (x *TowerReset) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[512]
+	mi := &file_pmaster_proto_msgTypes[544]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37675,7 +40371,7 @@ func (x *TowerReset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerReset.ProtoReflect.Descriptor instead.
 func (*TowerReset) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{512}
+	return file_pmaster_proto_rawDescGZIP(), []int{544}
 }
 
 func (x *TowerReset) GetTowerId() string {
@@ -37708,7 +40404,7 @@ type TowerResetList struct {
 
 func (x *TowerResetList) Reset() {
 	*x = TowerResetList{}
-	mi := &file_pmaster_proto_msgTypes[513]
+	mi := &file_pmaster_proto_msgTypes[545]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37720,7 +40416,7 @@ func (x *TowerResetList) String() string {
 func (*TowerResetList) ProtoMessage() {}
 
 func (x *TowerResetList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[513]
+	mi := &file_pmaster_proto_msgTypes[545]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37733,7 +40429,7 @@ func (x *TowerResetList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerResetList.ProtoReflect.Descriptor instead.
 func (*TowerResetList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{513}
+	return file_pmaster_proto_rawDescGZIP(), []int{545}
 }
 
 func (x *TowerResetList) GetList() []*TowerReset {
@@ -37754,7 +40450,7 @@ type TowerTotalClearRankReward struct {
 
 func (x *TowerTotalClearRankReward) Reset() {
 	*x = TowerTotalClearRankReward{}
-	mi := &file_pmaster_proto_msgTypes[514]
+	mi := &file_pmaster_proto_msgTypes[546]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37766,7 +40462,7 @@ func (x *TowerTotalClearRankReward) String() string {
 func (*TowerTotalClearRankReward) ProtoMessage() {}
 
 func (x *TowerTotalClearRankReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[514]
+	mi := &file_pmaster_proto_msgTypes[546]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37779,7 +40475,7 @@ func (x *TowerTotalClearRankReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerTotalClearRankReward.ProtoReflect.Descriptor instead.
 func (*TowerTotalClearRankReward) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{514}
+	return file_pmaster_proto_rawDescGZIP(), []int{546}
 }
 
 func (x *TowerTotalClearRankReward) GetRank() int32 {
@@ -37812,7 +40508,7 @@ type TowerTotalClearRankRewardList struct {
 
 func (x *TowerTotalClearRankRewardList) Reset() {
 	*x = TowerTotalClearRankRewardList{}
-	mi := &file_pmaster_proto_msgTypes[515]
+	mi := &file_pmaster_proto_msgTypes[547]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37824,7 +40520,7 @@ func (x *TowerTotalClearRankRewardList) String() string {
 func (*TowerTotalClearRankRewardList) ProtoMessage() {}
 
 func (x *TowerTotalClearRankRewardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[515]
+	mi := &file_pmaster_proto_msgTypes[547]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37837,7 +40533,7 @@ func (x *TowerTotalClearRankRewardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TowerTotalClearRankRewardList.ProtoReflect.Descriptor instead.
 func (*TowerTotalClearRankRewardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{515}
+	return file_pmaster_proto_rawDescGZIP(), []int{547}
 }
 
 func (x *TowerTotalClearRankRewardList) GetList() []*TowerTotalClearRankReward {
@@ -37866,7 +40562,7 @@ type Tutorial struct {
 
 func (x *Tutorial) Reset() {
 	*x = Tutorial{}
-	mi := &file_pmaster_proto_msgTypes[516]
+	mi := &file_pmaster_proto_msgTypes[548]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37878,7 +40574,7 @@ func (x *Tutorial) String() string {
 func (*Tutorial) ProtoMessage() {}
 
 func (x *Tutorial) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[516]
+	mi := &file_pmaster_proto_msgTypes[548]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -37891,7 +40587,7 @@ func (x *Tutorial) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tutorial.ProtoReflect.Descriptor instead.
 func (*Tutorial) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{516}
+	return file_pmaster_proto_rawDescGZIP(), []int{548}
 }
 
 func (x *Tutorial) GetTutorialType() penum.TutorialType {
@@ -37983,7 +40679,7 @@ type TutorialCharacterVoice struct {
 
 func (x *TutorialCharacterVoice) Reset() {
 	*x = TutorialCharacterVoice{}
-	mi := &file_pmaster_proto_msgTypes[517]
+	mi := &file_pmaster_proto_msgTypes[549]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -37995,7 +40691,7 @@ func (x *TutorialCharacterVoice) String() string {
 func (*TutorialCharacterVoice) ProtoMessage() {}
 
 func (x *TutorialCharacterVoice) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[517]
+	mi := &file_pmaster_proto_msgTypes[549]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38008,7 +40704,7 @@ func (x *TutorialCharacterVoice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialCharacterVoice.ProtoReflect.Descriptor instead.
 func (*TutorialCharacterVoice) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{517}
+	return file_pmaster_proto_rawDescGZIP(), []int{549}
 }
 
 func (x *TutorialCharacterVoice) GetCharacterId() string {
@@ -38048,7 +40744,7 @@ type TutorialCharacterVoiceList struct {
 
 func (x *TutorialCharacterVoiceList) Reset() {
 	*x = TutorialCharacterVoiceList{}
-	mi := &file_pmaster_proto_msgTypes[518]
+	mi := &file_pmaster_proto_msgTypes[550]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38060,7 +40756,7 @@ func (x *TutorialCharacterVoiceList) String() string {
 func (*TutorialCharacterVoiceList) ProtoMessage() {}
 
 func (x *TutorialCharacterVoiceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[518]
+	mi := &file_pmaster_proto_msgTypes[550]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38073,7 +40769,7 @@ func (x *TutorialCharacterVoiceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialCharacterVoiceList.ProtoReflect.Descriptor instead.
 func (*TutorialCharacterVoiceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{518}
+	return file_pmaster_proto_rawDescGZIP(), []int{550}
 }
 
 func (x *TutorialCharacterVoiceList) GetList() []*TutorialCharacterVoice {
@@ -38092,7 +40788,7 @@ type TutorialList struct {
 
 func (x *TutorialList) Reset() {
 	*x = TutorialList{}
-	mi := &file_pmaster_proto_msgTypes[519]
+	mi := &file_pmaster_proto_msgTypes[551]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38104,7 +40800,7 @@ func (x *TutorialList) String() string {
 func (*TutorialList) ProtoMessage() {}
 
 func (x *TutorialList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[519]
+	mi := &file_pmaster_proto_msgTypes[551]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38117,7 +40813,7 @@ func (x *TutorialList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialList.ProtoReflect.Descriptor instead.
 func (*TutorialList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{519}
+	return file_pmaster_proto_rawDescGZIP(), []int{551}
 }
 
 func (x *TutorialList) GetList() []*Tutorial {
@@ -38147,7 +40843,7 @@ type TutorialProduce struct {
 
 func (x *TutorialProduce) Reset() {
 	*x = TutorialProduce{}
-	mi := &file_pmaster_proto_msgTypes[520]
+	mi := &file_pmaster_proto_msgTypes[552]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38159,7 +40855,7 @@ func (x *TutorialProduce) String() string {
 func (*TutorialProduce) ProtoMessage() {}
 
 func (x *TutorialProduce) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[520]
+	mi := &file_pmaster_proto_msgTypes[552]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38172,7 +40868,7 @@ func (x *TutorialProduce) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduce.ProtoReflect.Descriptor instead.
 func (*TutorialProduce) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{520}
+	return file_pmaster_proto_rawDescGZIP(), []int{552}
 }
 
 func (x *TutorialProduce) GetTutorialType() penum.TutorialType {
@@ -38268,7 +40964,7 @@ type TutorialProduceList struct {
 
 func (x *TutorialProduceList) Reset() {
 	*x = TutorialProduceList{}
-	mi := &file_pmaster_proto_msgTypes[521]
+	mi := &file_pmaster_proto_msgTypes[553]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38280,7 +40976,7 @@ func (x *TutorialProduceList) String() string {
 func (*TutorialProduceList) ProtoMessage() {}
 
 func (x *TutorialProduceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[521]
+	mi := &file_pmaster_proto_msgTypes[553]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38293,7 +40989,7 @@ func (x *TutorialProduceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceList.ProtoReflect.Descriptor instead.
 func (*TutorialProduceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{521}
+	return file_pmaster_proto_rawDescGZIP(), []int{553}
 }
 
 func (x *TutorialProduceList) GetList() []*TutorialProduce {
@@ -38328,7 +41024,7 @@ type TutorialProduceStep struct {
 
 func (x *TutorialProduceStep) Reset() {
 	*x = TutorialProduceStep{}
-	mi := &file_pmaster_proto_msgTypes[522]
+	mi := &file_pmaster_proto_msgTypes[554]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38340,7 +41036,7 @@ func (x *TutorialProduceStep) String() string {
 func (*TutorialProduceStep) ProtoMessage() {}
 
 func (x *TutorialProduceStep) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[522]
+	mi := &file_pmaster_proto_msgTypes[554]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38353,7 +41049,7 @@ func (x *TutorialProduceStep) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceStep.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStep) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{522}
+	return file_pmaster_proto_rawDescGZIP(), []int{554}
 }
 
 func (x *TutorialProduceStep) GetTutorialType() penum.TutorialType {
@@ -38484,7 +41180,7 @@ type TutorialProduceStepList struct {
 
 func (x *TutorialProduceStepList) Reset() {
 	*x = TutorialProduceStepList{}
-	mi := &file_pmaster_proto_msgTypes[523]
+	mi := &file_pmaster_proto_msgTypes[555]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38496,7 +41192,7 @@ func (x *TutorialProduceStepList) String() string {
 func (*TutorialProduceStepList) ProtoMessage() {}
 
 func (x *TutorialProduceStepList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[523]
+	mi := &file_pmaster_proto_msgTypes[555]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38509,7 +41205,7 @@ func (x *TutorialProduceStepList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TutorialProduceStepList.ProtoReflect.Descriptor instead.
 func (*TutorialProduceStepList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{523}
+	return file_pmaster_proto_rawDescGZIP(), []int{555}
 }
 
 func (x *TutorialProduceStepList) GetList() []*TutorialProduceStep {
@@ -38530,7 +41226,7 @@ type Voice struct {
 
 func (x *Voice) Reset() {
 	*x = Voice{}
-	mi := &file_pmaster_proto_msgTypes[524]
+	mi := &file_pmaster_proto_msgTypes[556]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38542,7 +41238,7 @@ func (x *Voice) String() string {
 func (*Voice) ProtoMessage() {}
 
 func (x *Voice) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[524]
+	mi := &file_pmaster_proto_msgTypes[556]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38555,7 +41251,7 @@ func (x *Voice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Voice.ProtoReflect.Descriptor instead.
 func (*Voice) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{524}
+	return file_pmaster_proto_rawDescGZIP(), []int{556}
 }
 
 func (x *Voice) GetCharacterId() string {
@@ -38593,7 +41289,7 @@ type VoiceGroup struct {
 
 func (x *VoiceGroup) Reset() {
 	*x = VoiceGroup{}
-	mi := &file_pmaster_proto_msgTypes[525]
+	mi := &file_pmaster_proto_msgTypes[557]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38605,7 +41301,7 @@ func (x *VoiceGroup) String() string {
 func (*VoiceGroup) ProtoMessage() {}
 
 func (x *VoiceGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[525]
+	mi := &file_pmaster_proto_msgTypes[557]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38618,7 +41314,7 @@ func (x *VoiceGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceGroup.ProtoReflect.Descriptor instead.
 func (*VoiceGroup) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{525}
+	return file_pmaster_proto_rawDescGZIP(), []int{557}
 }
 
 func (x *VoiceGroup) GetId() string {
@@ -38672,7 +41368,7 @@ type VoiceGroupList struct {
 
 func (x *VoiceGroupList) Reset() {
 	*x = VoiceGroupList{}
-	mi := &file_pmaster_proto_msgTypes[526]
+	mi := &file_pmaster_proto_msgTypes[558]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38684,7 +41380,7 @@ func (x *VoiceGroupList) String() string {
 func (*VoiceGroupList) ProtoMessage() {}
 
 func (x *VoiceGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[526]
+	mi := &file_pmaster_proto_msgTypes[558]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38697,7 +41393,7 @@ func (x *VoiceGroupList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceGroupList.ProtoReflect.Descriptor instead.
 func (*VoiceGroupList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{526}
+	return file_pmaster_proto_rawDescGZIP(), []int{558}
 }
 
 func (x *VoiceGroupList) GetList() []*VoiceGroup {
@@ -38716,7 +41412,7 @@ type VoiceList struct {
 
 func (x *VoiceList) Reset() {
 	*x = VoiceList{}
-	mi := &file_pmaster_proto_msgTypes[527]
+	mi := &file_pmaster_proto_msgTypes[559]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38728,7 +41424,7 @@ func (x *VoiceList) String() string {
 func (*VoiceList) ProtoMessage() {}
 
 func (x *VoiceList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[527]
+	mi := &file_pmaster_proto_msgTypes[559]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38741,7 +41437,7 @@ func (x *VoiceList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceList.ProtoReflect.Descriptor instead.
 func (*VoiceList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{527}
+	return file_pmaster_proto_rawDescGZIP(), []int{559}
 }
 
 func (x *VoiceList) GetList() []*Voice {
@@ -38766,7 +41462,7 @@ type VoiceRoster struct {
 
 func (x *VoiceRoster) Reset() {
 	*x = VoiceRoster{}
-	mi := &file_pmaster_proto_msgTypes[528]
+	mi := &file_pmaster_proto_msgTypes[560]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38778,7 +41474,7 @@ func (x *VoiceRoster) String() string {
 func (*VoiceRoster) ProtoMessage() {}
 
 func (x *VoiceRoster) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[528]
+	mi := &file_pmaster_proto_msgTypes[560]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38791,7 +41487,7 @@ func (x *VoiceRoster) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceRoster.ProtoReflect.Descriptor instead.
 func (*VoiceRoster) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{528}
+	return file_pmaster_proto_rawDescGZIP(), []int{560}
 }
 
 func (x *VoiceRoster) GetCharacterId() string {
@@ -38852,7 +41548,7 @@ type VoiceRosterList struct {
 
 func (x *VoiceRosterList) Reset() {
 	*x = VoiceRosterList{}
-	mi := &file_pmaster_proto_msgTypes[529]
+	mi := &file_pmaster_proto_msgTypes[561]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38864,7 +41560,7 @@ func (x *VoiceRosterList) String() string {
 func (*VoiceRosterList) ProtoMessage() {}
 
 func (x *VoiceRosterList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[529]
+	mi := &file_pmaster_proto_msgTypes[561]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38877,7 +41573,7 @@ func (x *VoiceRosterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VoiceRosterList.ProtoReflect.Descriptor instead.
 func (*VoiceRosterList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{529}
+	return file_pmaster_proto_rawDescGZIP(), []int{561}
 }
 
 func (x *VoiceRosterList) GetList() []*VoiceRoster {
@@ -38900,7 +41596,7 @@ type Work struct {
 
 func (x *Work) Reset() {
 	*x = Work{}
-	mi := &file_pmaster_proto_msgTypes[530]
+	mi := &file_pmaster_proto_msgTypes[562]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38912,7 +41608,7 @@ func (x *Work) String() string {
 func (*Work) ProtoMessage() {}
 
 func (x *Work) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[530]
+	mi := &file_pmaster_proto_msgTypes[562]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38925,7 +41621,7 @@ func (x *Work) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Work.ProtoReflect.Descriptor instead.
 func (*Work) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{530}
+	return file_pmaster_proto_rawDescGZIP(), []int{562}
 }
 
 func (x *Work) GetType() penum.WorkType {
@@ -38974,7 +41670,7 @@ type WorkLevel struct {
 
 func (x *WorkLevel) Reset() {
 	*x = WorkLevel{}
-	mi := &file_pmaster_proto_msgTypes[531]
+	mi := &file_pmaster_proto_msgTypes[563]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -38986,7 +41682,7 @@ func (x *WorkLevel) String() string {
 func (*WorkLevel) ProtoMessage() {}
 
 func (x *WorkLevel) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[531]
+	mi := &file_pmaster_proto_msgTypes[563]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -38999,7 +41695,7 @@ func (x *WorkLevel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkLevel.ProtoReflect.Descriptor instead.
 func (*WorkLevel) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{531}
+	return file_pmaster_proto_rawDescGZIP(), []int{563}
 }
 
 func (x *WorkLevel) GetType() penum.WorkType {
@@ -39032,7 +41728,7 @@ type WorkLevelList struct {
 
 func (x *WorkLevelList) Reset() {
 	*x = WorkLevelList{}
-	mi := &file_pmaster_proto_msgTypes[532]
+	mi := &file_pmaster_proto_msgTypes[564]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39044,7 +41740,7 @@ func (x *WorkLevelList) String() string {
 func (*WorkLevelList) ProtoMessage() {}
 
 func (x *WorkLevelList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[532]
+	mi := &file_pmaster_proto_msgTypes[564]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39057,7 +41753,7 @@ func (x *WorkLevelList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkLevelList.ProtoReflect.Descriptor instead.
 func (*WorkLevelList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{532}
+	return file_pmaster_proto_rawDescGZIP(), []int{564}
 }
 
 func (x *WorkLevelList) GetList() []*WorkLevel {
@@ -39082,7 +41778,7 @@ type WorkLevelReward struct {
 
 func (x *WorkLevelReward) Reset() {
 	*x = WorkLevelReward{}
-	mi := &file_pmaster_proto_msgTypes[533]
+	mi := &file_pmaster_proto_msgTypes[565]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39094,7 +41790,7 @@ func (x *WorkLevelReward) String() string {
 func (*WorkLevelReward) ProtoMessage() {}
 
 func (x *WorkLevelReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[533]
+	mi := &file_pmaster_proto_msgTypes[565]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39107,7 +41803,7 @@ func (x *WorkLevelReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkLevelReward.ProtoReflect.Descriptor instead.
 func (*WorkLevelReward) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{533}
+	return file_pmaster_proto_rawDescGZIP(), []int{565}
 }
 
 func (x *WorkLevelReward) GetType() penum.WorkType {
@@ -39168,7 +41864,7 @@ type WorkLevelRewardList struct {
 
 func (x *WorkLevelRewardList) Reset() {
 	*x = WorkLevelRewardList{}
-	mi := &file_pmaster_proto_msgTypes[534]
+	mi := &file_pmaster_proto_msgTypes[566]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39180,7 +41876,7 @@ func (x *WorkLevelRewardList) String() string {
 func (*WorkLevelRewardList) ProtoMessage() {}
 
 func (x *WorkLevelRewardList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[534]
+	mi := &file_pmaster_proto_msgTypes[566]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39193,7 +41889,7 @@ func (x *WorkLevelRewardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkLevelRewardList.ProtoReflect.Descriptor instead.
 func (*WorkLevelRewardList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{534}
+	return file_pmaster_proto_rawDescGZIP(), []int{566}
 }
 
 func (x *WorkLevelRewardList) GetList() []*WorkLevelReward {
@@ -39212,7 +41908,7 @@ type WorkList struct {
 
 func (x *WorkList) Reset() {
 	*x = WorkList{}
-	mi := &file_pmaster_proto_msgTypes[535]
+	mi := &file_pmaster_proto_msgTypes[567]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39224,7 +41920,7 @@ func (x *WorkList) String() string {
 func (*WorkList) ProtoMessage() {}
 
 func (x *WorkList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[535]
+	mi := &file_pmaster_proto_msgTypes[567]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39237,7 +41933,7 @@ func (x *WorkList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkList.ProtoReflect.Descriptor instead.
 func (*WorkList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{535}
+	return file_pmaster_proto_rawDescGZIP(), []int{567}
 }
 
 func (x *WorkList) GetList() []*Work {
@@ -39261,7 +41957,7 @@ type WorkMotion struct {
 
 func (x *WorkMotion) Reset() {
 	*x = WorkMotion{}
-	mi := &file_pmaster_proto_msgTypes[536]
+	mi := &file_pmaster_proto_msgTypes[568]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39273,7 +41969,7 @@ func (x *WorkMotion) String() string {
 func (*WorkMotion) ProtoMessage() {}
 
 func (x *WorkMotion) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[536]
+	mi := &file_pmaster_proto_msgTypes[568]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39286,7 +41982,7 @@ func (x *WorkMotion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMotion.ProtoReflect.Descriptor instead.
 func (*WorkMotion) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{536}
+	return file_pmaster_proto_rawDescGZIP(), []int{568}
 }
 
 func (x *WorkMotion) GetCharacterId() string {
@@ -39340,7 +42036,7 @@ type WorkMotionList struct {
 
 func (x *WorkMotionList) Reset() {
 	*x = WorkMotionList{}
-	mi := &file_pmaster_proto_msgTypes[537]
+	mi := &file_pmaster_proto_msgTypes[569]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39352,7 +42048,7 @@ func (x *WorkMotionList) String() string {
 func (*WorkMotionList) ProtoMessage() {}
 
 func (x *WorkMotionList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[537]
+	mi := &file_pmaster_proto_msgTypes[569]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39365,7 +42061,7 @@ func (x *WorkMotionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMotionList.ProtoReflect.Descriptor instead.
 func (*WorkMotionList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{537}
+	return file_pmaster_proto_rawDescGZIP(), []int{569}
 }
 
 func (x *WorkMotionList) GetList() []*WorkMotion {
@@ -39385,7 +42081,7 @@ type WorkSkip struct {
 
 func (x *WorkSkip) Reset() {
 	*x = WorkSkip{}
-	mi := &file_pmaster_proto_msgTypes[538]
+	mi := &file_pmaster_proto_msgTypes[570]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39397,7 +42093,7 @@ func (x *WorkSkip) String() string {
 func (*WorkSkip) ProtoMessage() {}
 
 func (x *WorkSkip) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[538]
+	mi := &file_pmaster_proto_msgTypes[570]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39410,7 +42106,7 @@ func (x *WorkSkip) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkip.ProtoReflect.Descriptor instead.
 func (*WorkSkip) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{538}
+	return file_pmaster_proto_rawDescGZIP(), []int{570}
 }
 
 func (x *WorkSkip) GetSkipCount() int32 {
@@ -39436,7 +42132,7 @@ type WorkSkipList struct {
 
 func (x *WorkSkipList) Reset() {
 	*x = WorkSkipList{}
-	mi := &file_pmaster_proto_msgTypes[539]
+	mi := &file_pmaster_proto_msgTypes[571]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39448,7 +42144,7 @@ func (x *WorkSkipList) String() string {
 func (*WorkSkipList) ProtoMessage() {}
 
 func (x *WorkSkipList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[539]
+	mi := &file_pmaster_proto_msgTypes[571]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39461,7 +42157,7 @@ func (x *WorkSkipList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkSkipList.ProtoReflect.Descriptor instead.
 func (*WorkSkipList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{539}
+	return file_pmaster_proto_rawDescGZIP(), []int{571}
 }
 
 func (x *WorkSkipList) GetList() []*WorkSkip {
@@ -39483,7 +42179,7 @@ type WorkTime struct {
 
 func (x *WorkTime) Reset() {
 	*x = WorkTime{}
-	mi := &file_pmaster_proto_msgTypes[540]
+	mi := &file_pmaster_proto_msgTypes[572]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39495,7 +42191,7 @@ func (x *WorkTime) String() string {
 func (*WorkTime) ProtoMessage() {}
 
 func (x *WorkTime) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[540]
+	mi := &file_pmaster_proto_msgTypes[572]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39508,7 +42204,7 @@ func (x *WorkTime) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTime.ProtoReflect.Descriptor instead.
 func (*WorkTime) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{540}
+	return file_pmaster_proto_rawDescGZIP(), []int{572}
 }
 
 func (x *WorkTime) GetType() penum.WorkType {
@@ -39548,7 +42244,7 @@ type WorkTimeList struct {
 
 func (x *WorkTimeList) Reset() {
 	*x = WorkTimeList{}
-	mi := &file_pmaster_proto_msgTypes[541]
+	mi := &file_pmaster_proto_msgTypes[573]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39560,7 +42256,7 @@ func (x *WorkTimeList) String() string {
 func (*WorkTimeList) ProtoMessage() {}
 
 func (x *WorkTimeList) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[541]
+	mi := &file_pmaster_proto_msgTypes[573]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39573,7 +42269,7 @@ func (x *WorkTimeList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTimeList.ProtoReflect.Descriptor instead.
 func (*WorkTimeList) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{541}
+	return file_pmaster_proto_rawDescGZIP(), []int{573}
 }
 
 func (x *WorkTimeList) GetList() []*WorkTime {
@@ -39593,7 +42289,7 @@ type CharacterDearnessLevel_ProduceSkill struct {
 
 func (x *CharacterDearnessLevel_ProduceSkill) Reset() {
 	*x = CharacterDearnessLevel_ProduceSkill{}
-	mi := &file_pmaster_proto_msgTypes[542]
+	mi := &file_pmaster_proto_msgTypes[574]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39605,7 +42301,7 @@ func (x *CharacterDearnessLevel_ProduceSkill) String() string {
 func (*CharacterDearnessLevel_ProduceSkill) ProtoMessage() {}
 
 func (x *CharacterDearnessLevel_ProduceSkill) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[542]
+	mi := &file_pmaster_proto_msgTypes[574]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39645,7 +42341,7 @@ type CharacterTrueEndAchievement_Achievement struct {
 
 func (x *CharacterTrueEndAchievement_Achievement) Reset() {
 	*x = CharacterTrueEndAchievement_Achievement{}
-	mi := &file_pmaster_proto_msgTypes[543]
+	mi := &file_pmaster_proto_msgTypes[575]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39657,7 +42353,7 @@ func (x *CharacterTrueEndAchievement_Achievement) String() string {
 func (*CharacterTrueEndAchievement_Achievement) ProtoMessage() {}
 
 func (x *CharacterTrueEndAchievement_Achievement) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[543]
+	mi := &file_pmaster_proto_msgTypes[575]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39701,7 +42397,7 @@ type CompetitionSeason_Stage struct {
 
 func (x *CompetitionSeason_Stage) Reset() {
 	*x = CompetitionSeason_Stage{}
-	mi := &file_pmaster_proto_msgTypes[544]
+	mi := &file_pmaster_proto_msgTypes[576]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39713,7 +42409,7 @@ func (x *CompetitionSeason_Stage) String() string {
 func (*CompetitionSeason_Stage) ProtoMessage() {}
 
 func (x *CompetitionSeason_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[544]
+	mi := &file_pmaster_proto_msgTypes[576]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39781,7 +42477,7 @@ type CompetitionSeason_GradeConfig struct {
 
 func (x *CompetitionSeason_GradeConfig) Reset() {
 	*x = CompetitionSeason_GradeConfig{}
-	mi := &file_pmaster_proto_msgTypes[545]
+	mi := &file_pmaster_proto_msgTypes[577]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39793,7 +42489,7 @@ func (x *CompetitionSeason_GradeConfig) String() string {
 func (*CompetitionSeason_GradeConfig) ProtoMessage() {}
 
 func (x *CompetitionSeason_GradeConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[545]
+	mi := &file_pmaster_proto_msgTypes[577]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39835,7 +42531,7 @@ type IdolCardSkinUnit_UnitCharacter struct {
 
 func (x *IdolCardSkinUnit_UnitCharacter) Reset() {
 	*x = IdolCardSkinUnit_UnitCharacter{}
-	mi := &file_pmaster_proto_msgTypes[546]
+	mi := &file_pmaster_proto_msgTypes[578]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39847,7 +42543,7 @@ func (x *IdolCardSkinUnit_UnitCharacter) String() string {
 func (*IdolCardSkinUnit_UnitCharacter) ProtoMessage() {}
 
 func (x *IdolCardSkinUnit_UnitCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[546]
+	mi := &file_pmaster_proto_msgTypes[578]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39860,7 +42556,7 @@ func (x *IdolCardSkinUnit_UnitCharacter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IdolCardSkinUnit_UnitCharacter.ProtoReflect.Descriptor instead.
 func (*IdolCardSkinUnit_UnitCharacter) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{146, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{150, 0}
 }
 
 func (x *IdolCardSkinUnit_UnitCharacter) GetCharacterId() string {
@@ -39906,7 +42602,7 @@ type Item_Gasha struct {
 
 func (x *Item_Gasha) Reset() {
 	*x = Item_Gasha{}
-	mi := &file_pmaster_proto_msgTypes[547]
+	mi := &file_pmaster_proto_msgTypes[579]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -39918,7 +42614,7 @@ func (x *Item_Gasha) String() string {
 func (*Item_Gasha) ProtoMessage() {}
 
 func (x *Item_Gasha) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[547]
+	mi := &file_pmaster_proto_msgTypes[579]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -39931,7 +42627,7 @@ func (x *Item_Gasha) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Item_Gasha.ProtoReflect.Descriptor instead.
 func (*Item_Gasha) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{152, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{156, 0}
 }
 
 func (x *Item_Gasha) GetId() string {
@@ -39988,13 +42684,14 @@ type ProduceCard_PlayEffect struct {
 	ProduceExamTriggerId string                 `protobuf:"bytes,1,opt,name=produceExamTriggerId,proto3" json:"produceExamTriggerId,omitempty"`
 	ProduceExamEffectId  string                 `protobuf:"bytes,2,opt,name=produceExamEffectId,proto3" json:"produceExamEffectId,omitempty"`
 	HideIcon             bool                   `protobuf:"varint,3,opt,name=hideIcon,proto3" json:"hideIcon,omitempty"`
+	IsOncePlayEffect     bool                   `protobuf:"varint,4,opt,name=isOncePlayEffect,proto3" json:"isOncePlayEffect,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
 func (x *ProduceCard_PlayEffect) Reset() {
 	*x = ProduceCard_PlayEffect{}
-	mi := &file_pmaster_proto_msgTypes[548]
+	mi := &file_pmaster_proto_msgTypes[580]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40006,7 +42703,7 @@ func (x *ProduceCard_PlayEffect) String() string {
 func (*ProduceCard_PlayEffect) ProtoMessage() {}
 
 func (x *ProduceCard_PlayEffect) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[548]
+	mi := &file_pmaster_proto_msgTypes[580]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40019,7 +42716,7 @@ func (x *ProduceCard_PlayEffect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCard_PlayEffect.ProtoReflect.Descriptor instead.
 func (*ProduceCard_PlayEffect) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{247, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{251, 0}
 }
 
 func (x *ProduceCard_PlayEffect) GetProduceExamTriggerId() string {
@@ -40043,6 +42740,13 @@ func (x *ProduceCard_PlayEffect) GetHideIcon() bool {
 	return false
 }
 
+func (x *ProduceCard_PlayEffect) GetIsOncePlayEffect() bool {
+	if x != nil {
+		return x.IsOncePlayEffect
+	}
+	return false
+}
+
 type ProduceCardPool_ProduceCardRatio struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -40054,7 +42758,7 @@ type ProduceCardPool_ProduceCardRatio struct {
 
 func (x *ProduceCardPool_ProduceCardRatio) Reset() {
 	*x = ProduceCardPool_ProduceCardRatio{}
-	mi := &file_pmaster_proto_msgTypes[549]
+	mi := &file_pmaster_proto_msgTypes[581]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40066,7 +42770,7 @@ func (x *ProduceCardPool_ProduceCardRatio) String() string {
 func (*ProduceCardPool_ProduceCardRatio) ProtoMessage() {}
 
 func (x *ProduceCardPool_ProduceCardRatio) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[549]
+	mi := &file_pmaster_proto_msgTypes[581]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40079,7 +42783,7 @@ func (x *ProduceCardPool_ProduceCardRatio) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceCardPool_ProduceCardRatio.ProtoReflect.Descriptor instead.
 func (*ProduceCardPool_ProduceCardRatio) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{257, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{261, 0}
 }
 
 func (x *ProduceCardPool_ProduceCardRatio) GetId() string {
@@ -40114,7 +42818,7 @@ type ProduceEffect_ProduceReward struct {
 
 func (x *ProduceEffect_ProduceReward) Reset() {
 	*x = ProduceEffect_ProduceReward{}
-	mi := &file_pmaster_proto_msgTypes[550]
+	mi := &file_pmaster_proto_msgTypes[582]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40126,7 +42830,7 @@ func (x *ProduceEffect_ProduceReward) String() string {
 func (*ProduceEffect_ProduceReward) ProtoMessage() {}
 
 func (x *ProduceEffect_ProduceReward) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[550]
+	mi := &file_pmaster_proto_msgTypes[582]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40139,7 +42843,7 @@ func (x *ProduceEffect_ProduceReward) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceEffect_ProduceReward.ProtoReflect.Descriptor instead.
 func (*ProduceEffect_ProduceReward) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{301, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{313, 0}
 }
 
 func (x *ProduceEffect_ProduceReward) GetResourceType() penum.ProduceResourceType {
@@ -40173,7 +42877,7 @@ type ProduceItem_Skill struct {
 
 func (x *ProduceItem_Skill) Reset() {
 	*x = ProduceItem_Skill{}
-	mi := &file_pmaster_proto_msgTypes[551]
+	mi := &file_pmaster_proto_msgTypes[583]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40185,7 +42889,7 @@ func (x *ProduceItem_Skill) String() string {
 func (*ProduceItem_Skill) ProtoMessage() {}
 
 func (x *ProduceItem_Skill) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[551]
+	mi := &file_pmaster_proto_msgTypes[583]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40198,7 +42902,7 @@ func (x *ProduceItem_Skill) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProduceItem_Skill.ProtoReflect.Descriptor instead.
 func (*ProduceItem_Skill) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{359, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{375, 0}
 }
 
 func (x *ProduceItem_Skill) GetProduceTriggerId() string {
@@ -40226,7 +42930,7 @@ type ProducerLevel_UnlockTarget struct {
 
 func (x *ProducerLevel_UnlockTarget) Reset() {
 	*x = ProducerLevel_UnlockTarget{}
-	mi := &file_pmaster_proto_msgTypes[552]
+	mi := &file_pmaster_proto_msgTypes[584]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40238,7 +42942,7 @@ func (x *ProducerLevel_UnlockTarget) String() string {
 func (*ProducerLevel_UnlockTarget) ProtoMessage() {}
 
 func (x *ProducerLevel_UnlockTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[552]
+	mi := &file_pmaster_proto_msgTypes[584]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40251,7 +42955,7 @@ func (x *ProducerLevel_UnlockTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProducerLevel_UnlockTarget.ProtoReflect.Descriptor instead.
 func (*ProducerLevel_UnlockTarget) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{424, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{456, 0}
 }
 
 func (x *ProducerLevel_UnlockTarget) GetType() penum.ProducerLevelUnlockType {
@@ -40286,13 +42990,17 @@ type PvpRateConfig_Stage struct {
 	BgmAssetId                      string                 `protobuf:"bytes,6,opt,name=bgmAssetId,proto3" json:"bgmAssetId,omitempty"`
 	StartTimelineAssetId            string                 `protobuf:"bytes,7,opt,name=startTimelineAssetId,proto3" json:"startTimelineAssetId,omitempty"`
 	ExamTimelineAssetId             string                 `protobuf:"bytes,8,opt,name=examTimelineAssetId,proto3" json:"examTimelineAssetId,omitempty"`
+	Vocal                           int32                  `protobuf:"varint,20,opt,name=vocal,proto3" json:"vocal,omitempty"`
+	Dance                           int32                  `protobuf:"varint,21,opt,name=dance,proto3" json:"dance,omitempty"`
+	Visual                          int32                  `protobuf:"varint,22,opt,name=visual,proto3" json:"visual,omitempty"`
+	ProduceExamBattleScoreConfigId  string                 `protobuf:"bytes,30,opt,name=produceExamBattleScoreConfigId,proto3" json:"produceExamBattleScoreConfigId,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *PvpRateConfig_Stage) Reset() {
 	*x = PvpRateConfig_Stage{}
-	mi := &file_pmaster_proto_msgTypes[553]
+	mi := &file_pmaster_proto_msgTypes[585]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -40304,7 +43012,7 @@ func (x *PvpRateConfig_Stage) String() string {
 func (*PvpRateConfig_Stage) ProtoMessage() {}
 
 func (x *PvpRateConfig_Stage) ProtoReflect() protoreflect.Message {
-	mi := &file_pmaster_proto_msgTypes[553]
+	mi := &file_pmaster_proto_msgTypes[585]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -40317,7 +43025,7 @@ func (x *PvpRateConfig_Stage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PvpRateConfig_Stage.ProtoReflect.Descriptor instead.
 func (*PvpRateConfig_Stage) Descriptor() ([]byte, []int) {
-	return file_pmaster_proto_rawDescGZIP(), []int{438, 0}
+	return file_pmaster_proto_rawDescGZIP(), []int{470, 0}
 }
 
 func (x *PvpRateConfig_Stage) GetStageType() penum.PvpRateStageType {
@@ -40379,6 +43087,34 @@ func (x *PvpRateConfig_Stage) GetStartTimelineAssetId() string {
 func (x *PvpRateConfig_Stage) GetExamTimelineAssetId() string {
 	if x != nil {
 		return x.ExamTimelineAssetId
+	}
+	return ""
+}
+
+func (x *PvpRateConfig_Stage) GetVocal() int32 {
+	if x != nil {
+		return x.Vocal
+	}
+	return 0
+}
+
+func (x *PvpRateConfig_Stage) GetDance() int32 {
+	if x != nil {
+		return x.Dance
+	}
+	return 0
+}
+
+func (x *PvpRateConfig_Stage) GetVisual() int32 {
+	if x != nil {
+		return x.Visual
+	}
+	return 0
+}
+
+func (x *PvpRateConfig_Stage) GetProduceExamBattleScoreConfigId() string {
+	if x != nil {
+		return x.ProduceExamBattleScoreConfigId
 	}
 	return ""
 }
@@ -40518,7 +43254,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x06regexp\x18\x03 \x01(\tR\x06regexp\x12\x18\n" +
 	"\anotIdol\x18\x04 \x01(\bR\anotIdol\"=\n" +
 	"\x10CharacterAdvList\x12)\n" +
-	"\x04list\x18\x01 \x03(\v2\x15.pmaster.CharacterAdvR\x04list\"\xde\x02\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.pmaster.CharacterAdvR\x04list\"\xe6\x03\n" +
 	"\x0eCharacterColor\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x1c\n" +
 	"\tmainColor\x18\x02 \x01(\tR\tmainColor\x12&\n" +
@@ -40527,9 +43263,12 @@ const file_pmaster_proto_rawDesc = "" +
 	"\ttextColor\x18\x05 \x01(\tR\ttextColor\x12&\n" +
 	"\x0elabelTextColor\x18\x06 \x01(\tR\x0elabelTextColor\x12:\n" +
 	"\x18transitionGradientColor1\x18\a \x01(\tR\x18transitionGradientColor1\x12:\n" +
-	"\x18transitionGradientColor2\x18\b \x01(\tR\x18transitionGradientColor2\"A\n" +
+	"\x18transitionGradientColor2\x18\b \x01(\tR\x18transitionGradientColor2\x12B\n" +
+	"\x1cdecorationMainGradientColor1\x18\t \x01(\tR\x1cdecorationMainGradientColor1\x12B\n" +
+	"\x1cdecorationMainGradientColor2\x18\n" +
+	" \x01(\tR\x1cdecorationMainGradientColor2\"A\n" +
 	"\x12CharacterColorList\x12+\n" +
-	"\x04list\x18\x01 \x03(\v2\x17.pmaster.CharacterColorR\x04list\"\xa5\a\n" +
+	"\x04list\x18\x01 \x03(\v2\x17.pmaster.CharacterColorR\x04list\"\xcf\a\n" +
 	"\x16CharacterDearnessLevel\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12$\n" +
 	"\rdearnessLevel\x18\x02 \x01(\x05R\rdearnessLevel\x12\x1e\n" +
@@ -40548,7 +43287,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\risTargetLevel\x18\x1f \x01(\bR\risTargetLevel\x12,\n" +
 	"\x11targetDescription\x18  \x01(\tR\x11targetDescription\x12X\n" +
 	"\x1dtrueEndAchievementProduceType\x18! \x01(\x0e2\x12.penum.ProduceTypeR\x1dtrueEndAchievementProduceType\x126\n" +
-	"\x16dearnessPointThreshold\x18\" \x01(\x05R\x16dearnessPointThreshold\x1a4\n" +
+	"\x16dearnessPointThreshold\x18\" \x01(\x05R\x16dearnessPointThreshold\x12(\n" +
+	"\x0fstoryGroupOrder\x18Z \x01(\x05R\x0fstoryGroupOrder\x1a4\n" +
 	"\fProduceSkill\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\"Q\n" +
@@ -40864,7 +43604,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0eproduceCardIds\x18\x02 \x03(\tR\x0eproduceCardIds\x12:\n" +
 	"\x18produceCardUpgradeCounts\x18\x05 \x03(\x05R\x18produceCardUpgradeCounts\"C\n" +
 	"\x13ExamInitialDeckList\x12,\n" +
-	"\x04list\x18\x01 \x03(\v2\x18.pmaster.ExamInitialDeckR\x04list\"\xfe\x02\n" +
+	"\x04list\x18\x01 \x03(\v2\x18.pmaster.ExamInitialDeckR\x04list\"\xc0\x03\n" +
 	"\n" +
 	"ExamMotion\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12/\n" +
@@ -40878,7 +43618,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\fvoiceAssetId\x18\a \x01(\tR\fvoiceAssetId\x12$\n" +
 	"\rsceneLayoutId\x18\b \x01(\tR\rsceneLayoutId\x12\x1a\n" +
 	"\bcameraId\x18\t \x01(\tR\bcameraId\x12\x1c\n" +
-	"\ttargetIds\x18\v \x03(\tR\ttargetIds\"9\n" +
+	"\ttargetIds\x18\v \x03(\tR\ttargetIds\x12@\n" +
+	"\x0ftargetStepTypes\x18\f \x03(\x0e2\x16.penum.ProduceStepTypeR\x0ftargetStepTypes\"9\n" +
 	"\x0eExamMotionList\x12'\n" +
 	"\x04list\x18\x01 \x03(\v2\x13.pmaster.ExamMotionR\x04list\"\xee\x02\n" +
 	"\x11ExamOutGameMotion\x12 \n" +
@@ -40894,7 +43635,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\rsceneLayoutId\x18\b \x01(\tR\rsceneLayoutId\x12\x1a\n" +
 	"\bcameraId\x18\t \x01(\tR\bcameraId\"G\n" +
 	"\x15ExamOutGameMotionList\x12.\n" +
-	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ExamOutGameMotionR\x04list\"\xd0\x1c\n" +
+	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ExamOutGameMotionR\x04list\"\xda\x1d\n" +
 	"\vExamSetting\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12J\n" +
 	" examStaminaConsumptionDownPermil\x18\x03 \x01(\x05R examStaminaConsumptionDownPermil\x12H\n" +
@@ -40942,7 +43683,9 @@ const file_pmaster_proto_rawDesc = "" +
 	"#examAutoPlaySearchCommandPlanLimits\x180 \x03(\x05R#examAutoPlaySearchCommandPlanLimits\x12\x84\x01\n" +
 	"=examLessonValueMultipleDependReviewOrAggressiveMultiplePermil\x182 \x01(\x05R=examLessonValueMultipleDependReviewOrAggressiveMultiplePermil\x12z\n" +
 	"8examLessonValueMultipleDependReviewOrAggressiveMaxPermil\x183 \x01(\x05R8examLessonValueMultipleDependReviewOrAggressiveMaxPermil\x12B\n" +
-	"\x1cfixMoveCardShuffleDeckEnable\x184 \x01(\bR\x1cfixMoveCardShuffleDeckEnable\";\n" +
+	"\x1cfixMoveCardShuffleDeckEnable\x184 \x01(\bR\x1cfixMoveCardShuffleDeckEnable\x12D\n" +
+	"\x1dexamBuffConsumptionDownPermil\x185 \x01(\x05R\x1dexamBuffConsumptionDownPermil\x12B\n" +
+	"\x1cexamBuffConsumptionAddPermil\x186 \x01(\x05R\x1cexamBuffConsumptionAddPermil\";\n" +
 	"\x0fExamSettingList\x12(\n" +
 	"\x04list\x18\x01 \x03(\v2\x14.pmaster.ExamSettingR\x04list\"\x86\x02\n" +
 	"\x0eExamSimulation\x12\x0e\n" +
@@ -40956,7 +43699,20 @@ const file_pmaster_proto_rawDesc = "" +
 	"\tlimitTurn\x18\x06 \x01(\x05R\tlimitTurn\x12H\n" +
 	"\x1fproduceExamGimmickEffectGroupId\x18\a \x01(\tR\x1fproduceExamGimmickEffectGroupId\"A\n" +
 	"\x12ExamSimulationList\x12+\n" +
-	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ExamSimulationR\x04list\"\x8d\x02\n" +
+	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ExamSimulationR\x04list\"\xed\x02\n" +
+	"\x0eExamUnitMotion\x126\n" +
+	"\x16produceCharacterUnitId\x18\x01 \x01(\tR\x16produceCharacterUnitId\x12(\n" +
+	"\x0funitCharacterId\x18\x02 \x01(\tR\x0funitCharacterId\x125\n" +
+	"\n" +
+	"motionType\x18\x03 \x01(\x0e2\x15.penum.ExamMotionTypeR\n" +
+	"motionType\x12\x16\n" +
+	"\x06number\x18\x04 \x01(\x05R\x06number\x12\"\n" +
+	"\fbodyMotionId\x18\x05 \x01(\tR\fbodyMotionId\x12&\n" +
+	"\x0efacialMotionId\x18\x06 \x01(\tR\x0efacialMotionId\x12\x1c\n" +
+	"\ttargetIds\x18\a \x03(\tR\ttargetIds\x12@\n" +
+	"\x0ftargetStepTypes\x18\b \x03(\x0e2\x16.penum.ProduceStepTypeR\x0ftargetStepTypes\"A\n" +
+	"\x12ExamUnitMotionList\x12+\n" +
+	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ExamUnitMotionR\x04list\"\x8d\x02\n" +
 	"\x14ExchangeItemCategory\x12\x1e\n" +
 	"\n" +
 	"exchangeId\x18\x01 \x01(\tR\n" +
@@ -41156,7 +43912,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\vstartMinute\x18\x02 \x01(\x05R\vstartMinute\x12'\n" +
 	"\x04type\x18\x03 \x01(\x0e2\x13.penum.HomeTimeTypeR\x04type\"5\n" +
 	"\fHomeTimeList\x12%\n" +
-	"\x04list\x18\x01 \x03(\v2\x11.pmaster.HomeTimeR\x04list\"\xc0\x11\n" +
+	"\x04list\x18\x01 \x03(\v2\x11.pmaster.HomeTimeR\x04list\"\xa4\x16\n" +
 	"\bIdolCard\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x126\n" +
@@ -41190,12 +43946,21 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x12afterProduceItemId\x18- \x01(\tR\x12afterProduceItemId\x12D\n" +
 	"\x0eexamEffectType\x180 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x0eexamEffectType\x126\n" +
 	"\x16produceChallengeSlotId\x181 \x01(\tR\x16produceChallengeSlotId\x12L\n" +
-	"\x12showExamEffectType\x182 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x12showExamEffectType\x12<\n" +
+	"\x12showExamEffectType\x182 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x12showExamEffectType\x120\n" +
+	"\x13secondProduceCardId\x183 \x01(\tR\x13secondProduceCardId\x12D\n" +
+	"\x1dbeforeLevelLimitProduceItemId\x184 \x01(\tR\x1dbeforeLevelLimitProduceItemId\x12B\n" +
+	"\x1cafterLevelLimitProduceItemId\x185 \x01(\tR\x1cafterLevelLimitProduceItemId\x12@\n" +
+	"\x1bprimaStellaConsumptionSetId\x187 \x01(\tR\x1bprimaStellaConsumptionSetId\x12L\n" +
+	"!idolCardPrimaStellaProduceSkillId\x188 \x01(\tR!idolCardPrimaStellaProduceSkillId\x12:\n" +
+	"\x18primaStellaAchievementId\x189 \x01(\tR\x18primaStellaAchievementId\x12<\n" +
 	"\x19potentialRankVoiceAssetId\x18H \x01(\tR\x19potentialRankVoiceAssetId\x12<\n" +
 	"\x19produceSelectVoiceAssetId\x18K \x01(\tR\x19produceSelectVoiceAssetId\x12J\n" +
 	" produceScheduleFrontVoiceGroupId\x18L \x01(\tR produceScheduleFrontVoiceGroupId\x12H\n" +
 	"\x1fproduceScheduleBackVoiceGroupId\x18M \x01(\tR\x1fproduceScheduleBackVoiceGroupId\x12>\n" +
-	"\x1auseProduceCardVoiceAssetId\x18N \x01(\tR\x1auseProduceCardVoiceAssetId\x12%\n" +
+	"\x1auseProduceCardVoiceAssetId\x18N \x01(\tR\x1auseProduceCardVoiceAssetId\x12J\n" +
+	" useSecondProduceCardVoiceAssetId\x18O \x01(\tR useSecondProduceCardVoiceAssetId\x12T\n" +
+	"%usePrimaStellaProduceCardVoiceAssetId\x18P \x01(\tR%usePrimaStellaProduceCardVoiceAssetId\x128\n" +
+	"\x17primaStellaVoiceAssetId\x18Q \x01(\tR\x17primaStellaVoiceAssetId\x12%\n" +
 	"\rviewStartTime\x18\xe7\a \x01(\x03R\rviewStartTime\x12\x15\n" +
 	"\x05order\x18\xe8\a \x01(\x03R\x05order\x12)\n" +
 	"\x0fproduceStoryIds\x18\xed\a \x03(\tR\x0fproduceStoryIds\x12'\n" +
@@ -41260,7 +44025,14 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x04rank\x18\x04 \x01(\x0e2\x1c.penum.IdolCardPotentialRankR\x04rank\x12\x14\n" +
 	"\x05order\x18\x05 \x01(\x05R\x05order\"_\n" +
 	"!IdolCardPotentialProduceSkillList\x12:\n" +
-	"\x04list\x18\x01 \x03(\v2&.pmaster.IdolCardPotentialProduceSkillR\x04list\"\xc4\x02\n" +
+	"\x04list\x18\x01 \x03(\v2&.pmaster.IdolCardPotentialProduceSkillR\x04list\"\x9d\x01\n" +
+	"\x1fIdolCardPrimaStellaProduceSkill\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12&\n" +
+	"\x0eproduceSkillId\x18\x02 \x01(\tR\x0eproduceSkillId\x12,\n" +
+	"\x11produceSkillLevel\x18\x03 \x01(\x05R\x11produceSkillLevel\x12\x14\n" +
+	"\x05order\x18c \x01(\x05R\x05order\"c\n" +
+	"#IdolCardPrimaStellaProduceSkillList\x12<\n" +
+	"\x04list\x18\x01 \x03(\v2(.pmaster.IdolCardPrimaStellaProduceSkillR\x04list\"\xc4\x02\n" +
 	"\x12IdolCardSimulation\x12\x1e\n" +
 	"\n" +
 	"idolCardId\x18\x01 \x01(\tR\n" +
@@ -41271,7 +44043,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1csupportCardSimulationGroupId\x18\x05 \x01(\tR\x1csupportCardSimulationGroupId\x12*\n" +
 	"\x10examSimulationId\x18\x06 \x01(\tR\x10examSimulationId\"I\n" +
 	"\x16IdolCardSimulationList\x12/\n" +
-	"\x04list\x18\x01 \x03(\v2\x1b.pmaster.IdolCardSimulationR\x04list\"\x96\x0f\n" +
+	"\x04list\x18\x01 \x03(\v2\x1b.pmaster.IdolCardSimulationR\x04list\"\xba\x12\n" +
 	"\fIdolCardSkin\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
@@ -41311,7 +44083,14 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x14afterDetailPositionY\x18n \x01(\x02R\x14afterDetailPositionY\x12*\n" +
 	"\x10afterDetailScale\x18o \x01(\x02R\x10afterDetailScale\x12P\n" +
 	"#beforeLevelLimitRankPositionPattern\x18p \x01(\x05R#beforeLevelLimitRankPositionPattern\x12N\n" +
-	"\"afterLevelLimitRankPositionPattern\x18q \x01(\x05R\"afterLevelLimitRankPositionPattern\x12%\n" +
+	"\"afterLevelLimitRankPositionPattern\x18q \x01(\x05R\"afterLevelLimitRankPositionPattern\x12:\n" +
+	"\x18primaStellaListPositionX\x18r \x01(\x02R\x18primaStellaListPositionX\x12:\n" +
+	"\x18primaStellaListPositionY\x18s \x01(\x02R\x18primaStellaListPositionY\x122\n" +
+	"\x14primaStellaListScale\x18t \x01(\x02R\x14primaStellaListScale\x12>\n" +
+	"\x1aprimaStellaDetailPositionX\x18u \x01(\x02R\x1aprimaStellaDetailPositionX\x12>\n" +
+	"\x1aprimaStellaDetailPositionY\x18v \x01(\x02R\x1aprimaStellaDetailPositionY\x126\n" +
+	"\x16primaStellaDetailScale\x18w \x01(\x02R\x16primaStellaDetailScale\x12>\n" +
+	"\x1aprimaStellaPositionPattern\x18x \x01(\x05R\x1aprimaStellaPositionPattern\x12%\n" +
 	"\rviewStartTime\x18\xe7\a \x01(\x03R\rviewStartTime\x12\x15\n" +
 	"\x05order\x18\xe8\a \x01(\x03R\x05order\"=\n" +
 	"\x10IdolCardSkinList\x12)\n" +
@@ -41345,7 +44124,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\tthreshold\x18\x01 \x01(\x05R\tthreshold\x12'\n" +
 	"\x06reward\x18\x05 \x01(\v2\x0f.pcommon.RewardR\x06reward\"O\n" +
 	"\x19InvitationPointRewardList\x122\n" +
-	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.InvitationPointRewardR\x04list\"\xb5\v\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.InvitationPointRewardR\x04list\"\xf3\v\n" +
 	"\x04Item\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -41370,7 +44149,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\fstoryEventId\x18\x14 \x01(\tR\fstoryEventId\x128\n" +
 	"\x17produceHighScoreEventId\x18\x15 \x01(\tR\x17produceHighScoreEventId\x12 \n" +
 	"\vtourEventId\x18\x1a \x01(\tR\vtourEventId\x12(\n" +
-	"\x0fresearchEventId\x18\x1b \x01(\tR\x0fresearchEventId\x12=\n" +
+	"\x0fresearchEventId\x18\x1b \x01(\tR\x0fresearchEventId\x12<\n" +
+	"\x19produceGrowthPanelSheetId\x18\x1c \x01(\tR\x19produceGrowthPanelSheetId\x12=\n" +
 	"\x0eidolCardRarity\x18\x16 \x01(\x0e2\x15.penum.IdolCardRarityR\x0eidolCardRarity\x12F\n" +
 	"\x11supportCardRarity\x18\x17 \x01(\x0e2\x18.penum.SupportCardRarityR\x11supportCardRarity\x12 \n" +
 	"\vcharacterId\x18\x18 \x01(\tR\vcharacterId\x12+\n" +
@@ -41534,7 +44314,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05order\x18\x03 \x01(\x05R\x05order\"C\n" +
 	"\x13MeishiTextColorList\x12,\n" +
-	"\x04list\x18\x01 \x03(\v2\x18.pmaster.MeishiTextColorR\x04list\"\xc5\x01\n" +
+	"\x04list\x18\x01 \x03(\v2\x18.pmaster.MeishiTextColorR\x04list\"\xf5\x01\n" +
 	"\rMemoryAbility\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x18\n" +
@@ -41543,7 +44323,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"evaluation\x18\x06 \x01(\x05R\n" +
 	"evaluation\x12*\n" +
 	"\x06rarity\x18\a \x01(\x0e2\x12.penum.SkillRarityR\x06rarity\x12(\n" +
-	"\x0fproduceGroupIds\x18\b \x03(\tR\x0fproduceGroupIds\"?\n" +
+	"\x0fproduceGroupIds\x18\b \x03(\tR\x0fproduceGroupIds\x12.\n" +
+	"\x12isUniqueActivation\x18\t \x01(\bR\x12isUniqueActivation\"?\n" +
 	"\x11MemoryAbilityList\x12*\n" +
 	"\x04list\x18\x01 \x03(\v2\x16.pcommon.MemoryAbilityR\x04list\"`\n" +
 	"\x12MemoryExchangeItem\x122\n" +
@@ -41862,7 +44643,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12\"\n" +
 	"\fvoiceAssetId\x18\x03 \x01(\tR\fvoiceAssetId\"K\n" +
 	"\x17PhotoWaitVoiceGroupList\x120\n" +
-	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.PhotoWaitVoiceGroupR\x04list\"\x96\t\n" +
+	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.PhotoWaitVoiceGroupR\x04list\"\xd9\n" +
+	"\n" +
 	"\aProduce\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12$\n" +
@@ -41887,7 +44669,10 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0egradientColor2\x18\x1f \x01(\tR\x0egradientColor2\x12.\n" +
 	"\x12easyProduceItemIds\x18  \x03(\tR\x12easyProduceItemIds\x12.\n" +
 	"\x12easyConditionSetId\x18! \x01(\tR\x12easyConditionSetId\x12<\n" +
-	"\x19easyProduceConditionSetId\x18\" \x01(\tR\x19easyProduceConditionSetId\x12\x14\n" +
+	"\x19easyProduceConditionSetId\x18\" \x01(\tR\x19easyProduceConditionSetId\x12C\n" +
+	"\x10produceSplitType\x18# \x01(\x0e2\x17.penum.ProduceSplitTypeR\x10produceSplitType\x12.\n" +
+	"\x12splitPairProduceId\x18$ \x01(\tR\x12splitPairProduceId\x12L\n" +
+	"!selectionMemoryEmbedProduceCardId\x18) \x01(\tR!selectionMemoryEmbedProduceCardId\x12\x14\n" +
 	"\x05order\x18c \x01(\x05R\x05order\"\x9d\x01\n" +
 	"\n" +
 	"ProduceAdv\x124\n" +
@@ -41896,7 +44681,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x18\n" +
 	"\aassetId\x18\x04 \x01(\tR\aassetId\"9\n" +
 	"\x0eProduceAdvList\x12'\n" +
-	"\x04list\x18\x01 \x03(\v2\x13.pmaster.ProduceAdvR\x04list\"\x99\x10\n" +
+	"\x04list\x18\x01 \x03(\v2\x13.pmaster.ProduceAdvR\x04list\"\x87\x11\n" +
 	"\vProduceCard\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
 	"\fupgradeCount\x18\x02 \x01(\x05R\fupgradeCount\x12\x12\n" +
@@ -41941,15 +44726,17 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x11maxCustomizeCount\x18, \x01(\x05R\x11maxCustomizeCount\x12\"\n" +
 	"\fisConversion\x18- \x01(\bR\fisConversion\x12<\n" +
 	"\x19moveProduceExamTriggerIds\x18. \x03(\tR\x19moveProduceExamTriggerIds\x12,\n" +
-	"\x11originCharacterId\x18/ \x01(\tR\x11originCharacterId\x12$\n" +
+	"\x11originCharacterId\x18/ \x01(\tR\x11originCharacterId\x12@\n" +
+	"\x1boriginPrimaStellaIdolCardId\x182 \x01(\tR\x1boriginPrimaStellaIdolCardId\x12$\n" +
 	"\rviewStartTime\x18a \x01(\x03R\rviewStartTime\x12\x1c\n" +
 	"\tisLimited\x18c \x01(\bR\tisLimited\x12\x14\n" +
-	"\x05order\x18d \x01(\x03R\x05order\x1a\x8e\x01\n" +
+	"\x05order\x18d \x01(\x03R\x05order\x1a\xba\x01\n" +
 	"\n" +
 	"PlayEffect\x122\n" +
 	"\x14produceExamTriggerId\x18\x01 \x01(\tR\x14produceExamTriggerId\x120\n" +
 	"\x13produceExamEffectId\x18\x02 \x01(\tR\x13produceExamEffectId\x12\x1a\n" +
-	"\bhideIcon\x18\x03 \x01(\bR\bhideIcon\"\xd9\x01\n" +
+	"\bhideIcon\x18\x03 \x01(\bR\bhideIcon\x12*\n" +
+	"\x10isOncePlayEffect\x18\x04 \x01(\bR\x10isOncePlayEffect\"\xd9\x01\n" +
 	"\x15ProduceCardConversion\x120\n" +
 	"\x13beforeProduceCardId\x18\x01 \x01(\tR\x13beforeProduceCardId\x12.\n" +
 	"\x12afterProduceCardId\x18\x02 \x01(\tR\x12afterProduceCardId\x12&\n" +
@@ -42106,7 +44893,51 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x17ProduceCharacterAdvList\x120\n" +
 	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.ProduceCharacterAdvR\x04list\"E\n" +
 	"\x14ProduceCharacterList\x12-\n" +
-	"\x04list\x18\x01 \x03(\v2\x19.pmaster.ProduceCharacterR\x04list\"\x94\x03\n" +
+	"\x04list\x18\x01 \x03(\v2\x19.pmaster.ProduceCharacterR\x04list\"\x8e\x02\n" +
+	"\x14ProduceCharacterUnit\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12&\n" +
+	"\x0eproduceGroupId\x18\x02 \x01(\tR\x0eproduceGroupId\x12,\n" +
+	"\x11targetCharacterId\x18\x03 \x01(\tR\x11targetCharacterId\x12(\n" +
+	"\x0funitCharacterId\x18\x04 \x01(\tR\x0funitCharacterId\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12$\n" +
+	"\rliveCostumeId\x18\x06 \x01(\tR\rliveCostumeId\x12,\n" +
+	"\x11liveCostumeHeadId\x18\a \x01(\tR\x11liveCostumeHeadId\"M\n" +
+	"\x18ProduceCharacterUnitList\x121\n" +
+	"\x04list\x18\x01 \x03(\v2\x1d.pmaster.ProduceCharacterUnitR\x04list\"\x87\a\n" +
+	"\x14ProduceCustomizeItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12<\n" +
+	"\n" +
+	"effectType\x18\x03 \x01(\x0e2\x1c.penum.ProduceItemEffectTypeR\n" +
+	"effectType\x122\n" +
+	"\bplanType\x18\x04 \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x12T\n" +
+	"\x13produceDescriptions\x18\x06 \x03(\v2\".pcommon.ProduceDescriptionSegmentR\x13produceDescriptions\x12\x1a\n" +
+	"\bassetId1\x18\n" +
+	" \x01(\tR\bassetId1\x12\x1a\n" +
+	"\bassetId2\x18\v \x01(\tR\bassetId2\x12\x1a\n" +
+	"\bassetId3\x18\f \x01(\tR\bassetId3\x12\x1a\n" +
+	"\bassetId4\x18\r \x01(\tR\bassetId4\x12\x1a\n" +
+	"\bassetId5\x18\x0e \x01(\tR\bassetId5\x12\x16\n" +
+	"\x06isBase\x182 \x01(\bR\x06isBase\x12\x1e\n" +
+	"\n" +
+	"isTerminal\x183 \x01(\bR\n" +
+	"isTerminal\x12&\n" +
+	"\x0eexamEffectTurn\x18d \x01(\x05R\x0eexamEffectTurn\x12(\n" +
+	"\x0fexamEffectCount\x18e \x01(\x05R\x0fexamEffectCount\x122\n" +
+	"\x14produceExamTriggerId\x18f \x01(\tR\x14produceExamTriggerId\x122\n" +
+	"\x14produceExamEffectIds\x18g \x03(\tR\x14produceExamEffectIds\x12=\n" +
+	"\x19produceEffectTriggerCount\x18\xc8\x01 \x01(\x05R\x19produceEffectTriggerCount\x12C\n" +
+	"\x1cproduceEffectTriggerInterval\x18\xc9\x01 \x01(\x05R\x1cproduceEffectTriggerInterval\x12+\n" +
+	"\x10produceTriggerId\x18\xca\x01 \x01(\tR\x10produceTriggerId\x12+\n" +
+	"\x10produceEffectIds\x18\xcb\x01 \x03(\tR\x10produceEffectIds\x12'\n" +
+	"\x0eeffectGroupIds\x18\xcc\x01 \x03(\tR\x0eeffectGroupIds\"M\n" +
+	"\x18ProduceCustomizeItemList\x121\n" +
+	"\x04list\x18\x01 \x03(\v2\x1d.pmaster.ProduceCustomizeItemR\x04list\"\xa8\x01\n" +
+	" ProduceCustomizeItemRelationship\x12B\n" +
+	"\x1cparentProduceCustomizeItemId\x18\x01 \x01(\tR\x1cparentProduceCustomizeItemId\x12@\n" +
+	"\x1bchildProduceCustomizeItemId\x18\x02 \x01(\tR\x1bchildProduceCustomizeItemId\"e\n" +
+	"$ProduceCustomizeItemRelationshipList\x12=\n" +
+	"\x04list\x18\x01 \x03(\v2).pmaster.ProduceCustomizeItemRelationshipR\x04list\"\x94\x03\n" +
 	"\x1cProduceDescriptionExamEffect\x120\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1c.penum.ProduceExamEffectTypeR\x04type\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12:\n" +
@@ -42117,11 +44948,12 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x06noIcon\x18\a \x01(\bR\x06noIcon\x12 \n" +
 	"\vnoReference\x18\b \x01(\bR\vnoReference\"]\n" +
 	" ProduceDescriptionExamEffectList\x129\n" +
-	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceDescriptionExamEffectR\x04list\"\xd0\x01\n" +
+	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceDescriptionExamEffectR\x04list\"\xf2\x01\n" +
 	"\x17ProduceDescriptionLabel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12:\n" +
-	"\x18produceDescriptionSwapId\x18\x04 \x01(\tR\x18produceDescriptionSwapId\x12U\n" +
+	"\x18produceDescriptionSwapId\x18\x04 \x01(\tR\x18produceDescriptionSwapId\x12 \n" +
+	"\viconAssetId\x18\x05 \x01(\tR\viconAssetId\x12U\n" +
 	"\x13produceDescriptions\x18\xe7\a \x03(\v2\".pcommon.ProduceDescriptionSegmentR\x13produceDescriptions\"S\n" +
 	"\x1bProduceDescriptionLabelList\x124\n" +
 	"\x04list\x18\x01 \x03(\v2 .pmaster.ProduceDescriptionLabelR\x04list\"\xb5\x02\n" +
@@ -42162,7 +44994,15 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x19produceDescriptionLabelId\x18\n" +
 	" \x01(\tR\x19produceDescriptionLabelId\"_\n" +
 	"!ProduceDescriptionProduceStepList\x12:\n" +
-	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceDescriptionProduceStepR\x04list\"{\n" +
+	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceDescriptionProduceStepR\x04list\"\xca\x01\n" +
+	"\x1dProduceDescriptionProduceType\x124\n" +
+	"\vproduceType\x18\x01 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12C\n" +
+	"\x10produceSplitType\x18\x02 \x01(\x0e2\x17.penum.ProduceSplitTypeR\x10produceSplitType\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1a\n" +
+	"\btemplate\x18\n" +
+	" \x01(\tR\btemplate\"_\n" +
+	"!ProduceDescriptionProduceTypeList\x12:\n" +
+	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceDescriptionProduceTypeR\x04list\"{\n" +
 	"\x16ProduceDescriptionSwap\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12=\n" +
 	"\bswapType\x18\x02 \x01(\x0e2!.penum.ProduceDescriptionSwapTypeR\bswapType\x12\x12\n" +
@@ -42340,11 +45180,12 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0emidScorePermil\x18\v \x01(\x05R\x0emidScorePermil\x12$\n" +
 	"\redScorePermil\x18\f \x01(\x05R\redScorePermil\"W\n" +
 	"\x1dProduceExamBattleNpcGroupList\x126\n" +
-	"\x04list\x18\x01 \x03(\v2\".pmaster.ProduceExamBattleNpcGroupR\x04list\"W\n" +
+	"\x04list\x18\x01 \x03(\v2\".pmaster.ProduceExamBattleNpcGroupR\x04list\"s\n" +
 	"\x17ProduceExamBattleNpcMob\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
-	"\aassetId\x18\x03 \x01(\tR\aassetId\"S\n" +
+	"\aassetId\x18\x03 \x01(\tR\aassetId\x12\x1a\n" +
+	"\bisBorder\x18\x04 \x01(\bR\bisBorder\"S\n" +
 	"\x1bProduceExamBattleNpcMobList\x124\n" +
 	"\x04list\x18\x01 \x03(\v2 .pmaster.ProduceExamBattleNpcMobR\x04list\"\xb4\x01\n" +
 	"\x1cProduceExamBattleScoreConfig\x12\x0e\n" +
@@ -42354,8 +45195,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\vdancePermil\x18\x04 \x01(\x05R\vdancePermil\x12\"\n" +
 	"\fvisualPermil\x18\x05 \x01(\x05R\fvisualPermil\"]\n" +
 	" ProduceExamBattleScoreConfigList\x129\n" +
-	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceExamBattleScoreConfigR\x04list\"\xe1\n" +
-	"\n" +
+	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceExamBattleScoreConfigR\x04list\"\xc3\r\n" +
 	"\x11ProduceExamEffect\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12<\n" +
 	"\n" +
@@ -42377,7 +45217,13 @@ const file_pmaster_proto_rawDesc = "" +
 	"%pickCountReferenceProduceCardSearchId\x18\x16 \x01(\tR%pickCountReferenceProduceCardSearchId\x12A\n" +
 	"\rpickCountType\x18\x17 \x01(\x0e2\x1b.penum.ProducePickCountTypeR\rpickCountType\x12\"\n" +
 	"\fpickCountMin\x18\x0f \x01(\x05R\fpickCountMin\x12\"\n" +
-	"\fpickCountMax\x18\x10 \x01(\x05R\fpickCountMax\x12:\n" +
+	"\fpickCountMax\x18\x10 \x01(\x05R\fpickCountMax\x122\n" +
+	"\x14produceCardSearchId2\x18\x18 \x01(\tR\x14produceCardSearchId2\x12C\n" +
+	"\x0epickRangeType2\x18\x19 \x01(\x0e2\x1b.penum.ProducePickRangeTypeR\x0epickRangeType2\x12V\n" +
+	"&pickCountReferenceProduceCardSearchId2\x18\x1a \x01(\tR&pickCountReferenceProduceCardSearchId2\x12C\n" +
+	"\x0epickCountType2\x18\x1b \x01(\x0e2\x1b.penum.ProducePickCountTypeR\x0epickCountType2\x12$\n" +
+	"\rpickCountMin2\x18\x1c \x01(\x05R\rpickCountMin2\x12$\n" +
+	"\rpickCountMax2\x18\x1d \x01(\x05R\rpickCountMax2\x12:\n" +
 	"\x18chainProduceExamEffectId\x18\x11 \x01(\tR\x18chainProduceExamEffectId\x12<\n" +
 	"\x19chainProduceExamEffectIds\x18\x14 \x03(\tR\x19chainProduceExamEffectIds\x12>\n" +
 	"\x1aproduceExamStatusEnchantId\x18\x12 \x01(\tR\x1aproduceExamStatusEnchantId\x12>\n" +
@@ -42483,7 +45329,30 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x13liveOverrideAssetId\x18\x11 \x01(\tR\x13liveOverrideAssetId\x128\n" +
 	"\x17additionalActorAssetIds\x18\x12 \x03(\tR\x17additionalActorAssetIds\"Q\n" +
 	"\x1aProduceGroupLiveCommonList\x123\n" +
-	"\x04list\x18\x01 \x03(\v2\x1f.pmaster.ProduceGroupLiveCommonR\x04list\"\x98\x02\n" +
+	"\x04list\x18\x01 \x03(\v2\x1f.pmaster.ProduceGroupLiveCommonR\x04list\"\xff\x03\n" +
+	"\x12ProduceGrowthPanel\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05level\x18\x02 \x01(\x05R\x05level\x12<\n" +
+	"\x19produceGrowthPanelSheetId\x18\x03 \x01(\tR\x19produceGrowthPanelSheetId\x12C\n" +
+	"\x10produceSplitType\x18\x04 \x01(\x0e2\x17.penum.ProduceSplitTypeR\x10produceSplitType\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12T\n" +
+	"\x13produceDescriptions\x18\a \x03(\v2\".pcommon.ProduceDescriptionSegmentR\x13produceDescriptions\x122\n" +
+	"\x14unlockConditionSetId\x18\n" +
+	" \x01(\tR\x14unlockConditionSetId\x12.\n" +
+	"\x12unlockItemQuantity\x18\v \x01(\x05R\x12unlockItemQuantity\x120\n" +
+	"\x13isUnlockRecommended\x18\f \x01(\bR\x13isUnlockRecommended\x12*\n" +
+	"\x10produceEffectIds\x18\x14 \x03(\tR\x10produceEffectIds\x12\x14\n" +
+	"\x05order\x18c \x01(\x05R\x05order\"I\n" +
+	"\x16ProduceGrowthPanelList\x12/\n" +
+	"\x04list\x18\x01 \x03(\v2\x1b.pmaster.ProduceGrowthPanelR\x04list\"\xd1\x01\n" +
+	"\x17ProduceGrowthPanelSheet\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x124\n" +
+	"\vproduceType\x18\x02 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12\"\n" +
+	"\funlockItemId\x18\x03 \x01(\tR\funlockItemId\x12&\n" +
+	"\x0emissionGroupId\x18\x04 \x01(\tR\x0emissionGroupId\x12$\n" +
+	"\rachievementId\x18\x05 \x01(\tR\rachievementId\"S\n" +
+	"\x1bProduceGrowthPanelSheetList\x124\n" +
+	"\x04list\x18\x01 \x03(\v2 .pmaster.ProduceGrowthPanelSheetR\x04list\"\x98\x02\n" +
 	"\fProduceGuide\x12\x1e\n" +
 	"\n" +
 	"idolCardId\x18\x01 \x01(\tR\n" +
@@ -42627,7 +45496,13 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x13liveOverrideAssetId\x18\x0f \x01(\tR\x13liveOverrideAssetId\x128\n" +
 	"\x17additionalActorAssetIds\x18\x10 \x03(\tR\x17additionalActorAssetIds\x12\x1c\n" +
 	"\tcostumeId\x18\x14 \x01(\tR\tcostumeId\x12$\n" +
-	"\rcostumeHeadId\x18\x15 \x01(\tR\rcostumeHeadId\";\n" +
+	"\rcostumeHeadId\x18\x15 \x01(\tR\rcostumeHeadId\"\x8b\x01\n" +
+	"\x15ProduceLiveEvaluation\x12\x1c\n" +
+	"\tproduceId\x18\x01 \x01(\tR\tproduceId\x12 \n" +
+	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x122\n" +
+	"\bliveType\x18\x03 \x01(\x0e2\x16.penum.ProduceLiveTypeR\bliveType\"O\n" +
+	"\x19ProduceLiveEvaluationList\x122\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.ProduceLiveEvaluationR\x04list\";\n" +
 	"\x0fProduceLiveList\x12(\n" +
 	"\x04list\x18\x01 \x03(\v2\x14.pmaster.ProduceLiveR\x04list\"]\n" +
 	"\x11ProduceNavigation\x12\x0e\n" +
@@ -42643,7 +45518,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\aendTime\x18e \x01(\x03R\aendTime\x12 \n" +
 	"\vfixRankTime\x18f \x01(\x03R\vfixRankTime\"y\n" +
 	".ProduceNextIdolAuditionMasterRankingSeasonList\x12G\n" +
-	"\x04list\x18\x01 \x03(\v23.pmaster.ProduceNextIdolAuditionMasterRankingSeasonR\x04list\"\x9d\x02\n" +
+	"\x04list\x18\x01 \x03(\v23.pmaster.ProduceNextIdolAuditionMasterRankingSeasonR\x04list\"\xbd\x02\n" +
 	"\x13ProduceResultMotion\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x122\n" +
 	"\bliveType\x18\x02 \x01(\x0e2\x16.penum.ProduceLiveTypeR\bliveType\x12\x16\n" +
@@ -42651,7 +45526,10 @@ const file_pmaster_proto_rawDesc = "" +
 	"\rmotionAssetId\x18\x04 \x01(\tR\rmotionAssetId\x12$\n" +
 	"\rfacialAssetId\x18\x05 \x01(\tR\rfacialAssetId\x12\"\n" +
 	"\fvoiceAssetId\x18\x06 \x01(\tR\fvoiceAssetId\x12(\n" +
-	"\x0fproduceGroupIds\x18\a \x03(\tR\x0fproduceGroupIds\"K\n" +
+	"\x0fproduceGroupIds\x18\a \x03(\tR\x0fproduceGroupIds\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\r \x03(\tR\n" +
+	"produceIds\"K\n" +
 	"\x17ProduceResultMotionList\x120\n" +
 	"\x04list\x18\x01 \x03(\v2\x1c.pmaster.ProduceResultMotionR\x04list\"\x89\x02\n" +
 	"\x19ProduceScheduleBackground\x12F\n" +
@@ -42688,7 +45566,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x05grade\x18\x02 \x01(\x0e2\x12.penum.ResultGradeR\x05grade\x12\x1c\n" +
 	"\tthreshold\x18\x03 \x01(\x05R\tthreshold\"Q\n" +
 	"\x1aProduceSeasonZeroGradeList\x123\n" +
-	"\x04list\x18\x01 \x03(\v2\x1f.pmaster.ProduceSeasonZeroGradeR\x04list\"\x82\a\n" +
+	"\x04list\x18\x01 \x03(\v2\x1f.pmaster.ProduceSeasonZeroGradeR\x04list\"\xbe\t\n" +
 	"\x0eProduceSetting\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x13initialProducePoint\x18\x05 \x01(\x05R\x13initialProducePoint\x12:\n" +
@@ -42703,15 +45581,21 @@ const file_pmaster_proto_rawDesc = "" +
 	"\rcontinueCount\x18\x1a \x01(\x05R\rcontinueCount\x12\\\n" +
 	")produceAuditionTrendAssessmentPermilUpper\x18> \x01(\x05R)produceAuditionTrendAssessmentPermilUpper\x12\\\n" +
 	")produceAuditionTrendAssessmentPermilLower\x18? \x01(\x05R)produceAuditionTrendAssessmentPermilLower\x12<\n" +
-	"\x19maxLegendProduceCardCount\x18C \x01(\x05R\x19maxLegendProduceCardCount\"A\n" +
+	"\x19maxLegendProduceCardCount\x18C \x01(\x05R\x19maxLegendProduceCardCount\x12P\n" +
+	"#stepIntervalUpgradeProduceCardCount\x18D \x01(\x05R#stepIntervalUpgradeProduceCardCount\x12T\n" +
+	"%stepIntervalCustomizeProduceCardCount\x18E \x01(\x05R%stepIntervalCustomizeProduceCardCount\x12P\n" +
+	"#selectionMemoryNeedProduceCardCount\x18F \x01(\x05R#selectionMemoryNeedProduceCardCount\x12@\n" +
+	"\x1bproduceDrinkPossessMaxLimit\x18G \x01(\x05R\x1bproduceDrinkPossessMaxLimit\"A\n" +
 	"\x12ProduceSettingList\x12+\n" +
-	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ProduceSettingR\x04list\"\xd6\x05\n" +
+	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ProduceSettingR\x04list\"\xd1\x06\n" +
 	"\fProduceSkill\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12*\n" +
 	"\x06rarity\x18\x05 \x01(\x0e2\x12.penum.SkillRarityR\x06rarity\x12\x10\n" +
 	"\x03tag\x18\x06 \x01(\tR\x03tag\x122\n" +
-	"\bplanType\x18\a \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x12(\n" +
+	"\bplanType\x18\a \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x124\n" +
+	"\vproduceType\x18\x12 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12C\n" +
+	"\x10produceSplitType\x18\x14 \x01(\x0e2\x17.penum.ProduceSplitTypeR\x10produceSplitType\x12(\n" +
 	"\x0factivationCount\x18\b \x01(\x05R\x0factivationCount\x12*\n" +
 	"\x10produceEffectId1\x18\t \x01(\tR\x10produceEffectId1\x12,\n" +
 	"\x11produceTriggerId1\x18\n" +
@@ -42725,7 +45609,16 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x15activationRatePermil3\x18\x11 \x01(\x05R\x15activationRatePermil3\x12T\n" +
 	"\x13produceDescriptions\x18\x13 \x03(\v2\".pcommon.ProduceDescriptionSegmentR\x13produceDescriptions\"=\n" +
 	"\x10ProduceSkillList\x12)\n" +
-	"\x04list\x18\x01 \x03(\v2\x15.pmaster.ProduceSkillR\x04list\"\xfd\x01\n" +
+	"\x04list\x18\x01 \x03(\v2\x15.pmaster.ProduceSkillR\x04list\"\x97\x02\n" +
+	"\x0fProduceSplitAdv\x124\n" +
+	"\vproduceType\x18\x01 \x01(\x0e2\x12.penum.ProduceTypeR\vproduceType\x12)\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x15.penum.ProduceAdvTypeR\x04type\x12E\n" +
+	"\x11produceSplitTypes\x18\x03 \x01(\x0e2\x17.penum.ProduceSplitTypeR\x11produceSplitTypes\x12,\n" +
+	"\x11targetCharacterId\x18\x04 \x01(\tR\x11targetCharacterId\x12\x14\n" +
+	"\x05title\x18\x05 \x01(\tR\x05title\x12\x18\n" +
+	"\aassetId\x18\x06 \x01(\tR\aassetId\"C\n" +
+	"\x13ProduceSplitAdvList\x12,\n" +
+	"\x04list\x18\x01 \x03(\v2\x18.pmaster.ProduceSplitAdvR\x04list\"\xfd\x01\n" +
 	"\x12ProduceStartMotion\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12=\n" +
 	"\n" +
@@ -42744,9 +45637,38 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1bsuccessNextIdolAuditionRank\x18\n" +
 	" \x01(\x05R\x1bsuccessNextIdolAuditionRank\x12@\n" +
 	"\x1bfailureNextIdolAuditionRank\x18\v \x01(\x05R\x1bfailureNextIdolAuditionRank\x12T\n" +
-	"%auditionSelectHeaderSilhouetteAssetId\x18\x14 \x01(\tR%auditionSelectHeaderSilhouetteAssetId\"]\n" +
+	"%auditionSelectHeaderSilhouetteAssetId\x18\x14 \x01(\tR%auditionSelectHeaderSilhouetteAssetId\"\xb5\x01\n" +
+	"\x1fProduceStepAuditionCharacterBgm\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x1c\n" +
+	"\tproduceId\x18\x02 \x01(\tR\tproduceId\x122\n" +
+	"\bstepType\x18\x03 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12\x1e\n" +
+	"\n" +
+	"bgmAssetId\x18\x04 \x01(\tR\n" +
+	"bgmAssetId\"c\n" +
+	"#ProduceStepAuditionCharacterBgmList\x12<\n" +
+	"\x04list\x18\x01 \x03(\v2(.pmaster.ProduceStepAuditionCharacterBgmR\x04list\"]\n" +
 	" ProduceStepAuditionCharacterList\x129\n" +
-	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceStepAuditionCharacterR\x04list\"\xdf\x05\n" +
+	"\x04list\x18\x01 \x03(\v2%.pmaster.ProduceStepAuditionCharacterR\x04list\"\xb6\x04\n" +
+	"&ProduceStepAuditionCharacterUnitMotion\x126\n" +
+	"\x16produceCharacterUnitId\x18\x01 \x01(\tR\x16produceCharacterUnitId\x12 \n" +
+	"\vcharacterId\x18\x02 \x01(\tR\vcharacterId\x12,\n" +
+	"\x11targetCharacterId\x18\x03 \x01(\tR\x11targetCharacterId\x122\n" +
+	"\bstepType\x18\x04 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12D\n" +
+	"\n" +
+	"motionType\x18\x05 \x01(\x0e2$.penum.ProduceStepAuditionMotionTypeR\n" +
+	"motionType\x12\x16\n" +
+	"\x06number\x18\x06 \x01(\x05R\x06number\x12$\n" +
+	"\rfacialAssetId\x18\a \x01(\tR\rfacialAssetId\x12 \n" +
+	"\vbodyAssetId\x18\b \x01(\tR\vbodyAssetId\x12\"\n" +
+	"\fvoiceAssetId\x18\t \x01(\tR\fvoiceAssetId\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\n" +
+	" \x03(\tR\n" +
+	"produceIds\x12(\n" +
+	"\x0fmotionSeAssetId\x18\v \x01(\tR\x0fmotionSeAssetId\x12<\n" +
+	"\x19motionSeStartMilliseconds\x18\f \x01(\x05R\x19motionSeStartMilliseconds\"q\n" +
+	"*ProduceStepAuditionCharacterUnitMotionList\x12C\n" +
+	"\x04list\x18\x01 \x03(\v2/.pmaster.ProduceStepAuditionCharacterUnitMotionR\x04list\"\xc3\x06\n" +
 	"\x1dProduceStepAuditionDifficulty\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
 	"\tproduceId\x18\x02 \x01(\tR\tproduceId\x122\n" +
@@ -42761,11 +45683,13 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1fproduceExamGimmickEffectGroupId\x18\f \x01(\tR\x1fproduceExamGimmickEffectGroupId\x12B\n" +
 	"\fauditionType\x18\r \x01(\x0e2\x1e.penum.ProduceStepAuditionTypeR\fauditionType\x12,\n" +
 	"\x11isUnlockAnimation\x18\x0e \x01(\bR\x11isUnlockAnimation\x12,\n" +
-	"\x11voteCountBaseLine\x18\x0f \x01(\x05R\x11voteCountBaseLine\x12$\n" +
+	"\x11voteCountBaseLine\x18\x0f \x01(\x05R\x11voteCountBaseLine\x12*\n" +
+	"\x10isStaticNpcScore\x18\x11 \x01(\bR\x10isStaticNpcScore\x12$\n" +
 	"\rdearnessLevel\x184 \x01(\x05R\rdearnessLevel\x12\x1c\n" +
-	"\tvoteCount\x185 \x01(\x05R\tvoteCount\"_\n" +
+	"\tvoteCount\x185 \x01(\x05R\tvoteCount\x126\n" +
+	"\x16starScoreBonusBaseLine\x187 \x01(\x05R\x16starScoreBonusBaseLine\"_\n" +
 	"!ProduceStepAuditionDifficultyList\x12:\n" +
-	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceStepAuditionDifficultyR\x04list\"\xeb\x03\n" +
+	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceStepAuditionDifficultyR\x04list\"\xf3\x04\n" +
 	"\x19ProduceStepAuditionMotion\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x122\n" +
 	"\bstepType\x18\x02 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12D\n" +
@@ -42780,9 +45704,35 @@ const file_pmaster_proto_rawDesc = "" +
 	"\bcameraId\x18\t \x01(\tR\bcameraId\x12(\n" +
 	"\x0fproduceGroupIds\x18\n" +
 	" \x03(\tR\x0fproduceGroupIds\x12B\n" +
-	"\fauditionType\x18\v \x01(\x0e2\x1e.penum.ProduceStepAuditionTypeR\fauditionType\"W\n" +
+	"\fauditionType\x18\v \x01(\x0e2\x1e.penum.ProduceStepAuditionTypeR\fauditionType\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\f \x03(\tR\n" +
+	"produceIds\x12(\n" +
+	"\x0fmotionSeAssetId\x18\r \x01(\tR\x0fmotionSeAssetId\x12<\n" +
+	"\x19motionSeStartMilliseconds\x18\x0e \x01(\x05R\x19motionSeStartMilliseconds\"W\n" +
 	"\x1dProduceStepAuditionMotionList\x126\n" +
-	"\x04list\x18\x01 \x03(\v2\".pmaster.ProduceStepAuditionMotionR\x04list\"\xf6\x04\n" +
+	"\x04list\x18\x01 \x03(\v2\".pmaster.ProduceStepAuditionMotionR\x04list\"\xf1\x01\n" +
+	"\x1dProduceStepAuditionRivalActor\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
+	"\x12produceCharacterId\x18\x02 \x01(\tR\x12produceCharacterId\x122\n" +
+	"\bstepType\x18\x03 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12\x16\n" +
+	"\x06number\x18\x04 \x01(\x05R\x06number\x12$\n" +
+	"\ractorAssetIds\x18\x05 \x03(\tR\ractorAssetIds\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\x06 \x03(\tR\n" +
+	"produceIds\"_\n" +
+	"!ProduceStepAuditionRivalActorList\x12:\n" +
+	"\x04list\x18\x01 \x03(\v2&.pmaster.ProduceStepAuditionRivalActorR\x04list\"\xef\x01\n" +
+	"#ProduceStepAuditionRivalActorMotion\x12\"\n" +
+	"\frivalActorId\x18\x01 \x01(\tR\frivalActorId\x12D\n" +
+	"\n" +
+	"motionType\x18\x02 \x01(\x0e2$.penum.ProduceStepAuditionMotionTypeR\n" +
+	"motionType\x12\x16\n" +
+	"\x06number\x18\x03 \x01(\x05R\x06number\x12 \n" +
+	"\vbodyAssetId\x18\x04 \x01(\tR\vbodyAssetId\x12$\n" +
+	"\rfacialAssetId\x18\x05 \x01(\tR\rfacialAssetId\"k\n" +
+	"'ProduceStepAuditionRivalActorMotionList\x12@\n" +
+	"\x04list\x18\x01 \x03(\v2,.pmaster.ProduceStepAuditionRivalActorMotionR\x04list\"\xf6\x04\n" +
 	"\x16ProduceStepEventDetail\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12I\n" +
 	"\x0esuggestionType\x18\x02 \x01(\x0e2!.penum.ProduceEventSuggestionTypeR\x0esuggestionType\x12&\n" +
@@ -42848,7 +45798,29 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1aProduceStepLessonLevelList\x123\n" +
 	"\x04list\x18\x01 \x03(\v2\x1f.pmaster.ProduceStepLessonLevelR\x04list\"G\n" +
 	"\x15ProduceStepLessonList\x12.\n" +
-	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ProduceStepLessonR\x04list\"\x85\x01\n" +
+	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ProduceStepLessonR\x04list\"\xe8\x01\n" +
+	"\x15ProduceStepOpenLesson\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\astamina\x18\x03 \x01(\x05R\astamina\x12G\n" +
+	"\x10subParameterType\x18\x04 \x01(\x0e2\x1b.penum.ProduceParameterTypeR\x10subParameterType\x12$\n" +
+	"\rmainParameter\x18\x05 \x01(\x05R\rmainParameter\x12\"\n" +
+	"\fsubParameter\x18\x06 \x01(\x05R\fsubParameter\x12\x12\n" +
+	"\x04star\x18\a \x01(\x05R\x04star\"O\n" +
+	"\x19ProduceStepOpenLessonList\x122\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.ProduceStepOpenLessonR\x04list\"\xab\x02\n" +
+	"\x1bProduceStepOpenLessonMotion\x12 \n" +
+	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x122\n" +
+	"\bstepType\x18\x02 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12\x16\n" +
+	"\x06number\x18\x03 \x01(\x05R\x06number\x12\x14\n" +
+	"\x05advId\x18\x04 \x01(\tR\x05advId\x12$\n" +
+	"\rvoiceAssetId1\x18\x05 \x01(\tR\rvoiceAssetId1\x12$\n" +
+	"\rvoiceAssetId2\x18\x06 \x01(\tR\rvoiceAssetId2\x12\x1c\n" +
+	"\tseAssetId\x18\a \x01(\tR\tseAssetId\x12\x1e\n" +
+	"\n" +
+	"bgmAssetId\x18\b \x01(\tR\n" +
+	"bgmAssetId\"[\n" +
+	"\x1fProduceStepOpenLessonMotionList\x128\n" +
+	"\x04list\x18\x01 \x03(\v2$.pmaster.ProduceStepOpenLessonMotionR\x04list\"\x85\x01\n" +
 	"\x15ProduceStepSelfLesson\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12$\n" +
 	"\rprogressLevel\x18\x02 \x01(\x05R\rprogressLevel\x12\x18\n" +
@@ -42871,7 +45843,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x0edisableLipSync\x18\n" +
 	" \x01(\bR\x0edisableLipSync\"[\n" +
 	"\x1fProduceStepSelfLessonMotionList\x128\n" +
-	"\x04list\x18\x01 \x03(\v2$.pmaster.ProduceStepSelfLessonMotionR\x04list\"\xf8\x02\n" +
+	"\x04list\x18\x01 \x03(\v2$.pmaster.ProduceStepSelfLessonMotionR\x04list\"\xc0\x04\n" +
 	"\x15ProduceStepTransition\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x122\n" +
 	"\bstepType\x18\x02 \x01(\x0e2\x16.penum.ProduceStepTypeR\bstepType\x12A\n" +
@@ -42883,7 +45855,14 @@ const file_pmaster_proto_rawDesc = "" +
 	"advAssetId\x18\a \x01(\tR\n" +
 	"advAssetId\x12\"\n" +
 	"\fvoiceAssetId\x18\b \x01(\tR\fvoiceAssetId\x12&\n" +
-	"\x0eproduceGroupId\x18\t \x01(\tR\x0eproduceGroupId\"O\n" +
+	"\x0eproduceGroupId\x18\t \x01(\tR\x0eproduceGroupId\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\n" +
+	" \x03(\tR\n" +
+	"produceIds\x12*\n" +
+	"\x10unitCharacterIds\x18\v \x03(\tR\x10unitCharacterIds\x12@\n" +
+	"\x1bunitCharacterCostumeHeadIds\x18\f \x03(\tR\x1bunitCharacterCostumeHeadIds\x128\n" +
+	"\x17unitCharacterCostumeIds\x18\r \x03(\tR\x17unitCharacterCostumeIds\"O\n" +
 	"\x19ProduceStepTransitionList\x122\n" +
 	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.ProduceStepTransitionR\x04list\"\x91\x03\n" +
 	"\fProduceStory\x12\x0e\n" +
@@ -42910,7 +45889,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x125\n" +
 	"\tphaseType\x18\x02 \x01(\x0e2\x17.penum.ProducePhaseTypeR\tphaseType\"A\n" +
 	"\x12ProduceTriggerList\x12+\n" +
-	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ProduceTriggerR\x04list\"\xd5\x01\n" +
+	"\x04list\x18\x01 \x03(\v2\x17.pmaster.ProduceTriggerR\x04list\"\xa1\x02\n" +
 	"\x11ProduceWeekMotion\x12 \n" +
 	"\vcharacterId\x18\x01 \x01(\tR\vcharacterId\x12\x16\n" +
 	"\x06number\x18\x02 \x01(\x05R\x06number\x12$\n" +
@@ -42919,7 +45898,11 @@ const file_pmaster_proto_rawDesc = "" +
 	"\n" +
 	"advAssetId\x18\x05 \x01(\tR\n" +
 	"advAssetId\x12\"\n" +
-	"\fvoiceAssetId\x18\x06 \x01(\tR\fvoiceAssetId\"G\n" +
+	"\fvoiceAssetId\x18\x06 \x01(\tR\fvoiceAssetId\x12\x1e\n" +
+	"\n" +
+	"produceIds\x18\v \x03(\tR\n" +
+	"produceIds\x12*\n" +
+	"\x10enableOpenLesson\x18\f \x01(\bR\x10enableOpenLesson\"G\n" +
 	"\x15ProduceWeekMotionList\x12.\n" +
 	"\x04list\x18\x01 \x03(\v2\x1a.pmaster.ProduceWeekMotionR\x04list\"\xda\x02\n" +
 	"\rProducerLevel\x12\x14\n" +
@@ -42976,7 +45959,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\bplanType\x18\x02 \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x128\n" +
 	"\fproduceCards\x18\x06 \x03(\v2\x14.pcommon.ProduceCardR\fproduceCards\"U\n" +
 	"\x1cPvpRateCommonProduceCardList\x125\n" +
-	"\x04list\x18\x01 \x03(\v2!.pmaster.PvpRateCommonProduceCardR\x04list\"\xa3\b\n" +
+	"\x04list\x18\x01 \x03(\v2!.pmaster.PvpRateCommonProduceCardR\x04list\"\xaf\t\n" +
 	"\rPvpRateConfig\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
@@ -42994,7 +45977,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\n" +
 	"topAssetId\x18\r \x01(\tR\n" +
 	"topAssetId\x125\n" +
-	"\x06stages\x18\xc7\x01 \x03(\v2\x1c.pmaster.PvpRateConfig.StageR\x06stages\x1a\xa4\x03\n" +
+	"\x06stages\x18\xc7\x01 \x03(\v2\x1c.pmaster.PvpRateConfig.StageR\x06stages\x1a\xb0\x04\n" +
 	"\x05Stage\x125\n" +
 	"\tstageType\x18\x01 \x01(\x0e2\x17.penum.PvpRateStageTypeR\tstageType\x122\n" +
 	"\bplanType\x18\x02 \x01(\x0e2\x16.penum.ProducePlanTypeR\bplanType\x12\x12\n" +
@@ -43006,7 +45989,11 @@ const file_pmaster_proto_rawDesc = "" +
 	"bgmAssetId\x18\x06 \x01(\tR\n" +
 	"bgmAssetId\x122\n" +
 	"\x14startTimelineAssetId\x18\a \x01(\tR\x14startTimelineAssetId\x120\n" +
-	"\x13examTimelineAssetId\x18\b \x01(\tR\x13examTimelineAssetId\"?\n" +
+	"\x13examTimelineAssetId\x18\b \x01(\tR\x13examTimelineAssetId\x12\x14\n" +
+	"\x05vocal\x18\x14 \x01(\x05R\x05vocal\x12\x14\n" +
+	"\x05dance\x18\x15 \x01(\x05R\x05dance\x12\x16\n" +
+	"\x06visual\x18\x16 \x01(\x05R\x06visual\x12F\n" +
+	"\x1eproduceExamBattleScoreConfigId\x18\x1e \x01(\tR\x1eproduceExamBattleScoreConfigId\"?\n" +
 	"\x11PvpRateConfigList\x12*\n" +
 	"\x04list\x18\x01 \x03(\v2\x16.pmaster.PvpRateConfigR\x04list\"\xb1\x02\n" +
 	"\rPvpRateMotion\x12 \n" +
@@ -43060,7 +46047,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\arewards\x18\n" +
 	" \x03(\v2\x0f.pcommon.RewardR\arewards\"O\n" +
 	"\x19SeminarExamTransitionList\x122\n" +
-	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xfd|\n" +
+	"\x04list\x18\x01 \x03(\v2\x1e.pmaster.SeminarExamTransitionR\x04list\"\xe7\x82\x01\n" +
 	"\aSetting\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x124\n" +
 	"\x15giftDefaultLimitCount\x18\x02 \x01(\x05R\x15giftDefaultLimitCount\x12B\n" +
@@ -43167,10 +46154,15 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x1bresearchRankingDisplayCount\x18\x8d\x01 \x01(\x05R\x1bresearchRankingDisplayCount\x12]\n" +
 	")homeCharacterRandomIdolViewConditionSetID\x18\x8f\x01 \x01(\tR)homeCharacterRandomIdolViewConditionSetID\x12A\n" +
 	"\x1bbadgeEditViewConditionSetID\x18\x90\x01 \x01(\tR\x1bbadgeEditViewConditionSetID\x121\n" +
-	"\x13userBlockLimitCount\x18\x91\x01 \x01(\x05R\x13userBlockLimitCount\x12u\n" +
+	"\x13userBlockLimitCount\x18\x91\x01 \x01(\x05R\x13userBlockLimitCount\x12=\n" +
+	"\x19selectionMemoryLimitCount\x18\x92\x01 \x01(\x05R\x19selectionMemoryLimitCount\x12u\n" +
 	"5sceneTransitionSDCharacterAnimationViewConditionSetID\x18\x93\x01 \x01(\tR5sceneTransitionSDCharacterAnimationViewConditionSetID\x12k\n" +
 	"0sceneTransitionSDCharacterAnimationFirstAssetIDs\x18\x94\x01 \x03(\tR0sceneTransitionSDCharacterAnimationFirstAssetIDs\x12m\n" +
-	"1sceneTransitionSDCharacterAnimationSecondAssetIDs\x18\x95\x01 \x03(\tR1sceneTransitionSDCharacterAnimationSecondAssetIDs\x12E\n" +
+	"1sceneTransitionSDCharacterAnimationSecondAssetIDs\x18\x95\x01 \x03(\tR1sceneTransitionSDCharacterAnimationSecondAssetIDs\x12/\n" +
+	"\x12researchPointLimit\x18\x9c\x01 \x01(\x05R\x12researchPointLimit\x12M\n" +
+	"!idolCardPrimaStellaLevelLimitRank\x18\x97\x01 \x01(\x05R!idolCardPrimaStellaLevelLimitRank\x12K\n" +
+	" idolCardPrimaStellaDearnessLevel\x18\x98\x01 \x01(\x05R idolCardPrimaStellaDearnessLevel\x129\n" +
+	"\x17profileReport2026Enable\x18\x9d\x01 \x01(\bR\x17profileReport2026Enable\x12E\n" +
 	"\x1dproduceDailyMemoryRentalLimit\x18\xe9\a \x01(\x05R\x1dproduceDailyMemoryRentalLimit\x12E\n" +
 	"\x1dproduceDailyFreeContinueCount\x18\xea\a \x01(\x05R\x1dproduceDailyFreeContinueCount\x125\n" +
 	"\x15produceContinueItemID\x18\xeb\a \x01(\tR\x15produceContinueItemID\x12a\n" +
@@ -43211,7 +46203,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"2produceAuditionTrendAssessmentPermilSeparateEnable\x18\x9b\b \x01(\bR2produceAuditionTrendAssessmentPermilSeparateEnable\x12=\n" +
 	"\x19produceMaxMemoryDeckCount\x18\x9c\b \x01(\x05R\x19produceMaxMemoryDeckCount\x12G\n" +
 	"\x1eproduceMaxSupportCardDeckCount\x18\x9d\b \x01(\x05R\x1eproduceMaxSupportCardDeckCount\x12k\n" +
-	"0produceNextIdolAuditionProEasyModeConditionSetID\x18\xa0\b \x01(\tR0produceNextIdolAuditionProEasyModeConditionSetID\x12g\n" +
+	"0produceNextIdolAuditionProEasyModeConditionSetID\x18\xa0\b \x01(\tR0produceNextIdolAuditionProEasyModeConditionSetID\x12u\n" +
+	"5produceHatsuboshiIdolFestivalFinalTargetProducerLevel\x18\xa1\b \x01(\x05R5produceHatsuboshiIdolFestivalFinalTargetProducerLevel\x12g\n" +
 	".gashaPickupStoryCampaignCharacterDearnessLevel\x18\xcd\b \x01(\x05R.gashaPickupStoryCampaignCharacterDearnessLevel\x12I\n" +
 	"\x1fgashaAnimationReversalSsrPermil\x18\xce\b \x01(\x05R\x1fgashaAnimationReversalSsrPermil\x12k\n" +
 	"0gashaAnimationReversalPickUpProduceIdolSsrPermil\x18\xcf\b \x01(\x05R0gashaAnimationReversalPickUpProduceIdolSsrPermil\x129\n" +
@@ -43258,7 +46251,11 @@ const file_pmaster_proto_rawDesc = "" +
 	"2pvpRateMemoryRecommendProduceItemCoefficientPermil\x18\xd0\r \x01(\x05R2pvpRateMemoryRecommendProduceItemCoefficientPermil\x12c\n" +
 	",pvpRateExamBattleAllSkipUnlockConditionSetID\x18\xd1\r \x01(\tR,pvpRateExamBattleAllSkipUnlockConditionSetID\x12O\n" +
 	"\"pvpRateRehearsalViewConditionSetID\x18\xd3\r \x01(\tR\"pvpRateRehearsalViewConditionSetID\x12?\n" +
-	"\x1apvpRateRankingDisplayCount\x18\xd4\r \x01(\x05R\x1apvpRateRankingDisplayCount\x12O\n" +
+	"\x1apvpRateRankingDisplayCount\x18\xd4\r \x01(\x05R\x1apvpRateRankingDisplayCount\x121\n" +
+	"\x13pvpRateMaxDeckCount\x18\xd8\r \x01(\x05R\x13pvpRateMaxDeckCount\x12?\n" +
+	"\x1apvpRateDeckNameLengthLimit\x18\xd9\r \x01(\x05R\x1apvpRateDeckNameLengthLimit\x12Y\n" +
+	"'pvpRateDeckRecommendFirstPriorityPermil\x18\xda\r \x01(\x05R'pvpRateDeckRecommendFirstPriorityPermil\x12[\n" +
+	"(pvpRateDeckRecommendSecondPriorityPermil\x18\xdb\r \x01(\x05R(pvpRateDeckRecommendSecondPriorityPermil\x12O\n" +
 	"\"examBattleSubMemoryParameterPermil\x18\x89\x0e \x01(\x05R\"examBattleSubMemoryParameterPermil\x12K\n" +
 	" examBattleSubMemoryStaminaPermil\x18\x8a\x0e \x01(\x05R examBattleSubMemoryStaminaPermil\x12]\n" +
 	")examBattleConditionThresholdMultipleScore\x18\x8b\x0e \x01(\x05R)examBattleConditionThresholdMultipleScore\x12?\n" +
@@ -43348,7 +46345,7 @@ const file_pmaster_proto_rawDesc = "" +
 	"\bpriceJpy\x18\v \x01(\x05R\bpriceJpy\x12 \n" +
 	"\vrecoverName\x18\x14 \x01(\tR\vrecoverName\";\n" +
 	"\x0fShopProductList\x12(\n" +
-	"\x04list\x18\x01 \x03(\v2\x14.pmaster.ShopProductR\x04list\"\x8e\x03\n" +
+	"\x04list\x18\x01 \x03(\v2\x14.pmaster.ShopProductR\x04list\"\xbe\x03\n" +
 	"\x05Story\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12$\n" +
 	"\x04type\x18\x02 \x01(\x0e2\x10.penum.StoryTypeR\x04type\x12 \n" +
@@ -43361,7 +46358,8 @@ const file_pmaster_proto_rawDesc = "" +
 	"\x12viewConditionSetId\x18\a \x01(\tR\x12viewConditionSetId\x122\n" +
 	"\x14unlockConditionSetId\x18\b \x01(\tR\x14unlockConditionSetId\x12'\n" +
 	"\x06reward\x18\f \x01(\v2\x0f.pcommon.RewardR\x06reward\x12(\n" +
-	"\x0fpreviousStoryId\x18\r \x01(\tR\x0fpreviousStoryId\x12\x14\n" +
+	"\x0fpreviousStoryId\x18\r \x01(\tR\x0fpreviousStoryId\x12.\n" +
+	"\x12dearnessStoryTitle\x18\x0e \x01(\tR\x12dearnessStoryTitle\x12\x14\n" +
 	"\x05order\x18c \x01(\x05R\x05order\"\xef\x02\n" +
 	"\n" +
 	"StoryEvent\x12\x0e\n" +
@@ -43800,7 +46798,7 @@ func file_pmaster_proto_rawDescGZIP() []byte {
 	return file_pmaster_proto_rawDescData
 }
 
-var file_pmaster_proto_msgTypes = make([]protoimpl.MessageInfo, 554)
+var file_pmaster_proto_msgTypes = make([]protoimpl.MessageInfo, 586)
 var file_pmaster_proto_goTypes = []any{
 	(*Achievement)(nil),                                        // 0: pmaster.Achievement
 	(*AchievementList)(nil),                                    // 1: pmaster.AchievementList
@@ -43890,1209 +46888,1285 @@ var file_pmaster_proto_goTypes = []any{
 	(*ExamSettingList)(nil),                                    // 85: pmaster.ExamSettingList
 	(*ExamSimulation)(nil),                                     // 86: pmaster.ExamSimulation
 	(*ExamSimulationList)(nil),                                 // 87: pmaster.ExamSimulationList
-	(*ExchangeItemCategory)(nil),                               // 88: pmaster.ExchangeItemCategory
-	(*ExchangeItemCategoryList)(nil),                           // 89: pmaster.ExchangeItemCategoryList
-	(*FeatureLock)(nil),                                        // 90: pmaster.FeatureLock
-	(*FeatureLockList)(nil),                                    // 91: pmaster.FeatureLockList
-	(*ForceAppVersion)(nil),                                    // 92: pmaster.ForceAppVersion
-	(*ForceAppVersionList)(nil),                                // 93: pmaster.ForceAppVersionList
-	(*GashaAnimationStep)(nil),                                 // 94: pmaster.GashaAnimationStep
-	(*GashaAnimationStepList)(nil),                             // 95: pmaster.GashaAnimationStepList
-	(*GashaButton)(nil),                                        // 96: pmaster.GashaButton
-	(*GashaButtonList)(nil),                                    // 97: pmaster.GashaButtonList
-	(*GuildDonationItem)(nil),                                  // 98: pmaster.GuildDonationItem
-	(*GuildDonationItemList)(nil),                              // 99: pmaster.GuildDonationItemList
-	(*GuildReaction)(nil),                                      // 100: pmaster.GuildReaction
-	(*GuildReactionList)(nil),                                  // 101: pmaster.GuildReactionList
-	(*GvgRaid)(nil),                                            // 102: pmaster.GvgRaid
-	(*GvgRaidList)(nil),                                        // 103: pmaster.GvgRaidList
-	(*GvgRaidStageLoop)(nil),                                   // 104: pmaster.GvgRaidStageLoop
-	(*GvgRaidStageLoopList)(nil),                               // 105: pmaster.GvgRaidStageLoopList
-	(*HelpCategory)(nil),                                       // 106: pmaster.HelpCategory
-	(*HelpCategoryList)(nil),                                   // 107: pmaster.HelpCategoryList
-	(*HelpContent)(nil),                                        // 108: pmaster.HelpContent
-	(*HelpContentList)(nil),                                    // 109: pmaster.HelpContentList
-	(*HelpInfo)(nil),                                           // 110: pmaster.HelpInfo
-	(*HelpInfoList)(nil),                                       // 111: pmaster.HelpInfoList
-	(*HomeBackground)(nil),                                     // 112: pmaster.HomeBackground
-	(*HomeBackgroundList)(nil),                                 // 113: pmaster.HomeBackgroundList
-	(*HomeBackgroundPrefabGroup)(nil),                          // 114: pmaster.HomeBackgroundPrefabGroup
-	(*HomeBackgroundPrefabGroupList)(nil),                      // 115: pmaster.HomeBackgroundPrefabGroupList
-	(*HomeBoard)(nil),                                          // 116: pmaster.HomeBoard
-	(*HomeBoardList)(nil),                                      // 117: pmaster.HomeBoardList
-	(*HomeMonitor)(nil),                                        // 118: pmaster.HomeMonitor
-	(*HomeMonitorList)(nil),                                    // 119: pmaster.HomeMonitorList
-	(*HomeMotion)(nil),                                         // 120: pmaster.HomeMotion
-	(*HomeMotionList)(nil),                                     // 121: pmaster.HomeMotionList
-	(*HomeTime)(nil),                                           // 122: pmaster.HomeTime
-	(*HomeTimeList)(nil),                                       // 123: pmaster.HomeTimeList
-	(*IdolCard)(nil),                                           // 124: pmaster.IdolCard
-	(*IdolCardLevelLimit)(nil),                                 // 125: pmaster.IdolCardLevelLimit
-	(*IdolCardLevelLimitList)(nil),                             // 126: pmaster.IdolCardLevelLimitList
-	(*IdolCardLevelLimitProduceSkill)(nil),                     // 127: pmaster.IdolCardLevelLimitProduceSkill
-	(*IdolCardLevelLimitProduceSkillList)(nil),                 // 128: pmaster.IdolCardLevelLimitProduceSkillList
-	(*IdolCardLevelLimitStatusUp)(nil),                         // 129: pmaster.IdolCardLevelLimitStatusUp
-	(*IdolCardLevelLimitStatusUpList)(nil),                     // 130: pmaster.IdolCardLevelLimitStatusUpList
-	(*IdolCardList)(nil),                                       // 131: pmaster.IdolCardList
-	(*IdolCardPiece)(nil),                                      // 132: pmaster.IdolCardPiece
-	(*IdolCardPieceList)(nil),                                  // 133: pmaster.IdolCardPieceList
-	(*IdolCardPieceQuantity)(nil),                              // 134: pmaster.IdolCardPieceQuantity
-	(*IdolCardPieceQuantityList)(nil),                          // 135: pmaster.IdolCardPieceQuantityList
-	(*IdolCardPotential)(nil),                                  // 136: pmaster.IdolCardPotential
-	(*IdolCardPotentialList)(nil),                              // 137: pmaster.IdolCardPotentialList
-	(*IdolCardPotentialProduceSkill)(nil),                      // 138: pmaster.IdolCardPotentialProduceSkill
-	(*IdolCardPotentialProduceSkillList)(nil),                  // 139: pmaster.IdolCardPotentialProduceSkillList
-	(*IdolCardSimulation)(nil),                                 // 140: pmaster.IdolCardSimulation
-	(*IdolCardSimulationList)(nil),                             // 141: pmaster.IdolCardSimulationList
-	(*IdolCardSkin)(nil),                                       // 142: pmaster.IdolCardSkin
-	(*IdolCardSkinList)(nil),                                   // 143: pmaster.IdolCardSkinList
-	(*IdolCardSkinSelectReward)(nil),                           // 144: pmaster.IdolCardSkinSelectReward
-	(*IdolCardSkinSelectRewardList)(nil),                       // 145: pmaster.IdolCardSkinSelectRewardList
-	(*IdolCardSkinUnit)(nil),                                   // 146: pmaster.IdolCardSkinUnit
-	(*IdolCardSkinUnitList)(nil),                               // 147: pmaster.IdolCardSkinUnitList
-	(*InvitationMission)(nil),                                  // 148: pmaster.InvitationMission
-	(*InvitationMissionList)(nil),                              // 149: pmaster.InvitationMissionList
-	(*InvitationPointReward)(nil),                              // 150: pmaster.InvitationPointReward
-	(*InvitationPointRewardList)(nil),                          // 151: pmaster.InvitationPointRewardList
-	(*Item)(nil),                                               // 152: pmaster.Item
-	(*ItemList)(nil),                                           // 153: pmaster.ItemList
-	(*JewelConsumptionCount)(nil),                              // 154: pmaster.JewelConsumptionCount
-	(*JewelConsumptionCountList)(nil),                          // 155: pmaster.JewelConsumptionCountList
-	(*LimitItem)(nil),                                          // 156: pmaster.LimitItem
-	(*LimitItemList)(nil),                                      // 157: pmaster.LimitItemList
-	(*Localization)(nil),                                       // 158: pmaster.Localization
-	(*LocalizationList)(nil),                                   // 159: pmaster.LocalizationList
-	(*LoginBonusMotion)(nil),                                   // 160: pmaster.LoginBonusMotion
-	(*LoginBonusMotionList)(nil),                               // 161: pmaster.LoginBonusMotionList
-	(*MainStoryChapter)(nil),                                   // 162: pmaster.MainStoryChapter
-	(*MainStoryChapterList)(nil),                               // 163: pmaster.MainStoryChapterList
-	(*MainStoryPart)(nil),                                      // 164: pmaster.MainStoryPart
-	(*MainStoryPartList)(nil),                                  // 165: pmaster.MainStoryPartList
-	(*MainTask)(nil),                                           // 166: pmaster.MainTask
-	(*MainTaskGroup)(nil),                                      // 167: pmaster.MainTaskGroup
-	(*MainTaskGroupList)(nil),                                  // 168: pmaster.MainTaskGroupList
-	(*MainTaskIcon)(nil),                                       // 169: pmaster.MainTaskIcon
-	(*MainTaskIconList)(nil),                                   // 170: pmaster.MainTaskIconList
-	(*MainTaskList)(nil),                                       // 171: pmaster.MainTaskList
-	(*Media)(nil),                                              // 172: pmaster.Media
-	(*MediaExternalLink)(nil),                                  // 173: pmaster.MediaExternalLink
-	(*MediaExternalLinkList)(nil),                              // 174: pmaster.MediaExternalLinkList
-	(*MediaList)(nil),                                          // 175: pmaster.MediaList
-	(*MeishiBaseAsset)(nil),                                    // 176: pmaster.MeishiBaseAsset
-	(*MeishiBaseAssetList)(nil),                                // 177: pmaster.MeishiBaseAssetList
-	(*MeishiBaseColor)(nil),                                    // 178: pmaster.MeishiBaseColor
-	(*MeishiBaseColorList)(nil),                                // 179: pmaster.MeishiBaseColorList
-	(*MeishiIllustrationAsset)(nil),                            // 180: pmaster.MeishiIllustrationAsset
-	(*MeishiIllustrationAssetList)(nil),                        // 181: pmaster.MeishiIllustrationAssetList
-	(*MeishiTextColor)(nil),                                    // 182: pmaster.MeishiTextColor
-	(*MeishiTextColorList)(nil),                                // 183: pmaster.MeishiTextColorList
-	(*MemoryAbility)(nil),                                      // 184: pmaster.MemoryAbility
-	(*MemoryAbilityList)(nil),                                  // 185: pmaster.MemoryAbilityList
-	(*MemoryExchangeItem)(nil),                                 // 186: pmaster.MemoryExchangeItem
-	(*MemoryExchangeItemList)(nil),                             // 187: pmaster.MemoryExchangeItemList
-	(*MemoryExchangeItemQuantity)(nil),                         // 188: pmaster.MemoryExchangeItemQuantity
-	(*MemoryExchangeItemQuantityList)(nil),                     // 189: pmaster.MemoryExchangeItemQuantityList
-	(*MemoryGift)(nil),                                         // 190: pmaster.MemoryGift
-	(*MemoryGiftList)(nil),                                     // 191: pmaster.MemoryGiftList
-	(*MemoryTag)(nil),                                          // 192: pmaster.MemoryTag
-	(*MemoryTagList)(nil),                                      // 193: pmaster.MemoryTagList
-	(*Mission)(nil),                                            // 194: pmaster.Mission
-	(*MissionDailyRelease)(nil),                                // 195: pmaster.MissionDailyRelease
-	(*MissionDailyReleaseGroup)(nil),                           // 196: pmaster.MissionDailyReleaseGroup
-	(*MissionDailyReleaseGroupList)(nil),                       // 197: pmaster.MissionDailyReleaseGroupList
-	(*MissionDailyReleaseList)(nil),                            // 198: pmaster.MissionDailyReleaseList
-	(*MissionGroup)(nil),                                       // 199: pmaster.MissionGroup
-	(*MissionGroupList)(nil),                                   // 200: pmaster.MissionGroupList
-	(*MissionList)(nil),                                        // 201: pmaster.MissionList
-	(*MissionPanelSheet)(nil),                                  // 202: pmaster.MissionPanelSheet
-	(*MissionPanelSheetGroup)(nil),                             // 203: pmaster.MissionPanelSheetGroup
-	(*MissionPanelSheetGroupList)(nil),                         // 204: pmaster.MissionPanelSheetGroupList
-	(*MissionPanelSheetList)(nil),                              // 205: pmaster.MissionPanelSheetList
-	(*MissionPass)(nil),                                        // 206: pmaster.MissionPass
-	(*MissionPassList)(nil),                                    // 207: pmaster.MissionPassList
-	(*MissionPassPoint)(nil),                                   // 208: pmaster.MissionPassPoint
-	(*MissionPassPointList)(nil),                               // 209: pmaster.MissionPassPointList
-	(*MissionPassProgress)(nil),                                // 210: pmaster.MissionPassProgress
-	(*MissionPassProgressList)(nil),                            // 211: pmaster.MissionPassProgressList
-	(*MissionPoint)(nil),                                       // 212: pmaster.MissionPoint
-	(*MissionPointList)(nil),                                   // 213: pmaster.MissionPointList
-	(*MissionPointRewardSet)(nil),                              // 214: pmaster.MissionPointRewardSet
-	(*MissionPointRewardSetList)(nil),                          // 215: pmaster.MissionPointRewardSetList
-	(*MissionProgress)(nil),                                    // 216: pmaster.MissionProgress
-	(*MissionProgressList)(nil),                                // 217: pmaster.MissionProgressList
-	(*Money)(nil),                                              // 218: pmaster.Money
-	(*MoneyList)(nil),                                          // 219: pmaster.MoneyList
-	(*Music)(nil),                                              // 220: pmaster.Music
-	(*MusicHot)(nil),                                           // 221: pmaster.MusicHot
-	(*MusicHotList)(nil),                                       // 222: pmaster.MusicHotList
-	(*MusicList)(nil),                                          // 223: pmaster.MusicList
-	(*MusicSinger)(nil),                                        // 224: pmaster.MusicSinger
-	(*MusicSingerList)(nil),                                    // 225: pmaster.MusicSingerList
-	(*PhotoBackground)(nil),                                    // 226: pmaster.PhotoBackground
-	(*PhotoBackgroundList)(nil),                                // 227: pmaster.PhotoBackgroundList
-	(*PhotoFacialLookTarget)(nil),                              // 228: pmaster.PhotoFacialLookTarget
-	(*PhotoFacialLookTargetList)(nil),                          // 229: pmaster.PhotoFacialLookTargetList
-	(*PhotoFacialMotionGroup)(nil),                             // 230: pmaster.PhotoFacialMotionGroup
-	(*PhotoFacialMotionGroupList)(nil),                         // 231: pmaster.PhotoFacialMotionGroupList
-	(*PhotoLookEffectorCharacter)(nil),                         // 232: pmaster.PhotoLookEffectorCharacter
-	(*PhotoLookEffectorCharacterList)(nil),                     // 233: pmaster.PhotoLookEffectorCharacterList
-	(*PhotoLookTargetVoiceCharacter)(nil),                      // 234: pmaster.PhotoLookTargetVoiceCharacter
-	(*PhotoLookTargetVoiceCharacterList)(nil),                  // 235: pmaster.PhotoLookTargetVoiceCharacterList
-	(*PhotoPose)(nil),                                          // 236: pmaster.PhotoPose
-	(*PhotoPoseList)(nil),                                      // 237: pmaster.PhotoPoseList
-	(*PhotoReactionVoiceGroup)(nil),                            // 238: pmaster.PhotoReactionVoiceGroup
-	(*PhotoReactionVoiceGroupList)(nil),                        // 239: pmaster.PhotoReactionVoiceGroupList
-	(*PhotoWaitVoiceCharacter)(nil),                            // 240: pmaster.PhotoWaitVoiceCharacter
-	(*PhotoWaitVoiceCharacterList)(nil),                        // 241: pmaster.PhotoWaitVoiceCharacterList
-	(*PhotoWaitVoiceGroup)(nil),                                // 242: pmaster.PhotoWaitVoiceGroup
-	(*PhotoWaitVoiceGroupList)(nil),                            // 243: pmaster.PhotoWaitVoiceGroupList
-	(*Produce)(nil),                                            // 244: pmaster.Produce
-	(*ProduceAdv)(nil),                                         // 245: pmaster.ProduceAdv
-	(*ProduceAdvList)(nil),                                     // 246: pmaster.ProduceAdvList
-	(*ProduceCard)(nil),                                        // 247: pmaster.ProduceCard
-	(*ProduceCardConversion)(nil),                              // 248: pmaster.ProduceCardConversion
-	(*ProduceCardConversionList)(nil),                          // 249: pmaster.ProduceCardConversionList
-	(*ProduceCardCustomize)(nil),                               // 250: pmaster.ProduceCardCustomize
-	(*ProduceCardCustomizeList)(nil),                           // 251: pmaster.ProduceCardCustomizeList
-	(*ProduceCardCustomizeRarityEvaluation)(nil),               // 252: pmaster.ProduceCardCustomizeRarityEvaluation
-	(*ProduceCardCustomizeRarityEvaluationList)(nil),           // 253: pmaster.ProduceCardCustomizeRarityEvaluationList
-	(*ProduceCardGrowEffect)(nil),                              // 254: pmaster.ProduceCardGrowEffect
-	(*ProduceCardGrowEffectList)(nil),                          // 255: pmaster.ProduceCardGrowEffectList
-	(*ProduceCardList)(nil),                                    // 256: pmaster.ProduceCardList
-	(*ProduceCardPool)(nil),                                    // 257: pmaster.ProduceCardPool
-	(*ProduceCardPoolList)(nil),                                // 258: pmaster.ProduceCardPoolList
-	(*ProduceCardRandomPool)(nil),                              // 259: pmaster.ProduceCardRandomPool
-	(*ProduceCardRandomPoolList)(nil),                          // 260: pmaster.ProduceCardRandomPoolList
-	(*ProduceCardSearch)(nil),                                  // 261: pmaster.ProduceCardSearch
-	(*ProduceCardSearchList)(nil),                              // 262: pmaster.ProduceCardSearchList
-	(*ProduceCardSimulation)(nil),                              // 263: pmaster.ProduceCardSimulation
-	(*ProduceCardSimulationGroup)(nil),                         // 264: pmaster.ProduceCardSimulationGroup
-	(*ProduceCardSimulationGroupList)(nil),                     // 265: pmaster.ProduceCardSimulationGroupList
-	(*ProduceCardSimulationList)(nil),                          // 266: pmaster.ProduceCardSimulationList
-	(*ProduceCardStatusEffect)(nil),                            // 267: pmaster.ProduceCardStatusEffect
-	(*ProduceCardStatusEffectList)(nil),                        // 268: pmaster.ProduceCardStatusEffectList
-	(*ProduceCardStatusEnchant)(nil),                           // 269: pmaster.ProduceCardStatusEnchant
-	(*ProduceCardStatusEnchantList)(nil),                       // 270: pmaster.ProduceCardStatusEnchantList
-	(*ProduceCardTag)(nil),                                     // 271: pmaster.ProduceCardTag
-	(*ProduceCardTagList)(nil),                                 // 272: pmaster.ProduceCardTagList
-	(*ProduceChallengeCharacter)(nil),                          // 273: pmaster.ProduceChallengeCharacter
-	(*ProduceChallengeCharacterList)(nil),                      // 274: pmaster.ProduceChallengeCharacterList
-	(*ProduceChallengeSlot)(nil),                               // 275: pmaster.ProduceChallengeSlot
-	(*ProduceChallengeSlotList)(nil),                           // 276: pmaster.ProduceChallengeSlotList
-	(*ProduceCharacter)(nil),                                   // 277: pmaster.ProduceCharacter
-	(*ProduceCharacterAdv)(nil),                                // 278: pmaster.ProduceCharacterAdv
-	(*ProduceCharacterAdvList)(nil),                            // 279: pmaster.ProduceCharacterAdvList
-	(*ProduceCharacterList)(nil),                               // 280: pmaster.ProduceCharacterList
-	(*ProduceDescriptionExamEffect)(nil),                       // 281: pmaster.ProduceDescriptionExamEffect
-	(*ProduceDescriptionExamEffectList)(nil),                   // 282: pmaster.ProduceDescriptionExamEffectList
-	(*ProduceDescriptionLabel)(nil),                            // 283: pmaster.ProduceDescriptionLabel
-	(*ProduceDescriptionLabelList)(nil),                        // 284: pmaster.ProduceDescriptionLabelList
-	(*ProduceDescriptionProduceCardGrowEffect)(nil),            // 285: pmaster.ProduceDescriptionProduceCardGrowEffect
-	(*ProduceDescriptionProduceCardGrowEffectList)(nil),        // 286: pmaster.ProduceDescriptionProduceCardGrowEffectList
-	(*ProduceDescriptionProduceCardMovePosition)(nil),          // 287: pmaster.ProduceDescriptionProduceCardMovePosition
-	(*ProduceDescriptionProduceCardMovePositionList)(nil),      // 288: pmaster.ProduceDescriptionProduceCardMovePositionList
-	(*ProduceDescriptionProduceEffect)(nil),                    // 289: pmaster.ProduceDescriptionProduceEffect
-	(*ProduceDescriptionProduceEffectList)(nil),                // 290: pmaster.ProduceDescriptionProduceEffectList
-	(*ProduceDescriptionProducePlan)(nil),                      // 291: pmaster.ProduceDescriptionProducePlan
-	(*ProduceDescriptionProducePlanList)(nil),                  // 292: pmaster.ProduceDescriptionProducePlanList
-	(*ProduceDescriptionProduceStep)(nil),                      // 293: pmaster.ProduceDescriptionProduceStep
-	(*ProduceDescriptionProduceStepList)(nil),                  // 294: pmaster.ProduceDescriptionProduceStepList
-	(*ProduceDescriptionSwap)(nil),                             // 295: pmaster.ProduceDescriptionSwap
-	(*ProduceDescriptionSwapList)(nil),                         // 296: pmaster.ProduceDescriptionSwapList
-	(*ProduceDrink)(nil),                                       // 297: pmaster.ProduceDrink
-	(*ProduceDrinkEffect)(nil),                                 // 298: pmaster.ProduceDrinkEffect
-	(*ProduceDrinkEffectList)(nil),                             // 299: pmaster.ProduceDrinkEffectList
-	(*ProduceDrinkList)(nil),                                   // 300: pmaster.ProduceDrinkList
-	(*ProduceEffect)(nil),                                      // 301: pmaster.ProduceEffect
-	(*ProduceEffectIcon)(nil),                                  // 302: pmaster.ProduceEffectIcon
-	(*ProduceEffectIconList)(nil),                              // 303: pmaster.ProduceEffectIconList
-	(*ProduceEffectList)(nil),                                  // 304: pmaster.ProduceEffectList
-	(*ProduceEventCharacterGrowth)(nil),                        // 305: pmaster.ProduceEventCharacterGrowth
-	(*ProduceEventCharacterGrowthList)(nil),                    // 306: pmaster.ProduceEventCharacterGrowthList
-	(*ProduceEventSupportCard)(nil),                            // 307: pmaster.ProduceEventSupportCard
-	(*ProduceEventSupportCardList)(nil),                        // 308: pmaster.ProduceEventSupportCardList
-	(*ProduceExamAutoCardSelectEvaluation)(nil),                // 309: pmaster.ProduceExamAutoCardSelectEvaluation
-	(*ProduceExamAutoCardSelectEvaluationList)(nil),            // 310: pmaster.ProduceExamAutoCardSelectEvaluationList
-	(*ProduceExamAutoEvaluation)(nil),                          // 311: pmaster.ProduceExamAutoEvaluation
-	(*ProduceExamAutoEvaluationList)(nil),                      // 312: pmaster.ProduceExamAutoEvaluationList
-	(*ProduceExamAutoGrowEffectEvaluation)(nil),                // 313: pmaster.ProduceExamAutoGrowEffectEvaluation
-	(*ProduceExamAutoGrowEffectEvaluationList)(nil),            // 314: pmaster.ProduceExamAutoGrowEffectEvaluationList
-	(*ProduceExamAutoPlayCardEvaluation)(nil),                  // 315: pmaster.ProduceExamAutoPlayCardEvaluation
-	(*ProduceExamAutoPlayCardEvaluationList)(nil),              // 316: pmaster.ProduceExamAutoPlayCardEvaluationList
-	(*ProduceExamAutoPlayProduceCardEvaluation)(nil),           // 317: pmaster.ProduceExamAutoPlayProduceCardEvaluation
-	(*ProduceExamAutoPlayProduceCardEvaluationList)(nil),       // 318: pmaster.ProduceExamAutoPlayProduceCardEvaluationList
-	(*ProduceExamAutoResourceEvaluation)(nil),                  // 319: pmaster.ProduceExamAutoResourceEvaluation
-	(*ProduceExamAutoResourceEvaluationList)(nil),              // 320: pmaster.ProduceExamAutoResourceEvaluationList
-	(*ProduceExamAutoTriggerEvaluation)(nil),                   // 321: pmaster.ProduceExamAutoTriggerEvaluation
-	(*ProduceExamAutoTriggerEvaluationList)(nil),               // 322: pmaster.ProduceExamAutoTriggerEvaluationList
-	(*ProduceExamBattleConfig)(nil),                            // 323: pmaster.ProduceExamBattleConfig
-	(*ProduceExamBattleConfigList)(nil),                        // 324: pmaster.ProduceExamBattleConfigList
-	(*ProduceExamBattleNpcGroup)(nil),                          // 325: pmaster.ProduceExamBattleNpcGroup
-	(*ProduceExamBattleNpcGroupList)(nil),                      // 326: pmaster.ProduceExamBattleNpcGroupList
-	(*ProduceExamBattleNpcMob)(nil),                            // 327: pmaster.ProduceExamBattleNpcMob
-	(*ProduceExamBattleNpcMobList)(nil),                        // 328: pmaster.ProduceExamBattleNpcMobList
-	(*ProduceExamBattleScoreConfig)(nil),                       // 329: pmaster.ProduceExamBattleScoreConfig
-	(*ProduceExamBattleScoreConfigList)(nil),                   // 330: pmaster.ProduceExamBattleScoreConfigList
-	(*ProduceExamEffect)(nil),                                  // 331: pmaster.ProduceExamEffect
-	(*ProduceExamEffectList)(nil),                              // 332: pmaster.ProduceExamEffectList
-	(*ProduceExamGimmickEffectGroup)(nil),                      // 333: pmaster.ProduceExamGimmickEffectGroup
-	(*ProduceExamGimmickEffectGroupList)(nil),                  // 334: pmaster.ProduceExamGimmickEffectGroupList
-	(*ProduceExamStatusEnchant)(nil),                           // 335: pmaster.ProduceExamStatusEnchant
-	(*ProduceExamStatusEnchantList)(nil),                       // 336: pmaster.ProduceExamStatusEnchantList
-	(*ProduceExamTrigger)(nil),                                 // 337: pmaster.ProduceExamTrigger
-	(*ProduceExamTriggerList)(nil),                             // 338: pmaster.ProduceExamTriggerList
-	(*ProduceGrade)(nil),                                       // 339: pmaster.ProduceGrade
-	(*ProduceGradeList)(nil),                                   // 340: pmaster.ProduceGradeList
-	(*ProduceGroup)(nil),                                       // 341: pmaster.ProduceGroup
-	(*ProduceGroupList)(nil),                                   // 342: pmaster.ProduceGroupList
-	(*ProduceGroupLiveCommon)(nil),                             // 343: pmaster.ProduceGroupLiveCommon
-	(*ProduceGroupLiveCommonList)(nil),                         // 344: pmaster.ProduceGroupLiveCommonList
-	(*ProduceGuide)(nil),                                       // 345: pmaster.ProduceGuide
-	(*ProduceGuideList)(nil),                                   // 346: pmaster.ProduceGuideList
-	(*ProduceGuideProduceCardCategory)(nil),                    // 347: pmaster.ProduceGuideProduceCardCategory
-	(*ProduceGuideProduceCardCategoryGroup)(nil),               // 348: pmaster.ProduceGuideProduceCardCategoryGroup
-	(*ProduceGuideProduceCardCategoryGroupList)(nil),           // 349: pmaster.ProduceGuideProduceCardCategoryGroupList
-	(*ProduceGuideProduceCardCategoryList)(nil),                // 350: pmaster.ProduceGuideProduceCardCategoryList
-	(*ProduceGuideProduceCardSampleDeckCategory)(nil),          // 351: pmaster.ProduceGuideProduceCardSampleDeckCategory
-	(*ProduceGuideProduceCardSampleDeckCategoryGroup)(nil),     // 352: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroup
-	(*ProduceGuideProduceCardSampleDeckCategoryGroupList)(nil), // 353: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroupList
-	(*ProduceGuideProduceCardSampleDeckCategoryList)(nil),      // 354: pmaster.ProduceGuideProduceCardSampleDeckCategoryList
-	(*ProduceHighScore)(nil),                                   // 355: pmaster.ProduceHighScore
-	(*ProduceHighScoreList)(nil),                               // 356: pmaster.ProduceHighScoreList
-	(*ProduceInitialDeck)(nil),                                 // 357: pmaster.ProduceInitialDeck
-	(*ProduceInitialDeckList)(nil),                             // 358: pmaster.ProduceInitialDeckList
-	(*ProduceItem)(nil),                                        // 359: pmaster.ProduceItem
-	(*ProduceItemChallengeGroup)(nil),                          // 360: pmaster.ProduceItemChallengeGroup
-	(*ProduceItemChallengeGroupList)(nil),                      // 361: pmaster.ProduceItemChallengeGroupList
-	(*ProduceItemEffect)(nil),                                  // 362: pmaster.ProduceItemEffect
-	(*ProduceItemEffectList)(nil),                              // 363: pmaster.ProduceItemEffectList
-	(*ProduceItemList)(nil),                                    // 364: pmaster.ProduceItemList
-	(*ProduceItemSimulation)(nil),                              // 365: pmaster.ProduceItemSimulation
-	(*ProduceItemSimulationGroup)(nil),                         // 366: pmaster.ProduceItemSimulationGroup
-	(*ProduceItemSimulationGroupList)(nil),                     // 367: pmaster.ProduceItemSimulationGroupList
-	(*ProduceItemSimulationList)(nil),                          // 368: pmaster.ProduceItemSimulationList
-	(*ProduceLegendProduceCard)(nil),                           // 369: pmaster.ProduceLegendProduceCard
-	(*ProduceLegendProduceCardList)(nil),                       // 370: pmaster.ProduceLegendProduceCardList
-	(*ProduceList)(nil),                                        // 371: pmaster.ProduceList
-	(*ProduceLive)(nil),                                        // 372: pmaster.ProduceLive
-	(*ProduceLiveList)(nil),                                    // 373: pmaster.ProduceLiveList
-	(*ProduceNavigation)(nil),                                  // 374: pmaster.ProduceNavigation
-	(*ProduceNavigationList)(nil),                              // 375: pmaster.ProduceNavigationList
-	(*ProduceNextIdolAuditionMasterRankingSeason)(nil),         // 376: pmaster.ProduceNextIdolAuditionMasterRankingSeason
-	(*ProduceNextIdolAuditionMasterRankingSeasonList)(nil),     // 377: pmaster.ProduceNextIdolAuditionMasterRankingSeasonList
-	(*ProduceResultMotion)(nil),                                // 378: pmaster.ProduceResultMotion
-	(*ProduceResultMotionList)(nil),                            // 379: pmaster.ProduceResultMotionList
-	(*ProduceScheduleBackground)(nil),                          // 380: pmaster.ProduceScheduleBackground
-	(*ProduceScheduleBackgroundList)(nil),                      // 381: pmaster.ProduceScheduleBackgroundList
-	(*ProduceScheduleMotion)(nil),                              // 382: pmaster.ProduceScheduleMotion
-	(*ProduceScheduleMotionList)(nil),                          // 383: pmaster.ProduceScheduleMotionList
-	(*ProduceSeason)(nil),                                      // 384: pmaster.ProduceSeason
-	(*ProduceSeasonList)(nil),                                  // 385: pmaster.ProduceSeasonList
-	(*ProduceSeasonZeroGrade)(nil),                             // 386: pmaster.ProduceSeasonZeroGrade
-	(*ProduceSeasonZeroGradeList)(nil),                         // 387: pmaster.ProduceSeasonZeroGradeList
-	(*ProduceSetting)(nil),                                     // 388: pmaster.ProduceSetting
-	(*ProduceSettingList)(nil),                                 // 389: pmaster.ProduceSettingList
-	(*ProduceSkill)(nil),                                       // 390: pmaster.ProduceSkill
-	(*ProduceSkillList)(nil),                                   // 391: pmaster.ProduceSkillList
-	(*ProduceStartMotion)(nil),                                 // 392: pmaster.ProduceStartMotion
-	(*ProduceStartMotionList)(nil),                             // 393: pmaster.ProduceStartMotionList
-	(*ProduceStepAuditionCharacter)(nil),                       // 394: pmaster.ProduceStepAuditionCharacter
-	(*ProduceStepAuditionCharacterList)(nil),                   // 395: pmaster.ProduceStepAuditionCharacterList
-	(*ProduceStepAuditionDifficulty)(nil),                      // 396: pmaster.ProduceStepAuditionDifficulty
-	(*ProduceStepAuditionDifficultyList)(nil),                  // 397: pmaster.ProduceStepAuditionDifficultyList
-	(*ProduceStepAuditionMotion)(nil),                          // 398: pmaster.ProduceStepAuditionMotion
-	(*ProduceStepAuditionMotionList)(nil),                      // 399: pmaster.ProduceStepAuditionMotionList
-	(*ProduceStepEventDetail)(nil),                             // 400: pmaster.ProduceStepEventDetail
-	(*ProduceStepEventDetailList)(nil),                         // 401: pmaster.ProduceStepEventDetailList
-	(*ProduceStepEventSuggestion)(nil),                         // 402: pmaster.ProduceStepEventSuggestion
-	(*ProduceStepEventSuggestionList)(nil),                     // 403: pmaster.ProduceStepEventSuggestionList
-	(*ProduceStepFanPresentMotion)(nil),                        // 404: pmaster.ProduceStepFanPresentMotion
-	(*ProduceStepFanPresentMotionList)(nil),                    // 405: pmaster.ProduceStepFanPresentMotionList
-	(*ProduceStepLesson)(nil),                                  // 406: pmaster.ProduceStepLesson
-	(*ProduceStepLessonLevel)(nil),                             // 407: pmaster.ProduceStepLessonLevel
-	(*ProduceStepLessonLevelList)(nil),                         // 408: pmaster.ProduceStepLessonLevelList
-	(*ProduceStepLessonList)(nil),                              // 409: pmaster.ProduceStepLessonList
-	(*ProduceStepSelfLesson)(nil),                              // 410: pmaster.ProduceStepSelfLesson
-	(*ProduceStepSelfLessonList)(nil),                          // 411: pmaster.ProduceStepSelfLessonList
-	(*ProduceStepSelfLessonMotion)(nil),                        // 412: pmaster.ProduceStepSelfLessonMotion
-	(*ProduceStepSelfLessonMotionList)(nil),                    // 413: pmaster.ProduceStepSelfLessonMotionList
-	(*ProduceStepTransition)(nil),                              // 414: pmaster.ProduceStepTransition
-	(*ProduceStepTransitionList)(nil),                          // 415: pmaster.ProduceStepTransitionList
-	(*ProduceStory)(nil),                                       // 416: pmaster.ProduceStory
-	(*ProduceStoryGroup)(nil),                                  // 417: pmaster.ProduceStoryGroup
-	(*ProduceStoryGroupList)(nil),                              // 418: pmaster.ProduceStoryGroupList
-	(*ProduceStoryList)(nil),                                   // 419: pmaster.ProduceStoryList
-	(*ProduceTrigger)(nil),                                     // 420: pmaster.ProduceTrigger
-	(*ProduceTriggerList)(nil),                                 // 421: pmaster.ProduceTriggerList
-	(*ProduceWeekMotion)(nil),                                  // 422: pmaster.ProduceWeekMotion
-	(*ProduceWeekMotionList)(nil),                              // 423: pmaster.ProduceWeekMotionList
-	(*ProducerLevel)(nil),                                      // 424: pmaster.ProducerLevel
-	(*ProducerLevelList)(nil),                                  // 425: pmaster.ProducerLevelList
-	(*ProducerRanking)(nil),                                    // 426: pmaster.ProducerRanking
-	(*ProducerRankingCharacter)(nil),                           // 427: pmaster.ProducerRankingCharacter
-	(*ProducerRankingCharacterList)(nil),                       // 428: pmaster.ProducerRankingCharacterList
-	(*ProducerRankingList)(nil),                                // 429: pmaster.ProducerRankingList
-	(*ProducerRankingProduce)(nil),                             // 430: pmaster.ProducerRankingProduce
-	(*ProducerRankingProduceList)(nil),                         // 431: pmaster.ProducerRankingProduceList
-	(*ProducerRankingRankGrade)(nil),                           // 432: pmaster.ProducerRankingRankGrade
-	(*ProducerRankingRankGradeList)(nil),                       // 433: pmaster.ProducerRankingRankGradeList
-	(*ProducerRankingTower)(nil),                               // 434: pmaster.ProducerRankingTower
-	(*ProducerRankingTowerList)(nil),                           // 435: pmaster.ProducerRankingTowerList
-	(*PvpRateCommonProduceCard)(nil),                           // 436: pmaster.PvpRateCommonProduceCard
-	(*PvpRateCommonProduceCardList)(nil),                       // 437: pmaster.PvpRateCommonProduceCardList
-	(*PvpRateConfig)(nil),                                      // 438: pmaster.PvpRateConfig
-	(*PvpRateConfigList)(nil),                                  // 439: pmaster.PvpRateConfigList
-	(*PvpRateMotion)(nil),                                      // 440: pmaster.PvpRateMotion
-	(*PvpRateMotionList)(nil),                                  // 441: pmaster.PvpRateMotionList
-	(*PvpRateUnitSlotUnlock)(nil),                              // 442: pmaster.PvpRateUnitSlotUnlock
-	(*PvpRateUnitSlotUnlockList)(nil),                          // 443: pmaster.PvpRateUnitSlotUnlockList
-	(*ResearchMemoryRerollCost)(nil),                           // 444: pmaster.ResearchMemoryRerollCost
-	(*ResearchMemoryRerollCostList)(nil),                       // 445: pmaster.ResearchMemoryRerollCostList
-	(*ResultGradePattern)(nil),                                 // 446: pmaster.ResultGradePattern
-	(*ResultGradePatternList)(nil),                             // 447: pmaster.ResultGradePatternList
-	(*Rule)(nil),                                               // 448: pmaster.Rule
-	(*RuleList)(nil),                                           // 449: pmaster.RuleList
-	(*SeminarExamTransition)(nil),                              // 450: pmaster.SeminarExamTransition
-	(*SeminarExamTransitionList)(nil),                          // 451: pmaster.SeminarExamTransitionList
-	(*Setting)(nil),                                            // 452: pmaster.Setting
-	(*SettingList)(nil),                                        // 453: pmaster.SettingList
-	(*Shop)(nil),                                               // 454: pmaster.Shop
-	(*ShopItem)(nil),                                           // 455: pmaster.ShopItem
-	(*ShopItemList)(nil),                                       // 456: pmaster.ShopItemList
-	(*ShopList)(nil),                                           // 457: pmaster.ShopList
-	(*ShopProduct)(nil),                                        // 458: pmaster.ShopProduct
-	(*ShopProductList)(nil),                                    // 459: pmaster.ShopProductList
-	(*Story)(nil),                                              // 460: pmaster.Story
-	(*StoryEvent)(nil),                                         // 461: pmaster.StoryEvent
-	(*StoryEventList)(nil),                                     // 462: pmaster.StoryEventList
-	(*StoryGroup)(nil),                                         // 463: pmaster.StoryGroup
-	(*StoryGroupList)(nil),                                     // 464: pmaster.StoryGroupList
-	(*StoryList)(nil),                                          // 465: pmaster.StoryList
-	(*SupportCard)(nil),                                        // 466: pmaster.SupportCard
-	(*SupportCardBonus)(nil),                                   // 467: pmaster.SupportCardBonus
-	(*SupportCardBonusList)(nil),                               // 468: pmaster.SupportCardBonusList
-	(*SupportCardFlavor)(nil),                                  // 469: pmaster.SupportCardFlavor
-	(*SupportCardFlavorList)(nil),                              // 470: pmaster.SupportCardFlavorList
-	(*SupportCardLevel)(nil),                                   // 471: pmaster.SupportCardLevel
-	(*SupportCardLevelLimit)(nil),                              // 472: pmaster.SupportCardLevelLimit
-	(*SupportCardLevelLimitList)(nil),                          // 473: pmaster.SupportCardLevelLimitList
-	(*SupportCardLevelList)(nil),                               // 474: pmaster.SupportCardLevelList
-	(*SupportCardList)(nil),                                    // 475: pmaster.SupportCardList
-	(*SupportCardProduceSkillFilter)(nil),                      // 476: pmaster.SupportCardProduceSkillFilter
-	(*SupportCardProduceSkillFilterList)(nil),                  // 477: pmaster.SupportCardProduceSkillFilterList
-	(*SupportCardProduceSkillLevelAssist)(nil),                 // 478: pmaster.SupportCardProduceSkillLevelAssist
-	(*SupportCardProduceSkillLevelAssistList)(nil),             // 479: pmaster.SupportCardProduceSkillLevelAssistList
-	(*SupportCardProduceSkillLevelDance)(nil),                  // 480: pmaster.SupportCardProduceSkillLevelDance
-	(*SupportCardProduceSkillLevelDanceList)(nil),              // 481: pmaster.SupportCardProduceSkillLevelDanceList
-	(*SupportCardProduceSkillLevelVisual)(nil),                 // 482: pmaster.SupportCardProduceSkillLevelVisual
-	(*SupportCardProduceSkillLevelVisualList)(nil),             // 483: pmaster.SupportCardProduceSkillLevelVisualList
-	(*SupportCardProduceSkillLevelVocal)(nil),                  // 484: pmaster.SupportCardProduceSkillLevelVocal
-	(*SupportCardProduceSkillLevelVocalList)(nil),              // 485: pmaster.SupportCardProduceSkillLevelVocalList
-	(*SupportCardSimulation)(nil),                              // 486: pmaster.SupportCardSimulation
-	(*SupportCardSimulationGroup)(nil),                         // 487: pmaster.SupportCardSimulationGroup
-	(*SupportCardSimulationGroupList)(nil),                     // 488: pmaster.SupportCardSimulationGroupList
-	(*SupportCardSimulationList)(nil),                          // 489: pmaster.SupportCardSimulationList
-	(*Terms)(nil),                                              // 490: pmaster.Terms
-	(*TermsList)(nil),                                          // 491: pmaster.TermsList
-	(*Tips)(nil),                                               // 492: pmaster.Tips
-	(*TipsList)(nil),                                           // 493: pmaster.TipsList
-	(*TitleAsset)(nil),                                         // 494: pmaster.TitleAsset
-	(*TitleAssetList)(nil),                                     // 495: pmaster.TitleAssetList
-	(*TitleVoice)(nil),                                         // 496: pmaster.TitleVoice
-	(*TitleVoiceList)(nil),                                     // 497: pmaster.TitleVoiceList
-	(*Tour)(nil),                                               // 498: pmaster.Tour
-	(*TourList)(nil),                                           // 499: pmaster.TourList
-	(*TourMotion)(nil),                                         // 500: pmaster.TourMotion
-	(*TourMotionList)(nil),                                     // 501: pmaster.TourMotionList
-	(*TourStageTimeline)(nil),                                  // 502: pmaster.TourStageTimeline
-	(*TourStageTimelineList)(nil),                              // 503: pmaster.TourStageTimelineList
-	(*Tower)(nil),                                              // 504: pmaster.Tower
-	(*TowerLayer)(nil),                                         // 505: pmaster.TowerLayer
-	(*TowerLayerExam)(nil),                                     // 506: pmaster.TowerLayerExam
-	(*TowerLayerExamList)(nil),                                 // 507: pmaster.TowerLayerExamList
-	(*TowerLayerList)(nil),                                     // 508: pmaster.TowerLayerList
-	(*TowerLayerRank)(nil),                                     // 509: pmaster.TowerLayerRank
-	(*TowerLayerRankList)(nil),                                 // 510: pmaster.TowerLayerRankList
-	(*TowerList)(nil),                                          // 511: pmaster.TowerList
-	(*TowerReset)(nil),                                         // 512: pmaster.TowerReset
-	(*TowerResetList)(nil),                                     // 513: pmaster.TowerResetList
-	(*TowerTotalClearRankReward)(nil),                          // 514: pmaster.TowerTotalClearRankReward
-	(*TowerTotalClearRankRewardList)(nil),                      // 515: pmaster.TowerTotalClearRankRewardList
-	(*Tutorial)(nil),                                           // 516: pmaster.Tutorial
-	(*TutorialCharacterVoice)(nil),                             // 517: pmaster.TutorialCharacterVoice
-	(*TutorialCharacterVoiceList)(nil),                         // 518: pmaster.TutorialCharacterVoiceList
-	(*TutorialList)(nil),                                       // 519: pmaster.TutorialList
-	(*TutorialProduce)(nil),                                    // 520: pmaster.TutorialProduce
-	(*TutorialProduceList)(nil),                                // 521: pmaster.TutorialProduceList
-	(*TutorialProduceStep)(nil),                                // 522: pmaster.TutorialProduceStep
-	(*TutorialProduceStepList)(nil),                            // 523: pmaster.TutorialProduceStepList
-	(*Voice)(nil),                                              // 524: pmaster.Voice
-	(*VoiceGroup)(nil),                                         // 525: pmaster.VoiceGroup
-	(*VoiceGroupList)(nil),                                     // 526: pmaster.VoiceGroupList
-	(*VoiceList)(nil),                                          // 527: pmaster.VoiceList
-	(*VoiceRoster)(nil),                                        // 528: pmaster.VoiceRoster
-	(*VoiceRosterList)(nil),                                    // 529: pmaster.VoiceRosterList
-	(*Work)(nil),                                               // 530: pmaster.Work
-	(*WorkLevel)(nil),                                          // 531: pmaster.WorkLevel
-	(*WorkLevelList)(nil),                                      // 532: pmaster.WorkLevelList
-	(*WorkLevelReward)(nil),                                    // 533: pmaster.WorkLevelReward
-	(*WorkLevelRewardList)(nil),                                // 534: pmaster.WorkLevelRewardList
-	(*WorkList)(nil),                                           // 535: pmaster.WorkList
-	(*WorkMotion)(nil),                                         // 536: pmaster.WorkMotion
-	(*WorkMotionList)(nil),                                     // 537: pmaster.WorkMotionList
-	(*WorkSkip)(nil),                                           // 538: pmaster.WorkSkip
-	(*WorkSkipList)(nil),                                       // 539: pmaster.WorkSkipList
-	(*WorkTime)(nil),                                           // 540: pmaster.WorkTime
-	(*WorkTimeList)(nil),                                       // 541: pmaster.WorkTimeList
-	(*CharacterDearnessLevel_ProduceSkill)(nil),                // 542: pmaster.CharacterDearnessLevel.ProduceSkill
-	(*CharacterTrueEndAchievement_Achievement)(nil),            // 543: pmaster.CharacterTrueEndAchievement.Achievement
-	(*CompetitionSeason_Stage)(nil),                            // 544: pmaster.CompetitionSeason.Stage
-	(*CompetitionSeason_GradeConfig)(nil),                      // 545: pmaster.CompetitionSeason.GradeConfig
-	(*IdolCardSkinUnit_UnitCharacter)(nil),                     // 546: pmaster.IdolCardSkinUnit.UnitCharacter
-	(*Item_Gasha)(nil),                                         // 547: pmaster.Item.Gasha
-	(*ProduceCard_PlayEffect)(nil),                             // 548: pmaster.ProduceCard.PlayEffect
-	(*ProduceCardPool_ProduceCardRatio)(nil),                   // 549: pmaster.ProduceCardPool.ProduceCardRatio
-	(*ProduceEffect_ProduceReward)(nil),                        // 550: pmaster.ProduceEffect.ProduceReward
-	(*ProduceItem_Skill)(nil),                                  // 551: pmaster.ProduceItem.Skill
-	(*ProducerLevel_UnlockTarget)(nil),                         // 552: pmaster.ProducerLevel.UnlockTarget
-	(*PvpRateConfig_Stage)(nil),                                // 553: pmaster.PvpRateConfig.Stage
-	(penum.AchievementCategory)(0),                             // 554: penum.AchievementCategory
-	(penum.MissionType)(0),                                     // 555: penum.MissionType
-	(*pcommon.Achievement)(nil),                                // 556: pcommon.Achievement
-	(*pcommon.Reward)(nil),                                     // 557: pcommon.Reward
-	(penum.AppReviewType)(0),                                   // 558: penum.AppReviewType
-	(penum.AssetDownloadType)(0),                               // 559: penum.AssetDownloadType
-	(penum.BadgeType)(0),                                       // 560: penum.BadgeType
-	(penum.BadgeGrade)(0),                                      // 561: penum.BadgeGrade
-	(penum.CharacterPersonalityType)(0),                        // 562: penum.CharacterPersonalityType
-	(penum.ProduceType)(0),                                     // 563: penum.ProduceType
-	(penum.CharacterDetailType)(0),                             // 564: penum.CharacterDetailType
-	(penum.PushType)(0),                                        // 565: penum.PushType
-	(penum.ResourceType)(0),                                    // 566: penum.ResourceType
-	(penum.ProducePlanType)(0),                                 // 567: penum.ProducePlanType
-	(penum.ExamStatusEffectType)(0),                            // 568: penum.ExamStatusEffectType
-	(penum.CompetitionGrade)(0),                                // 569: penum.CompetitionGrade
-	(penum.CompetitionStageType)(0),                            // 570: penum.CompetitionStageType
-	(penum.CompetitionStageSectionType)(0),                     // 571: penum.CompetitionStageSectionType
-	(penum.ConditionOperatorType)(0),                           // 572: penum.ConditionOperatorType
-	(penum.ConditionType)(0),                                   // 573: penum.ConditionType
-	(penum.ConditionMinMaxType)(0),                             // 574: penum.ConditionMinMaxType
-	(penum.ResourceOriginType)(0),                              // 575: penum.ResourceOriginType
-	(penum.CostumeFeatureType)(0),                              // 576: penum.CostumeFeatureType
-	(penum.CostumeMotionType)(0),                               // 577: penum.CostumeMotionType
-	(penum.DearnessMotionType)(0),                              // 578: penum.DearnessMotionType
-	(penum.ProduceExamEffectType)(0),                           // 579: penum.ProduceExamEffectType
-	(penum.ProduceEffectType)(0),                               // 580: penum.ProduceEffectType
-	(penum.ProduceCardGrowEffectType)(0),                       // 581: penum.ProduceCardGrowEffectType
-	(penum.EventType)(0),                                       // 582: penum.EventType
-	(penum.ExamMotionTargetType)(0),                            // 583: penum.ExamMotionTargetType
-	(penum.ExamMotionType)(0),                                  // 584: penum.ExamMotionType
-	(penum.ExamOutGameMotionType)(0),                           // 585: penum.ExamOutGameMotionType
-	(penum.ExchangeItemCategoryType)(0),                        // 586: penum.ExchangeItemCategoryType
-	(penum.ItemType)(0),                                        // 587: penum.ItemType
-	(penum.TutorialType)(0),                                    // 588: penum.TutorialType
-	(penum.PlatformType)(0),                                    // 589: penum.PlatformType
-	(penum.GashaAnimationRarity)(0),                            // 590: penum.GashaAnimationRarity
-	(penum.GashaAnimationStepType)(0),                          // 591: penum.GashaAnimationStepType
-	(penum.GashaButtonType)(0),                                 // 592: penum.GashaButtonType
-	(penum.GashaLimitType)(0),                                  // 593: penum.GashaLimitType
-	(penum.GashaButtonAppealType)(0),                           // 594: penum.GashaButtonAppealType
-	(*pcommon.GashaButton)(nil),                                // 595: pcommon.GashaButton
-	(penum.HomeTimeType)(0),                                    // 596: penum.HomeTimeType
-	(penum.HomeLocationType)(0),                                // 597: penum.HomeLocationType
-	(penum.HomeMotionType)(0),                                  // 598: penum.HomeMotionType
-	(penum.IdolCardRarity)(0),                                  // 599: penum.IdolCardRarity
-	(penum.IdolCardLevelLimitRank)(0),                          // 600: penum.IdolCardLevelLimitRank
-	(penum.IdolCardLevelLimitEffectType)(0),                    // 601: penum.IdolCardLevelLimitEffectType
-	(*pcommon.IdolCard)(nil),                                   // 602: pcommon.IdolCard
-	(penum.IdolCardPotentialRank)(0),                           // 603: penum.IdolCardPotentialRank
-	(penum.IdolCardPotentialEffectType)(0),                     // 604: penum.IdolCardPotentialEffectType
-	(penum.IdolCardDifficultyType)(0),                          // 605: penum.IdolCardDifficultyType
-	(penum.ItemRarity)(0),                                      // 606: penum.ItemRarity
-	(penum.ExchangeType)(0),                                    // 607: penum.ExchangeType
-	(penum.SupportCardRarity)(0),                               // 608: penum.SupportCardRarity
-	(penum.MainTaskType)(0),                                    // 609: penum.MainTaskType
-	(penum.MediaType)(0),                                       // 610: penum.MediaType
-	(penum.FourPanelComicSeries)(0),                            // 611: penum.FourPanelComicSeries
-	(penum.MediaMovieType)(0),                                  // 612: penum.MediaMovieType
-	(penum.MeishiBaseAssetType)(0),                             // 613: penum.MeishiBaseAssetType
-	(penum.MeishiIllustrationType)(0),                          // 614: penum.MeishiIllustrationType
-	(penum.SkillRarity)(0),                                     // 615: penum.SkillRarity
-	(*pcommon.MemoryAbility)(nil),                              // 616: pcommon.MemoryAbility
-	(penum.ResultGrade)(0),                                     // 617: penum.ResultGrade
-	(*pcommon.ProduceCard)(nil),                                // 618: pcommon.ProduceCard
-	(penum.ProduceMemoryProduceCardPhaseType)(0),               // 619: penum.ProduceMemoryProduceCardPhaseType
-	(penum.MissionCategory)(0),                                 // 620: penum.MissionCategory
-	(penum.ResetTimingType)(0),                                 // 621: penum.ResetTimingType
-	(penum.MusicType)(0),                                       // 622: penum.MusicType
-	(penum.PhotoBackgroundCategory)(0),                         // 623: penum.PhotoBackgroundCategory
-	(penum.PhotoBackgroundTimeType)(0),                         // 624: penum.PhotoBackgroundTimeType
-	(penum.PhotoLookTargetType)(0),                             // 625: penum.PhotoLookTargetType
-	(penum.PhotoPoseMotionType)(0),                             // 626: penum.PhotoPoseMotionType
-	(penum.ProduceSelectScreenOrderType)(0),                    // 627: penum.ProduceSelectScreenOrderType
-	(penum.ProduceAdvType)(0),                                  // 628: penum.ProduceAdvType
-	(penum.ProduceCardRarity)(0),                               // 629: penum.ProduceCardRarity
-	(penum.ProduceCardCategory)(0),                             // 630: penum.ProduceCardCategory
-	(penum.ExamCostType)(0),                                    // 631: penum.ExamCostType
-	(penum.ProduceCardMovePositionType)(0),                     // 632: penum.ProduceCardMovePositionType
-	(penum.ProduceCardMoveEffectTriggerType)(0),                // 633: penum.ProduceCardMoveEffectTriggerType
-	(*pcommon.ProduceDescriptionSegment)(nil),                  // 634: pcommon.ProduceDescriptionSegment
-	(*pcommon.ProduceCardConversion)(nil),                      // 635: pcommon.ProduceCardConversion
-	(*pcommon.ProduceCardCustomize)(nil),                       // 636: pcommon.ProduceCardCustomize
-	(penum.ProduceCardSearchStatusType)(0),                     // 637: penum.ProduceCardSearchStatusType
-	(penum.ProduceCardOrderType)(0),                            // 638: penum.ProduceCardOrderType
-	(penum.ProduceCardPositionType)(0),                         // 639: penum.ProduceCardPositionType
-	(penum.ProduceStepType)(0),                                 // 640: penum.ProduceStepType
-	(penum.ProduceDescriptionSwapType)(0),                      // 641: penum.ProduceDescriptionSwapType
-	(penum.ProduceDrinkRarity)(0),                              // 642: penum.ProduceDrinkRarity
-	(penum.ProduceResourceType)(0),                             // 643: penum.ProduceResourceType
-	(penum.ProducePickRangeType)(0),                            // 644: penum.ProducePickRangeType
-	(penum.ExamPlayType)(0),                                    // 645: penum.ExamPlayType
-	(penum.ProduceExamAutoCardSelectEvaluationType)(0),         // 646: penum.ProduceExamAutoCardSelectEvaluationType
-	(penum.ProduceExamAutoEvaluationType)(0),                   // 647: penum.ProduceExamAutoEvaluationType
-	(penum.ProducePickCountType)(0),                            // 648: penum.ProducePickCountType
-	(penum.ProduceExamFieldStatusType)(0),                      // 649: penum.ProduceExamFieldStatusType
-	(penum.ProduceExamTriggerCheckType)(0),                     // 650: penum.ProduceExamTriggerCheckType
-	(penum.ProduceExamPhaseType)(0),                            // 651: penum.ProduceExamPhaseType
-	(penum.ProduceStepLessonType)(0),                           // 652: penum.ProduceStepLessonType
-	(penum.ProduceLiveType)(0),                                 // 653: penum.ProduceLiveType
-	(penum.ProduceHighScoreEventType)(0),                       // 654: penum.ProduceHighScoreEventType
-	(penum.ProduceItemRarity)(0),                               // 655: penum.ProduceItemRarity
-	(penum.ProduceItemEffectType)(0),                           // 656: penum.ProduceItemEffectType
-	(*pcommon.ProduceItem)(nil),                                // 657: pcommon.ProduceItem
-	(penum.ProduceScheduleLocationType)(0),                     // 658: penum.ProduceScheduleLocationType
-	(penum.ProduceScheduleStaminaMotionType)(0),                // 659: penum.ProduceScheduleStaminaMotionType
-	(penum.ProduceScheduleMotionType)(0),                       // 660: penum.ProduceScheduleMotionType
-	(penum.ProduceStartMotionType)(0),                          // 661: penum.ProduceStartMotionType
-	(penum.ProduceStepAuditionType)(0),                         // 662: penum.ProduceStepAuditionType
-	(penum.ProduceStepAuditionMotionType)(0),                   // 663: penum.ProduceStepAuditionMotionType
-	(penum.ProduceEventSuggestionType)(0),                      // 664: penum.ProduceEventSuggestionType
-	(penum.ProduceEventType)(0),                                // 665: penum.ProduceEventType
-	(penum.ProduceEventCharacterType)(0),                       // 666: penum.ProduceEventCharacterType
-	(penum.ProduceStepFanPresentMotionType)(0),                 // 667: penum.ProduceStepFanPresentMotionType
-	(penum.ProduceStepPhaseType)(0),                            // 668: penum.ProduceStepPhaseType
-	(penum.ProduceStoryType)(0),                                // 669: penum.ProduceStoryType
-	(penum.ProducePhaseType)(0),                                // 670: penum.ProducePhaseType
-	(penum.ProducerRankingGrade)(0),                            // 671: penum.ProducerRankingGrade
-	(penum.PvpRateMotionType)(0),                               // 672: penum.PvpRateMotionType
-	(penum.PvpRateGrade)(0),                                    // 673: penum.PvpRateGrade
-	(penum.ResultGradeType)(0),                                 // 674: penum.ResultGradeType
-	(penum.RuleType)(0),                                        // 675: penum.RuleType
-	(penum.ShopType)(0),                                        // 676: penum.ShopType
-	(penum.Weekday)(0),                                         // 677: penum.Weekday
-	(penum.ShopItemLabelType)(0),                               // 678: penum.ShopItemLabelType
-	(penum.StoryType)(0),                                       // 679: penum.StoryType
-	(penum.StoryEventType)(0),                                  // 680: penum.StoryEventType
-	(penum.EventStoryFilterType)(0),                            // 681: penum.EventStoryFilterType
-	(penum.SupportCardType)(0),                                 // 682: penum.SupportCardType
-	(penum.ProduceParameterType)(0),                            // 683: penum.ProduceParameterType
-	(penum.SupportCardLevelLimitRank)(0),                       // 684: penum.SupportCardLevelLimitRank
-	(*pcommon.SupportCard)(nil),                                // 685: pcommon.SupportCard
-	(penum.TermsType)(0),                                       // 686: penum.TermsType
-	(penum.TipsType)(0),                                        // 687: penum.TipsType
-	(penum.ViewAreaType)(0),                                    // 688: penum.ViewAreaType
-	(penum.TutorialNavigationType)(0),                          // 689: penum.TutorialNavigationType
-	(penum.TutorialNavigationPositionType)(0),                  // 690: penum.TutorialNavigationPositionType
-	(penum.TutorialProduceCommandType)(0),                      // 691: penum.TutorialProduceCommandType
-	(penum.TutorialCharacterVoiceType)(0),                      // 692: penum.TutorialCharacterVoiceType
-	(penum.VoicePlayScreenType)(0),                             // 693: penum.VoicePlayScreenType
-	(penum.WorkType)(0),                                        // 694: penum.WorkType
-	(penum.WorkMotionType)(0),                                  // 695: penum.WorkMotionType
-	(penum.ProducerLevelUnlockType)(0),                         // 696: penum.ProducerLevelUnlockType
-	(penum.PvpRateStageType)(0),                                // 697: penum.PvpRateStageType
+	(*ExamUnitMotion)(nil),                                     // 88: pmaster.ExamUnitMotion
+	(*ExamUnitMotionList)(nil),                                 // 89: pmaster.ExamUnitMotionList
+	(*ExchangeItemCategory)(nil),                               // 90: pmaster.ExchangeItemCategory
+	(*ExchangeItemCategoryList)(nil),                           // 91: pmaster.ExchangeItemCategoryList
+	(*FeatureLock)(nil),                                        // 92: pmaster.FeatureLock
+	(*FeatureLockList)(nil),                                    // 93: pmaster.FeatureLockList
+	(*ForceAppVersion)(nil),                                    // 94: pmaster.ForceAppVersion
+	(*ForceAppVersionList)(nil),                                // 95: pmaster.ForceAppVersionList
+	(*GashaAnimationStep)(nil),                                 // 96: pmaster.GashaAnimationStep
+	(*GashaAnimationStepList)(nil),                             // 97: pmaster.GashaAnimationStepList
+	(*GashaButton)(nil),                                        // 98: pmaster.GashaButton
+	(*GashaButtonList)(nil),                                    // 99: pmaster.GashaButtonList
+	(*GuildDonationItem)(nil),                                  // 100: pmaster.GuildDonationItem
+	(*GuildDonationItemList)(nil),                              // 101: pmaster.GuildDonationItemList
+	(*GuildReaction)(nil),                                      // 102: pmaster.GuildReaction
+	(*GuildReactionList)(nil),                                  // 103: pmaster.GuildReactionList
+	(*GvgRaid)(nil),                                            // 104: pmaster.GvgRaid
+	(*GvgRaidList)(nil),                                        // 105: pmaster.GvgRaidList
+	(*GvgRaidStageLoop)(nil),                                   // 106: pmaster.GvgRaidStageLoop
+	(*GvgRaidStageLoopList)(nil),                               // 107: pmaster.GvgRaidStageLoopList
+	(*HelpCategory)(nil),                                       // 108: pmaster.HelpCategory
+	(*HelpCategoryList)(nil),                                   // 109: pmaster.HelpCategoryList
+	(*HelpContent)(nil),                                        // 110: pmaster.HelpContent
+	(*HelpContentList)(nil),                                    // 111: pmaster.HelpContentList
+	(*HelpInfo)(nil),                                           // 112: pmaster.HelpInfo
+	(*HelpInfoList)(nil),                                       // 113: pmaster.HelpInfoList
+	(*HomeBackground)(nil),                                     // 114: pmaster.HomeBackground
+	(*HomeBackgroundList)(nil),                                 // 115: pmaster.HomeBackgroundList
+	(*HomeBackgroundPrefabGroup)(nil),                          // 116: pmaster.HomeBackgroundPrefabGroup
+	(*HomeBackgroundPrefabGroupList)(nil),                      // 117: pmaster.HomeBackgroundPrefabGroupList
+	(*HomeBoard)(nil),                                          // 118: pmaster.HomeBoard
+	(*HomeBoardList)(nil),                                      // 119: pmaster.HomeBoardList
+	(*HomeMonitor)(nil),                                        // 120: pmaster.HomeMonitor
+	(*HomeMonitorList)(nil),                                    // 121: pmaster.HomeMonitorList
+	(*HomeMotion)(nil),                                         // 122: pmaster.HomeMotion
+	(*HomeMotionList)(nil),                                     // 123: pmaster.HomeMotionList
+	(*HomeTime)(nil),                                           // 124: pmaster.HomeTime
+	(*HomeTimeList)(nil),                                       // 125: pmaster.HomeTimeList
+	(*IdolCard)(nil),                                           // 126: pmaster.IdolCard
+	(*IdolCardLevelLimit)(nil),                                 // 127: pmaster.IdolCardLevelLimit
+	(*IdolCardLevelLimitList)(nil),                             // 128: pmaster.IdolCardLevelLimitList
+	(*IdolCardLevelLimitProduceSkill)(nil),                     // 129: pmaster.IdolCardLevelLimitProduceSkill
+	(*IdolCardLevelLimitProduceSkillList)(nil),                 // 130: pmaster.IdolCardLevelLimitProduceSkillList
+	(*IdolCardLevelLimitStatusUp)(nil),                         // 131: pmaster.IdolCardLevelLimitStatusUp
+	(*IdolCardLevelLimitStatusUpList)(nil),                     // 132: pmaster.IdolCardLevelLimitStatusUpList
+	(*IdolCardList)(nil),                                       // 133: pmaster.IdolCardList
+	(*IdolCardPiece)(nil),                                      // 134: pmaster.IdolCardPiece
+	(*IdolCardPieceList)(nil),                                  // 135: pmaster.IdolCardPieceList
+	(*IdolCardPieceQuantity)(nil),                              // 136: pmaster.IdolCardPieceQuantity
+	(*IdolCardPieceQuantityList)(nil),                          // 137: pmaster.IdolCardPieceQuantityList
+	(*IdolCardPotential)(nil),                                  // 138: pmaster.IdolCardPotential
+	(*IdolCardPotentialList)(nil),                              // 139: pmaster.IdolCardPotentialList
+	(*IdolCardPotentialProduceSkill)(nil),                      // 140: pmaster.IdolCardPotentialProduceSkill
+	(*IdolCardPotentialProduceSkillList)(nil),                  // 141: pmaster.IdolCardPotentialProduceSkillList
+	(*IdolCardPrimaStellaProduceSkill)(nil),                    // 142: pmaster.IdolCardPrimaStellaProduceSkill
+	(*IdolCardPrimaStellaProduceSkillList)(nil),                // 143: pmaster.IdolCardPrimaStellaProduceSkillList
+	(*IdolCardSimulation)(nil),                                 // 144: pmaster.IdolCardSimulation
+	(*IdolCardSimulationList)(nil),                             // 145: pmaster.IdolCardSimulationList
+	(*IdolCardSkin)(nil),                                       // 146: pmaster.IdolCardSkin
+	(*IdolCardSkinList)(nil),                                   // 147: pmaster.IdolCardSkinList
+	(*IdolCardSkinSelectReward)(nil),                           // 148: pmaster.IdolCardSkinSelectReward
+	(*IdolCardSkinSelectRewardList)(nil),                       // 149: pmaster.IdolCardSkinSelectRewardList
+	(*IdolCardSkinUnit)(nil),                                   // 150: pmaster.IdolCardSkinUnit
+	(*IdolCardSkinUnitList)(nil),                               // 151: pmaster.IdolCardSkinUnitList
+	(*InvitationMission)(nil),                                  // 152: pmaster.InvitationMission
+	(*InvitationMissionList)(nil),                              // 153: pmaster.InvitationMissionList
+	(*InvitationPointReward)(nil),                              // 154: pmaster.InvitationPointReward
+	(*InvitationPointRewardList)(nil),                          // 155: pmaster.InvitationPointRewardList
+	(*Item)(nil),                                               // 156: pmaster.Item
+	(*ItemList)(nil),                                           // 157: pmaster.ItemList
+	(*JewelConsumptionCount)(nil),                              // 158: pmaster.JewelConsumptionCount
+	(*JewelConsumptionCountList)(nil),                          // 159: pmaster.JewelConsumptionCountList
+	(*LimitItem)(nil),                                          // 160: pmaster.LimitItem
+	(*LimitItemList)(nil),                                      // 161: pmaster.LimitItemList
+	(*Localization)(nil),                                       // 162: pmaster.Localization
+	(*LocalizationList)(nil),                                   // 163: pmaster.LocalizationList
+	(*LoginBonusMotion)(nil),                                   // 164: pmaster.LoginBonusMotion
+	(*LoginBonusMotionList)(nil),                               // 165: pmaster.LoginBonusMotionList
+	(*MainStoryChapter)(nil),                                   // 166: pmaster.MainStoryChapter
+	(*MainStoryChapterList)(nil),                               // 167: pmaster.MainStoryChapterList
+	(*MainStoryPart)(nil),                                      // 168: pmaster.MainStoryPart
+	(*MainStoryPartList)(nil),                                  // 169: pmaster.MainStoryPartList
+	(*MainTask)(nil),                                           // 170: pmaster.MainTask
+	(*MainTaskGroup)(nil),                                      // 171: pmaster.MainTaskGroup
+	(*MainTaskGroupList)(nil),                                  // 172: pmaster.MainTaskGroupList
+	(*MainTaskIcon)(nil),                                       // 173: pmaster.MainTaskIcon
+	(*MainTaskIconList)(nil),                                   // 174: pmaster.MainTaskIconList
+	(*MainTaskList)(nil),                                       // 175: pmaster.MainTaskList
+	(*Media)(nil),                                              // 176: pmaster.Media
+	(*MediaExternalLink)(nil),                                  // 177: pmaster.MediaExternalLink
+	(*MediaExternalLinkList)(nil),                              // 178: pmaster.MediaExternalLinkList
+	(*MediaList)(nil),                                          // 179: pmaster.MediaList
+	(*MeishiBaseAsset)(nil),                                    // 180: pmaster.MeishiBaseAsset
+	(*MeishiBaseAssetList)(nil),                                // 181: pmaster.MeishiBaseAssetList
+	(*MeishiBaseColor)(nil),                                    // 182: pmaster.MeishiBaseColor
+	(*MeishiBaseColorList)(nil),                                // 183: pmaster.MeishiBaseColorList
+	(*MeishiIllustrationAsset)(nil),                            // 184: pmaster.MeishiIllustrationAsset
+	(*MeishiIllustrationAssetList)(nil),                        // 185: pmaster.MeishiIllustrationAssetList
+	(*MeishiTextColor)(nil),                                    // 186: pmaster.MeishiTextColor
+	(*MeishiTextColorList)(nil),                                // 187: pmaster.MeishiTextColorList
+	(*MemoryAbility)(nil),                                      // 188: pmaster.MemoryAbility
+	(*MemoryAbilityList)(nil),                                  // 189: pmaster.MemoryAbilityList
+	(*MemoryExchangeItem)(nil),                                 // 190: pmaster.MemoryExchangeItem
+	(*MemoryExchangeItemList)(nil),                             // 191: pmaster.MemoryExchangeItemList
+	(*MemoryExchangeItemQuantity)(nil),                         // 192: pmaster.MemoryExchangeItemQuantity
+	(*MemoryExchangeItemQuantityList)(nil),                     // 193: pmaster.MemoryExchangeItemQuantityList
+	(*MemoryGift)(nil),                                         // 194: pmaster.MemoryGift
+	(*MemoryGiftList)(nil),                                     // 195: pmaster.MemoryGiftList
+	(*MemoryTag)(nil),                                          // 196: pmaster.MemoryTag
+	(*MemoryTagList)(nil),                                      // 197: pmaster.MemoryTagList
+	(*Mission)(nil),                                            // 198: pmaster.Mission
+	(*MissionDailyRelease)(nil),                                // 199: pmaster.MissionDailyRelease
+	(*MissionDailyReleaseGroup)(nil),                           // 200: pmaster.MissionDailyReleaseGroup
+	(*MissionDailyReleaseGroupList)(nil),                       // 201: pmaster.MissionDailyReleaseGroupList
+	(*MissionDailyReleaseList)(nil),                            // 202: pmaster.MissionDailyReleaseList
+	(*MissionGroup)(nil),                                       // 203: pmaster.MissionGroup
+	(*MissionGroupList)(nil),                                   // 204: pmaster.MissionGroupList
+	(*MissionList)(nil),                                        // 205: pmaster.MissionList
+	(*MissionPanelSheet)(nil),                                  // 206: pmaster.MissionPanelSheet
+	(*MissionPanelSheetGroup)(nil),                             // 207: pmaster.MissionPanelSheetGroup
+	(*MissionPanelSheetGroupList)(nil),                         // 208: pmaster.MissionPanelSheetGroupList
+	(*MissionPanelSheetList)(nil),                              // 209: pmaster.MissionPanelSheetList
+	(*MissionPass)(nil),                                        // 210: pmaster.MissionPass
+	(*MissionPassList)(nil),                                    // 211: pmaster.MissionPassList
+	(*MissionPassPoint)(nil),                                   // 212: pmaster.MissionPassPoint
+	(*MissionPassPointList)(nil),                               // 213: pmaster.MissionPassPointList
+	(*MissionPassProgress)(nil),                                // 214: pmaster.MissionPassProgress
+	(*MissionPassProgressList)(nil),                            // 215: pmaster.MissionPassProgressList
+	(*MissionPoint)(nil),                                       // 216: pmaster.MissionPoint
+	(*MissionPointList)(nil),                                   // 217: pmaster.MissionPointList
+	(*MissionPointRewardSet)(nil),                              // 218: pmaster.MissionPointRewardSet
+	(*MissionPointRewardSetList)(nil),                          // 219: pmaster.MissionPointRewardSetList
+	(*MissionProgress)(nil),                                    // 220: pmaster.MissionProgress
+	(*MissionProgressList)(nil),                                // 221: pmaster.MissionProgressList
+	(*Money)(nil),                                              // 222: pmaster.Money
+	(*MoneyList)(nil),                                          // 223: pmaster.MoneyList
+	(*Music)(nil),                                              // 224: pmaster.Music
+	(*MusicHot)(nil),                                           // 225: pmaster.MusicHot
+	(*MusicHotList)(nil),                                       // 226: pmaster.MusicHotList
+	(*MusicList)(nil),                                          // 227: pmaster.MusicList
+	(*MusicSinger)(nil),                                        // 228: pmaster.MusicSinger
+	(*MusicSingerList)(nil),                                    // 229: pmaster.MusicSingerList
+	(*PhotoBackground)(nil),                                    // 230: pmaster.PhotoBackground
+	(*PhotoBackgroundList)(nil),                                // 231: pmaster.PhotoBackgroundList
+	(*PhotoFacialLookTarget)(nil),                              // 232: pmaster.PhotoFacialLookTarget
+	(*PhotoFacialLookTargetList)(nil),                          // 233: pmaster.PhotoFacialLookTargetList
+	(*PhotoFacialMotionGroup)(nil),                             // 234: pmaster.PhotoFacialMotionGroup
+	(*PhotoFacialMotionGroupList)(nil),                         // 235: pmaster.PhotoFacialMotionGroupList
+	(*PhotoLookEffectorCharacter)(nil),                         // 236: pmaster.PhotoLookEffectorCharacter
+	(*PhotoLookEffectorCharacterList)(nil),                     // 237: pmaster.PhotoLookEffectorCharacterList
+	(*PhotoLookTargetVoiceCharacter)(nil),                      // 238: pmaster.PhotoLookTargetVoiceCharacter
+	(*PhotoLookTargetVoiceCharacterList)(nil),                  // 239: pmaster.PhotoLookTargetVoiceCharacterList
+	(*PhotoPose)(nil),                                          // 240: pmaster.PhotoPose
+	(*PhotoPoseList)(nil),                                      // 241: pmaster.PhotoPoseList
+	(*PhotoReactionVoiceGroup)(nil),                            // 242: pmaster.PhotoReactionVoiceGroup
+	(*PhotoReactionVoiceGroupList)(nil),                        // 243: pmaster.PhotoReactionVoiceGroupList
+	(*PhotoWaitVoiceCharacter)(nil),                            // 244: pmaster.PhotoWaitVoiceCharacter
+	(*PhotoWaitVoiceCharacterList)(nil),                        // 245: pmaster.PhotoWaitVoiceCharacterList
+	(*PhotoWaitVoiceGroup)(nil),                                // 246: pmaster.PhotoWaitVoiceGroup
+	(*PhotoWaitVoiceGroupList)(nil),                            // 247: pmaster.PhotoWaitVoiceGroupList
+	(*Produce)(nil),                                            // 248: pmaster.Produce
+	(*ProduceAdv)(nil),                                         // 249: pmaster.ProduceAdv
+	(*ProduceAdvList)(nil),                                     // 250: pmaster.ProduceAdvList
+	(*ProduceCard)(nil),                                        // 251: pmaster.ProduceCard
+	(*ProduceCardConversion)(nil),                              // 252: pmaster.ProduceCardConversion
+	(*ProduceCardConversionList)(nil),                          // 253: pmaster.ProduceCardConversionList
+	(*ProduceCardCustomize)(nil),                               // 254: pmaster.ProduceCardCustomize
+	(*ProduceCardCustomizeList)(nil),                           // 255: pmaster.ProduceCardCustomizeList
+	(*ProduceCardCustomizeRarityEvaluation)(nil),               // 256: pmaster.ProduceCardCustomizeRarityEvaluation
+	(*ProduceCardCustomizeRarityEvaluationList)(nil),           // 257: pmaster.ProduceCardCustomizeRarityEvaluationList
+	(*ProduceCardGrowEffect)(nil),                              // 258: pmaster.ProduceCardGrowEffect
+	(*ProduceCardGrowEffectList)(nil),                          // 259: pmaster.ProduceCardGrowEffectList
+	(*ProduceCardList)(nil),                                    // 260: pmaster.ProduceCardList
+	(*ProduceCardPool)(nil),                                    // 261: pmaster.ProduceCardPool
+	(*ProduceCardPoolList)(nil),                                // 262: pmaster.ProduceCardPoolList
+	(*ProduceCardRandomPool)(nil),                              // 263: pmaster.ProduceCardRandomPool
+	(*ProduceCardRandomPoolList)(nil),                          // 264: pmaster.ProduceCardRandomPoolList
+	(*ProduceCardSearch)(nil),                                  // 265: pmaster.ProduceCardSearch
+	(*ProduceCardSearchList)(nil),                              // 266: pmaster.ProduceCardSearchList
+	(*ProduceCardSimulation)(nil),                              // 267: pmaster.ProduceCardSimulation
+	(*ProduceCardSimulationGroup)(nil),                         // 268: pmaster.ProduceCardSimulationGroup
+	(*ProduceCardSimulationGroupList)(nil),                     // 269: pmaster.ProduceCardSimulationGroupList
+	(*ProduceCardSimulationList)(nil),                          // 270: pmaster.ProduceCardSimulationList
+	(*ProduceCardStatusEffect)(nil),                            // 271: pmaster.ProduceCardStatusEffect
+	(*ProduceCardStatusEffectList)(nil),                        // 272: pmaster.ProduceCardStatusEffectList
+	(*ProduceCardStatusEnchant)(nil),                           // 273: pmaster.ProduceCardStatusEnchant
+	(*ProduceCardStatusEnchantList)(nil),                       // 274: pmaster.ProduceCardStatusEnchantList
+	(*ProduceCardTag)(nil),                                     // 275: pmaster.ProduceCardTag
+	(*ProduceCardTagList)(nil),                                 // 276: pmaster.ProduceCardTagList
+	(*ProduceChallengeCharacter)(nil),                          // 277: pmaster.ProduceChallengeCharacter
+	(*ProduceChallengeCharacterList)(nil),                      // 278: pmaster.ProduceChallengeCharacterList
+	(*ProduceChallengeSlot)(nil),                               // 279: pmaster.ProduceChallengeSlot
+	(*ProduceChallengeSlotList)(nil),                           // 280: pmaster.ProduceChallengeSlotList
+	(*ProduceCharacter)(nil),                                   // 281: pmaster.ProduceCharacter
+	(*ProduceCharacterAdv)(nil),                                // 282: pmaster.ProduceCharacterAdv
+	(*ProduceCharacterAdvList)(nil),                            // 283: pmaster.ProduceCharacterAdvList
+	(*ProduceCharacterList)(nil),                               // 284: pmaster.ProduceCharacterList
+	(*ProduceCharacterUnit)(nil),                               // 285: pmaster.ProduceCharacterUnit
+	(*ProduceCharacterUnitList)(nil),                           // 286: pmaster.ProduceCharacterUnitList
+	(*ProduceCustomizeItem)(nil),                               // 287: pmaster.ProduceCustomizeItem
+	(*ProduceCustomizeItemList)(nil),                           // 288: pmaster.ProduceCustomizeItemList
+	(*ProduceCustomizeItemRelationship)(nil),                   // 289: pmaster.ProduceCustomizeItemRelationship
+	(*ProduceCustomizeItemRelationshipList)(nil),               // 290: pmaster.ProduceCustomizeItemRelationshipList
+	(*ProduceDescriptionExamEffect)(nil),                       // 291: pmaster.ProduceDescriptionExamEffect
+	(*ProduceDescriptionExamEffectList)(nil),                   // 292: pmaster.ProduceDescriptionExamEffectList
+	(*ProduceDescriptionLabel)(nil),                            // 293: pmaster.ProduceDescriptionLabel
+	(*ProduceDescriptionLabelList)(nil),                        // 294: pmaster.ProduceDescriptionLabelList
+	(*ProduceDescriptionProduceCardGrowEffect)(nil),            // 295: pmaster.ProduceDescriptionProduceCardGrowEffect
+	(*ProduceDescriptionProduceCardGrowEffectList)(nil),        // 296: pmaster.ProduceDescriptionProduceCardGrowEffectList
+	(*ProduceDescriptionProduceCardMovePosition)(nil),          // 297: pmaster.ProduceDescriptionProduceCardMovePosition
+	(*ProduceDescriptionProduceCardMovePositionList)(nil),      // 298: pmaster.ProduceDescriptionProduceCardMovePositionList
+	(*ProduceDescriptionProduceEffect)(nil),                    // 299: pmaster.ProduceDescriptionProduceEffect
+	(*ProduceDescriptionProduceEffectList)(nil),                // 300: pmaster.ProduceDescriptionProduceEffectList
+	(*ProduceDescriptionProducePlan)(nil),                      // 301: pmaster.ProduceDescriptionProducePlan
+	(*ProduceDescriptionProducePlanList)(nil),                  // 302: pmaster.ProduceDescriptionProducePlanList
+	(*ProduceDescriptionProduceStep)(nil),                      // 303: pmaster.ProduceDescriptionProduceStep
+	(*ProduceDescriptionProduceStepList)(nil),                  // 304: pmaster.ProduceDescriptionProduceStepList
+	(*ProduceDescriptionProduceType)(nil),                      // 305: pmaster.ProduceDescriptionProduceType
+	(*ProduceDescriptionProduceTypeList)(nil),                  // 306: pmaster.ProduceDescriptionProduceTypeList
+	(*ProduceDescriptionSwap)(nil),                             // 307: pmaster.ProduceDescriptionSwap
+	(*ProduceDescriptionSwapList)(nil),                         // 308: pmaster.ProduceDescriptionSwapList
+	(*ProduceDrink)(nil),                                       // 309: pmaster.ProduceDrink
+	(*ProduceDrinkEffect)(nil),                                 // 310: pmaster.ProduceDrinkEffect
+	(*ProduceDrinkEffectList)(nil),                             // 311: pmaster.ProduceDrinkEffectList
+	(*ProduceDrinkList)(nil),                                   // 312: pmaster.ProduceDrinkList
+	(*ProduceEffect)(nil),                                      // 313: pmaster.ProduceEffect
+	(*ProduceEffectIcon)(nil),                                  // 314: pmaster.ProduceEffectIcon
+	(*ProduceEffectIconList)(nil),                              // 315: pmaster.ProduceEffectIconList
+	(*ProduceEffectList)(nil),                                  // 316: pmaster.ProduceEffectList
+	(*ProduceEventCharacterGrowth)(nil),                        // 317: pmaster.ProduceEventCharacterGrowth
+	(*ProduceEventCharacterGrowthList)(nil),                    // 318: pmaster.ProduceEventCharacterGrowthList
+	(*ProduceEventSupportCard)(nil),                            // 319: pmaster.ProduceEventSupportCard
+	(*ProduceEventSupportCardList)(nil),                        // 320: pmaster.ProduceEventSupportCardList
+	(*ProduceExamAutoCardSelectEvaluation)(nil),                // 321: pmaster.ProduceExamAutoCardSelectEvaluation
+	(*ProduceExamAutoCardSelectEvaluationList)(nil),            // 322: pmaster.ProduceExamAutoCardSelectEvaluationList
+	(*ProduceExamAutoEvaluation)(nil),                          // 323: pmaster.ProduceExamAutoEvaluation
+	(*ProduceExamAutoEvaluationList)(nil),                      // 324: pmaster.ProduceExamAutoEvaluationList
+	(*ProduceExamAutoGrowEffectEvaluation)(nil),                // 325: pmaster.ProduceExamAutoGrowEffectEvaluation
+	(*ProduceExamAutoGrowEffectEvaluationList)(nil),            // 326: pmaster.ProduceExamAutoGrowEffectEvaluationList
+	(*ProduceExamAutoPlayCardEvaluation)(nil),                  // 327: pmaster.ProduceExamAutoPlayCardEvaluation
+	(*ProduceExamAutoPlayCardEvaluationList)(nil),              // 328: pmaster.ProduceExamAutoPlayCardEvaluationList
+	(*ProduceExamAutoPlayProduceCardEvaluation)(nil),           // 329: pmaster.ProduceExamAutoPlayProduceCardEvaluation
+	(*ProduceExamAutoPlayProduceCardEvaluationList)(nil),       // 330: pmaster.ProduceExamAutoPlayProduceCardEvaluationList
+	(*ProduceExamAutoResourceEvaluation)(nil),                  // 331: pmaster.ProduceExamAutoResourceEvaluation
+	(*ProduceExamAutoResourceEvaluationList)(nil),              // 332: pmaster.ProduceExamAutoResourceEvaluationList
+	(*ProduceExamAutoTriggerEvaluation)(nil),                   // 333: pmaster.ProduceExamAutoTriggerEvaluation
+	(*ProduceExamAutoTriggerEvaluationList)(nil),               // 334: pmaster.ProduceExamAutoTriggerEvaluationList
+	(*ProduceExamBattleConfig)(nil),                            // 335: pmaster.ProduceExamBattleConfig
+	(*ProduceExamBattleConfigList)(nil),                        // 336: pmaster.ProduceExamBattleConfigList
+	(*ProduceExamBattleNpcGroup)(nil),                          // 337: pmaster.ProduceExamBattleNpcGroup
+	(*ProduceExamBattleNpcGroupList)(nil),                      // 338: pmaster.ProduceExamBattleNpcGroupList
+	(*ProduceExamBattleNpcMob)(nil),                            // 339: pmaster.ProduceExamBattleNpcMob
+	(*ProduceExamBattleNpcMobList)(nil),                        // 340: pmaster.ProduceExamBattleNpcMobList
+	(*ProduceExamBattleScoreConfig)(nil),                       // 341: pmaster.ProduceExamBattleScoreConfig
+	(*ProduceExamBattleScoreConfigList)(nil),                   // 342: pmaster.ProduceExamBattleScoreConfigList
+	(*ProduceExamEffect)(nil),                                  // 343: pmaster.ProduceExamEffect
+	(*ProduceExamEffectList)(nil),                              // 344: pmaster.ProduceExamEffectList
+	(*ProduceExamGimmickEffectGroup)(nil),                      // 345: pmaster.ProduceExamGimmickEffectGroup
+	(*ProduceExamGimmickEffectGroupList)(nil),                  // 346: pmaster.ProduceExamGimmickEffectGroupList
+	(*ProduceExamStatusEnchant)(nil),                           // 347: pmaster.ProduceExamStatusEnchant
+	(*ProduceExamStatusEnchantList)(nil),                       // 348: pmaster.ProduceExamStatusEnchantList
+	(*ProduceExamTrigger)(nil),                                 // 349: pmaster.ProduceExamTrigger
+	(*ProduceExamTriggerList)(nil),                             // 350: pmaster.ProduceExamTriggerList
+	(*ProduceGrade)(nil),                                       // 351: pmaster.ProduceGrade
+	(*ProduceGradeList)(nil),                                   // 352: pmaster.ProduceGradeList
+	(*ProduceGroup)(nil),                                       // 353: pmaster.ProduceGroup
+	(*ProduceGroupList)(nil),                                   // 354: pmaster.ProduceGroupList
+	(*ProduceGroupLiveCommon)(nil),                             // 355: pmaster.ProduceGroupLiveCommon
+	(*ProduceGroupLiveCommonList)(nil),                         // 356: pmaster.ProduceGroupLiveCommonList
+	(*ProduceGrowthPanel)(nil),                                 // 357: pmaster.ProduceGrowthPanel
+	(*ProduceGrowthPanelList)(nil),                             // 358: pmaster.ProduceGrowthPanelList
+	(*ProduceGrowthPanelSheet)(nil),                            // 359: pmaster.ProduceGrowthPanelSheet
+	(*ProduceGrowthPanelSheetList)(nil),                        // 360: pmaster.ProduceGrowthPanelSheetList
+	(*ProduceGuide)(nil),                                       // 361: pmaster.ProduceGuide
+	(*ProduceGuideList)(nil),                                   // 362: pmaster.ProduceGuideList
+	(*ProduceGuideProduceCardCategory)(nil),                    // 363: pmaster.ProduceGuideProduceCardCategory
+	(*ProduceGuideProduceCardCategoryGroup)(nil),               // 364: pmaster.ProduceGuideProduceCardCategoryGroup
+	(*ProduceGuideProduceCardCategoryGroupList)(nil),           // 365: pmaster.ProduceGuideProduceCardCategoryGroupList
+	(*ProduceGuideProduceCardCategoryList)(nil),                // 366: pmaster.ProduceGuideProduceCardCategoryList
+	(*ProduceGuideProduceCardSampleDeckCategory)(nil),          // 367: pmaster.ProduceGuideProduceCardSampleDeckCategory
+	(*ProduceGuideProduceCardSampleDeckCategoryGroup)(nil),     // 368: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroup
+	(*ProduceGuideProduceCardSampleDeckCategoryGroupList)(nil), // 369: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroupList
+	(*ProduceGuideProduceCardSampleDeckCategoryList)(nil),      // 370: pmaster.ProduceGuideProduceCardSampleDeckCategoryList
+	(*ProduceHighScore)(nil),                                   // 371: pmaster.ProduceHighScore
+	(*ProduceHighScoreList)(nil),                               // 372: pmaster.ProduceHighScoreList
+	(*ProduceInitialDeck)(nil),                                 // 373: pmaster.ProduceInitialDeck
+	(*ProduceInitialDeckList)(nil),                             // 374: pmaster.ProduceInitialDeckList
+	(*ProduceItem)(nil),                                        // 375: pmaster.ProduceItem
+	(*ProduceItemChallengeGroup)(nil),                          // 376: pmaster.ProduceItemChallengeGroup
+	(*ProduceItemChallengeGroupList)(nil),                      // 377: pmaster.ProduceItemChallengeGroupList
+	(*ProduceItemEffect)(nil),                                  // 378: pmaster.ProduceItemEffect
+	(*ProduceItemEffectList)(nil),                              // 379: pmaster.ProduceItemEffectList
+	(*ProduceItemList)(nil),                                    // 380: pmaster.ProduceItemList
+	(*ProduceItemSimulation)(nil),                              // 381: pmaster.ProduceItemSimulation
+	(*ProduceItemSimulationGroup)(nil),                         // 382: pmaster.ProduceItemSimulationGroup
+	(*ProduceItemSimulationGroupList)(nil),                     // 383: pmaster.ProduceItemSimulationGroupList
+	(*ProduceItemSimulationList)(nil),                          // 384: pmaster.ProduceItemSimulationList
+	(*ProduceLegendProduceCard)(nil),                           // 385: pmaster.ProduceLegendProduceCard
+	(*ProduceLegendProduceCardList)(nil),                       // 386: pmaster.ProduceLegendProduceCardList
+	(*ProduceList)(nil),                                        // 387: pmaster.ProduceList
+	(*ProduceLive)(nil),                                        // 388: pmaster.ProduceLive
+	(*ProduceLiveEvaluation)(nil),                              // 389: pmaster.ProduceLiveEvaluation
+	(*ProduceLiveEvaluationList)(nil),                          // 390: pmaster.ProduceLiveEvaluationList
+	(*ProduceLiveList)(nil),                                    // 391: pmaster.ProduceLiveList
+	(*ProduceNavigation)(nil),                                  // 392: pmaster.ProduceNavigation
+	(*ProduceNavigationList)(nil),                              // 393: pmaster.ProduceNavigationList
+	(*ProduceNextIdolAuditionMasterRankingSeason)(nil),         // 394: pmaster.ProduceNextIdolAuditionMasterRankingSeason
+	(*ProduceNextIdolAuditionMasterRankingSeasonList)(nil),     // 395: pmaster.ProduceNextIdolAuditionMasterRankingSeasonList
+	(*ProduceResultMotion)(nil),                                // 396: pmaster.ProduceResultMotion
+	(*ProduceResultMotionList)(nil),                            // 397: pmaster.ProduceResultMotionList
+	(*ProduceScheduleBackground)(nil),                          // 398: pmaster.ProduceScheduleBackground
+	(*ProduceScheduleBackgroundList)(nil),                      // 399: pmaster.ProduceScheduleBackgroundList
+	(*ProduceScheduleMotion)(nil),                              // 400: pmaster.ProduceScheduleMotion
+	(*ProduceScheduleMotionList)(nil),                          // 401: pmaster.ProduceScheduleMotionList
+	(*ProduceSeason)(nil),                                      // 402: pmaster.ProduceSeason
+	(*ProduceSeasonList)(nil),                                  // 403: pmaster.ProduceSeasonList
+	(*ProduceSeasonZeroGrade)(nil),                             // 404: pmaster.ProduceSeasonZeroGrade
+	(*ProduceSeasonZeroGradeList)(nil),                         // 405: pmaster.ProduceSeasonZeroGradeList
+	(*ProduceSetting)(nil),                                     // 406: pmaster.ProduceSetting
+	(*ProduceSettingList)(nil),                                 // 407: pmaster.ProduceSettingList
+	(*ProduceSkill)(nil),                                       // 408: pmaster.ProduceSkill
+	(*ProduceSkillList)(nil),                                   // 409: pmaster.ProduceSkillList
+	(*ProduceSplitAdv)(nil),                                    // 410: pmaster.ProduceSplitAdv
+	(*ProduceSplitAdvList)(nil),                                // 411: pmaster.ProduceSplitAdvList
+	(*ProduceStartMotion)(nil),                                 // 412: pmaster.ProduceStartMotion
+	(*ProduceStartMotionList)(nil),                             // 413: pmaster.ProduceStartMotionList
+	(*ProduceStepAuditionCharacter)(nil),                       // 414: pmaster.ProduceStepAuditionCharacter
+	(*ProduceStepAuditionCharacterBgm)(nil),                    // 415: pmaster.ProduceStepAuditionCharacterBgm
+	(*ProduceStepAuditionCharacterBgmList)(nil),                // 416: pmaster.ProduceStepAuditionCharacterBgmList
+	(*ProduceStepAuditionCharacterList)(nil),                   // 417: pmaster.ProduceStepAuditionCharacterList
+	(*ProduceStepAuditionCharacterUnitMotion)(nil),             // 418: pmaster.ProduceStepAuditionCharacterUnitMotion
+	(*ProduceStepAuditionCharacterUnitMotionList)(nil),         // 419: pmaster.ProduceStepAuditionCharacterUnitMotionList
+	(*ProduceStepAuditionDifficulty)(nil),                      // 420: pmaster.ProduceStepAuditionDifficulty
+	(*ProduceStepAuditionDifficultyList)(nil),                  // 421: pmaster.ProduceStepAuditionDifficultyList
+	(*ProduceStepAuditionMotion)(nil),                          // 422: pmaster.ProduceStepAuditionMotion
+	(*ProduceStepAuditionMotionList)(nil),                      // 423: pmaster.ProduceStepAuditionMotionList
+	(*ProduceStepAuditionRivalActor)(nil),                      // 424: pmaster.ProduceStepAuditionRivalActor
+	(*ProduceStepAuditionRivalActorList)(nil),                  // 425: pmaster.ProduceStepAuditionRivalActorList
+	(*ProduceStepAuditionRivalActorMotion)(nil),                // 426: pmaster.ProduceStepAuditionRivalActorMotion
+	(*ProduceStepAuditionRivalActorMotionList)(nil),            // 427: pmaster.ProduceStepAuditionRivalActorMotionList
+	(*ProduceStepEventDetail)(nil),                             // 428: pmaster.ProduceStepEventDetail
+	(*ProduceStepEventDetailList)(nil),                         // 429: pmaster.ProduceStepEventDetailList
+	(*ProduceStepEventSuggestion)(nil),                         // 430: pmaster.ProduceStepEventSuggestion
+	(*ProduceStepEventSuggestionList)(nil),                     // 431: pmaster.ProduceStepEventSuggestionList
+	(*ProduceStepFanPresentMotion)(nil),                        // 432: pmaster.ProduceStepFanPresentMotion
+	(*ProduceStepFanPresentMotionList)(nil),                    // 433: pmaster.ProduceStepFanPresentMotionList
+	(*ProduceStepLesson)(nil),                                  // 434: pmaster.ProduceStepLesson
+	(*ProduceStepLessonLevel)(nil),                             // 435: pmaster.ProduceStepLessonLevel
+	(*ProduceStepLessonLevelList)(nil),                         // 436: pmaster.ProduceStepLessonLevelList
+	(*ProduceStepLessonList)(nil),                              // 437: pmaster.ProduceStepLessonList
+	(*ProduceStepOpenLesson)(nil),                              // 438: pmaster.ProduceStepOpenLesson
+	(*ProduceStepOpenLessonList)(nil),                          // 439: pmaster.ProduceStepOpenLessonList
+	(*ProduceStepOpenLessonMotion)(nil),                        // 440: pmaster.ProduceStepOpenLessonMotion
+	(*ProduceStepOpenLessonMotionList)(nil),                    // 441: pmaster.ProduceStepOpenLessonMotionList
+	(*ProduceStepSelfLesson)(nil),                              // 442: pmaster.ProduceStepSelfLesson
+	(*ProduceStepSelfLessonList)(nil),                          // 443: pmaster.ProduceStepSelfLessonList
+	(*ProduceStepSelfLessonMotion)(nil),                        // 444: pmaster.ProduceStepSelfLessonMotion
+	(*ProduceStepSelfLessonMotionList)(nil),                    // 445: pmaster.ProduceStepSelfLessonMotionList
+	(*ProduceStepTransition)(nil),                              // 446: pmaster.ProduceStepTransition
+	(*ProduceStepTransitionList)(nil),                          // 447: pmaster.ProduceStepTransitionList
+	(*ProduceStory)(nil),                                       // 448: pmaster.ProduceStory
+	(*ProduceStoryGroup)(nil),                                  // 449: pmaster.ProduceStoryGroup
+	(*ProduceStoryGroupList)(nil),                              // 450: pmaster.ProduceStoryGroupList
+	(*ProduceStoryList)(nil),                                   // 451: pmaster.ProduceStoryList
+	(*ProduceTrigger)(nil),                                     // 452: pmaster.ProduceTrigger
+	(*ProduceTriggerList)(nil),                                 // 453: pmaster.ProduceTriggerList
+	(*ProduceWeekMotion)(nil),                                  // 454: pmaster.ProduceWeekMotion
+	(*ProduceWeekMotionList)(nil),                              // 455: pmaster.ProduceWeekMotionList
+	(*ProducerLevel)(nil),                                      // 456: pmaster.ProducerLevel
+	(*ProducerLevelList)(nil),                                  // 457: pmaster.ProducerLevelList
+	(*ProducerRanking)(nil),                                    // 458: pmaster.ProducerRanking
+	(*ProducerRankingCharacter)(nil),                           // 459: pmaster.ProducerRankingCharacter
+	(*ProducerRankingCharacterList)(nil),                       // 460: pmaster.ProducerRankingCharacterList
+	(*ProducerRankingList)(nil),                                // 461: pmaster.ProducerRankingList
+	(*ProducerRankingProduce)(nil),                             // 462: pmaster.ProducerRankingProduce
+	(*ProducerRankingProduceList)(nil),                         // 463: pmaster.ProducerRankingProduceList
+	(*ProducerRankingRankGrade)(nil),                           // 464: pmaster.ProducerRankingRankGrade
+	(*ProducerRankingRankGradeList)(nil),                       // 465: pmaster.ProducerRankingRankGradeList
+	(*ProducerRankingTower)(nil),                               // 466: pmaster.ProducerRankingTower
+	(*ProducerRankingTowerList)(nil),                           // 467: pmaster.ProducerRankingTowerList
+	(*PvpRateCommonProduceCard)(nil),                           // 468: pmaster.PvpRateCommonProduceCard
+	(*PvpRateCommonProduceCardList)(nil),                       // 469: pmaster.PvpRateCommonProduceCardList
+	(*PvpRateConfig)(nil),                                      // 470: pmaster.PvpRateConfig
+	(*PvpRateConfigList)(nil),                                  // 471: pmaster.PvpRateConfigList
+	(*PvpRateMotion)(nil),                                      // 472: pmaster.PvpRateMotion
+	(*PvpRateMotionList)(nil),                                  // 473: pmaster.PvpRateMotionList
+	(*PvpRateUnitSlotUnlock)(nil),                              // 474: pmaster.PvpRateUnitSlotUnlock
+	(*PvpRateUnitSlotUnlockList)(nil),                          // 475: pmaster.PvpRateUnitSlotUnlockList
+	(*ResearchMemoryRerollCost)(nil),                           // 476: pmaster.ResearchMemoryRerollCost
+	(*ResearchMemoryRerollCostList)(nil),                       // 477: pmaster.ResearchMemoryRerollCostList
+	(*ResultGradePattern)(nil),                                 // 478: pmaster.ResultGradePattern
+	(*ResultGradePatternList)(nil),                             // 479: pmaster.ResultGradePatternList
+	(*Rule)(nil),                                               // 480: pmaster.Rule
+	(*RuleList)(nil),                                           // 481: pmaster.RuleList
+	(*SeminarExamTransition)(nil),                              // 482: pmaster.SeminarExamTransition
+	(*SeminarExamTransitionList)(nil),                          // 483: pmaster.SeminarExamTransitionList
+	(*Setting)(nil),                                            // 484: pmaster.Setting
+	(*SettingList)(nil),                                        // 485: pmaster.SettingList
+	(*Shop)(nil),                                               // 486: pmaster.Shop
+	(*ShopItem)(nil),                                           // 487: pmaster.ShopItem
+	(*ShopItemList)(nil),                                       // 488: pmaster.ShopItemList
+	(*ShopList)(nil),                                           // 489: pmaster.ShopList
+	(*ShopProduct)(nil),                                        // 490: pmaster.ShopProduct
+	(*ShopProductList)(nil),                                    // 491: pmaster.ShopProductList
+	(*Story)(nil),                                              // 492: pmaster.Story
+	(*StoryEvent)(nil),                                         // 493: pmaster.StoryEvent
+	(*StoryEventList)(nil),                                     // 494: pmaster.StoryEventList
+	(*StoryGroup)(nil),                                         // 495: pmaster.StoryGroup
+	(*StoryGroupList)(nil),                                     // 496: pmaster.StoryGroupList
+	(*StoryList)(nil),                                          // 497: pmaster.StoryList
+	(*SupportCard)(nil),                                        // 498: pmaster.SupportCard
+	(*SupportCardBonus)(nil),                                   // 499: pmaster.SupportCardBonus
+	(*SupportCardBonusList)(nil),                               // 500: pmaster.SupportCardBonusList
+	(*SupportCardFlavor)(nil),                                  // 501: pmaster.SupportCardFlavor
+	(*SupportCardFlavorList)(nil),                              // 502: pmaster.SupportCardFlavorList
+	(*SupportCardLevel)(nil),                                   // 503: pmaster.SupportCardLevel
+	(*SupportCardLevelLimit)(nil),                              // 504: pmaster.SupportCardLevelLimit
+	(*SupportCardLevelLimitList)(nil),                          // 505: pmaster.SupportCardLevelLimitList
+	(*SupportCardLevelList)(nil),                               // 506: pmaster.SupportCardLevelList
+	(*SupportCardList)(nil),                                    // 507: pmaster.SupportCardList
+	(*SupportCardProduceSkillFilter)(nil),                      // 508: pmaster.SupportCardProduceSkillFilter
+	(*SupportCardProduceSkillFilterList)(nil),                  // 509: pmaster.SupportCardProduceSkillFilterList
+	(*SupportCardProduceSkillLevelAssist)(nil),                 // 510: pmaster.SupportCardProduceSkillLevelAssist
+	(*SupportCardProduceSkillLevelAssistList)(nil),             // 511: pmaster.SupportCardProduceSkillLevelAssistList
+	(*SupportCardProduceSkillLevelDance)(nil),                  // 512: pmaster.SupportCardProduceSkillLevelDance
+	(*SupportCardProduceSkillLevelDanceList)(nil),              // 513: pmaster.SupportCardProduceSkillLevelDanceList
+	(*SupportCardProduceSkillLevelVisual)(nil),                 // 514: pmaster.SupportCardProduceSkillLevelVisual
+	(*SupportCardProduceSkillLevelVisualList)(nil),             // 515: pmaster.SupportCardProduceSkillLevelVisualList
+	(*SupportCardProduceSkillLevelVocal)(nil),                  // 516: pmaster.SupportCardProduceSkillLevelVocal
+	(*SupportCardProduceSkillLevelVocalList)(nil),              // 517: pmaster.SupportCardProduceSkillLevelVocalList
+	(*SupportCardSimulation)(nil),                              // 518: pmaster.SupportCardSimulation
+	(*SupportCardSimulationGroup)(nil),                         // 519: pmaster.SupportCardSimulationGroup
+	(*SupportCardSimulationGroupList)(nil),                     // 520: pmaster.SupportCardSimulationGroupList
+	(*SupportCardSimulationList)(nil),                          // 521: pmaster.SupportCardSimulationList
+	(*Terms)(nil),                                              // 522: pmaster.Terms
+	(*TermsList)(nil),                                          // 523: pmaster.TermsList
+	(*Tips)(nil),                                               // 524: pmaster.Tips
+	(*TipsList)(nil),                                           // 525: pmaster.TipsList
+	(*TitleAsset)(nil),                                         // 526: pmaster.TitleAsset
+	(*TitleAssetList)(nil),                                     // 527: pmaster.TitleAssetList
+	(*TitleVoice)(nil),                                         // 528: pmaster.TitleVoice
+	(*TitleVoiceList)(nil),                                     // 529: pmaster.TitleVoiceList
+	(*Tour)(nil),                                               // 530: pmaster.Tour
+	(*TourList)(nil),                                           // 531: pmaster.TourList
+	(*TourMotion)(nil),                                         // 532: pmaster.TourMotion
+	(*TourMotionList)(nil),                                     // 533: pmaster.TourMotionList
+	(*TourStageTimeline)(nil),                                  // 534: pmaster.TourStageTimeline
+	(*TourStageTimelineList)(nil),                              // 535: pmaster.TourStageTimelineList
+	(*Tower)(nil),                                              // 536: pmaster.Tower
+	(*TowerLayer)(nil),                                         // 537: pmaster.TowerLayer
+	(*TowerLayerExam)(nil),                                     // 538: pmaster.TowerLayerExam
+	(*TowerLayerExamList)(nil),                                 // 539: pmaster.TowerLayerExamList
+	(*TowerLayerList)(nil),                                     // 540: pmaster.TowerLayerList
+	(*TowerLayerRank)(nil),                                     // 541: pmaster.TowerLayerRank
+	(*TowerLayerRankList)(nil),                                 // 542: pmaster.TowerLayerRankList
+	(*TowerList)(nil),                                          // 543: pmaster.TowerList
+	(*TowerReset)(nil),                                         // 544: pmaster.TowerReset
+	(*TowerResetList)(nil),                                     // 545: pmaster.TowerResetList
+	(*TowerTotalClearRankReward)(nil),                          // 546: pmaster.TowerTotalClearRankReward
+	(*TowerTotalClearRankRewardList)(nil),                      // 547: pmaster.TowerTotalClearRankRewardList
+	(*Tutorial)(nil),                                           // 548: pmaster.Tutorial
+	(*TutorialCharacterVoice)(nil),                             // 549: pmaster.TutorialCharacterVoice
+	(*TutorialCharacterVoiceList)(nil),                         // 550: pmaster.TutorialCharacterVoiceList
+	(*TutorialList)(nil),                                       // 551: pmaster.TutorialList
+	(*TutorialProduce)(nil),                                    // 552: pmaster.TutorialProduce
+	(*TutorialProduceList)(nil),                                // 553: pmaster.TutorialProduceList
+	(*TutorialProduceStep)(nil),                                // 554: pmaster.TutorialProduceStep
+	(*TutorialProduceStepList)(nil),                            // 555: pmaster.TutorialProduceStepList
+	(*Voice)(nil),                                              // 556: pmaster.Voice
+	(*VoiceGroup)(nil),                                         // 557: pmaster.VoiceGroup
+	(*VoiceGroupList)(nil),                                     // 558: pmaster.VoiceGroupList
+	(*VoiceList)(nil),                                          // 559: pmaster.VoiceList
+	(*VoiceRoster)(nil),                                        // 560: pmaster.VoiceRoster
+	(*VoiceRosterList)(nil),                                    // 561: pmaster.VoiceRosterList
+	(*Work)(nil),                                               // 562: pmaster.Work
+	(*WorkLevel)(nil),                                          // 563: pmaster.WorkLevel
+	(*WorkLevelList)(nil),                                      // 564: pmaster.WorkLevelList
+	(*WorkLevelReward)(nil),                                    // 565: pmaster.WorkLevelReward
+	(*WorkLevelRewardList)(nil),                                // 566: pmaster.WorkLevelRewardList
+	(*WorkList)(nil),                                           // 567: pmaster.WorkList
+	(*WorkMotion)(nil),                                         // 568: pmaster.WorkMotion
+	(*WorkMotionList)(nil),                                     // 569: pmaster.WorkMotionList
+	(*WorkSkip)(nil),                                           // 570: pmaster.WorkSkip
+	(*WorkSkipList)(nil),                                       // 571: pmaster.WorkSkipList
+	(*WorkTime)(nil),                                           // 572: pmaster.WorkTime
+	(*WorkTimeList)(nil),                                       // 573: pmaster.WorkTimeList
+	(*CharacterDearnessLevel_ProduceSkill)(nil),                // 574: pmaster.CharacterDearnessLevel.ProduceSkill
+	(*CharacterTrueEndAchievement_Achievement)(nil),            // 575: pmaster.CharacterTrueEndAchievement.Achievement
+	(*CompetitionSeason_Stage)(nil),                            // 576: pmaster.CompetitionSeason.Stage
+	(*CompetitionSeason_GradeConfig)(nil),                      // 577: pmaster.CompetitionSeason.GradeConfig
+	(*IdolCardSkinUnit_UnitCharacter)(nil),                     // 578: pmaster.IdolCardSkinUnit.UnitCharacter
+	(*Item_Gasha)(nil),                                         // 579: pmaster.Item.Gasha
+	(*ProduceCard_PlayEffect)(nil),                             // 580: pmaster.ProduceCard.PlayEffect
+	(*ProduceCardPool_ProduceCardRatio)(nil),                   // 581: pmaster.ProduceCardPool.ProduceCardRatio
+	(*ProduceEffect_ProduceReward)(nil),                        // 582: pmaster.ProduceEffect.ProduceReward
+	(*ProduceItem_Skill)(nil),                                  // 583: pmaster.ProduceItem.Skill
+	(*ProducerLevel_UnlockTarget)(nil),                         // 584: pmaster.ProducerLevel.UnlockTarget
+	(*PvpRateConfig_Stage)(nil),                                // 585: pmaster.PvpRateConfig.Stage
+	(penum.AchievementCategory)(0),                             // 586: penum.AchievementCategory
+	(penum.MissionType)(0),                                     // 587: penum.MissionType
+	(*pcommon.Achievement)(nil),                                // 588: pcommon.Achievement
+	(*pcommon.Reward)(nil),                                     // 589: pcommon.Reward
+	(penum.AppReviewType)(0),                                   // 590: penum.AppReviewType
+	(penum.AssetDownloadType)(0),                               // 591: penum.AssetDownloadType
+	(penum.BadgeType)(0),                                       // 592: penum.BadgeType
+	(penum.BadgeGrade)(0),                                      // 593: penum.BadgeGrade
+	(penum.CharacterPersonalityType)(0),                        // 594: penum.CharacterPersonalityType
+	(penum.ProduceType)(0),                                     // 595: penum.ProduceType
+	(penum.CharacterDetailType)(0),                             // 596: penum.CharacterDetailType
+	(penum.PushType)(0),                                        // 597: penum.PushType
+	(penum.ResourceType)(0),                                    // 598: penum.ResourceType
+	(penum.ProducePlanType)(0),                                 // 599: penum.ProducePlanType
+	(penum.ExamStatusEffectType)(0),                            // 600: penum.ExamStatusEffectType
+	(penum.CompetitionGrade)(0),                                // 601: penum.CompetitionGrade
+	(penum.CompetitionStageType)(0),                            // 602: penum.CompetitionStageType
+	(penum.CompetitionStageSectionType)(0),                     // 603: penum.CompetitionStageSectionType
+	(penum.ConditionOperatorType)(0),                           // 604: penum.ConditionOperatorType
+	(penum.ConditionType)(0),                                   // 605: penum.ConditionType
+	(penum.ConditionMinMaxType)(0),                             // 606: penum.ConditionMinMaxType
+	(penum.ResourceOriginType)(0),                              // 607: penum.ResourceOriginType
+	(penum.CostumeFeatureType)(0),                              // 608: penum.CostumeFeatureType
+	(penum.CostumeMotionType)(0),                               // 609: penum.CostumeMotionType
+	(penum.DearnessMotionType)(0),                              // 610: penum.DearnessMotionType
+	(penum.ProduceExamEffectType)(0),                           // 611: penum.ProduceExamEffectType
+	(penum.ProduceEffectType)(0),                               // 612: penum.ProduceEffectType
+	(penum.ProduceCardGrowEffectType)(0),                       // 613: penum.ProduceCardGrowEffectType
+	(penum.EventType)(0),                                       // 614: penum.EventType
+	(penum.ExamMotionTargetType)(0),                            // 615: penum.ExamMotionTargetType
+	(penum.ExamMotionType)(0),                                  // 616: penum.ExamMotionType
+	(penum.ProduceStepType)(0),                                 // 617: penum.ProduceStepType
+	(penum.ExamOutGameMotionType)(0),                           // 618: penum.ExamOutGameMotionType
+	(penum.ExchangeItemCategoryType)(0),                        // 619: penum.ExchangeItemCategoryType
+	(penum.ItemType)(0),                                        // 620: penum.ItemType
+	(penum.TutorialType)(0),                                    // 621: penum.TutorialType
+	(penum.PlatformType)(0),                                    // 622: penum.PlatformType
+	(penum.GashaAnimationRarity)(0),                            // 623: penum.GashaAnimationRarity
+	(penum.GashaAnimationStepType)(0),                          // 624: penum.GashaAnimationStepType
+	(penum.GashaButtonType)(0),                                 // 625: penum.GashaButtonType
+	(penum.GashaLimitType)(0),                                  // 626: penum.GashaLimitType
+	(penum.GashaButtonAppealType)(0),                           // 627: penum.GashaButtonAppealType
+	(*pcommon.GashaButton)(nil),                                // 628: pcommon.GashaButton
+	(penum.HomeTimeType)(0),                                    // 629: penum.HomeTimeType
+	(penum.HomeLocationType)(0),                                // 630: penum.HomeLocationType
+	(penum.HomeMotionType)(0),                                  // 631: penum.HomeMotionType
+	(penum.IdolCardRarity)(0),                                  // 632: penum.IdolCardRarity
+	(penum.IdolCardLevelLimitRank)(0),                          // 633: penum.IdolCardLevelLimitRank
+	(penum.IdolCardLevelLimitEffectType)(0),                    // 634: penum.IdolCardLevelLimitEffectType
+	(*pcommon.IdolCard)(nil),                                   // 635: pcommon.IdolCard
+	(penum.IdolCardPotentialRank)(0),                           // 636: penum.IdolCardPotentialRank
+	(penum.IdolCardPotentialEffectType)(0),                     // 637: penum.IdolCardPotentialEffectType
+	(penum.IdolCardDifficultyType)(0),                          // 638: penum.IdolCardDifficultyType
+	(penum.ItemRarity)(0),                                      // 639: penum.ItemRarity
+	(penum.ExchangeType)(0),                                    // 640: penum.ExchangeType
+	(penum.SupportCardRarity)(0),                               // 641: penum.SupportCardRarity
+	(penum.MainTaskType)(0),                                    // 642: penum.MainTaskType
+	(penum.MediaType)(0),                                       // 643: penum.MediaType
+	(penum.FourPanelComicSeries)(0),                            // 644: penum.FourPanelComicSeries
+	(penum.MediaMovieType)(0),                                  // 645: penum.MediaMovieType
+	(penum.MeishiBaseAssetType)(0),                             // 646: penum.MeishiBaseAssetType
+	(penum.MeishiIllustrationType)(0),                          // 647: penum.MeishiIllustrationType
+	(penum.SkillRarity)(0),                                     // 648: penum.SkillRarity
+	(*pcommon.MemoryAbility)(nil),                              // 649: pcommon.MemoryAbility
+	(penum.ResultGrade)(0),                                     // 650: penum.ResultGrade
+	(*pcommon.ProduceCard)(nil),                                // 651: pcommon.ProduceCard
+	(penum.ProduceMemoryProduceCardPhaseType)(0),               // 652: penum.ProduceMemoryProduceCardPhaseType
+	(penum.MissionCategory)(0),                                 // 653: penum.MissionCategory
+	(penum.ResetTimingType)(0),                                 // 654: penum.ResetTimingType
+	(penum.MusicType)(0),                                       // 655: penum.MusicType
+	(penum.PhotoBackgroundCategory)(0),                         // 656: penum.PhotoBackgroundCategory
+	(penum.PhotoBackgroundTimeType)(0),                         // 657: penum.PhotoBackgroundTimeType
+	(penum.PhotoLookTargetType)(0),                             // 658: penum.PhotoLookTargetType
+	(penum.PhotoPoseMotionType)(0),                             // 659: penum.PhotoPoseMotionType
+	(penum.ProduceSelectScreenOrderType)(0),                    // 660: penum.ProduceSelectScreenOrderType
+	(penum.ProduceSplitType)(0),                                // 661: penum.ProduceSplitType
+	(penum.ProduceAdvType)(0),                                  // 662: penum.ProduceAdvType
+	(penum.ProduceCardRarity)(0),                               // 663: penum.ProduceCardRarity
+	(penum.ProduceCardCategory)(0),                             // 664: penum.ProduceCardCategory
+	(penum.ExamCostType)(0),                                    // 665: penum.ExamCostType
+	(penum.ProduceCardMovePositionType)(0),                     // 666: penum.ProduceCardMovePositionType
+	(penum.ProduceCardMoveEffectTriggerType)(0),                // 667: penum.ProduceCardMoveEffectTriggerType
+	(*pcommon.ProduceDescriptionSegment)(nil),                  // 668: pcommon.ProduceDescriptionSegment
+	(*pcommon.ProduceCardConversion)(nil),                      // 669: pcommon.ProduceCardConversion
+	(*pcommon.ProduceCardCustomize)(nil),                       // 670: pcommon.ProduceCardCustomize
+	(penum.ProduceCardSearchStatusType)(0),                     // 671: penum.ProduceCardSearchStatusType
+	(penum.ProduceCardOrderType)(0),                            // 672: penum.ProduceCardOrderType
+	(penum.ProduceCardPositionType)(0),                         // 673: penum.ProduceCardPositionType
+	(penum.ProduceItemEffectType)(0),                           // 674: penum.ProduceItemEffectType
+	(penum.ProduceDescriptionSwapType)(0),                      // 675: penum.ProduceDescriptionSwapType
+	(penum.ProduceDrinkRarity)(0),                              // 676: penum.ProduceDrinkRarity
+	(penum.ProduceResourceType)(0),                             // 677: penum.ProduceResourceType
+	(penum.ProducePickRangeType)(0),                            // 678: penum.ProducePickRangeType
+	(penum.ExamPlayType)(0),                                    // 679: penum.ExamPlayType
+	(penum.ProduceExamAutoCardSelectEvaluationType)(0),         // 680: penum.ProduceExamAutoCardSelectEvaluationType
+	(penum.ProduceExamAutoEvaluationType)(0),                   // 681: penum.ProduceExamAutoEvaluationType
+	(penum.ProducePickCountType)(0),                            // 682: penum.ProducePickCountType
+	(penum.ProduceExamFieldStatusType)(0),                      // 683: penum.ProduceExamFieldStatusType
+	(penum.ProduceExamTriggerCheckType)(0),                     // 684: penum.ProduceExamTriggerCheckType
+	(penum.ProduceExamPhaseType)(0),                            // 685: penum.ProduceExamPhaseType
+	(penum.ProduceStepLessonType)(0),                           // 686: penum.ProduceStepLessonType
+	(penum.ProduceLiveType)(0),                                 // 687: penum.ProduceLiveType
+	(penum.ProduceHighScoreEventType)(0),                       // 688: penum.ProduceHighScoreEventType
+	(penum.ProduceItemRarity)(0),                               // 689: penum.ProduceItemRarity
+	(*pcommon.ProduceItem)(nil),                                // 690: pcommon.ProduceItem
+	(penum.ProduceScheduleLocationType)(0),                     // 691: penum.ProduceScheduleLocationType
+	(penum.ProduceScheduleStaminaMotionType)(0),                // 692: penum.ProduceScheduleStaminaMotionType
+	(penum.ProduceScheduleMotionType)(0),                       // 693: penum.ProduceScheduleMotionType
+	(penum.ProduceStartMotionType)(0),                          // 694: penum.ProduceStartMotionType
+	(penum.ProduceStepAuditionMotionType)(0),                   // 695: penum.ProduceStepAuditionMotionType
+	(penum.ProduceStepAuditionType)(0),                         // 696: penum.ProduceStepAuditionType
+	(penum.ProduceEventSuggestionType)(0),                      // 697: penum.ProduceEventSuggestionType
+	(penum.ProduceEventType)(0),                                // 698: penum.ProduceEventType
+	(penum.ProduceEventCharacterType)(0),                       // 699: penum.ProduceEventCharacterType
+	(penum.ProduceStepFanPresentMotionType)(0),                 // 700: penum.ProduceStepFanPresentMotionType
+	(penum.ProduceParameterType)(0),                            // 701: penum.ProduceParameterType
+	(penum.ProduceStepPhaseType)(0),                            // 702: penum.ProduceStepPhaseType
+	(penum.ProduceStoryType)(0),                                // 703: penum.ProduceStoryType
+	(penum.ProducePhaseType)(0),                                // 704: penum.ProducePhaseType
+	(penum.ProducerRankingGrade)(0),                            // 705: penum.ProducerRankingGrade
+	(penum.PvpRateMotionType)(0),                               // 706: penum.PvpRateMotionType
+	(penum.PvpRateGrade)(0),                                    // 707: penum.PvpRateGrade
+	(penum.ResultGradeType)(0),                                 // 708: penum.ResultGradeType
+	(penum.RuleType)(0),                                        // 709: penum.RuleType
+	(penum.ShopType)(0),                                        // 710: penum.ShopType
+	(penum.Weekday)(0),                                         // 711: penum.Weekday
+	(penum.ShopItemLabelType)(0),                               // 712: penum.ShopItemLabelType
+	(penum.StoryType)(0),                                       // 713: penum.StoryType
+	(penum.StoryEventType)(0),                                  // 714: penum.StoryEventType
+	(penum.EventStoryFilterType)(0),                            // 715: penum.EventStoryFilterType
+	(penum.SupportCardType)(0),                                 // 716: penum.SupportCardType
+	(penum.SupportCardLevelLimitRank)(0),                       // 717: penum.SupportCardLevelLimitRank
+	(*pcommon.SupportCard)(nil),                                // 718: pcommon.SupportCard
+	(penum.TermsType)(0),                                       // 719: penum.TermsType
+	(penum.TipsType)(0),                                        // 720: penum.TipsType
+	(penum.ViewAreaType)(0),                                    // 721: penum.ViewAreaType
+	(penum.TutorialNavigationType)(0),                          // 722: penum.TutorialNavigationType
+	(penum.TutorialNavigationPositionType)(0),                  // 723: penum.TutorialNavigationPositionType
+	(penum.TutorialProduceCommandType)(0),                      // 724: penum.TutorialProduceCommandType
+	(penum.TutorialCharacterVoiceType)(0),                      // 725: penum.TutorialCharacterVoiceType
+	(penum.VoicePlayScreenType)(0),                             // 726: penum.VoicePlayScreenType
+	(penum.WorkType)(0),                                        // 727: penum.WorkType
+	(penum.WorkMotionType)(0),                                  // 728: penum.WorkMotionType
+	(penum.ProducerLevelUnlockType)(0),                         // 729: penum.ProducerLevelUnlockType
+	(penum.PvpRateStageType)(0),                                // 730: penum.PvpRateStageType
 }
 var file_pmaster_proto_depIdxs = []int32{
-	554, // 0: pmaster.Achievement.category:type_name -> penum.AchievementCategory
-	555, // 1: pmaster.Achievement.missionType:type_name -> penum.MissionType
-	556, // 2: pmaster.AchievementList.list:type_name -> pcommon.Achievement
-	557, // 3: pmaster.AchievementProgress.rewards:type_name -> pcommon.Reward
+	586, // 0: pmaster.Achievement.category:type_name -> penum.AchievementCategory
+	587, // 1: pmaster.Achievement.missionType:type_name -> penum.MissionType
+	588, // 2: pmaster.AchievementList.list:type_name -> pcommon.Achievement
+	589, // 3: pmaster.AchievementProgress.rewards:type_name -> pcommon.Reward
 	2,   // 4: pmaster.AchievementProgressList.list:type_name -> pmaster.AchievementProgress
-	558, // 5: pmaster.AppReview.type:type_name -> penum.AppReviewType
+	590, // 5: pmaster.AppReview.type:type_name -> penum.AppReviewType
 	4,   // 6: pmaster.AppReviewList.list:type_name -> pmaster.AppReview
-	559, // 7: pmaster.AssetDownload.type:type_name -> penum.AssetDownloadType
+	591, // 7: pmaster.AssetDownload.type:type_name -> penum.AssetDownloadType
 	6,   // 8: pmaster.AssetDownloadList.list:type_name -> pmaster.AssetDownload
-	560, // 9: pmaster.Badge.type:type_name -> penum.BadgeType
-	561, // 10: pmaster.Badge.grade:type_name -> penum.BadgeGrade
+	592, // 9: pmaster.Badge.type:type_name -> penum.BadgeType
+	593, // 10: pmaster.Badge.grade:type_name -> penum.BadgeGrade
 	8,   // 11: pmaster.BadgeList.list:type_name -> pmaster.Badge
 	10,  // 12: pmaster.BgmList.list:type_name -> pmaster.Bgm
-	562, // 13: pmaster.Character.personalityType:type_name -> penum.CharacterPersonalityType
+	594, // 13: pmaster.Character.personalityType:type_name -> penum.CharacterPersonalityType
 	13,  // 14: pmaster.CharacterActorLookEffectorList.list:type_name -> pmaster.CharacterActorLookEffector
 	15,  // 15: pmaster.CharacterAdvList.list:type_name -> pmaster.CharacterAdv
 	17,  // 16: pmaster.CharacterColorList.list:type_name -> pmaster.CharacterColor
-	542, // 17: pmaster.CharacterDearnessLevel.produceSkills:type_name -> pmaster.CharacterDearnessLevel.ProduceSkill
-	557, // 18: pmaster.CharacterDearnessLevel.rewards:type_name -> pcommon.Reward
-	563, // 19: pmaster.CharacterDearnessLevel.trueEndAchievementProduceType:type_name -> penum.ProduceType
+	574, // 17: pmaster.CharacterDearnessLevel.produceSkills:type_name -> pmaster.CharacterDearnessLevel.ProduceSkill
+	589, // 18: pmaster.CharacterDearnessLevel.rewards:type_name -> pcommon.Reward
+	595, // 19: pmaster.CharacterDearnessLevel.trueEndAchievementProduceType:type_name -> penum.ProduceType
 	19,  // 20: pmaster.CharacterDearnessLevelList.list:type_name -> pmaster.CharacterDearnessLevel
 	21,  // 21: pmaster.CharacterDearnessStoryGashaCampaignList.list:type_name -> pmaster.CharacterDearnessStoryGashaCampaign
-	564, // 22: pmaster.CharacterDetail.type:type_name -> penum.CharacterDetailType
+	596, // 22: pmaster.CharacterDetail.type:type_name -> penum.CharacterDetailType
 	23,  // 23: pmaster.CharacterDetailList.list:type_name -> pmaster.CharacterDetail
 	12,  // 24: pmaster.CharacterList.list:type_name -> pmaster.Character
 	26,  // 25: pmaster.CharacterProduceStoryList.list:type_name -> pmaster.CharacterProduceStory
-	565, // 26: pmaster.CharacterPushMessage.type:type_name -> penum.PushType
+	597, // 26: pmaster.CharacterPushMessage.type:type_name -> penum.PushType
 	28,  // 27: pmaster.CharacterPushMessageList.list:type_name -> pmaster.CharacterPushMessage
-	563, // 28: pmaster.CharacterTrueEndAchievement.produceType:type_name -> penum.ProduceType
-	543, // 29: pmaster.CharacterTrueEndAchievement.trueEndAchievement:type_name -> pmaster.CharacterTrueEndAchievement.Achievement
-	543, // 30: pmaster.CharacterTrueEndAchievement.targetAchievements:type_name -> pmaster.CharacterTrueEndAchievement.Achievement
+	595, // 28: pmaster.CharacterTrueEndAchievement.produceType:type_name -> penum.ProduceType
+	575, // 29: pmaster.CharacterTrueEndAchievement.trueEndAchievement:type_name -> pmaster.CharacterTrueEndAchievement.Achievement
+	575, // 30: pmaster.CharacterTrueEndAchievement.targetAchievements:type_name -> pmaster.CharacterTrueEndAchievement.Achievement
 	30,  // 31: pmaster.CharacterTrueEndAchievementList.list:type_name -> pmaster.CharacterTrueEndAchievement
-	563, // 32: pmaster.CharacterTrueEndBonus.produceType:type_name -> penum.ProduceType
+	595, // 32: pmaster.CharacterTrueEndBonus.produceType:type_name -> penum.ProduceType
 	32,  // 33: pmaster.CharacterTrueEndBonusList.list:type_name -> pmaster.CharacterTrueEndBonus
-	566, // 34: pmaster.CoinGashaButton.resourceType:type_name -> penum.ResourceType
+	598, // 34: pmaster.CoinGashaButton.resourceType:type_name -> penum.ResourceType
 	34,  // 35: pmaster.CoinGashaButtonList.list:type_name -> pmaster.CoinGashaButton
-	567, // 36: pmaster.CompetitionExamStatusEffectIcon.planType:type_name -> penum.ProducePlanType
-	568, // 37: pmaster.CompetitionExamStatusEffectIcon.examStatusEffectType:type_name -> penum.ExamStatusEffectType
+	599, // 36: pmaster.CompetitionExamStatusEffectIcon.planType:type_name -> penum.ProducePlanType
+	600, // 37: pmaster.CompetitionExamStatusEffectIcon.examStatusEffectType:type_name -> penum.ExamStatusEffectType
 	36,  // 38: pmaster.CompetitionExamStatusEffectIconList.list:type_name -> pmaster.CompetitionExamStatusEffectIcon
-	545, // 39: pmaster.CompetitionSeason.gradeConfigs:type_name -> pmaster.CompetitionSeason.GradeConfig
+	577, // 39: pmaster.CompetitionSeason.gradeConfigs:type_name -> pmaster.CompetitionSeason.GradeConfig
 	38,  // 40: pmaster.CompetitionSeasonList.list:type_name -> pmaster.CompetitionSeason
-	569, // 41: pmaster.CompetitionStageSectionLock.grade:type_name -> penum.CompetitionGrade
-	570, // 42: pmaster.CompetitionStageSectionLock.stageType:type_name -> penum.CompetitionStageType
-	571, // 43: pmaster.CompetitionStageSectionLock.sectionTypes:type_name -> penum.CompetitionStageSectionType
+	601, // 41: pmaster.CompetitionStageSectionLock.grade:type_name -> penum.CompetitionGrade
+	602, // 42: pmaster.CompetitionStageSectionLock.stageType:type_name -> penum.CompetitionStageType
+	603, // 43: pmaster.CompetitionStageSectionLock.sectionTypes:type_name -> penum.CompetitionStageSectionType
 	40,  // 44: pmaster.CompetitionStageSectionLockList.list:type_name -> pmaster.CompetitionStageSectionLock
-	572, // 45: pmaster.ConditionSet.conditionOperatorType:type_name -> penum.ConditionOperatorType
-	573, // 46: pmaster.ConditionSet.conditionType:type_name -> penum.ConditionType
-	574, // 47: pmaster.ConditionSet.minMaxType:type_name -> penum.ConditionMinMaxType
+	604, // 45: pmaster.ConditionSet.conditionOperatorType:type_name -> penum.ConditionOperatorType
+	605, // 46: pmaster.ConditionSet.conditionType:type_name -> penum.ConditionType
+	606, // 47: pmaster.ConditionSet.minMaxType:type_name -> penum.ConditionMinMaxType
 	42,  // 48: pmaster.ConditionSetList.list:type_name -> pmaster.ConditionSet
-	566, // 49: pmaster.ConsumptionSet.resourceType:type_name -> penum.ResourceType
+	598, // 49: pmaster.ConsumptionSet.resourceType:type_name -> penum.ResourceType
 	44,  // 50: pmaster.ConsumptionSetList.list:type_name -> pmaster.ConsumptionSet
-	575, // 51: pmaster.Costume.resourceOriginType:type_name -> penum.ResourceOriginType
-	576, // 52: pmaster.Costume.invalidCostumeFeatureTypes:type_name -> penum.CostumeFeatureType
+	607, // 51: pmaster.Costume.resourceOriginType:type_name -> penum.ResourceOriginType
+	608, // 52: pmaster.Costume.invalidCostumeFeatureTypes:type_name -> penum.CostumeFeatureType
 	47,  // 53: pmaster.CostumeColorGroupList.list:type_name -> pmaster.CostumeColorGroup
-	575, // 54: pmaster.CostumeHead.resourceOriginType:type_name -> penum.ResourceOriginType
+	607, // 54: pmaster.CostumeHead.resourceOriginType:type_name -> penum.ResourceOriginType
 	49,  // 55: pmaster.CostumeHeadList.list:type_name -> pmaster.CostumeHead
 	46,  // 56: pmaster.CostumeList.list:type_name -> pmaster.Costume
-	577, // 57: pmaster.CostumeMotion.motionType:type_name -> penum.CostumeMotionType
+	609, // 57: pmaster.CostumeMotion.motionType:type_name -> penum.CostumeMotionType
 	52,  // 58: pmaster.CostumeMotionList.list:type_name -> pmaster.CostumeMotion
 	54,  // 59: pmaster.CostumePhotoGroupList.list:type_name -> pmaster.CostumePhotoGroup
 	56,  // 60: pmaster.CostumeWaitMotionList.list:type_name -> pmaster.CostumeWaitMotion
 	58,  // 61: pmaster.DearnessBackgroundList.list:type_name -> pmaster.DearnessBackground
 	60,  // 62: pmaster.DearnessBgmList.list:type_name -> pmaster.DearnessBgm
 	62,  // 63: pmaster.DearnessBoostBgmList.list:type_name -> pmaster.DearnessBoostBgm
-	578, // 64: pmaster.DearnessMotion.motionType:type_name -> penum.DearnessMotionType
+	610, // 64: pmaster.DearnessMotion.motionType:type_name -> penum.DearnessMotionType
 	64,  // 65: pmaster.DearnessMotionList.list:type_name -> pmaster.DearnessMotion
 	66,  // 66: pmaster.DearnessStoryCampaignList.list:type_name -> pmaster.DearnessStoryCampaign
 	68,  // 67: pmaster.DeepLinkTransitionList.list:type_name -> pmaster.DeepLinkTransition
-	579, // 68: pmaster.EffectGroup.examEffectType:type_name -> penum.ProduceExamEffectType
-	580, // 69: pmaster.EffectGroup.produceEffectType:type_name -> penum.ProduceEffectType
-	579, // 70: pmaster.EffectGroup.examEffectTypes:type_name -> penum.ProduceExamEffectType
-	580, // 71: pmaster.EffectGroup.produceEffectTypes:type_name -> penum.ProduceEffectType
-	581, // 72: pmaster.EffectGroup.produceCardGrowEffectTypes:type_name -> penum.ProduceCardGrowEffectType
+	611, // 68: pmaster.EffectGroup.examEffectType:type_name -> penum.ProduceExamEffectType
+	612, // 69: pmaster.EffectGroup.produceEffectType:type_name -> penum.ProduceEffectType
+	611, // 70: pmaster.EffectGroup.examEffectTypes:type_name -> penum.ProduceExamEffectType
+	612, // 71: pmaster.EffectGroup.produceEffectTypes:type_name -> penum.ProduceEffectType
+	613, // 72: pmaster.EffectGroup.produceCardGrowEffectTypes:type_name -> penum.ProduceCardGrowEffectType
 	70,  // 73: pmaster.EffectGroupList.list:type_name -> pmaster.EffectGroup
-	582, // 74: pmaster.EventLabel.eventType:type_name -> penum.EventType
+	614, // 74: pmaster.EventLabel.eventType:type_name -> penum.EventType
 	72,  // 75: pmaster.EventLabelList.list:type_name -> pmaster.EventLabel
 	74,  // 76: pmaster.EventStoryCampaignList.list:type_name -> pmaster.EventStoryCampaign
-	579, // 77: pmaster.ExamContestEmbedProduceCard.examEffectType:type_name -> penum.ProduceExamEffectType
+	611, // 77: pmaster.ExamContestEmbedProduceCard.examEffectType:type_name -> penum.ProduceExamEffectType
 	76,  // 78: pmaster.ExamContestEmbedProduceCardList.list:type_name -> pmaster.ExamContestEmbedProduceCard
 	78,  // 79: pmaster.ExamInitialDeckList.list:type_name -> pmaster.ExamInitialDeck
-	583, // 80: pmaster.ExamMotion.type:type_name -> penum.ExamMotionTargetType
-	584, // 81: pmaster.ExamMotion.motionType:type_name -> penum.ExamMotionType
-	80,  // 82: pmaster.ExamMotionList.list:type_name -> pmaster.ExamMotion
-	583, // 83: pmaster.ExamOutGameMotion.type:type_name -> penum.ExamMotionTargetType
-	585, // 84: pmaster.ExamOutGameMotion.motionType:type_name -> penum.ExamOutGameMotionType
-	82,  // 85: pmaster.ExamOutGameMotionList.list:type_name -> pmaster.ExamOutGameMotion
-	84,  // 86: pmaster.ExamSettingList.list:type_name -> pmaster.ExamSetting
-	86,  // 87: pmaster.ExamSimulationList.list:type_name -> pmaster.ExamSimulation
-	586, // 88: pmaster.ExchangeItemCategory.categoryType:type_name -> penum.ExchangeItemCategoryType
-	566, // 89: pmaster.ExchangeItemCategory.resourceType:type_name -> penum.ResourceType
-	587, // 90: pmaster.ExchangeItemCategory.itemType:type_name -> penum.ItemType
-	88,  // 91: pmaster.ExchangeItemCategoryList.list:type_name -> pmaster.ExchangeItemCategory
-	588, // 92: pmaster.FeatureLock.tutorialType:type_name -> penum.TutorialType
-	90,  // 93: pmaster.FeatureLockList.list:type_name -> pmaster.FeatureLock
-	589, // 94: pmaster.ForceAppVersion.platformType:type_name -> penum.PlatformType
-	92,  // 95: pmaster.ForceAppVersionList.list:type_name -> pmaster.ForceAppVersion
-	590, // 96: pmaster.GashaAnimationStep.rarity:type_name -> penum.GashaAnimationRarity
-	591, // 97: pmaster.GashaAnimationStep.currentStepType:type_name -> penum.GashaAnimationStepType
-	591, // 98: pmaster.GashaAnimationStep.nextStepType:type_name -> penum.GashaAnimationStepType
-	94,  // 99: pmaster.GashaAnimationStepList.list:type_name -> pmaster.GashaAnimationStep
-	592, // 100: pmaster.GashaButton.type:type_name -> penum.GashaButtonType
-	566, // 101: pmaster.GashaButton.resourceType:type_name -> penum.ResourceType
-	593, // 102: pmaster.GashaButton.limitType:type_name -> penum.GashaLimitType
-	593, // 103: pmaster.GashaButton.discountLimitType:type_name -> penum.GashaLimitType
-	594, // 104: pmaster.GashaButton.appealType:type_name -> penum.GashaButtonAppealType
-	594, // 105: pmaster.GashaButton.highAppealType:type_name -> penum.GashaButtonAppealType
-	594, // 106: pmaster.GashaButton.bottomAppealType:type_name -> penum.GashaButtonAppealType
-	595, // 107: pmaster.GashaButtonList.list:type_name -> pcommon.GashaButton
-	98,  // 108: pmaster.GuildDonationItemList.list:type_name -> pmaster.GuildDonationItem
-	100, // 109: pmaster.GuildReactionList.list:type_name -> pmaster.GuildReaction
-	102, // 110: pmaster.GvgRaidList.list:type_name -> pmaster.GvgRaid
-	567, // 111: pmaster.GvgRaidStageLoop.stagePlanType:type_name -> penum.ProducePlanType
-	104, // 112: pmaster.GvgRaidStageLoopList.list:type_name -> pmaster.GvgRaidStageLoop
-	106, // 113: pmaster.HelpCategoryList.list:type_name -> pmaster.HelpCategory
-	108, // 114: pmaster.HelpContentList.list:type_name -> pmaster.HelpContent
-	110, // 115: pmaster.HelpInfoList.list:type_name -> pmaster.HelpInfo
-	112, // 116: pmaster.HomeBackgroundList.list:type_name -> pmaster.HomeBackground
-	596, // 117: pmaster.HomeBackgroundPrefabGroup.homeTimeTypes:type_name -> penum.HomeTimeType
-	114, // 118: pmaster.HomeBackgroundPrefabGroupList.list:type_name -> pmaster.HomeBackgroundPrefabGroup
-	116, // 119: pmaster.HomeBoardList.list:type_name -> pmaster.HomeBoard
-	118, // 120: pmaster.HomeMonitorList.list:type_name -> pmaster.HomeMonitor
-	597, // 121: pmaster.HomeMotion.locationType:type_name -> penum.HomeLocationType
-	598, // 122: pmaster.HomeMotion.motionType:type_name -> penum.HomeMotionType
-	120, // 123: pmaster.HomeMotionList.list:type_name -> pmaster.HomeMotion
-	596, // 124: pmaster.HomeTime.type:type_name -> penum.HomeTimeType
-	122, // 125: pmaster.HomeTimeList.list:type_name -> pmaster.HomeTime
-	599, // 126: pmaster.IdolCard.rarity:type_name -> penum.IdolCardRarity
-	600, // 127: pmaster.IdolCard.maxIdolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
-	567, // 128: pmaster.IdolCard.planType:type_name -> penum.ProducePlanType
-	579, // 129: pmaster.IdolCard.examEffectType:type_name -> penum.ProduceExamEffectType
-	579, // 130: pmaster.IdolCard.showExamEffectType:type_name -> penum.ProduceExamEffectType
-	600, // 131: pmaster.IdolCardLevelLimit.rank:type_name -> penum.IdolCardLevelLimitRank
-	125, // 132: pmaster.IdolCardLevelLimitList.list:type_name -> pmaster.IdolCardLevelLimit
-	600, // 133: pmaster.IdolCardLevelLimitProduceSkill.rank:type_name -> penum.IdolCardLevelLimitRank
-	127, // 134: pmaster.IdolCardLevelLimitProduceSkillList.list:type_name -> pmaster.IdolCardLevelLimitProduceSkill
-	600, // 135: pmaster.IdolCardLevelLimitStatusUp.rank:type_name -> penum.IdolCardLevelLimitRank
-	601, // 136: pmaster.IdolCardLevelLimitStatusUp.effectTypes:type_name -> penum.IdolCardLevelLimitEffectType
-	129, // 137: pmaster.IdolCardLevelLimitStatusUpList.list:type_name -> pmaster.IdolCardLevelLimitStatusUp
-	602, // 138: pmaster.IdolCardList.list:type_name -> pcommon.IdolCard
-	557, // 139: pmaster.IdolCardPiece.exchangeReward:type_name -> pcommon.Reward
-	132, // 140: pmaster.IdolCardPieceList.list:type_name -> pmaster.IdolCardPiece
-	599, // 141: pmaster.IdolCardPieceQuantity.rarity:type_name -> penum.IdolCardRarity
-	134, // 142: pmaster.IdolCardPieceQuantityList.list:type_name -> pmaster.IdolCardPieceQuantity
-	603, // 143: pmaster.IdolCardPotential.rank:type_name -> penum.IdolCardPotentialRank
-	604, // 144: pmaster.IdolCardPotential.effectTypes:type_name -> penum.IdolCardPotentialEffectType
-	136, // 145: pmaster.IdolCardPotentialList.list:type_name -> pmaster.IdolCardPotential
-	603, // 146: pmaster.IdolCardPotentialProduceSkill.rank:type_name -> penum.IdolCardPotentialRank
-	138, // 147: pmaster.IdolCardPotentialProduceSkillList.list:type_name -> pmaster.IdolCardPotentialProduceSkill
-	140, // 148: pmaster.IdolCardSimulationList.list:type_name -> pmaster.IdolCardSimulation
-	142, // 149: pmaster.IdolCardSkinList.list:type_name -> pmaster.IdolCardSkin
-	605, // 150: pmaster.IdolCardSkinSelectReward.difficultyType:type_name -> penum.IdolCardDifficultyType
-	144, // 151: pmaster.IdolCardSkinSelectRewardList.list:type_name -> pmaster.IdolCardSkinSelectReward
-	546, // 152: pmaster.IdolCardSkinUnit.unitCharacters:type_name -> pmaster.IdolCardSkinUnit.UnitCharacter
-	146, // 153: pmaster.IdolCardSkinUnitList.list:type_name -> pmaster.IdolCardSkinUnit
-	148, // 154: pmaster.InvitationMissionList.list:type_name -> pmaster.InvitationMission
-	557, // 155: pmaster.InvitationPointReward.reward:type_name -> pcommon.Reward
-	150, // 156: pmaster.InvitationPointRewardList.list:type_name -> pmaster.InvitationPointReward
-	587, // 157: pmaster.Item.type:type_name -> penum.ItemType
-	606, // 158: pmaster.Item.rarity:type_name -> penum.ItemRarity
-	607, // 159: pmaster.Item.exchangeType:type_name -> penum.ExchangeType
-	599, // 160: pmaster.Item.idolCardRarity:type_name -> penum.IdolCardRarity
-	608, // 161: pmaster.Item.supportCardRarity:type_name -> penum.SupportCardRarity
-	547, // 162: pmaster.Item.gashas:type_name -> pmaster.Item.Gasha
-	152, // 163: pmaster.ItemList.list:type_name -> pmaster.Item
-	154, // 164: pmaster.JewelConsumptionCountList.list:type_name -> pmaster.JewelConsumptionCount
-	587, // 165: pmaster.LimitItem.type:type_name -> penum.ItemType
-	156, // 166: pmaster.LimitItemList.list:type_name -> pmaster.LimitItem
-	158, // 167: pmaster.LocalizationList.list:type_name -> pmaster.Localization
-	160, // 168: pmaster.LoginBonusMotionList.list:type_name -> pmaster.LoginBonusMotion
-	162, // 169: pmaster.MainStoryChapterList.list:type_name -> pmaster.MainStoryChapter
-	164, // 170: pmaster.MainStoryPartList.list:type_name -> pmaster.MainStoryPart
-	555, // 171: pmaster.MainTask.missionType:type_name -> penum.MissionType
-	557, // 172: pmaster.MainTask.rewards:type_name -> pcommon.Reward
-	557, // 173: pmaster.MainTask.additionalRewards:type_name -> pcommon.Reward
-	588, // 174: pmaster.MainTask.unlockFeatureTutorialType:type_name -> penum.TutorialType
-	609, // 175: pmaster.MainTaskGroup.mainTaskType:type_name -> penum.MainTaskType
-	167, // 176: pmaster.MainTaskGroupList.list:type_name -> pmaster.MainTaskGroup
-	555, // 177: pmaster.MainTaskIcon.missionType:type_name -> penum.MissionType
-	169, // 178: pmaster.MainTaskIconList.list:type_name -> pmaster.MainTaskIcon
-	166, // 179: pmaster.MainTaskList.list:type_name -> pmaster.MainTask
-	610, // 180: pmaster.Media.mediaType:type_name -> penum.MediaType
-	611, // 181: pmaster.Media.fourPanelComicSeries:type_name -> penum.FourPanelComicSeries
-	612, // 182: pmaster.Media.mediaMovieType:type_name -> penum.MediaMovieType
-	589, // 183: pmaster.MediaExternalLink.ignorePlatformTypes:type_name -> penum.PlatformType
-	173, // 184: pmaster.MediaExternalLinkList.list:type_name -> pmaster.MediaExternalLink
-	172, // 185: pmaster.MediaList.list:type_name -> pmaster.Media
-	613, // 186: pmaster.MeishiBaseAsset.meishiBaseAssetType:type_name -> penum.MeishiBaseAssetType
-	176, // 187: pmaster.MeishiBaseAssetList.list:type_name -> pmaster.MeishiBaseAsset
-	178, // 188: pmaster.MeishiBaseColorList.list:type_name -> pmaster.MeishiBaseColor
-	614, // 189: pmaster.MeishiIllustrationAsset.type:type_name -> penum.MeishiIllustrationType
-	180, // 190: pmaster.MeishiIllustrationAssetList.list:type_name -> pmaster.MeishiIllustrationAsset
-	182, // 191: pmaster.MeishiTextColorList.list:type_name -> pmaster.MeishiTextColor
-	615, // 192: pmaster.MemoryAbility.rarity:type_name -> penum.SkillRarity
-	616, // 193: pmaster.MemoryAbilityList.list:type_name -> pcommon.MemoryAbility
-	567, // 194: pmaster.MemoryExchangeItem.planType:type_name -> penum.ProducePlanType
-	186, // 195: pmaster.MemoryExchangeItemList.list:type_name -> pmaster.MemoryExchangeItem
-	617, // 196: pmaster.MemoryExchangeItemQuantity.grade:type_name -> penum.ResultGrade
-	188, // 197: pmaster.MemoryExchangeItemQuantityList.list:type_name -> pmaster.MemoryExchangeItemQuantity
-	617, // 198: pmaster.MemoryGift.grade:type_name -> penum.ResultGrade
-	567, // 199: pmaster.MemoryGift.planType:type_name -> penum.ProducePlanType
-	618, // 200: pmaster.MemoryGift.produceCard:type_name -> pcommon.ProduceCard
-	619, // 201: pmaster.MemoryGift.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
-	616, // 202: pmaster.MemoryGift.memoryAbilities:type_name -> pcommon.MemoryAbility
-	618, // 203: pmaster.MemoryGift.examBattleProduceCards:type_name -> pcommon.ProduceCard
-	190, // 204: pmaster.MemoryGiftList.list:type_name -> pmaster.MemoryGift
-	192, // 205: pmaster.MemoryTagList.list:type_name -> pmaster.MemoryTag
-	620, // 206: pmaster.Mission.category:type_name -> penum.MissionCategory
-	555, // 207: pmaster.Mission.type:type_name -> penum.MissionType
-	196, // 208: pmaster.MissionDailyReleaseGroupList.list:type_name -> pmaster.MissionDailyReleaseGroup
-	195, // 209: pmaster.MissionDailyReleaseList.list:type_name -> pmaster.MissionDailyRelease
-	557, // 210: pmaster.MissionGroup.rewards:type_name -> pcommon.Reward
-	199, // 211: pmaster.MissionGroupList.list:type_name -> pmaster.MissionGroup
-	194, // 212: pmaster.MissionList.list:type_name -> pmaster.Mission
-	203, // 213: pmaster.MissionPanelSheetGroupList.list:type_name -> pmaster.MissionPanelSheetGroup
-	202, // 214: pmaster.MissionPanelSheetList.list:type_name -> pmaster.MissionPanelSheet
-	206, // 215: pmaster.MissionPassList.list:type_name -> pmaster.MissionPass
-	208, // 216: pmaster.MissionPassPointList.list:type_name -> pmaster.MissionPassPoint
-	557, // 217: pmaster.MissionPassProgress.normalReward:type_name -> pcommon.Reward
-	557, // 218: pmaster.MissionPassProgress.premiumReward:type_name -> pcommon.Reward
-	210, // 219: pmaster.MissionPassProgressList.list:type_name -> pmaster.MissionPassProgress
-	621, // 220: pmaster.MissionPoint.resetTimingType:type_name -> penum.ResetTimingType
-	212, // 221: pmaster.MissionPointList.list:type_name -> pmaster.MissionPoint
-	557, // 222: pmaster.MissionPointRewardSet.rewards:type_name -> pcommon.Reward
-	214, // 223: pmaster.MissionPointRewardSetList.list:type_name -> pmaster.MissionPointRewardSet
-	557, // 224: pmaster.MissionProgress.rewards:type_name -> pcommon.Reward
-	216, // 225: pmaster.MissionProgressList.list:type_name -> pmaster.MissionProgress
-	218, // 226: pmaster.MoneyList.list:type_name -> pmaster.Money
-	622, // 227: pmaster.Music.type:type_name -> penum.MusicType
-	221, // 228: pmaster.MusicHotList.list:type_name -> pmaster.MusicHot
-	220, // 229: pmaster.MusicList.list:type_name -> pmaster.Music
-	224, // 230: pmaster.MusicSingerList.list:type_name -> pmaster.MusicSinger
-	623, // 231: pmaster.PhotoBackground.category:type_name -> penum.PhotoBackgroundCategory
-	624, // 232: pmaster.PhotoBackground.timeTypes:type_name -> penum.PhotoBackgroundTimeType
-	226, // 233: pmaster.PhotoBackgroundList.list:type_name -> pmaster.PhotoBackground
-	625, // 234: pmaster.PhotoFacialLookTarget.lookTargetType:type_name -> penum.PhotoLookTargetType
-	228, // 235: pmaster.PhotoFacialLookTargetList.list:type_name -> pmaster.PhotoFacialLookTarget
-	230, // 236: pmaster.PhotoFacialMotionGroupList.list:type_name -> pmaster.PhotoFacialMotionGroup
-	232, // 237: pmaster.PhotoLookEffectorCharacterList.list:type_name -> pmaster.PhotoLookEffectorCharacter
-	234, // 238: pmaster.PhotoLookTargetVoiceCharacterList.list:type_name -> pmaster.PhotoLookTargetVoiceCharacter
-	626, // 239: pmaster.PhotoPose.motionType:type_name -> penum.PhotoPoseMotionType
-	625, // 240: pmaster.PhotoPose.lookTargetType:type_name -> penum.PhotoLookTargetType
-	236, // 241: pmaster.PhotoPoseList.list:type_name -> pmaster.PhotoPose
-	238, // 242: pmaster.PhotoReactionVoiceGroupList.list:type_name -> pmaster.PhotoReactionVoiceGroup
-	240, // 243: pmaster.PhotoWaitVoiceCharacterList.list:type_name -> pmaster.PhotoWaitVoiceCharacter
-	242, // 244: pmaster.PhotoWaitVoiceGroupList.list:type_name -> pmaster.PhotoWaitVoiceGroup
-	627, // 245: pmaster.Produce.produceSelectScreenOrderType:type_name -> penum.ProduceSelectScreenOrderType
-	563, // 246: pmaster.ProduceAdv.produceType:type_name -> penum.ProduceType
-	628, // 247: pmaster.ProduceAdv.type:type_name -> penum.ProduceAdvType
-	245, // 248: pmaster.ProduceAdvList.list:type_name -> pmaster.ProduceAdv
-	629, // 249: pmaster.ProduceCard.rarity:type_name -> penum.ProduceCardRarity
-	567, // 250: pmaster.ProduceCard.planType:type_name -> penum.ProducePlanType
-	630, // 251: pmaster.ProduceCard.category:type_name -> penum.ProduceCardCategory
-	631, // 252: pmaster.ProduceCard.costType:type_name -> penum.ExamCostType
-	548, // 253: pmaster.ProduceCard.playEffects:type_name -> pmaster.ProduceCard.PlayEffect
-	632, // 254: pmaster.ProduceCard.playMovePositionType:type_name -> penum.ProduceCardMovePositionType
-	633, // 255: pmaster.ProduceCard.moveEffectTriggerType:type_name -> penum.ProduceCardMoveEffectTriggerType
-	634, // 256: pmaster.ProduceCard.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	635, // 257: pmaster.ProduceCardConversionList.list:type_name -> pcommon.ProduceCardConversion
-	581, // 258: pmaster.ProduceCardCustomize.overwriteProduceCardGrowEffectType:type_name -> penum.ProduceCardGrowEffectType
-	636, // 259: pmaster.ProduceCardCustomizeList.list:type_name -> pcommon.ProduceCardCustomize
-	629, // 260: pmaster.ProduceCardCustomizeRarityEvaluation.rarity:type_name -> penum.ProduceCardRarity
-	252, // 261: pmaster.ProduceCardCustomizeRarityEvaluationList.list:type_name -> pmaster.ProduceCardCustomizeRarityEvaluation
-	581, // 262: pmaster.ProduceCardGrowEffect.effectType:type_name -> penum.ProduceCardGrowEffectType
-	631, // 263: pmaster.ProduceCardGrowEffect.costType:type_name -> penum.ExamCostType
-	632, // 264: pmaster.ProduceCardGrowEffect.playMovePositionType:type_name -> penum.ProduceCardMovePositionType
-	254, // 265: pmaster.ProduceCardGrowEffectList.list:type_name -> pmaster.ProduceCardGrowEffect
-	618, // 266: pmaster.ProduceCardList.list:type_name -> pcommon.ProduceCard
-	549, // 267: pmaster.ProduceCardPool.produceCardRatios:type_name -> pmaster.ProduceCardPool.ProduceCardRatio
-	257, // 268: pmaster.ProduceCardPoolList.list:type_name -> pmaster.ProduceCardPool
-	259, // 269: pmaster.ProduceCardRandomPoolList.list:type_name -> pmaster.ProduceCardRandomPool
-	629, // 270: pmaster.ProduceCardSearch.cardRarities:type_name -> penum.ProduceCardRarity
-	567, // 271: pmaster.ProduceCardSearch.planType:type_name -> penum.ProducePlanType
-	630, // 272: pmaster.ProduceCardSearch.cardCategories:type_name -> penum.ProduceCardCategory
-	637, // 273: pmaster.ProduceCardSearch.cardStatusType:type_name -> penum.ProduceCardSearchStatusType
-	638, // 274: pmaster.ProduceCardSearch.orderType:type_name -> penum.ProduceCardOrderType
-	639, // 275: pmaster.ProduceCardSearch.cardPositionType:type_name -> penum.ProduceCardPositionType
-	574, // 276: pmaster.ProduceCardSearch.staminaMinMaxType:type_name -> penum.ConditionMinMaxType
-	579, // 277: pmaster.ProduceCardSearch.examEffectType:type_name -> penum.ProduceExamEffectType
-	634, // 278: pmaster.ProduceCardSearch.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	631, // 279: pmaster.ProduceCardSearch.costType:type_name -> penum.ExamCostType
-	261, // 280: pmaster.ProduceCardSearchList.list:type_name -> pmaster.ProduceCardSearch
-	264, // 281: pmaster.ProduceCardSimulationGroupList.list:type_name -> pmaster.ProduceCardSimulationGroup
-	263, // 282: pmaster.ProduceCardSimulationList.list:type_name -> pmaster.ProduceCardSimulation
-	267, // 283: pmaster.ProduceCardStatusEffectList.list:type_name -> pmaster.ProduceCardStatusEffect
-	634, // 284: pmaster.ProduceCardStatusEnchant.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	269, // 285: pmaster.ProduceCardStatusEnchantList.list:type_name -> pmaster.ProduceCardStatusEnchant
-	271, // 286: pmaster.ProduceCardTagList.list:type_name -> pmaster.ProduceCardTag
-	273, // 287: pmaster.ProduceChallengeCharacterList.list:type_name -> pmaster.ProduceChallengeCharacter
-	275, // 288: pmaster.ProduceChallengeSlotList.list:type_name -> pmaster.ProduceChallengeSlot
-	563, // 289: pmaster.ProduceCharacterAdv.produceType:type_name -> penum.ProduceType
-	628, // 290: pmaster.ProduceCharacterAdv.type:type_name -> penum.ProduceAdvType
-	278, // 291: pmaster.ProduceCharacterAdvList.list:type_name -> pmaster.ProduceCharacterAdv
-	277, // 292: pmaster.ProduceCharacterList.list:type_name -> pmaster.ProduceCharacter
-	579, // 293: pmaster.ProduceDescriptionExamEffect.type:type_name -> penum.ProduceExamEffectType
-	281, // 294: pmaster.ProduceDescriptionExamEffectList.list:type_name -> pmaster.ProduceDescriptionExamEffect
-	634, // 295: pmaster.ProduceDescriptionLabel.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	283, // 296: pmaster.ProduceDescriptionLabelList.list:type_name -> pmaster.ProduceDescriptionLabel
-	581, // 297: pmaster.ProduceDescriptionProduceCardGrowEffect.type:type_name -> penum.ProduceCardGrowEffectType
-	285, // 298: pmaster.ProduceDescriptionProduceCardGrowEffectList.list:type_name -> pmaster.ProduceDescriptionProduceCardGrowEffect
-	632, // 299: pmaster.ProduceDescriptionProduceCardMovePosition.type:type_name -> penum.ProduceCardMovePositionType
-	287, // 300: pmaster.ProduceDescriptionProduceCardMovePositionList.list:type_name -> pmaster.ProduceDescriptionProduceCardMovePosition
-	580, // 301: pmaster.ProduceDescriptionProduceEffect.type:type_name -> penum.ProduceEffectType
-	289, // 302: pmaster.ProduceDescriptionProduceEffectList.list:type_name -> pmaster.ProduceDescriptionProduceEffect
-	567, // 303: pmaster.ProduceDescriptionProducePlan.type:type_name -> penum.ProducePlanType
-	291, // 304: pmaster.ProduceDescriptionProducePlanList.list:type_name -> pmaster.ProduceDescriptionProducePlan
-	640, // 305: pmaster.ProduceDescriptionProduceStep.type:type_name -> penum.ProduceStepType
-	293, // 306: pmaster.ProduceDescriptionProduceStepList.list:type_name -> pmaster.ProduceDescriptionProduceStep
-	641, // 307: pmaster.ProduceDescriptionSwap.swapType:type_name -> penum.ProduceDescriptionSwapType
-	295, // 308: pmaster.ProduceDescriptionSwapList.list:type_name -> pmaster.ProduceDescriptionSwap
-	567, // 309: pmaster.ProduceDrink.planType:type_name -> penum.ProducePlanType
-	642, // 310: pmaster.ProduceDrink.rarity:type_name -> penum.ProduceDrinkRarity
-	634, // 311: pmaster.ProduceDrink.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	298, // 312: pmaster.ProduceDrinkEffectList.list:type_name -> pmaster.ProduceDrinkEffect
-	297, // 313: pmaster.ProduceDrinkList.list:type_name -> pmaster.ProduceDrink
-	580, // 314: pmaster.ProduceEffect.produceEffectType:type_name -> penum.ProduceEffectType
-	643, // 315: pmaster.ProduceEffect.produceResourceType:type_name -> penum.ProduceResourceType
-	550, // 316: pmaster.ProduceEffect.produceRewards:type_name -> pmaster.ProduceEffect.ProduceReward
-	644, // 317: pmaster.ProduceEffect.pickRangeType:type_name -> penum.ProducePickRangeType
-	580, // 318: pmaster.ProduceEffectIcon.type:type_name -> penum.ProduceEffectType
-	643, // 319: pmaster.ProduceEffectIcon.resourceType:type_name -> penum.ProduceResourceType
-	302, // 320: pmaster.ProduceEffectIconList.list:type_name -> pmaster.ProduceEffectIcon
-	301, // 321: pmaster.ProduceEffectList.list:type_name -> pmaster.ProduceEffect
-	305, // 322: pmaster.ProduceEventCharacterGrowthList.list:type_name -> pmaster.ProduceEventCharacterGrowth
-	307, // 323: pmaster.ProduceEventSupportCardList.list:type_name -> pmaster.ProduceEventSupportCard
-	645, // 324: pmaster.ProduceExamAutoCardSelectEvaluation.type:type_name -> penum.ExamPlayType
-	579, // 325: pmaster.ProduceExamAutoCardSelectEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
-	646, // 326: pmaster.ProduceExamAutoCardSelectEvaluation.evaluationType:type_name -> penum.ProduceExamAutoCardSelectEvaluationType
-	309, // 327: pmaster.ProduceExamAutoCardSelectEvaluationList.list:type_name -> pmaster.ProduceExamAutoCardSelectEvaluation
-	645, // 328: pmaster.ProduceExamAutoEvaluation.type:type_name -> penum.ExamPlayType
-	579, // 329: pmaster.ProduceExamAutoEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
-	647, // 330: pmaster.ProduceExamAutoEvaluation.evaluationType:type_name -> penum.ProduceExamAutoEvaluationType
-	311, // 331: pmaster.ProduceExamAutoEvaluationList.list:type_name -> pmaster.ProduceExamAutoEvaluation
-	645, // 332: pmaster.ProduceExamAutoGrowEffectEvaluation.type:type_name -> penum.ExamPlayType
-	579, // 333: pmaster.ProduceExamAutoGrowEffectEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
-	581, // 334: pmaster.ProduceExamAutoGrowEffectEvaluation.growEffectType:type_name -> penum.ProduceCardGrowEffectType
-	313, // 335: pmaster.ProduceExamAutoGrowEffectEvaluationList.list:type_name -> pmaster.ProduceExamAutoGrowEffectEvaluation
-	315, // 336: pmaster.ProduceExamAutoPlayCardEvaluationList.list:type_name -> pmaster.ProduceExamAutoPlayCardEvaluation
-	645, // 337: pmaster.ProduceExamAutoPlayProduceCardEvaluation.type:type_name -> penum.ExamPlayType
-	317, // 338: pmaster.ProduceExamAutoPlayProduceCardEvaluationList.list:type_name -> pmaster.ProduceExamAutoPlayProduceCardEvaluation
-	645, // 339: pmaster.ProduceExamAutoResourceEvaluation.type:type_name -> penum.ExamPlayType
-	643, // 340: pmaster.ProduceExamAutoResourceEvaluation.resourceType:type_name -> penum.ProduceResourceType
-	647, // 341: pmaster.ProduceExamAutoResourceEvaluation.evaluationType:type_name -> penum.ProduceExamAutoEvaluationType
-	319, // 342: pmaster.ProduceExamAutoResourceEvaluationList.list:type_name -> pmaster.ProduceExamAutoResourceEvaluation
-	645, // 343: pmaster.ProduceExamAutoTriggerEvaluation.type:type_name -> penum.ExamPlayType
-	321, // 344: pmaster.ProduceExamAutoTriggerEvaluationList.list:type_name -> pmaster.ProduceExamAutoTriggerEvaluation
-	323, // 345: pmaster.ProduceExamBattleConfigList.list:type_name -> pmaster.ProduceExamBattleConfig
-	325, // 346: pmaster.ProduceExamBattleNpcGroupList.list:type_name -> pmaster.ProduceExamBattleNpcGroup
-	327, // 347: pmaster.ProduceExamBattleNpcMobList.list:type_name -> pmaster.ProduceExamBattleNpcMob
-	329, // 348: pmaster.ProduceExamBattleScoreConfigList.list:type_name -> pmaster.ProduceExamBattleScoreConfig
-	579, // 349: pmaster.ProduceExamEffect.effectType:type_name -> penum.ProduceExamEffectType
-	579, // 350: pmaster.ProduceExamEffect.targetExamEffectType:type_name -> penum.ProduceExamEffectType
-	632, // 351: pmaster.ProduceExamEffect.movePositionType:type_name -> penum.ProduceCardMovePositionType
-	644, // 352: pmaster.ProduceExamEffect.pickRangeType:type_name -> penum.ProducePickRangeType
-	648, // 353: pmaster.ProduceExamEffect.pickCountType:type_name -> penum.ProducePickCountType
-	634, // 354: pmaster.ProduceExamEffect.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	634, // 355: pmaster.ProduceExamEffect.customizeProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	331, // 356: pmaster.ProduceExamEffectList.list:type_name -> pmaster.ProduceExamEffect
-	649, // 357: pmaster.ProduceExamGimmickEffectGroup.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
-	650, // 358: pmaster.ProduceExamGimmickEffectGroup.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
-	634, // 359: pmaster.ProduceExamGimmickEffectGroup.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	333, // 360: pmaster.ProduceExamGimmickEffectGroupList.list:type_name -> pmaster.ProduceExamGimmickEffectGroup
-	634, // 361: pmaster.ProduceExamStatusEnchant.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	335, // 362: pmaster.ProduceExamStatusEnchantList.list:type_name -> pmaster.ProduceExamStatusEnchant
-	651, // 363: pmaster.ProduceExamTrigger.phaseTypes:type_name -> penum.ProduceExamPhaseType
-	650, // 364: pmaster.ProduceExamTrigger.fieldStatusCheckTypes:type_name -> penum.ProduceExamTriggerCheckType
-	649, // 365: pmaster.ProduceExamTrigger.fieldStatusTypes:type_name -> penum.ProduceExamFieldStatusType
-	632, // 366: pmaster.ProduceExamTrigger.cardMovePositionType:type_name -> penum.ProduceCardMovePositionType
-	579, // 367: pmaster.ProduceExamTrigger.effectTypes:type_name -> penum.ProduceExamEffectType
-	652, // 368: pmaster.ProduceExamTrigger.lessonType:type_name -> penum.ProduceStepLessonType
-	634, // 369: pmaster.ProduceExamTrigger.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	634, // 370: pmaster.ProduceExamTrigger.playProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	634, // 371: pmaster.ProduceExamTrigger.playEffectProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	337, // 372: pmaster.ProduceExamTriggerList.list:type_name -> pmaster.ProduceExamTrigger
-	617, // 373: pmaster.ProduceGrade.grade:type_name -> penum.ResultGrade
-	339, // 374: pmaster.ProduceGradeList.list:type_name -> pmaster.ProduceGrade
-	563, // 375: pmaster.ProduceGroup.type:type_name -> penum.ProduceType
-	653, // 376: pmaster.ProduceGroup.disableForceLiveCommonEndingLiveType:type_name -> penum.ProduceLiveType
-	617, // 377: pmaster.ProduceGroup.limitGrade:type_name -> penum.ResultGrade
-	341, // 378: pmaster.ProduceGroupList.list:type_name -> pmaster.ProduceGroup
-	653, // 379: pmaster.ProduceGroupLiveCommon.type:type_name -> penum.ProduceLiveType
-	343, // 380: pmaster.ProduceGroupLiveCommonList.list:type_name -> pmaster.ProduceGroupLiveCommon
-	345, // 381: pmaster.ProduceGuideList.list:type_name -> pmaster.ProduceGuide
-	348, // 382: pmaster.ProduceGuideProduceCardCategoryGroupList.list:type_name -> pmaster.ProduceGuideProduceCardCategoryGroup
-	347, // 383: pmaster.ProduceGuideProduceCardCategoryList.list:type_name -> pmaster.ProduceGuideProduceCardCategory
-	352, // 384: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroupList.list:type_name -> pmaster.ProduceGuideProduceCardSampleDeckCategoryGroup
-	351, // 385: pmaster.ProduceGuideProduceCardSampleDeckCategoryList.list:type_name -> pmaster.ProduceGuideProduceCardSampleDeckCategory
-	654, // 386: pmaster.ProduceHighScore.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
-	355, // 387: pmaster.ProduceHighScoreList.list:type_name -> pmaster.ProduceHighScore
-	579, // 388: pmaster.ProduceInitialDeck.examEffectType:type_name -> penum.ProduceExamEffectType
-	357, // 389: pmaster.ProduceInitialDeckList.list:type_name -> pmaster.ProduceInitialDeck
-	655, // 390: pmaster.ProduceItem.rarity:type_name -> penum.ProduceItemRarity
-	567, // 391: pmaster.ProduceItem.planType:type_name -> penum.ProducePlanType
-	551, // 392: pmaster.ProduceItem.skills:type_name -> pmaster.ProduceItem.Skill
-	634, // 393: pmaster.ProduceItem.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	360, // 394: pmaster.ProduceItemChallengeGroupList.list:type_name -> pmaster.ProduceItemChallengeGroup
-	656, // 395: pmaster.ProduceItemEffect.effectType:type_name -> penum.ProduceItemEffectType
-	362, // 396: pmaster.ProduceItemEffectList.list:type_name -> pmaster.ProduceItemEffect
-	657, // 397: pmaster.ProduceItemList.list:type_name -> pcommon.ProduceItem
-	366, // 398: pmaster.ProduceItemSimulationGroupList.list:type_name -> pmaster.ProduceItemSimulationGroup
-	365, // 399: pmaster.ProduceItemSimulationList.list:type_name -> pmaster.ProduceItemSimulation
-	579, // 400: pmaster.ProduceLegendProduceCard.examEffectType:type_name -> penum.ProduceExamEffectType
-	369, // 401: pmaster.ProduceLegendProduceCardList.list:type_name -> pmaster.ProduceLegendProduceCard
-	244, // 402: pmaster.ProduceList.list:type_name -> pmaster.Produce
-	653, // 403: pmaster.ProduceLive.type:type_name -> penum.ProduceLiveType
-	372, // 404: pmaster.ProduceLiveList.list:type_name -> pmaster.ProduceLive
-	374, // 405: pmaster.ProduceNavigationList.list:type_name -> pmaster.ProduceNavigation
-	376, // 406: pmaster.ProduceNextIdolAuditionMasterRankingSeasonList.list:type_name -> pmaster.ProduceNextIdolAuditionMasterRankingSeason
-	653, // 407: pmaster.ProduceResultMotion.liveType:type_name -> penum.ProduceLiveType
-	378, // 408: pmaster.ProduceResultMotionList.list:type_name -> pmaster.ProduceResultMotion
-	658, // 409: pmaster.ProduceScheduleBackground.locationType:type_name -> penum.ProduceScheduleLocationType
-	380, // 410: pmaster.ProduceScheduleBackgroundList.list:type_name -> pmaster.ProduceScheduleBackground
-	658, // 411: pmaster.ProduceScheduleMotion.locationType:type_name -> penum.ProduceScheduleLocationType
-	659, // 412: pmaster.ProduceScheduleMotion.staminaMotionType:type_name -> penum.ProduceScheduleStaminaMotionType
-	660, // 413: pmaster.ProduceScheduleMotion.motionType:type_name -> penum.ProduceScheduleMotionType
-	382, // 414: pmaster.ProduceScheduleMotionList.list:type_name -> pmaster.ProduceScheduleMotion
-	384, // 415: pmaster.ProduceSeasonList.list:type_name -> pmaster.ProduceSeason
-	617, // 416: pmaster.ProduceSeasonZeroGrade.grade:type_name -> penum.ResultGrade
-	386, // 417: pmaster.ProduceSeasonZeroGradeList.list:type_name -> pmaster.ProduceSeasonZeroGrade
-	388, // 418: pmaster.ProduceSettingList.list:type_name -> pmaster.ProduceSetting
-	615, // 419: pmaster.ProduceSkill.rarity:type_name -> penum.SkillRarity
-	567, // 420: pmaster.ProduceSkill.planType:type_name -> penum.ProducePlanType
-	634, // 421: pmaster.ProduceSkill.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	390, // 422: pmaster.ProduceSkillList.list:type_name -> pmaster.ProduceSkill
-	661, // 423: pmaster.ProduceStartMotion.motionType:type_name -> penum.ProduceStartMotionType
-	392, // 424: pmaster.ProduceStartMotionList.list:type_name -> pmaster.ProduceStartMotion
-	640, // 425: pmaster.ProduceStepAuditionCharacter.stepType:type_name -> penum.ProduceStepType
-	394, // 426: pmaster.ProduceStepAuditionCharacterList.list:type_name -> pmaster.ProduceStepAuditionCharacter
-	640, // 427: pmaster.ProduceStepAuditionDifficulty.stepType:type_name -> penum.ProduceStepType
-	662, // 428: pmaster.ProduceStepAuditionDifficulty.auditionType:type_name -> penum.ProduceStepAuditionType
-	396, // 429: pmaster.ProduceStepAuditionDifficultyList.list:type_name -> pmaster.ProduceStepAuditionDifficulty
-	640, // 430: pmaster.ProduceStepAuditionMotion.stepType:type_name -> penum.ProduceStepType
-	663, // 431: pmaster.ProduceStepAuditionMotion.motionType:type_name -> penum.ProduceStepAuditionMotionType
-	662, // 432: pmaster.ProduceStepAuditionMotion.auditionType:type_name -> penum.ProduceStepAuditionType
-	398, // 433: pmaster.ProduceStepAuditionMotionList.list:type_name -> pmaster.ProduceStepAuditionMotion
-	664, // 434: pmaster.ProduceStepEventDetail.suggestionType:type_name -> penum.ProduceEventSuggestionType
-	665, // 435: pmaster.ProduceStepEventDetail.eventType:type_name -> penum.ProduceEventType
-	666, // 436: pmaster.ProduceStepEventDetail.eventCharacterType:type_name -> penum.ProduceEventCharacterType
-	634, // 437: pmaster.ProduceStepEventDetail.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	400, // 438: pmaster.ProduceStepEventDetailList.list:type_name -> pmaster.ProduceStepEventDetail
-	640, // 439: pmaster.ProduceStepEventSuggestion.stepType:type_name -> penum.ProduceStepType
-	640, // 440: pmaster.ProduceStepEventSuggestion.successStepType:type_name -> penum.ProduceStepType
-	640, // 441: pmaster.ProduceStepEventSuggestion.failStepType:type_name -> penum.ProduceStepType
-	634, // 442: pmaster.ProduceStepEventSuggestion.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	402, // 443: pmaster.ProduceStepEventSuggestionList.list:type_name -> pmaster.ProduceStepEventSuggestion
-	667, // 444: pmaster.ProduceStepFanPresentMotion.motionType:type_name -> penum.ProduceStepFanPresentMotionType
-	404, // 445: pmaster.ProduceStepFanPresentMotionList.list:type_name -> pmaster.ProduceStepFanPresentMotion
-	407, // 446: pmaster.ProduceStepLessonLevelList.list:type_name -> pmaster.ProduceStepLessonLevel
-	406, // 447: pmaster.ProduceStepLessonList.list:type_name -> pmaster.ProduceStepLesson
-	410, // 448: pmaster.ProduceStepSelfLessonList.list:type_name -> pmaster.ProduceStepSelfLesson
-	640, // 449: pmaster.ProduceStepSelfLessonMotion.stepType:type_name -> penum.ProduceStepType
-	412, // 450: pmaster.ProduceStepSelfLessonMotionList.list:type_name -> pmaster.ProduceStepSelfLessonMotion
-	640, // 451: pmaster.ProduceStepTransition.stepType:type_name -> penum.ProduceStepType
-	668, // 452: pmaster.ProduceStepTransition.stepPhaseType:type_name -> penum.ProduceStepPhaseType
-	414, // 453: pmaster.ProduceStepTransitionList.list:type_name -> pmaster.ProduceStepTransition
-	669, // 454: pmaster.ProduceStory.type:type_name -> penum.ProduceStoryType
-	417, // 455: pmaster.ProduceStoryGroupList.list:type_name -> pmaster.ProduceStoryGroup
-	416, // 456: pmaster.ProduceStoryList.list:type_name -> pmaster.ProduceStory
-	670, // 457: pmaster.ProduceTrigger.phaseType:type_name -> penum.ProducePhaseType
-	420, // 458: pmaster.ProduceTriggerList.list:type_name -> pmaster.ProduceTrigger
-	422, // 459: pmaster.ProduceWeekMotionList.list:type_name -> pmaster.ProduceWeekMotion
-	552, // 460: pmaster.ProducerLevel.unlockTargets:type_name -> pmaster.ProducerLevel.UnlockTarget
-	557, // 461: pmaster.ProducerLevel.reward:type_name -> pcommon.Reward
-	557, // 462: pmaster.ProducerLevel.bonusRewards:type_name -> pcommon.Reward
-	424, // 463: pmaster.ProducerLevelList.list:type_name -> pmaster.ProducerLevel
-	427, // 464: pmaster.ProducerRankingCharacterList.list:type_name -> pmaster.ProducerRankingCharacter
-	426, // 465: pmaster.ProducerRankingList.list:type_name -> pmaster.ProducerRanking
-	430, // 466: pmaster.ProducerRankingProduceList.list:type_name -> pmaster.ProducerRankingProduce
-	671, // 467: pmaster.ProducerRankingRankGrade.grade:type_name -> penum.ProducerRankingGrade
-	432, // 468: pmaster.ProducerRankingRankGradeList.list:type_name -> pmaster.ProducerRankingRankGrade
-	434, // 469: pmaster.ProducerRankingTowerList.list:type_name -> pmaster.ProducerRankingTower
-	567, // 470: pmaster.PvpRateCommonProduceCard.planType:type_name -> penum.ProducePlanType
-	618, // 471: pmaster.PvpRateCommonProduceCard.produceCards:type_name -> pcommon.ProduceCard
-	436, // 472: pmaster.PvpRateCommonProduceCardList.list:type_name -> pmaster.PvpRateCommonProduceCard
-	553, // 473: pmaster.PvpRateConfig.stages:type_name -> pmaster.PvpRateConfig.Stage
-	438, // 474: pmaster.PvpRateConfigList.list:type_name -> pmaster.PvpRateConfig
-	672, // 475: pmaster.PvpRateMotion.motionType:type_name -> penum.PvpRateMotionType
-	440, // 476: pmaster.PvpRateMotionList.list:type_name -> pmaster.PvpRateMotion
-	673, // 477: pmaster.PvpRateUnitSlotUnlock.grade:type_name -> penum.PvpRateGrade
-	442, // 478: pmaster.PvpRateUnitSlotUnlockList.list:type_name -> pmaster.PvpRateUnitSlotUnlock
-	444, // 479: pmaster.ResearchMemoryRerollCostList.list:type_name -> pmaster.ResearchMemoryRerollCost
-	674, // 480: pmaster.ResultGradePattern.type:type_name -> penum.ResultGradeType
-	617, // 481: pmaster.ResultGradePattern.grade:type_name -> penum.ResultGrade
-	446, // 482: pmaster.ResultGradePatternList.list:type_name -> pmaster.ResultGradePattern
-	675, // 483: pmaster.Rule.type:type_name -> penum.RuleType
-	589, // 484: pmaster.Rule.platformType:type_name -> penum.PlatformType
-	448, // 485: pmaster.RuleList.list:type_name -> pmaster.Rule
-	579, // 486: pmaster.SeminarExamTransition.examEffectType:type_name -> penum.ProduceExamEffectType
-	557, // 487: pmaster.SeminarExamTransition.rewards:type_name -> pcommon.Reward
-	450, // 488: pmaster.SeminarExamTransitionList.list:type_name -> pmaster.SeminarExamTransition
-	452, // 489: pmaster.SettingList.list:type_name -> pmaster.Setting
-	676, // 490: pmaster.Shop.type:type_name -> penum.ShopType
-	621, // 491: pmaster.Shop.resetTimingType:type_name -> penum.ResetTimingType
-	677, // 492: pmaster.Shop.resetWeekday:type_name -> penum.Weekday
-	678, // 493: pmaster.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
-	557, // 494: pmaster.ShopItem.rewards:type_name -> pcommon.Reward
-	621, // 495: pmaster.ShopItem.resetTimingType:type_name -> penum.ResetTimingType
-	677, // 496: pmaster.ShopItem.resetWeekday:type_name -> penum.Weekday
-	566, // 497: pmaster.ShopItem.consumptionResourceType:type_name -> penum.ResourceType
-	455, // 498: pmaster.ShopItemList.list:type_name -> pmaster.ShopItem
-	454, // 499: pmaster.ShopList.list:type_name -> pmaster.Shop
-	458, // 500: pmaster.ShopProductList.list:type_name -> pmaster.ShopProduct
-	679, // 501: pmaster.Story.type:type_name -> penum.StoryType
-	557, // 502: pmaster.Story.reward:type_name -> pcommon.Reward
-	680, // 503: pmaster.StoryEvent.storyEventType:type_name -> penum.StoryEventType
-	461, // 504: pmaster.StoryEventList.list:type_name -> pmaster.StoryEvent
-	679, // 505: pmaster.StoryGroup.storyType:type_name -> penum.StoryType
-	680, // 506: pmaster.StoryGroup.storyEventType:type_name -> penum.StoryEventType
-	681, // 507: pmaster.StoryGroup.eventStoryFilterType:type_name -> penum.EventStoryFilterType
-	463, // 508: pmaster.StoryGroupList.list:type_name -> pmaster.StoryGroup
-	460, // 509: pmaster.StoryList.list:type_name -> pmaster.Story
-	682, // 510: pmaster.SupportCard.type:type_name -> penum.SupportCardType
-	567, // 511: pmaster.SupportCard.planType:type_name -> penum.ProducePlanType
-	608, // 512: pmaster.SupportCard.rarity:type_name -> penum.SupportCardRarity
-	557, // 513: pmaster.SupportCard.exchangeReward:type_name -> pcommon.Reward
-	683, // 514: pmaster.SupportCard.produceCardUpgradeLessonParameterType:type_name -> penum.ProduceParameterType
-	634, // 515: pmaster.SupportCard.upgradeProduceCardProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
-	608, // 516: pmaster.SupportCardBonus.rarity:type_name -> penum.SupportCardRarity
-	467, // 517: pmaster.SupportCardBonusList.list:type_name -> pmaster.SupportCardBonus
-	469, // 518: pmaster.SupportCardFlavorList.list:type_name -> pmaster.SupportCardFlavor
-	684, // 519: pmaster.SupportCardLevelLimit.rank:type_name -> penum.SupportCardLevelLimitRank
-	472, // 520: pmaster.SupportCardLevelLimitList.list:type_name -> pmaster.SupportCardLevelLimit
-	471, // 521: pmaster.SupportCardLevelList.list:type_name -> pmaster.SupportCardLevel
-	685, // 522: pmaster.SupportCardList.list:type_name -> pcommon.SupportCard
-	580, // 523: pmaster.SupportCardProduceSkillFilter.produceEffectTypes:type_name -> penum.ProduceEffectType
-	476, // 524: pmaster.SupportCardProduceSkillFilterList.list:type_name -> pmaster.SupportCardProduceSkillFilter
-	478, // 525: pmaster.SupportCardProduceSkillLevelAssistList.list:type_name -> pmaster.SupportCardProduceSkillLevelAssist
-	480, // 526: pmaster.SupportCardProduceSkillLevelDanceList.list:type_name -> pmaster.SupportCardProduceSkillLevelDance
-	482, // 527: pmaster.SupportCardProduceSkillLevelVisualList.list:type_name -> pmaster.SupportCardProduceSkillLevelVisual
-	484, // 528: pmaster.SupportCardProduceSkillLevelVocalList.list:type_name -> pmaster.SupportCardProduceSkillLevelVocal
-	487, // 529: pmaster.SupportCardSimulationGroupList.list:type_name -> pmaster.SupportCardSimulationGroup
-	486, // 530: pmaster.SupportCardSimulationList.list:type_name -> pmaster.SupportCardSimulation
-	686, // 531: pmaster.Terms.type:type_name -> penum.TermsType
-	490, // 532: pmaster.TermsList.list:type_name -> pmaster.Terms
-	687, // 533: pmaster.Tips.type:type_name -> penum.TipsType
-	688, // 534: pmaster.Tips.viewAreaType:type_name -> penum.ViewAreaType
-	492, // 535: pmaster.TipsList.list:type_name -> pmaster.Tips
-	494, // 536: pmaster.TitleAssetList.list:type_name -> pmaster.TitleAsset
-	496, // 537: pmaster.TitleVoiceList.list:type_name -> pmaster.TitleVoice
-	498, // 538: pmaster.TourList.list:type_name -> pmaster.Tour
-	500, // 539: pmaster.TourMotionList.list:type_name -> pmaster.TourMotion
-	502, // 540: pmaster.TourStageTimelineList.list:type_name -> pmaster.TourStageTimeline
-	579, // 541: pmaster.TowerLayerExam.examEffectType:type_name -> penum.ProduceExamEffectType
-	506, // 542: pmaster.TowerLayerExamList.list:type_name -> pmaster.TowerLayerExam
-	505, // 543: pmaster.TowerLayerList.list:type_name -> pmaster.TowerLayer
-	509, // 544: pmaster.TowerLayerRankList.list:type_name -> pmaster.TowerLayerRank
-	504, // 545: pmaster.TowerList.list:type_name -> pmaster.Tower
-	512, // 546: pmaster.TowerResetList.list:type_name -> pmaster.TowerReset
-	557, // 547: pmaster.TowerTotalClearRankReward.reward:type_name -> pcommon.Reward
-	514, // 548: pmaster.TowerTotalClearRankRewardList.list:type_name -> pmaster.TowerTotalClearRankReward
-	588, // 549: pmaster.Tutorial.tutorialType:type_name -> penum.TutorialType
-	689, // 550: pmaster.Tutorial.navigationType:type_name -> penum.TutorialNavigationType
-	690, // 551: pmaster.Tutorial.navigationPositionType:type_name -> penum.TutorialNavigationPositionType
-	691, // 552: pmaster.Tutorial.tutorialProduceCommandType:type_name -> penum.TutorialProduceCommandType
-	692, // 553: pmaster.TutorialCharacterVoice.type:type_name -> penum.TutorialCharacterVoiceType
-	517, // 554: pmaster.TutorialCharacterVoiceList.list:type_name -> pmaster.TutorialCharacterVoice
-	516, // 555: pmaster.TutorialList.list:type_name -> pmaster.Tutorial
-	588, // 556: pmaster.TutorialProduce.tutorialType:type_name -> penum.TutorialType
-	520, // 557: pmaster.TutorialProduceList.list:type_name -> pmaster.TutorialProduce
-	588, // 558: pmaster.TutorialProduceStep.tutorialType:type_name -> penum.TutorialType
-	640, // 559: pmaster.TutorialProduceStep.stepType:type_name -> penum.ProduceStepType
-	522, // 560: pmaster.TutorialProduceStepList.list:type_name -> pmaster.TutorialProduceStep
-	525, // 561: pmaster.VoiceGroupList.list:type_name -> pmaster.VoiceGroup
-	524, // 562: pmaster.VoiceList.list:type_name -> pmaster.Voice
-	693, // 563: pmaster.VoiceRoster.type:type_name -> penum.VoicePlayScreenType
-	528, // 564: pmaster.VoiceRosterList.list:type_name -> pmaster.VoiceRoster
-	694, // 565: pmaster.Work.type:type_name -> penum.WorkType
-	566, // 566: pmaster.Work.rewardResourceType:type_name -> penum.ResourceType
-	694, // 567: pmaster.WorkLevel.type:type_name -> penum.WorkType
-	531, // 568: pmaster.WorkLevelList.list:type_name -> pmaster.WorkLevel
-	694, // 569: pmaster.WorkLevelReward.type:type_name -> penum.WorkType
-	533, // 570: pmaster.WorkLevelRewardList.list:type_name -> pmaster.WorkLevelReward
-	530, // 571: pmaster.WorkList.list:type_name -> pmaster.Work
-	695, // 572: pmaster.WorkMotion.motionType:type_name -> penum.WorkMotionType
-	536, // 573: pmaster.WorkMotionList.list:type_name -> pmaster.WorkMotion
-	538, // 574: pmaster.WorkSkipList.list:type_name -> pmaster.WorkSkip
-	694, // 575: pmaster.WorkTime.type:type_name -> penum.WorkType
-	540, // 576: pmaster.WorkTimeList.list:type_name -> pmaster.WorkTime
-	570, // 577: pmaster.CompetitionSeason.Stage.stageType:type_name -> penum.CompetitionStageType
-	567, // 578: pmaster.CompetitionSeason.Stage.planType:type_name -> penum.ProducePlanType
-	579, // 579: pmaster.CompetitionSeason.Stage.examEffectType:type_name -> penum.ProduceExamEffectType
-	569, // 580: pmaster.CompetitionSeason.GradeConfig.grade:type_name -> penum.CompetitionGrade
-	544, // 581: pmaster.CompetitionSeason.GradeConfig.stages:type_name -> pmaster.CompetitionSeason.Stage
-	643, // 582: pmaster.ProduceEffect.ProduceReward.resourceType:type_name -> penum.ProduceResourceType
-	696, // 583: pmaster.ProducerLevel.UnlockTarget.type:type_name -> penum.ProducerLevelUnlockType
-	697, // 584: pmaster.PvpRateConfig.Stage.stageType:type_name -> penum.PvpRateStageType
-	567, // 585: pmaster.PvpRateConfig.Stage.planType:type_name -> penum.ProducePlanType
-	586, // [586:586] is the sub-list for method output_type
-	586, // [586:586] is the sub-list for method input_type
-	586, // [586:586] is the sub-list for extension type_name
-	586, // [586:586] is the sub-list for extension extendee
-	0,   // [0:586] is the sub-list for field type_name
+	615, // 80: pmaster.ExamMotion.type:type_name -> penum.ExamMotionTargetType
+	616, // 81: pmaster.ExamMotion.motionType:type_name -> penum.ExamMotionType
+	617, // 82: pmaster.ExamMotion.targetStepTypes:type_name -> penum.ProduceStepType
+	80,  // 83: pmaster.ExamMotionList.list:type_name -> pmaster.ExamMotion
+	615, // 84: pmaster.ExamOutGameMotion.type:type_name -> penum.ExamMotionTargetType
+	618, // 85: pmaster.ExamOutGameMotion.motionType:type_name -> penum.ExamOutGameMotionType
+	82,  // 86: pmaster.ExamOutGameMotionList.list:type_name -> pmaster.ExamOutGameMotion
+	84,  // 87: pmaster.ExamSettingList.list:type_name -> pmaster.ExamSetting
+	86,  // 88: pmaster.ExamSimulationList.list:type_name -> pmaster.ExamSimulation
+	616, // 89: pmaster.ExamUnitMotion.motionType:type_name -> penum.ExamMotionType
+	617, // 90: pmaster.ExamUnitMotion.targetStepTypes:type_name -> penum.ProduceStepType
+	88,  // 91: pmaster.ExamUnitMotionList.list:type_name -> pmaster.ExamUnitMotion
+	619, // 92: pmaster.ExchangeItemCategory.categoryType:type_name -> penum.ExchangeItemCategoryType
+	598, // 93: pmaster.ExchangeItemCategory.resourceType:type_name -> penum.ResourceType
+	620, // 94: pmaster.ExchangeItemCategory.itemType:type_name -> penum.ItemType
+	90,  // 95: pmaster.ExchangeItemCategoryList.list:type_name -> pmaster.ExchangeItemCategory
+	621, // 96: pmaster.FeatureLock.tutorialType:type_name -> penum.TutorialType
+	92,  // 97: pmaster.FeatureLockList.list:type_name -> pmaster.FeatureLock
+	622, // 98: pmaster.ForceAppVersion.platformType:type_name -> penum.PlatformType
+	94,  // 99: pmaster.ForceAppVersionList.list:type_name -> pmaster.ForceAppVersion
+	623, // 100: pmaster.GashaAnimationStep.rarity:type_name -> penum.GashaAnimationRarity
+	624, // 101: pmaster.GashaAnimationStep.currentStepType:type_name -> penum.GashaAnimationStepType
+	624, // 102: pmaster.GashaAnimationStep.nextStepType:type_name -> penum.GashaAnimationStepType
+	96,  // 103: pmaster.GashaAnimationStepList.list:type_name -> pmaster.GashaAnimationStep
+	625, // 104: pmaster.GashaButton.type:type_name -> penum.GashaButtonType
+	598, // 105: pmaster.GashaButton.resourceType:type_name -> penum.ResourceType
+	626, // 106: pmaster.GashaButton.limitType:type_name -> penum.GashaLimitType
+	626, // 107: pmaster.GashaButton.discountLimitType:type_name -> penum.GashaLimitType
+	627, // 108: pmaster.GashaButton.appealType:type_name -> penum.GashaButtonAppealType
+	627, // 109: pmaster.GashaButton.highAppealType:type_name -> penum.GashaButtonAppealType
+	627, // 110: pmaster.GashaButton.bottomAppealType:type_name -> penum.GashaButtonAppealType
+	628, // 111: pmaster.GashaButtonList.list:type_name -> pcommon.GashaButton
+	100, // 112: pmaster.GuildDonationItemList.list:type_name -> pmaster.GuildDonationItem
+	102, // 113: pmaster.GuildReactionList.list:type_name -> pmaster.GuildReaction
+	104, // 114: pmaster.GvgRaidList.list:type_name -> pmaster.GvgRaid
+	599, // 115: pmaster.GvgRaidStageLoop.stagePlanType:type_name -> penum.ProducePlanType
+	106, // 116: pmaster.GvgRaidStageLoopList.list:type_name -> pmaster.GvgRaidStageLoop
+	108, // 117: pmaster.HelpCategoryList.list:type_name -> pmaster.HelpCategory
+	110, // 118: pmaster.HelpContentList.list:type_name -> pmaster.HelpContent
+	112, // 119: pmaster.HelpInfoList.list:type_name -> pmaster.HelpInfo
+	114, // 120: pmaster.HomeBackgroundList.list:type_name -> pmaster.HomeBackground
+	629, // 121: pmaster.HomeBackgroundPrefabGroup.homeTimeTypes:type_name -> penum.HomeTimeType
+	116, // 122: pmaster.HomeBackgroundPrefabGroupList.list:type_name -> pmaster.HomeBackgroundPrefabGroup
+	118, // 123: pmaster.HomeBoardList.list:type_name -> pmaster.HomeBoard
+	120, // 124: pmaster.HomeMonitorList.list:type_name -> pmaster.HomeMonitor
+	630, // 125: pmaster.HomeMotion.locationType:type_name -> penum.HomeLocationType
+	631, // 126: pmaster.HomeMotion.motionType:type_name -> penum.HomeMotionType
+	122, // 127: pmaster.HomeMotionList.list:type_name -> pmaster.HomeMotion
+	629, // 128: pmaster.HomeTime.type:type_name -> penum.HomeTimeType
+	124, // 129: pmaster.HomeTimeList.list:type_name -> pmaster.HomeTime
+	632, // 130: pmaster.IdolCard.rarity:type_name -> penum.IdolCardRarity
+	633, // 131: pmaster.IdolCard.maxIdolCardLevelLimitRank:type_name -> penum.IdolCardLevelLimitRank
+	599, // 132: pmaster.IdolCard.planType:type_name -> penum.ProducePlanType
+	611, // 133: pmaster.IdolCard.examEffectType:type_name -> penum.ProduceExamEffectType
+	611, // 134: pmaster.IdolCard.showExamEffectType:type_name -> penum.ProduceExamEffectType
+	633, // 135: pmaster.IdolCardLevelLimit.rank:type_name -> penum.IdolCardLevelLimitRank
+	127, // 136: pmaster.IdolCardLevelLimitList.list:type_name -> pmaster.IdolCardLevelLimit
+	633, // 137: pmaster.IdolCardLevelLimitProduceSkill.rank:type_name -> penum.IdolCardLevelLimitRank
+	129, // 138: pmaster.IdolCardLevelLimitProduceSkillList.list:type_name -> pmaster.IdolCardLevelLimitProduceSkill
+	633, // 139: pmaster.IdolCardLevelLimitStatusUp.rank:type_name -> penum.IdolCardLevelLimitRank
+	634, // 140: pmaster.IdolCardLevelLimitStatusUp.effectTypes:type_name -> penum.IdolCardLevelLimitEffectType
+	131, // 141: pmaster.IdolCardLevelLimitStatusUpList.list:type_name -> pmaster.IdolCardLevelLimitStatusUp
+	635, // 142: pmaster.IdolCardList.list:type_name -> pcommon.IdolCard
+	589, // 143: pmaster.IdolCardPiece.exchangeReward:type_name -> pcommon.Reward
+	134, // 144: pmaster.IdolCardPieceList.list:type_name -> pmaster.IdolCardPiece
+	632, // 145: pmaster.IdolCardPieceQuantity.rarity:type_name -> penum.IdolCardRarity
+	136, // 146: pmaster.IdolCardPieceQuantityList.list:type_name -> pmaster.IdolCardPieceQuantity
+	636, // 147: pmaster.IdolCardPotential.rank:type_name -> penum.IdolCardPotentialRank
+	637, // 148: pmaster.IdolCardPotential.effectTypes:type_name -> penum.IdolCardPotentialEffectType
+	138, // 149: pmaster.IdolCardPotentialList.list:type_name -> pmaster.IdolCardPotential
+	636, // 150: pmaster.IdolCardPotentialProduceSkill.rank:type_name -> penum.IdolCardPotentialRank
+	140, // 151: pmaster.IdolCardPotentialProduceSkillList.list:type_name -> pmaster.IdolCardPotentialProduceSkill
+	142, // 152: pmaster.IdolCardPrimaStellaProduceSkillList.list:type_name -> pmaster.IdolCardPrimaStellaProduceSkill
+	144, // 153: pmaster.IdolCardSimulationList.list:type_name -> pmaster.IdolCardSimulation
+	146, // 154: pmaster.IdolCardSkinList.list:type_name -> pmaster.IdolCardSkin
+	638, // 155: pmaster.IdolCardSkinSelectReward.difficultyType:type_name -> penum.IdolCardDifficultyType
+	148, // 156: pmaster.IdolCardSkinSelectRewardList.list:type_name -> pmaster.IdolCardSkinSelectReward
+	578, // 157: pmaster.IdolCardSkinUnit.unitCharacters:type_name -> pmaster.IdolCardSkinUnit.UnitCharacter
+	150, // 158: pmaster.IdolCardSkinUnitList.list:type_name -> pmaster.IdolCardSkinUnit
+	152, // 159: pmaster.InvitationMissionList.list:type_name -> pmaster.InvitationMission
+	589, // 160: pmaster.InvitationPointReward.reward:type_name -> pcommon.Reward
+	154, // 161: pmaster.InvitationPointRewardList.list:type_name -> pmaster.InvitationPointReward
+	620, // 162: pmaster.Item.type:type_name -> penum.ItemType
+	639, // 163: pmaster.Item.rarity:type_name -> penum.ItemRarity
+	640, // 164: pmaster.Item.exchangeType:type_name -> penum.ExchangeType
+	632, // 165: pmaster.Item.idolCardRarity:type_name -> penum.IdolCardRarity
+	641, // 166: pmaster.Item.supportCardRarity:type_name -> penum.SupportCardRarity
+	579, // 167: pmaster.Item.gashas:type_name -> pmaster.Item.Gasha
+	156, // 168: pmaster.ItemList.list:type_name -> pmaster.Item
+	158, // 169: pmaster.JewelConsumptionCountList.list:type_name -> pmaster.JewelConsumptionCount
+	620, // 170: pmaster.LimitItem.type:type_name -> penum.ItemType
+	160, // 171: pmaster.LimitItemList.list:type_name -> pmaster.LimitItem
+	162, // 172: pmaster.LocalizationList.list:type_name -> pmaster.Localization
+	164, // 173: pmaster.LoginBonusMotionList.list:type_name -> pmaster.LoginBonusMotion
+	166, // 174: pmaster.MainStoryChapterList.list:type_name -> pmaster.MainStoryChapter
+	168, // 175: pmaster.MainStoryPartList.list:type_name -> pmaster.MainStoryPart
+	587, // 176: pmaster.MainTask.missionType:type_name -> penum.MissionType
+	589, // 177: pmaster.MainTask.rewards:type_name -> pcommon.Reward
+	589, // 178: pmaster.MainTask.additionalRewards:type_name -> pcommon.Reward
+	621, // 179: pmaster.MainTask.unlockFeatureTutorialType:type_name -> penum.TutorialType
+	642, // 180: pmaster.MainTaskGroup.mainTaskType:type_name -> penum.MainTaskType
+	171, // 181: pmaster.MainTaskGroupList.list:type_name -> pmaster.MainTaskGroup
+	587, // 182: pmaster.MainTaskIcon.missionType:type_name -> penum.MissionType
+	173, // 183: pmaster.MainTaskIconList.list:type_name -> pmaster.MainTaskIcon
+	170, // 184: pmaster.MainTaskList.list:type_name -> pmaster.MainTask
+	643, // 185: pmaster.Media.mediaType:type_name -> penum.MediaType
+	644, // 186: pmaster.Media.fourPanelComicSeries:type_name -> penum.FourPanelComicSeries
+	645, // 187: pmaster.Media.mediaMovieType:type_name -> penum.MediaMovieType
+	622, // 188: pmaster.MediaExternalLink.ignorePlatformTypes:type_name -> penum.PlatformType
+	177, // 189: pmaster.MediaExternalLinkList.list:type_name -> pmaster.MediaExternalLink
+	176, // 190: pmaster.MediaList.list:type_name -> pmaster.Media
+	646, // 191: pmaster.MeishiBaseAsset.meishiBaseAssetType:type_name -> penum.MeishiBaseAssetType
+	180, // 192: pmaster.MeishiBaseAssetList.list:type_name -> pmaster.MeishiBaseAsset
+	182, // 193: pmaster.MeishiBaseColorList.list:type_name -> pmaster.MeishiBaseColor
+	647, // 194: pmaster.MeishiIllustrationAsset.type:type_name -> penum.MeishiIllustrationType
+	184, // 195: pmaster.MeishiIllustrationAssetList.list:type_name -> pmaster.MeishiIllustrationAsset
+	186, // 196: pmaster.MeishiTextColorList.list:type_name -> pmaster.MeishiTextColor
+	648, // 197: pmaster.MemoryAbility.rarity:type_name -> penum.SkillRarity
+	649, // 198: pmaster.MemoryAbilityList.list:type_name -> pcommon.MemoryAbility
+	599, // 199: pmaster.MemoryExchangeItem.planType:type_name -> penum.ProducePlanType
+	190, // 200: pmaster.MemoryExchangeItemList.list:type_name -> pmaster.MemoryExchangeItem
+	650, // 201: pmaster.MemoryExchangeItemQuantity.grade:type_name -> penum.ResultGrade
+	192, // 202: pmaster.MemoryExchangeItemQuantityList.list:type_name -> pmaster.MemoryExchangeItemQuantity
+	650, // 203: pmaster.MemoryGift.grade:type_name -> penum.ResultGrade
+	599, // 204: pmaster.MemoryGift.planType:type_name -> penum.ProducePlanType
+	651, // 205: pmaster.MemoryGift.produceCard:type_name -> pcommon.ProduceCard
+	652, // 206: pmaster.MemoryGift.produceCardPhaseType:type_name -> penum.ProduceMemoryProduceCardPhaseType
+	649, // 207: pmaster.MemoryGift.memoryAbilities:type_name -> pcommon.MemoryAbility
+	651, // 208: pmaster.MemoryGift.examBattleProduceCards:type_name -> pcommon.ProduceCard
+	194, // 209: pmaster.MemoryGiftList.list:type_name -> pmaster.MemoryGift
+	196, // 210: pmaster.MemoryTagList.list:type_name -> pmaster.MemoryTag
+	653, // 211: pmaster.Mission.category:type_name -> penum.MissionCategory
+	587, // 212: pmaster.Mission.type:type_name -> penum.MissionType
+	200, // 213: pmaster.MissionDailyReleaseGroupList.list:type_name -> pmaster.MissionDailyReleaseGroup
+	199, // 214: pmaster.MissionDailyReleaseList.list:type_name -> pmaster.MissionDailyRelease
+	589, // 215: pmaster.MissionGroup.rewards:type_name -> pcommon.Reward
+	203, // 216: pmaster.MissionGroupList.list:type_name -> pmaster.MissionGroup
+	198, // 217: pmaster.MissionList.list:type_name -> pmaster.Mission
+	207, // 218: pmaster.MissionPanelSheetGroupList.list:type_name -> pmaster.MissionPanelSheetGroup
+	206, // 219: pmaster.MissionPanelSheetList.list:type_name -> pmaster.MissionPanelSheet
+	210, // 220: pmaster.MissionPassList.list:type_name -> pmaster.MissionPass
+	212, // 221: pmaster.MissionPassPointList.list:type_name -> pmaster.MissionPassPoint
+	589, // 222: pmaster.MissionPassProgress.normalReward:type_name -> pcommon.Reward
+	589, // 223: pmaster.MissionPassProgress.premiumReward:type_name -> pcommon.Reward
+	214, // 224: pmaster.MissionPassProgressList.list:type_name -> pmaster.MissionPassProgress
+	654, // 225: pmaster.MissionPoint.resetTimingType:type_name -> penum.ResetTimingType
+	216, // 226: pmaster.MissionPointList.list:type_name -> pmaster.MissionPoint
+	589, // 227: pmaster.MissionPointRewardSet.rewards:type_name -> pcommon.Reward
+	218, // 228: pmaster.MissionPointRewardSetList.list:type_name -> pmaster.MissionPointRewardSet
+	589, // 229: pmaster.MissionProgress.rewards:type_name -> pcommon.Reward
+	220, // 230: pmaster.MissionProgressList.list:type_name -> pmaster.MissionProgress
+	222, // 231: pmaster.MoneyList.list:type_name -> pmaster.Money
+	655, // 232: pmaster.Music.type:type_name -> penum.MusicType
+	225, // 233: pmaster.MusicHotList.list:type_name -> pmaster.MusicHot
+	224, // 234: pmaster.MusicList.list:type_name -> pmaster.Music
+	228, // 235: pmaster.MusicSingerList.list:type_name -> pmaster.MusicSinger
+	656, // 236: pmaster.PhotoBackground.category:type_name -> penum.PhotoBackgroundCategory
+	657, // 237: pmaster.PhotoBackground.timeTypes:type_name -> penum.PhotoBackgroundTimeType
+	230, // 238: pmaster.PhotoBackgroundList.list:type_name -> pmaster.PhotoBackground
+	658, // 239: pmaster.PhotoFacialLookTarget.lookTargetType:type_name -> penum.PhotoLookTargetType
+	232, // 240: pmaster.PhotoFacialLookTargetList.list:type_name -> pmaster.PhotoFacialLookTarget
+	234, // 241: pmaster.PhotoFacialMotionGroupList.list:type_name -> pmaster.PhotoFacialMotionGroup
+	236, // 242: pmaster.PhotoLookEffectorCharacterList.list:type_name -> pmaster.PhotoLookEffectorCharacter
+	238, // 243: pmaster.PhotoLookTargetVoiceCharacterList.list:type_name -> pmaster.PhotoLookTargetVoiceCharacter
+	659, // 244: pmaster.PhotoPose.motionType:type_name -> penum.PhotoPoseMotionType
+	658, // 245: pmaster.PhotoPose.lookTargetType:type_name -> penum.PhotoLookTargetType
+	240, // 246: pmaster.PhotoPoseList.list:type_name -> pmaster.PhotoPose
+	242, // 247: pmaster.PhotoReactionVoiceGroupList.list:type_name -> pmaster.PhotoReactionVoiceGroup
+	244, // 248: pmaster.PhotoWaitVoiceCharacterList.list:type_name -> pmaster.PhotoWaitVoiceCharacter
+	246, // 249: pmaster.PhotoWaitVoiceGroupList.list:type_name -> pmaster.PhotoWaitVoiceGroup
+	660, // 250: pmaster.Produce.produceSelectScreenOrderType:type_name -> penum.ProduceSelectScreenOrderType
+	661, // 251: pmaster.Produce.produceSplitType:type_name -> penum.ProduceSplitType
+	595, // 252: pmaster.ProduceAdv.produceType:type_name -> penum.ProduceType
+	662, // 253: pmaster.ProduceAdv.type:type_name -> penum.ProduceAdvType
+	249, // 254: pmaster.ProduceAdvList.list:type_name -> pmaster.ProduceAdv
+	663, // 255: pmaster.ProduceCard.rarity:type_name -> penum.ProduceCardRarity
+	599, // 256: pmaster.ProduceCard.planType:type_name -> penum.ProducePlanType
+	664, // 257: pmaster.ProduceCard.category:type_name -> penum.ProduceCardCategory
+	665, // 258: pmaster.ProduceCard.costType:type_name -> penum.ExamCostType
+	580, // 259: pmaster.ProduceCard.playEffects:type_name -> pmaster.ProduceCard.PlayEffect
+	666, // 260: pmaster.ProduceCard.playMovePositionType:type_name -> penum.ProduceCardMovePositionType
+	667, // 261: pmaster.ProduceCard.moveEffectTriggerType:type_name -> penum.ProduceCardMoveEffectTriggerType
+	668, // 262: pmaster.ProduceCard.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	669, // 263: pmaster.ProduceCardConversionList.list:type_name -> pcommon.ProduceCardConversion
+	613, // 264: pmaster.ProduceCardCustomize.overwriteProduceCardGrowEffectType:type_name -> penum.ProduceCardGrowEffectType
+	670, // 265: pmaster.ProduceCardCustomizeList.list:type_name -> pcommon.ProduceCardCustomize
+	663, // 266: pmaster.ProduceCardCustomizeRarityEvaluation.rarity:type_name -> penum.ProduceCardRarity
+	256, // 267: pmaster.ProduceCardCustomizeRarityEvaluationList.list:type_name -> pmaster.ProduceCardCustomizeRarityEvaluation
+	613, // 268: pmaster.ProduceCardGrowEffect.effectType:type_name -> penum.ProduceCardGrowEffectType
+	665, // 269: pmaster.ProduceCardGrowEffect.costType:type_name -> penum.ExamCostType
+	666, // 270: pmaster.ProduceCardGrowEffect.playMovePositionType:type_name -> penum.ProduceCardMovePositionType
+	258, // 271: pmaster.ProduceCardGrowEffectList.list:type_name -> pmaster.ProduceCardGrowEffect
+	651, // 272: pmaster.ProduceCardList.list:type_name -> pcommon.ProduceCard
+	581, // 273: pmaster.ProduceCardPool.produceCardRatios:type_name -> pmaster.ProduceCardPool.ProduceCardRatio
+	261, // 274: pmaster.ProduceCardPoolList.list:type_name -> pmaster.ProduceCardPool
+	263, // 275: pmaster.ProduceCardRandomPoolList.list:type_name -> pmaster.ProduceCardRandomPool
+	663, // 276: pmaster.ProduceCardSearch.cardRarities:type_name -> penum.ProduceCardRarity
+	599, // 277: pmaster.ProduceCardSearch.planType:type_name -> penum.ProducePlanType
+	664, // 278: pmaster.ProduceCardSearch.cardCategories:type_name -> penum.ProduceCardCategory
+	671, // 279: pmaster.ProduceCardSearch.cardStatusType:type_name -> penum.ProduceCardSearchStatusType
+	672, // 280: pmaster.ProduceCardSearch.orderType:type_name -> penum.ProduceCardOrderType
+	673, // 281: pmaster.ProduceCardSearch.cardPositionType:type_name -> penum.ProduceCardPositionType
+	606, // 282: pmaster.ProduceCardSearch.staminaMinMaxType:type_name -> penum.ConditionMinMaxType
+	611, // 283: pmaster.ProduceCardSearch.examEffectType:type_name -> penum.ProduceExamEffectType
+	668, // 284: pmaster.ProduceCardSearch.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	665, // 285: pmaster.ProduceCardSearch.costType:type_name -> penum.ExamCostType
+	265, // 286: pmaster.ProduceCardSearchList.list:type_name -> pmaster.ProduceCardSearch
+	268, // 287: pmaster.ProduceCardSimulationGroupList.list:type_name -> pmaster.ProduceCardSimulationGroup
+	267, // 288: pmaster.ProduceCardSimulationList.list:type_name -> pmaster.ProduceCardSimulation
+	271, // 289: pmaster.ProduceCardStatusEffectList.list:type_name -> pmaster.ProduceCardStatusEffect
+	668, // 290: pmaster.ProduceCardStatusEnchant.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	273, // 291: pmaster.ProduceCardStatusEnchantList.list:type_name -> pmaster.ProduceCardStatusEnchant
+	275, // 292: pmaster.ProduceCardTagList.list:type_name -> pmaster.ProduceCardTag
+	277, // 293: pmaster.ProduceChallengeCharacterList.list:type_name -> pmaster.ProduceChallengeCharacter
+	279, // 294: pmaster.ProduceChallengeSlotList.list:type_name -> pmaster.ProduceChallengeSlot
+	595, // 295: pmaster.ProduceCharacterAdv.produceType:type_name -> penum.ProduceType
+	662, // 296: pmaster.ProduceCharacterAdv.type:type_name -> penum.ProduceAdvType
+	282, // 297: pmaster.ProduceCharacterAdvList.list:type_name -> pmaster.ProduceCharacterAdv
+	281, // 298: pmaster.ProduceCharacterList.list:type_name -> pmaster.ProduceCharacter
+	285, // 299: pmaster.ProduceCharacterUnitList.list:type_name -> pmaster.ProduceCharacterUnit
+	674, // 300: pmaster.ProduceCustomizeItem.effectType:type_name -> penum.ProduceItemEffectType
+	599, // 301: pmaster.ProduceCustomizeItem.planType:type_name -> penum.ProducePlanType
+	668, // 302: pmaster.ProduceCustomizeItem.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	287, // 303: pmaster.ProduceCustomizeItemList.list:type_name -> pmaster.ProduceCustomizeItem
+	289, // 304: pmaster.ProduceCustomizeItemRelationshipList.list:type_name -> pmaster.ProduceCustomizeItemRelationship
+	611, // 305: pmaster.ProduceDescriptionExamEffect.type:type_name -> penum.ProduceExamEffectType
+	291, // 306: pmaster.ProduceDescriptionExamEffectList.list:type_name -> pmaster.ProduceDescriptionExamEffect
+	668, // 307: pmaster.ProduceDescriptionLabel.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	293, // 308: pmaster.ProduceDescriptionLabelList.list:type_name -> pmaster.ProduceDescriptionLabel
+	613, // 309: pmaster.ProduceDescriptionProduceCardGrowEffect.type:type_name -> penum.ProduceCardGrowEffectType
+	295, // 310: pmaster.ProduceDescriptionProduceCardGrowEffectList.list:type_name -> pmaster.ProduceDescriptionProduceCardGrowEffect
+	666, // 311: pmaster.ProduceDescriptionProduceCardMovePosition.type:type_name -> penum.ProduceCardMovePositionType
+	297, // 312: pmaster.ProduceDescriptionProduceCardMovePositionList.list:type_name -> pmaster.ProduceDescriptionProduceCardMovePosition
+	612, // 313: pmaster.ProduceDescriptionProduceEffect.type:type_name -> penum.ProduceEffectType
+	299, // 314: pmaster.ProduceDescriptionProduceEffectList.list:type_name -> pmaster.ProduceDescriptionProduceEffect
+	599, // 315: pmaster.ProduceDescriptionProducePlan.type:type_name -> penum.ProducePlanType
+	301, // 316: pmaster.ProduceDescriptionProducePlanList.list:type_name -> pmaster.ProduceDescriptionProducePlan
+	617, // 317: pmaster.ProduceDescriptionProduceStep.type:type_name -> penum.ProduceStepType
+	303, // 318: pmaster.ProduceDescriptionProduceStepList.list:type_name -> pmaster.ProduceDescriptionProduceStep
+	595, // 319: pmaster.ProduceDescriptionProduceType.produceType:type_name -> penum.ProduceType
+	661, // 320: pmaster.ProduceDescriptionProduceType.produceSplitType:type_name -> penum.ProduceSplitType
+	305, // 321: pmaster.ProduceDescriptionProduceTypeList.list:type_name -> pmaster.ProduceDescriptionProduceType
+	675, // 322: pmaster.ProduceDescriptionSwap.swapType:type_name -> penum.ProduceDescriptionSwapType
+	307, // 323: pmaster.ProduceDescriptionSwapList.list:type_name -> pmaster.ProduceDescriptionSwap
+	599, // 324: pmaster.ProduceDrink.planType:type_name -> penum.ProducePlanType
+	676, // 325: pmaster.ProduceDrink.rarity:type_name -> penum.ProduceDrinkRarity
+	668, // 326: pmaster.ProduceDrink.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	310, // 327: pmaster.ProduceDrinkEffectList.list:type_name -> pmaster.ProduceDrinkEffect
+	309, // 328: pmaster.ProduceDrinkList.list:type_name -> pmaster.ProduceDrink
+	612, // 329: pmaster.ProduceEffect.produceEffectType:type_name -> penum.ProduceEffectType
+	677, // 330: pmaster.ProduceEffect.produceResourceType:type_name -> penum.ProduceResourceType
+	582, // 331: pmaster.ProduceEffect.produceRewards:type_name -> pmaster.ProduceEffect.ProduceReward
+	678, // 332: pmaster.ProduceEffect.pickRangeType:type_name -> penum.ProducePickRangeType
+	612, // 333: pmaster.ProduceEffectIcon.type:type_name -> penum.ProduceEffectType
+	677, // 334: pmaster.ProduceEffectIcon.resourceType:type_name -> penum.ProduceResourceType
+	314, // 335: pmaster.ProduceEffectIconList.list:type_name -> pmaster.ProduceEffectIcon
+	313, // 336: pmaster.ProduceEffectList.list:type_name -> pmaster.ProduceEffect
+	317, // 337: pmaster.ProduceEventCharacterGrowthList.list:type_name -> pmaster.ProduceEventCharacterGrowth
+	319, // 338: pmaster.ProduceEventSupportCardList.list:type_name -> pmaster.ProduceEventSupportCard
+	679, // 339: pmaster.ProduceExamAutoCardSelectEvaluation.type:type_name -> penum.ExamPlayType
+	611, // 340: pmaster.ProduceExamAutoCardSelectEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
+	680, // 341: pmaster.ProduceExamAutoCardSelectEvaluation.evaluationType:type_name -> penum.ProduceExamAutoCardSelectEvaluationType
+	321, // 342: pmaster.ProduceExamAutoCardSelectEvaluationList.list:type_name -> pmaster.ProduceExamAutoCardSelectEvaluation
+	679, // 343: pmaster.ProduceExamAutoEvaluation.type:type_name -> penum.ExamPlayType
+	611, // 344: pmaster.ProduceExamAutoEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
+	681, // 345: pmaster.ProduceExamAutoEvaluation.evaluationType:type_name -> penum.ProduceExamAutoEvaluationType
+	323, // 346: pmaster.ProduceExamAutoEvaluationList.list:type_name -> pmaster.ProduceExamAutoEvaluation
+	679, // 347: pmaster.ProduceExamAutoGrowEffectEvaluation.type:type_name -> penum.ExamPlayType
+	611, // 348: pmaster.ProduceExamAutoGrowEffectEvaluation.examEffectType:type_name -> penum.ProduceExamEffectType
+	613, // 349: pmaster.ProduceExamAutoGrowEffectEvaluation.growEffectType:type_name -> penum.ProduceCardGrowEffectType
+	325, // 350: pmaster.ProduceExamAutoGrowEffectEvaluationList.list:type_name -> pmaster.ProduceExamAutoGrowEffectEvaluation
+	327, // 351: pmaster.ProduceExamAutoPlayCardEvaluationList.list:type_name -> pmaster.ProduceExamAutoPlayCardEvaluation
+	679, // 352: pmaster.ProduceExamAutoPlayProduceCardEvaluation.type:type_name -> penum.ExamPlayType
+	329, // 353: pmaster.ProduceExamAutoPlayProduceCardEvaluationList.list:type_name -> pmaster.ProduceExamAutoPlayProduceCardEvaluation
+	679, // 354: pmaster.ProduceExamAutoResourceEvaluation.type:type_name -> penum.ExamPlayType
+	677, // 355: pmaster.ProduceExamAutoResourceEvaluation.resourceType:type_name -> penum.ProduceResourceType
+	681, // 356: pmaster.ProduceExamAutoResourceEvaluation.evaluationType:type_name -> penum.ProduceExamAutoEvaluationType
+	331, // 357: pmaster.ProduceExamAutoResourceEvaluationList.list:type_name -> pmaster.ProduceExamAutoResourceEvaluation
+	679, // 358: pmaster.ProduceExamAutoTriggerEvaluation.type:type_name -> penum.ExamPlayType
+	333, // 359: pmaster.ProduceExamAutoTriggerEvaluationList.list:type_name -> pmaster.ProduceExamAutoTriggerEvaluation
+	335, // 360: pmaster.ProduceExamBattleConfigList.list:type_name -> pmaster.ProduceExamBattleConfig
+	337, // 361: pmaster.ProduceExamBattleNpcGroupList.list:type_name -> pmaster.ProduceExamBattleNpcGroup
+	339, // 362: pmaster.ProduceExamBattleNpcMobList.list:type_name -> pmaster.ProduceExamBattleNpcMob
+	341, // 363: pmaster.ProduceExamBattleScoreConfigList.list:type_name -> pmaster.ProduceExamBattleScoreConfig
+	611, // 364: pmaster.ProduceExamEffect.effectType:type_name -> penum.ProduceExamEffectType
+	611, // 365: pmaster.ProduceExamEffect.targetExamEffectType:type_name -> penum.ProduceExamEffectType
+	666, // 366: pmaster.ProduceExamEffect.movePositionType:type_name -> penum.ProduceCardMovePositionType
+	678, // 367: pmaster.ProduceExamEffect.pickRangeType:type_name -> penum.ProducePickRangeType
+	682, // 368: pmaster.ProduceExamEffect.pickCountType:type_name -> penum.ProducePickCountType
+	678, // 369: pmaster.ProduceExamEffect.pickRangeType2:type_name -> penum.ProducePickRangeType
+	682, // 370: pmaster.ProduceExamEffect.pickCountType2:type_name -> penum.ProducePickCountType
+	668, // 371: pmaster.ProduceExamEffect.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	668, // 372: pmaster.ProduceExamEffect.customizeProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	343, // 373: pmaster.ProduceExamEffectList.list:type_name -> pmaster.ProduceExamEffect
+	683, // 374: pmaster.ProduceExamGimmickEffectGroup.fieldStatusType:type_name -> penum.ProduceExamFieldStatusType
+	684, // 375: pmaster.ProduceExamGimmickEffectGroup.fieldStatusCheckType:type_name -> penum.ProduceExamTriggerCheckType
+	668, // 376: pmaster.ProduceExamGimmickEffectGroup.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	345, // 377: pmaster.ProduceExamGimmickEffectGroupList.list:type_name -> pmaster.ProduceExamGimmickEffectGroup
+	668, // 378: pmaster.ProduceExamStatusEnchant.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	347, // 379: pmaster.ProduceExamStatusEnchantList.list:type_name -> pmaster.ProduceExamStatusEnchant
+	685, // 380: pmaster.ProduceExamTrigger.phaseTypes:type_name -> penum.ProduceExamPhaseType
+	684, // 381: pmaster.ProduceExamTrigger.fieldStatusCheckTypes:type_name -> penum.ProduceExamTriggerCheckType
+	683, // 382: pmaster.ProduceExamTrigger.fieldStatusTypes:type_name -> penum.ProduceExamFieldStatusType
+	666, // 383: pmaster.ProduceExamTrigger.cardMovePositionType:type_name -> penum.ProduceCardMovePositionType
+	611, // 384: pmaster.ProduceExamTrigger.effectTypes:type_name -> penum.ProduceExamEffectType
+	686, // 385: pmaster.ProduceExamTrigger.lessonType:type_name -> penum.ProduceStepLessonType
+	668, // 386: pmaster.ProduceExamTrigger.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	668, // 387: pmaster.ProduceExamTrigger.playProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	668, // 388: pmaster.ProduceExamTrigger.playEffectProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	349, // 389: pmaster.ProduceExamTriggerList.list:type_name -> pmaster.ProduceExamTrigger
+	650, // 390: pmaster.ProduceGrade.grade:type_name -> penum.ResultGrade
+	351, // 391: pmaster.ProduceGradeList.list:type_name -> pmaster.ProduceGrade
+	595, // 392: pmaster.ProduceGroup.type:type_name -> penum.ProduceType
+	687, // 393: pmaster.ProduceGroup.disableForceLiveCommonEndingLiveType:type_name -> penum.ProduceLiveType
+	650, // 394: pmaster.ProduceGroup.limitGrade:type_name -> penum.ResultGrade
+	353, // 395: pmaster.ProduceGroupList.list:type_name -> pmaster.ProduceGroup
+	687, // 396: pmaster.ProduceGroupLiveCommon.type:type_name -> penum.ProduceLiveType
+	355, // 397: pmaster.ProduceGroupLiveCommonList.list:type_name -> pmaster.ProduceGroupLiveCommon
+	661, // 398: pmaster.ProduceGrowthPanel.produceSplitType:type_name -> penum.ProduceSplitType
+	668, // 399: pmaster.ProduceGrowthPanel.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	357, // 400: pmaster.ProduceGrowthPanelList.list:type_name -> pmaster.ProduceGrowthPanel
+	595, // 401: pmaster.ProduceGrowthPanelSheet.produceType:type_name -> penum.ProduceType
+	359, // 402: pmaster.ProduceGrowthPanelSheetList.list:type_name -> pmaster.ProduceGrowthPanelSheet
+	361, // 403: pmaster.ProduceGuideList.list:type_name -> pmaster.ProduceGuide
+	364, // 404: pmaster.ProduceGuideProduceCardCategoryGroupList.list:type_name -> pmaster.ProduceGuideProduceCardCategoryGroup
+	363, // 405: pmaster.ProduceGuideProduceCardCategoryList.list:type_name -> pmaster.ProduceGuideProduceCardCategory
+	368, // 406: pmaster.ProduceGuideProduceCardSampleDeckCategoryGroupList.list:type_name -> pmaster.ProduceGuideProduceCardSampleDeckCategoryGroup
+	367, // 407: pmaster.ProduceGuideProduceCardSampleDeckCategoryList.list:type_name -> pmaster.ProduceGuideProduceCardSampleDeckCategory
+	688, // 408: pmaster.ProduceHighScore.produceHighScoreEventType:type_name -> penum.ProduceHighScoreEventType
+	371, // 409: pmaster.ProduceHighScoreList.list:type_name -> pmaster.ProduceHighScore
+	611, // 410: pmaster.ProduceInitialDeck.examEffectType:type_name -> penum.ProduceExamEffectType
+	373, // 411: pmaster.ProduceInitialDeckList.list:type_name -> pmaster.ProduceInitialDeck
+	689, // 412: pmaster.ProduceItem.rarity:type_name -> penum.ProduceItemRarity
+	599, // 413: pmaster.ProduceItem.planType:type_name -> penum.ProducePlanType
+	583, // 414: pmaster.ProduceItem.skills:type_name -> pmaster.ProduceItem.Skill
+	668, // 415: pmaster.ProduceItem.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	376, // 416: pmaster.ProduceItemChallengeGroupList.list:type_name -> pmaster.ProduceItemChallengeGroup
+	674, // 417: pmaster.ProduceItemEffect.effectType:type_name -> penum.ProduceItemEffectType
+	378, // 418: pmaster.ProduceItemEffectList.list:type_name -> pmaster.ProduceItemEffect
+	690, // 419: pmaster.ProduceItemList.list:type_name -> pcommon.ProduceItem
+	382, // 420: pmaster.ProduceItemSimulationGroupList.list:type_name -> pmaster.ProduceItemSimulationGroup
+	381, // 421: pmaster.ProduceItemSimulationList.list:type_name -> pmaster.ProduceItemSimulation
+	611, // 422: pmaster.ProduceLegendProduceCard.examEffectType:type_name -> penum.ProduceExamEffectType
+	385, // 423: pmaster.ProduceLegendProduceCardList.list:type_name -> pmaster.ProduceLegendProduceCard
+	248, // 424: pmaster.ProduceList.list:type_name -> pmaster.Produce
+	687, // 425: pmaster.ProduceLive.type:type_name -> penum.ProduceLiveType
+	687, // 426: pmaster.ProduceLiveEvaluation.liveType:type_name -> penum.ProduceLiveType
+	389, // 427: pmaster.ProduceLiveEvaluationList.list:type_name -> pmaster.ProduceLiveEvaluation
+	388, // 428: pmaster.ProduceLiveList.list:type_name -> pmaster.ProduceLive
+	392, // 429: pmaster.ProduceNavigationList.list:type_name -> pmaster.ProduceNavigation
+	394, // 430: pmaster.ProduceNextIdolAuditionMasterRankingSeasonList.list:type_name -> pmaster.ProduceNextIdolAuditionMasterRankingSeason
+	687, // 431: pmaster.ProduceResultMotion.liveType:type_name -> penum.ProduceLiveType
+	396, // 432: pmaster.ProduceResultMotionList.list:type_name -> pmaster.ProduceResultMotion
+	691, // 433: pmaster.ProduceScheduleBackground.locationType:type_name -> penum.ProduceScheduleLocationType
+	398, // 434: pmaster.ProduceScheduleBackgroundList.list:type_name -> pmaster.ProduceScheduleBackground
+	691, // 435: pmaster.ProduceScheduleMotion.locationType:type_name -> penum.ProduceScheduleLocationType
+	692, // 436: pmaster.ProduceScheduleMotion.staminaMotionType:type_name -> penum.ProduceScheduleStaminaMotionType
+	693, // 437: pmaster.ProduceScheduleMotion.motionType:type_name -> penum.ProduceScheduleMotionType
+	400, // 438: pmaster.ProduceScheduleMotionList.list:type_name -> pmaster.ProduceScheduleMotion
+	402, // 439: pmaster.ProduceSeasonList.list:type_name -> pmaster.ProduceSeason
+	650, // 440: pmaster.ProduceSeasonZeroGrade.grade:type_name -> penum.ResultGrade
+	404, // 441: pmaster.ProduceSeasonZeroGradeList.list:type_name -> pmaster.ProduceSeasonZeroGrade
+	406, // 442: pmaster.ProduceSettingList.list:type_name -> pmaster.ProduceSetting
+	648, // 443: pmaster.ProduceSkill.rarity:type_name -> penum.SkillRarity
+	599, // 444: pmaster.ProduceSkill.planType:type_name -> penum.ProducePlanType
+	595, // 445: pmaster.ProduceSkill.produceType:type_name -> penum.ProduceType
+	661, // 446: pmaster.ProduceSkill.produceSplitType:type_name -> penum.ProduceSplitType
+	668, // 447: pmaster.ProduceSkill.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	408, // 448: pmaster.ProduceSkillList.list:type_name -> pmaster.ProduceSkill
+	595, // 449: pmaster.ProduceSplitAdv.produceType:type_name -> penum.ProduceType
+	662, // 450: pmaster.ProduceSplitAdv.type:type_name -> penum.ProduceAdvType
+	661, // 451: pmaster.ProduceSplitAdv.produceSplitTypes:type_name -> penum.ProduceSplitType
+	410, // 452: pmaster.ProduceSplitAdvList.list:type_name -> pmaster.ProduceSplitAdv
+	694, // 453: pmaster.ProduceStartMotion.motionType:type_name -> penum.ProduceStartMotionType
+	412, // 454: pmaster.ProduceStartMotionList.list:type_name -> pmaster.ProduceStartMotion
+	617, // 455: pmaster.ProduceStepAuditionCharacter.stepType:type_name -> penum.ProduceStepType
+	617, // 456: pmaster.ProduceStepAuditionCharacterBgm.stepType:type_name -> penum.ProduceStepType
+	415, // 457: pmaster.ProduceStepAuditionCharacterBgmList.list:type_name -> pmaster.ProduceStepAuditionCharacterBgm
+	414, // 458: pmaster.ProduceStepAuditionCharacterList.list:type_name -> pmaster.ProduceStepAuditionCharacter
+	617, // 459: pmaster.ProduceStepAuditionCharacterUnitMotion.stepType:type_name -> penum.ProduceStepType
+	695, // 460: pmaster.ProduceStepAuditionCharacterUnitMotion.motionType:type_name -> penum.ProduceStepAuditionMotionType
+	418, // 461: pmaster.ProduceStepAuditionCharacterUnitMotionList.list:type_name -> pmaster.ProduceStepAuditionCharacterUnitMotion
+	617, // 462: pmaster.ProduceStepAuditionDifficulty.stepType:type_name -> penum.ProduceStepType
+	696, // 463: pmaster.ProduceStepAuditionDifficulty.auditionType:type_name -> penum.ProduceStepAuditionType
+	420, // 464: pmaster.ProduceStepAuditionDifficultyList.list:type_name -> pmaster.ProduceStepAuditionDifficulty
+	617, // 465: pmaster.ProduceStepAuditionMotion.stepType:type_name -> penum.ProduceStepType
+	695, // 466: pmaster.ProduceStepAuditionMotion.motionType:type_name -> penum.ProduceStepAuditionMotionType
+	696, // 467: pmaster.ProduceStepAuditionMotion.auditionType:type_name -> penum.ProduceStepAuditionType
+	422, // 468: pmaster.ProduceStepAuditionMotionList.list:type_name -> pmaster.ProduceStepAuditionMotion
+	617, // 469: pmaster.ProduceStepAuditionRivalActor.stepType:type_name -> penum.ProduceStepType
+	424, // 470: pmaster.ProduceStepAuditionRivalActorList.list:type_name -> pmaster.ProduceStepAuditionRivalActor
+	695, // 471: pmaster.ProduceStepAuditionRivalActorMotion.motionType:type_name -> penum.ProduceStepAuditionMotionType
+	426, // 472: pmaster.ProduceStepAuditionRivalActorMotionList.list:type_name -> pmaster.ProduceStepAuditionRivalActorMotion
+	697, // 473: pmaster.ProduceStepEventDetail.suggestionType:type_name -> penum.ProduceEventSuggestionType
+	698, // 474: pmaster.ProduceStepEventDetail.eventType:type_name -> penum.ProduceEventType
+	699, // 475: pmaster.ProduceStepEventDetail.eventCharacterType:type_name -> penum.ProduceEventCharacterType
+	668, // 476: pmaster.ProduceStepEventDetail.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	428, // 477: pmaster.ProduceStepEventDetailList.list:type_name -> pmaster.ProduceStepEventDetail
+	617, // 478: pmaster.ProduceStepEventSuggestion.stepType:type_name -> penum.ProduceStepType
+	617, // 479: pmaster.ProduceStepEventSuggestion.successStepType:type_name -> penum.ProduceStepType
+	617, // 480: pmaster.ProduceStepEventSuggestion.failStepType:type_name -> penum.ProduceStepType
+	668, // 481: pmaster.ProduceStepEventSuggestion.produceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	430, // 482: pmaster.ProduceStepEventSuggestionList.list:type_name -> pmaster.ProduceStepEventSuggestion
+	700, // 483: pmaster.ProduceStepFanPresentMotion.motionType:type_name -> penum.ProduceStepFanPresentMotionType
+	432, // 484: pmaster.ProduceStepFanPresentMotionList.list:type_name -> pmaster.ProduceStepFanPresentMotion
+	435, // 485: pmaster.ProduceStepLessonLevelList.list:type_name -> pmaster.ProduceStepLessonLevel
+	434, // 486: pmaster.ProduceStepLessonList.list:type_name -> pmaster.ProduceStepLesson
+	701, // 487: pmaster.ProduceStepOpenLesson.subParameterType:type_name -> penum.ProduceParameterType
+	438, // 488: pmaster.ProduceStepOpenLessonList.list:type_name -> pmaster.ProduceStepOpenLesson
+	617, // 489: pmaster.ProduceStepOpenLessonMotion.stepType:type_name -> penum.ProduceStepType
+	440, // 490: pmaster.ProduceStepOpenLessonMotionList.list:type_name -> pmaster.ProduceStepOpenLessonMotion
+	442, // 491: pmaster.ProduceStepSelfLessonList.list:type_name -> pmaster.ProduceStepSelfLesson
+	617, // 492: pmaster.ProduceStepSelfLessonMotion.stepType:type_name -> penum.ProduceStepType
+	444, // 493: pmaster.ProduceStepSelfLessonMotionList.list:type_name -> pmaster.ProduceStepSelfLessonMotion
+	617, // 494: pmaster.ProduceStepTransition.stepType:type_name -> penum.ProduceStepType
+	702, // 495: pmaster.ProduceStepTransition.stepPhaseType:type_name -> penum.ProduceStepPhaseType
+	446, // 496: pmaster.ProduceStepTransitionList.list:type_name -> pmaster.ProduceStepTransition
+	703, // 497: pmaster.ProduceStory.type:type_name -> penum.ProduceStoryType
+	449, // 498: pmaster.ProduceStoryGroupList.list:type_name -> pmaster.ProduceStoryGroup
+	448, // 499: pmaster.ProduceStoryList.list:type_name -> pmaster.ProduceStory
+	704, // 500: pmaster.ProduceTrigger.phaseType:type_name -> penum.ProducePhaseType
+	452, // 501: pmaster.ProduceTriggerList.list:type_name -> pmaster.ProduceTrigger
+	454, // 502: pmaster.ProduceWeekMotionList.list:type_name -> pmaster.ProduceWeekMotion
+	584, // 503: pmaster.ProducerLevel.unlockTargets:type_name -> pmaster.ProducerLevel.UnlockTarget
+	589, // 504: pmaster.ProducerLevel.reward:type_name -> pcommon.Reward
+	589, // 505: pmaster.ProducerLevel.bonusRewards:type_name -> pcommon.Reward
+	456, // 506: pmaster.ProducerLevelList.list:type_name -> pmaster.ProducerLevel
+	459, // 507: pmaster.ProducerRankingCharacterList.list:type_name -> pmaster.ProducerRankingCharacter
+	458, // 508: pmaster.ProducerRankingList.list:type_name -> pmaster.ProducerRanking
+	462, // 509: pmaster.ProducerRankingProduceList.list:type_name -> pmaster.ProducerRankingProduce
+	705, // 510: pmaster.ProducerRankingRankGrade.grade:type_name -> penum.ProducerRankingGrade
+	464, // 511: pmaster.ProducerRankingRankGradeList.list:type_name -> pmaster.ProducerRankingRankGrade
+	466, // 512: pmaster.ProducerRankingTowerList.list:type_name -> pmaster.ProducerRankingTower
+	599, // 513: pmaster.PvpRateCommonProduceCard.planType:type_name -> penum.ProducePlanType
+	651, // 514: pmaster.PvpRateCommonProduceCard.produceCards:type_name -> pcommon.ProduceCard
+	468, // 515: pmaster.PvpRateCommonProduceCardList.list:type_name -> pmaster.PvpRateCommonProduceCard
+	585, // 516: pmaster.PvpRateConfig.stages:type_name -> pmaster.PvpRateConfig.Stage
+	470, // 517: pmaster.PvpRateConfigList.list:type_name -> pmaster.PvpRateConfig
+	706, // 518: pmaster.PvpRateMotion.motionType:type_name -> penum.PvpRateMotionType
+	472, // 519: pmaster.PvpRateMotionList.list:type_name -> pmaster.PvpRateMotion
+	707, // 520: pmaster.PvpRateUnitSlotUnlock.grade:type_name -> penum.PvpRateGrade
+	474, // 521: pmaster.PvpRateUnitSlotUnlockList.list:type_name -> pmaster.PvpRateUnitSlotUnlock
+	476, // 522: pmaster.ResearchMemoryRerollCostList.list:type_name -> pmaster.ResearchMemoryRerollCost
+	708, // 523: pmaster.ResultGradePattern.type:type_name -> penum.ResultGradeType
+	650, // 524: pmaster.ResultGradePattern.grade:type_name -> penum.ResultGrade
+	478, // 525: pmaster.ResultGradePatternList.list:type_name -> pmaster.ResultGradePattern
+	709, // 526: pmaster.Rule.type:type_name -> penum.RuleType
+	622, // 527: pmaster.Rule.platformType:type_name -> penum.PlatformType
+	480, // 528: pmaster.RuleList.list:type_name -> pmaster.Rule
+	611, // 529: pmaster.SeminarExamTransition.examEffectType:type_name -> penum.ProduceExamEffectType
+	589, // 530: pmaster.SeminarExamTransition.rewards:type_name -> pcommon.Reward
+	482, // 531: pmaster.SeminarExamTransitionList.list:type_name -> pmaster.SeminarExamTransition
+	484, // 532: pmaster.SettingList.list:type_name -> pmaster.Setting
+	710, // 533: pmaster.Shop.type:type_name -> penum.ShopType
+	654, // 534: pmaster.Shop.resetTimingType:type_name -> penum.ResetTimingType
+	711, // 535: pmaster.Shop.resetWeekday:type_name -> penum.Weekday
+	712, // 536: pmaster.ShopItem.labelTypes:type_name -> penum.ShopItemLabelType
+	589, // 537: pmaster.ShopItem.rewards:type_name -> pcommon.Reward
+	654, // 538: pmaster.ShopItem.resetTimingType:type_name -> penum.ResetTimingType
+	711, // 539: pmaster.ShopItem.resetWeekday:type_name -> penum.Weekday
+	598, // 540: pmaster.ShopItem.consumptionResourceType:type_name -> penum.ResourceType
+	487, // 541: pmaster.ShopItemList.list:type_name -> pmaster.ShopItem
+	486, // 542: pmaster.ShopList.list:type_name -> pmaster.Shop
+	490, // 543: pmaster.ShopProductList.list:type_name -> pmaster.ShopProduct
+	713, // 544: pmaster.Story.type:type_name -> penum.StoryType
+	589, // 545: pmaster.Story.reward:type_name -> pcommon.Reward
+	714, // 546: pmaster.StoryEvent.storyEventType:type_name -> penum.StoryEventType
+	493, // 547: pmaster.StoryEventList.list:type_name -> pmaster.StoryEvent
+	713, // 548: pmaster.StoryGroup.storyType:type_name -> penum.StoryType
+	714, // 549: pmaster.StoryGroup.storyEventType:type_name -> penum.StoryEventType
+	715, // 550: pmaster.StoryGroup.eventStoryFilterType:type_name -> penum.EventStoryFilterType
+	495, // 551: pmaster.StoryGroupList.list:type_name -> pmaster.StoryGroup
+	492, // 552: pmaster.StoryList.list:type_name -> pmaster.Story
+	716, // 553: pmaster.SupportCard.type:type_name -> penum.SupportCardType
+	599, // 554: pmaster.SupportCard.planType:type_name -> penum.ProducePlanType
+	641, // 555: pmaster.SupportCard.rarity:type_name -> penum.SupportCardRarity
+	589, // 556: pmaster.SupportCard.exchangeReward:type_name -> pcommon.Reward
+	701, // 557: pmaster.SupportCard.produceCardUpgradeLessonParameterType:type_name -> penum.ProduceParameterType
+	668, // 558: pmaster.SupportCard.upgradeProduceCardProduceDescriptions:type_name -> pcommon.ProduceDescriptionSegment
+	641, // 559: pmaster.SupportCardBonus.rarity:type_name -> penum.SupportCardRarity
+	499, // 560: pmaster.SupportCardBonusList.list:type_name -> pmaster.SupportCardBonus
+	501, // 561: pmaster.SupportCardFlavorList.list:type_name -> pmaster.SupportCardFlavor
+	717, // 562: pmaster.SupportCardLevelLimit.rank:type_name -> penum.SupportCardLevelLimitRank
+	504, // 563: pmaster.SupportCardLevelLimitList.list:type_name -> pmaster.SupportCardLevelLimit
+	503, // 564: pmaster.SupportCardLevelList.list:type_name -> pmaster.SupportCardLevel
+	718, // 565: pmaster.SupportCardList.list:type_name -> pcommon.SupportCard
+	612, // 566: pmaster.SupportCardProduceSkillFilter.produceEffectTypes:type_name -> penum.ProduceEffectType
+	508, // 567: pmaster.SupportCardProduceSkillFilterList.list:type_name -> pmaster.SupportCardProduceSkillFilter
+	510, // 568: pmaster.SupportCardProduceSkillLevelAssistList.list:type_name -> pmaster.SupportCardProduceSkillLevelAssist
+	512, // 569: pmaster.SupportCardProduceSkillLevelDanceList.list:type_name -> pmaster.SupportCardProduceSkillLevelDance
+	514, // 570: pmaster.SupportCardProduceSkillLevelVisualList.list:type_name -> pmaster.SupportCardProduceSkillLevelVisual
+	516, // 571: pmaster.SupportCardProduceSkillLevelVocalList.list:type_name -> pmaster.SupportCardProduceSkillLevelVocal
+	519, // 572: pmaster.SupportCardSimulationGroupList.list:type_name -> pmaster.SupportCardSimulationGroup
+	518, // 573: pmaster.SupportCardSimulationList.list:type_name -> pmaster.SupportCardSimulation
+	719, // 574: pmaster.Terms.type:type_name -> penum.TermsType
+	522, // 575: pmaster.TermsList.list:type_name -> pmaster.Terms
+	720, // 576: pmaster.Tips.type:type_name -> penum.TipsType
+	721, // 577: pmaster.Tips.viewAreaType:type_name -> penum.ViewAreaType
+	524, // 578: pmaster.TipsList.list:type_name -> pmaster.Tips
+	526, // 579: pmaster.TitleAssetList.list:type_name -> pmaster.TitleAsset
+	528, // 580: pmaster.TitleVoiceList.list:type_name -> pmaster.TitleVoice
+	530, // 581: pmaster.TourList.list:type_name -> pmaster.Tour
+	532, // 582: pmaster.TourMotionList.list:type_name -> pmaster.TourMotion
+	534, // 583: pmaster.TourStageTimelineList.list:type_name -> pmaster.TourStageTimeline
+	611, // 584: pmaster.TowerLayerExam.examEffectType:type_name -> penum.ProduceExamEffectType
+	538, // 585: pmaster.TowerLayerExamList.list:type_name -> pmaster.TowerLayerExam
+	537, // 586: pmaster.TowerLayerList.list:type_name -> pmaster.TowerLayer
+	541, // 587: pmaster.TowerLayerRankList.list:type_name -> pmaster.TowerLayerRank
+	536, // 588: pmaster.TowerList.list:type_name -> pmaster.Tower
+	544, // 589: pmaster.TowerResetList.list:type_name -> pmaster.TowerReset
+	589, // 590: pmaster.TowerTotalClearRankReward.reward:type_name -> pcommon.Reward
+	546, // 591: pmaster.TowerTotalClearRankRewardList.list:type_name -> pmaster.TowerTotalClearRankReward
+	621, // 592: pmaster.Tutorial.tutorialType:type_name -> penum.TutorialType
+	722, // 593: pmaster.Tutorial.navigationType:type_name -> penum.TutorialNavigationType
+	723, // 594: pmaster.Tutorial.navigationPositionType:type_name -> penum.TutorialNavigationPositionType
+	724, // 595: pmaster.Tutorial.tutorialProduceCommandType:type_name -> penum.TutorialProduceCommandType
+	725, // 596: pmaster.TutorialCharacterVoice.type:type_name -> penum.TutorialCharacterVoiceType
+	549, // 597: pmaster.TutorialCharacterVoiceList.list:type_name -> pmaster.TutorialCharacterVoice
+	548, // 598: pmaster.TutorialList.list:type_name -> pmaster.Tutorial
+	621, // 599: pmaster.TutorialProduce.tutorialType:type_name -> penum.TutorialType
+	552, // 600: pmaster.TutorialProduceList.list:type_name -> pmaster.TutorialProduce
+	621, // 601: pmaster.TutorialProduceStep.tutorialType:type_name -> penum.TutorialType
+	617, // 602: pmaster.TutorialProduceStep.stepType:type_name -> penum.ProduceStepType
+	554, // 603: pmaster.TutorialProduceStepList.list:type_name -> pmaster.TutorialProduceStep
+	557, // 604: pmaster.VoiceGroupList.list:type_name -> pmaster.VoiceGroup
+	556, // 605: pmaster.VoiceList.list:type_name -> pmaster.Voice
+	726, // 606: pmaster.VoiceRoster.type:type_name -> penum.VoicePlayScreenType
+	560, // 607: pmaster.VoiceRosterList.list:type_name -> pmaster.VoiceRoster
+	727, // 608: pmaster.Work.type:type_name -> penum.WorkType
+	598, // 609: pmaster.Work.rewardResourceType:type_name -> penum.ResourceType
+	727, // 610: pmaster.WorkLevel.type:type_name -> penum.WorkType
+	563, // 611: pmaster.WorkLevelList.list:type_name -> pmaster.WorkLevel
+	727, // 612: pmaster.WorkLevelReward.type:type_name -> penum.WorkType
+	565, // 613: pmaster.WorkLevelRewardList.list:type_name -> pmaster.WorkLevelReward
+	562, // 614: pmaster.WorkList.list:type_name -> pmaster.Work
+	728, // 615: pmaster.WorkMotion.motionType:type_name -> penum.WorkMotionType
+	568, // 616: pmaster.WorkMotionList.list:type_name -> pmaster.WorkMotion
+	570, // 617: pmaster.WorkSkipList.list:type_name -> pmaster.WorkSkip
+	727, // 618: pmaster.WorkTime.type:type_name -> penum.WorkType
+	572, // 619: pmaster.WorkTimeList.list:type_name -> pmaster.WorkTime
+	602, // 620: pmaster.CompetitionSeason.Stage.stageType:type_name -> penum.CompetitionStageType
+	599, // 621: pmaster.CompetitionSeason.Stage.planType:type_name -> penum.ProducePlanType
+	611, // 622: pmaster.CompetitionSeason.Stage.examEffectType:type_name -> penum.ProduceExamEffectType
+	601, // 623: pmaster.CompetitionSeason.GradeConfig.grade:type_name -> penum.CompetitionGrade
+	576, // 624: pmaster.CompetitionSeason.GradeConfig.stages:type_name -> pmaster.CompetitionSeason.Stage
+	677, // 625: pmaster.ProduceEffect.ProduceReward.resourceType:type_name -> penum.ProduceResourceType
+	729, // 626: pmaster.ProducerLevel.UnlockTarget.type:type_name -> penum.ProducerLevelUnlockType
+	730, // 627: pmaster.PvpRateConfig.Stage.stageType:type_name -> penum.PvpRateStageType
+	599, // 628: pmaster.PvpRateConfig.Stage.planType:type_name -> penum.ProducePlanType
+	629, // [629:629] is the sub-list for method output_type
+	629, // [629:629] is the sub-list for method input_type
+	629, // [629:629] is the sub-list for extension type_name
+	629, // [629:629] is the sub-list for extension extendee
+	0,   // [0:629] is the sub-list for field type_name
 }
 
 func init() { file_pmaster_proto_init() }
@@ -45106,7 +48180,7 @@ func file_pmaster_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pmaster_proto_rawDesc), len(file_pmaster_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   554,
+			NumMessages:   586,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
