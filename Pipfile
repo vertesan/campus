@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pillow = '==12.1.1'
+pillow = '==12.2.0'
 cloudinary = '==1.44.1'
 UnityPy = '==1.10.18'
 rich = '==14.2.0'
