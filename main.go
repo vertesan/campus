@@ -1,14 +1,14 @@
 package main
 
 import (
-	"flag"
-	"os"
-	"vertesan/campus/analyser"
-	"vertesan/campus/config"
-	"vertesan/campus/master"
-	"vertesan/campus/network"
-	"vertesan/campus/octo"
-	"vertesan/campus/utils/rich"
+  "flag"
+  "os"
+  "vertesan/campus/analyser"
+  "vertesan/campus/config"
+  "vertesan/campus/master"
+  "vertesan/campus/network"
+  "vertesan/campus/octo"
+  "vertesan/campus/utils/rich"
 )
 
 const NEW_AB_FLAG_FILE = "cache/newab_flag"
@@ -24,6 +24,7 @@ var (
   flagKeepAbRaw = flag.Bool("keepab", false, "Do not delete obfuscated assetbundle files after deobfuscating.\nTake no effect if 'ab' flag is absent.")
   flagWebAb     = flag.Bool("webab", false, "Only download images those are needed for web use. Takes no effect if '--ab' is absent.")
   flagAnalyze   = flag.Bool("analyze", false, "Analyze dump.cs to retrieve proto schema.\nGenerated codes are saved in 'cache/GeneratedProto' directory.")
+  flagDlmovies  = flag.Bool("movie", false, "Download movie assets (very large).")
   refToken      = flag.String("token", "", "The refresh token used to retrieve login idToken from firebase.\nIf refreshToken field set in 'config.yaml' is not empty, the value in the config file will take precedence.")
 )
 
@@ -59,7 +60,7 @@ func main() {
 
   if *flagAb {
     manager := &octo.OctoManager{}
-    hasUpdates := manager.Work(*flagKeepAbRaw, *flagWebAb, *flagForceAb)
+    hasUpdates := manager.Work(*flagKeepAbRaw, *flagWebAb, *flagForceAb, *flagDlmovies)
     cfg.OctoCacheRevision = int(manager.OctoDb.Revision)
     cfg.Save()
     if hasUpdates {

@@ -78,7 +78,7 @@ func (m *OctoManager) saveLocalJson(record map[string]string, path string) {
   }
 }
 
-func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool) bool {
+func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool, movie bool) bool {
   cfg := config.GetConfig()
   curRevision := cfg.OctoCacheRevision
   if forceAb {
@@ -158,6 +158,9 @@ func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool) bool {
       md5, ok := localRecord[resource.Name]
       if ok && resource.Md5 == md5 {
         rich.Warning("The MD5 of Resource %q matches one of the local files, skip downloading.", resource.Name)
+        continue
+      } else if !movie && strings.HasPrefix(resource.Name, "mov_general_media_") {
+        rich.Info("Skip downloading movie resource %q", resource.Name)
         continue
       } else {
         // else, write it into map
