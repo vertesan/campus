@@ -111,6 +111,7 @@ export async function getCidol(dirPath: string): Promise<Cidol | null> {
     "ProduceCardGrowEffect",
     "ProduceCardStatusEnchant",
     "ProduceExamTrigger",
+    "IdolCardPrimaStellaProduceSkill",
   ], dirPath)
 }
 

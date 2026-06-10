@@ -1,6 +1,7 @@
-import { Cidol, XIdolCard } from "~/types"
+import { Cidol, XCustProduceCard, XIdolCard } from "~/types"
 import { filterItems } from "~/apiUtils"
 import { getCardGrowEffects, getCustomizeRarityEvaluations, getExamEffects, getSingleXCustProduceCard, getSingleXProduceCard } from "~/pcard"
+import { ProduceEffectType, ProduceResourceType } from "./types/proto/penum"
 
 export function getXIdolCard([
   IdolCards,
@@ -28,6 +29,7 @@ export function getXIdolCard([
   ProduceCardGrowEffect,
   ProduceCardStatusEnchant,
   ProduceExamTrigger,
+  IdolCardPrimaStellaProduceSkill,
 ]: Cidol
 ): XIdolCard[] {
   const examEffects = getExamEffects(ProduceExamEffect)
@@ -48,6 +50,58 @@ export function getXIdolCard([
         ProduceCardStatusEnchant,
         ProduceExamTrigger,
       ))
+
+    let secondProduceCards: XCustProduceCard[] = []
+    if (idolCard.secondProduceCardId) {
+      secondProduceCards =
+        filterItems(
+          ProduceCards, "id", idolCard.secondProduceCardId, { sortRules: ["upgradeCount", true] }
+        ).map(x => getSingleXCustProduceCard(
+          x,
+          examEffects,
+          cardGrowEffects,
+          customizeRarityEvaluations,
+          ProduceCardCustomize,
+          ProduceCardGrowEffect,
+          ProduceCardStatusEnchant,
+          ProduceExamTrigger,
+        ))
+    }
+
+    let primastellaCards: XCustProduceCard[] = []
+    if (idolCard.idolCardPrimaStellaProduceSkillId) {
+      const primastellaSkill = IdolCardPrimaStellaProduceSkill.find(primaskill => primaskill.id === idolCard.idolCardPrimaStellaProduceSkillId)
+      if (primastellaSkill) {
+        const primaProduceSkill = ProduceSkills.find(skill => skill.id === primastellaSkill.produceSkillId)
+        if (primaProduceSkill) {
+          const effectIds = [
+            primaProduceSkill.produceEffectId1,
+            primaProduceSkill.produceEffectId2,
+            primaProduceSkill.produceEffectId3,
+          ].filter(id => id !== "")
+          filterItems(ProduceEffects, "id", effectIds).forEach(effect => {
+            if (effect.produceEffectType === ProduceEffectType.ProduceReward) {
+              const produceReward = effect.produceRewards.find(reward => reward.resourceType === ProduceResourceType.ProduceCard)
+              if (produceReward) {
+                primastellaCards = filterItems(
+                  ProduceCards, "id", produceReward.resourceId, { sortRules: ["upgradeCount", true] }
+                ).map(x => getSingleXCustProduceCard(
+                  x,
+                  examEffects,
+                  cardGrowEffects,
+                  customizeRarityEvaluations,
+                  ProduceCardCustomize,
+                  ProduceCardGrowEffect,
+                  ProduceCardStatusEnchant,
+                  ProduceExamTrigger,
+                ))
+              }
+            }
+          })
+        }
+      }
+    }
+
     const produceItems = filterItems(ProduceItems, "id", [idolCard.beforeProduceItemId, idolCard.afterProduceItemId], { sortRules: ["evaluation", true] })
     const idolCardSkins = filterItems(IdolCardSkins, "idolCardId", idolCard.id, { sortRules: ["order", false] })
 
@@ -152,6 +206,8 @@ export function getXIdolCard([
     return {
       ...idolCard,
       produceCards,
+      secondProduceCards,
+      primastellaCards,
       produceItems,
       idolCardSkins,
       levelLimits,

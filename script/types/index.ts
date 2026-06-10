@@ -69,6 +69,7 @@ import {
   SupportCardProduceSkillLevelDance,
   SupportCardProduceSkillLevelVisual,
   SupportCardProduceSkillLevelVocal,
+  IdolCardPrimaStellaProduceSkill,
 } from "~/types/proto/pmaster"
 import { UnArray } from "~/types/utils"
 
@@ -97,6 +98,7 @@ export type UsedDB = {
   AchievementProgress: AchievementProgress[],
   EventLabel: EventLabel[],
   ResultGradePattern: ResultGradePattern[],
+  IdolCardPrimaStellaProduceSkill: IdolCardPrimaStellaProduceSkill[]
   // csprt, cidol
   SupportCard: SupportCard[]
   ProduceCard: ProduceCard[]
@@ -271,10 +273,13 @@ export type Cidol = [
   ProduceCardGrowEffect[],
   ProduceCardStatusEnchant[],
   ProduceExamTrigger[],
+  IdolCardPrimaStellaProduceSkill[],
 ]
 
 export type XIdolCard = IdolCard & {
   produceCards: XCustProduceCard[],
+  secondProduceCards: XCustProduceCard[],
+  primastellaCards: XCustProduceCard[],
   produceItems: ProduceItem[],
   idolCardSkins: IdolCardSkin[],
   levelLimits: (
