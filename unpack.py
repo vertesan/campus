@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from rich.console import Console
 import UnityPy
@@ -28,37 +29,38 @@ def warn(msg: str):
     console.print(f"[bold yellow]>>> [Warning][/bold yellow] {msg}")
 
 
-def unpack_to_image(asset_bytes: bytes, dest: str):
-    env = UnityPy.load(asset_bytes)
+def unpack_to_image(objPath: str, dest_dir: str):
+    env = UnityPy.load(objPath)
     for obj in env.objects:
-        if obj.type.name == "Texture2D":
+        if obj.type.name in ["Texture2D", "Sprite"]:
             try:
-                data = obj.read()
-                # one of the QA employees messed up upper and lower case of assetname,
-                # traditionally they are all written in lowercase
-                if data.name == "img_general_icon_exam-effect_examItemfirelimitadd":
-                    filename = data.name.lower()
-                else:
-                    filename = data.name
-                dest_path = Path(dest, filename).with_suffix(".png")
-                dest_path.parent.mkdir(exist_ok=True)
+                data = obj.parse_as_object()
+                dest_path = os.path.join(dest_dir, data.m_Name)
+                dest_path, ext = os.path.splitext(dest_path)
+                dest_path = dest_path + ".png"
                 img = data.image
                 img.save(dest_path)
-                info(f"Converted '{filename}' to png.")
-            except:
-                error(f"Failed to convert '{filename}' to image.")
+                info(f"Converted '{data.m_Name}' to png.")
+            except Exception as e:
+                error(f"Failed to convert '{data.m_Name}' to image.")
+                error(f"Msg: {e}")
 
 
 def unpack_action(octo_diff: dict[str, str]):
     for name, _ in octo_diff.items():
+        if name.endswith(".txt") or name.endswith(".acb") or name.endswith(".acf"):
+            continue
         try:
-            raw = Path(ASSETBUNDLE_DIR, name).read_bytes()
-            if raw[:5] != b"Unity":
-                warn(f"'{name}' is not a unity asset, skip processing.")
-                continue
-            unpack_to_image(raw, IMG_DIR)
-        except:
+            objPath = os.path.join(ASSETBUNDLE_DIR, name)
+            with open(objPath, "rb") as file:
+                sig = file.read(5)
+                if sig != b"Unity":
+                    warn(f"'{name}' is not a unity asset, skip processing.")
+                    continue
+            unpack_to_image(objPath, IMG_DIR)
+        except Exception as e:
             error(f"Failed to process '{name}'.")
+            error(f"Msg: {e}")
 
 
 def scale_with_esrgan(octo_diff: dict[str, str]):

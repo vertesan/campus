@@ -87,8 +87,8 @@ def main():
     diff_rcd = dict(filter(lambda it: filter_assets(it[0]), diff_rcd.items()))
 
     for name, md5 in diff_rcd.items():
-        raw = Path(ASSET_DIR, name).read_bytes()
-        unpack_to_image(raw, UPLOAD_IMG_DIR)
+        raw_path = os.path.join(ASSET_DIR, name)
+        unpack_to_image(raw_path, UPLOAD_IMG_DIR)
         png_pth = Path(UPLOAD_IMG_DIR, name + ".png")
         webp_pth = Path(UPLOAD_IMG_DIR, name + ".webp")
         convert_to_webp(str(png_pth), str(webp_pth), get_csize(name), True)
