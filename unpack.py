@@ -35,7 +35,13 @@ def unpack_to_image(objPath: str, dest_dir: str):
         if obj.type.name in ["Texture2D", "Sprite"]:
             try:
                 data = obj.parse_as_object()
-                dest_path = os.path.join(dest_dir, data.m_Name)
+                # one of the QA employees messed up upper and lower case of assetname,
+                # traditionally they are all written in lowercase
+                if data.m_Name == "img_general_icon_exam-effect_examItemfirelimitadd":
+                    filename = data.m_Name.lower()
+                else:
+                    filename = data.m_Name
+                dest_path = os.path.join(dest_dir, filename)
                 dest_path, ext = os.path.splitext(dest_path)
                 dest_path = dest_path + ".png"
                 img = data.image
