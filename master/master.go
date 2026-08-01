@@ -96,9 +96,9 @@ func PutDb(name string, jsonDb string) {
 
 func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
   masterHeader := &http.Header{
-    "User-Agent":      {"UnityPlayer/2022.3.21f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)"},
+    "User-Agent":      {"UnityPlayer/6000.0.77f1 (UnityWebRequest/1.0, libcurl/8.10.1-DEV)"},
     "Accept":          {"*/*"},
-    "X-Unity-Version": {"2022.3.21f1"},
+    "X-Unity-Version": {"6000.0.77f1"},
   }
   dler := downloader.NewDownloader(30, masterHeader, MASTER_RAW_PATH, 5)
   entries := []*downloader.Entry{}

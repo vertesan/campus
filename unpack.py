@@ -8,7 +8,7 @@ ASSETBUNDLE_DIR = "cache/assets"
 IMG_DIR = "cache/img"
 ESRGAN_DIR = "cache/esrgan"
 DOWNLOADED_FILE_PATH = "cache/octo_downloaded.json"
-UnityPy.config.FALLBACK_UNITY_VERSION = "2022.3.21f1"
+UnityPy.config.FALLBACK_UNITY_VERSION = "6000.0.77f1"
 console = Console()
 
 

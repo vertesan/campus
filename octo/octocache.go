@@ -14,16 +14,16 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-const OCTO_ENDPOINT = "https://api.asset.game-gakuen-idolmaster.jp/v2/pub/a/400/v/205000/list/"
-const OCTO_API_KEY = "eSquJySjayO5OLLVgdTd"
+const OCTO_ENDPOINT = "https://api.asset.game-gakuen-idolmaster.jp/v2/pub/a/400/v/705100/list/"
+const OCTO_API_KEY = "x5HFaJCJywDyuButLM0f"
 
 func DownloadOctoList(curRevision int) *octo.Database {
   url := OCTO_ENDPOINT + fmt.Sprint(curRevision)
   headers := &http.Header{
-    "User-Agent":      {"UnityPlayer/2022.3.21f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)"},
+    "User-Agent":      {"UnityPlayer/6000.0.77f1 (UnityWebRequest/1.0, libcurl/8.10.1-DEV)"},
     "Accept":          {"application/x-protobuf,x-octo-app/400"},
     "X-OCTO-KEY":      {"0jv0wsohnnsigttbfigushbtl3a8m7l5"},
-    "X-Unity-Version": {"2022.3.21f1"},
+    "X-Unity-Version": {"6000.0.77f1"},
   }
   rich.Info("Start to download OctoList.")
   resp, cancel, err := hyper.SendRequest(url, "GET", headers, nil, 30, 3)
@@ -33,14 +33,15 @@ func DownloadOctoList(curRevision int) *octo.Database {
   defer resp.Body.Close()
   defer cancel()
 
-  octoDb, err := DecryptOctoList(resp.Body, 0)
+  contentLen := resp.ContentLength
+  octoDb, err := DecryptOctoList(resp.Body, 0, contentLen)
   if err != nil {
     panic(err)
   }
   return octoDb
 }
 
-func DecryptOctoList(reader io.Reader, offset int) (*octo.Database, error) {
+func DecryptOctoList(reader io.Reader, offset int, contentLen int64) (*octo.Database, error) {
   if offset > 0 {
     nothing := make([]byte, offset)
     if _, err := io.ReadFull(reader, nothing); err != nil {
@@ -52,6 +53,13 @@ func DecryptOctoList(reader io.Reader, offset int) (*octo.Database, error) {
     return nil, err
   }
   key := sha256.Sum256([]byte(OCTO_API_KEY))
+
+  // discard gap if any
+  gap := contentLen - (contentLen-int64(offset)-16)/16*16 - int64(offset) - 16
+  redundant := make([]byte, gap)
+  if _, err := io.ReadFull(reader, redundant); err != nil {
+    return nil, err
+  }
 
   buf := &bytes.Buffer{}
   crypto.Decrypt(key[:], iv, reader, buf)
