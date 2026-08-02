@@ -14,6 +14,10 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+// unused but preserved for potential future use
+const OCTO_ENDPOINT_ANDROID = "https://api.asset.game-gakuen-idolmaster.jp/v2/pub/a/400/v/205100/list/"
+const OCTO_API_KEY_ANDROID = "eSquJySjayO5OLLVgdTd"
+
 const OCTO_ENDPOINT = "https://api.asset.game-gakuen-idolmaster.jp/v2/pub/a/400/v/705100/list/"
 const OCTO_API_KEY = "x5HFaJCJywDyuButLM0f"
 
