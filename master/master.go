@@ -182,9 +182,9 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     writeYaml(masterTagPack.Type, yamlDb)
 
     // determine whether this Type needs to be put
-    if putDb && slices.Contains(requiredPutTypes, masterTagPack.Type) {
-      PutDb(masterTagPack.Type, jsonDb)
-    }
+    // if putDb && slices.Contains(requiredPutTypes, masterTagPack.Type) {
+    //   PutDb(masterTagPack.Type, jsonDb)
+    // }
 
     writeJson(masterTagPack.Type, &jsonDb)
     dbList = append(dbList, masterTagPack.Type)
