@@ -202,20 +202,27 @@ func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool, movie bool) b
     // if not obfuscated
     if slices.Equal(signature, []byte("Unity")) {
       rich.Info("Assetbundle %q seems like is not obfuscated, simply copy it to the destination.", entry.SaveFileName)
+      if _, err := rawFs.Seek(0, 0); err != nil {
+        rawFs.Close()
+        panic(err)
+      }
       abFs, err := os.Create(path.Join(OCTO_ASSET_DIR, entry.SaveFileName))
       if err != nil {
+        rawFs.Close()
         panic(err)
       }
       if _, err := io.Copy(abFs, rawFs); err != nil {
+        abFs.Close()
+        rawFs.Close()
         panic(err)
       }
+      abFs.Close()
+      rawFs.Close()
       if !keepRaw {
-        rawFs.Close()
         if err := os.Remove(path.Join(OCTO_RAW_DIR, entry.SaveFileName)); err != nil {
           panic(err)
         }
       }
-      abFs.Close()
       continue
     }
     if _, err := rawFs.Seek(0, 0); err != nil {
@@ -223,7 +230,7 @@ func (m *OctoManager) Work(keepRaw bool, webab bool, forceAb bool, movie bool) b
     }
     // deobfuscate
     abBytes := Deobfuscate(rawFs, entry.SaveFileName)
-    if !slices.Equal(abBytes[:5], []byte("Unity")) {
+    if len(abBytes) < 5 || !slices.Equal(abBytes[:5], []byte("Unity")) {
       rich.Warning("Assetbundle %q seems have a invalid signature, please check if this is intentional.", entry.SaveFileName)
     } else {
       rich.Info("Successfully deobfuscated %q.", entry.SaveFileName)

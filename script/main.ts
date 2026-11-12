@@ -55,7 +55,7 @@ async function updateDB<
     exit(1)
   }
   const xobject = getObjectFunc(db!)
-  putToKv(key, JSON.stringify(xobject))
+  await putToKv(key, JSON.stringify(xobject))
 }
 
 async function run() {

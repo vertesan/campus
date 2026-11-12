@@ -2,6 +2,7 @@ package rpc
 
 import (
   "context"
+  "maps"
   "time"
   "vertesan/campus/config"
   "vertesan/campus/proto/papi"
@@ -48,7 +49,7 @@ func NewCampusClient(idToken string, appVersion string) *CampusClient {
     appVersion: appVersion,
     serverUrl:  SERVER_URL,
     timeout:    TIMEOUT_SEC,
-    headers:    grpcHeader,
+    headers:    maps.Clone(grpcHeader),
   }
   client.headers["x-app-version"] = appVersion
   return client
@@ -86,7 +87,8 @@ func (c *CampusClient) DoLogin() {
   c.homeEnter()
   c.noticeListAll()
   c.fetchAdditionalNotice(penum.NoticeCategory_NoticeCategory_Info, 2, 0)
-  if c.HomeEnterResp.PvpRateSeasonTop.StatusType != penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_OutOfTerm {
+  if c.HomeEnterResp != nil && c.HomeEnterResp.PvpRateSeasonTop != nil &&
+    c.HomeEnterResp.PvpRateSeasonTop.StatusType != penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_OutOfTerm {
     if c.HomeEnterResp.PvpRateSeasonTop.StatusType == penum.PvpRateSeasonStatusType_PvpRateSeasonStatusType_NotAttended {
       c.pvpRateInitialize()
     }

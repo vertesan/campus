@@ -46,27 +46,27 @@ func DownloadOctoList(curRevision int) *octo.Database {
 }
 
 func DecryptOctoList(reader io.Reader, offset int, contentLen int64) (*octo.Database, error) {
-  if offset > 0 {
-    nothing := make([]byte, offset)
-    if _, err := io.ReadFull(reader, nothing); err != nil {
-      return nil, err
-    }
-  }
-  iv := make([]byte, 16)
-  if _, err := io.ReadFull(reader, iv); err != nil {
+  raw, err := io.ReadAll(reader)
+  if err != nil {
     return nil, err
   }
+  if len(raw) < offset+16 {
+    return nil, fmt.Errorf("octo list payload too short: %d bytes (offset %d)", len(raw), offset)
+  }
+  data := raw[offset:]
+  if contentLen >= int64(offset+16) && int64(len(raw)) > contentLen {
+    data = raw[offset:contentLen]
+  }
+  iv := data[:16]
   key := sha256.Sum256([]byte(OCTO_API_KEY))
 
-  // discard gap if any
-  gap := contentLen - (contentLen-int64(offset)-16)/16*16 - int64(offset) - 16
-  redundant := make([]byte, gap)
-  if _, err := io.ReadFull(reader, redundant); err != nil {
-    return nil, err
-  }
+  // discard gap if any before trailing 16-byte AES blocks
+  payload := data[16:]
+  gap := len(payload) % 16
+  ciphertext := payload[gap:]
 
   buf := &bytes.Buffer{}
-  crypto.Decrypt(key[:], iv, reader, buf)
+  crypto.Decrypt(key[:], iv, bytes.NewReader(ciphertext), buf)
   octoDb := &octo.Database{}
   if err := proto.Unmarshal(buf.Bytes(), octoDb); err != nil {
     return nil, err

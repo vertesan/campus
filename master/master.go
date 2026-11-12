@@ -29,6 +29,8 @@ const MASTER_YAML_PATH = "cache/masterYaml"
 const ENV_CAMPUS_DB_PUT_URL = "CAMPUS_DB_PUT_URL"
 const ENV_CAMPUS_DB_PUT_SECRET = "CAMPUS_DB_PUT_SECRET"
 
+var yamlIndentReg = regexp.MustCompile(`\n(?P<ctt>.+)`)
+
 var requiredPutTypes = []string{
   "Character",
   "ProduceEffectIcon",
@@ -85,13 +87,14 @@ func PutDb(name string, jsonDb string) {
     "Authorization": {fmt.Sprintf("Bearer %s", secret)},
   }
   payload := strings.NewReader(fmt.Sprintf("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"metadata\"\r\n\r\n{}\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"value\"\r\n\r\n%s\r\n-----011000010111000001101001--\r\n\r\n", jsonDb))
-  _, _, err = hyper.SendRequest(url, "PUT", headers, payload, 30, 3)
+  res, cancel, err := hyper.SendRequest(url, "PUT", headers, payload, 30, 3)
   if err != nil {
     rich.Error("Put database %q failed. Stopping process.", name)
     panic(err)
-  } else {
-    rich.Info("Database %q is successfully put to remote db.", name)
   }
+  res.Body.Close()
+  cancel()
+  rich.Info("Database %q is successfully put to remote db.", name)
 }
 
 func DownloadAllMaster(masterTagResp *papi.MasterGetResponse) {
@@ -125,67 +128,23 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     EmitUnpopulated:   true,
     EmitDefaultValues: false,
   }
+  if err := os.MkdirAll(MASTER_YAML_PATH, 0755); err != nil {
+    panic(err)
+  }
+  if err := os.MkdirAll(MASTER_JSON_PATH, 0755); err != nil {
+    panic(err)
+  }
   dbList := []string{}
   for _, masterTagPack := range masterTagResp.MasterTag.MasterTagPacks {
     rich.Info("Decrypting database %q.", masterTagPack.Type)
-    if _, ok := mapping.ProtoMap["Master."+masterTagPack.Type]; !ok {
+    protoTemplate, ok := mapping.ProtoMap["Master."+masterTagPack.Type]
+    if !ok {
       rich.Warning("'Master.%s' not found in existing map, perhaps a new database entry is introduced.", masterTagPack.Type)
       rich.Warning("Skip processing 'Master.%s'", masterTagPack.Type)
       continue
     }
-    // read db
-    dbPath := path.Join(MASTER_RAW_PATH, masterTagPack.Type)
-    key := masterTagPack.CryptoKey
-    dbname := fmt.Sprintf("%s?_pragma_key=x'%s'", dbPath, key)
-    db, err := sql.Open("sqlite3", dbname)
-    if err != nil {
-      panic(err)
-    }
-    defer db.Close()
-    rows, err := db.Query(fmt.Sprintf("select data from %s;", masterTagPack.Type))
-    if err != nil {
-      panic(err)
-    }
-    defer rows.Close()
-    jsonList := []string{}
-    yamlList := [][]byte{}
-    for rows.Next() {
-      var data []byte
-      if err = rows.Scan(&data); err != nil {
-        panic(err)
-      }
-      instance := mapping.ProtoMap["Master."+masterTagPack.Type]
-      if err := proto.Unmarshal(data, instance); err != nil {
-        panic(err)
-      }
-      yamlBytes, err := YamlMarshal(instance)
-      if err != nil {
-        panic(err)
-      }
-
-      jsonBytes, err := jsonMarshalOptions.Marshal(instance)
-      if err != nil {
-        panic(err)
-      }
-      jsonList = append(jsonList, string(jsonBytes))
-
-      yamlBytes = bytes.TrimSuffix(yamlBytes, []byte("\n"))
-      reg := regexp.MustCompile(`\n(?P<ctt>.+)`)
-      yamlBytes = reg.ReplaceAll(yamlBytes, []byte("\n  $ctt"))
-      yamlList = append(yamlList, yamlBytes)
-    }
-    var yamlDb []byte
-    if len(yamlList) != 0 {
-      yamlDb = append([]byte("- "), bytes.Join(yamlList, []byte("\n- "))...)
-    }
-    jsonDb := "[" + strings.Join(jsonList, ",") + "]"
+    yamlDb, jsonDb := decryptSingleMaster(masterTagPack, protoTemplate, jsonMarshalOptions)
     writeYaml(masterTagPack.Type, yamlDb)
-
-    // determine whether this Type needs to be put
-    // if putDb && slices.Contains(requiredPutTypes, masterTagPack.Type) {
-    //   PutDb(masterTagPack.Type, jsonDb)
-    // }
-
     writeJson(masterTagPack.Type, &jsonDb)
     dbList = append(dbList, masterTagPack.Type)
   }
@@ -208,6 +167,62 @@ func DecryptAll(masterTagResp *papi.MasterGetResponse, putDb bool) {
     }
   }
   rich.Info("Database decrypting completed.")
+}
+
+func decryptSingleMaster(
+  masterTagPack *papi.MasterGetResponse_MasterTagPack,
+  protoTemplate proto.Message,
+  jsonMarshalOptions protojson.MarshalOptions,
+) ([]byte, string) {
+  dbPath := path.Join(MASTER_RAW_PATH, masterTagPack.Type)
+  dbname := fmt.Sprintf("%s?_pragma_key=x'%s'", dbPath, masterTagPack.CryptoKey)
+  db, err := sql.Open("sqlite3", dbname)
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
+  rows, err := db.Query(fmt.Sprintf("select data from %s;", masterTagPack.Type))
+  if err != nil {
+    panic(err)
+  }
+  defer rows.Close()
+
+  jsonList := []string{}
+  yamlList := [][]byte{}
+  for rows.Next() {
+    var data []byte
+    if err = rows.Scan(&data); err != nil {
+      panic(err)
+    }
+    instance := protoTemplate.ProtoReflect().New().Interface()
+    if err := proto.Unmarshal(data, instance); err != nil {
+      panic(err)
+    }
+    yamlBytes, err := YamlMarshal(instance)
+    if err != nil {
+      panic(err)
+    }
+    jsonBytes, err := jsonMarshalOptions.Marshal(instance)
+    if err != nil {
+      panic(err)
+    }
+    jsonList = append(jsonList, string(jsonBytes))
+
+    yamlBytes = bytes.TrimSuffix(yamlBytes, []byte("\n"))
+    yamlBytes = yamlIndentReg.ReplaceAll(yamlBytes, []byte("\n  $ctt"))
+    yamlList = append(yamlList, yamlBytes)
+  }
+  if err := rows.Err(); err != nil {
+    panic(err)
+  }
+
+  var yamlDb []byte
+  if len(yamlList) != 0 {
+    yamlDb = append([]byte("- "), bytes.Join(yamlList, []byte("\n- "))...)
+  }
+  jsonDb := "[" + strings.Join(jsonList, ",") + "]"
+  return yamlDb, jsonDb
 }
 
 func writeYaml(name string, data []byte) {

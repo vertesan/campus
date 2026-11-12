@@ -78,12 +78,8 @@ func Decrypt(key []byte, iv []byte, src io.Reader, dst io.Writer) {
     panic(err)
   }
 
-  n, err := io.Copy(dst, bytes.NewBuffer(plainBytes))
-  if err != nil {
+  if _, err := dst.Write(plainBytes); err != nil {
     panic(err)
-  }
-  if n <= 0 {
-    log.Panicf("%q bytes of data has been written.", n)
   }
 }
 
@@ -94,9 +90,7 @@ func pkcs7Pad(b []byte, blocksize int) ([]byte, error) {
   if blocksize <= 0 {
     return nil, ErrInvalidBlockSize
   }
-  if len(b) == 0 {
-    return nil, ErrInvalidPKCS7Data
-  }
+  // Empty plaintext is valid in PKCS#7 and pads to one full block.
   blocksize = blocksize / 8
   n := blocksize - (len(b) % blocksize)
   pb := make([]byte, len(b)+n)
@@ -121,7 +115,7 @@ func pkcs7Unpad(b []byte, blocksize int) ([]byte, error) {
   }
   c := b[len(b)-1]
   n := int(c)
-  if n == 0 || n > len(b) {
+  if n == 0 || n > blocksize || n > len(b) {
     panic(ErrInvalidPKCS7Padding)
   }
   for i := 0; i < n; i++ {

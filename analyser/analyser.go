@@ -295,7 +295,32 @@ func analyzeTree(
         tsLine := tsGeneralColumnTemplate
         columnVal := subMatches[1]
         typeName := subMatches[3]
-        columnName := subMatches[4]
+        columnName := strings.TrimSuffix(subMatches[4], "_")
+        typeName = strings.TrimSpace(typeName)
+        if strings.HasPrefix(typeName, "MapField<") && strings.HasSuffix(typeName, ">") {
+          kv := strings.TrimSuffix(strings.TrimPrefix(typeName, "MapField<"), ">")
+          kvParts := strings.SplitN(kv, ",", 2)
+          if len(kvParts) == 2 {
+            kRaw := strings.TrimSpace(kvParts[0])
+            vRaw := strings.TrimSpace(kvParts[1])
+            kProto, kTs := typeMap[kRaw], tsTypeMap[kRaw]
+            if kProto == "" {
+              kProto, kTs = kRaw, kRaw
+            }
+            vProto, vTs := typeMap[vRaw], tsTypeMap[vRaw]
+            if vProto == "" {
+              vProto, vTs = vRaw, vRaw
+            }
+            line = strings.Replace(line, "$type", fmt.Sprintf("map<%s, %s>", kProto, vProto), 1)
+            line = strings.Replace(line, "$columnName", columnName, 1)
+            line = strings.Replace(line, "$decimal", columnVal, 1)
+            sb.WriteString(indentMap[tree.level-reducedLevel] + line)
+            tsLine = strings.ReplaceAll(tsLine, "$type", fmt.Sprintf("{ [key: %s]: %s }", kTs, vTs))
+            tsLine = strings.Replace(tsLine, "$columnName", columnName, 1)
+            tsSb.WriteString("  " + tsLine)
+            continue
+          }
+        }
         isRepeated := false
         // if typeName is a list, prune the redundant characters
         if strings.HasPrefix(typeName, "RepeatedField<") {
@@ -318,9 +343,12 @@ func analyzeTree(
               xList = append(xList, typeName)
             }
           } else {
-            // if not, it can be an imported type
+            isSamePkgListElem := rootCategory == Master && strings.HasSuffix(tree.name, "List") && columnName == "list" && slices.Contains(masterList, typeName)
+            isSamePkgApi := rootCategory == Api && slices.Contains(apiList, typeName) && !slices.Contains(apiCommonList, typeName)
             if slices.Contains(enumList, typeName) {
               typeName = "penum." + typeName
+            } else if isSamePkgListElem || isSamePkgApi {
+              // keep unqualified same-package type
             } else if slices.Contains(commonList, typeName) && rootCategory != Common {
               typeName = "pcommon." + typeName
             } else if slices.Contains(masterList, typeName) && rootCategory != Master {
@@ -341,8 +369,6 @@ func analyzeTree(
           typeName = "repeated " + typeName
           tsTypeName = tsTypeName + "[]"
         }
-        columnName = strings.TrimSuffix(columnName, "_")
-
         // proto typeName
         if strings.Contains(typeName, ".Types.") {
           typeName = strings.ReplaceAll(typeName, ".Types.", ".")
@@ -489,6 +515,7 @@ func analyzeFile(
     }
   }
 
+  xList = nil
   var sb *strings.Builder
   var tsSb *strings.Builder
   if category == Enum {
@@ -528,6 +555,14 @@ func Analyze() {
   os.MkdirAll(tsOutDir, 0755)
 
   entireContent := sb.String()
+  enumList = nil
+  commonList = nil
+  masterList = nil
+  transactionList = nil
+  apiCommonList = nil
+  apiList = nil
+  xList = nil
+  mappingSb.Reset()
   mappingSb.WriteString(mappingHeader)
   analyzeFile(&entireContent, Enum, outEnumPath, tsOutEnumPath)
   rich.Info("Analyze Enum completed.")

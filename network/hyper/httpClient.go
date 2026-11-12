@@ -11,6 +11,7 @@ import (
 
 var (
   transport = &http.Transport{
+    Proxy:             http.ProxyFromEnvironment,
     DisableKeepAlives: true,
   }
   client = &http.Client{
@@ -21,12 +22,22 @@ var (
 
 func SendRequest(url string, method string, header *http.Header, body io.Reader, timeout int, maxTry int) (*http.Response, context.CancelFunc, error) {
   for i := range maxTry {
+    if i > 0 {
+      if seeker, ok := body.(io.Seeker); ok {
+        if _, err := seeker.Seek(0, io.SeekStart); err != nil {
+          return nil, nil, err
+        }
+      }
+    }
     res, cancel, err := sendRequestInternal(url, method, header, body, timeout)
     if err != nil {
       rich.Error("Failed to request %q, attempts(%d/%d).", url, i+1, maxTry)
+      if cancel != nil {
+        cancel()
+      }
       if i+1 >= maxTry {
         rich.Error("Max retries exhausted when requesting %q.", url)
-        return nil, cancel, err
+        return nil, nil, err
       }
       continue
     }
@@ -43,7 +54,9 @@ func sendRequestInternal(url string, method string, header *http.Header, body io
   if err != nil {
     return nil, cancel, err
   }
-  request.Header = *header
+  if header != nil {
+    request.Header = *header
+  }
   res, err := client.Do(request)
   if err != nil {
     return nil, cancel, err

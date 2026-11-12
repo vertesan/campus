@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.23.4 AS build-stage
+FROM golang:1.24 AS build-stage
 WORKDIR /app
 COPY ./ ./
 RUN go mod download
-RUN env GOOS=linux CGO_ENABLED=1 CC=gcc go build -o ./campus -ldflags '-s -w' .
+RUN env GOOS=linux CGO_ENABLED=1 CGO_CFLAGS="-D_LARGEFILE64_SOURCE" CC=gcc go build -o ./campus -ldflags '-s -w' .
 
 FROM ubuntu:latest AS release-stage
 RUN apt update && apt -y install bash openssh-client git

@@ -17,7 +17,7 @@ func cryptByString(input []byte, maskString string, offset int, streamPos int, h
   bytesLength := maskStringLength << 1
   result := input
   maskBytes := stringToMaskBytes(maskString, maskStringLength, bytesLength)
-  for i := 0; streamPos+i < headerLength; i++ {
+  for i := 0; streamPos+i < headerLength && offset+i < len(result); i++ {
     result[offset+i] ^= maskBytes[streamPos+i-(streamPos+i)/bytesLength*bytesLength]
   }
   return result

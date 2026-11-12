@@ -41,8 +41,10 @@ func GetPlayVersion() (string, error) {
     if strings.Contains(scriptContent, "key: 'ds:5'") {
       reg := regexp.MustCompile(`\[\[\["([\d\.]+)"\]\],\[\[\[\d+\]\]\,\[\[\[\d+,"`)
       match := reg.FindStringSubmatch(scriptContent)
-      version = match[1]
-      return false
+      if len(match) > 1 {
+        version = match[1]
+        return false
+      }
     }
     return true
   })

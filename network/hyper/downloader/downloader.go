@@ -37,6 +37,7 @@ func NewDownloader(timeout int, header *http.Header, saveDir string, maxThread i
     Client: &http.Client{
       Timeout: time.Duration(timeout) * time.Second,
       Transport: &http.Transport{
+        Proxy:             http.ProxyFromEnvironment,
         DisableKeepAlives: true,
       },
     },
@@ -125,21 +126,29 @@ func (d *Downloader) downloadOne(
     // save response stream to a file
     fs, err := os.Create(path.Join(d.SaveDir, entry.SaveFileName))
     if err != nil {
+      res.Body.Close()
       panic(err)
     }
-    defer fs.Close()
     bufw := bufio.NewWriter(fs)
     if _, err := bufw.ReadFrom(res.Body); err != nil {
+      fs.Close()
+      res.Body.Close()
       rich.Warning("An internal error was occurred when reading body from %v (%s), retrying...(%d/%d)", entry.Url, entry.SaveFileName, i+1, d.MaxSingleRetry)
       continue
     }
     if err := bufw.Flush(); err != nil {
+      fs.Close()
+      res.Body.Close()
       panic(err)
     }
+    if err := fs.Close(); err != nil {
+      res.Body.Close()
+      panic(err)
+    }
+    res.Body.Close()
 
     d.Counter.Increase()
     rich.Info("(%d/%d) Download completed: %q (%v).", d.Counter.Value(), total, entry.SaveFileName, entry.Url)
-    res.Body.Close()
     return
   }
   // max retry exhausted

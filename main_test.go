@@ -57,7 +57,7 @@ func TestDecryptOctoManifest(t *testing.T) {
   }
   // keyMd5 := md5.Sum([]byte("1nuv9td1bw1udefk"))
   // ivMd5 := md5.Sum([]byte("LvAUtf+tnz"))
-  octoDb, err := octo.DecryptOctoList(octoFs, 1)
+  octoDb, err := octo.DecryptOctoList(octoFs, 1, -1)
   if err != nil {
     panic(err)
   }
@@ -84,7 +84,7 @@ func TestDecryptOctoList(t *testing.T) {
   if err != nil {
     panic(err)
   }
-  db, err := octo.DecryptOctoList(fs, 0)
+  db, err := octo.DecryptOctoList(fs, 0, -1)
   if err != nil {
     panic(err)
   }
@@ -116,7 +116,7 @@ func TestSerialize(t *testing.T) {
 }
 
 func TestDeserialize(t *testing.T) {
-  bodyBytes := rpc.Deserialize(deserializeTestData)
+  bodyBytes := rpc.Deserialize(deserializeTestData[5:])
   var response papi.SystemCheckResponse
   if err := proto.Unmarshal(bodyBytes, &response); err != nil {
     t.Fatalf("Cannot unmarshal message. %s", err)
