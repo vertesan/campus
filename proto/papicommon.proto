@@ -37,6 +37,11 @@ message ProduceHighScoreRushExternalProduceReward {
   repeated string produceItemIds = 3;
   repeated string produceDrinkIds = 4;
 }
+message ProduceHighScoreRushOverrideExternalProduceReward {
+  penum.ProduceExamEffectType examEffectType = 1;
+  string produceId = 2;
+  repeated string produceItemIds = 3;
+}
 message PvpRateSeasonResult {
   int64 seasonStartTime = 1;
   int64 seasonEndTime = 2;
@@ -64,6 +69,13 @@ message RankReward {
   int64 borderScore = 3;
   repeated pcommon.Reward rewards = 4;
 }
+message Refine {
+  string refineId = 1;
+  string refineName = 2;
+  int64 startTime = 100;
+  int64 endTime = 101;
+  int64 closeTime = 102;
+}
 message Response {
   UserData updatedData = 1;
   UserData deletedData = 2;
@@ -73,10 +85,15 @@ message Response {
   repeated string anotherCostumeIds = 6;
   repeated string anotherCostumeHeadIds = 7;
   repeated StoryEventReward storyEventRewards = 8;
+  repeated TrailMission clearTrailMissions = 9;
 }
 message StoryEventReward {
   string storyEventId = 1;
   repeated pcommon.StoryEventPointReward pointRewards = 2;
+}
+message TrailMission {
+  string name = 1;
+  int32 threshold = 2;
 }
 message UserData {
   ptransaction.User user = 342861366;
@@ -108,6 +125,8 @@ message UserData {
   repeated ptransaction.UserMeishiIllustrationAsset userMeishiIllustrationAssetList = 100237367;
   repeated ptransaction.UserMemory userMemoryList = 163783316;
   ptransaction.UserMemoryInherit userMemoryInherit = 312197620;
+  ptransaction.UserMemoryRemake userMemoryRemake = 174625523;
+  repeated ptransaction.UserMemoryRemakeResult userMemoryRemakeResultList = 221978351;
   repeated ptransaction.UserMission userMissionList = 176225192;
   repeated ptransaction.UserMissionDailyReleaseGroup userMissionDailyReleaseGroupList = 104872908;
   repeated ptransaction.UserMissionGroup userMissionGroupList = 350034430;
@@ -120,12 +139,15 @@ message UserData {
   repeated ptransaction.UserPhoto userPhotoList = 288232532;
   repeated ptransaction.UserPhotoBackground userPhotoBackgroundList = 99273345;
   repeated ptransaction.UserPhotoPose userPhotoPoseList = 439296203;
+  ptransaction.UserPlayGames userPlayGames = 317057571;
   ptransaction.UserPreference userPreference = 296399830;
   repeated ptransaction.UserProduce userProduceList = 170637697;
   repeated ptransaction.UserProduceAdv userProduceAdvList = 280248182;
   repeated ptransaction.UserProduceCard userProduceCardList = 230550472;
   repeated ptransaction.UserProduceCardConversion userProduceCardConversionList = 238079855;
   repeated ptransaction.UserProduceCardReward userProduceCardRewardList = 364806182;
+  repeated ptransaction.UserProduceCardSkin userProduceCardSkinList = 481364826;
+  repeated ptransaction.UserProduceCardSkinPreference userProduceCardSkinPreferenceList = 493795161;
   repeated ptransaction.UserProduceCharacter userProduceCharacterList = 494627662;
   repeated ptransaction.UserProduceDrink userProduceDrinkList = 65968245;
   repeated ptransaction.UserProduceGroupCharacter userProduceGroupCharacterList = 149373425;
@@ -155,6 +177,16 @@ message UserData {
   ptransaction.UserPvpRate userPvpRate = 226209413;
   repeated ptransaction.UserPvpRateDeck userPvpRateDeckList = 353841253;
   ptransaction.UserPvpRateUnit userPvpRateUnit = 286467793;
+  repeated ptransaction.UserRefineAdv userRefineAdvList = 449914535;
+  repeated ptransaction.UserRefineMemoryDeck userRefineMemoryDeckList = 45361438;
+  ptransaction.UserRefineProgress userRefineProgress = 280209899;
+  repeated ptransaction.UserRefineProgressEffect userRefineProgressEffectList = 257038026;
+  repeated ptransaction.UserRefineProgressExamMission userRefineProgressExamMissionList = 437698057;
+  repeated ptransaction.UserRefineProgressPresent userRefineProgressPresentList = 478943366;
+  repeated ptransaction.UserRefineProgressProduceCard userRefineProgressProduceCardList = 382348858;
+  repeated ptransaction.UserRefineProgressSectionStep userRefineProgressSectionStepList = 304624980;
+  repeated ptransaction.UserRefineProgressSetup userRefineProgressSetupList = 508059045;
+  repeated ptransaction.UserRefineProgressSubProduceCard userRefineProgressSubProduceCardList = 466025084;
   repeated ptransaction.UserShopItem userShopItemList = 455613547;
   repeated ptransaction.UserStory userStoryList = 376356693;
   repeated ptransaction.UserSupportCard userSupportCardList = 2234692;
